@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-16",
+  "reason": "Car export and versioned generation proof are retained; intermediate older wheels, duplicate regeneration, before-resource and task-owned pip cache are no longer needed.",
+  "removed": [
+    {
+      "owned_path": "native-car-37-corrections-regenerated",
+      "bytes_removed": 107761596
+    },
+    {
+      "owned_path": "before-native-car-37-corrections.private.json",
+      "bytes_removed": 59694088
+    },
+    {
+      "owned_path": "car-public-premise-wheel",
+      "bytes_removed": 22880736
+    },
+    {
+      "owned_path": "car-public-pip-cache",
+      "bytes_removed": 68738138
+    },
+    {
+      "owned_path": "car-310-review-wheel",
+      "bytes_removed": 45541788
+    },
+    {
+      "owned_path": "car-312-review-wheel",
+      "bytes_removed": 45449772
+    }
+  ],
+  "bytes_removed": 350066118,
+  "Brightway_databases_removed": 0,
+  "source_biosphere_latest_export_active_checkpoints_preserved": true
+}

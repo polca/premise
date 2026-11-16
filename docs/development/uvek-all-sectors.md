@@ -2224,3 +2224,30 @@ See [public export receipt](uvek-cars-public-export-verification.json). Battery,
 trucks, final energy, emissions and metals remain unqualified. The next actual
 battery preparation has 27 pending correspondences in its first inspected
 source-3.9 cohort; that is not a count across all remaining source cohorts.
+
+
+## Remaining-sector checks and shared supply decisions — 16 November 2026
+
+A fresh diagnostic run of the five remaining sectors uses source checkouts and
+the recorded current archive, bypassing only the unqualified-sector admission
+guard. Validation stays enabled; no Brightway database is written. Metals and
+emissions execute and pass graph checks. That is not qualification: emissions
+still reports incomplete coverage. Metals executes97material decisions but has
+one missing titanium provider and an incomplete three-part SOEC ceramic group;
+its103mining-market decisions preserve source because2050lies beyond the
+2020–2030support. An in-range scenario is needed to exercise those filters.
+
+Trucks and final energy stop in inventory preparation. Fourteen independently
+inspected unchanged direct native-supply correspondences now clear required
+source3.9inputs, reducing the actual first battery cohort27to13 and final
+energy29to21. Trucks' first source3.8cohort has85pending correspondences.
+The counts are correspondence decisions in first inspected cohorts, not missing
+datasets or a complete count of the remaining goal. No production Python was
+changed. See [review](uvek-battery-native-direct-39-review.md),
+[checks](uvek-battery-native-direct-39-verification.json), and
+[first-failure evidence](uvek-remaining-five-runtime-frontiers-2026-11-16.json).
+
+The completed car qualification also allows retiring350,066,118bytes of
+obsolete task-owned wheels, pip cache and duplicate generation inputs. Original
+sources, biosphere, active checkpoints and the latest verified export remain.
+See [cleanup receipt](uvek-car-public-review-cleanup-2026-11-16.json).

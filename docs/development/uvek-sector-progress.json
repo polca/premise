@@ -1322,7 +1322,25 @@
         "role_files": [],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
       },
-      "static_audit_refresh": "Current code passes source_family and biosphere_version through the shared callback and InventorySet. This resolves the earlier static dispatch findings; a real sector run is still required."
+      "static_audit_refresh": "Current code passes source_family and biosphere_version through the shared callback and InventorySet. This resolves the earlier static dispatch findings; a real sector run is still required.",
+      "latest_actual_shared_run": {
+        "preparation_passed": true,
+        "CLIC_records": 93,
+        "graph_validation_passed": true,
+        "compiled_and_executed_material_pairs": 97,
+        "material_reason_counts": {
+          "metals.material_rule.year_outside_support": 20,
+          "metals.material_rule.intensity_missing": 13,
+          "metals.material_rule.component_scope_unverified": 57,
+          "metals.material_rule.applied": 2,
+          "metals.material_rule.zero_intensity": 1,
+          "metals.material_rule.provider_missing": 1,
+          "metals.material_rule.design_incomplete": 3
+        },
+        "in_range_mining_market_check_required": true,
+        "qualification": false,
+        "finding": "Graph pass is not coverage: one Ti provider is missing, three SOEC ceramic decisions are held by an incomplete provider group, and103source mining markets are retained outside2020\u20132030support."
+      }
     },
     {
       "sector": "mining",
@@ -2280,7 +2298,9 @@
       ],
       "decisions": [],
       "implementation_commits": [],
-      "tests": [],
+      "tests": [
+        "Fourteen actual-source native supply approvals pass12Brightpath and4Premise checks plus28signed native-target LCIs. Required first source3.9cohort changes27to13; complete update/export remains unqualified."
+      ],
       "integration_exports": [],
       "static_audit": {
         "callback": "_update_battery",
@@ -2351,6 +2371,13 @@
           "source_and_native_crude_unit": "kilogram",
           "reconstruction_and_input_permissions_pending": true
         }
+      },
+      "latest_required_source39_native_supply_review": {
+        "review": "docs/development/uvek-battery-native-direct-39-review.md",
+        "verification": "docs/development/uvek-battery-native-direct-39-verification.json",
+        "pending_first_cohort_before": 27,
+        "pending_first_cohort_after": 13,
+        "full_sector_qualified": false
       }
     },
     {
@@ -3509,7 +3536,9 @@
       ],
       "decisions": [],
       "implementation_commits": [],
-      "tests": [],
+      "tests": [
+        "Fourteen actual-source native supply approvals pass12Brightpath and4Premise checks plus28signed native-target LCIs. Required first source3.9cohort changes29to21; complete update/export remains unqualified."
+      ],
       "integration_exports": [],
       "static_audit": {
         "callback": "_update_final_energy",
@@ -3538,6 +3567,13 @@
         "review": "docs/development/uvek-production-heat-boundary-review.md",
         "verification": "docs/development/uvek-production-heat-boundary-verification.json",
         "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
+      },
+      "latest_required_source39_native_supply_review": {
+        "review": "docs/development/uvek-battery-native-direct-39-review.md",
+        "verification": "docs/development/uvek-battery-native-direct-39-verification.json",
+        "pending_first_cohort_before": 29,
+        "pending_first_cohort_after": 21,
+        "full_sector_qualified": false
       }
     },
     {
@@ -3802,7 +3838,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cars-public-export-verification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-hydrogen-train-direct-39.md",
+    "latest_mapping_review": "docs/development/uvek-battery-native-direct-39-review.md",
     "verified_native_source_limits": [
       {
         "source_identity": {
@@ -3895,6 +3931,7 @@
     "latest_owned_analysis_cleanup": "docs/development/uvek-hydrogen-train-ferrosilicon-312-verification.json#cleanup",
     "latest_train_mapping_verification": "docs/development/uvek-native-trains-verification.json",
     "latest_train_standalone_verification": "docs/development/uvek-native-trains-standalone-verification.json",
-    "latest_train_runtime_verification": "docs/development/uvek-native-trains-verification.json"
+    "latest_train_runtime_verification": "docs/development/uvek-native-trains-verification.json",
+    "remaining_sector_runtime_frontiers": "docs/development/uvek-remaining-five-runtime-frontiers-2026-11-16.json"
   }
 }

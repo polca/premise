@@ -313755,6 +313755,1336 @@
           "fingerprint": "72190aa49fd4d8213720ed5dfd8700123419cdacce8368e4af4fe6ca6d929300"
         }
       ]
+    },
+    {
+      "rule_id": "bp-994b29a3344cd4b0",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_native_direct_39_review.json",
+      "review_sha256": "598abc9a5630411c2ba5b113c17f70fba2a95a0b53f41cd465a7bf9ef8b13eac",
+      "authorization": "Standing autonomous mapping goal and auto-approval of decisions with recorded warnings; independently inspect actual selected source and native inventories.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for hot rolling, steel",
+          "reference product": "hot rolling, steel",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Hot rolling, steel",
+          "reference product": "Hot rolling, steel",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for hot rolling, steel",
+            "reference product": "hot rolling, steel",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 2,
+          "inventory_sha256": "1c30d9cf13b6c7b8b260f4bdbf3b0878b8d3b860f0e730f63ee690eff1f39807",
+          "metadata_sha256": "197da97811d16b3791c46dea7ad3c7d3659edce2c95cf8f96a1a77845d5d9e37",
+          "comment_sha256": "570c1e0db0908767a372790c3e1021bc16a095897e3852804c5eb1549b358d0d",
+          "product_information_sha256": "6dbe501af554ee2d6813488ab491cf6dc2a3653e99e3290c1eab056252d1f0cc"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Hot rolling, steel",
+              "reference product": "Hot rolling, steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 53,
+            "inventory_sha256": "f2738a5e1c3e93bc7437c2c31a1ad6d41028c5f99f42bb0314af955c745bdc2f",
+            "metadata_sha256": "67cbe382514589ae10f87d7eadbc4da742d5c4feb27bf8307cbe204f99e99e80",
+            "comment_sha256": "e891e99bcbb8001a44b843cfae27ca2f25551fca2c3e4dc0e3f5fb37a4985fac",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Hot rolling, steel",
+              "reference product": "Hot rolling, steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 53,
+            "inventory_sha256": "6c8c7a4c580b7610ec9e7e38fab133b307a58b6fe5ee6e9c95e49993ffdff981",
+            "metadata_sha256": "e5056db33b2f497a7ceab03ecc0cab80937de182863df7ed0e376c831fa97799",
+            "comment_sha256": "3176013f54d0081a491897ea24d8f41254adc2363fab9f59ce3c5ed477877705",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Both describe hot rolling per kg of steel processed, excluding the steel itself. Use the complete Swiss processing service, including its heating, finishing and water circuit.",
+        "actual_nonzero_foreground_uses": 1
+      },
+      "limitations": [
+        "The source global service mix becomes the Swiss gas-heated technology. Keep separately purchased steel unchanged; do not add steel, metal loss or a further rolling service.",
+        "Approve only the enumerated source ecoinvent 3.9 cut-off correspondences to the UVEK 2025 edge and native UVEK 2026 release route. No other source release, reverse conversion or consequential route is authorized.",
+        "Retain signed caller quantities, formulas and supported uncertainty. Each complete native inventory replaces the whole source service or supply boundary once; original internal producer shares, delivery, allocation and emissions are not claimed preserved. Do not append source-market transport or source emissions already inside the replaced supply.",
+        "Native geography, vintage, technology, allocation and internal uncertainty differ. The BAFU reimport also has documented excluded biosphere flows. Scores and functional-performance differences are unquantified; these are screening proxies. No new helper, physical foreground omission or runtime Python change is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "3cb355e91191e990029742fc0604f5060ad27a35e7e2037e2c8b1e8240269395"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3c4fc855bcc17210",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_battery_native_direct_39_review.json",
+      "review_sha256": "598abc9a5630411c2ba5b113c17f70fba2a95a0b53f41cd465a7bf9ef8b13eac",
+      "authorization": "Standing autonomous mapping goal and auto-approval of decisions with recorded warnings; independently inspect actual selected source and native inventories.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for tin",
+          "reference product": "tin",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Tin, at regional storage",
+          "reference product": "Tin, at regional storage",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for tin",
+            "reference product": "tin",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 6,
+          "inventory_sha256": "ba99dc19df218f98000de4ef8d22f0010ff83ef581db6d8afaf0ef5458073d00",
+          "metadata_sha256": "1eb281c9cecbdaa97778efc5753e833e52529d3e7a19df1c30dd35fc37733be4",
+          "comment_sha256": "9ef8ab821d7728b867f18b9d0b7638e051588d8d31371fe8a4d4b6f7569cc6ed",
+          "product_information_sha256": "516837515956191757dc80c8a40ed222b07e72e97fe7bdba8095fceb00bae6be"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Tin, at regional storage",
+              "reference product": "Tin, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 27,
+            "inventory_sha256": "1d613787d5f10dfb7e7435f4008c7493cf2168c8e0c2f22a05f9b4657d642e0d",
+            "metadata_sha256": "1362c660008a4cb6039d108cef3695e624778169cec83b1d5f5f51480e8b5cae",
+            "comment_sha256": "5750ac58ba3a64482402fa21f888a0b7e0292d6da54afbcfe788d18888e2b616",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Tin, at regional storage",
+              "reference product": "Tin, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 27,
+            "inventory_sha256": "4a95f681d3b1c006e6f809eac695e7537da945f8ddfadaab8ac4970469b5d345",
+            "metadata_sha256": "c1eae19192bec140066b3cef056eee4962ac0b693e68836b6e874cbd9fc58787",
+            "comment_sha256": "3bc1334cc119f5c698d5956070984e7074dfbc4e39a3208824f27394dabe7976",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Both supply tin metal per kg. Native supply includes primary mining, beneficiation, smelting, refining and delivery to European regional storage.",
+        "actual_nonzero_foreground_uses": 1
+      },
+      "limitations": [
+        "Native historical primary tin and European delivery replace the source global producer, possible secondary and freight mix. Native data quality is explicitly poor; do not preserve or supplement the source market shares implicitly.",
+        "Approve only the enumerated source ecoinvent 3.9 cut-off correspondences to the UVEK 2025 edge and native UVEK 2026 release route. No other source release, reverse conversion or consequential route is authorized.",
+        "Retain signed caller quantities, formulas and supported uncertainty. Each complete native inventory replaces the whole source service or supply boundary once; original internal producer shares, delivery, allocation and emissions are not claimed preserved. Do not append source-market transport or source emissions already inside the replaced supply.",
+        "Native geography, vintage, technology, allocation and internal uncertainty differ. The BAFU reimport also has documented excluded biosphere flows. Scores and functional-performance differences are unquantified; these are screening proxies. No new helper, physical foreground omission or runtime Python change is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9301e8d3dbc648e3dbeed6ddb79cf1e3f1a48a201f237df839a01f501da45f8e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3630e934d38b5d4f",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_native_direct_39_review.json",
+      "review_sha256": "598abc9a5630411c2ba5b113c17f70fba2a95a0b53f41cd465a7bf9ef8b13eac",
+      "authorization": "Standing autonomous mapping goal and auto-approval of decisions with recorded warnings; independently inspect actual selected source and native inventories.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "CH",
+          "name": "market for process-specific burdens, sanitary landfill",
+          "reference product": "process-specific burdens, sanitary landfill",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Process-specific burdens, sanitary landfill",
+          "reference product": "Process-specific burdens, sanitary landfill",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for process-specific burdens, sanitary landfill",
+            "reference product": "process-specific burdens, sanitary landfill",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 1,
+          "inventory_sha256": "d85496eaf726220023d11a13ee4c140d8ae0bd1aa87d184b53b193472dfd0ac2",
+          "metadata_sha256": "caf1c4d154b237bd78cb2f656213ccd8f58200367c41cdedaf1c105c4e5f859b",
+          "comment_sha256": "6ee02a1eaebe09724c6d58f8b0f6549d3bdf72ed703cc83d159d91fee992e1e8",
+          "product_information_sha256": "b9a7b14a86d4cd8465a910ea6459d657e8008ad0ee164ed4c9122cfd5a11b312"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Process-specific burdens, sanitary landfill",
+              "reference product": "Process-specific burdens, sanitary landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "inventory_sha256": "f0dfd140f671db2adb85000c1abcc854d089d9f5cd213f08a822d89bd375b2bc",
+            "metadata_sha256": "5b7936e2ddbc5a465a724018fde8f9585d74808e090346f226d62537d7942261",
+            "comment_sha256": "5a55bd781f908ac86a6a73ff99be28e3af82493a3487c6767c59b5d24e9079c7",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Process-specific burdens, sanitary landfill",
+              "reference product": "Process-specific burdens, sanitary landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 14,
+            "inventory_sha256": "49e2e47f622fda6080d440e03910e040a1251fdadf06050c9765002a0c856665",
+            "metadata_sha256": "3356a2f136216bea1bfe3164a1f6f91e432f05d1a835152044402ea4e3d6516b",
+            "comment_sha256": "2256c2808ed73fac2928e9f18338c1d6f771bbf4b83aab8af88094abaa910436",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Both supply process-specific sanitary-landfill operation burdens per kg, independently of the deposited waste composition.",
+        "actual_nonzero_foreground_uses": 1
+      },
+      "limitations": [
+        "Use only the process-specific operation inventory. Separate waste-dependent emissions and treatment inputs remain caller-owned; this service is not complete disposal of a named waste.",
+        "Approve only the enumerated source ecoinvent 3.9 cut-off correspondences to the UVEK 2025 edge and native UVEK 2026 release route. No other source release, reverse conversion or consequential route is authorized.",
+        "Retain signed caller quantities, formulas and supported uncertainty. Each complete native inventory replaces the whole source service or supply boundary once; original internal producer shares, delivery, allocation and emissions are not claimed preserved. Do not append source-market transport or source emissions already inside the replaced supply.",
+        "Native geography, vintage, technology, allocation and internal uncertainty differ. The BAFU reimport also has documented excluded biosphere flows. Scores and functional-performance differences are unquantified; these are screening proxies. No new helper, physical foreground omission or runtime Python change is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1e622e9d09c3a933f909e6a916fbe208054084256ad8c36a3fe2fd015bc21b1f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-795d4a075e625e8f",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_native_direct_39_review.json",
+      "review_sha256": "598abc9a5630411c2ba5b113c17f70fba2a95a0b53f41cd465a7bf9ef8b13eac",
+      "authorization": "Standing autonomous mapping goal and auto-approval of decisions with recorded warnings; independently inspect actual selected source and native inventories.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "market for lime, hydrated, loose weight",
+          "reference product": "lime, hydrated, loose weight",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Lime, hydrated, loose, at plant",
+          "reference product": "Lime, hydrated, loose, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for lime, hydrated, loose weight",
+            "reference product": "lime, hydrated, loose weight",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 15,
+          "inventory_sha256": "c30311cad209be179531ff51692424280ca7e67511348df55c593b4922c32a97",
+          "metadata_sha256": "40730d35227ce6e5cd631939f10365b756e50e007baa34409166247c85d86cef",
+          "comment_sha256": "5f1d889136478a7d6bef68e66d0a37e90be7ecbcfa104a0ac641a23092aaba40",
+          "product_information_sha256": "ef7e0bcf23e4205469b987cc94ad484db49b8156b76f9f0380ea9686d2087a54"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Lime, hydrated, loose, at plant",
+              "reference product": "Lime, hydrated, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 8,
+            "inventory_sha256": "d3f44e7c9bd355dc2910973147707a85311a06da504edfafcdefca03bfec07ca",
+            "metadata_sha256": "5075eb5bc09e57cccd0a71f1129d67117112e1c6ddc711f310c894b1b42581d5",
+            "comment_sha256": "011fc059ccb69853895f332d67db53df5200fd5628de8621eada7b783e12bb05",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Lime, hydrated, loose, at plant",
+              "reference product": "Lime, hydrated, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 8,
+            "inventory_sha256": "a410255535b23d1962f9452eaca677da9333aaf46941ddf7b01229616824632c",
+            "metadata_sha256": "2e5aab06197ac564ac9a85c43bdff9fc2b0428de7e64b426316ee07a79c02bd9",
+            "comment_sha256": "ea902cfdb78f261e241eb740b5f3797edb297e5f4d37b113b1b6e4a2a252b895",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Both represent loose dry hydrated lime, mainly calcium hydroxide, per nominal kg. Native manufacture includes slaking, crushing, dust control, handling, storage and equipment.",
+        "actual_nonzero_foreground_uses": 1
+      },
+      "limitations": [
+        "Use the complete Swiss loose-product inventory. Source producer shares, final delivery, purity, technology and allocation differ. No water, active-substance or quicklime multiplier is invented.",
+        "Approve only the enumerated source ecoinvent 3.9 cut-off correspondences to the UVEK 2025 edge and native UVEK 2026 release route. No other source release, reverse conversion or consequential route is authorized.",
+        "Retain signed caller quantities, formulas and supported uncertainty. Each complete native inventory replaces the whole source service or supply boundary once; original internal producer shares, delivery, allocation and emissions are not claimed preserved. Do not append source-market transport or source emissions already inside the replaced supply.",
+        "Native geography, vintage, technology, allocation and internal uncertainty differ. The BAFU reimport also has documented excluded biosphere flows. Scores and functional-performance differences are unquantified; these are screening proxies. No new helper, physical foreground omission or runtime Python change is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "660d7aad9fcb85b5a373484e0f7de7900c59361bc08994563bc7791ca43addea"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-89b0ace02c127879",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_battery_native_direct_39_review.json",
+      "review_sha256": "598abc9a5630411c2ba5b113c17f70fba2a95a0b53f41cd465a7bf9ef8b13eac",
+      "authorization": "Standing autonomous mapping goal and auto-approval of decisions with recorded warnings; independently inspect actual selected source and native inventories.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "water production, deionised",
+          "reference product": "water, deionised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Water, deionised, at plant",
+          "reference product": "Water, deionised, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "water production, deionised",
+            "reference product": "water, deionised",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 19,
+          "inventory_sha256": "454e0772db98eff77ba474bd6c62ec4ce84bd4e82ca948f847d46648d0bdc776",
+          "metadata_sha256": "f8fc27ddc413ade9f1bfb3914c7fa2c7ba131f6647394c8f52ec7d4fa556a133",
+          "comment_sha256": "eeffeac4854275414bf933807a9ee26f0e35e1365d5cfe38140b2fb3e566d6f2",
+          "product_information_sha256": "760a3a3dbf48bc906197ac94960f9920fafc5854e6ff34a6988523f1e3ea3963"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Water, deionised, at plant",
+              "reference product": "Water, deionised, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 10,
+            "inventory_sha256": "bd7bbc1dab9ed071b021b11d8f27fdf5f8ce3dcc69ce2923c6d4844ac9142191",
+            "metadata_sha256": "f7243056c2b914cac1744fc5c6d8218047608c12caf8d3880df34f936467d944",
+            "comment_sha256": "aeeb276a2f5e152eea2365ac308e14cda6ab4adac0df510701121aac3f67fead",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Water, deionised, at plant",
+              "reference product": "Water, deionised, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 11,
+            "inventory_sha256": "a02b0719e4b09152140c4f989cac3066d867364c151cdaea9d9dc81ac33e33f6",
+            "metadata_sha256": "e8b50267d8bb3ef078b569f7ddafab4ece4e13000fba5b602c0199aa21316009",
+            "comment_sha256": "6b210505b9a6d34a3465dd308958da108d8bcfe57de2f24810d0a31d4df3ed91",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Both provide deionised water per kg. Native supply includes ion-exchange operation, regeneration chemicals, electricity, infrastructure and resin replacement.",
+        "actual_nonzero_foreground_uses": 1
+      },
+      "limitations": [
+        "Native Swiss tap-water quality and counterflow ion-exchange technology replace the source European production process. Raw-water quality, purity, regeneration demand, losses and vintage differ; no extra water balance or loss multiplier is added.",
+        "Approve only the enumerated source ecoinvent 3.9 cut-off correspondences to the UVEK 2025 edge and native UVEK 2026 release route. No other source release, reverse conversion or consequential route is authorized.",
+        "Retain signed caller quantities, formulas and supported uncertainty. Each complete native inventory replaces the whole source service or supply boundary once; original internal producer shares, delivery, allocation and emissions are not claimed preserved. Do not append source-market transport or source emissions already inside the replaced supply.",
+        "Native geography, vintage, technology, allocation and internal uncertainty differ. The BAFU reimport also has documented excluded biosphere flows. Scores and functional-performance differences are unquantified; these are screening proxies. No new helper, physical foreground omission or runtime Python change is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c48d76ef6f9cb8c35a9e87087e317fda611386d8f4acc5e56d8c78a72255d8c0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a9d3eaa7a7b04898",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_native_direct_39_review.json",
+      "review_sha256": "598abc9a5630411c2ba5b113c17f70fba2a95a0b53f41cd465a7bf9ef8b13eac",
+      "authorization": "Standing autonomous mapping goal and auto-approval of decisions with recorded warnings; independently inspect actual selected source and native inventories.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for lithium carbonate",
+          "reference product": "lithium carbonate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Lithium carbonate, at plant",
+          "reference product": "Lithium carbonate, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for lithium carbonate",
+            "reference product": "lithium carbonate",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 8,
+          "inventory_sha256": "3ba55eccb437ca196f58a1e03a5b96d9fe26e54d601bc386d23cede933b61759",
+          "metadata_sha256": "4e40481d2605a8298ae2fa7088d9bb95428eb3108ac413991c61b365a3acfccf",
+          "comment_sha256": "1ac0dfc0fc40c655ac1f33696902f9b0d0e7c93e457bc6ffb5da77c77a41a7e0",
+          "product_information_sha256": "57c4ca542efb46882ec8bc6c9f2681e63852357df2995f227a212e09c94a15c1"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Lithium carbonate, at plant",
+              "reference product": "Lithium carbonate, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 20,
+            "inventory_sha256": "f6fa5c2051c57b7e042a932373943372a444a70cd8c4775ae36f77a6de35d906",
+            "metadata_sha256": "2c1ce824b8280032c7c31b964f7cc9a46acc17fc364a8f47b57296e99fa7f2f9",
+            "comment_sha256": "d985958ad384b0e6d14aa64f037ac46c32065465a0ad1cd4370eac5ff08deef3",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Lithium carbonate, at plant",
+              "reference product": "Lithium carbonate, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 20,
+            "inventory_sha256": "e0e88afaee2598219846cb550838b87de4fe2343dd094ac4077da48c1e230c1e",
+            "metadata_sha256": "60d329b219557ce2dae0f3343adb202ca62e2a60fa691cfa7b2c6b30f794fccd",
+            "comment_sha256": "c6002fcc0afc7337ab99277a8398aa6eed9b51eff1ebf610f9142df7bcbf4d60",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Both supply lithium carbonate per nominal kg. Native brine processing includes purification, carbonation, filtration, washing and drying and is documented for battery electrode feedstock.",
+        "actual_nonzero_foreground_uses": 1
+      },
+      "limitations": [
+        "The complete native Chilean brine route, with stated 99.2% purity, replaces the source global brine/spodumene/recovered supply mix and delivery. This is a whole-product screening proxy, not preservation of the ore-route mix or battery-grade performance. No extra recovery credit, purity or route multiplier is inferred from the generic product label. Retain native internal fuel-substitution entries once.",
+        "Approve only the enumerated source ecoinvent 3.9 cut-off correspondences to the UVEK 2025 edge and native UVEK 2026 release route. No other source release, reverse conversion or consequential route is authorized.",
+        "Retain signed caller quantities, formulas and supported uncertainty. Each complete native inventory replaces the whole source service or supply boundary once; original internal producer shares, delivery, allocation and emissions are not claimed preserved. Do not append source-market transport or source emissions already inside the replaced supply.",
+        "Native geography, vintage, technology, allocation and internal uncertainty differ. The BAFU reimport also has documented excluded biosphere flows. Scores and functional-performance differences are unquantified; these are screening proxies. No new helper, physical foreground omission or runtime Python change is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b2e57b0d839aeef6c2dd279b47f18d51c39c4d46cc9d52f173046a06a2f9e35e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b16c64b2ed0f8102",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_native_direct_39_review.json",
+      "review_sha256": "598abc9a5630411c2ba5b113c17f70fba2a95a0b53f41cd465a7bf9ef8b13eac",
+      "authorization": "Standing autonomous mapping goal and auto-approval of decisions with recorded warnings; independently inspect actual selected source and native inventories.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "market for aluminium oxide, non-metallurgical",
+          "reference product": "aluminium oxide, non-metallurgical",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Aluminium oxide, at plant",
+          "reference product": "Aluminium oxide, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for aluminium oxide, non-metallurgical",
+            "reference product": "aluminium oxide, non-metallurgical",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 21,
+          "inventory_sha256": "d6a60854112c0ac7a0276c244b2f3ccac2936f77934dc0a7c4b3205038b96ec4",
+          "metadata_sha256": "42c1dc1d40b868bd1d1f8a36c8ec99ce74a90d8bd5ff14ae9e5ef5f08eb6a34e",
+          "comment_sha256": "15604f297894ba40753a6c435c6baeabfdc6d6edd2735796546f0aa272bf26cc",
+          "product_information_sha256": "867027da42b42e138db6683888f1d789962ca60dbad7e38d7d338d3ee05fe8c0"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 33,
+            "inventory_sha256": "c517cb807d4e0b165327d132899d73ef082c74964039d3edc4f02a7d2392266f",
+            "metadata_sha256": "d88cb51dece7ef6215b76c2b6cc2d29fe706ed5f4820893e4b4fcbfea7151209",
+            "comment_sha256": "2da13b26479470ba366c77e56b82bb91a346f736d2b2504624fdf2400cc71be8",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 33,
+            "inventory_sha256": "44b9c8327281b5f10fbca15bf2ceed8b228575a25a00e33dcc67b0160fe5a447",
+            "metadata_sha256": "3b5e202eeed10d2e8b75c34a12ad7d74fadbee99d7a051598202cc4fe5cd5126",
+            "comment_sha256": "40b4c577b620f78d89941cb95c5bbe2f4024fcfd2b256d00bcd8577e49fc7831",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Both refer to aluminium oxide per kg. Native material is Al2O3, not aluminium metal, and includes the European alumina-production inventory.",
+        "actual_nonzero_foreground_uses": 1
+      },
+      "limitations": [
+        "Native industry-average alumina does not establish the source non-metallurgical grade, calcination state, particle size, purity or application performance. Use a nominal-product screening proxy with no invented grade-processing or stoichiometric conversion.",
+        "Approve only the enumerated source ecoinvent 3.9 cut-off correspondences to the UVEK 2025 edge and native UVEK 2026 release route. No other source release, reverse conversion or consequential route is authorized.",
+        "Retain signed caller quantities, formulas and supported uncertainty. Each complete native inventory replaces the whole source service or supply boundary once; original internal producer shares, delivery, allocation and emissions are not claimed preserved. Do not append source-market transport or source emissions already inside the replaced supply.",
+        "Native geography, vintage, technology, allocation and internal uncertainty differ. The BAFU reimport also has documented excluded biosphere flows. Scores and functional-performance differences are unquantified; these are screening proxies. No new helper, physical foreground omission or runtime Python change is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "19907946ca25e49542a35f7f7da83da3e816b9313a83b64cdffa5572e47a669e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2ff13efabe033fe6",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_battery_native_direct_39_review.json",
+      "review_sha256": "598abc9a5630411c2ba5b113c17f70fba2a95a0b53f41cd465a7bf9ef8b13eac",
+      "authorization": "Standing autonomous mapping goal and auto-approval of decisions with recorded warnings; independently inspect actual selected source and native inventories.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for aluminium alloy, AlMg3",
+          "reference product": "aluminium alloy, AlMg3",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Aluminium alloy, AlMg3, at plant",
+          "reference product": "Aluminium alloy, AlMg3, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for aluminium alloy, AlMg3",
+            "reference product": "aluminium alloy, AlMg3",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 6,
+          "inventory_sha256": "476ddb1a553afddb63dbecad757c362418df56a3d7db848d453c117d4158021e",
+          "metadata_sha256": "ddfc3c52235b16b02b9b125277a314af3c5aa499d6505ca687bd31dd4eb29aba",
+          "comment_sha256": "f9929121d3659521a033cfebeb99a003a09365fe87d8a1accb0647fd832ba1e6",
+          "product_information_sha256": "bb5e27720b87d34c5def9b992d5a0238b54028e8552ae943f278c8910f750d79"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Aluminium alloy, AlMg3, at plant",
+              "reference product": "Aluminium alloy, AlMg3, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "inventory_sha256": "aeb1d9a65462baf83503a505b1ab38bae39d76f1515e9705136eca0b87987a9c",
+            "metadata_sha256": "33d48c2c672e373c14f4ad9add79346036c6a6a084d5b24fb5203a685db5b5f7",
+            "comment_sha256": "d923cda0b09a009b06e7d177131dc8de68f86a79e4af4325c909de0992c7da49",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Aluminium alloy, AlMg3, at plant",
+              "reference product": "Aluminium alloy, AlMg3, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 12,
+            "inventory_sha256": "d20b5234d18c919b1826d996825d45e30065efe4ca46ab540ae42f5dafca28e4",
+            "metadata_sha256": "a3302c7f365df007b0eefcdc149dc9178e32050ea4fea30a96aa8e18bbfc8a7a",
+            "comment_sha256": "85a31110c06e151cdfe6b74af1e5bf607fc88ecadf432fbcee8037e0fe81207b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Both explicitly name the approximately 3%-magnesium AlMg3 alloy. Native documentation identifies AA5754/EN AW-5754 and primary-metal alloy manufacture.",
+        "actual_nonzero_foreground_uses": 1
+      },
+      "limitations": [
+        "Native primary-metal European alloy supply replaces the source market production, possible recycled feedstock and delivery mix. This approval is for AlMg3 only; it does not cover the different AlLi alloy, extra forming or recovery credits.",
+        "Approve only the enumerated source ecoinvent 3.9 cut-off correspondences to the UVEK 2025 edge and native UVEK 2026 release route. No other source release, reverse conversion or consequential route is authorized.",
+        "Retain signed caller quantities, formulas and supported uncertainty. Each complete native inventory replaces the whole source service or supply boundary once; original internal producer shares, delivery, allocation and emissions are not claimed preserved. Do not append source-market transport or source emissions already inside the replaced supply.",
+        "Native geography, vintage, technology, allocation and internal uncertainty differ. The BAFU reimport also has documented excluded biosphere flows. Scores and functional-performance differences are unquantified; these are screening proxies. No new helper, physical foreground omission or runtime Python change is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "37045d71d9f9d7ee8e6ffe4ad777e872c06deb250d22e124bf301a8b57e26958"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f91c426026b3b7a5",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_native_direct_39_review.json",
+      "review_sha256": "598abc9a5630411c2ba5b113c17f70fba2a95a0b53f41cd465a7bf9ef8b13eac",
+      "authorization": "Standing autonomous mapping goal and auto-approval of decisions with recorded warnings; independently inspect actual selected source and native inventories.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for chromium",
+          "reference product": "chromium",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Chromium, at regional storage",
+          "reference product": "Chromium, at regional storage",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for chromium",
+            "reference product": "chromium",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 5,
+          "inventory_sha256": "e2b1168c498e0f23422e89bbd122d60d3a194bd49fe6f40a105a3990e5bbf20e",
+          "metadata_sha256": "ae02e0ff074999df776e155bac30c53e05d04342c2eb79191cc66d6cca807ce9",
+          "comment_sha256": "3d5583134c59c5c60eabce60aa76ddacd67f3c364ed88533ba5c59cd25f6bea5",
+          "product_information_sha256": "6d88ddb183a3932c16b095aa2048cf85d7113ed4eeeb004a41f2e327fb9b93cd"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Chromium, at regional storage",
+              "reference product": "Chromium, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "inventory_sha256": "76870ffb82d5ffdf831d64ae4f89ca7dd7aa6cccc025263ab206ba91a663254f",
+            "metadata_sha256": "5331083697e8106c6f8bcc083b4ec9e4b329a36d61d47be8d6b83ac21d7e721d",
+            "comment_sha256": "d062953933692b68101892c22af098ccedb95f2170fb9012a7db9d7680dba84b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Chromium, at regional storage",
+              "reference product": "Chromium, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 12,
+            "inventory_sha256": "92551c0edbed243da184b684239a5a5c20045f531878af20eca60f84d3bcfd57",
+            "metadata_sha256": "c3b9a0135c3b82a7ee9b6129efbf8a2800983df6df49f245bfeb9893c51eb0ef",
+            "comment_sha256": "e1feaf8a4e3aee3798f506185f054a31e0e46fed30a060655ef0896a1d871539",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Both supply chromium metal per kg. Native production combines aluminothermic and electrolytic routes and delivery to European storage.",
+        "actual_nonzero_foreground_uses": 2
+      },
+      "limitations": [
+        "Native historical 75/25 production split, no secondary supply and incomplete process emissions replace the source global market. Chromium metal is not ferrochromium or chromite; no ore-content multiplier is used.",
+        "Approve only the enumerated source ecoinvent 3.9 cut-off correspondences to the UVEK 2025 edge and native UVEK 2026 release route. No other source release, reverse conversion or consequential route is authorized.",
+        "Retain signed caller quantities, formulas and supported uncertainty. Each complete native inventory replaces the whole source service or supply boundary once; original internal producer shares, delivery, allocation and emissions are not claimed preserved. Do not append source-market transport or source emissions already inside the replaced supply.",
+        "Native geography, vintage, technology, allocation and internal uncertainty differ. The BAFU reimport also has documented excluded biosphere flows. Scores and functional-performance differences are unquantified; these are screening proxies. No new helper, physical foreground omission or runtime Python change is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "3d5addf60eb229a3eaf51e1f5b6c3c8feeea41cbb1892603855df0776b68f763"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8f861372e8eb370e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_native_direct_39_review.json",
+      "review_sha256": "598abc9a5630411c2ba5b113c17f70fba2a95a0b53f41cd465a7bf9ef8b13eac",
+      "authorization": "Standing autonomous mapping goal and auto-approval of decisions with recorded warnings; independently inspect actual selected source and native inventories.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for tetrafluoroethylene film, on glass",
+          "reference product": "tetrafluoroethylene film, on glass",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Tetrafluoroethylene film, on glass",
+          "reference product": "Tetrafluoroethylene film, on glass",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for tetrafluoroethylene film, on glass",
+            "reference product": "tetrafluoroethylene film, on glass",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 5,
+          "inventory_sha256": "bdd2d9169422715bb2000ad94b17953ad8f6445f90a3b4c58156801fd5bb6880",
+          "metadata_sha256": "0f7286fdc6fa35251f6f70ddf390070053d1ce4150acb2a1428ef0f0ba67e5b4",
+          "comment_sha256": "72f8f1dcbb661880268a85e2458ec1841c275122c355f652c21c41b30f05d7fe",
+          "product_information_sha256": "299683e4372e458fbb5b6a7815344d366d3e1a47e9a51817e260510c31ff9b36"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Tetrafluoroethylene film, on glass",
+              "reference product": "Tetrafluoroethylene film, on glass",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 11,
+            "inventory_sha256": "915a115848cd51b1118af26c3aa8b42b04feea044d6da2f22c4e75c67bafde7e",
+            "metadata_sha256": "860d108534ae42327ca119c97610ec289875f26bff73397cceeaac1c767d6a8e",
+            "comment_sha256": "e6833d2312cb7a7c36c51d0246c8b3f471114063f4874ec7c5519bc9f788f896",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Tetrafluoroethylene film, on glass",
+              "reference product": "Tetrafluoroethylene film, on glass",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 11,
+            "inventory_sha256": "6c057ba5473cd0ea48c4ec88d7a4c42a98e22529858594a4b3cdfd6f253e8987",
+            "metadata_sha256": "8b3a5f52710ca029d23296e1324518ea83a2c2c2a150820c1afe0927efdf193b",
+            "comment_sha256": "0c58beaac7240c90266a133ec7e739bb92ccfaac3308277244880c240d095a2f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Both supply the named tetrafluoroethylene-film-on-glass product per kg. Native inventory includes polymer feed, process chemicals and estimated plant infrastructure.",
+        "actual_nonzero_foreground_uses": 1
+      },
+      "limitations": [
+        "Native historical gate-to-gate process, grade, thickness, substrate interpretation, manufacture and delivery differ or are incompletely documented. No glass, coating, surface-area or thickness multiplier is inferred from the label; separate caller materials remain unchanged.",
+        "Approve only the enumerated source ecoinvent 3.9 cut-off correspondences to the UVEK 2025 edge and native UVEK 2026 release route. No other source release, reverse conversion or consequential route is authorized.",
+        "Retain signed caller quantities, formulas and supported uncertainty. Each complete native inventory replaces the whole source service or supply boundary once; original internal producer shares, delivery, allocation and emissions are not claimed preserved. Do not append source-market transport or source emissions already inside the replaced supply.",
+        "Native geography, vintage, technology, allocation and internal uncertainty differ. The BAFU reimport also has documented excluded biosphere flows. Scores and functional-performance differences are unquantified; these are screening proxies. No new helper, physical foreground omission or runtime Python change is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d82ffeffaa94d8fc1422da553531f2b4355ed9ab51d01ac360a4185f77719417"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6011b8e76edaf1f5",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_native_direct_39_review.json",
+      "review_sha256": "598abc9a5630411c2ba5b113c17f70fba2a95a0b53f41cd465a7bf9ef8b13eac",
+      "authorization": "Standing autonomous mapping goal and auto-approval of decisions with recorded warnings; independently inspect actual selected source and native inventories.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for natural gas, burned in gas turbine",
+          "reference product": "natural gas, burned in gas turbine",
+          "unit": "megajoule"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Natural gas, burned in gas turbine",
+          "reference product": "Natural gas, burned in gas turbine",
+          "unit": "megajoule"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for natural gas, burned in gas turbine",
+            "reference product": "natural gas, burned in gas turbine",
+            "location": "GLO",
+            "unit": "megajoule"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 35,
+          "inventory_sha256": "c6519709f4535d5a47dd46a90f9f0131c5332a4c2f36b49b8282785402887d0f",
+          "metadata_sha256": "208cb903d79ac01884d3da8799cc6106a2fa9489dde98e81c39fc0b446dec94a",
+          "comment_sha256": "e4e9aab0380450bd31afe3597a80ac8f6d6bfe1918e605ba5f17aa82e7e538aa",
+          "product_information_sha256": "a38ddfea1f9cf5c2384efbf8d40b477309d614c3cc9d9dcb4dfd25b3dc0c409f"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Natural gas, burned in gas turbine",
+              "reference product": "Natural gas, burned in gas turbine",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "inventory_sha256": "caac15edf33954ea49b252da616ec9ae0695eed11c05f677e92e8637c868bccc",
+            "metadata_sha256": "61f3ecde4ce71dcc501927dcafb051b26ae6509d64235dab013be8b370f1160c",
+            "comment_sha256": "a35d0a86d0936048073277e14e2204df9f64e53d9df02c734a269a6d02d4e402",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Natural gas, burned in gas turbine",
+              "reference product": "Natural gas, burned in gas turbine",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 12,
+            "inventory_sha256": "40d7b14da4d6fbce975ff4ec6dd0447f3e84ed0e000694cca522eac1d36f99fd",
+            "metadata_sha256": "aba2b8e12fb280115f7cf76f8523b36d9ff85a0049a8995ecbbd429f817b2d33",
+            "comment_sha256": "d332b41cbb789bbfe87087ada3995f402ebcd6dba844104797e9c77b17781c6d",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Both supply combustion of one MJ of natural-gas fuel input, including fuel supply, turbine infrastructure and direct emissions. Native fuel draw is exactly one MJ per referenced MJ.",
+        "actual_nonzero_foreground_uses": 1
+      },
+      "limitations": [
+        "This is fuel combustion, not useful heat or electricity. Preserve caller MJ; do not apply efficiency, heating-value or output-credit scaling. Swiss gas composition, vintage, operating performance and emission inventories are historical proxies.",
+        "Approve only the enumerated source ecoinvent 3.9 cut-off correspondences to the UVEK 2025 edge and native UVEK 2026 release route. No other source release, reverse conversion or consequential route is authorized.",
+        "Retain signed caller quantities, formulas and supported uncertainty. Each complete native inventory replaces the whole source service or supply boundary once; original internal producer shares, delivery, allocation and emissions are not claimed preserved. Do not append source-market transport or source emissions already inside the replaced supply.",
+        "Native geography, vintage, technology, allocation and internal uncertainty differ. The BAFU reimport also has documented excluded biosphere flows. Scores and functional-performance differences are unquantified; these are screening proxies. No new helper, physical foreground omission or runtime Python change is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6133ab2bb0657e6c7988334edf47c7410a91a846306bb4a4b41137c6bdd236ae"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-70c1f30a3a059289",
+      "operation": "replace",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_battery_native_direct_39_review.json",
+      "review_sha256": "598abc9a5630411c2ba5b113c17f70fba2a95a0b53f41cd465a7bf9ef8b13eac",
+      "authorization": "Standing autonomous mapping goal and auto-approval of decisions with recorded warnings; independently inspect actual selected source and native inventories.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for activated bentonite",
+          "reference product": "activated bentonite",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "DE",
+          "name": "Bentonite, at processing",
+          "reference product": "Bentonite, at processing",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for activated bentonite",
+            "reference product": "activated bentonite",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 7,
+          "inventory_sha256": "1d937987a303e49429886639ece78cdfe7906b8b7fe7ddbe2658dcb4046c9ea9",
+          "metadata_sha256": "b9439fea2950c5a5b83b98515f7dbf910690b4601956486c1cdad5c93eb35f18",
+          "comment_sha256": "d2d72950567064f7e164cf477082fcbdd5019e285f69d8d6f222a054755d77ef",
+          "product_information_sha256": "e42966878b3ef6204989c7612f43625192e58679336ad3cfa9172c770c8608d3"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Bentonite, at processing",
+              "reference product": "Bentonite, at processing",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "inventory_sha256": "18c9f85f10c59f4244e418b6c614cf047b4e1d0af3b369c98a8147866062f349",
+            "metadata_sha256": "fa7301617455abc7939171ef5f3924fd53ce235a215e5b1dee14e62d5ad17957",
+            "comment_sha256": "f1cee9db1021caf2399aaee6e8e5835741755f18fafae243595ee21c8cb969bc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Bentonite, at processing",
+              "reference product": "Bentonite, at processing",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 45,
+            "inventory_sha256": "d5e956b42c29035a61626464b4cd32067074af1f77c4ba95ec8ec6aa90a19c2c",
+            "metadata_sha256": "4e4cb1853c6c2f3a59ae9d7704280bf53e6d98f826cbe7222ef0cb9c20fdaba8",
+            "comment_sha256": "93d1787a21dc10c9ec0b07f175f1155f69497f2be093fff4fac90341ee244b19",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Source and native documentation identify the same nominal mix: 38% alkaline activated bentonite, 61% acid activated and 1% catalytic-converter product. Native production includes activation, washing, milling and drying.",
+        "actual_nonzero_foreground_uses": 1
+      },
+      "limitations": [
+        "The shorter native name does not mean untreated clay. Retain the complete activated mix once; do not add an activation process. Native German plant, source delivery, historical data and documented isopropanol/unspecified-metal water-emission proxies differ.",
+        "Approve only the enumerated source ecoinvent 3.9 cut-off correspondences to the UVEK 2025 edge and native UVEK 2026 release route. No other source release, reverse conversion or consequential route is authorized.",
+        "Retain signed caller quantities, formulas and supported uncertainty. Each complete native inventory replaces the whole source service or supply boundary once; original internal producer shares, delivery, allocation and emissions are not claimed preserved. Do not append source-market transport or source emissions already inside the replaced supply.",
+        "Native geography, vintage, technology, allocation and internal uncertainty differ. The BAFU reimport also has documented excluded biosphere flows. Scores and functional-performance differences are unquantified; these are screening proxies. No new helper, physical foreground omission or runtime Python change is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "76581ab9adf49b0c41ce933a5b650c36b92386f3ab178c0736aba6f7a7d3e6a7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b5637b022f813882",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_battery_native_direct_39_review.json",
+      "review_sha256": "598abc9a5630411c2ba5b113c17f70fba2a95a0b53f41cd465a7bf9ef8b13eac",
+      "authorization": "Standing autonomous mapping goal and auto-approval of decisions with recorded warnings; independently inspect actual selected source and native inventories.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "market for lubricating oil",
+          "reference product": "lubricating oil",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Lubricating oil, at plant",
+          "reference product": "Lubricating oil, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for lubricating oil",
+            "reference product": "lubricating oil",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 13,
+          "inventory_sha256": "1694235f10d77392dab80aee5b3bfd57cd71f303f32d4e5c39c1672eff9dfbe7",
+          "metadata_sha256": "879131bd677a3d26aa9abd82942de2ab2754e6c11c11b2bf11de9f901fca0044",
+          "comment_sha256": "87ee7af5087decd854d4a1c4a84512366f02d7f68094e8117de5271e7794d778",
+          "product_information_sha256": "e62151e9571da9511ffc009d32e85170340bb976fe7b9fbd85e353319cd57354"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Lubricating oil, at plant",
+              "reference product": "Lubricating oil, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "inventory_sha256": "49e823023b853869a62a51f208de06c9cdd37d85beb4bef8f67581e3f125691e",
+            "metadata_sha256": "b1fd71416711837fae8c0ad732676b93751477da1e0b45f373ea668869f9beb6",
+            "comment_sha256": "c11c85cae98c626267ac5aba00bcf6a0488aaa44701e36464dd3856317902752",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Lubricating oil, at plant",
+              "reference product": "Lubricating oil, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 6,
+            "inventory_sha256": "9f9fa4d1ccd767ffc551af7dacdf2badd26217af2255d7bddc8cd920159074c8",
+            "metadata_sha256": "779582db13968faaf16dff9532df51f8533892488fb6b04940429664c49cd56f",
+            "comment_sha256": "6a5e297e408e62497abff14b6aa80e8973a9c4916277cda903fec3ba0464cc71",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Both supply liquid lubricating oil per kg. Native manufacture includes hydrocracking, distillation and dewaxing with its own process yield and upstream inventory.",
+        "actual_nonzero_foreground_uses": 1
+      },
+      "limitations": [
+        "Native European theoretical production, missing solid-waste and uncertain emission inventory replace the source market and delivery mix. The 75% native production yield is internal; do not multiply the caller demand by its inverse or add a second oil-production inventory.",
+        "Approve only the enumerated source ecoinvent 3.9 cut-off correspondences to the UVEK 2025 edge and native UVEK 2026 release route. No other source release, reverse conversion or consequential route is authorized.",
+        "Retain signed caller quantities, formulas and supported uncertainty. Each complete native inventory replaces the whole source service or supply boundary once; original internal producer shares, delivery, allocation and emissions are not claimed preserved. Do not append source-market transport or source emissions already inside the replaced supply.",
+        "Native geography, vintage, technology, allocation and internal uncertainty differ. The BAFU reimport also has documented excluded biosphere flows. Scores and functional-performance differences are unquantified; these are screening proxies. No new helper, physical foreground omission or runtime Python change is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "3146d51329e1c53db639f547cb942144d824d7699ebc33f8e80c07fab05fb724"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2d9efe8f54fd84e5",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_native_direct_39_review.json",
+      "review_sha256": "598abc9a5630411c2ba5b113c17f70fba2a95a0b53f41cd465a7bf9ef8b13eac",
+      "authorization": "Standing autonomous mapping goal and auto-approval of decisions with recorded warnings; independently inspect actual selected source and native inventories.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for solvent, organic",
+          "reference product": "solvent, organic",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Solvents, organic, unspecified, at plant",
+          "reference product": "Solvents, organic, unspecified, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for solvent, organic",
+            "reference product": "solvent, organic",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 8,
+          "inventory_sha256": "0ef539cb2ecd833c675ca4dd102a5e38134fd5ae8a916ff7206b91c7b517e1dd",
+          "metadata_sha256": "9459d19f7ee744635ca8eb5dd7b25cffd059c794cce4187959f4d95492eec722",
+          "comment_sha256": "03f86727af878e1ad1472bcb82d8b8706346e0650d2dc7a79caa883c0c9d6ca0",
+          "product_information_sha256": "caa8a8b5455724330289684180d602a1e455147a5cd8a5bc452f1f730c4a9549"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Solvents, organic, unspecified, at plant",
+              "reference product": "Solvents, organic, unspecified, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 15,
+            "inventory_sha256": "b9d4915117fa25bae5fe2c8e6c0a422b0045c27343afe2afd70ec2a0fb13360a",
+            "metadata_sha256": "e0fdf4d528732a0d0b3061c2c42d726ed5e1e33d4837bfa624fd0bdab5a5a38b",
+            "comment_sha256": "8336498be9b93f746b8fbb55e5f9fad6d138cf67277ff0e27d6925c0c0a06c59",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Solvents, organic, unspecified, at plant",
+              "reference product": "Solvents, organic, unspecified, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 15,
+            "inventory_sha256": "011922e3a9e7ebf492ba0e1e6cbfedf0fd55ec04b27d2b3cebb14a569d8cd83d",
+            "metadata_sha256": "52735d9d78900c36647e1949c43a3fd7bb538c17c0ece7f5e3ec14075121e75d",
+            "comment_sha256": "30fda40e4c37f889bab9bcb331cd78fde2a4c7221dda415867f52b6965ff36d3",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Both represent an unspecified organic-solvent supply per kg, not a specific named reagent. Native supply is an equal mixture of fifteen solvents.",
+        "actual_nonzero_foreground_uses": 1
+      },
+      "limitations": [
+        "The native arbitrary equal mixture replaces the source generic solvent-market composition and inherited delivery. Solvent identities, performance, emissions and internal uncertainty differ; this approval does not cover tetraethyl orthosilicate or another chemically named reagent.",
+        "Approve only the enumerated source ecoinvent 3.9 cut-off correspondences to the UVEK 2025 edge and native UVEK 2026 release route. No other source release, reverse conversion or consequential route is authorized.",
+        "Retain signed caller quantities, formulas and supported uncertainty. Each complete native inventory replaces the whole source service or supply boundary once; original internal producer shares, delivery, allocation and emissions are not claimed preserved. Do not append source-market transport or source emissions already inside the replaced supply.",
+        "Native geography, vintage, technology, allocation and internal uncertainty differ. The BAFU reimport also has documented excluded biosphere flows. Scores and functional-performance differences are unquantified; these are screening proxies. No new helper, physical foreground omission or runtime Python change is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "91d70db00bb31fe8bee410e03ffff988dcb3c002051ab5dfe071242ad762573e"
+        }
+      ]
     }
   ],
   "superseded_operations": [

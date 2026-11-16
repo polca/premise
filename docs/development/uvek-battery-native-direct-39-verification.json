@@ -1,0 +1,120 @@
+{
+  "date": "2026-11-16",
+  "status": "fourteen_actual_native_supply_correspondences_qualified_not_full_battery_sector",
+  "review": "brightpath/data/export/uvek_battery_native_direct_39_review.json",
+  "review_sha256": "598abc9a5630411c2ba5b113c17f70fba2a95a0b53f41cd465a7bf9ef8b13eac",
+  "scopes_added": 14,
+  "rules_changed": false,
+  "runtime_changes": 0,
+  "Brightpath_migration_tests_passed": 12,
+  "Premise_harmonization_tests_passed": 4,
+  "checks": "Positive and negative demands, normal and lognormal uncertainty, caller formulas, native2025/2026 paths, no added helpers, strict unapproved/other-profile refusal, fresh/cache replay, warning provenance and approval withdrawal.",
+  "native_supplier_LCI": {
+    "status": "fourteen_native_suppliers_have_finite_signed_LCIs",
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "database": "BAFU:2026-reimported",
+    "matrix_shape": [
+      11947,
+      11947
+    ],
+    "suppliers": [
+      {
+        "rule_id": "bp-994b29a3344cd4b0",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 111.91405317030737
+      },
+      {
+        "rule_id": "bp-3c4fc855bcc17210",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 7715.391609566518
+      },
+      {
+        "rule_id": "bp-3630e934d38b5d4f",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 1.139616153992461
+      },
+      {
+        "rule_id": "bp-795d4a075e625e8f",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 44.114798968004855
+      },
+      {
+        "rule_id": "bp-89b0ace02c127879",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 0.6588558458398562
+      },
+      {
+        "rule_id": "bp-a9d3eaa7a7b04898",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 466.8497433322578
+      },
+      {
+        "rule_id": "bp-b16c64b2ed0f8102",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 201.83789171170042
+      },
+      {
+        "rule_id": "bp-2ff13efabe033fe6",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 2770.050373820853
+      },
+      {
+        "rule_id": "bp-f91c426026b3b7a5",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 12711.727867974478
+      },
+      {
+        "rule_id": "bp-8f861372e8eb370e",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 4633.119601791573
+      },
+      {
+        "rule_id": "bp-6011b8e76edaf1f5",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 2.067965490557417
+      },
+      {
+        "rule_id": "bp-70c1f30a3a059289",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 139.8029153081781
+      },
+      {
+        "rule_id": "bp-b5637b022f813882",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 365.21987146294816
+      },
+      {
+        "rule_id": "bp-2d9efe8f54fd84e5",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 245.03288137711166
+      }
+    ],
+    "signed_finite_LCI_solves": 28,
+    "new_Brightway_databases": 0,
+    "rule_resource_changed": false,
+    "qualification_limit": "Native target-demand solves, not a complete battery update or comparative source LCIA."
+  },
+  "actual_remaining_first_cohorts": {
+    "battery": {
+      "before": 27,
+      "after": 13
+    },
+    "final energy": {
+      "before": 29,
+      "after": 21
+    },
+    "trucks": {
+      "pending": 85,
+      "source_version": "3.8",
+      "affected_by_this_source39_review": false
+    }
+  },
+  "existing_rule_approvals_broader_check": {
+    "passed_before_interruption": 96,
+    "full_file_completed": false,
+    "reason": "Stopped the much larger parametrized ledger suite after the focused new-review tests passed; no failure observed. This is not a full-suite claim."
+  },
+  "public_sectors_qualified": 14,
+  "remaining_sector_count": 5,
+  "new_Brightway_databases": 0
+}
