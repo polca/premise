@@ -1,0 +1,70 @@
+{
+  "status": "public_installed_fourteen_sector_update_export_and_finite_LCI_passed_with_documented_metadata_limit",
+  "activities": 17208,
+  "sectors": [
+    "biomass",
+    "electricity",
+    "heat",
+    "cement",
+    "steel",
+    "mining",
+    "renewable",
+    "cdr",
+    "fuels",
+    "ships",
+    "buses",
+    "two_wheelers",
+    "trains",
+    "cars"
+  ],
+  "CLIC_records": 1317,
+  "car_roles": 30,
+  "car_regions": 13,
+  "native_regional_services_with_source_assumptions": 273,
+  "Brightpath_Git_revision": "4117937c6d745dedeb6dd46b1038aa2cdc288730",
+  "Premise_Brightpath_requirement": "brightpath @ git+https://github.com/romainsacchi/brightpath.git@4117937c6d745dedeb6dd46b1038aa2cdc288730",
+  "source_modules_loaded_from_checkouts": false,
+  "CLIC_options_overridden": false,
+  "CLIC_freshness": "normal live default",
+  "archive": {
+    "created_at": "2026-11-16T10:54:55.973093+00:00",
+    "fingerprint": "a5e07aec49160ee6b32a869f37c455b0cb71bec501d669243b0c6ff8a3bbcc9c",
+    "record_id": 24278693
+  },
+  "public_scope_gate_bypassed": false,
+  "validation_disabled": false,
+  "unchanged_no_argument_defaults": [
+    "biomass",
+    "electricity",
+    "heat"
+  ],
+  "sector_qualified": true,
+  "database": "BAFU:2026-REMIND-SSP2-NPi-2050-fourteen-cars-20261116-190111",
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "exported_activities": 17208,
+  "regional_car_services": 390,
+  "regional_car_markets": 13,
+  "technosphere_links_stay_in_export": true,
+  "biosphere_database": "ecoinvent-3.10-biosphere",
+  "signed_written_LCI_solves": 86,
+  "source_database_metadata_unchanged": true,
+  "new_Brightway_databases": 1,
+  "exported_source_formula_audits": 9,
+  "source_formula_audits_retained_in_versioned_review": 10,
+  "standard_electricity_relink_metadata_limit": [
+    {
+      "recipe": "car-37-alli-producer-caqc",
+      "original_expression": "kWh_ww+ kWh_process",
+      "preserved_kWh": 3.05499345428597,
+      "supplier_location": "CA",
+      "limitation": "Shared electricity relinking preserves the quantity and supplier but drops this historical exchange formula note. The original remains in the versioned Brightpath review; no executable source formula was required."
+    }
+  ],
+  "verification_note": "The original public verifier reached its final metadata-only assertion after all 86 signed written LCIs and graph/export checks passed. This read-only completion accounts for all ten original formula notes without rewriting the exported database or changing shared transformations.",
+  "verification_scripts": [
+    "verify_public_cars_export.private.py",
+    "verify_car_export_audit_completion.private.py"
+  ],
+  "Premise_commit_at_build": "cbbb6e45",
+  "installed_Premise_wheel_sha256": "20b68551b257533051543faac24663720e3dd06df06fecacaa494a06cde78081"
+}

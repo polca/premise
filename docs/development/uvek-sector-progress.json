@@ -9,7 +9,7 @@
     "biosphere_version": "3.10"
   },
   "registry_source": "premise/database/new_database.py:NewDatabase.update",
-  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses, two_wheelers, trains and cars. The unchanged no-argument default selects biomass, electricity and heat. Installed-package/export qualification of cars is being completed; other sectors remain gated.",
+  "current_scope_gate": "Public UVEK updates admit fourteen qualified sectors: biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses, two_wheelers, trains and cars. The unchanged no-argument default selects biomass, electricity and heat. Five other sectors remain gated.",
   "sectors": [
     {
       "sector": "biomass",
@@ -2355,7 +2355,7 @@
     },
     {
       "sector": "cars",
-      "status": "public_api_enabled_installed_export_pending",
+      "status": "operational_for_verified_REMIND_scenario_with_documented_screening_limits",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -2391,12 +2391,7 @@
         "runtime_verified": true,
         "review": "docs/development/uvek-native-car-alias-review.json"
       },
-      "blockers": [
-        {
-          "code": "installed_package_and_export_qualification",
-          "finding": "Cars is admitted after shared standalone/combined graph, physical and representative LCI checks. A fresh installed-package public run and real export are the remaining qualification checks."
-        }
-      ],
+      "blockers": [],
       "decisions": [
         {
           "review": "docs/development/uvek-native-car-aliases.md",
@@ -2460,7 +2455,8 @@
         "Twenty-one focused historical-model and stock checks pass after a minimal Brightpath resource-validator correction. Exact model stock authority and caller-profile restrictions remain enforced; the source3.7 alloy recipe and full car transformation are not yet qualified.",
         "Nine source3.7 correction migration/replay checks pass; all three forward resources regenerate byte-identically.",
         "Actual standalone and combined14-sector shared runs each produce390regional services and13markets; exhaustive graph checks, independent physical/share checks and86signedLCIs each pass without a Brightway database write.",
-        "Twenty focused UVEK background/scope/car-filter/exact-approval checks pass; no-argument defaults remain biomass/electricity/heat and unverified sectors remain refused."
+        "Twenty focused UVEK background/scope/car-filter/exact-approval checks pass; no-argument defaults remain biomass/electricity/heat and unverified sectors remain refused.",
+        "Installed packages and the normal live CLIC default pass the public fourteen-sector update, exhaustive graph validation, one real Brightway export and86signed written LCIs. All273native regional service comments carry the reviewed source assumptions. One historical formula audit note is dropped by unchanged shared electricity relinking; its quantity and Canadian supplier are preserved, and the versioned review retains the note."
       ],
       "integration_exports": [
         {
@@ -2488,6 +2484,33 @@
           "verification": "docs/development/uvek-passenger-car-source37-corrections-verification.json",
           "public_scope_gate_bypassed": true,
           "Brightway_export": false
+        },
+        {
+          "kind": "public_installed_Brightway_export",
+          "sectors": [
+            "biomass",
+            "electricity",
+            "heat",
+            "cement",
+            "steel",
+            "mining",
+            "renewable",
+            "cdr",
+            "fuels",
+            "ships",
+            "buses",
+            "two_wheelers",
+            "trains",
+            "cars"
+          ],
+          "activities": 17208,
+          "regional_car_services": 390,
+          "regional_car_markets": 13,
+          "signed_LCIs": 86,
+          "public_scope_gate_bypassed": false,
+          "validation_disabled": false,
+          "Brightway_export": true,
+          "verification": "docs/development/uvek-cars-public-export-verification.json"
         }
       ],
       "static_audit": {
@@ -2514,7 +2537,7 @@
         "role_files": [
           "transport_passenger_cars.yaml"
         ],
-        "limitation": "Current static dispatch observation; native template selection is tested, but no real car scenario or export is qualified yet."
+        "limitation": "Static callback audit supplemented by the linked actual public installed-package fourteen-sector export qualification. This does not qualify other IAM pathways or omitted passenger-car classes."
       },
       "production_heat_correspondence_review": {
         "review": "docs/development/uvek-production-heat-boundary-review.md",
@@ -3757,7 +3780,7 @@
     "runtime_change": "One case-insensitive exclusion in the existing shared plant-efficiency selector; observed inventory coefficients unchanged."
   },
   "current_snapshot": {
-    "date": "2026-11-15",
+    "date": "2026-11-16",
     "qualified_for_encrypted_REMIND_SSP2_NPi_2050": [
       "biomass",
       "electricity",
@@ -3771,11 +3794,12 @@
       "ships",
       "buses",
       "two_wheelers",
-      "trains"
+      "trains",
+      "cars"
     ],
     "registered_sectors_including_electricity": 19,
-    "remaining_unqualified_sector_count": 6,
-    "latest_combined_export_evidence": "docs/development/uvek-native-buses-verification.json",
+    "remaining_unqualified_sector_count": 5,
+    "latest_combined_export_evidence": "docs/development/uvek-cars-public-export-verification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
     "latest_mapping_review": "docs/development/uvek-hydrogen-train-direct-39.md",
@@ -3862,7 +3886,7 @@
       }
     ],
     "latest_shared_transport_review": "docs/development/uvek-native-trains.md",
-    "latest_combined_run_freshness": "Recorded CLIC archive snapshot 20261110T030235Z-613ea498808a; live freshness was not checked by this run.",
+    "latest_combined_run_freshness": "Normal live CLIC default resolved archive 20261116T105339Z-a5e07aec4916 during the installed-package public run.",
     "latest_packaged_resource_checks": "docs/development/uvek-hydrogen-train-direct-39-verification.json#reproducible_generation",
     "latest_native_first_checkpoint": "docs/development/uvek-native-trains-verification.json",
     "latest_owned_database_cleanup": "docs/development/uvek-native-first-checkpoint-2026-11-15.json#cleanup",

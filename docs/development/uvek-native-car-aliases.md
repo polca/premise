@@ -33,10 +33,11 @@ source years. Existing IAM and ecoinvent aliases are preserved.
 
 The companion `uvek-native-car-alias-review.json` contains identities, source
 hashes and role-specific limitations, not licensed exchange inventories.
-This is a mapping milestone only. The first actual nine-root CLIC import finds
+At the initial mapping milestone, the first actual nine-root CLIC import found
 47 unapproved correspondences in its first source-version cohort. Additional
-cohorts and the real car update remain unfinished. Cars is not admitted through
-the public UVEK gate on the strength of this static mapping review.
+cohorts and the real car update were then unfinished. That static mapping review
+alone did not admit cars through the public UVEK gate. The linked public export
+qualification below now supersedes that initial status.
 
 The shared transport registry must also identify the car alias file. The actual
 combined output initially had no native source-assumption comments, despite
@@ -46,3 +47,10 @@ activates the existing shared annotator. A focused test verifies warnings,
 retained original comments, unchanged exchanges, idempotency and the unchanged
 ecoinvent path. All five native-car mapping tests pass. This is a YAML-only
 runtime correction; the export verification checks the resulting comments.
+
+The installed-package public fourteen-sector workflow is now qualified for
+REMIND SSP2-NPi 2050: 17,208 exported activities, 390 regional car services,
+13 car markets and 86 finite signed written LCIs. See
+[export verification](uvek-cars-public-export-verification.json). All 273 native
+regional service records carry the reviewed source assumptions. This is a
+screening qualification, with the class and inventory limitations above.

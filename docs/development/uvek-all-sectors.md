@@ -2199,3 +2199,28 @@ existing verified-sector set and its error message. No transformation equation
 or NewDatabase default changes. Twenty focused scope, filter and exact-approval
 checks pass. Installed-package and real-export qualification are recorded
 separately in the sector progress tracker.
+
+
+## Installed public fourteen-sector export — 16 November 2026
+
+Cars now completes the fourteenth qualified sector for REMIND SSP2-NPi 2050.
+Installed Premise and GitHub-installed Brightpath used the normal live CLIC
+archive resolution, public scope guard, unchanged three-sector default and
+validation. The combined run exported 17,208 activities, including 390 regional
+car services and 13 car markets. All 86 signed written inventory solves are
+finite; supplier links remain inside the export and selected biosphere. All 273
+native regional car services carry the reviewed source-assumption comments.
+
+The final verifier initially expected all ten historical alloy formula notes to
+survive. Nine survive on exported exchanges. Unchanged shared electricity
+relinking removes the tenth note while retaining the exact 3.05499345428597 kWh
+and Canadian supplier. The original expression remains in the versioned
+Brightpath review. A read-only completion check accounts for that difference;
+no second database write, validation bypass or transformation change was made.
+This is a documented audit-metadata limit, not a claim that every source field
+survives standard relinking.
+
+See [public export receipt](uvek-cars-public-export-verification.json). Battery,
+trucks, final energy, emissions and metals remain unqualified. The next actual
+battery preparation has 27 pending correspondences in its first inspected
+source-3.9 cohort; that is not a count across all remaining source cohorts.
