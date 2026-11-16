@@ -1,6 +1,4 @@
-"""
-This module export a summary of scenario to an Excel file.
-"""
+"""Export scenario summaries to Excel workbooks."""
 
 from pathlib import Path
 
@@ -130,9 +128,6 @@ def fetch_data(
         return iam_data.sel(variables=variables)
 
     return None
-
-
-# --- Helpers (new) ------------------------------------------------------------
 
 
 def _dataarray_to_wide_df(da: xr.DataArray) -> pd.DataFrame:
@@ -326,9 +321,6 @@ def _add_chart_if_data(
     chart.anchor = f"{get_column_letter(start_col + 2)}{start_row + 1}"
 
     worksheet.add_chart(chart)
-
-
-# --- generate_summary_report (updated) ---------------------------------------
 
 
 def generate_summary_report(

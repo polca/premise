@@ -141,17 +141,15 @@ def _update_external_scenarios(
 
 
 def dictionary_merge(dict1, dict2):
-    """
-    Recursively merges dict2 into dict1. It handles an unlimited number of nesting levels.
-    - If both corresponding values are dictionaries, it recurses into these dictionaries.
-    - If one or both values are not dictionaries, the value in dict2 will overwrite the value in dict1.
+    """Recursively merge dict2 into dict1, extending existing lists.
 
-    Args:
-    dict1 (dict): The dictionary into which values are merged.
-    dict2 (dict): The dictionary from which values are sourced.
+    Dictionaries are merged when both values are dictionaries; lists are extended
+    when both are lists. Other incoming values replace existing ones. Inserted
+    values are retained by reference.
 
-    Returns:
-    dict: The merged dictionary (which is dict1, modified in place).
+    :param dict1: destination dictionary, modified in place
+    :param dict2: dictionary supplying values
+    :return: the supplied dict1
     """
     for key in dict2:
         if key in dict1:

@@ -1264,12 +1264,13 @@ class IAMDataCollection:
     def __get_iam_variable_labels(
         self, filepath: Path, variable: str
     ) -> Dict[str, CDRAliasSpec]:
-        """
-        Loads a csv file into a dictionary.
-        This dictionary contains common terminology to ``premise``
-        (fuel names, electricity production technologies, etc.) and its
-        equivalent variable name in the IAM file.
-        :return: dictionary that contains fuel production names equivalence
+        """Load technology aliases for the current IAM model from YAML.
+
+        Preserve file order and alias structures for downstream selection.
+
+        :param filepath: mapping file to read through the YAML resource cache
+        :param variable: alias group, such as iam_aliases or eff_aliases
+        :return: technology labels mapped to this model's aliases
         """
 
         dict_vars = {}
