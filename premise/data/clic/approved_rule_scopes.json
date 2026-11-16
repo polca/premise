@@ -33550,7 +33550,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "1814bcd6a89aa0d76246241a145c824c7eeec87bd74e0c3a70d0f208971df436"
+          "fingerprint": "9fabdd59d22ceb509babea714481260081e13bff4477ce72250e1c6f2c28fe56"
         }
       ]
     },
@@ -91317,7 +91317,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "c206842031f882c0e8888abfd0f32a80abecce1b1f04d3f141504c3edc6ddf26"
+          "fingerprint": "7e84be3da648e1ee52c8ddac4ab863221ad70b589b5b4c843e06a8b173ecc94c"
         }
       ]
     },
@@ -214397,7 +214397,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "8425a6a3b2016061c235c4b89327574e3c5cc1bf854a18726435d827bd0e0cb5"
+          "fingerprint": "95cf6bb71cbbb1c4997533a550c744cfb58ea018f1843ca3c52c201d66c22f87"
         }
       ]
     },
@@ -261608,7 +261608,7 @@
             "system_model": "cutoff",
             "version": "2025"
           },
-          "fingerprint": "07fe00089f6f7646bb7f209d8b629a71cc49610f5067e836ed2b4efdf1c7571e"
+          "fingerprint": "842e2cf6522a5e1914272f7075a2eb748c55e48882842aa0371d761acda687ee"
         }
       ]
     },
@@ -303581,6 +303581,484 @@
             "version": "2025"
           },
           "fingerprint": "77ea773221795a502e55e25086737981310a9257960289afb6f845a796cdf616"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3c10f9aaee8ffe42",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_wastewater_routes",
+      "review_path": "export/uvek_passenger_car_remaining_312_review.json",
+      "review_sha256": "396eb2c6156efcdb3a4953a3a6e6cebe6e6c1e0bc815a01a83d577edbf73e980",
+      "authorization": "Standing autonomous modelling approval: resolve actual required mappings with explicit warnings and decisions logged for review.",
+      "inspection": {
+        "rule_id": "bp-3c10f9aaee8ffe42",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "market for wastewater, average",
+          "reference product": "wastewater, average",
+          "unit": "cubic meter"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for wastewater, average",
+            "reference product": "wastewater, average",
+            "location": "RoW",
+            "unit": "cubic meter"
+          },
+          "reference_amount": -1.0,
+          "inventory_sha256": "3d47aeec16eb705fbcf1fd3f979efb80395b84f5283199ee8888209bbbdb803b",
+          "metadata_sha256": "22d9f76e0f9b352c60108c9cc063a72799b05704fea9acce95f5e027119ee05b",
+          "comment_sha256": "515acbc53506a8a2934fb5480af016a69330807302eef445b8fc641a4e65ec3b",
+          "product_information_sha256": "4431464937150ef5c60501809b06f57af46126b2d3072c585f9f99b86f9445bc"
+        },
+        "inventory_model_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "older_source_witness": {
+          "identity": {
+            "name": "market for wastewater, average",
+            "reference product": "wastewater, average",
+            "location": "RoW",
+            "unit": "cubic meter"
+          },
+          "reference_amount": -1.0,
+          "inventory_sha256": "d24d95d5dbbbf814a86533ad0061ea38caaaae6f2e8a8cd380da2f7cde9f342b",
+          "metadata_sha256": "f8c7ca8ba87c23f9f5f53eaaec34f3f4a59e4559aa1f63b9ec6c76b3080934b7",
+          "comment_sha256": "8cecf02f0d4617f3c07b045e1266ff9b8fc6e8429c55de8ff0c5b029f64aa446",
+          "product_information_sha256": "4431464937150ef5c60501809b06f57af46126b2d3072c585f9f99b86f9445bc"
+        },
+        "product_definition_byte_identical": true,
+        "conversion_factor": -1.0,
+        "recipe_id": "car-312-historical-3c10f9aaee8ffe42",
+        "model_recipe_root": "pilot-wastewater-routes-d842e2a4b036631ca64a",
+        "model_recipe_closure_ids": [
+          "pilot-wastewater-native-plant-only-13e44131b50b181f4131",
+          "pilot-wastewater-routes-9931675e08e4f23932b2",
+          "pilot-wastewater-routes-997a7bcd8a81ffa6ee79",
+          "pilot-wastewater-routes-d842e2a4b036631ca64a",
+          "pilot-wastewater-routes-e4001c3975d57642d229"
+        ],
+        "model_zero_or_omission_count": 0
+      },
+      "limitations": [
+        "Both source releases describe the same average wastewater function and m3 reference, with a negative reference exchange. Use the complete already reviewed source3.9-derived wastewater-route model as an explicit older-technology screening proxy, factor -1 into its positive service reference. Its treatment shares, influent composition, collection, water returns, biosphere releases and internal uncertainty replace the source3.12 internals; current quantities and source3.12 treatment-mix fidelity are not claimed. Preserve caller signed m3, separate emissions and purchases without a density conversion or new discharge credit.",
+        "Only the independently inspected source3.12 cut-off caller profile is newly approved. Preserve caller signed quantities, formulas, marginal uncertainty and separate purchases/emissions. Complete native UVEK supplies and ecoinvent3.10 biosphere remain the background. Native geography, allocation, vintage, utility boundaries, mapped-biosphere exclusions and internal uncertainty remain inherited screening limitations with unquantified score effects. No LCIA equivalence, new physical omission, reverse permission or cross-system-model conversion is claimed.",
+        "User instruction auto-approve coming decisions within exactUVEK2026cutoff/ecoinvent3.10biosphere electricitypilot. Fourenumerated3.9cutoff wastewater-average markets only. Preservealloriginalrural/urbancollectionvolume shares,treatedfractions and172directuntreatedBIOterms withsignedmarginaluncertainty using43exactpublisherUUID/unit/fullcompartment/role canonical3.10definitions; label/CASdifferenceswarnedwithoutmass/speciationfactor. Negativewastereference-1m3 maps topositive1m3servicethroughfactor-1; transformnegativetreatmentdemandonce, leavepositivecollectionanduntreatedreleasesunchanged. No wholegroup100%treatment,aggregation,renormalization,physicalomission orrecovery/energycredit. Source rural/urban sewerconstructioneach explicitlydelivers1m3wastewater andhas100yearlife/70yearrenovation. Nativeclass3sewagetreatment alreadyincludes municipalSewergridclass3 at2.1782e-7kmper1m3; isolatethisoneexchangewithoriginaluncertaintyintocollection-onlyproxies forbothsourcegridproviders. Copynative2026class3treatmentinventoryonce, removingonlythatmunicipalsewerexchange; retainallother29technosphereand105biosphereinputs andtheiruncertainty exactly. Four source-regiontreatmentwrappers reuse thissharednativeplant-onlyhelper. Nativefullservice equalsplant-onlyhelper plusisolatedmunicipalgrid per1m3; no subtractiveLCI ornegativeavoidedservice. Applymunicipalcollectionperoriginal1m3collectionvolume andplant-onlytreatmentperoriginaltreatedfraction, soallsourcewaterhasitsoriginalcollectiondemandwhiletreated/untreatedportionsstaydistinct. Theclass2from-residence/plaincomparison isolatesanadditionalprivateResidentialsewergrid at2.8713e-7km/m3, butmetadataexplicitlystatesprivatebuildingnetwork; thiscandidateisexcluded andnoResidentialgridisadded. Thisisnotageneralm3-to-kmconversion; quantitiescomefromtheexactnativeper1m3sewageexchange,withnoextra length/lifetime/capacity/densityfactor. Source rural/urban networkgeometry,materialmix/endoflife,constructionenergy/machinery/geography/vintage/internaluncertainty andsharednativeuncertaintycorrelation differfromsingleSwissmunicipalgrid; distinctoriginalmarketweightsremainbutrural/urbantechnologyisnotreconstructed. Complete nativeclass3plant-onlyscreeningproxy retainshydraulicvolume despite sourceCOD0.42534kg/m3,TOC0.1091,BOD0.20572 versusnativeCOD0.1556kg/m3,24900PCEcapacityandSwiss3stage mechanical/biological/chemicaltreatmentwithsludgedigestion. Sourcegenericplantcomposition,removalefficiency,climate,sludge/energy/waterbalances,infrastructure,allocation,vintage,geography andinternaluncertainty differ; no organicload/capacity/LCIAequivalence. No2.73355CODscalingofwholemodel,whichwouldmultiplywater/infrastructurevolumes. Sourceinternalcollection/treatmentinventories,includingmaterials,sludgeroutes andinfrastructurerecoveryhandover,arereplacedbyexplicitnativecomponentmodels; donotaddthemagain oradjustoriginaluntreatedreleases tobalance nativeeffluent. All105nativecopiedbiospherecoordinatesbindexactinstalledcanonical3.10UUID/unit/fullcompartment/role; native2991upstreambiosphereexclusionspersistwithoutinventingremovedflows. Callerownership,formulas,signeduncertainty,foregroundsuppliers andseparateemissions/purchasesremain. Allproxy scoreeffects explicit/unquantified. No standalonecomponent,otherrelease,reverse,cross-system-model orfullscenario/certification/exportapproval. User instruction auto-approve coming decisions within exactUVEK2026cutoff/ecoinvent3.10biosphere electricitypilot. Fourenumerated3.9cutoff wastewater-average markets only. Preservealloriginalrural/urbancollectionvolume shares,treatedfractions and172directuntreatedBIOterms withsignedmarginaluncertainty using43exactpublisherUUID/unit/fullcompartment/role canonical3.10definitions; label/CASdifferenceswarnedwithoutmass/speciationfactor. Negativewastereference-1m3 maps topositive1m3servicethroughfactor-1; transformnegativetreatmentdemandonce, leavepositivecollectionanduntreatedreleasesunchanged. No wholegroup100%treatment,aggregation,renormalization,physicalomission orrecovery/energycredit. Source rural/urban sewerconstructioneach explicitlydelivers1m3wastewater andhas100yearlife/70yearrenovation. Nativeclass3sewagetreatment alreadyincludes municipalSewergridclass3 at2.1782e-7kmper1m3; isolatethisoneexchangewithoriginaluncertaintyintocollection-onlyproxies forbothsourcegridproviders. Copynative2026class3treatmentinventoryonce, removingonlythatmunicipalsewerexchange; retainallother29technosphereand105biosphereinputs andtheiruncertainty exactly. Four source-regiontreatmentwrappers reuse thissharednativeplant-onlyhelper. Nativefullservice equalsplant-onlyhelper plusisolatedmunicipalgrid per1m3; no subtractiveLCI ornegativeavoidedservice. Applymunicipalcollectionperoriginal1m3collectionvolume andplant-onlytreatmentperoriginaltreatedfraction, soallsourcewaterhasitsoriginalcollectiondemandwhiletreated/untreatedportionsstaydistinct. Theclass2from-residence/plaincomparison isolatesanadditionalprivateResidentialsewergrid at2.8713e-7km/m3, butmetadataexplicitlystatesprivatebuildingnetwork; thiscandidateisexcluded andnoResidentialgridisadded. Thisisnotageneralm3-to-kmconversion; quantitiescomefromtheexactnativeper1m3sewageexchange,withnoextra length/lifetime/capacity/densityfactor. Source rural/urban networkgeometry,materialmix/endoflife,constructionenergy/machinery/geography/vintage/internaluncertainty andsharednativeuncertaintycorrelation differfromsingleSwissmunicipalgrid; distinctoriginalmarketweightsremainbutrural/urbantechnologyisnotreconstructed. Complete nativeclass3plant-onlyscreeningproxy retainshydraulicvolume despite sourceCOD0.42534kg/m3,TOC0.1091,BOD0.20572 versusnativeCOD0.1556kg/m3,24900PCEcapacityandSwiss3stage mechanical/biological/chemicaltreatmentwithsludgedigestion. Sourcegenericplantcomposition,removalefficiency,climate,sludge/energy/waterbalances,infrastructure,allocation,vintage,geography andinternaluncertainty differ; no organicload/capacity/LCIAequivalence. No2.73355CODscalingofwholemodel,whichwouldmultiplywater/infrastructurevolumes. Sourceinternalcollection/treatmentinventories,includingmaterials,sludgeroutes andinfrastructurerecoveryhandover,arereplacedbyexplicitnativecomponentmodels; donotaddthemagain oradjustoriginaluntreatedreleases tobalance nativeeffluent. All105nativecopiedbiospherecoordinatesbindexactinstalledcanonical3.10UUID/unit/fullcompartment/role; native2991upstreambiosphereexclusionspersistwithoutinventingremovedflows. Callerownership,formulas,signeduncertainty,foregroundsuppliers andseparateemissions/purchasesremain. Allproxy scoreeffects explicit/unquantified. No standalonecomponent,otherrelease,reverse,cross-system-model orfullscenario/certification/exportapproval. User instruction auto-approve coming decisions within exactUVEK2026cutoff/ecoinvent3.10biosphere electricitypilot. Fourenumerated3.9cutoff wastewater-average markets only. Preservealloriginalrural/urbancollectionvolume shares,treatedfractions and172directuntreatedBIOterms withsignedmarginaluncertainty using43exactpublisherUUID/unit/fullcompartment/role canonical3.10definitions; label/CASdifferenceswarnedwithoutmass/speciationfactor. Negativewastereference-1m3 maps topositive1m3servicethroughfactor-1; transformnegativetreatmentdemandonce, leavepositivecollectionanduntreatedreleasesunchanged. No wholegroup100%treatment,aggregation,renormalization,physicalomission orrecovery/energycredit. Source rural/urban sewerconstructioneach explicitlydelivers1m3wastewater andhas100yearlife/70yearrenovation. Nativeclass3sewagetreatment alreadyincludes municipalSewergridclass3 at2.1782e-7kmper1m3; isolatethisoneexchangewithoriginaluncertaintyintocollection-onlyproxies forbothsourcegridproviders. Copynative2026class3treatmentinventoryonce, removingonlythatmunicipalsewerexchange; retainallother29technosphereand105biosphereinputs andtheiruncertainty exactly. Four source-regiontreatmentwrappers reuse thissharednativeplant-onlyhelper. Nativefullservice equalsplant-onlyhelper plusisolatedmunicipalgrid per1m3; no subtractiveLCI ornegativeavoidedservice. Applymunicipalcollectionperoriginal1m3collectionvolume andplant-onlytreatmentperoriginaltreatedfraction, soallsourcewaterhasitsoriginalcollectiondemandwhiletreated/untreatedportionsstaydistinct. Theclass2from-residence/plaincomparison isolatesanadditionalprivateResidentialsewergrid at2.8713e-7km/m3, butmetadataexplicitlystatesprivatebuildingnetwork; thiscandidateisexcluded andnoResidentialgridisadded. Thisisnotageneralm3-to-kmconversion; quantitiescomefromtheexactnativeper1m3sewageexchange,withnoextra length/lifetime/capacity/densityfactor. Source rural/urban networkgeometry,materialmix/endoflife,constructionenergy/machinery/geography/vintage/internaluncertainty andsharednativeuncertaintycorrelation differfromsingleSwissmunicipalgrid; distinctoriginalmarketweightsremainbutrural/urbantechnologyisnotreconstructed. Complete nativeclass3plant-onlyscreeningproxy retainshydraulicvolume despite sourceCOD0.42534kg/m3,TOC0.1091,BOD0.20572 versusnativeCOD0.1556kg/m3,24900PCEcapacityandSwiss3stage mechanical/biological/chemicaltreatmentwithsludgedigestion. Sourcegenericplantcomposition,removalefficiency,climate,sludge/energy/waterbalances,infrastructure,allocation,vintage,geography andinternaluncertainty differ; no organicload/capacity/LCIAequivalence. No2.73355CODscalingofwholemodel,whichwouldmultiplywater/infrastructurevolumes. Sourceinternalcollection/treatmentinventories,includingmaterials,sludgeroutes andinfrastructurerecoveryhandover,arereplacedbyexplicitnativecomponentmodels; donotaddthemagain oradjustoriginaluntreatedreleases tobalance nativeeffluent. All105nativecopiedbiospherecoordinatesbindexactinstalledcanonical3.10UUID/unit/fullcompartment/role; native2991upstreambiosphereexclusionspersistwithoutinventingremovedflows. Callerownership,formulas,signeduncertainty,foregroundsuppliers andseparateemissions/purchasesremain. Allproxy scoreeffects explicit/unquantified. No standalonecomponent,otherrelease,reverse,cross-system-model orfullscenario/certification/exportapproval. User instruction auto-approve coming decisions within exactUVEK2026cutoff/ecoinvent3.10biosphere electricitypilot. Fourenumerated3.9cutoff wastewater-average markets only. Preservealloriginalrural/urbancollectionvolume shares,treatedfractions and172directuntreatedBIOterms withsignedmarginaluncertainty using43exactpublisherUUID/unit/fullcompartment/role canonical3.10definitions; label/CASdifferenceswarnedwithoutmass/speciationfactor. Negativewastereference-1m3 maps topositive1m3servicethroughfactor-1; transformnegativetreatmentdemandonce, leavepositivecollectionanduntreatedreleasesunchanged. No wholegroup100%treatment,aggregation,renormalization,physicalomission orrecovery/energycredit. Source rural/urban sewerconstructioneach explicitlydelivers1m3wastewater andhas100yearlife/70yearrenovation. Nativeclass3sewagetreatment alreadyincludes municipalSewergridclass3 at2.1782e-7kmper1m3; isolatethisoneexchangewithoriginaluncertaintyintocollection-onlyproxies forbothsourcegridproviders. Copynative2026class3treatmentinventoryonce, removingonlythatmunicipalsewerexchange; retainallother29technosphereand105biosphereinputs andtheiruncertainty exactly. Four source-regiontreatmentwrappers reuse thissharednativeplant-onlyhelper. Nativefullservice equalsplant-onlyhelper plusisolatedmunicipalgrid per1m3; no subtractiveLCI ornegativeavoidedservice. Applymunicipalcollectionperoriginal1m3collectionvolume andplant-onlytreatmentperoriginaltreatedfraction, soallsourcewaterhasitsoriginalcollectiondemandwhiletreated/untreatedportionsstaydistinct. Theclass2from-residence/plaincomparison isolatesanadditionalprivateResidentialsewergrid at2.8713e-7km/m3, butmetadataexplicitlystatesprivatebuildingnetwork; thiscandidateisexcluded andnoResidentialgridisadded. Thisisnotageneralm3-to-kmconversion; quantitiescomefromtheexactnativeper1m3sewageexchange,withnoextra length/lifetime/capacity/densityfactor. Source rural/urban networkgeometry,materialmix/endoflife,constructionenergy/machinery/geography/vintage/internaluncertainty andsharednativeuncertaintycorrelation differfromsingleSwissmunicipalgrid; distinctoriginalmarketweightsremainbutrural/urbantechnologyisnotreconstructed. Complete nativeclass3plant-onlyscreeningproxy retainshydraulicvolume despite sourceCOD0.42534kg/m3,TOC0.1091,BOD0.20572 versusnativeCOD0.1556kg/m3,24900PCEcapacityandSwiss3stage mechanical/biological/chemicaltreatmentwithsludgedigestion. Sourcegenericplantcomposition,removalefficiency,climate,sludge/energy/waterbalances,infrastructure,allocation,vintage,geography andinternaluncertainty differ; no organicload/capacity/LCIAequivalence. No2.73355CODscalingofwholemodel,whichwouldmultiplywater/infrastructurevolumes. Sourceinternalcollection/treatmentinventories,includingmaterials,sludgeroutes andinfrastructurerecoveryhandover,arereplacedbyexplicitnativecomponentmodels; donotaddthemagain oradjustoriginaluntreatedreleases tobalance nativeeffluent. All105nativecopiedbiospherecoordinatesbindexactinstalledcanonical3.10UUID/unit/fullcompartment/role; native2991upstreambiosphereexclusionspersistwithoutinventingremovedflows. Callerownership,formulas,signeduncertainty,foregroundsuppliers andseparateemissions/purchasesremain. Allproxy scoreeffects explicit/unquantified. No standalonecomponent,otherrelease,reverse,cross-system-model orfullscenario/certification/exportapproval. User instruction auto-approve coming decisions within exactUVEK2026cutoff/ecoinvent3.10biosphere electricitypilot. Fourenumerated3.9cutoff wastewater-average markets only. Preservealloriginalrural/urbancollectionvolume shares,treatedfractions and172directuntreatedBIOterms withsignedmarginaluncertainty using43exactpublisherUUID/unit/fullcompartment/role canonical3.10definitions; label/CASdifferenceswarnedwithoutmass/speciationfactor. Negativewastereference-1m3 maps topositive1m3servicethroughfactor-1; transformnegativetreatmentdemandonce, leavepositivecollectionanduntreatedreleasesunchanged. No wholegroup100%treatment,aggregation,renormalization,physicalomission orrecovery/energycredit. Source rural/urban sewerconstructioneach explicitlydelivers1m3wastewater andhas100yearlife/70yearrenovation. Nativeclass3sewagetreatment alreadyincludes municipalSewergridclass3 at2.1782e-7kmper1m3; isolatethisoneexchangewithoriginaluncertaintyintocollection-onlyproxies forbothsourcegridproviders. Copynative2026class3treatmentinventoryonce, removingonlythatmunicipalsewerexchange; retainallother29technosphereand105biosphereinputs andtheiruncertainty exactly. Four source-regiontreatmentwrappers reuse thissharednativeplant-onlyhelper. Nativefullservice equalsplant-onlyhelper plusisolatedmunicipalgrid per1m3; no subtractiveLCI ornegativeavoidedservice. Applymunicipalcollectionperoriginal1m3collectionvolume andplant-onlytreatmentperoriginaltreatedfraction, soallsourcewaterhasitsoriginalcollectiondemandwhiletreated/untreatedportionsstaydistinct. Theclass2from-residence/plaincomparison isolatesanadditionalprivateResidentialsewergrid at2.8713e-7km/m3, butmetadataexplicitlystatesprivatebuildingnetwork; thiscandidateisexcluded andnoResidentialgridisadded. Thisisnotageneralm3-to-kmconversion; quantitiescomefromtheexactnativeper1m3sewageexchange,withnoextra length/lifetime/capacity/densityfactor. Source rural/urban networkgeometry,materialmix/endoflife,constructionenergy/machinery/geography/vintage/internaluncertainty andsharednativeuncertaintycorrelation differfromsingleSwissmunicipalgrid; distinctoriginalmarketweightsremainbutrural/urbantechnologyisnotreconstructed. Complete nativeclass3plant-onlyscreeningproxy retainshydraulicvolume despite sourceCOD0.42534kg/m3,TOC0.1091,BOD0.20572 versusnativeCOD0.1556kg/m3,24900PCEcapacityandSwiss3stage mechanical/biological/chemicaltreatmentwithsludgedigestion. Sourcegenericplantcomposition,removalefficiency,climate,sludge/energy/waterbalances,infrastructure,allocation,vintage,geography andinternaluncertainty differ; no organicload/capacity/LCIAequivalence. No2.73355CODscalingofwholemodel,whichwouldmultiplywater/infrastructurevolumes. Sourceinternalcollection/treatmentinventories,includingmaterials,sludgeroutes andinfrastructurerecoveryhandover,arereplacedbyexplicitnativecomponentmodels; donotaddthemagain oradjustoriginaluntreatedreleases tobalance nativeeffluent. All105nativecopiedbiospherecoordinatesbindexactinstalledcanonical3.10UUID/unit/fullcompartment/role; native2991upstreambiosphereexclusionspersistwithoutinventingremovedflows. Callerownership,formulas,signeduncertainty,foregroundsuppliers andseparateemissions/purchasesremain. Allproxy scoreeffects explicit/unquantified. No standalonecomponent,otherrelease,reverse,cross-system-model orfullscenario/certification/exportapproval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "df2b090ffaa39fe5d9d245a636a8e9a3a91ecb2217dbb428f8586f27c485b686"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5a3b5a4a13938317",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_production_heat_mix",
+      "review_path": "export/uvek_passenger_car_remaining_312_review.json",
+      "review_sha256": "396eb2c6156efcdb3a4953a3a6e6cebe6e6c1e0bc815a01a83d577edbf73e980",
+      "authorization": "Standing autonomous modelling approval: resolve actual required mappings with explicit warnings and decisions logged for review.",
+      "inspection": {
+        "rule_id": "bp-5a3b5a4a13938317",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market group for heat, district or industrial, natural gas",
+          "reference product": "heat, district or industrial, natural gas",
+          "unit": "megajoule"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market group for heat, district or industrial, natural gas",
+            "reference product": "heat, district or industrial, natural gas",
+            "location": "GLO",
+            "unit": "megajoule"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "7d10d343e099eddaf5a0bedb32e72b835caa325b1ebe4ba696aeeb8a232d3895",
+          "metadata_sha256": "8cf99bd0468dcf3f549eed942157e38d7385ea4073605d0e66f7bb70086b2a0d",
+          "comment_sha256": "7c17a2fe16a34aca561528c0e38f5d43abdd2c6e2f6b38be60bf25d6fc837a47",
+          "product_information_sha256": "918cd375020761234dc80365c0f133b383b7af9b3bb4832f513485c1bd3b48c8"
+        },
+        "inventory_model_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "older_source_witness": {
+          "identity": {
+            "name": "market group for heat, district or industrial, natural gas",
+            "reference product": "heat, district or industrial, natural gas",
+            "location": "GLO",
+            "unit": "megajoule"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "5d84060de14084b29872a450323ead50cb62fd78a9ad0d3c22d3e64026524c7b",
+          "metadata_sha256": "c40d438b5990715459b1222240ac9361249474dd941ea55e479c9143342ad1ee",
+          "comment_sha256": "530e1a64967c2fb6e751ced9e774c70accc8407d477cde1f031a65b729b6f6fa",
+          "product_information_sha256": "918cd375020761234dc80365c0f133b383b7af9b3bb4832f513485c1bd3b48c8"
+        },
+        "product_definition_byte_identical": true,
+        "conversion_factor": 1.0,
+        "recipe_id": "car-312-historical-5a3b5a4a13938317",
+        "model_recipe_root": "steel-39-global-natural-gas-production-heat-mix",
+        "model_recipe_closure_ids": [
+          "steel-39-global-natural-gas-production-heat-mix"
+        ],
+        "model_zero_or_omission_count": 0
+      },
+      "limitations": [
+        "Both source releases describe natural-gas district/industrial heat from CHP, boilers and furnaces per MJ. Use the complete already reviewed source3.9-derived global production-heat portfolio as an explicit older-model proxy, factor +1. Current regional portfolio, delivery losses, CHP allocation, equipment efficiencies and internal uncertainty are replaced by that model. Preserve caller signed MJ and separate heat purchases, without converting production heat to building-space heat or adding another loss, fuel or CHP-credit factor.",
+        "Only the independently inspected source3.12 cut-off caller profile is newly approved. Preserve caller signed quantities, formulas, marginal uncertainty and separate purchases/emissions. Complete native UVEK supplies and ecoinvent3.10 biosphere remain the background. Native geography, allocation, vintage, utility boundaries, mapped-biosphere exclusions and internal uncertainty remain inherited screening limitations with unquantified score effects. No LCIA equivalence, new physical omission, reverse permission or cross-system-model conversion is claimed.",
+        "Reconstruct inspected global3.9natural-gas heat production mix at1MJ with all104 positive supplier contributions and original deterministic market weights. Market layers contain no direct emissions, nonheat inputs, uncertain shares or formulas, so flattening deterministic paths does not discard uncertainty. Preserve CHP-versus-heat-only shares and use complete native production-side heat; add no district network or delivery-loss factor. Large conventional and combined-cycle gas CHP use native country CHP heat where present, ENTSO-E otherwise; native cycle/fleet and allocation replace source-specific plant models. Gas engines use native Swiss exergy-allocated300kWth/1MWth heat proxies; source capacities are electrical, target capacities thermal, not equal-scale claims. Boiler/furnace counterparts retain fuel and production class with explicit Swiss/RER geography and capacity proxies. Native allocation, efficiency, infrastructure, stack emissions, technology, geography, vintage, internal uncertainty and biosphere exclusions differ; score effects unquantified. Reference is1MJallocated heat, not1MJfuel; no fuel-demand normalization, avoided-electricity credit, added combustion, efficiency correction or second emissions. Preserve caller signs, quantities, uncertainty, formulas and separate exchanges. Only inspected3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e1e4246ffaaac3241e290107e74de91b6352fc3dfe9aed49a6ab5d48b3d65a8e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6266394c5017e628",
+      "operation": "replace",
+      "mapping_method": "reviewed_battery_fluoride_39",
+      "review_path": "export/uvek_passenger_car_remaining_312_review.json",
+      "review_sha256": "396eb2c6156efcdb3a4953a3a6e6cebe6e6c1e0bc815a01a83d577edbf73e980",
+      "authorization": "Standing autonomous modelling approval: resolve actual required mappings with explicit warnings and decisions logged for review.",
+      "inspection": {
+        "rule_id": "bp-6266394c5017e628",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "market for hydrogen fluoride",
+          "reference product": "hydrogen fluoride",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for hydrogen fluoride",
+            "reference product": "hydrogen fluoride",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "090489ba96135c104df53c8b814ede74dc4431dc60f0de1b848063dcf7ff7fc5",
+          "metadata_sha256": "9675e54d4d09a4fa562d482750ed8553e19619b9fbd03818a6a91103843eb836",
+          "comment_sha256": "a88f8a9287812337dcfd0cc0e9e9a36fd1d97431c2bf01860f0d18cbdd82b82e",
+          "product_information_sha256": "d84ccea451f1232537d030ecd10603624e205744f2c2dbc98061f90195d1dfe8"
+        },
+        "inventory_model_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "older_source_witness": {
+          "identity": {
+            "name": "market for hydrogen fluoride",
+            "reference product": "hydrogen fluoride",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "9d096aba641b51b2cf61f320fbd7e82bcbc06cce3c4898da71040c5b1885a582",
+          "metadata_sha256": "a39bba7ba952b3791e29ee4ee4a28d9fa918722032cf4eccec53a16ada19c75e",
+          "comment_sha256": "b327ff6a8f5dbffdcaae573994c625895ca77799a0b593c23238fa7c0c575e94",
+          "product_information_sha256": "d84ccea451f1232537d030ecd10603624e205744f2c2dbc98061f90195d1dfe8"
+        },
+        "product_definition_byte_identical": true,
+        "conversion_factor": 1.0,
+        "recipe_id": "car-312-historical-6266394c5017e628",
+        "model_recipe_root": "battery-39-hydrogen-fluoride-row-delivered-market",
+        "model_recipe_closure_ids": [
+          "battery-39-hydrogen-fluoride-row-delivered-market"
+        ],
+        "model_zero_or_omission_count": 0
+      },
+      "limitations": [
+        "Both source releases define pure hydrogen fluoride (CAS 7664-39-3), with kg product references and the same documented dangerous-gas delivery function. Reuse the complete reviewed source3.9-derived HF supply model as an older-technology screening proxy, factor +1. Its chemical-production route, feedstock, utility mix, freight, losses and uncertainty replace source3.12 internals. This is HF, not hydrochloric acid or a water solution; no dry-mass, dilution or fluorine-content multiplier is inferred.",
+        "Only the independently inspected source3.12 cut-off caller profile is newly approved. Preserve caller signed quantities, formulas, marginal uncertainty and separate purchases/emissions. Complete native UVEK supplies and ecoinvent3.10 biosphere remain the background. Native geography, allocation, vintage, utility boundaries, mapped-biosphere exclusions and internal uncertainty remain inherited screening limitations with unquantified score effects. No LCIA equivalence, new physical omission, reverse permission or cross-system-model conversion is claimed.",
+        "Only exact ecoinvent 3.9 cut-off is reviewed. Positive source references and target references have matching functional units; caller factor +1 preserves signed amounts, formulas, supported uncertainty and independent foreground emissions. Other versions, patches, system models and reverse routes gain no approval. All source-owned interface rows retained by the recipes keep their signed amounts and supported uncertainty/formulas separately, with no normalization or second reaction-yield, purity, concentration, freight, useful-heat or loss multiplier. Complete native upstream suppliers replace the source upstream inventories; their allocation, geography, vintage, technology, uncertainty, biosphere exclusions and modelling correlations differ. Score differences remain unquantified; neither LCI/LCIA nor stochastic equivalence is established. RoW HF market: retain all five positive original supply entries and all eight freight entries separately. Complete native fluorspar-route HF is the product-function proxy for the principal producer and the four allocated HF co-products from vinyl fluoride, rare-earth oxide and hexafluoroethane manufacture. Those four co-product shares total about 1.15%; their allocated upstream production route and burdens are replaced, not reconstructed. No avoided-product or extra HF recovery credit is added. Native HF name/formula and production route support the kg-HF screening interpretation, but native assay is unverified and its CAS conflicts with the chemical identity; inherit the prior HF review warning. Use no assumed 37% acid, amine reagent or concentration correction. All five rail entries use complete native RER generic rail as an explicit geography/fleet proxy, including Chinese generic freight; do not substitute coal freight. All three heavy-lorry entries use the complete native RER fleet. Preserve hazardous-HF delivery distances as listed, without adding ship transport or undoing the source transport reduction."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b6a6c2804f983417e69017d2ed2fbe5da84ba500a3a06fd80cacd4b4e5337427"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a04e605696e65e2c",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_goods",
+      "review_path": "export/uvek_passenger_car_remaining_312_review.json",
+      "review_sha256": "396eb2c6156efcdb3a4953a3a6e6cebe6e6c1e0bc815a01a83d577edbf73e980",
+      "authorization": "Standing autonomous modelling approval: resolve actual required mappings with explicit warnings and decisions logged for review.",
+      "inspection": {
+        "rule_id": "bp-a04e605696e65e2c",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for refractory, basic, packed",
+          "reference product": "refractory, basic, packed",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for refractory, basic, packed",
+            "reference product": "refractory, basic, packed",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "939390a979b53418fe2af12d3ae19889a9cc765c3d66b71dae1f1a435a5246db",
+          "metadata_sha256": "65ef13a227899b62a510bb9b8fdf4cfa7afcc853b02fc435e89154ae44532624",
+          "comment_sha256": "472d8f583a3d7058dca1a9553c61d5dd030ab142d8d033ec06d27dd415305333",
+          "product_information_sha256": "cfa5f217d2ffd4ab87ce869123f8b895f751b2720ebe8271307f9c8e91752fd1"
+        },
+        "inventory_model_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "older_source_witness": {
+          "identity": {
+            "name": "market for refractory, basic, packed",
+            "reference product": "refractory, basic, packed",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "770dfa3ca273d9470f0ca0ff86d6d04f2271c6b00c0de2a6a211ce177c408156",
+          "metadata_sha256": "f11aa66be169bfd1c41c8e03904b6905cf503511ff08bbee6d1619eb19be24ba",
+          "comment_sha256": "0b274955cf38247963cfadb8543f0214a93300f25079719549053d0bc3cc7169",
+          "product_information_sha256": "cfa5f217d2ffd4ab87ce869123f8b895f751b2720ebe8271307f9c8e91752fd1"
+        },
+        "product_definition_byte_identical": true,
+        "conversion_factor": 1.0,
+        "recipe_id": "car-312-historical-a04e605696e65e2c",
+        "model_recipe_root": "pilot-nitrate-goods-b692a2c03dacdc212833",
+        "model_recipe_closure_ids": [
+          "pilot-nitrate-goods-b692a2c03dacdc212833"
+        ],
+        "model_zero_or_omission_count": 0
+      },
+      "limitations": [
+        "Both source releases define packed basic refractory or magnesia bricks, at least 80% MgO, per kg. Reuse the complete reviewed source3.9-derived supply as an older-model screening proxy, factor +1. Manufacturing, ore/brick composition, kiln energy, packaging and final freight are the historical model rather than current source3.12 internals. This does not establish identical refractory performance or furnace lifetime and adds no extra brick, MgO-content or packaging multiplier.",
+        "Only the independently inspected source3.12 cut-off caller profile is newly approved. Preserve caller signed quantities, formulas, marginal uncertainty and separate purchases/emissions. Complete native UVEK supplies and ecoinvent3.10 biosphere remain the background. Native geography, allocation, vintage, utility boundaries, mapped-biosphere exclusions and internal uncertainty remain inherited screening limitations with unquantified score effects. No LCIA equivalence, new physical omission, reverse permission or cross-system-model conversion is claimed.",
+        "Use the complete native packed basic refractory for the same source product class per kg. Preserve packed-product production and source delivery once. Generic refractory formulation, plant, energy, allocation and background differences remain; no magnesia purity, binder or unpacked/packed multiplier or specific performance claim. Preserve every source market producer-share and individual delivery exchange at its original signed amount and supported uncertainty, without aggregation or renormalization. Source market references are positive one and contain no parameters, formulas or direct biosphere. Source producers and complete native at-plant products have positive unit references. Keep original kg, m3 or m2 reference quantities; no density, yield, concentration, thickness, capacity, lifetime or performance multiplier is introduced. Use the independently inspected matching whole native product for production once, retaining its own upstream supply, internal transport, infrastructure, energy, waste, emissions and allocation. Original market delivery is a separate boundary and remains once. Whole freight services per original tkm include vehicle/vessel/port/road/rail/canal infrastructure and operation; European rail is generic mixed traction rather than coal-only, light commercial freight uses the3.5t fleet, and bulk/container ocean roles stay distinct. Native fleet, vessel class/size, fuel, loading, ports, geography, trade representation, vintage, material/energy supply, allocation, emissions and upstream biosphere exclusions differ; warn explicitly with unquantified score effects and no LCIA-equivalence claim. Use no traction/payload/gross-weight/distance multiplier, added truck/vessel/port, reconstructed source production or new recovery credit. The historical complete-product correspondence does not independently approve its internal material grades, waste endpoints or generic chemical inputs for other callers. Preserve caller signs, uncertainty, formulas, ownership, separate purchases and emissions. Raw child fingerprints are drift guards, not standalone admissions. Only the enumerated source3.9cutoff cases qualify for UVEK2026cutoff with ecoinvent3.10biosphere; other profiles, inverse and cross-model routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "438c9cf86608f91c157beb9c172a8ea899afa04a9a6e5fd8a2b559fcc2359ea9"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8dd9eafe3bba7d6f",
+      "operation": "replace",
+      "mapping_method": "reviewed_passenger_car_hydrogen_200bar_312",
+      "review_path": "export/uvek_passenger_car_remaining_312_review.json",
+      "review_sha256": "396eb2c6156efcdb3a4953a3a6e6cebe6e6c1e0bc815a01a83d577edbf73e980",
+      "authorization": "Standing autonomous modelling approval: resolve actual required mappings with explicit warnings and decisions logged for review.",
+      "inspection": {
+        "rule_id": "bp-8dd9eafe3bba7d6f",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "market for hydrogen, gaseous, medium pressure, merchant",
+          "reference product": "hydrogen, gaseous, medium pressure, merchant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for hydrogen, gaseous, medium pressure, merchant",
+            "reference product": "hydrogen, gaseous, medium pressure, merchant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "2b6aed2a65cf9fd4acfb89981bf8e1ad8bba6e234c83e21e398519f99bf97dbe",
+          "metadata_sha256": "a7b59913d7d28e3530f3437dbaf878a1ac6f96b7bc92017982451e8ddf9ab1a4",
+          "comment_sha256": "f2d6a0f0ec01bfcd137edd2fac058cc668ba4454fd1406196da8bacc1f26acb8",
+          "product_information_sha256": "40f2dbcbd0fb90dc7e80d7da580b85f37071ef3b08a64602e46b3b248a0c7c63"
+        },
+        "source_pressure_definition_witness": {
+          "identity": {
+            "name": "hydrogen compression, from low to medium pressure",
+            "reference product": "hydrogen, gaseous, medium pressure, merchant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "e491707971549ea3d1d35ce2652b1c71a4fff1cacc6e49e2f0050c9624e94a41",
+          "metadata_sha256": "4a429a7bcadf4302894928a489e5617cc1b2ec50534da872a869394706bf3c3d",
+          "comment_sha256": "936f387ba5524cadedd24cc4fe6c4a02a870128f8f84f53e31407f7b310fc572",
+          "product_information_sha256": "40f2dbcbd0fb90dc7e80d7da580b85f37071ef3b08a64602e46b3b248a0c7c63"
+        },
+        "native_hydrogen_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+              "reference product": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "d573f6d8933dfced3fe84b84c46c4ad330d28ed20d172cee9f44079605f18ca4",
+            "metadata_sha256": "8ab8ea758e78e3d6593d87258e96c4b8cfe6570641ac569280c8fe8fb626f43a",
+            "comment_sha256": "ee833d58bc72699c0b1abe38c48cbeb645e82d9fb9deed9ce143e851ca97c04d",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+              "reference product": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "7f6a302eb2c59f54e7cb1a5c1c3b26a0da97a7e2f1803b774bf727cf85f64bec",
+            "metadata_sha256": "f36018c05912f67c01a0568827ff98dc5e86f414899fb65cac76fcf00f62817b",
+            "comment_sha256": "5de783bf56b4b28d83ce53c58a66512b20567846a348e3255cf67eeb3981385c",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "native_grid_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "b4b736a40f8b3d1ec46647ae25b80c8617c7eedc7f7f884a1021cfea84f4fba9",
+            "metadata_sha256": "96cfaeaca0a79a57472f5ce192b512b53ee844d3c1000a5f8cbde38267d0ad06",
+            "comment_sha256": "80202f197ae56f6febc5b1e8a818b11aa45df04d5492e055025f367b794a48af",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "1d247799dd25372b7fbe98a25a2c12df8972edc202f7d429776b9e77067ffb52",
+            "metadata_sha256": "f93e3ebcdb9db58726068262c7df2226945bb6980db6868b33f2ff5b8710eb96",
+            "comment_sha256": "9eb423ceb712eb11bc49f35539fae60967b5f74d0be0095689b8c7d38bde2f52",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "recipe_id": "car-312-gaseous-hydrogen-200bar-screening-compression",
+        "compression_parameters": {
+          "gas_constant_J_per_mol_K": 8.31446261815324,
+          "molar_mass_kg_per_mol": 0.002016,
+          "inlet_temperature_K": 298.15,
+          "inlet_pressure_bar": 25,
+          "outlet_pressure_bar": 200,
+          "heat_capacity_ratio": 1.4,
+          "compression_stages": 2,
+          "isentropic_efficiency": 0.8,
+          "motor_efficiency": 0.95
+        },
+        "compression_equation": "n * gamma/(gamma-1) * R/M * T * ((p_out/p_in)**((gamma-1)/(gamma*n))-1) / eta_isentropic / eta_motor / 3.6e6",
+        "compression_electricity_kWh_per_kg": 1.0882062648061839,
+        "ideal_isothermal_lower_bound_kWh_per_kg": 0.710268715194342,
+        "public_equation_sources": [
+          "https://www.grc.nasa.gov/www/k-12/airplane/compth.html",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC7517211/",
+          "https://doi.org/10.3390/hydrogen5020017",
+          "https://www.energy.gov/cmei/fuels/gaseous-hydrogen-compression"
+        ],
+        "actual_current_callers": [
+          "permanent magnet production, neodymium-iron-boron, b3 grade",
+          "praseodymium production, molten salt electrolysis"
+        ]
+      },
+      "limitations": [
+        "Replace the incorrect liquid/mercury-cell candidate with complete native Swiss gaseous SMR hydrogen at 25 bar plus an explicitly modelled 25-to-200-bar compression energy stage. The inspected source producer defines 200 bar. Preserve one kg gas per signed source kg. The added stage uses two equal-ratio ideal-gas stages with perfect intercooling to 298.15 K, gamma 1.4, molar mass 0.002016 kg/mol, 80% isentropic and 95% motor efficiencies. These are deterministic screening assumptions, not measured ecoinvent or UVEK compressor performance. The independently calculated electricity is 1.0882062648061839 kWh/kg from complete native Swiss medium-voltage grid supply. There is no liquefaction, hydrogen combustion or added 200-to-700-bar vehicle compression.",
+        "The extra compression stage does not represent real-gas corrections, part-load operation, intercooling auxiliaries/water, compressor manufacture, storage, hydrogen leakage or merchant distribution. Their absence is not physical zero. Complete native SMR production, its upstream fuel/emissions/infrastructure, and grid losses/infrastructure are retained once. Source current production routes, geographic mix, compression/cooling and delivery model are replaced by this screening model; effect on scores is unquantified and no conservative bound is claimed. Do not reuse the 700-bar fuelling station or add a heat-recovery credit.",
+        "Only the independently inspected source3.12 cut-off caller profile is newly approved. Preserve caller signed quantities, formulas, marginal uncertainty and separate purchases/emissions. Complete native UVEK supplies and ecoinvent3.10 biosphere remain the background. Native geography, allocation, vintage, utility boundaries, mapped-biosphere exclusions and internal uncertainty remain inherited screening limitations with unquantified score effects. No LCIA equivalence, new physical omission, reverse permission or cross-system-model conversion is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "41465ab7f6a532e32c4320862a901ee0cd65ff3aae2cf014942f4df2bfc95984"
         }
       ]
     }

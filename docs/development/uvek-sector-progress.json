@@ -2413,15 +2413,18 @@
         },
         {
           "code": "current_required_import_cohort",
-          "finding": "Installed Brightpath wheel resolves the nine actual CLIC roots (48 foregrounds), but the first source3.12 cohort still refuses five correspondences. Later source cohorts have not yet completed. This is not a global unresolved-rule count.",
+          "finding": "The nine actual CLIC car roots resolve to 48 foregrounds. All initially refused source3.12 correspondences now pass. The source3.9 cohort refuses eight correspondences, including two invalid rare-earth-oxide candidates. Later cohort completion and the real sector run remain unverified.",
           "remaining_rule_ids": [
-            "bp-3c10f9aaee8ffe42",
-            "bp-5a3b5a4a13938317",
-            "bp-6266394c5017e628",
-            "bp-8dd9eafe3bba7d6f",
-            "bp-a04e605696e65e2c"
+            "bp-0011da9202e829d4",
+            "bp-082cc2361b7e427d",
+            "bp-4529f104ab14ba19",
+            "bp-607f324065d6487f",
+            "bp-7546b19438a70c79",
+            "bp-785d3ed7e6f39c4f",
+            "bp-86d40fed1e499150",
+            "bp-b71da2d46fa8d8de"
           ],
-          "review": "docs/development/uvek-passenger-car-quicklime-stock-312-verification.json"
+          "review": "docs/development/uvek-passenger-car-remaining-312-verification.json"
         },
         {
           "code": "sector_integration_unfinished",
@@ -2445,6 +2448,10 @@
         {
           "review": "docs/development/uvek-passenger-car-quicklime-stock-312.md",
           "decision": "Approve the independently verified calcined-quicklime chain and reuse the existing exact-profile allocated lead-battery stock recipe without inventing or dropping processing."
+        },
+        {
+          "review": "docs/development/uvek-passenger-car-remaining-312.md",
+          "decision": "Use four explicitly versioned source3.9 model proxies and a separate gaseous 25-to-200-bar screening compression helper; preserve caller signs and uncertainty, inherited model boundaries and documented pressure assumptions. No runtime Python or source omission."
         }
       ],
       "implementation_commits": [
@@ -2457,7 +2464,8 @@
         "229 focused shared car/vehicle-energy/emissions/carbon/hydrogen/rail tests passed; not a full-suite or real car scenario pass.",
         "Five direct-supply, six service and four quicklime Brightpath tests passed in separate focused groups.",
         "Four Premise exact-approval/drift checks passed after the service changes. The installed-wheel frontier also validates the entire approval ledger.",
-        "All three forward migration resources regenerate byte-identically; documentation reference generation and --check passed."
+        "All three forward migration resources regenerate byte-identically; documentation reference generation and --check passed.",
+        "Ten focused remaining-source312 tests pass; the same actual import has advanced to its source3.9 cohort. All three forward resources regenerate byte-identically."
       ],
       "integration_exports": [],
       "static_audit": {

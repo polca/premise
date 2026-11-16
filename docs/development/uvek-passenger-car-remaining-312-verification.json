@@ -1,0 +1,78 @@
+{
+  "date": "2026-11-16",
+  "new_exact_source_312_scopes": 5,
+  "old_scopes_rebound_after_exact_effective_rule_comparison": [
+    {
+      "rule_id": "bp-a04e605696e65e2c",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-3c10f9aaee8ffe42",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-5a3b5a4a13938317",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-6266394c5017e628",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    }
+  ],
+  "review_sha256": "396eb2c6156efcdb3a4953a3a6e6cebe6e6c1e0bc815a01a83d577edbf73e980",
+  "explicit_source39_model_wrappers": 4,
+  "new_independent_pressure_model": 1,
+  "runtime_Python_changes": false,
+  "new_source_omissions": 0,
+  "new_Brightway_databases": 0,
+  "car_sector_qualified": false,
+  "tests": {
+    "focused_Brightpath_passed": 10
+  },
+  "clean_regeneration": {
+    "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": {
+      "byte_identical": true,
+      "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "bytes": 18596725
+    },
+    "ecoinvent-to-ecoinvent-3.10-biosphere.json": {
+      "byte_identical": true,
+      "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "bytes": 18596319
+    },
+    "ecoinvent-to-uvek-2025.json": {
+      "byte_identical": true,
+      "sha256": "d36b8dd9da54184477885dd78e534831ef47299524579c57985fe921309f0d06",
+      "bytes": 70392918
+    }
+  },
+  "actual_import_progress": {
+    "source312_cohort": "passed",
+    "next_source_version": "3.9",
+    "next_cohort_unapproved_correspondences": 8,
+    "roots": 9,
+    "foregrounds": 48,
+    "overall_car_import_completed": false
+  },
+  "compression_pressure_interpretation": "Both inlet and outlet are assumed absolute pressures for the screening calculation."
+}
