@@ -2500,8 +2500,10 @@ class BaseTransformation:
     def process_cached_exchange(
         self, exchange: dict, dataset: dict, new_exchanges: list
     ) -> None:
-        """
-        Process a cached exchange. Adds the new exchanges to the list of new exchanges.
+        """Append supplier exchanges in cached order using their allocation shares.
+
+        Preserve comments and copy uncertainty fields only when they are floats.
+
         :param exchange: The exchange dictionary to process.
         :param dataset: The dataset dictionary.
         :param new_exchanges: The list of new exchanges to add to the dataset.
@@ -2519,10 +2521,7 @@ class BaseTransformation:
         if isinstance(exchanges, tuple):
             exchanges = [exchanges]
 
-        _ = lambda x: 0 if x is None else x
-
-        for i, e in enumerate(exchanges):
-
+        for e in exchanges:
             new_exc = {
                 "name": e[0],
                 "product": e[1],
@@ -2536,9 +2535,8 @@ class BaseTransformation:
                 new_exc["comment"] = exchange["comment"]
 
             for key in ["loc", "scale", "negative", "minimum", "maximum"]:
-                if key in exchange:
-                    if isinstance(exchange[key], float):
-                        new_exc[key] = exchange[key]
+                if key in exchange and isinstance(exchange[key], float):
+                    new_exc[key] = exchange[key]
 
             new_exchanges.append(new_exc)
 
