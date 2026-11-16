@@ -388,12 +388,7 @@ def check_inventories(
             "original reference product": val["ecoinvent alias"]["reference product"],
             "regionalize": val["ecoinvent alias"].get("regionalize", False),
             "mask": val["ecoinvent alias"].get("mask", None),
-            "except regions": val.get(
-                "except regions",
-                [
-                    # "World",
-                ],
-            ),
+            "except regions": val.get("except regions", []),
             "efficiency": val.get("efficiency", []),
             "replaces": val.get("replaces", []),
             "replaces in": val.get("replaces in", []),
@@ -438,18 +433,13 @@ def check_inventories(
             }
         )
 
-    list_datasets = list(
-        set(
-            [
-                (i["name"].lower(), i["reference product"].lower())
-                for i in inventory_data
-            ]
-        )
+    inventory_keys = set(
+        [(i["name"].lower(), i["reference product"].lower()) for i in inventory_data]
     )
 
     try:
         assert all(
-            (i[0].lower(), i[1].lower()) in list_datasets
+            (i[0].lower(), i[1].lower()) in inventory_keys
             for i, v in d_datasets.items()
             if v.get("exists in original database", False) is False
             and v.get("new dataset", False) is False
@@ -461,18 +451,18 @@ def check_inventories(
             for i, v in d_datasets.items()
             if v.get("exists in original database", False) is False
             and v.get("new dataset", False) is False
-            and (i[0].lower(), i[1].lower()) not in list_datasets
+            and (i[0].lower(), i[1].lower()) not in inventory_keys
         ]
 
         raise AssertionError(
             "The following datasets are not in the inventory data:"
             f"\n {list_missing_datasets}"
             f"\n Available datasets are: \n"
-            f"{[list_datasets]}"
+            f"{[list(inventory_keys)]}"
         ) from e
 
     # flag imported inventories
-    processed_keys = []
+    processed_keys = set()
     for i, dataset in enumerate(inventory_data):
         key = (dataset["name"], dataset["reference product"])
         if (key[0].lower(), key[1].lower()) in d_datasets and key not in processed_keys:
@@ -485,7 +475,7 @@ def check_inventories(
                 inventory_data[i] = flag_activities_to_adjust(
                     dataset, scenario_data, year, data_vars
                 )
-            processed_keys.append(key)
+            processed_keys.add(key)
 
     def find_candidates_by_key(data, key):
         """Filter data for items matching the key (name and reference product)."""
@@ -510,14 +500,6 @@ def check_inventories(
         if mask:
             candidates = filter_candidates_by_mask(candidates, mask)
         return candidates
-
-    def adjust_candidate(candidate, scenario_data, year, val, region=None):
-        """Adjust a single candidate with scenario data."""
-        flag_activities_to_adjust(candidate, scenario_data, year, val, region)
-
-    def handle_single_candidate(candidates, scenario_data, year, val):
-        """Handle case where there is exactly one candidate."""
-        adjust_candidate(candidates[0], scenario_data, year, val)
 
     def perform_region_checks(potential_candidates, scenario_data):
         """
@@ -624,11 +606,6 @@ def check_inventories(
 
         return short_listed
 
-    def short_list_candidates(candidates, scenario_data):
-        """Shortlist candidates based on region logic."""
-        short_listed = perform_region_checks(candidates, scenario_data)
-        return short_listed
-
     def adjust_candidates_or_raise_error(
         candidates,
         scenario_data,
@@ -646,13 +623,13 @@ def check_inventories(
             return  # Skip further processing if no candidates found.
 
         if len(candidates) == 1:
-            handle_single_candidate(candidates, scenario_data, year, val)
+            flag_activities_to_adjust(candidates[0], scenario_data, year, val)
             return candidates
         else:
-            short_listed = short_list_candidates(candidates, scenario_data)
+            short_listed = perform_region_checks(candidates, scenario_data)
             for region, ds in short_listed.items():
                 if ds is not None:
-                    adjust_candidate(
+                    flag_activities_to_adjust(
                         ds,
                         scenario_data,
                         year,
