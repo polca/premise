@@ -773,37 +773,42 @@ def generate_scenario_difference_file(
 
 
 def find_technosphere_keys(db, df):
-    # erase keys for technosphere and production exchanges
-    df.loc[df["flow type"].isin(["technosphere", "production"]), "from key"] = None
-    df.loc[df["flow type"].isin(["technosphere", "production"]), "to key"] = None
-    df.loc[df["flow type"] == "biosphere", "to key"] = None
+    """Refresh inventory codes and fill activity keys without changing row labels.
 
-    # reset all codes
+    Production/technosphere keys are rebuilt; existing biosphere source keys
+    are retained. Missing suppliers remain unresolved. Assignment follows row
+    positions so filtered, duplicate and MultiIndex labels do not misalign keys.
+    """
+    indexer = df["flow type"].isin(["technosphere", "production"])
+    df.loc[indexer, "from key"] = None
+    df.loc[indexer | df["flow type"].eq("biosphere"), "to key"] = None
     db = reset_all_codes(db)
 
-    # create a dictionary of all activities
-    dict_act = {
+    activity_keys = {
         (a["name"], a["reference product"], a["location"]): (a["database"], a["code"])
         for a in db
     }
 
-    # iterate through df
-    # and fill "from key" and "to key" columns
-    # if None
-
-    df.loc[df["from key"].isnull(), "from key"] = pd.Series(
-        list(
-            zip(
-                df["from activity name"],
-                df["from reference product"],
-                df["from location"],
-            )
+    for side in ("from", "to"):
+        key = f"{side} key"
+        indexer = df[key].isna()
+        if not indexer.any():
+            continue
+        columns = [
+            f"{side} activity name",
+            f"{side} reference product",
+            f"{side} location",
+        ]
+        if indexer.all():
+            rows = df
+            indexer = slice(None)
+        else:
+            rows = df.loc[indexer, columns]
+        df.loc[indexer, key] = (
+            pd.Series(list(zip(*(rows[column] for column in columns))))
+            .map(activity_keys)
+            .to_numpy()
         )
-    ).map(dict_act)
-
-    df.loc[df["to key"].isnull(), "to key"] = pd.Series(
-        list(zip(df["to activity name"], df["to reference product"], df["to location"]))
-    ).map(dict_act)
 
     return db, df
 
