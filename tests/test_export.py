@@ -84,6 +84,25 @@ def test_simapro_units():
     assert simapro_units["cubic meter-year"] == "m3y"
 
 
+def test_scenario_differences_accept_activities_without_exchanges():
+    unused = {
+        "name": "unused activity",
+        "reference product": "material",
+        "location": "GLO",
+        "unit": "kilogram",
+        "exchanges": [],
+    }
+
+    frame, inventory, identities = generate_scenario_difference_file(
+        "empty-check", [unused], [{"database": [unused]}], "3.12", ["same"], "biosphere"
+    )
+
+    assert frame.empty
+    assert inventory == []
+    assert identities == set()
+    assert unused["exchanges"] == []
+
+
 @pytest.mark.parametrize(
     "system_model,expected",
     [("cutoff", "cut-off"), ("consequential", "consequential"), ("EN15804", "EN15804")],
@@ -121,7 +140,7 @@ def test_simapro_exchange_categories():
         ("2-butanol production by hydration of butene", "2-butanol")
     ]
     assert agr["category"] == "material"
-    assert agr["sub_category"] == "Chemicals\Organic\Transformation"
+    assert agr["sub_category"] == r"Chemicals\Organic\Transformation"
 
 
 def test_resolve_simapro_category_falls_back_on_blank_mapping():
@@ -131,7 +150,7 @@ def test_resolve_simapro_category_falls_back_on_blank_mapping():
         {("foo", "bar"): {"category": "", "sub_category": ""}},
     )
     assert main_category == "material"
-    assert sub_category == "Others\Transformation"
+    assert sub_category == r"Others\Transformation"
 
 
 def test_simapro_biosphere_dict():

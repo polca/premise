@@ -617,7 +617,7 @@ def generate_scenario_difference_file(
                 b: c
                 for b, c in a.items()
                 if b
-                not in [
+                not in {
                     "exchanges",
                     "code",
                     "name",
@@ -625,11 +625,14 @@ def generate_scenario_difference_file(
                     "location",
                     "unit",
                     "database",
-                ]
+                }
             }
 
     for i, db in enumerate(list_dbs):
         for ds in db:
+            if not ds["exchanges"]:
+                continue
+            matrix = matrices[i]
             c = (
                 ds["name"],
                 ds.get("reference product"),
@@ -638,6 +641,7 @@ def generate_scenario_difference_file(
                 ds["unit"],
                 "production",
             )
+            column = acts_ind_rev[c]
             for exc in ds["exchanges"]:
                 s = (
                     exc["name"],
@@ -647,17 +651,14 @@ def generate_scenario_difference_file(
                     exc["unit"],
                     exc["type"],
                 )
-                matrices[i][acts_ind_rev[s], acts_ind_rev[c]] += exc["amount"]
+                matrix[acts_ind_rev[s], column] += exc["amount"]
 
     m = sparse.stack([sparse.COO(x) for x in matrices.values()], axis=-1)
-    inds = sparse.argwhere(m.sum(-1).T != 0)
-    inds = list(map(tuple, inds))
-
     dataframe_rows = []
 
     inds_d = defaultdict(list)
-    for ind in inds:
-        inds_d[ind[0]].append(ind[1])
+    for consumer, supplier in sparse.argwhere(m.sum(-1).T != 0):
+        inds_d[consumer].append(supplier)
 
     with Pool(processes=mp.cpu_count()) as pool:
         new_db = pool.map(
