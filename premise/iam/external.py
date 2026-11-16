@@ -181,9 +181,11 @@ def fetch_loc(loc: str) -> Union[str, None]:
 
 
 def get_recursively(search_dict: dict, field: str) -> list:
-    """Takes a dict with nested lists and dicts,
-    and searches all dicts for a key of the field
-    provided.
+    """Find matching values in dictionary insertion order.
+
+    Descend into dictionaries and dictionary items in lists. Matching keys
+    return their value directly without searching inside that value.
+
     :param search_dict: dict with nested lists and dicts
     :param field: field to search for
     :return: list of values for the field
@@ -195,16 +197,12 @@ def get_recursively(search_dict: dict, field: str) -> list:
             fields_found.append(value)
 
         elif isinstance(value, dict):
-            results = get_recursively(value, field)
-            for result in results:
-                fields_found.append(result)
+            fields_found.extend(get_recursively(value, field))
 
         elif isinstance(value, list):
             for item in value:
                 if isinstance(item, dict):
-                    more_results = get_recursively(item, field)
-                    for another_result in more_results:
-                        fields_found.append(another_result)
+                    fields_found.extend(get_recursively(item, field))
 
     return fields_found
 

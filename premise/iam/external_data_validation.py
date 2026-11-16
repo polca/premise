@@ -1084,9 +1084,10 @@ def check_scenario_data_file(
 
 
 def get_recursively(search_dict, field):
-    """Takes a dict with nested lists and dicts,
-    and searches all dicts for a key of the field
-    provided.
+    """Find matching values in dictionary insertion order.
+
+    Descend into dictionaries and dictionary items in lists. Matching keys
+    return their value directly without searching inside that value.
     """
     fields_found = []
 
@@ -1095,16 +1096,12 @@ def get_recursively(search_dict, field):
             fields_found.append(value)
 
         elif isinstance(value, dict):
-            results = get_recursively(value, field)
-            for result in results:
-                fields_found.append(result)
+            fields_found.extend(get_recursively(value, field))
 
         elif isinstance(value, list):
             for item in value:
                 if isinstance(item, dict):
-                    more_results = get_recursively(item, field)
-                    for another_result in more_results:
-                        fields_found.append(another_result)
+                    fields_found.extend(get_recursively(item, field))
 
     return fields_found
 
