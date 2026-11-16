@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-16",
+  "new_exact_source38_scopes": 6,
+  "runtime_Python_changes": false,
+  "migration_rules_changed": false,
+  "new_helpers": 0,
+  "new_source_omissions": 0,
+  "Brightway_databases_written": 0,
+  "review_sha256": "fe151760f0e2c4c1fbef85c8f95114be5fc5494a8cf89756705bb17cf0acc2c0",
+  "focused_signed_quantity_tests_passed": 4,
+  "full_car_sector_qualified": false,
+  "primary_references_checked": {
+    "source": "installed ecoinvent-3.8-cutoff",
+    "native": [
+      "UVEK 2025",
+      "BAFU 2026 reimported"
+    ],
+    "all_positive_one_kg": true
+  },
+  "actual_shared_preparation": {
+    "source38_cohort_cleared": true,
+    "next_source_version": "3.7",
+    "next_unapproved_rule_count": 15,
+    "full_car_update_passed": false
+  }
+}

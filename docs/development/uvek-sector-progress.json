@@ -1283,27 +1283,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
-        },
-        {
-          "code": "family_dispatch",
-          "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
+          "finding": "Thirteen sectors are admitted publicly. This sector remains gated pending its complete verified shared update and integration evidence."
         },
         {
           "code": "sector_implementation_and_integration",
           "path": "premise/materials/metals.py:266",
           "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
-        },
-        {
-          "code": "inventory_family_default",
-          "path": "premise/materials/metals.py",
-          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
-        },
-        {
-          "code": "biosphere_axis_review",
-          "path": "premise/materials/metals.py",
-          "finding": "Direct biosphere dictionary calls need inspection to ensure they use3.10biosphere rather than2026technosphere release."
         }
       ],
       "decisions": [],
@@ -1336,7 +1321,8 @@
         ],
         "role_files": [],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
-      }
+      },
+      "static_audit_refresh": "Current code passes source_family and biosphere_version through the shared callback and InventorySet. This resolves the earlier static dispatch findings; a real sector run is still required."
     },
     {
       "sector": "mining",
@@ -2279,7 +2265,7 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
+          "finding": "Thirteen sectors are admitted publicly. This sector remains gated pending its complete verified shared update and integration evidence."
         },
         {
           "code": "family_dispatch",
@@ -2413,8 +2399,8 @@
         },
         {
           "code": "current_required_import_cohort",
-          "finding": "The actual shared preparation clears the reviewed source3.10 cohort and now refuses source3.8 metalworking correspondences. No full car transformation, market validation or sector qualification is claimed.",
-          "review": "docs/development/uvek-passenger-car-source310-verification.json",
+          "finding": "Actual shared car preparation now clears source3.8 and stops on15 source3.7 correspondences. These are required foreground dependencies; review and the complete car transformation remain unfinished.",
+          "review": "docs/development/uvek-passenger-car-source38-verification.json",
           "reviewed_source310_rule_ids": [
             "bp-15a5350bb1bcdb67",
             "bp-1a39c7b4c1f58b77",
@@ -2438,14 +2424,31 @@
             "bp-ef673f7bc19f4581",
             "bp-f7dd94e542cba21d"
           ],
-          "current_source_version": "3.8",
-          "remaining_rule_ids": [
+          "current_source_version": "3.7",
+          "reviewed_source38_rule_ids": [
             "bp-d643951f06313a19",
             "bp-4844549cc0c07d18",
             "bp-0028acc612584b3f",
             "bp-fa83088d5d2b33b6",
             "bp-25caf9ffefc8a1ab",
             "bp-2bab3a3e3d0b3ad7"
+          ],
+          "remaining_rule_ids": [
+            "bp-d21d0bac2a023032",
+            "bp-c4e4184b24112209",
+            "bp-8a6394dd395bb22d",
+            "bp-5c972a6c76ece968",
+            "bp-ab1d27770658d83e",
+            "bp-fa83088d5d2b33b6",
+            "bp-4591e06aab54c64b",
+            "bp-e4846f25fbe74153",
+            "bp-51cccf3b2edc49df",
+            "bp-eeab173462697d8e",
+            "bp-f2cc63366560c955",
+            "bp-f3e2b8a4dc2df13f",
+            "bp-2b69270ca0d2f18c",
+            "bp-745c517f85a78ba7",
+            "bp-ec3106bc66684767"
           ]
         },
         {
@@ -2482,6 +2485,10 @@
         {
           "review": "docs/development/uvek-passenger-car-source310.md",
           "decision": "Use fourteen reviewed native supplies, the existing allocated aluminium stock, five explicit historical-model wrappers and a mixed-plastic treatment market preserving its original three treatment shares and freight. No new source omissions or runtime Python changes."
+        },
+        {
+          "review": "docs/development/uvek-passenger-car-source38.md",
+          "decision": "Use six complete native kg supplies, with explicit metalworking stock boundaries, liquid epoxy formulation uncertainty, glass/HDPE vintage and production differences, and changed PUR/aluminium market mixes. Preserve signed caller quantities and uncertainty; no new helper or source omission."
         }
       ],
       "implementation_commits": [
@@ -2498,7 +2505,9 @@
         "Ten focused remaining-source312 tests pass; the same actual import has advanced to its source3.9 cohort. All three forward resources regenerate byte-identically.",
         "Seven source3.9 migration/replay checks pass; all three forward resources regenerate byte-identically. The first real car attempt identified a newer archive with a source3.10 cohort, which is not qualified yet.",
         "Eight focused source3.10 migration/replay tests pass; all three forward resources regenerate byte-identically. Full shared car integration remains pending.",
-        "The actual shared preparation clears source3.10 and reaches source3.8; that next cohort still needs review. No sector admission or database write."
+        "The actual shared preparation clears source3.10 and reaches source3.8; that next cohort still needs review. No sector admission or database write.",
+        "Four source3.8 signed conversion cases pass across both native releases. Actual shared car preparation is being retried with six additional exact approvals.",
+        "Actual shared preparation clears all six reviewed source3.8 cases and reaches15 required source3.7 correspondences; no car callback or sector admission yet."
       ],
       "integration_exports": [],
       "static_audit": {
@@ -2680,22 +2689,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
-        },
-        {
-          "code": "family_dispatch",
-          "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
+          "finding": "Thirteen sectors are admitted publicly. This sector remains gated pending its complete verified shared update and integration evidence."
         },
         {
           "code": "sector_implementation_and_integration",
           "path": "premise/transport/transport.py:47",
           "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
-        },
-        {
-          "code": "inventory_family_default",
-          "path": "premise/transport/transport.py",
-          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
         }
       ],
       "decisions": [],
@@ -2730,7 +2729,8 @@
         "review": "docs/development/uvek-production-heat-boundary-review.md",
         "verification": "docs/development/uvek-production-heat-boundary-verification.json",
         "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
-      }
+      },
+      "static_audit_refresh": "Current code passes source_family and biosphere_version through the shared callback and InventorySet. This resolves the earlier static dispatch findings; a real sector run is still required."
     },
     {
       "sector": "ships",
@@ -3486,7 +3486,7 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
+          "finding": "Thirteen sectors are admitted publicly. This sector remains gated pending its complete verified shared update and integration evidence."
         },
         {
           "code": "family_dispatch",
@@ -3569,7 +3569,7 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
+          "finding": "Thirteen sectors are admitted publicly. This sector remains gated pending its complete verified shared update and integration evidence."
         },
         {
           "code": "family_dispatch",

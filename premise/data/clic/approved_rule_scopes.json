@@ -307192,6 +307192,540 @@
           "fingerprint": "394cc92c9b0df245b524eb7e3a03622ef8094c45de5eaaa5050e43d57fbdfa1e"
         }
       ]
+    },
+    {
+      "rule_id": "bp-d643951f06313a19",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_38_review.json",
+      "review_sha256": "fe151760f0e2c4c1fbef85c8f95114be5fc5494a8cf89756705bb17cf0acc2c0",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log modelling limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-d643951f06313a19",
+        "source": {
+          "location": "RER",
+          "name": "metal working, average for chromium steel product manufacturing",
+          "reference product": "metal working, average for chromium steel product manufacturing",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Chromium steel product manufacturing, average metal working",
+          "reference product": "Chromium steel product manufacturing, average metal working",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "source_witness": {
+          "code": "c3b50f8ad30d89b0d85520576c976710",
+          "database": "ecoinvent-3.8-cutoff",
+          "name": "metal working, average for chromium steel product manufacturing",
+          "product": "metal working, average for chromium steel product manufacturing",
+          "unit": "kilogram",
+          "location": "RER",
+          "metadata_sha256": "cae314917d81cdd6681595f32504af68748a3cf33839e0fb36f2c62bd1cd40b7",
+          "inventory_sha256": "031ede4213b3b69e1db1df48f7422a4a25d9411566c2b34f60bbcd42711ca4b2",
+          "activity_comment_sha256": "2e0106e0fca122420f9b5d92cf453ba590366f7f75461de2700b4cf3a517d663",
+          "product_information_sha256": "b81461321542f5f5a26ea7405f58bad48e956aeff090bdba94f29fff9b6e3000",
+          "reference_amount": 1,
+          "nonproduction_count": 5
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-607139",
+            "database": "bafu",
+            "name": "Chromium steel product manufacturing, average metal working",
+            "product": "Chromium steel product manufacturing, average metal working",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "7f4dc0982e200bed770f2d9a1d0508a4927ed1cbd30d8619596d67f05104c9b9",
+            "inventory_sha256": "37c96d8b47c4fd299b5c03d144456ac0d9d45bcdeff320bcc55191bcf92ec73f",
+            "activity_comment_sha256": "cde4002bc0d9badae3d6cd6e9ea852fed1144880c7bdfafd37e98e548836e7ac",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 5
+          },
+          "2026": {
+            "code": "0597330c2118d1a910c5405908e1ee38",
+            "database": "BAFU:2026-reimported",
+            "name": "Chromium steel product manufacturing, average metal working",
+            "product": "Chromium steel product manufacturing, average metal working",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "aed435753138119cc76a6dd9c497c12433d567b0998c5559c89d5436e27fcbf6",
+            "inventory_sha256": "b4a30eace4d27951e3f375e5053ec1eeb453a85801cbc9fcc541ae39ca379e60",
+            "activity_comment_sha256": "fe512ad4c3907bd9c14376feeb60f633b89c539507590e439b711667b8269b52",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 5
+          }
+        }
+      },
+      "limitations": [
+        "Both services exclude the main chromium-steel stock and degreasing. Both retain 0.227 kg of replacement chromium steel for processing losses, plus machine, factory and operation. Preserve separately listed principal stock and any caller degreasing.",
+        "Use the complete native process per signed source kg, preserving caller quantity, formula and uncertainty. No density, lifetime, occupancy or energy scaling.",
+        "Native production mixes, process detail, allocation, geography, vintage, embedded freight and internal uncertainty replace the source model; environmental score differences are unquantified.",
+        "The native 2026 source is the locally reimported BAFU archive with its documented biosphere exclusions; this review does not restore missing native flows."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "8854cdffcb4bec2fc41cfc945113ce8ab04c93eda893b464a45fb3f5d561deb7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4844549cc0c07d18",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_38_review.json",
+      "review_sha256": "fe151760f0e2c4c1fbef85c8f95114be5fc5494a8cf89756705bb17cf0acc2c0",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log modelling limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-4844549cc0c07d18",
+        "source": {
+          "location": "RER",
+          "name": "epoxy resin production, liquid",
+          "reference product": "epoxy resin, liquid",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Epoxy resin, liquid, at plant",
+          "reference product": "Epoxy resin, liquid, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "source_witness": {
+          "code": "4f2c5c761a54530b69f49c14d412b8ee",
+          "database": "ecoinvent-3.8-cutoff",
+          "name": "epoxy resin production, liquid",
+          "product": "epoxy resin, liquid",
+          "unit": "kilogram",
+          "location": "RER",
+          "metadata_sha256": "8a80eef8c506b688bde6bad3f0c3ffafaf0d123fd7f1db5df43e6cd8f31612a1",
+          "inventory_sha256": "7ba916ce92b2f648d0f74fed75d6fecb3828870802119595cf5b8e51c658300d",
+          "activity_comment_sha256": "c564dbadb57f481d56ec14c03839fc397a483af109178a1f603f9cb027739f98",
+          "product_information_sha256": "2af55b3571330eb292490cdc2288de0a6a7660eb797fcac85ec519c3bcceb181",
+          "reference_amount": 1,
+          "nonproduction_count": 20
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-406984",
+            "database": "bafu",
+            "name": "Epoxy resin, liquid, at plant",
+            "product": "Epoxy resin, liquid, at plant",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "74324784ca1ec3a15c7bcdf0a53f61ce2edb5e3594863fe33cc139e425ce3339",
+            "inventory_sha256": "e3a840103d230fca666df62e39dc3c30ccdfcb26200c98310b3195a149cb1dd2",
+            "activity_comment_sha256": "79c4bf6ce62a116a77e3a180e77996b0e893e0830d5e920cff638e9080405f05",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 111
+          },
+          "2026": {
+            "code": "b4fe015e217cf6753bca6ff7be129d5d",
+            "database": "BAFU:2026-reimported",
+            "name": "Epoxy resin, liquid, at plant",
+            "product": "Epoxy resin, liquid, at plant",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "f32861eb4965ceacd95b3446a0d04ab1cd5e13fc4230a2470e46c354223fcb83",
+            "inventory_sha256": "d6c6b947aeeb47fd3c2185ab0bae24ab319600f3543dfc5f92e43551bfd3300c",
+            "activity_comment_sha256": "a4e3f52dfbe680dcfe2a914e135405190d19d12de817c0e23c0239f147a2e636",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 116
+          }
+        }
+      },
+      "limitations": [
+        "Both represent uncured liquid epoxy resin produced from bisphenol-A and epichlorohydrin. Native aggregated European eco-profile replaces the source stoichiometric/industry unit-process model. CAS labels differ; no identical polymer grade, formulation or composition is claimed, and no hardener or curing process is added.",
+        "Use the complete native process per signed source kg, preserving caller quantity, formula and uncertainty. No density, lifetime, occupancy or energy scaling.",
+        "Native production mixes, process detail, allocation, geography, vintage, embedded freight and internal uncertainty replace the source model; environmental score differences are unquantified.",
+        "The native 2026 source is the locally reimported BAFU archive with its documented biosphere exclusions; this review does not restore missing native flows."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "0c9a70164136c73bc4131271183a69e39da50bf5b11e4cfb102e28dfb19db400"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0028acc612584b3f",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_38_review.json",
+      "review_sha256": "fe151760f0e2c4c1fbef85c8f95114be5fc5494a8cf89756705bb17cf0acc2c0",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log modelling limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-0028acc612584b3f",
+        "source": {
+          "location": "GLO",
+          "name": "market for glass fibre",
+          "reference product": "glass fibre",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Glass fibre, at plant",
+          "reference product": "Glass fibre, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "source_witness": {
+          "code": "fc9737c69d9accaa2bb9c6ba947b1818",
+          "database": "ecoinvent-3.8-cutoff",
+          "name": "market for glass fibre",
+          "product": "glass fibre",
+          "unit": "kilogram",
+          "location": "GLO",
+          "metadata_sha256": "1413b76b0cd0048a62bfc2807d3ac0c3ce738ee6a55fa1ed6f5c64629eb57c14",
+          "inventory_sha256": "86a9aece071fb10e1b8bb2dcc38d48cac98abd1cbb0a698667cee14b27039860",
+          "activity_comment_sha256": "49a244d62bc6837f40ffe9833452f1f73493cd9898d6be00fe5fc8e4400a375a",
+          "product_information_sha256": "f8e1d3b000b0409900c6f95fd9f33a5729e625cdae7cb5fe88a51f0921719942",
+          "reference_amount": 1,
+          "nonproduction_count": 6
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-210142",
+            "database": "bafu",
+            "name": "Glass fibre, at plant",
+            "product": "Glass fibre, at plant",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "ebf3d11c99ba774851e56d90bca4950010d5f096130a76fb3b3fbb1c58dd7e76",
+            "inventory_sha256": "d2c87b46ee71f2dff942938e1b6100b300f1c5104d1f355a5be802b1e3e546ea",
+            "activity_comment_sha256": "cab922e6a2717b2a393e375e94f9c8cabb0b8826168389ff6d084606af7c2e8c",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 32
+          },
+          "2026": {
+            "code": "9ee9c6591dfb11cb54210e78b2dd3b89",
+            "database": "BAFU:2026-reimported",
+            "name": "Glass fibre, at plant",
+            "product": "Glass fibre, at plant",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "f51da115f7178eded4b18c0b54e66afac46bafd9c637a26ef139ab7053b5b29a",
+            "inventory_sha256": "d2b121166b0c7618cafcc0c109e5f2729127ddc0815e4fe1dd9af978128b9482",
+            "activity_comment_sha256": "a0121454c964787e20ae9b94ff61f0c558226a22faec73664e937b7fbb5cfea9",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 33
+          }
+        }
+      },
+      "limitations": [
+        "Use complete native European glass-fibre manufacture, with recuperative/oxy-fuel furnace technology. This replaces the global producer and delivery mix, including its source transport model; no separate moulding or composite resin is added.",
+        "Use the complete native process per signed source kg, preserving caller quantity, formula and uncertainty. No density, lifetime, occupancy or energy scaling.",
+        "Native production mixes, process detail, allocation, geography, vintage, embedded freight and internal uncertainty replace the source model; environmental score differences are unquantified.",
+        "The native 2026 source is the locally reimported BAFU archive with its documented biosphere exclusions; this review does not restore missing native flows."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c2868be1211a0c85d7535dad9802fc2811dd946d1e5d23c94a52f6fab0beaa13"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fa83088d5d2b33b6",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_38_review.json",
+      "review_sha256": "fe151760f0e2c4c1fbef85c8f95114be5fc5494a8cf89756705bb17cf0acc2c0",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log modelling limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-fa83088d5d2b33b6",
+        "source": {
+          "location": "RER",
+          "name": "polyethylene production, high density, granulate",
+          "reference product": "polyethylene, high density, granulate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polyethylene, HDPE, granulate, at plant",
+          "reference product": "Polyethylene, HDPE, granulate, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "source_witness": {
+          "code": "4182af452e5e8bc1e33240c48fa77ceb",
+          "database": "ecoinvent-3.8-cutoff",
+          "name": "polyethylene production, high density, granulate",
+          "product": "polyethylene, high density, granulate",
+          "unit": "kilogram",
+          "location": "RER",
+          "metadata_sha256": "8579a4ba75829d1c54bd983b45b82191b224d1f7c17bcea92a0b043cd328c063",
+          "inventory_sha256": "1effbd831b7c90d2d08a1d3432fbe5c436ed3c72f091289ae5aac5a363fe6e1b",
+          "activity_comment_sha256": "e6e5570ab173391743f870d785d829c0a6b2ac04c026296bb7b94caa347e3200",
+          "product_information_sha256": "326a6ec1734920fe0c8ea7c8a0a7ecc4b94d71376a9a2a9e541291a3c65b6dce",
+          "reference_amount": 1,
+          "nonproduction_count": 52
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-599376",
+            "database": "bafu",
+            "name": "Polyethylene, HDPE, granulate, at plant",
+            "product": "Polyethylene, HDPE, granulate, at plant",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "fc954d0337336fca11ed20ffca59c51b44cb83514a9fad14277a8c8eca2d087b",
+            "inventory_sha256": "cac81e9c3ffcc0511aa8ce93ce59f9ed76c6e5ea247b824ff6a1455e48ef5266",
+            "activity_comment_sha256": "0c1043038d73c61148ceac04ec64bff3ee15d9c2cade94d427234021c9fcf603",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 408
+          },
+          "2026": {
+            "code": "bd788c487a8cb97cb279c7954abda937",
+            "database": "BAFU:2026-reimported",
+            "name": "Polyethylene, HDPE, granulate, at plant",
+            "product": "Polyethylene, HDPE, granulate, at plant",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "29df786ca0dd4c88a057568141ca68555dd22d8adb6347981a9507dd1cb802e2",
+            "inventory_sha256": "ede7bffe5843afa2ba487d89b8c4d4acb8d1751e56a3fc54c607e36d20dcb674",
+            "activity_comment_sha256": "ed946c8aca355e2d873a2ed6b788e0483f32b1be602a8ca165abf2c3c93e91fc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 412
+          }
+        }
+      },
+      "limitations": [
+        "Both deliver virgin HDPE granulate at plant. Complete native aggregated European eco-profile includes feedstock, polymerisation and waste treatment, and the documented 2023 methane update; these replace the source disaggregated production model.",
+        "Use the complete native process per signed source kg, preserving caller quantity, formula and uncertainty. No density, lifetime, occupancy or energy scaling.",
+        "Native production mixes, process detail, allocation, geography, vintage, embedded freight and internal uncertainty replace the source model; environmental score differences are unquantified.",
+        "The native 2026 source is the locally reimported BAFU archive with its documented biosphere exclusions; this review does not restore missing native flows."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "4b599f48e78a44940a46b3af9703a56f6b6dfe1beeb6a7d61c0c40d7b83af6a9"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-25caf9ffefc8a1ab",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_38_review.json",
+      "review_sha256": "fe151760f0e2c4c1fbef85c8f95114be5fc5494a8cf89756705bb17cf0acc2c0",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log modelling limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-25caf9ffefc8a1ab",
+        "source": {
+          "location": "RER",
+          "name": "market for polyurethane, flexible foam",
+          "reference product": "polyurethane, flexible foam",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polyurethane, flexible foam, at plant",
+          "reference product": "Polyurethane, flexible foam, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "source_witness": {
+          "code": "e52416d01a136467a7014f925a081bc3",
+          "database": "ecoinvent-3.8-cutoff",
+          "name": "market for polyurethane, flexible foam",
+          "product": "polyurethane, flexible foam",
+          "unit": "kilogram",
+          "location": "RER",
+          "metadata_sha256": "3f7e33358e64e7df2b4e01c52f81c43a0e5bdf2dfb74a39761306bc72a9a61a3",
+          "inventory_sha256": "7e36dbe0332e8a7b5bab4d28807664f68582d18ecf22395ea123e112c029fbec",
+          "activity_comment_sha256": "6ebd81841a9fecfec77c905ab4c4a324d5943a578bd7352d84f9222f75189ed1",
+          "product_information_sha256": "d51a098ff31b4a7c4c88cd1b2195929d1cdfad25ab7a8282946e1426e2202cdb",
+          "reference_amount": 1,
+          "nonproduction_count": 6
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-290187",
+            "database": "bafu",
+            "name": "Polyurethane, flexible foam, at plant",
+            "product": "Polyurethane, flexible foam, at plant",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "bc8cfa8bb928dfd25437a649a2d6752d98dc360fa692ed90706adb73a1d9ae5f",
+            "inventory_sha256": "a98415cf78b02c5d1e967ab8157d20fc1502f3621241d34b7cc3049e87f63f23",
+            "activity_comment_sha256": "3e2f2720aaa7a58e789c1e3d47cc361e556093a270d3e10cf1c1bb4d1d12aa9c",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 10
+          },
+          "2026": {
+            "code": "bdd4cd4498e4501d336cb0f57e99f3c2",
+            "database": "BAFU:2026-reimported",
+            "name": "Polyurethane, flexible foam, at plant",
+            "product": "Polyurethane, flexible foam, at plant",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "1955c9e268f9fd6e1fc2a389aed0ba5a577eaf438478c4c78ebd2d4ac3be244b",
+            "inventory_sha256": "fbd8ba1795d35890efcf61bf36c55e1697e129aefbc50d287039ed015d7b15b8",
+            "activity_comment_sha256": "45f2abbb78567374e29a11f35b8c85a928ae936d0cd39cc31cc9195efa9f1e64",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 10
+          }
+        }
+      },
+      "limitations": [
+        "Native flexible polyurethane foam represents one composition using TDI and polyols. It replaces a source mix of 20% MDI-based and 80% TDI-based foams and source market delivery. No density or volume conversion, extra foam processing or hardener is introduced.",
+        "Use the complete native process per signed source kg, preserving caller quantity, formula and uncertainty. No density, lifetime, occupancy or energy scaling.",
+        "Native production mixes, process detail, allocation, geography, vintage, embedded freight and internal uncertainty replace the source model; environmental score differences are unquantified.",
+        "The native 2026 source is the locally reimported BAFU archive with its documented biosphere exclusions; this review does not restore missing native flows."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "bc56c388d3ff301892afdfba08a8519dd5e4ccfa39ef0663b7a4a139fd9f4482"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2bab3a3e3d0b3ad7",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_38_review.json",
+      "review_sha256": "fe151760f0e2c4c1fbef85c8f95114be5fc5494a8cf89756705bb17cf0acc2c0",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log modelling limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-2bab3a3e3d0b3ad7",
+        "source": {
+          "location": "GLO",
+          "name": "market for aluminium, wrought alloy",
+          "reference product": "aluminium, wrought alloy",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Aluminium, production mix, wrought alloy, at plant",
+          "reference product": "Aluminium, production mix, wrought alloy, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "source_witness": {
+          "code": "8392648c098b86d088a9821ce11ed9dd",
+          "database": "ecoinvent-3.8-cutoff",
+          "name": "market for aluminium, wrought alloy",
+          "product": "aluminium, wrought alloy",
+          "unit": "kilogram",
+          "location": "GLO",
+          "metadata_sha256": "9cb384ff9262b41b342ec83e2c2dc50090525ff5d3a8a1a8f9504b02bddb6b85",
+          "inventory_sha256": "569ea0f7c3f697ef40208b19d82dec2349967963e6dd2cba22a2de8b50c01f79",
+          "activity_comment_sha256": "2a58959a57dfa876d29bc5741c791ae9a3008a3ea306f39bcebb22a305d6cdb6",
+          "product_information_sha256": "4c5d170c54817049ef07fe959e62faefc8d75b12979ef88be0f551cac53789a6",
+          "reference_amount": 1,
+          "nonproduction_count": 9
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-260403",
+            "database": "bafu",
+            "name": "Aluminium, production mix, wrought alloy, at plant",
+            "product": "Aluminium, production mix, wrought alloy, at plant",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "36ffc88d8b434b698c3462679d0341a82682c3eb263ffbffb1149b4e40b532ff",
+            "inventory_sha256": "a49772b4ef467c0cd38b5dad369137cb16f1669b2a3c2aa7b10b3c00c596fc4a",
+            "activity_comment_sha256": "0d3d211f3d12cc325b60a1564f05835ecabcfa0c231c09c740fcee3663c9c5dc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 3
+          },
+          "2026": {
+            "code": "a3d08db81ed83fe8f4f88fc9747e7b7e",
+            "database": "BAFU:2026-reimported",
+            "name": "Aluminium, production mix, wrought alloy, at plant",
+            "product": "Aluminium, production mix, wrought alloy, at plant",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "7ae76c348d9061472ae245ab5fca38f1c318153c9e185c67e20a4cb85eefc7ad",
+            "inventory_sha256": "191037c28be4982ab89f4819021f5a200b1c637bf0b6bdbb10ed64f03c3db658",
+            "activity_comment_sha256": "67f9dce44cf114fce747f4a66b549222353609df4e9620f02a75c5924c6026ce",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 3
+          }
+        }
+      },
+      "limitations": [
+        "Native European wrought-alloy production mix contains 0.53644 kg primary, 0.38099 kg new-scrap secondary and 0.082568 kg old-scrap secondary aluminium per kg. This is a screening replacement for the source global production and freight mix; source recycling shares, alloy grade and delivery are not reproduced. No extra primary-metal, casting or rolling input is added.",
+        "Use the complete native process per signed source kg, preserving caller quantity, formula and uncertainty. No density, lifetime, occupancy or energy scaling.",
+        "Native production mixes, process detail, allocation, geography, vintage, embedded freight and internal uncertainty replace the source model; environmental score differences are unquantified.",
+        "The native 2026 source is the locally reimported BAFU archive with its documented biosphere exclusions; this review does not restore missing native flows."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "bd6c107ffe29dfd4003fd60e674557555c97496457275c7b223bcfd3d04c8c09"
+        }
+      ]
     }
   ],
   "superseded_operations": [
