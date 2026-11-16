@@ -784,6 +784,7 @@ def list_all_iam_regions(configuration):
 
 
 def check_config_file(datapackage: datapackage.Package) -> int:
+    """Validate one configuration snapshot and report whether imports are needed."""
 
     resource = datapackage.get_resource("config")
     config_file = yaml.safe_load(resource.raw_read())
@@ -965,19 +966,11 @@ def check_config_file(datapackage: datapackage.Package) -> int:
                     "under `production pathways`."
                 ) from err
 
-    needs_imported_inventories = False
-
-    resource = datapackage.get_resource("config")
-    config_file = yaml.safe_load(resource.raw_read())
-
-    if len(list(config_file["production pathways"].keys())) != sum(
+    return len(config_file["production pathways"]) != sum(
         get_recursively(
             config_file["production pathways"], "exists in original database"
         )
-    ):
-        needs_imported_inventories = True
-
-    return needs_imported_inventories
+    )
 
 
 def check_scenario_data_file(
