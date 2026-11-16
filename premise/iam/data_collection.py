@@ -623,46 +623,45 @@ class IAMDataCollection:
             IAM_TRANS_TWO_WHEELERS_VARS, variable="energy_use_aliases"
         )
 
-        # new_vars is a list of all variables that are declared above
+        # Collect aliases in declaration order, then flatten additive lists.
 
-        new_vars = (
-            list(electricity_prod_vars.values())
-            + list(electricity_eff_vars.values())
-            + list(fuel_prod_vars.values())
-            + list(fuel_eff_vars.values())
-            + list(cement_prod_vars.values())
-            + list(cement_energy_vars.values())
-            + list(cement_eff_vars.values())
-            + list(steel_prod_vars.values())
-            + list(steel_energy_vars.values())
-            + [cdr_alias_candidates(v) for v in cdr_prod_vars.values()]
-            + [cdr_alias_candidates(v) for v in cdr_energy_use_vars.values()]
-            + [cdr_alias_candidates(v) for v in cdr_efficiency_use_vars.values()]
-            + list(biomass_prod_vars.values())
-            + list(biomass_eff_vars.values())
-            + list(land_use_vars.values())
-            + list(land_use_change_vars.values())
-            + heat_raw_vars
-            + list(other_vars.values())
-            + list(roadfreight_prod_vars.values())
-            + list(roadfreight_energy_vars.values())
-            + list(roadfreight_intensity_vars.values())
-            + list(railfreight_prod_vars.values())
-            + list(railfreight_energy_vars.values())
-            + list(seafreight_prod_vars.values())
-            + list(seafreight_energy_vars.values())
-            + list(passenger_cars_prod_vars.values())
-            + list(passenger_cars_energy_vars.values())
-            + list(passenger_cars_intensity_vars.values())
-            + list(passenger_cars_intensity_fallback_vars.values())
-            + list(bus_prod_vars.values())
-            + list(bus_energy_vars.values())
-            + list(two_wheelers_prod_vars.values())
-            + list(two_wheelers_energy_vars.values())
+        new_vars = flatten(
+            chain(
+                electricity_prod_vars.values(),
+                electricity_eff_vars.values(),
+                fuel_prod_vars.values(),
+                fuel_eff_vars.values(),
+                cement_prod_vars.values(),
+                cement_energy_vars.values(),
+                cement_eff_vars.values(),
+                steel_prod_vars.values(),
+                steel_energy_vars.values(),
+                [cdr_alias_candidates(v) for v in cdr_prod_vars.values()],
+                [cdr_alias_candidates(v) for v in cdr_energy_use_vars.values()],
+                [cdr_alias_candidates(v) for v in cdr_efficiency_use_vars.values()],
+                biomass_prod_vars.values(),
+                biomass_eff_vars.values(),
+                land_use_vars.values(),
+                land_use_change_vars.values(),
+                heat_raw_vars,
+                other_vars.values(),
+                roadfreight_prod_vars.values(),
+                roadfreight_energy_vars.values(),
+                roadfreight_intensity_vars.values(),
+                railfreight_prod_vars.values(),
+                railfreight_energy_vars.values(),
+                seafreight_prod_vars.values(),
+                seafreight_energy_vars.values(),
+                passenger_cars_prod_vars.values(),
+                passenger_cars_energy_vars.values(),
+                passenger_cars_intensity_vars.values(),
+                passenger_cars_intensity_fallback_vars.values(),
+                bus_prod_vars.values(),
+                bus_energy_vars.values(),
+                two_wheelers_prod_vars.values(),
+                two_wheelers_energy_vars.values(),
+            )
         )
-
-        # flatten the list of lists
-        new_vars = flatten(new_vars)
 
         # if "liquid fossil fuels" is in the list of fuel variables
         # we add the split of gasoline, diesel, LPG and kerosene
