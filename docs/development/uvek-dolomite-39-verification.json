@@ -1,0 +1,101 @@
+{
+  "date": "2026-11-16",
+  "status": "dolomite_mapping_verified_full_battery_update_unfinished",
+  "review": "brightpath/data/export/uvek_battery_dolomite_39_review.json",
+  "mapping_changes": {
+    "review_sha256": "ee4cb7409214d35dba7b1fc1ca7bcaab6bacf43c984344b18fa520ad072c1415",
+    "native_resource_sha256": "236cf407a7ffd884262b9121f05f2e4af4bb0f0ebc98e9b8a2b0ef07e0bd4c18",
+    "changed_rules": [
+      "bp-3140d15674640776",
+      "bp-5943576bea71c0de"
+    ],
+    "new_recipes": 1,
+    "all_old_recipes_unchanged": true,
+    "preserved_source38_profile_unchanged": true,
+    "new_scopes": 2,
+    "preserved_scope_refresh": [
+      {
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "old_fingerprint": "e5d523b6f4d682b1e68fbc0805a3df62110251db8b0520eaaf6de7341b842caf",
+        "new_fingerprint": "e8f6c538ad392de4967b1b31b7808ad6b78da50bc0912fb79a11db2c73b444f1",
+        "physical_target_factor_and_recipe_unchanged": true
+      }
+    ],
+    "source39_market_entries": 10,
+    "source39_delivery_entries": 9,
+    "new_foreground_omissions": 0,
+    "idempotent_authoring_replay": true,
+    "superseded_global_review_archived": "r-08d2b3055a1c88e4",
+    "maintainer_checksum_updates": 1
+  },
+  "generator_reproduction": [
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+      "identical": true,
+      "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "bytes": 18596725
+    },
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+      "identical": true,
+      "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "bytes": 18596319
+    },
+    {
+      "file": "ecoinvent-to-uvek-2025.json",
+      "identical": true,
+      "sha256": "236cf407a7ffd884262b9121f05f2e4af4bb0f0ebc98e9b8a2b0ef07e0bd4c18",
+      "bytes": 70612783
+    }
+  ],
+  "Brightpath_tests_passed": 55,
+  "Brightpath_regressions_include": "Existing source3.8shipping, source3.9manganese, review archival and integrity manifest.",
+  "Premise_tests_passed": 8,
+  "Premise_regressions_include": "Fresh/cache/withdrawal and preserved older-source permissions, plus manganese regression.",
+  "inventory_checks": {
+    "status": "source39_delivery_matches_independent_raw_market_conversion_and_both_source_versions_have_finite_signed_LCIs",
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "source_database": "BAFU:2026-reimported",
+    "biosphere": "ecoinvent-3.10-biosphere",
+    "transient_activities": 6,
+    "matrix_shape": [
+      11953,
+      11953
+    ],
+    "signed_finite_LCI_solves": 6,
+    "independent_raw_source39_market_comparison": true,
+    "max_absolute_inventory_difference": 0.0,
+    "original_nine_delivery_entries_retained": true,
+    "source38_original_helper_preserved": true,
+    "new_Brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "source_and_biosphere_metadata_preserved": true,
+    "qualification_limit": "Native target-model consistency, not source/native LCIA equivalence or complete sector qualification."
+  },
+  "actual_first_cohort": {
+    "sector": "battery",
+    "before": 9,
+    "after": 8,
+    "remaining_rule_ids": [
+      "bp-168324086066bce9",
+      "bp-2149df101fadeeb2",
+      "bp-6b5607ff035d8448",
+      "bp-6e3f61d03dd09ea6",
+      "bp-9dba49829fbe9454",
+      "bp-bce58f1fed0f56b1",
+      "bp-c18af03acca016b9",
+      "bp-d700fe3d29d48083"
+    ],
+    "qualification_limit": "Actual first source cohort only; other cohorts/dependencies and full sector remain unfinished."
+  },
+  "qualified_sectors": 14,
+  "newly_qualified_sectors": 0,
+  "runtime_Python_changes": 0,
+  "maintainer_Python_change": "Archive checksum constant only; generator and runtime algorithms unchanged.",
+  "new_foreground_omissions": 0
+}
