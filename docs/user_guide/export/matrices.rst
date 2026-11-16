@@ -18,6 +18,11 @@ Premise prints the destination for each scenario. In its directory you will find
 * ``A_matrix_index.csv``: activity name, product, unit, location and index.
 * ``B_matrix_index.csv``: flow name, compartment, subcompartment, unit and index.
 
+Activity numbers follow inventory order; biosphere numbers follow the packaged
+flow table for the selected ecoinvent version. When a biosphere UUID occurs more
+than once in that table, exchanges use its last listed row. Always use the index
+files written with your coefficient files.
+
 Both coefficient files use semicolons and contain the columns ``value``,
 ``uncertainty type``, ``loc``, ``scale``, ``shape``, ``minimum``, ``maximum``,
 ``negative`` and ``flip`` after their two indices. Production rows in A have

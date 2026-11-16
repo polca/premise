@@ -1,0 +1,35 @@
+{
+  "reference_commit": "3178080163b522dcced3d9ca8204e8a0a0af27fa",
+  "versions": {
+    "3.8": {
+      "A_matrix.csv": "6a2776d3abe65a3c1c00b526e62b9c2d33f1b1332e5516ac91b55816a5427534",
+      "A_matrix_index.csv": "3cf2b4beb53f2c193558b201dc69485324cb958ca6b7ff269af19a736bb4fd1b",
+      "B_matrix.csv": "e125f17120fb062dc67adc7a31c61042a0e521637012ec06907ad60ef89eb571",
+      "B_matrix_index.csv": "5232fbc9f587ec75b88f793f29ae6bd2fbc054ce047b26f81c1563e94fac16c8"
+    },
+    "3.9": {
+      "A_matrix.csv": "6a2776d3abe65a3c1c00b526e62b9c2d33f1b1332e5516ac91b55816a5427534",
+      "A_matrix_index.csv": "3cf2b4beb53f2c193558b201dc69485324cb958ca6b7ff269af19a736bb4fd1b",
+      "B_matrix.csv": "d96613c5530a1dda1dda75093f909b75ebf28fd41b3f9eeb45f0c981623a75d1",
+      "B_matrix_index.csv": "29485b0f5b7d12d9376f795fabaea63972862272f057f0634edeb15a7fc2da49"
+    },
+    "3.10": {
+      "A_matrix.csv": "6a2776d3abe65a3c1c00b526e62b9c2d33f1b1332e5516ac91b55816a5427534",
+      "A_matrix_index.csv": "3cf2b4beb53f2c193558b201dc69485324cb958ca6b7ff269af19a736bb4fd1b",
+      "B_matrix.csv": "4241812f0589ae90d1c6d5001f7ac52479441a58d39faedff36f2cf328f05acd",
+      "B_matrix_index.csv": "f23ebc8f382b24c29603e6cd280b6b591d1c4feada1e719be6d4d43e2918595a"
+    },
+    "3.11": {
+      "A_matrix.csv": "6a2776d3abe65a3c1c00b526e62b9c2d33f1b1332e5516ac91b55816a5427534",
+      "A_matrix_index.csv": "3cf2b4beb53f2c193558b201dc69485324cb958ca6b7ff269af19a736bb4fd1b",
+      "B_matrix.csv": "96255035cd2720486486dd4ac600dee10d129f91b6b74f171791344114b486ca",
+      "B_matrix_index.csv": "5c3338f2be8e1bd9ad430c61957ac71ec44b51fdadde6df91b1171871bcf44fc"
+    },
+    "3.12": {
+      "A_matrix.csv": "6a2776d3abe65a3c1c00b526e62b9c2d33f1b1332e5516ac91b55816a5427534",
+      "A_matrix_index.csv": "3cf2b4beb53f2c193558b201dc69485324cb958ca6b7ff269af19a736bb4fd1b",
+      "B_matrix.csv": "e65b3c36bdaa7a9fbefbf7bb35b3be29e67d4405591f70a35a2911e1318b5fc9",
+      "B_matrix_index.csv": "7b20f30d2578f17b0fa2c48f635e84f315455f76d5d8e7a62b92c76579d1f8a5"
+    }
+  }
+}

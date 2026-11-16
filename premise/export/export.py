@@ -185,13 +185,7 @@ def get_simapro_biosphere_dictionnary():
 
 
 def create_index_of_A_matrix(database):
-    """
-    Create a dictionary with row/column indices of the exchanges
-    matrix as key and a tuple (activity name, reference product,
-    unit, location) as value.
-    :return: a dictionary to map indices to activities
-    :rtype: dict
-    """
+    """Map (activity name, product, unit, location) to its matrix row number."""
     return {
         (
             database[i]["name"].strip(),
@@ -204,22 +198,19 @@ def create_index_of_A_matrix(database):
 
 
 def rev_index(inds: dict) -> dict:
-    """
-    Reverse the index of the A matrix.
-    """
+    """Reverse a mapping, keeping the last key when values repeat."""
     return {v: k for k, v in inds.items()}
 
 
 def create_codes_index_of_biosphere_flows_matrix(version):
-    """
-    Create a dictionary with row/column indices of the biosphere matrix
-    """
+    """Map biosphere UUIDs to rows; the last catalog entry wins for duplicates."""
     data = biosphere_flows_dictionary(version)
 
     return {v: k for k, v in enumerate(data.values())}
 
 
 def create_index_of_biosphere_flows_matrix(version):
+    """Map (flow name, compartment, subcompartment, unit) to its matrix row."""
     data = biosphere_flows_dictionary(version)
 
     return {v: k for k, v in enumerate(data.keys())}
@@ -1259,19 +1250,16 @@ def _prepare_database(scenario, db_name, original_database, biosphere_name, vers
 
 class Export:
     """
-    Class that exports the transformed data into matrices:
-    * A matrix: contains products exchanges
-    * B matrix: contains exchanges activities and the biosphere
+    Export production/technosphere (A) and biosphere (B) coordinate CSVs.
 
-    The A and B matrices are exported as csv files in a sparse representation (only non-zero values are listed), like so:
-    - index row, index column, value of exchange
-
-    Dictionaries to map row numbers to activities and products names are also exported.
+    Lookup CSVs identify the numbered activities, products and biosphere flows.
+    Each file export builds fresh indexes and shares them across coordinate and
+    lookup files. Standalone coordinate methods also use current inventory data.
 
     :ivar db: transformed database
-    :vartype database: dict
+    :vartype db: list
     :ivar scenario: name of an IAM pathway
-    :vartype pathway: str
+    :vartype scenario: str
     :ivar year: year of scenario
     :vartype year: int
 
@@ -1295,18 +1283,13 @@ class Export:
         self.year = scenario["year"]
         self.filepath = filepath
         self.version = version
-        self.bio_codes = self.rev_index(
-            create_codes_index_of_biosphere_flows_matrix(self.version)
-        )
         self.system_model = system_model
 
     def create_A_matrix_coordinates(self) -> list:
-        """
-        Create the coordinates of the A matrix.
+        """Return production and technosphere rows with uncertainty fields."""
+        return self._create_A_matrix_coordinates(create_index_of_A_matrix(self.db))
 
-        :param export_uncertainty: if True, export uncertainty data
-        """
-        index_A = create_index_of_A_matrix(self.db)
+    def _create_A_matrix_coordinates(self, index_A) -> list:
         list_exchanges = []
 
         try:
@@ -1383,18 +1366,20 @@ class Export:
         return list_exchanges
 
     def create_B_matrix_coordinates(self):
-        index_B = create_index_of_biosphere_flows_matrix(self.version)
-        rev_index_B = self.create_rev_index_of_B_matrix(self.version)
-        index_A = create_index_of_A_matrix(self.db)
+        """Return biosphere rows using the current version's UUID numbering."""
+        return self._create_B_matrix_coordinates(
+            create_index_of_A_matrix(self.db),
+            create_codes_index_of_biosphere_flows_matrix(self.version),
+        )
+
+    def _create_B_matrix_coordinates(self, index_A, biosphere_codes):
         list_rows = []
 
         for ds in self.db:
             for exc in ds["exchanges"]:
                 if exc["type"] == "biosphere":
                     try:
-                        code = exc["input"][1]
-                        lookup = rev_index_B[code]
-                        ind_B = index_B[lookup]
+                        ind_B = biosphere_codes[exc["input"][1]]
 
                         row = [
                             index_A[
@@ -1435,11 +1420,7 @@ class Export:
         return list_rows
 
     def export_db_to_matrices(self):
-        """
-        Export the database to A and B matrices.
-
-        :param export_uncertainty: if True, export uncertainty data
-        """
+        """Write the four matrix CSVs with one consistent set of fresh indexes."""
 
         if not os.path.exists(self.filepath):
             os.makedirs(self.filepath)
@@ -1451,8 +1432,12 @@ class Export:
                 self.filepath / "inventory", [self.inventory_definition]
             )
 
+        index_A = create_index_of_A_matrix(self.db)
+        index_B = create_index_of_biosphere_flows_matrix(self.version)
+        biosphere_codes = create_codes_index_of_biosphere_flows_matrix(self.version)
+
         # Export A matrix
-        rows = self.create_A_matrix_coordinates()
+        rows = self._create_A_matrix_coordinates(index_A)
 
         with open(self.filepath / "A_matrix.csv", "w", encoding="utf-8") as file:
             writer = csv.writer(
@@ -1486,12 +1471,9 @@ class Export:
                 lineterminator="\n",
             )
             writer.writerow(["name", "reference product", "unit", "location", "index"])
-            index_A = create_index_of_A_matrix(self.db)
             for d in index_A:
                 data = list(d) + [index_A[d]]
                 writer.writerow(data)
-
-        index_B = create_index_of_biosphere_flows_matrix(self.version)
 
         # Export B matrix
         with open(self.filepath / "B_matrix.csv", "w", encoding="utf-8") as file:
@@ -1515,7 +1497,7 @@ class Export:
                     "flip",
                 ]
             )
-            rows = self.create_B_matrix_coordinates()
+            rows = self._create_B_matrix_coordinates(index_A, biosphere_codes)
             for row in rows:
                 writer.writerow(row)
 
@@ -1535,7 +1517,9 @@ class Export:
 
     @staticmethod
     def create_rev_index_of_B_matrix(version):
-        return {v: k for k, v in biosphere_flows_dictionary(version).items()}
+        """Map UUIDs to flow descriptions, preserving last-entry duplicate handling."""
+        return rev_index(biosphere_flows_dictionary(version))
 
     def rev_index(self, inds):
-        return {v: k for k, v in inds.items()}
+        """Compatibility entry point for reversing a mapping."""
+        return rev_index(inds)
