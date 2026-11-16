@@ -3084,6 +3084,49 @@ class NewDatabase:
         self._finalize_superstructure_export()
         return destination
 
+    def _prepare_scenario_for_export(
+        self,
+        scenario_definition: dict,
+        *,
+        original_database: list[dict],
+        name: str,
+        export_format: str,
+    ) -> dict:
+        """Load and prepare an already-certified scenario for standard export.
+
+        Callers certify before selecting an export path and retain ownership
+        of format-specific writing and inventory cleanup. Store-backed scenario
+        definitions keep their runtime inventory separate; export findings
+        remain in memory.
+        """
+        scenario = load_database(
+            scenario=scenario_definition,
+            original_database=original_database,
+            load_metadata=True,
+        )
+        try:
+            _prepare_database(
+                scenario=scenario,
+                db_name=name,
+                original_database=original_database,
+                biosphere_name=self.biosphere_name,
+                version=self.version,
+            )
+        except PremiseValidationError as error:
+            self._handle_export_validation_error(
+                scenario_definition, error, export_format, scenario
+            )
+            raise
+        except ValueError:
+            self._try_automatic_failed_report()
+            raise ValueError(
+                "The database is not ready for export: MAJOR anomalies found. Check the change report."
+            )
+        self._record_export_validation_phase(
+            scenario_definition, scenario, export_format
+        )
+        return scenario
+
     def _prepare_superstructure_export(
         self,
         *,
@@ -3104,37 +3147,11 @@ class NewDatabase:
         prepared_scenarios = []
         for scenario_definition in self.scenarios:
             self._ensure_semantic_certification(scenario_definition)
-            scenario = load_database(
-                scenario=scenario_definition,
-                original_database=original_database,
-                load_metadata=True,
-            )
-
-            try:
-                _prepare_database(
-                    scenario=scenario,
-                    db_name=name,
-                    original_database=original_database,
-                    biosphere_name=self.biosphere_name,
-                    version=self.version,
-                )
-            except PremiseValidationError as error:
-                self._handle_export_validation_error(
-                    scenario_definition,
-                    error,
-                    "scenario-array" if scenario_array else "superstructure",
-                    scenario,
-                )
-                raise
-            except ValueError:
-                self._try_automatic_failed_report()
-                raise ValueError(
-                    "The database is not ready for export: MAJOR anomalies found. Check the change report."
-                )
-            self._record_export_validation_phase(
+            scenario = self._prepare_scenario_for_export(
                 scenario_definition,
-                scenario,
-                "scenario-array" if scenario_array else "superstructure",
+                original_database=original_database,
+                name=name,
+                export_format="scenario-array" if scenario_array else "superstructure",
             )
             prepared_scenarios.append(scenario)
 
@@ -3330,33 +3347,11 @@ class NewDatabase:
                 continue
 
             original_database = self._load_original_database()
-            scenario = load_database(
-                scenario=scenario,
+            scenario = self._prepare_scenario_for_export(
+                scenario,
                 original_database=original_database,
-                load_metadata=True,
-            )
-
-            try:
-                _prepare_database(
-                    scenario=scenario,
-                    db_name=name[s],
-                    original_database=original_database,
-                    biosphere_name=self.biosphere_name,
-                    version=self.version,
-                )
-            except PremiseValidationError as error:
-                self._handle_export_validation_error(
-                    self.scenarios[s], error, "brightway", scenario
-                )
-                raise
-            except ValueError:
-                self._try_automatic_failed_report()
-                raise ValueError(
-                    "The database is not ready for export: MAJOR anomalies found. Check the change report."
-                )
-
-            self._record_export_validation_phase(
-                self.scenarios[s], scenario, "brightway"
+                name=name[s],
+                export_format="brightway",
             )
 
             scenario["database name"] = name[s]
@@ -3423,33 +3418,11 @@ class NewDatabase:
 
         for s, scenario in enumerate(self.scenarios):
             self._ensure_semantic_certification(scenario)
-            scenario = load_database(
-                scenario=scenario,
+            scenario = self._prepare_scenario_for_export(
+                scenario,
                 original_database=original_database,
-                load_metadata=True,
-            )
-
-            try:
-                scenario = _prepare_database(
-                    scenario=scenario,
-                    db_name="database",
-                    original_database=original_database,
-                    biosphere_name=self.biosphere_name,
-                    version=self.version,
-                )
-            except PremiseValidationError as error:
-                self._handle_export_validation_error(
-                    self.scenarios[s], error, "matrices", scenario
-                )
-                raise
-            except ValueError:
-                self._try_automatic_failed_report()
-                raise ValueError(
-                    "The database is not ready for export: MAJOR anomalies found. Check the change report."
-                )
-
-            self._record_export_validation_phase(
-                self.scenarios[s], scenario, "matrices"
+                name="database",
+                export_format="matrices",
             )
 
             Export(
@@ -3492,32 +3465,11 @@ class NewDatabase:
 
         for scenario_definition in self.scenarios:
             self._ensure_semantic_certification(scenario_definition)
-            scenario = load_database(
-                scenario=scenario_definition,
+            scenario = self._prepare_scenario_for_export(
+                scenario_definition,
                 original_database=original_database,
-                load_metadata=True,
-            )
-
-            try:
-                _prepare_database(
-                    scenario=scenario,
-                    db_name="database",
-                    original_database=original_database,
-                    biosphere_name=self.biosphere_name,
-                    version=self.version,
-                )
-            except PremiseValidationError as error:
-                self._handle_export_validation_error(
-                    scenario_definition, error, "simapro", scenario
-                )
-                raise
-            except ValueError:
-                self._try_automatic_failed_report()
-                raise ValueError(
-                    "The database is not ready for export: MAJOR anomalies found. Check the change report."
-                )
-            self._record_export_validation_phase(
-                scenario_definition, scenario, "simapro"
+                name="database",
+                export_format="simapro",
             )
             artifacts.append(
                 export_scenario(scenario, filepath, self.version, self.system_model)
@@ -3565,33 +3517,11 @@ class NewDatabase:
 
         for scenario_definition in self.scenarios:
             self._ensure_semantic_certification(scenario_definition)
-            scenario = load_database(
-                scenario=scenario_definition,
+            scenario = self._prepare_scenario_for_export(
+                scenario_definition,
                 original_database=original_database,
-                load_metadata=True,
-            )
-
-            try:
-                _prepare_database(
-                    scenario=scenario,
-                    db_name="database",
-                    original_database=original_database,
-                    biosphere_name=self.biosphere_name,
-                    version=self.version,
-                )
-            except PremiseValidationError as error:
-                self._handle_export_validation_error(
-                    scenario_definition, error, "openlca", scenario
-                )
-                raise
-            except ValueError:
-                self._try_automatic_failed_report()
-                raise ValueError(
-                    "The database is not ready for export: MAJOR anomalies found. Check the change report."
-                )
-
-            self._record_export_validation_phase(
-                scenario_definition, scenario, "openlca"
+                name="database",
+                export_format="openlca",
             )
 
             try:
@@ -3632,32 +3562,11 @@ class NewDatabase:
         prepared_scenarios = []
         for scenario_definition in self.scenarios:
             self._ensure_semantic_certification(scenario_definition)
-            scenario = load_database(
-                scenario=scenario_definition,
+            scenario = self._prepare_scenario_for_export(
+                scenario_definition,
                 original_database=original_database,
-                load_metadata=True,
-            )
-
-            try:
-                _prepare_database(
-                    scenario=scenario,
-                    db_name=name,
-                    original_database=original_database,
-                    biosphere_name=self.biosphere_name,
-                    version=self.version,
-                )
-            except PremiseValidationError as error:
-                self._handle_export_validation_error(
-                    scenario_definition, error, "datapackage", scenario
-                )
-                raise
-            except ValueError:
-                self._try_automatic_failed_report()
-                raise ValueError(
-                    "The database is not ready for export: MAJOR anomalies found. Check the change report."
-                )
-            self._record_export_validation_phase(
-                scenario_definition, scenario, "datapackage"
+                name=name,
+                export_format="datapackage",
             )
             prepared_scenarios.append(scenario)
 

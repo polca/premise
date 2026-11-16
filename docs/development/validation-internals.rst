@@ -175,6 +175,12 @@ SimaPro, openLCA,
 datapackage, and superstructure exports reuse the inventory validation result and add
 format checks as they write the data.
 
+Standard exporters share ``NewDatabase._prepare_scenario_for_export()`` for
+runtime inventory loading, preparation, failure diagnostics, and export phase
+recording. Callers certify before choosing an export path and own writing and
+cleanup. Brightway's fast preparation and the final superstructure union checks
+remain separate because they operate on different runtime inventory layouts.
+
 ``NewDatabase.get_validation_report()`` and the immutable ``ValidationIssue``,
 ``ValidationRuleResult``, ``ValidationPhaseResult``, ``ValidationReport``, and
 ``PremiseValidationError`` types are exported from ``premise``.

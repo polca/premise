@@ -327,6 +327,108 @@ def test_check_presence_biosphere_database_is_noninteractive(monkeypatch):
         check_presence_biosphere_database("missing-biosphere")
 
 
+@pytest.mark.parametrize("failure", [None, ValueError, "validation"])
+def test_matrix_export_preserves_checkpoint_and_reports_preparation_failures(
+    tmp_path, monkeypatch, failure
+):
+    import csv
+
+    from premise.validation_framework import PremiseValidationError
+
+    inventory = [
+        {
+            "name": "supplier",
+            "reference product": "product",
+            "location": "GLO",
+            "unit": "kilogram",
+            "code": "supplier",
+            "database": "source",
+            "exchanges": [
+                {
+                    "name": "supplier",
+                    "product": "product",
+                    "location": "GLO",
+                    "unit": "kilogram",
+                    "type": "production",
+                    "amount": 1,
+                }
+            ],
+        }
+    ]
+    checkpoint = CompactInventoryStore(inventory).checkpoint(tmp_path / "checkpoint")
+    manifest = (checkpoint / "manifest.json").read_bytes()
+    definition = {
+        "model": "image",
+        "pathway": "path",
+        "year": 2050,
+        "iam data": types.SimpleNamespace(regions=["World"]),
+        "_inventory_checkpoint": checkpoint,
+    }
+    report = certification_report(definition)
+    definition["_validation_report"] = report.to_dict()
+    database = object.__new__(NewDatabase)
+    database.scenarios = [definition]
+    database.version, database.system_model = "3.12", "cutoff"
+    database.biosphere_name, database.generate_reports = "biosphere", True
+    database._validation_reports = {}
+    monkeypatch.setattr(
+        database, "_ensure_semantic_certification", certification_report
+    )
+    monkeypatch.setattr(database, "_load_original_database", lambda: inventory)
+    monkeypatch.setattr(database, "_run_automatic_reports", lambda: None)
+    monkeypatch.setattr(new_database_module, "delete_all_pickles", lambda: None)
+    diagnostics = []
+    monkeypatch.setattr(
+        database,
+        "_generate_validation_diagnostic",
+        lambda error, scenario, store: diagnostics.append((error, scenario)),
+    )
+    monkeypatch.setattr(
+        database,
+        "_generate_change_report",
+        lambda **kwargs: diagnostics.append(kwargs["status"]),
+    )
+    output = tmp_path / "matrices"
+    if failure is None:
+        database.write_db_to_matrices(filepath=[str(output)])
+        with (output / "A_matrix.csv").open() as stream:
+            rows = list(csv.reader(stream, delimiter=";"))
+        assert rows[1][:3] == ["0", "0", "1.0"]
+        assert {path.name for path in output.glob("*.csv")} == {
+            "A_matrix.csv",
+            "A_matrix_index.csv",
+            "B_matrix.csv",
+            "B_matrix_index.csv",
+        }
+        phase = database._validation_reports[database._scenario_identity(definition)]
+        assert phase.get_phase("export:matrices") is not None
+        assert not diagnostics
+    else:
+        error = (
+            PremiseValidationError(report)
+            if failure == "validation"
+            else failure("bad preparation")
+        )
+
+        def fail(**kwargs):
+            raise error
+
+        monkeypatch.setattr(new_database_module, "_prepare_database", fail)
+        with pytest.raises(type(error)) as caught:
+            database.write_db_to_matrices(filepath=[str(output)])
+        assert not output.exists()
+        if failure == "validation":
+            assert caught.value is error
+            assert diagnostics[0][0] is error
+            assert "database" in diagnostics[0][1]
+        else:
+            assert "The database is not ready for export" in str(caught.value)
+            assert diagnostics == ["failed"]
+    assert "database" not in definition
+    assert (checkpoint / "manifest.json").read_bytes() == manifest
+    assert definition["_validation_report"] == report.to_dict()
+
+
 def test_write_db_to_brightway_requires_registered_biosphere(monkeypatch):
     monkeypatch.setattr(new_database_module.bw2data, "databases", {})
 
