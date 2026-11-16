@@ -1,0 +1,87 @@
+{
+  "date": "2026-11-16",
+  "status": "three_actual_source39_native_correspondences_qualified_battery_and_final_energy_still_unfinished",
+  "review": "brightpath/data/export/uvek_battery_three_native_39_review.json",
+  "review_sha256": "7f970725eda9f08a09e2cdf729a6da5cab37c8db2d9effeaa53d8daea6c6ba9c",
+  "rule_ids_changed": [
+    "bp-a0e1fb8e9d6f6146"
+  ],
+  "existing_recipes_unchanged": true,
+  "scopes_added": 3,
+  "generated_resources": [
+    {
+      "file": "ecoinvent-to-uvek-2025.json",
+      "changed": true,
+      "sha256": "fcb8050357cf19ae444e851ef5028cab7f7407abcc79f0910a27fd1a1618e6bb",
+      "bytes": 70570287
+    },
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+      "changed": false,
+      "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "bytes": 18596319
+    },
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+      "changed": false,
+      "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "bytes": 18596725
+    }
+  ],
+  "production_and_generator_Python_changed": false,
+  "unused_source38_approval_excluded": true,
+  "Brightpath_focus_tests_passed": 25,
+  "Brightpath_focus_includes_previous_direct14_regressions": true,
+  "migration_integrity_manifest_test_passed": 1,
+  "Premise_fresh_cache_withdrawal_tests_passed": 8,
+  "Premise_focus_includes_previous_direct14_regressions": true,
+  "native_target_LCI": {
+    "status": "three_native_suppliers_have_finite_signed_LCIs",
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "database": "BAFU:2026-reimported",
+    "matrix_shape": [
+      11947,
+      11947
+    ],
+    "suppliers": [
+      {
+        "rule_id": "bp-a0e1fb8e9d6f6146",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 603.3037361398692
+      },
+      {
+        "rule_id": "bp-c67b624e8f0271ba",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 423.1153469136052
+      },
+      {
+        "rule_id": "bp-7677d034cd2ee677",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 91.02426996882615
+      }
+    ],
+    "signed_finite_LCI_solves": 6,
+    "new_Brightway_databases": 0,
+    "rule_resource_changed": false,
+    "qualification_limit": "Native target-demand solves, not a complete battery update or comparative source LCIA."
+  },
+  "actual_first_cohorts": {
+    "battery": {
+      "before_this_group": 13,
+      "after_this_group": 10,
+      "before_both_groups": 27
+    },
+    "final energy": {
+      "before_this_group": 21,
+      "after_this_group": 19,
+      "before_both_groups": 29
+    }
+  },
+  "prior_qualified_sector_count": 14,
+  "new_helpers": 0,
+  "new_foreground_omissions": 0,
+  "production_Python_changes": 0,
+  "generator_Python_changes": 0,
+  "new_Brightway_databases": 0,
+  "packaged_install_check": "Pending updated dependency pin and installed-package verification; source-checkout results are not an installed-package claim."
+}

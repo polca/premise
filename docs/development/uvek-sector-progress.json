@@ -2386,6 +2386,13 @@
         "pending_first_cohort_before": 27,
         "pending_first_cohort_after": 13,
         "full_sector_qualified": false
+      },
+      "latest_required_source39_three_supply_review": {
+        "review": "docs/development/uvek-battery-three-native-39-review.md",
+        "verification": "docs/development/uvek-battery-three-native-39-verification.json",
+        "pending_first_cohort_before": 13,
+        "pending_first_cohort_after": 10,
+        "full_sector_qualified": false
       }
     },
     {
@@ -3582,6 +3589,13 @@
         "pending_first_cohort_before": 29,
         "pending_first_cohort_after": 21,
         "full_sector_qualified": false
+      },
+      "latest_required_source39_three_supply_review": {
+        "review": "docs/development/uvek-battery-three-native-39-review.md",
+        "verification": "docs/development/uvek-battery-three-native-39-verification.json",
+        "pending_first_cohort_before": 21,
+        "pending_first_cohort_after": 19,
+        "full_sector_qualified": false
       }
     },
     {
@@ -3846,7 +3860,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cars-public-export-verification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-battery-native-direct-39-review.md",
+    "latest_mapping_review": "docs/development/uvek-battery-three-native-39-review.md",
     "verified_native_source_limits": [
       {
         "source_identity": {

@@ -2274,3 +2274,20 @@ The fourteen-supply review also passes four fresh/cache/withdrawal checks using
 installed Premise and GitHub-installed Brightpath35307d9, without source-checkout
 module imports. The completed five-commit batch is published at Premise24608dcf
 and Brightpath35307d9. No production Python changed in this batch.
+
+
+## Three further native supplies — 16 November 2026
+
+The actually required orthosilicate market now selects the named native product;
+lithium hydroxide and PVC disposal gain independently checked source3.9scopes.
+Allocation, grade, incomplete chemical-process documentation and the disposal
+demolition boundary remain explicit warnings. One existing override entry and
+the integrity manifest regenerate the changed rule. No new helper, physical
+omission or production/generator Python change.
+
+Twenty-five Brightpath, eight Premise and one integrity-manifest checks pass;
+six signed native-target LCIs are finite. Actual first-cohort pending counts
+fall from13to10for battery and21to19for final energy, or27to10and29to19across
+both recent review groups. Fourteen sectors remain qualified. See
+[review](uvek-battery-three-native-39-review.md) and
+[verification](uvek-battery-three-native-39-verification.json).
