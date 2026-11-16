@@ -208,24 +208,18 @@ def strip_string_from_spaces(database: List[dict]) -> List[dict]:
     :rtype: List[dict]
     """
     for dataset in database:
-        dataset["name"] = dataset["name"].strip()
-        # also check for unicode characters like \xa0
-        dataset["name"] = dataset["name"].replace("\xa0", "")
+        dataset["name"] = dataset["name"].strip().replace("\xa0", "")
 
         dataset["reference product"] = dataset["reference product"].strip()
         dataset["location"] = dataset["location"].strip()
         for exc in dataset["exchanges"]:
-            exc["name"] = exc["name"].strip()
-            # also check for unicode characters like \xa0
-            exc["name"] = exc["name"].replace("\xa0", "")
+            exc["name"] = exc["name"].strip().replace("\xa0", "")
             if exc.get("product"):
-                exc["product"] = exc["product"].strip()
-                # also check for unicode characters like \xa0
-                exc["product"] = exc["product"].replace("\xa0", "")
+                exc["product"] = exc["product"].strip().replace("\xa0", "")
             if exc.get("reference product"):
-                exc["reference product"] = exc["reference product"].strip()
-                # also check for unicode characters like \xa0
-                exc["reference product"] = exc["reference product"].replace("\xa0", "")
+                exc["reference product"] = (
+                    exc["reference product"].strip().replace("\xa0", "")
+                )
             if exc.get("location"):
                 exc["location"] = exc["location"].strip()
             if exc.get("unit"):
