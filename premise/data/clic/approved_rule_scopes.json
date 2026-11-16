@@ -299962,6 +299962,2500 @@
           "fingerprint": "10de771580a1eaef0ce2ab79a321c573ca069a9ad9f855c040492d8f2107887d"
         }
       ]
+    },
+    {
+      "rule_id": "bp-15a5350bb1bcdb67",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market group for tap water",
+          "reference product": "tap water",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Tap water, at user",
+          "reference product": "Tap water, at user",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market group for tap water",
+            "reference product": "tap water",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "6537e30edf57bc6ed8b5089afb2775d7e62b82cfa7ac8779c282064546502317",
+          "metadata_sha256": "20e8f091703331d9a5640b1033b127da9b7f1dad9539babd497ffddf9b659778",
+          "comment_sha256": "1253db3df769c39f1a37edd75663c8b6497a8dc7e047243cf0481fa5a3422f10"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Tap water, at user",
+              "reference product": "Tap water, at user",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "e82e54cf92490c82a2cb0618b651b268abe22657daf0ca724799b6040e6cc011",
+            "metadata_sha256": "2df6257a30aae3002588c798b2fb2382dd30e1da0bf8a670a2127c56fff98dae",
+            "comment_sha256": "fa58ab5e374362c871b1a30e20d4637d0c913f836dda8cd06f8003061cdac798"
+          },
+          "2026": {
+            "identity": {
+              "name": "Tap water, at user",
+              "reference product": "Tap water, at user",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "083c7cc443330c6724d7bfe46b25b001ed03c3e78dfa3492264a7c756c1d37ca",
+            "metadata_sha256": "ad98c9fb82ddf2998b331e8cf31a60ebeea85d7138a6b10432110ef247ae3421",
+            "comment_sha256": "567d6cde5eb8e60e861af5a3eeda4d6fbceea4c2de3d6a587f3e41e3d2bf5466"
+          }
+        }
+      },
+      "limitations": [
+        "The source global group of delivered potable-water markets becomes the complete native Swiss delivered tap-water process. Internal treatment shares, supply loops, losses, network, water returns and geographic uncertainty are replaced by the native model, without an added water-balance or loss correction.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "692c82c00ddabee74f173459f34e995ea101f4f9f97df3bbc8c6999eb683d170"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-296624bc97644b88",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "CN",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "CN",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market group for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "location": "CN",
+            "unit": "kilowatt hour"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "9076b0caf50d5000480f1d91687822ef9822b31fa3324cb05be40e566602bfcc",
+          "metadata_sha256": "d1aff788654c10d9438f00287d047fcd90f3fd82ba23710caab748405803ab6f",
+          "comment_sha256": "a2a80bac9e8a767f7878f552a1f95d513f26ec9b2a411429af801c0fe3f446b3"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "CN",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "cc50bbf88869a29a7e9a2281b396bb963fbb8e84a3775ba9bd0a01545e930522",
+            "metadata_sha256": "45eee534096f93abbdc218d3422343ff11936fb6061529271f9699659c900d68",
+            "comment_sha256": "ff9e65abeed617cb90769f540734050526ade434c102aa21114d0db25692fc08"
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "CN",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "ab09bc035206944535bb2c5766b1682d03634d89ceaa2d03ae0e2915794aee54",
+            "metadata_sha256": "146bd631115de78f3e7544753f4a1bb729d1af7d4ead953e9b1a61ebaa467464",
+            "comment_sha256": "03cfe4b635d9dc39b5fd38c7856acc5ac6d4f9d3d26aa417d37f56be9ad7b38d"
+          }
+        }
+      },
+      "limitations": [
+        "Delivered medium-voltage electricity in China becomes the complete native Chinese medium-voltage grid, retaining native voltage losses and infrastructure once. Historical generation portfolio and grid vintage differ; ordinary shared Premise electricity updating remains applicable.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5c301a16c1b45b2eb7c03a5698313aca65dee7e85b7df49051fca506f555f898"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2b69270ca0d2f18c",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "market for road maintenance",
+          "reference product": "road maintenance",
+          "unit": "meter-year"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Operation, maintenance, road",
+          "reference product": "Operation, maintenance, road",
+          "unit": "meter-year"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for road maintenance",
+            "reference product": "road maintenance",
+            "location": "RER",
+            "unit": "meter-year"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "1d14df280d72216a6cfb483a03854463c5ad3f62c83df8319f8d5e5760debc59",
+          "metadata_sha256": "b13686d8921e8e04c4948273aa010f7720829dde3b4841b106dd1a16b57db06c",
+          "comment_sha256": "37605142b2fdee4bc62b4b9dcce8f628f4fb0e4cbdae51df47462b49ef1e1b6d"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Operation, maintenance, road",
+              "reference product": "Operation, maintenance, road",
+              "location": "CH",
+              "unit": "meter-year"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "c103aec0094276ff805ea63504463b18b9e0fdd6a0fa4ddf1b0e71cb0234068f",
+            "metadata_sha256": "f11dc5f80d869301bcaf525aefd294e4c7c28e50615c0c1c37cb48bfd15b5731",
+            "comment_sha256": "72b8250bfa4a3eb162cb93b476d7bf4f8e57cfdcb78499718b32b315ff02b9cc"
+          },
+          "2026": {
+            "identity": {
+              "name": "Operation, maintenance, road",
+              "reference product": "Operation, maintenance, road",
+              "location": "CH",
+              "unit": "meter-year"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "d5b6b83d6c15a7cdf50029168197ec89241e4832cb724af6f7ff33da5950acbe",
+            "metadata_sha256": "64d81914053025853165615f2a3fc8e1e1c8905c73d86504dca35955afa7504f",
+            "comment_sha256": "4479a07aabd49978eea38e80ba937caae911d2936b5e660e4d63fe0434489333"
+          }
+        }
+      },
+      "limitations": [
+        "Both reference road operation/maintenance per metre-year. Use the complete native Swiss service as a geographic proxy for the European source market; no multiplication by infrastructure lifetime or a second road-construction purchase.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b1145c3e46f33818cf966db393afb374ce18a5853f4d243590ca553b0560b13a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-31f1107786ba7c47",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for praseodymium oxide",
+          "reference product": "praseodymium oxide",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CN",
+          "name": "xx Praseodymium oxide, at plant",
+          "reference product": "xx Praseodymium oxide, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for praseodymium oxide",
+            "reference product": "praseodymium oxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "4664e7631018f8115f0317b767a8c0cfd338f2426834f04e06ca033204fab84e",
+          "metadata_sha256": "eaa47fe6f6b785b054fcc194bf4c6a1afda6613bbfda13fa91aee503134ee1da",
+          "comment_sha256": "e8806661dd6af4c22f2770519aa940e8e5a349bd2278c496e25b70d71b5e21a2"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "xx Praseodymium oxide, at plant",
+              "reference product": "xx Praseodymium oxide, at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "590326849f81a6eaa4b4f416f4b829b5ef54bbd1c1098aedd6db65a47197518b",
+            "metadata_sha256": "1cee7d5eb0411df13d7e3550f01cd52a5ea553b320e5a796b3e2025b6d775dbd",
+            "comment_sha256": "d1b2a133f836b480537b4b1e3b5124336868072c7978fa472bb9283e2e8869ca"
+          },
+          "2026": {
+            "identity": {
+              "name": "xx Praseodymium oxide, at plant",
+              "reference product": "xx Praseodymium oxide, at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "3bcc9014f4cf63189ee19428dff8a9866d0fe98bf0630afaffd459b02f6cc25b",
+            "metadata_sha256": "b65526c3393e4c6e3bec6789c345925e1da2dc350783af566c3112a8e6bce705",
+            "comment_sha256": "f3d13978f9ce59274cf38706873476b146f7aa91161fdf37d998e216db405c86"
+          }
+        }
+      },
+      "limitations": [
+        "The native xx-prefixed identity is a nonempty praseodymium-oxide process, not an empty stock or a different rare-earth element. Its documented Chinese sulphuric-acid separation and revenue allocation replace the global source portfolio. Preserve kg of oxide, without a contained-Pr multiplier; purity, recovery, allocation and approximate energy/emissions remain screening limitations.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "2d26d29b3818b6de71211e0c1adc1afd3f1b8a8d0617a990dfd9f6b501490101"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3ab7dcabccde8ffc",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "market for polystyrene, high impact",
+          "reference product": "polystyrene, high impact",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polystyrene, high impact, HIPS, at plant",
+          "reference product": "Polystyrene, high impact, HIPS, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for polystyrene, high impact",
+            "reference product": "polystyrene, high impact",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "9803780ba5b74af71efe72d2f168998b10ef32eb1506d6c76c92b2577438ec40",
+          "metadata_sha256": "f9ea7f47a2168f84d9a3fe27a4ac50c8002530db57dacc1121c14f5b5ce41b25",
+          "comment_sha256": "fefa0a77e5ff58241afb3ca7abc7fd9a2b670cc44e0a3d77df6927aaec76afc9"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polystyrene, high impact, HIPS, at plant",
+              "reference product": "Polystyrene, high impact, HIPS, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "47758de1cf0b9af678911230646fc5a94037a0b7baa8e0cb4c1cd1360d303659",
+            "metadata_sha256": "0a78c6c556e77611bde173b13847dee18f61675eb35f07bf53bc60b987b5d4f7",
+            "comment_sha256": "c5c158522327a8a98ceaa864c5c999c80b4326882afca07b203a548c1d09ac39"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polystyrene, high impact, HIPS, at plant",
+              "reference product": "Polystyrene, high impact, HIPS, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "9f96cd36060e34961fe3332828af9426ae6e20aed2e316a768f5f042946015da",
+            "metadata_sha256": "46ffa9292e371f610418f485cc3d506855af5e4eb1ce5716f6e24475c9b8d446",
+            "comment_sha256": "e7011575fe785b899eee93a626b7106265c1e4f4f5a9bbba31be49d7bb10f671"
+          }
+        }
+      },
+      "limitations": [
+        "High-impact polystyrene remains complete native HIPS granulate per kg, rather than general-purpose polystyrene. Native European manufacture replaces the inspected source market mix and delivery. Grade, rubber content, allocation, geography and production vintage remain screening limitations; no moulding or mass multiplier is introduced.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "890ae9d4523906d540d7d33842a3e1b66c5364b574a3318eea3326e9299314ac"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-43885bd65975b3ae",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "KR",
+          "name": "market for polyethylene, high density, granulate",
+          "reference product": "polyethylene, high density, granulate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polyethylene, HDPE, granulate, at plant",
+          "reference product": "Polyethylene, HDPE, granulate, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for polyethylene, high density, granulate",
+            "reference product": "polyethylene, high density, granulate",
+            "location": "KR",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "ef2cd27ef6fa3ba393e3cf27ce4124bfdf960ab6edab1d3f8459e143f82d7aa5",
+          "metadata_sha256": "582fb6996c2a89eeac6c7e5c7fa15d4b6a9792c0f111039ccc88acc1959bc6fa",
+          "comment_sha256": "84702b7320673521287ae7ce2efc516ff0e6350ea4f3e7b0afb73be920da102e"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polyethylene, HDPE, granulate, at plant",
+              "reference product": "Polyethylene, HDPE, granulate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "cac81e9c3ffcc0511aa8ce93ce59f9ed76c6e5ea247b824ff6a1455e48ef5266",
+            "metadata_sha256": "fc954d0337336fca11ed20ffca59c51b44cb83514a9fad14277a8c8eca2d087b",
+            "comment_sha256": "0c1043038d73c61148ceac04ec64bff3ee15d9c2cade94d427234021c9fcf603"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polyethylene, HDPE, granulate, at plant",
+              "reference product": "Polyethylene, HDPE, granulate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "ede7bffe5843afa2ba487d89b8c4d4acb8d1751e56a3fc54c607e36d20dcb674",
+            "metadata_sha256": "29df786ca0dd4c88a057568141ca68555dd22d8adb6347981a9507dd1cb802e2",
+            "comment_sha256": "ed946c8aca355e2d873a2ed6b788e0483f32b1be602a8ca165abf2c3c93e91fc"
+          }
+        }
+      },
+      "limitations": [
+        "HDPE granulate remains complete native European HDPE granulate production per kg. The individually inspected source country market is replaced by the native production boundary, with warnings for polymer grade, technology, allocation, geographic production mix, final freight, delivery and uncertainty. No extrusion, packaging, density or recycled-content correction is added.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "18dbc576201683e352097df92e68bca35095b40aa26ccd20e5e2a979271b6b04"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4591e06aab54c64b",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "maintenance, passenger car",
+          "reference product": "passenger car maintenance",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Maintenance, passenger car",
+          "reference product": "Maintenance, passenger car",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "maintenance, passenger car",
+            "reference product": "passenger car maintenance",
+            "location": "RER",
+            "unit": "unit"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "5124a1f1c508810799969fd71a31fc666f2336d2b122eaf239e1bd2a4d6f0c0e",
+          "metadata_sha256": "bf0d25ce86daf93bd450d4853b3cdca971f23786220e9af12a43d8e6266a7f7a",
+          "comment_sha256": "62c03e7339b7c323f3b01f3e0a502ddae4c20a878769ad6138680ef03e4a4267"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Maintenance, passenger car",
+              "reference product": "Maintenance, passenger car",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "8f58711c83c606978ed575576f1ff5869cf07456c0913165e716549edac8ba09",
+            "metadata_sha256": "091094e1f6ee0711cc92e57cc863ea41d33779c596b82c8880a137c2d82ba2ff",
+            "comment_sha256": "86e4aa71269d4376fb65b010b70daa383db8a2023fd167a0fbb7a7ed93603082"
+          },
+          "2026": {
+            "identity": {
+              "name": "Maintenance, passenger car",
+              "reference product": "Maintenance, passenger car",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "56f8b838201780918d1892214b5aee1286cc70215d0712cf6bcf64f8d987b2dd",
+            "metadata_sha256": "c268372996ce03dd3ee8223c6ae12ed565714a14de5417e47c537102e74dd4bc",
+            "comment_sha256": "dce95be8e230b1be2def6473e60e48643cb36d124e68d48c30712805de3c50c9"
+          }
+        }
+      },
+      "limitations": [
+        "Both are passenger-car maintenance services based on Golf A4 data. Preserve the caller service unit and its existing vehicle usage factor. The complete native replacement-material, garage-energy, transport and waste model is used without adding a second vehicle-lifetime or mass multiplier.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f75a21a67da7e0ebf3992cacae94571745feba848e293dadcffd7345cbf968b1"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4b160d7ecc5a6a8c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "market for ethylene glycol",
+          "reference product": "ethylene glycol",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Ethylene glycol, at plant",
+          "reference product": "Ethylene glycol, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for ethylene glycol",
+            "reference product": "ethylene glycol",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "ef7d02da91131f33c210b2885306058526b5303876f041a2ba6e25df59552613",
+          "metadata_sha256": "fa165a7a1bb0ccaece721be183384ccf3aa3fcf3bcd753d72296b651b2faeb7f",
+          "comment_sha256": "a3e80269f1ab0b17dc6441d77ffc3a132d96397e7fd4ed99839151c9465aa1fe"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Ethylene glycol, at plant",
+              "reference product": "Ethylene glycol, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "1e5b6f631b97d37afdd034de2b0c44cb456df87527737eed64b948791c7a7239",
+            "metadata_sha256": "a6a6402a32fe83763b1d93fde73347705c0e3a3060d4a3eb401551f3db6d249e",
+            "comment_sha256": "183d449eb636e420f4c53f236c879b6eb9df2b64c28b5d2e76d69b753ee0cd89"
+          },
+          "2026": {
+            "identity": {
+              "name": "Ethylene glycol, at plant",
+              "reference product": "Ethylene glycol, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "bfd15e361d9048f5cf93bd66c27fa5333ba43153fe06de5fed69087183d83621",
+            "metadata_sha256": "7453acfeee8d1a180cc0ed0bac4b25d859532421132c2d2e890f6fb5b8ce3b77",
+            "comment_sha256": "248d67a4cac33eb5714c4965574c022474ee72ddd313e0171e33a39d84de633d"
+          }
+        }
+      },
+      "limitations": [
+        "Pure ethylene-glycol supply becomes the complete native European ethylene-glycol production process, with its integrated petrochemical allocation and old production basis. No antifreeze-mixture dilution or solvent multiplier is introduced; final market delivery and geographic production mix are replaced.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "0cfe1b68121265b66bf9225893953e28e945a03099848acc3d36ed8d067fa7d1"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5c972a6c76ece968",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for glider, passenger car",
+          "reference product": "glider, passenger car",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Glider, for passenger car",
+          "reference product": "Glider, for passenger car",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for glider, passenger car",
+            "reference product": "glider, passenger car",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "7695b7740a974cd699589db2a1c6363113fe5679a3e4a09689c2c4bf98f50c0c",
+          "metadata_sha256": "deb6331fdba11f511ea709dcbbfa9f7d9799734573f1f7f745d0fb3bc1096adf",
+          "comment_sha256": "1b16032985b3c3c96a5d640a00362f0fe6fd60f96ce29d816980c86d20693794"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Glider, for passenger car",
+              "reference product": "Glider, for passenger car",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "aee3c2d7d251490362886e3b50175e152c08088f9fbd5959c235ab7bf83362d9",
+            "metadata_sha256": "5aec26bd1ec6ba0f7ac3906e5401be6e4086ec2405e5eff2e48cf1afd438dbc7",
+            "comment_sha256": "4094a9bc4c926c85ab98a1c9461411ff107a81f3357753fd37be6ef1aff341e9"
+          },
+          "2026": {
+            "identity": {
+              "name": "Glider, for passenger car",
+              "reference product": "Glider, for passenger car",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "e7cbdb3dfa8a360427e735918b798c8d3f61df56ea5be3e6900d1caa8966a4ef",
+            "metadata_sha256": "997d632bbfeb68495afa49cf22fc551bb6d9c70e52207f74dc1fabb1f1abdf96",
+            "comment_sha256": "a5bce8d6770ed261df430f584258641bde9eceb617495808c42fb5b600dba0e4"
+          }
+        }
+      },
+      "limitations": [
+        "Both references are kg of passenger-car glider, including body, steering/brakes/suspension, tyres, cabin and non-propulsion electronics. Both document an approximately 800 kg glider for a compact car. Preserve caller kg; do not replace a glider by a complete powered vehicle or add another drivetrain.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9ea420990469c1604ef055dc3dbb65c329c326221ade750dedff54c21431d857"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5d694fe15cea6b20",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "US",
+          "name": "market for polyethylene, high density, granulate",
+          "reference product": "polyethylene, high density, granulate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polyethylene, HDPE, granulate, at plant",
+          "reference product": "Polyethylene, HDPE, granulate, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for polyethylene, high density, granulate",
+            "reference product": "polyethylene, high density, granulate",
+            "location": "US",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "57830ddf89d037ef16f75361bdeda79ea35b02a9e17e486876601be6c3f7fa1c",
+          "metadata_sha256": "0f55602cef25cc5b4a29d4ca1b953724826949194152d1c0ceea210ce1ecf5d3",
+          "comment_sha256": "84702b7320673521287ae7ce2efc516ff0e6350ea4f3e7b0afb73be920da102e"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polyethylene, HDPE, granulate, at plant",
+              "reference product": "Polyethylene, HDPE, granulate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "cac81e9c3ffcc0511aa8ce93ce59f9ed76c6e5ea247b824ff6a1455e48ef5266",
+            "metadata_sha256": "fc954d0337336fca11ed20ffca59c51b44cb83514a9fad14277a8c8eca2d087b",
+            "comment_sha256": "0c1043038d73c61148ceac04ec64bff3ee15d9c2cade94d427234021c9fcf603"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polyethylene, HDPE, granulate, at plant",
+              "reference product": "Polyethylene, HDPE, granulate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "ede7bffe5843afa2ba487d89b8c4d4acb8d1751e56a3fc54c607e36d20dcb674",
+            "metadata_sha256": "29df786ca0dd4c88a057568141ca68555dd22d8adb6347981a9507dd1cb802e2",
+            "comment_sha256": "ed946c8aca355e2d873a2ed6b788e0483f32b1be602a8ca165abf2c3c93e91fc"
+          }
+        }
+      },
+      "limitations": [
+        "HDPE granulate remains complete native European HDPE granulate production per kg. The individually inspected source country market is replaced by the native production boundary, with warnings for polymer grade, technology, allocation, geographic production mix, final freight, delivery and uncertainty. No extrusion, packaging, density or recycled-content correction is added.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "35c2942717eff2ae5c97682449bda6fef8320bdba5afc96cea0f1c3a4e428d56"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-603ffa52668e2ab6",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "market for water, deionised",
+          "reference product": "water, deionised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Water, deionised, at plant",
+          "reference product": "Water, deionised, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for water, deionised",
+            "reference product": "water, deionised",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "f6c9342d756fd86dd7b894136a8280b9053e2f3065d311ef19fa10e9e10aaf9e",
+          "metadata_sha256": "2c361179bf81a2758825e3493063e0b57fbe1e45ab7f4761866809c57e6c677c",
+          "comment_sha256": "dfd3634ca7b1cd203553f71124236c5000cc7f299ea25804687478f132b040b6"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Water, deionised, at plant",
+              "reference product": "Water, deionised, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "bd7bbc1dab9ed071b021b11d8f27fdf5f8ce3dcc69ce2923c6d4844ac9142191",
+            "metadata_sha256": "f7243056c2b914cac1744fc5c6d8218047608c12caf8d3880df34f936467d944",
+            "comment_sha256": "aeeb276a2f5e152eea2365ac308e14cda6ab4adac0df510701121aac3f67fead"
+          },
+          "2026": {
+            "identity": {
+              "name": "Water, deionised, at plant",
+              "reference product": "Water, deionised, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "a02b0719e4b09152140c4f989cac3066d867364c151cdaea9d9dc81ac33e33f6",
+            "metadata_sha256": "e8b50267d8bb3ef078b569f7ddafab4ece4e13000fba5b602c0199aa21316009",
+            "comment_sha256": "6b210505b9a6d34a3465dd308958da108d8bcfe57de2f24810d0a31d4df3ed91"
+          }
+        }
+      },
+      "limitations": [
+        "Deionised water remains a kg-based deionised-water product using the complete native Swiss process. Technology, delivered-market boundary, water quality and geography are screening differences. Do not substitute potable water or infer a cubic-metre density conversion.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "7739fc3d0132aff78aad8228ef6248d7c2e0d5ec320f96ca1862cc621f3641bd"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-68dbc38e44c4b3fe",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for road vehicle factory",
+          "reference product": "road vehicle factory",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Road vehicle plant",
+          "reference product": "Road vehicle plant",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for road vehicle factory",
+            "reference product": "road vehicle factory",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "eac1909a065cb3b0a5e1b67208f2629045ec9c4354fb2eb0b1c0c4ce608a8038",
+          "metadata_sha256": "e9b80ac0e75504f8482465b99faa56d6abebaeccbe8169e88e3161e4b9c02017",
+          "comment_sha256": "431cf6375a5748b5bb9bd0da95326ae5c26dc8e18e3edefd490dacb2c86c33b7"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Road vehicle plant",
+              "reference product": "Road vehicle plant",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "85a3944acf63e75a9b8ad53ced927656d300943c98bc95f9adb78bb66b86ba4b",
+            "metadata_sha256": "210ea4ffbd11f18c9320046de52a05d6a9faf58ae4f9de9db2e4b73efe6d1855",
+            "comment_sha256": "f4d23ad8e73c51cc1f9936a0120c728c238a322d7d020fe93dcaa2b49fbdd9a3"
+          },
+          "2026": {
+            "identity": {
+              "name": "Road vehicle plant",
+              "reference product": "Road vehicle plant",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "aa57d26669338e81b1c571021d3e1371e611320f78d9d0a61b8be6aa68919232",
+            "metadata_sha256": "8db498b36e521cb93e67e8a41fa28b49e7fb3327601676c9ef6eb2978d2bcf70",
+            "comment_sha256": "dfe4c9bda9f4417dcef8a5c129ca4b7d0c991a480a06773c2cacb7a5c3909cd3"
+          }
+        }
+      },
+      "limitations": [
+        "Both references are one complete road-vehicle manufacturing plant, with a documented fifty-year lifespan and buildings, roads and land use. Native text gives slightly different annual output figures. Retain caller plant units without another fifty-year or annual-output factor; capacity and geographic differences remain warnings.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "85cb35674c5063410aaca9df968029f9f1bf51c4a07083892125bf4a5cafb061"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6cf0d4b822fe100a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "JP",
+          "name": "market for polyethylene, high density, granulate",
+          "reference product": "polyethylene, high density, granulate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polyethylene, HDPE, granulate, at plant",
+          "reference product": "Polyethylene, HDPE, granulate, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for polyethylene, high density, granulate",
+            "reference product": "polyethylene, high density, granulate",
+            "location": "JP",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "88c30b97aa09a8dcce802bba0e4a79113fa85dcc5ead54f38cf468bfa740a8ea",
+          "metadata_sha256": "1ed4b66d0fce90116e323c72875a0c4ac5ec33294a9a22b92e4a037fcf0c7989",
+          "comment_sha256": "84702b7320673521287ae7ce2efc516ff0e6350ea4f3e7b0afb73be920da102e"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polyethylene, HDPE, granulate, at plant",
+              "reference product": "Polyethylene, HDPE, granulate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "cac81e9c3ffcc0511aa8ce93ce59f9ed76c6e5ea247b824ff6a1455e48ef5266",
+            "metadata_sha256": "fc954d0337336fca11ed20ffca59c51b44cb83514a9fad14277a8c8eca2d087b",
+            "comment_sha256": "0c1043038d73c61148ceac04ec64bff3ee15d9c2cade94d427234021c9fcf603"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polyethylene, HDPE, granulate, at plant",
+              "reference product": "Polyethylene, HDPE, granulate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "ede7bffe5843afa2ba487d89b8c4d4acb8d1751e56a3fc54c607e36d20dcb674",
+            "metadata_sha256": "29df786ca0dd4c88a057568141ca68555dd22d8adb6347981a9507dd1cb802e2",
+            "comment_sha256": "ed946c8aca355e2d873a2ed6b788e0483f32b1be602a8ca165abf2c3c93e91fc"
+          }
+        }
+      },
+      "limitations": [
+        "HDPE granulate remains complete native European HDPE granulate production per kg. The individually inspected source country market is replaced by the native production boundary, with warnings for polymer grade, technology, allocation, geographic production mix, final freight, delivery and uncertainty. No extrusion, packaging, density or recycled-content correction is added.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "98b4332fdb9a4bbdbbaccd8d31797b19231cf87d37d54b6f1fe905e0fc99b80a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6e0cbc978287095d",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for tetrafluoroethane, R134a",
+          "reference product": "tetrafluoroethane, R134a",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Refrigerant R134a, at plant",
+          "reference product": "Refrigerant R134a, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for tetrafluoroethane, R134a",
+            "reference product": "tetrafluoroethane, R134a",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "d90242187ee13a42f4907beb81a0d735e94e875c81f73b2cc17d83cf87cf504f",
+          "metadata_sha256": "0204fc2626af908f3ab529680fb58b1ff4a9bcf27702c0c990cb60a3be4153e9",
+          "comment_sha256": "a6fe9b97ce622691f6820183c13fec813d688bf0f0d7717d8415a3e6d144af1b"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Refrigerant R134a, at plant",
+              "reference product": "Refrigerant R134a, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "b94aee08a2d233591191753a0819ab0ee058b6af7c77c1812157acff7f1613fc",
+            "metadata_sha256": "7bea7655e6d597257ea4946a6b26023b265b23d22a00327fa6da68d390d30c87",
+            "comment_sha256": "c23620dca75b2bb8fcd570697f6f5e643deb6755194f71095ba3b4daea352cb9"
+          },
+          "2026": {
+            "identity": {
+              "name": "Refrigerant R134a, at plant",
+              "reference product": "Refrigerant R134a, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "aced9bdea5fb8f97c9dcd18582a1ef638c7305136170c0f731df8a9280991336",
+            "metadata_sha256": "e8d11f9e0d978cb11b207e98059ed259f87ff6aa800d1ebfe9b8af979217d134",
+            "comment_sha256": "f0662af10494f757bdc5abb4c6f6bf42e5b7cb501953e4e6cc06910478ed627a"
+          }
+        }
+      },
+      "limitations": [
+        "Both are kg of refrigerant R134a (tetrafluoroethane), not an air-conditioning unit or a refrigerant mixture. Native European production replaces the source global portfolio and delivery, without a purity or equipment multiplier.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "39ed6c475f2eef851f9eb9fd12050616da57a0242434114359160066c9f25ed4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7546b19438a70c79",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for graphite",
+          "reference product": "graphite",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Graphite, at plant",
+          "reference product": "Graphite, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for graphite",
+            "reference product": "graphite",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "399e1cab32532e5316898429a1b9b58213475b903c618219d311d0def505801a",
+          "metadata_sha256": "a5f89d8cb9a6c02282fed6ef90ec9c6f8d5ace426a0b4efbf312457d870787fe",
+          "comment_sha256": "f8c15055e36ea0b2603fb0f475ee50755210a6402aecfff53ade4a7597963815"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Graphite, at plant",
+              "reference product": "Graphite, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "b7dcdf6e53447ca7698a139ce9875b4051faae15d70f8b6e029535ecd9f433c3",
+            "metadata_sha256": "d3ca92d9854842f0f5aaec0d9b94b94c16db7887d98a7abe60e1260d3b130005",
+            "comment_sha256": "e76d2798bd969ca9ddcd33b4844d881e8953e3a81df7a23c6398e4a6e0d84473"
+          },
+          "2026": {
+            "identity": {
+              "name": "Graphite, at plant",
+              "reference product": "Graphite, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "e9c9d8500f7e0f6ddb81a570d7fd9d1826fff3bc971d848287973862e3e88dff",
+            "metadata_sha256": "83c96a1ab5ef7279ff3a2214e7b088bb21d9f277aa9b40660d986b6aed445e3e",
+            "comment_sha256": "bd51e0bab0f987dc672a1b4ba5be4204e24b284e68d28098b98574dd79b9c7d9"
+          }
+        }
+      },
+      "limitations": [
+        "Both references are graphite mineral per kg, using complete native milled graphite. The native model approximates lime mining/crushing/milling and omits water emissions. Its weak production data and exclusions are limitations, not physical zeros; no synthetic-graphite, carbon-content or purification equivalence is claimed.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "3bf36e4104c8ddf3c6ef4cc22b9e3499e676ba42a24ab261b1ca4758d03002a4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-79d5c94884fad96e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "IN",
+          "name": "market for polyethylene, high density, granulate",
+          "reference product": "polyethylene, high density, granulate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polyethylene, HDPE, granulate, at plant",
+          "reference product": "Polyethylene, HDPE, granulate, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for polyethylene, high density, granulate",
+            "reference product": "polyethylene, high density, granulate",
+            "location": "IN",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "a96d93d1e3df99af702cf0f71aa64fd5b46b0bab30b6ae1ec9668d7f80bd36ed",
+          "metadata_sha256": "335d65cf7d25e8e3600d89bfa4e9cba725ef8efb1d341b9dbe23afdcf2f87f7a",
+          "comment_sha256": "84702b7320673521287ae7ce2efc516ff0e6350ea4f3e7b0afb73be920da102e"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polyethylene, HDPE, granulate, at plant",
+              "reference product": "Polyethylene, HDPE, granulate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "cac81e9c3ffcc0511aa8ce93ce59f9ed76c6e5ea247b824ff6a1455e48ef5266",
+            "metadata_sha256": "fc954d0337336fca11ed20ffca59c51b44cb83514a9fad14277a8c8eca2d087b",
+            "comment_sha256": "0c1043038d73c61148ceac04ec64bff3ee15d9c2cade94d427234021c9fcf603"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polyethylene, HDPE, granulate, at plant",
+              "reference product": "Polyethylene, HDPE, granulate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "ede7bffe5843afa2ba487d89b8c4d4acb8d1751e56a3fc54c607e36d20dcb674",
+            "metadata_sha256": "29df786ca0dd4c88a057568141ca68555dd22d8adb6347981a9507dd1cb802e2",
+            "comment_sha256": "ed946c8aca355e2d873a2ed6b788e0483f32b1be602a8ca165abf2c3c93e91fc"
+          }
+        }
+      },
+      "limitations": [
+        "HDPE granulate remains complete native European HDPE granulate production per kg. The individually inspected source country market is replaced by the native production boundary, with warnings for polymer grade, technology, allocation, geographic production mix, final freight, delivery and uncertainty. No extrusion, packaging, density or recycled-content correction is added.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "bdb6885626fdb4ed880d944a07c8f142c6eb6e8e742b0a26c3551adad93ab5da"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7ca3587cbfe4ce9b",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for reinforcing steel",
+          "reference product": "reinforcing steel",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Reinforcing steel, at plant",
+          "reference product": "Reinforcing steel, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for reinforcing steel",
+            "reference product": "reinforcing steel",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "65c7ac338264b6612c2254741848c19172044b16a38b512892bc29d14f232b42",
+          "metadata_sha256": "3ff44ae7f5611d926da9fc3b349443c9e8baa4d84827c9d6c5ba8816d9a617d6",
+          "comment_sha256": "359c3a0ffc713c730981638221bea8a2e0ba05627b305230042554ab1a4e5b70"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Reinforcing steel, at plant",
+              "reference product": "Reinforcing steel, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "48e0394f251bd7f722f881e3511912981122746ef854c92e53c25c610677b5fc",
+            "metadata_sha256": "59db1034d28606a907cf5b95c2f50c29ebd81daf0c95ebed91fb2eccd4696c97",
+            "comment_sha256": "c7cd49ce27cc7069fe1c6ee21754414c337c2f6027ebb45fda09b5b74dbec196"
+          },
+          "2026": {
+            "identity": {
+              "name": "Reinforcing steel, at plant",
+              "reference product": "Reinforcing steel, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "fd6f5f59b16decc0e66f06248ddab1b4db5fab947ca49616c23a880fd198d0eb",
+            "metadata_sha256": "bc428442ad2a57268d5d5387f461bf0bca3fe0d06f2c05c9353cfc836082ff8b",
+            "comment_sha256": "bb90ef7cda01c42d59c452b78236dfc934c40e1db3ce7d01403470f65cfa631f"
+          }
+        }
+      },
+      "limitations": [
+        "Reinforcing steel remains complete native reinforcing-steel supply per kg. Source global mix and native European technology, scrap/allocation, grade, energy and delivery boundaries differ. No additional steelmaking, rebar-forming or recovery credit is added.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a0d47370b7847194ec360a9a9c1778743bd7bfc417626d7733c428ce33aa4e39"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8b0b137161accffe",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "market for polyethylene, high density, granulate",
+          "reference product": "polyethylene, high density, granulate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polyethylene, HDPE, granulate, at plant",
+          "reference product": "Polyethylene, HDPE, granulate, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for polyethylene, high density, granulate",
+            "reference product": "polyethylene, high density, granulate",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "8812131ed599e351a94abfce4e3e7c2c6bbfb9f524a2c9c8bb8b6f9eaa35f15e",
+          "metadata_sha256": "f57cab9f9e23ee71c0b200cb49d58548539293678d637651f00f69d1d893a4a8",
+          "comment_sha256": "84702b7320673521287ae7ce2efc516ff0e6350ea4f3e7b0afb73be920da102e"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polyethylene, HDPE, granulate, at plant",
+              "reference product": "Polyethylene, HDPE, granulate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "cac81e9c3ffcc0511aa8ce93ce59f9ed76c6e5ea247b824ff6a1455e48ef5266",
+            "metadata_sha256": "fc954d0337336fca11ed20ffca59c51b44cb83514a9fad14277a8c8eca2d087b",
+            "comment_sha256": "0c1043038d73c61148ceac04ec64bff3ee15d9c2cade94d427234021c9fcf603"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polyethylene, HDPE, granulate, at plant",
+              "reference product": "Polyethylene, HDPE, granulate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "ede7bffe5843afa2ba487d89b8c4d4acb8d1751e56a3fc54c607e36d20dcb674",
+            "metadata_sha256": "29df786ca0dd4c88a057568141ca68555dd22d8adb6347981a9507dd1cb802e2",
+            "comment_sha256": "ed946c8aca355e2d873a2ed6b788e0483f32b1be602a8ca165abf2c3c93e91fc"
+          }
+        }
+      },
+      "limitations": [
+        "HDPE granulate remains complete native European HDPE granulate production per kg. The individually inspected source country market is replaced by the native production boundary, with warnings for polymer grade, technology, allocation, geographic production mix, final freight, delivery and uncertainty. No extrusion, packaging, density or recycled-content correction is added.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "dc8b8eaef7c1c092d857873923ec5d76cebf60f969d58bc413a715b74c03cf9c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-95f6d31801263014",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "market for polyethylene, high density, granulate",
+          "reference product": "polyethylene, high density, granulate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polyethylene, HDPE, granulate, at plant",
+          "reference product": "Polyethylene, HDPE, granulate, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for polyethylene, high density, granulate",
+            "reference product": "polyethylene, high density, granulate",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "9a7b9bd7f561a9b9c8a6850baf6c0ea9685406bf96dd346dce33aae32aa163c8",
+          "metadata_sha256": "59f99459cf6dfc0717d52a563e28ebbe44a3d09999318ce518426ef8832cae60",
+          "comment_sha256": "2581d1f74a07a715844421b376fad33d92f2d98a883a4b5916bb519c434ebe2a"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polyethylene, HDPE, granulate, at plant",
+              "reference product": "Polyethylene, HDPE, granulate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "cac81e9c3ffcc0511aa8ce93ce59f9ed76c6e5ea247b824ff6a1455e48ef5266",
+            "metadata_sha256": "fc954d0337336fca11ed20ffca59c51b44cb83514a9fad14277a8c8eca2d087b",
+            "comment_sha256": "0c1043038d73c61148ceac04ec64bff3ee15d9c2cade94d427234021c9fcf603"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polyethylene, HDPE, granulate, at plant",
+              "reference product": "Polyethylene, HDPE, granulate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "ede7bffe5843afa2ba487d89b8c4d4acb8d1751e56a3fc54c607e36d20dcb674",
+            "metadata_sha256": "29df786ca0dd4c88a057568141ca68555dd22d8adb6347981a9507dd1cb802e2",
+            "comment_sha256": "ed946c8aca355e2d873a2ed6b788e0483f32b1be602a8ca165abf2c3c93e91fc"
+          }
+        }
+      },
+      "limitations": [
+        "HDPE granulate remains complete native European HDPE granulate production per kg. The individually inspected source country market is replaced by the native production boundary, with warnings for polymer grade, technology, allocation, geographic production mix, final freight, delivery and uncertainty. No extrusion, packaging, density or recycled-content correction is added.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "71e56b21f700eafe88c22be91e9d12599525bc40fed99f939e666c88e63b5e63"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a63d71d2f1edf074",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for manual treatment facility, waste electric and electronic equipment",
+          "reference product": "manual treatment facility, waste electric and electronic equipment",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Manual treatment plant, WEEE scrap",
+          "reference product": "Manual treatment plant, WEEE scrap",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for manual treatment facility, waste electric and electronic equipment",
+            "reference product": "manual treatment facility, waste electric and electronic equipment",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "56e0d366cc189d3062017e31d3cf69655c32bd8163a351de9e7c1b5e8505028b",
+          "metadata_sha256": "92d68d2e94c9e3486bc4aeaee369e277d8ebe5d8d812ff413e1fe5637c6da10a",
+          "comment_sha256": "a6a9f8466358d362cdf8a06a45f74279de81d03997d68f6fb48733b8eec9c399"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Manual treatment plant, WEEE scrap",
+              "reference product": "Manual treatment plant, WEEE scrap",
+              "location": "GLO",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "da587bcca8d780da8b5025c691e07b4bcf6871eba332a03e185d01348a4b348c",
+            "metadata_sha256": "86b38ebfece95f7a356048e80ee4d8c56dae0abfbf354338fa5b08bdb8d7ba77",
+            "comment_sha256": "ce9c505e24ead2d460b063f39bcd52698c58a00784b9473d11cca294b03d19f2"
+          },
+          "2026": {
+            "identity": {
+              "name": "Manual treatment plant, WEEE scrap",
+              "reference product": "Manual treatment plant, WEEE scrap",
+              "location": "GLO",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "af85dc54078f93f29d09358114dff6e047af92c7c67c38a6c04dd33cef24acb6",
+            "metadata_sha256": "2e0edafec1790b70b9e58bf69ecca569d470e94efe478a10415fd5851d3cc4ee",
+            "comment_sha256": "83ac5cba7fe1a8c8273494b5e726daa65ed65b9d1b30f9ced74d94a22af05109"
+          }
+        }
+      },
+      "limitations": [
+        "Both references are one manual WEEE treatment facility, not a kg of waste treated. Retain the complete native facility construction and decommissioning boundary and the caller facility-allocation quantity; no annual-capacity or lifetime multiplier is added.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f2f30e6effd8045043e6c4a1b16711cbaaa644c22c91b6e995641fc47827e7e4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a9d3eaa7a7b04898",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for lithium carbonate",
+          "reference product": "lithium carbonate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Lithium carbonate, at plant",
+          "reference product": "Lithium carbonate, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for lithium carbonate",
+            "reference product": "lithium carbonate",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "cba56eac0488076caea12143d2fc12f7c788d16a2c25313abdb48c21985d5087",
+          "metadata_sha256": "c3dc387159153d9ea087e4428d8c4bcdee7b650c4efd84e52deeb794567e3a95",
+          "comment_sha256": "363f45eb22e9f59015bec255a923cdb507e9f96f77ee397936710dac98dae456"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Lithium carbonate, at plant",
+              "reference product": "Lithium carbonate, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "f6fa5c2051c57b7e042a932373943372a444a70cd8c4775ae36f77a6de35d906",
+            "metadata_sha256": "2c1ce824b8280032c7c31b964f7cc9a46acc17fc364a8f47b57296e99fa7f2f9",
+            "comment_sha256": "d985958ad384b0e6d14aa64f037ac46c32065465a0ad1cd4370eac5ff08deef3"
+          },
+          "2026": {
+            "identity": {
+              "name": "Lithium carbonate, at plant",
+              "reference product": "Lithium carbonate, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "e0e88afaee2598219846cb550838b87de4fe2343dd094ac4077da48c1e230c1e",
+            "metadata_sha256": "60d329b219557ce2dae0f3343adb202ca62e2a60fa691cfa7b2c6b30f794fccd",
+            "comment_sha256": "c6002fcc0afc7337ab99277a8398aa6eed9b51eff1ebf610f9142df7bcbf4d60"
+          }
+        }
+      },
+      "limitations": [
+        "Both references are lithium carbonate per kg. The native Chilean brine/purification/carbonation process states 99.2% product purity and a historical global-representative geography. It is not lithium metal or another carbonate. No contained-Li or purity multiplier is inferred; process mix, quality and delivery differences are warnings.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e5c0a1198cd43f8c938a2d60de4e673e5ce9551f39a7e2b5a02cab60b847ad52"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-bb9f553d2ada70cf",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "market for polystyrene, high impact",
+          "reference product": "polystyrene, high impact",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polystyrene, high impact, HIPS, at plant",
+          "reference product": "Polystyrene, high impact, HIPS, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for polystyrene, high impact",
+            "reference product": "polystyrene, high impact",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "23e27931a71291f74b6979c3a104e407cc955caf7d1766b26900f791d1722c5a",
+          "metadata_sha256": "327f7f3d03cf853555662b34225d0ddd28ccd4c644ac0e08bb75aa43f4bbc0ee",
+          "comment_sha256": "303f978f4278ded833c3cdb4d8cb59b196ac9db4947d8199965f5bc96f523890"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polystyrene, high impact, HIPS, at plant",
+              "reference product": "Polystyrene, high impact, HIPS, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "47758de1cf0b9af678911230646fc5a94037a0b7baa8e0cb4c1cd1360d303659",
+            "metadata_sha256": "0a78c6c556e77611bde173b13847dee18f61675eb35f07bf53bc60b987b5d4f7",
+            "comment_sha256": "c5c158522327a8a98ceaa864c5c999c80b4326882afca07b203a548c1d09ac39"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polystyrene, high impact, HIPS, at plant",
+              "reference product": "Polystyrene, high impact, HIPS, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "9f96cd36060e34961fe3332828af9426ae6e20aed2e316a768f5f042946015da",
+            "metadata_sha256": "46ffa9292e371f610418f485cc3d506855af5e4eb1ce5716f6e24475c9b8d446",
+            "comment_sha256": "e7011575fe785b899eee93a626b7106265c1e4f4f5a9bbba31be49d7bb10f671"
+          }
+        }
+      },
+      "limitations": [
+        "High-impact polystyrene remains complete native HIPS granulate per kg, rather than general-purpose polystyrene. Native European manufacture replaces the inspected source market mix and delivery. Grade, rubber content, allocation, geography and production vintage remain screening limitations; no moulding or mass multiplier is introduced.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "df0e053bd937f4e52d582e0a3496c380d0906f61604d9bc23680148a695b7c3c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c0965066e2c4afc5",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for inverter, for electric passenger car",
+          "reference product": "inverter, for electric passenger car",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Inverter, for electric passenger car",
+          "reference product": "Inverter, for electric passenger car",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for inverter, for electric passenger car",
+            "reference product": "inverter, for electric passenger car",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "15d14d741fad48ab21b7fb1c0b6124e17816834c127746126e7cab0dc77a3693",
+          "metadata_sha256": "0cfef9832f5617f6c8f213ba88642ee57df0c994d450d961dd997f0801aec745",
+          "comment_sha256": "5997a6c23c5cc300f65a54c8f5546ebaf7c77afdd161ae388c89e32c4a7fcc45"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Inverter, for electric passenger car",
+              "reference product": "Inverter, for electric passenger car",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "019bf0d5291cd22e54b9c4a1549c8b82f8e73d8638055d628c33834c84f7f4d4",
+            "metadata_sha256": "6d03fc1a54a1e14e5608db228dc468bee640371c4d897d87adbe8e391ac94950",
+            "comment_sha256": "93425ed11bf5d1056cdd99d481d7aa81dfa3f393a133a02f4c8aa5a31692243d"
+          },
+          "2026": {
+            "identity": {
+              "name": "Inverter, for electric passenger car",
+              "reference product": "Inverter, for electric passenger car",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "b10af94d733f73c3b6eda736fd28b4c797d31ca5062c054766a80ffbe82a63b4",
+            "metadata_sha256": "afa6981a2131b07e49040ed6f4d1fb49c983bfaa4c72684e99f90c9eac4e65c2",
+            "comment_sha256": "b64366b12e4d5df282654d68e17e47be409f6a83bce93bd9728a61c519917176"
+          }
+        }
+      },
+      "limitations": [
+        "Both references are kg of an electric-car inverter, documenting a 9.5 kg device suitable for a 100 kW drivetrain. Retain kg, separate motor/battery purchases and the complete native electronics inventory; do not convert the caller to device counts.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9358942dd17195bb5df3f926b3ff710fe7f63dd9ec186cefa215016ee1436299"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d21d0bac2a023032",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for steel, low-alloyed, hot rolled",
+          "reference product": "steel, low-alloyed, hot rolled",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Steel, low-alloyed, at plant",
+          "reference product": "Steel, low-alloyed, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for steel, low-alloyed, hot rolled",
+            "reference product": "steel, low-alloyed, hot rolled",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "838e967a62c80668ac6e6bbfc028720cde1bbc4c0f4208c27760c4439a540162",
+          "metadata_sha256": "f14aff7677c0917dc1d8f001bb7a1bac0d988765477c8cdfbae943435d06197f",
+          "comment_sha256": "ad3581f98b837566c0a37149d9ba4ab97b03463afe81173278cc95ce02dc4696"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Steel, low-alloyed, at plant",
+              "reference product": "Steel, low-alloyed, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "65f0c668a8afb2efd0dc2914cff81588503283cddebb4e40f2a2141dcb5b30dd",
+            "metadata_sha256": "eb35e086f911eddae104aef934074d0c48591c424581f21de6a42969303e55e7",
+            "comment_sha256": "07b08f4a397a70097336a1bb811860460858e05dc4c35c8618e9c8f297678fc4"
+          },
+          "2026": {
+            "identity": {
+              "name": "Steel, low-alloyed, at plant",
+              "reference product": "Steel, low-alloyed, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "94ff9254144046ec89c7bbb443b53daa2c3ccc4ff96be3d359e685cf71286ed2",
+            "metadata_sha256": "0d6e806d694e636e78e7d45b2a42b8b005127dc66045d1bd9d2e4731d50c5002",
+            "comment_sha256": "f1e3bdf9b0f47f95dc47a92ef768ecbc9656df4f76edb5065c41fbd0c3cddebb"
+          }
+        }
+      },
+      "limitations": [
+        "Native low-alloy steel explicitly includes the production mix and hot rolling. It therefore supplies the source hot-rolled low-alloy product per kg, without adding another rolling process. Production mix, alloy grade, allocation and geography differ.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c9bf223d10bec8705c3addc84114ee35527080617969d5e9e37071bf660fe4ea"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d8074f637b4b54f4",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for neodymium oxide",
+          "reference product": "neodymium oxide",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CN",
+          "name": "Neodymium oxide, at plant",
+          "reference product": "Neodymium oxide, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for neodymium oxide",
+            "reference product": "neodymium oxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "8c46ae715451b850517fe8b3eb41fb177c3f0cfc9695a916f3293bca1082e42b",
+          "metadata_sha256": "a153deb4abd0d8fd5a3de8c046bba50e8f2941786d88fd6a5907b20d1c5a42e3",
+          "comment_sha256": "387d8adceb25f88419a239fdaf9797888f67e776ca33f0dc13f0ad3d85ce9b04"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Neodymium oxide, at plant",
+              "reference product": "Neodymium oxide, at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "bdb36af0fd5cfebae726104a43ca310c2b69a0e17fd0311781d510abb243733e",
+            "metadata_sha256": "783b58d521d7fb6de2ec58912a93792b5370e3419844662c1e941d04b44a4b14",
+            "comment_sha256": "d1b2a133f836b480537b4b1e3b5124336868072c7978fa472bb9283e2e8869ca"
+          },
+          "2026": {
+            "identity": {
+              "name": "Neodymium oxide, at plant",
+              "reference product": "Neodymium oxide, at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "9ff8d0b2d6192fea0c8ec1cb94310f03cdbdf4b3e3bd24ffab4b275afad2286d",
+            "metadata_sha256": "0611469d47c6d1bdcc3393f302503583c7212fcfc11a4bf3afd4ef2524769ef3",
+            "comment_sha256": "983e0eb95c8081b4995f37190c28c7b750190c26f2aab9d580e631174d54d5f5"
+          }
+        }
+      },
+      "limitations": [
+        "Neodymium oxide remains an oxide per kg, using complete native Chinese rare-earth separation with revenue allocation. Preserve oxide mass rather than interpreting it as contained neodymium metal. Ore route, purity, energy estimates, co-products and delivery remain screening differences.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "54cc1e1d8d05e1d70c0bcc5e43f40750a25391f325d3deb9f6ada9b539f29803"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-edf1518533a281df",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for aluminium, cast alloy",
+          "reference product": "aluminium, cast alloy",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Aluminium, production mix, cast alloy, at plant",
+          "reference product": "Aluminium, production mix, cast alloy, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for aluminium, cast alloy",
+            "reference product": "aluminium, cast alloy",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "3f3e5fb80a56d2f2e662c4dfe5e4e9b69c86bccdd7d207304c9730c38e941787",
+          "metadata_sha256": "82921f9996a52c4eff050326dcd2e2b561b57a40a28a17ddfcfd9751208a34b7",
+          "comment_sha256": "9c81c1b926654292bbce1f507c9444788e1465a63f78cefc5bc3bcfb04d7b765"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Aluminium, production mix, cast alloy, at plant",
+              "reference product": "Aluminium, production mix, cast alloy, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "6924f77b3100fceda7d520434663ea33444f0351bcaf4f1f1c2a556e67431286",
+            "metadata_sha256": "d208ba666c7aebe1bfbf761c7fa2ed665d79092b063ba068399565f538950e91",
+            "comment_sha256": "0d3d211f3d12cc325b60a1564f05835ecabcfa0c231c09c740fcee3663c9c5dc"
+          },
+          "2026": {
+            "identity": {
+              "name": "Aluminium, production mix, cast alloy, at plant",
+              "reference product": "Aluminium, production mix, cast alloy, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "9f1debbcdff29463910dcd77e3ee3315997509f75bbc932a9e251c11d9288ea3",
+            "metadata_sha256": "8111962de0ef61ba1934a7e08ab6ed7b8795718bc71adc696e85ecbae8b3b308",
+            "comment_sha256": "ed8c6ca1a7c236ad75dc277e6954b80527f0774242fb67cf2d00340b13e41c86"
+          }
+        }
+      },
+      "limitations": [
+        "Cast aluminium alloy remains the complete native cast-alloy production mix per kg. Alloy composition, primary/secondary fractions, allocation, geography and final delivery differ. No separate casting burden or recycling credit is added.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e051ff785b76b6938d6f505b8b5bd8d411330c93795d8623b7063d64f4b03582"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f3e2b8a4dc2df13f",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for road",
+          "reference product": "road",
+          "unit": "meter-year"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Road",
+          "reference product": "Road",
+          "unit": "meter-year"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for road",
+            "reference product": "road",
+            "location": "GLO",
+            "unit": "meter-year"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "427b862e50f6fbb875d0e247315c79246a029be9d2ec4b3fe436815ab2b4a603",
+          "metadata_sha256": "e8d1fba2c342ce30ffe25c63f1f5d97afa98b92a52d4806b6844bb89ae8ee205",
+          "comment_sha256": "bc230511031881f6a115a2b1fe3f9b21a793e2d4baf9668bf7ba721679f079a3"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Road",
+              "reference product": "Road",
+              "location": "CH",
+              "unit": "meter-year"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "ffbb40a9a202509eba3c57f84551b7908f1281564e44b24ee301d798e73c44ee",
+            "metadata_sha256": "896e0481cf8d76c72f23611dbe599269fa7ebcb6cae5e44013a0f76c36974fa0",
+            "comment_sha256": "f7d09e05a25375ec1899985e331fe2717e0661555a5a70af27f7438e87b31925"
+          },
+          "2026": {
+            "identity": {
+              "name": "Road",
+              "reference product": "Road",
+              "location": "CH",
+              "unit": "meter-year"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "b1b4b58ae43e65cdb8dd72bd69c6f19cf982cbf25d1d4e818f6fc6dd6773035d",
+            "metadata_sha256": "ff0b54ed0a2118ccae1c223b23196f61c6fda3929635fa5b228a3340d5101765",
+            "comment_sha256": "714fce3aa53a7da7557cf83bd6deb7ca1d9662be55d144876eef334e43117c81"
+          }
+        }
+      },
+      "limitations": [
+        "Both references are road infrastructure per metre-year. The native Swiss road is an explicit geographic/infrastructure proxy for the global market; lane design, construction, maintenance and lifetime assumptions may differ. Preserve metre-years without a length, lane or lifetime conversion.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ee3450e1c228ff3fc000b444f1cf2014fdadb03b4b6c964cb106f337d74da80d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f89e620d1b74f123",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for power distribution unit, for electric passenger car",
+          "reference product": "power distribution unit, for electric passenger car",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Power distribution unit, for electric passenger car",
+          "reference product": "Power distribution unit, for electric passenger car",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for power distribution unit, for electric passenger car",
+            "reference product": "power distribution unit, for electric passenger car",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "7f74b19493797dfc5477e554b1ba73c0f04521ee6207de7599b94129676999db",
+          "metadata_sha256": "9d3d4642d5aacde673b752a4c1201b77a9a397b54ce145d9013ac433edd77701",
+          "comment_sha256": "1145d3dc6281e69c9ef333818f0fd4422a036aa77c800508257e88cec8ec8263"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Power distribution unit, for electric passenger car",
+              "reference product": "Power distribution unit, for electric passenger car",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "1e25a0d2294d63c780807db0aaeb65d283c81d1fac9656f41a07c18cba044c1b",
+            "metadata_sha256": "419fd540ff92ffea7ed7610a1899d5dda35af516add0c6ea73ac8c7f9be73d9b",
+            "comment_sha256": "bac2c7991d722b3eda4b8ee007c18fc82cbfd04eb81bc69391b5c00b72c11b85"
+          },
+          "2026": {
+            "identity": {
+              "name": "Power distribution unit, for electric passenger car",
+              "reference product": "Power distribution unit, for electric passenger car",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "e3337f038a6c83bfbc619e8405e072ecfea319776b4bee6f282e685ddce0f054",
+            "metadata_sha256": "be03020cb672a813a3e0461fd3c94c1fa505a3cf313dcb55e61289df1dcc3010",
+            "comment_sha256": "b143dbe39186bccf00a2d2d41acb1841c650ed6506f634601271a482ec5012c8"
+          }
+        }
+      },
+      "limitations": [
+        "Both references are kg of an electric-car power-distribution unit, documenting a 3.9 kg device suitable for a 100 kW drivetrain. Preserve kg and separately listed electronics, motor and battery. No component-count or power multiplier is added.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1a188df66204c592cd0034a54ea84be80eb12de1f5de10b8e68ffc2af0543bc4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fe65c4020c8f8f4b",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_312_review.json",
+      "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+      "authorization": "Standing autonomous approval of actual required screening correspondences with explicit limitations and later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "CH",
+          "name": "market for electricity, low voltage",
+          "reference product": "electricity, low voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Electricity, low voltage, at grid",
+          "reference product": "Electricity, low voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for electricity, low voltage",
+            "reference product": "electricity, low voltage",
+            "location": "CH",
+            "unit": "kilowatt hour"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "8007bdb9583895642d3eef2ebb41719c254492acc0a23ab273ac2eca6e082a53",
+          "metadata_sha256": "2e08902f944ed57052b8d6f6c40d0942e40b279daa1789a8bb261c15c3fae334",
+          "comment_sha256": "bec58c508e424085cb8fc2dfd6f2f051ebf940eb83c8486b1cf47ea5c132f2af"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "cbc7e2b72f58d99b9016ae5693b4570f38ccee6b8c6b920cf8c444572ceb6185",
+            "metadata_sha256": "325f27bc6ed93d6b40301870cfc10e56aefe699b929c286efa38793f3ec57aff",
+            "comment_sha256": "2fbc654568f906e079bd86c39cbeca90fa1a1f7d8500feb6fafa58a59aea76d5"
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "af3d2e7fd1f6b54423ad3f8cb8a46ed2f7f7e355f00a7a70e58dc7b318cc4513",
+            "metadata_sha256": "e526bfbfbaa3a315573fd56dcfc9f712fb0acab0219603be571c146e580f48ee",
+            "comment_sha256": "0605016ffa3f524eb84832668d0db26c8e6d8dee9d9680b74dabc5052ec8084e"
+          }
+        }
+      },
+      "limitations": [
+        "Both are delivered low-voltage electricity per kWh in Switzerland. The complete native low-voltage grid retains its losses and infrastructure once. Historical generation and delivery mix differ; ordinary shared Premise electricity updating remains applicable.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source coordinate is newly approved. Source and both native release references are positive one of the same declared unit. Preserve signed caller quantities and marginal uncertainty at factor +1; keep separate purchases and emissions.",
+        "Complete native screening supply replaces the source internal production portfolio and, where present, source final market delivery, losses and uncertainty. These changed boundaries, technology, grade, geography, allocation, vintage and biosphere exclusions have unquantified score effects. Do not add invented freight, recovery credits or corrections.",
+        "No new source version, consequential route, cross-system-model conversion or independently approved reverse mapping follows from this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "06c2ddaa48d2c9f7b50c9cfd9b5ff45ebf62632d5808a76ac2f86b28ed1a5517"
+        }
+      ]
     }
   ],
   "superseded_operations": [

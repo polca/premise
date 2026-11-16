@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-16",
+  "new_exact_source_312_scopes": 29,
+  "native_reference_definitions_checked": 58,
+  "source_reference_definitions_checked": 29,
+  "previous_approval_operations_unchanged": true,
+  "Brightpath_runtime_or_migration_rules_changed": false,
+  "review_sha256": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+  "review_path": "export/uvek_passenger_car_direct_312_review.json",
+  "new_Brightway_databases": 0,
+  "car_sector_qualified": false,
+  "tests": {
+    "Brightpath_signed_reference_and_uncertainty": {
+      "passed": 5
+    },
+    "Premise_exact_approval_and_drift_checks": {
+      "passed": 4,
+      "deselected": 828
+    },
+    "broad_ledger_sweep": "Interrupted in favor of focused checks; no full-suite pass claimed."
+  },
+  "repeated_first_cohort": {
+    "before_unapproved": 47,
+    "after_unapproved": 18,
+    "later_source_cohorts_not_yet_verified": true
+  }
+}
