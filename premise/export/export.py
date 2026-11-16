@@ -357,29 +357,15 @@ def get_exchange(ind, acts_ind, db_name, version, amount=1.0):
 
 def write_formatted_data(name, data, filepath):
     """
-    Adapted from bw2io.export.csv
+    Write a bw2io-style inventory CSV in activity and exchange order.
+
     :param name: name of the database
     :param data: data to write
     :param filepath: path to the file
+    :return: the supplied output path
     """
 
-    sections = [
-        "project parameters",
-        "database",
-        "database parameters",
-        "activities",
-        "activity parameters",
-        "exchanges",
-    ]
-
-    result = []
-
-    if "database" in sections:
-        result.append(["Database", name])
-        result.append([])
-
-    if "activities" not in sections:
-        return result
+    result = [["Database", name], []]
 
     for act in data:
         result.append(["Activity", act["name"]])
@@ -391,36 +377,35 @@ def write_formatted_data(name, data, filepath):
         result.append(["parameters", act.get("parameters", [])])
         result.append([""])
 
-        if "exchanges" in sections:
-            result.append(["Exchanges"])
-            if act.get("exchanges"):
+        result.append(["Exchanges"])
+        if act.get("exchanges"):
+            result.append(
+                [
+                    "name",
+                    "amount",
+                    "unit",
+                    "location",
+                    "categories",
+                    "type",
+                    "product",
+                ]
+            )
+            for exc in act["exchanges"]:
                 result.append(
                     [
-                        "name",
-                        "amount",
-                        "unit",
-                        "location",
-                        "categories",
-                        "type",
-                        "product",
+                        exc["name"],
+                        exc["amount"],
+                        exc["unit"],
+                        exc.get("location"),
+                        (
+                            "::".join(list(exc.get("categories", [])))
+                            if exc["type"] == "biosphere"
+                            else None
+                        ),
+                        exc["type"],
+                        exc.get("product"),
                     ]
                 )
-                for exc in act["exchanges"]:
-                    result.append(
-                        [
-                            exc["name"],
-                            exc["amount"],
-                            exc["unit"],
-                            exc.get("location"),
-                            (
-                                "::".join(list(exc.get("categories", [])))
-                                if exc["type"] == "biosphere"
-                                else None
-                            ),
-                            exc["type"],
-                            exc.get("product"),
-                        ]
-                    )
         result.append([])
 
     with open(filepath, "w", newline="", encoding="utf-8") as f:
@@ -524,7 +509,8 @@ def generate_scenario_factor_file(
     scenario_list: list = None,
 ):
     """
-    Generate a scenario factor file from a list of databases
+    Generate scenario factors and additional inventories in reconstruction order.
+
     :param origin_db: the original database
     :param scenarios: a list of databases
     :param db_name: the name of the database
@@ -552,15 +538,11 @@ def generate_scenario_factor_file(
     # remove the column `original`
     df = df.drop(columns=["original"])
 
-    # fetch a list of activities not present in original_db
-    list_original_acts = get_list_unique_acts([{"database": origin_db}])
+    # Select by identity without changing the reconstruction order below.
+    original_activity_keys = set(get_list_unique_acts([{"database": origin_db}]))
+    new_activity_keys = set(list_unique_acts) - original_activity_keys
 
-    new_acts_list = list(set(list_unique_acts) - set(list_original_acts))
-
-    print(f"Number of new activities: {len(new_acts_list)}")
-
-    # turn new_acts_list into a dictionary
-    new_acts_dict = {v: k for k, v in dict(enumerate(new_acts_list)).items()}
+    print(f"Number of new activities: {len(new_activity_keys)}")
 
     # fetch the additional activities from new_db
     extra_acts = [
@@ -574,7 +556,7 @@ def generate_scenario_factor_file(
             dataset["unit"],
             "production",
         )
-        in new_acts_dict
+        in new_activity_keys
     ]
 
     return df, extra_acts
@@ -609,12 +591,6 @@ def generate_scenario_difference_file(
 
     bio_dict = biosphere_flows_dictionary(version)
 
-    # exc_codes.update(
-    #    {
-    #        (a["name"], a["reference product"], a["location"], a["unit"]): a["code"]
-    #        for a in origin_db
-    #    }
-    # )
     # Turn list into set for O(1) membership tests
     list_acts = set(get_list_unique_acts([{"database": origin_db}] + scenarios))
 
