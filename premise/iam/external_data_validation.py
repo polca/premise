@@ -983,6 +983,7 @@ def check_config_file(datapackage: datapackage.Package) -> int:
 def check_scenario_data_file(
     datapackage: datapackage.Package, scenario: str
 ) -> Package:
+    """Validate the scenario table and return the original datapackage."""
 
     scenarios = datapackage.descriptor["scenarios"]
     resource = datapackage.get_resource("scenario_data")
@@ -1019,10 +1020,12 @@ def check_scenario_data_file(
             "out of boundaries (2005 - 2100)."
         )
 
-    if len(pd.isnull(df).sum()[pd.isnull(df).sum() > 0]) > 0:
+    missing_cells = pd.isnull(df).sum()
+    missing_cells = missing_cells[missing_cells > 0]
+    if len(missing_cells) > 0:
         raise ValueError(
             f"The following columns in the scenario data "
-            f"contains empty cells.\n{pd.isnull(df).sum()[pd.isnull(df).sum() > 0]}."
+            f"contains empty cells.\n{missing_cells}."
         )
 
     available_scenarios = df["scenario"].unique()
@@ -1057,19 +1060,6 @@ def check_scenario_data_file(
         raise ValueError(
             "The following variables from the configuration file "
             f"cannot be found in the scenario file.: {list_unfound_variables}"
-        )
-
-    if not all(
-        v in df["variables"].unique() for v in get_recursively(config_file, "variable")
-    ):
-        missing_variables = [
-            v
-            for v in get_recursively(config_file, "variable")
-            if v not in df["variables"].unique()
-        ]
-        raise ValueError(
-            f"One or several variable names in the configuration file "
-            f"cannot be found in the scenario data file: {missing_variables}."
         )
 
     try:
