@@ -712,9 +712,7 @@ class BaseDatasetValidator:
         return self.geo.ecoinvent_to_iam_location(location)
 
     def check_matrix_squareness(self):
-        """
-        Check if the number of products equals the number of activities
-        """
+        """Check that unique activity and production identities have equal counts."""
 
         products, activities = [], []
 
@@ -726,11 +724,13 @@ class BaseDatasetValidator:
                 if e["type"] == "production":
                     products.append((e["name"], e["product"], e["unit"], e["location"]))
 
-        if len(list(set(activities))) != len(list(set(products))):
+        activity_count = len(set(activities))
+        product_count = len(set(products))
+        if activity_count != product_count:
             self.log_issue(
                 {},
                 "non-square matrix",
-                f"Matrix is not square: {len(set(activities))} activities, {len(set(products))} products.",
+                f"Matrix is not square: {activity_count} activities, {product_count} products.",
                 issue_type="major",
             )
 
