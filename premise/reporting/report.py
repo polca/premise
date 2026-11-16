@@ -33,6 +33,55 @@ REPORT_METADATA_FILEPATH = DATA_DIR / "utils" / "report" / "report.yaml"
 VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 
 
+# Report sector -> (IAM data field, optional attribute required for availability).
+# Availability gates check attribute presence, including attributes set to None.
+_REPORT_DATA_FIELDS = {
+    "Population": ("other_vars", None),
+    "GDP": ("other_vars", None),
+    "CO2": ("other_vars", None),
+    "GMST": ("other_vars", None),
+    "Electricity - generation": ("production_volumes", "electricity_mix"),
+    "Electricity (biom) - generation": ("production_volumes", "biomass_mix"),
+    "Electricity - efficiency": ("electricity_technology_efficiencies", None),
+    "Heat (buildings) - generation": ("buildings_heat_end_use", None),
+    "Heat (industrial) - generation": ("industrial_heat_end_use", None),
+    "Heat (secondary) - generation": ("secondary_heat_supply", None),
+    "Fuel (gasoline) - generation": ("production_volumes", None),
+    "Fuel (gasoline) - efficiency": ("petrol_technology_efficiencies", None),
+    "Fuel (diesel) - generation": ("production_volumes", None),
+    "Fuel (diesel) - efficiency": ("diesel_technology_efficiencies", None),
+    "Fuel (gas) - generation": ("production_volumes", None),
+    "Fuel (gas) - efficiency": ("gas_technology_efficiencies", None),
+    "Fuel (hydrogen) - generation": ("production_volumes", None),
+    "Fuel (hydrogen) - efficiency": ("hydrogen_technology_efficiencies", None),
+    "Fuel (kerosene) - generation": ("production_volumes", None),
+    "Fuel (kerosene) - efficiency": ("kerosene_technology_efficiencies", None),
+    "Fuel (LPG) - generation": ("production_volumes", None),
+    "Fuel (LPG) - efficiency": ("lpg_technology_efficiencies", None),
+    "Cement - generation": ("production_volumes", None),
+    "Cement - efficiency": ("cement_technology_efficiencies", None),
+    "Steel - generation": ("production_volumes", None),
+    "Steel - efficiency": ("steel_technology_efficiencies", None),
+    "CDR - generation": ("production_volumes", None),
+    "CDR - energy use": ("cdr_energy_use", None),
+    "CDR - efficiency": ("cdr_technology_efficiencies", None),
+    "Transport (two-wheelers)": ("production_volumes", "two_wheelers_fleet"),
+    "Transport (two-wheelers) - eff": ("two_wheelers_efficiencies", None),
+    "Transport (cars)": ("production_volumes", "passenger_car_fleet"),
+    "Transport (cars) - eff": ("passenger_car_efficiencies", None),
+    "Transport (buses)": ("production_volumes", "bus_fleet"),
+    "Transport (buses) - eff": ("bus_efficiencies", None),
+    "Transport (trucks)": ("production_volumes", "road_freight_fleet"),
+    "Transport (trucks) - eff": ("road_freight_efficiencies", None),
+    "Transport (trains)": ("production_volumes", "rail_freight_fleet"),
+    "Transport (trains) - eff": ("rail_freight_efficiencies", None),
+    "Transport (ships)": ("production_volumes", "sea_freight_fleet"),
+    "Transport (ships) - eff": ("sea_freight_efficiencies", None),
+    "Battery (mobile)": ("battery_mobile_scenarios", None),
+    "Battery (stationary)": ("battery_stationary_scenarios", None),
+}
+
+
 def get_variables(
     filepath,
 ):
@@ -49,214 +98,28 @@ def get_variables(
 def fetch_data(
     iam_data: xr.DataArray, sector: str, variable: str
 ) -> [xr.DataArray, None]:
-    data = {
-        "Population": iam_data.other_vars if hasattr(iam_data, "other_vars") else None,
-        "GDP": iam_data.other_vars if hasattr(iam_data, "other_vars") else None,
-        "CO2": iam_data.other_vars if hasattr(iam_data, "other_vars") else None,
-        "GMST": iam_data.other_vars if hasattr(iam_data, "other_vars") else None,
-        "Electricity - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "electricity_mix")
-            else None
-        ),
-        "Electricity (biom) - generation": (
-            iam_data.production_volumes if hasattr(iam_data, "biomass_mix") else None
-        ),
-        "Electricity - efficiency": (
-            iam_data.electricity_technology_efficiencies
-            if hasattr(iam_data, "electricity_technology_efficiencies")
-            else None
-        ),
-        "Heat (buildings) - generation": (
-            iam_data.buildings_heat_end_use
-            if hasattr(iam_data, "buildings_heat_end_use")
-            else (
-                iam_data.production_volumes
-                if hasattr(iam_data, "production_volumes")
-                else None
-            )
-        ),
-        "Heat (industrial) - generation": (
-            iam_data.industrial_heat_end_use
-            if hasattr(iam_data, "industrial_heat_end_use")
-            else (
-                iam_data.production_volumes
-                if hasattr(iam_data, "production_volumes")
-                else None
-            )
-        ),
-        "Heat (secondary) - generation": (
-            iam_data.secondary_heat_supply
-            if hasattr(iam_data, "secondary_heat_supply")
-            else (
-                iam_data.production_volumes
-                if hasattr(iam_data, "production_volumes")
-                else None
-            )
-        ),
-        "Fuel (gasoline) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Fuel (gasoline) - efficiency": (
-            iam_data.petrol_technology_efficiencies
-            if hasattr(iam_data, "petrol_technology_efficiencies")
-            else None
-        ),
-        "Fuel (diesel) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Fuel (diesel) - efficiency": (
-            iam_data.diesel_technology_efficiencies
-            if hasattr(iam_data, "diesel_technology_efficiencies")
-            else None
-        ),
-        "Fuel (gas) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Fuel (gas) - efficiency": (
-            iam_data.gas_technology_efficiencies
-            if hasattr(iam_data, "gas_technology_efficiencies")
-            else None
-        ),
-        "Fuel (hydrogen) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Fuel (hydrogen) - efficiency": (
-            iam_data.hydrogen_technology_efficiencies
-            if hasattr(iam_data, "hydrogen_technology_efficiencies")
-            else None
-        ),
-        "Fuel (kerosene) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Fuel (kerosene) - efficiency": (
-            iam_data.kerosene_technology_efficiencies
-            if hasattr(iam_data, "kerosene_technology_efficiencies")
-            else None
-        ),
-        "Fuel (LPG) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Fuel (LPG) - efficiency": (
-            iam_data.lpg_technology_efficiencies
-            if hasattr(iam_data, "lpg_technology_efficiencies")
-            else None
-        ),
-        "Cement - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Cement - efficiency": (
-            iam_data.cement_technology_efficiencies
-            if hasattr(iam_data, "cement_technology_efficiencies")
-            else None
-        ),
-        "Steel - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Steel - efficiency": (
-            iam_data.steel_technology_efficiencies
-            if hasattr(iam_data, "steel_technology_efficiencies")
-            else None
-        ),
-        "CDR - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "CDR - energy use": (
-            iam_data.cdr_energy_use if hasattr(iam_data, "cdr_energy_use") else None
-        ),
-        "CDR - efficiency": (
-            iam_data.cdr_technology_efficiencies
-            if hasattr(iam_data, "cdr_technology_efficiencies")
-            else None
-        ),
-        "Transport (two-wheelers)": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "two_wheelers_fleet")
-            else None
-        ),
-        "Transport (two-wheelers) - eff": (
-            iam_data.two_wheelers_efficiencies
-            if hasattr(iam_data, "two_wheelers_efficiencies")
-            else None
-        ),
-        "Transport (cars)": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "passenger_car_fleet")
-            else None
-        ),
-        "Transport (cars) - eff": (
-            iam_data.passenger_car_efficiencies
-            if hasattr(iam_data, "passenger_car_efficiencies")
-            else None
-        ),
-        "Transport (buses)": (
-            iam_data.production_volumes if hasattr(iam_data, "bus_fleet") else None
-        ),
-        "Transport (buses) - eff": (
-            iam_data.bus_efficiencies if hasattr(iam_data, "bus_efficiencies") else None
-        ),
-        "Transport (trucks)": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "road_freight_fleet")
-            else None
-        ),
-        "Transport (trucks) - eff": (
-            iam_data.road_freight_efficiencies
-            if hasattr(iam_data, "road_freight_efficiencies")
-            else None
-        ),
-        "Transport (trains)": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "rail_freight_fleet")
-            else None
-        ),
-        "Transport (trains) - eff": (
-            iam_data.rail_freight_efficiencies
-            if hasattr(iam_data, "rail_freight_efficiencies")
-            else None
-        ),
-        "Transport (ships)": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "sea_freight_fleet")
-            else None
-        ),
-        "Transport (ships) - eff": (
-            iam_data.sea_freight_efficiencies
-            if hasattr(iam_data, "sea_freight_efficiencies")
-            else None
-        ),
-        "Battery (mobile)": (
-            iam_data.battery_mobile_scenarios
-            if hasattr(iam_data, "battery_mobile_scenarios")
-            else None
-        ),
-        "Battery (stationary)": (
-            iam_data.battery_stationary_scenarios
-            if hasattr(iam_data, "battery_stationary_scenarios")
-            else None
-        ),
-    }
+    """Select report variables from the requested sector's IAM data field.
 
-    if data[sector] is not None:
-        iam_data = data[sector]
+    Heat uses production volumes only when its dedicated layer is absent.
+    Present fields set to None remain unavailable. Battery chemistry is exposed
+    as variables; unmatched CDR requests retain all available CDR variables.
+    """
+    field, availability = _REPORT_DATA_FIELDS[sector]
+    if availability is not None:
+        if not hasattr(iam_data, availability):
+            return None
+        data = getattr(iam_data, field)
+    else:
+        if field in (
+            "buildings_heat_end_use",
+            "industrial_heat_end_use",
+            "secondary_heat_supply",
+        ) and not hasattr(iam_data, field):
+            field = "production_volumes"
+        data = getattr(iam_data, field, None)
+
+    if data is not None:
+        iam_data = data
         if sector in ("Battery (mobile)", "Battery (stationary)"):
             iam_data = iam_data.rename({"chemistry": "variables"})
 
