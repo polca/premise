@@ -13,6 +13,72 @@ from premise.export import (
 )
 
 
+def test_unique_exchange_identities_keep_type_units_geography_and_categories():
+    from copy import deepcopy
+
+    production = {
+        "name": "supplier",
+        "product": "material",
+        "location": "CH",
+        "unit": "kilogram",
+        "type": "production",
+        "amount": 1.0,
+    }
+    biosphere = {
+        "name": "emission",
+        "categories": ("air", "urban"),
+        "unit": "kilogram",
+        "type": "biosphere",
+        "amount": 2.0,
+    }
+    scenarios = [
+        {
+            "database": [
+                {
+                    "exchanges": [
+                        production,
+                        {**production, "amount": 9.0, "input": ("db", "other-code")},
+                        biosphere,
+                    ]
+                }
+            ]
+        },
+        {
+            "database": [
+                {
+                    "exchanges": [
+                        {**production, "type": "technosphere"},
+                        {**production, "unit": "ton"},
+                        {**production, "location": "US"},
+                        {**biosphere, "categories": ("air", "rural")},
+                        {
+                            **biosphere,
+                            "product": None,
+                            "location": None,
+                            "amount": -3.0,
+                        },
+                    ]
+                }
+            ]
+        },
+    ]
+    original = deepcopy(scenarios)
+
+    identities = get_list_unique_acts(scenarios)
+
+    assert isinstance(identities, list)
+    assert len(identities) == 6
+    assert set(identities) == {
+        ("supplier", "material", None, "CH", "kilogram", "production"),
+        ("supplier", "material", None, "CH", "kilogram", "technosphere"),
+        ("supplier", "material", None, "CH", "ton", "production"),
+        ("supplier", "material", None, "US", "kilogram", "production"),
+        ("emission", None, ("air", "urban"), None, "kilogram", "biosphere"),
+        ("emission", None, ("air", "rural"), None, "kilogram", "biosphere"),
+    }
+    assert scenarios == original
+
+
 def test_simapro_units():
     simapro_units = get_simapro_units()
     assert simapro_units["cubic meter-year"] == "m3y"

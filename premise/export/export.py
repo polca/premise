@@ -253,29 +253,30 @@ def biosphere_flows_dictionary(version):
 
 
 def get_list_unique_acts(scenarios: List[dict]) -> list:
-    """
-    Get a list of unique activities from a list of databases
-    :param scenarios: list of databases
-    :return: list of unique activities
+    """Return distinct exchange identities across scenario inventories.
+
+    Identities are (name, product, categories, location, unit, type); amounts
+    and input codes do not affect identity. Optional fields default to None.
+    The returned list follows set iteration order, not a stable sort order.
+
+    :param scenarios: scenario dictionaries containing inventory databases
+    :return: list of unique exchange identities
     """
 
-    list_unique_acts = []
-    for db in scenarios:
-        for ds in db["database"]:
-            list_unique_acts.extend(
-                [
-                    (
-                        a["name"],
-                        a.get("product"),
-                        a.get("categories"),
-                        a.get("location"),
-                        a["unit"],
-                        a["type"],
-                    )
-                    for a in ds["exchanges"]
-                ]
-            )
-    return list(set(list_unique_acts))
+    identities = {
+        (
+            exchange["name"],
+            exchange.get("product"),
+            exchange.get("categories"),
+            exchange.get("location"),
+            exchange["unit"],
+            exchange["type"],
+        )
+        for scenario in scenarios
+        for activity in scenario["database"]
+        for exchange in activity["exchanges"]
+    }
+    return list(identities)
 
 
 bio_flows_correspondence = get_correspondence_bio_flows()
