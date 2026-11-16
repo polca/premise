@@ -236553,6 +236553,11 @@
               }
             }
           ]
+        },
+        "model_review_extension": {
+          "review_path": "export/uvek_hydrogen_train_ferrosilicon_312_review.json",
+          "review_sha256": "4422bc1c643e1f8eaf05d7ecd9c147a3a4732105ec852cfdfe584a4c9488589d",
+          "prior_profile_physics_unchanged": true
         }
       },
       "limitations": [
@@ -236570,7 +236575,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "e18554476fbc003fe2415fda12a4dd41c02ea25e6dcf3b5475d222518b117e52"
+          "fingerprint": "2d4f070564d55e6f7e23305f1323ab22303aa03ff8b1e58ceabef7c8b53fb879"
         }
       ]
     },
@@ -298486,6 +298491,365 @@
             "version": "2025"
           },
           "fingerprint": "8908a4e3ea5f0e99dafa41f476288b490c2eaca3726ce48c646a0c9f85924b3c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ab66d17baa663f1c",
+      "operation": "replace",
+      "mapping_method": "reviewed_ferrosilicon_inventory_reconstruction",
+      "review_path": "export/uvek_hydrogen_train_ferrosilicon_312_review.json",
+      "review_sha256": "4422bc1c643e1f8eaf05d7ecd9c147a3a4732105ec852cfdfe584a4c9488589d",
+      "authorization": "Standing user autonomous modelling approval; reuse the reviewed complete older model as an explicit screening proxy and retain audit provenance.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for ferrosilicon",
+          "reference product": "ferrosilicon",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_inventory_sha256": "5877199b211a3303dde680efdfbb23502044f9ceb9da86285395d7226f4bebbf",
+        "source_metadata_sha256": "189f8d66e7fb5bd307ef66c5ffc2ed124c0b84239f58be6ed78f84295c25958d",
+        "recipe_id": "train-312-ferrosilicon-market-reviewed-historical-manufacturing",
+        "bindings": [
+          {
+            "source_identity": {
+              "name": "ferrosilicon production",
+              "reference product": "ferrosilicon",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "target": {
+              "recipe": "ferrosilicon-39-production-cn",
+              "inventory_source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            "quantity_and_marginal_uncertainty_preserved": true
+          },
+          {
+            "source_identity": {
+              "name": "ferrosilicon production",
+              "reference product": "ferrosilicon",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "target": {
+              "recipe": "ferrosilicon-39-production-row",
+              "inventory_source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            "quantity_and_marginal_uncertainty_preserved": true
+          },
+          {
+            "source_identity": {
+              "name": "market group for transport, freight, inland waterways, barge, diesel",
+              "reference product": "transport, freight, inland waterways, barge, diesel",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "quantity_and_marginal_uncertainty_preserved": true
+          },
+          {
+            "source_identity": {
+              "name": "market group for transport, freight, lorry, diesel, unspecified",
+              "reference product": "transport, freight, lorry, diesel, unspecified",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "quantity_and_marginal_uncertainty_preserved": true
+          },
+          {
+            "source_identity": {
+              "name": "market for transport, freight, sea, bulk carrier for dry goods, heavy fuel oil",
+              "reference product": "transport, freight, sea, bulk carrier for dry goods, heavy fuel oil",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "quantity_and_marginal_uncertainty_preserved": true
+          },
+          {
+            "source_identity": {
+              "name": "market group for transport, freight, train, fleet average",
+              "reference product": "transport, freight, train, fleet average",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "quantity_and_marginal_uncertainty_preserved": true
+          }
+        ],
+        "nested_recipe_inspections": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source": {
+              "location": "CH",
+              "name": "market for inert waste",
+              "reference product": "inert waste",
+              "unit": "kilogram"
+            },
+            "approved_recipe_source_omissions": {
+              "deferred-waste-market-bad1b3a323f58dd0d12d": [
+                {
+                  "original_index": 1,
+                  "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens.",
+                  "source_activity": {
+                    "location": "CH",
+                    "name": "market for inert waste",
+                    "reference product": "inert waste",
+                    "unit": "kilogram"
+                  },
+                  "source_exchange": {
+                    "amount": -1.0,
+                    "loc": -1.0,
+                    "location": "CH",
+                    "name": "clinker production",
+                    "reference product": "inert waste",
+                    "type": "technosphere",
+                    "uncertainty type": 0,
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "932df6be65bcc9d6d6ddb17214d77e19298759e7c261b8aa74ce9bcfe0f0671b",
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "system_model": "cutoff",
+                    "version": "3.9"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source": {
+              "location": "RoW",
+              "name": "market for inert waste",
+              "reference product": "inert waste",
+              "unit": "kilogram"
+            },
+            "approved_recipe_source_omissions": {
+              "deferred-titanium-inert-56c49e46b8a65138c045": [
+                {
+                  "original_index": 2,
+                  "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+                  "source_activity": {
+                    "location": "RoW",
+                    "name": "market for inert waste",
+                    "reference product": "inert waste",
+                    "unit": "kilogram"
+                  },
+                  "source_exchange": {
+                    "amount": -0.0004874542674927177,
+                    "loc": -0.0004874542674927177,
+                    "location": "BR",
+                    "name": "clinker production",
+                    "reference product": "inert waste",
+                    "type": "technosphere",
+                    "uncertainty type": 0,
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "system_model": "cutoff",
+                    "version": "3.9"
+                  }
+                },
+                {
+                  "original_index": 3,
+                  "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+                  "source_activity": {
+                    "location": "RoW",
+                    "name": "market for inert waste",
+                    "reference product": "inert waste",
+                    "unit": "kilogram"
+                  },
+                  "source_exchange": {
+                    "amount": -0.06281127794067003,
+                    "loc": -0.06281127794067003,
+                    "location": "US",
+                    "name": "clinker production",
+                    "reference product": "inert waste",
+                    "type": "technosphere",
+                    "uncertainty type": 0,
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "system_model": "cutoff",
+                    "version": "3.9"
+                  }
+                },
+                {
+                  "original_index": 4,
+                  "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+                  "source_activity": {
+                    "location": "RoW",
+                    "name": "market for inert waste",
+                    "reference product": "inert waste",
+                    "unit": "kilogram"
+                  },
+                  "source_exchange": {
+                    "amount": -0.6200088643474869,
+                    "loc": -0.6200088643474869,
+                    "location": "RoW",
+                    "name": "clinker production",
+                    "reference product": "inert waste",
+                    "type": "technosphere",
+                    "uncertainty type": 0,
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "system_model": "cutoff",
+                    "version": "3.9"
+                  }
+                },
+                {
+                  "original_index": 5,
+                  "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+                  "source_activity": {
+                    "location": "RoW",
+                    "name": "market for inert waste",
+                    "reference product": "inert waste",
+                    "unit": "kilogram"
+                  },
+                  "source_exchange": {
+                    "amount": -4.286739848569684e-06,
+                    "loc": -4.286739848569684e-06,
+                    "location": "CO",
+                    "name": "clinker production",
+                    "reference product": "inert waste",
+                    "type": "technosphere",
+                    "uncertainty type": 0,
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "system_model": "cutoff",
+                    "version": "3.9"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source": {
+              "location": "Europe without Switzerland",
+              "name": "market for inert waste",
+              "reference product": "inert waste",
+              "unit": "kilogram"
+            },
+            "approved_recipe_source_omissions": {
+              "deferred-concrete-ccc89e73133fcd6a3b64": [
+                {
+                  "original_index": 2,
+                  "rationale": "Independently verified production-only allocated clinker terminal: zero nonproduction exchanges, source LCI contribution exactly zero. Retain signed source quantity in this audit. No invented landfill, fuel burden, recovery credit or renormalization; no claim that physical kiln treatment is burden-free.",
+                  "source_activity": {
+                    "location": "Europe without Switzerland",
+                    "name": "market for inert waste",
+                    "reference product": "inert waste",
+                    "unit": "kilogram"
+                  },
+                  "source_exchange": {
+                    "amount": -0.5648257344156875,
+                    "loc": -0.5648257344156875,
+                    "location": "Europe without Switzerland",
+                    "name": "clinker production",
+                    "reference product": "inert waste",
+                    "type": "technosphere",
+                    "uncertainty type": 0,
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "ff5e2fc0bee26cda7715686a10e4ed5dcce2d051a415e7cf51f0c4c41adb4d0c",
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "system_model": "cutoff",
+                    "version": "3.9"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "inventory_model_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "model_recipe_count": 21,
+        "model_zero_stock_count": 0,
+        "model_literal_omission_count": 6
+      },
+      "limitations": [
+        "Exact source3.12 cut-off FeSi market screening decision. Preserve both current CN/RoW producer shares and all four current final-delivery entries, including source3.12 marginal uncertainty and pedigree. Caller signed kg, formulas and uncertainty retain factor +1. Source and model references are positive one kg of ferrosilicon made by an electric-arc route; no alloy-grade, purity, yield or energy multiplier is inferred.",
+        "Use the complete already reviewed source3.9-derived native manufacturing inventories as explicit older-technology proxies for the two source3.12 production portions. The source3.12 factory internals, country energy mix, waste routes, allocation and internal uncertainty are replaced by that historical model; their current values are not claimed preserved. Native UVEK suppliers and canonical ecoinvent3.10 biosphere remain the calculation background. Production totals, technology/grade differences and score effects remain screening limitations, not LCIA equivalence.",
+        "The older model retains six literal source3.9 allocated clinker-terminal omissions with their original source inventories, signed exchanges, owner, reference basis and profile. They are not omissions from the current source3.12 factories. The newer direct inert-waste markets have no clinker portions and are not relabelled as empty or burden-free. Model and caller provenance stay distinct; no source3.12 treatment or recovery credit is invented.",
+        "All prior reviewed manufacturing-model limitations remain applicable, including geographic fuel/grid proxies, native biosphere exclusions, wastewater, residual-treatment, allocation and internal uncertainty differences. No zero-stock helper occurs in the reused model closure. No consequential, reverse or unreviewed source-version permission is added."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f138031624b23728dc438ef1ae62b0bd1b285e282d0ae16b129df31823338a7d"
         }
       ]
     }

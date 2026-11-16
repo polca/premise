@@ -1,0 +1,132 @@
+{
+  "date": "2026-11-16",
+  "background": {
+    "technosphere": {
+      "family": "uvek",
+      "version": "2026",
+      "system_model": "cutoff"
+    },
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.10"
+    }
+  },
+  "rule_id": "bp-ab66d17baa663f1c",
+  "review_sha256": "4422bc1c643e1f8eaf05d7ecd9c147a3a4732105ec852cfdfe584a4c9488589d",
+  "source_and_model_scopes": {
+    "new_source_scope": {
+      "family": "ecoinvent",
+      "version": "3.12",
+      "system_model": "cutoff"
+    },
+    "model_source_scope": {
+      "family": "ecoinvent",
+      "version": "3.9",
+      "system_model": "cutoff"
+    },
+    "six_literal_model_omissions_not_relabelled_as_caller_omissions": true,
+    "rebound_older_scopes": [
+      {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "old_physical_rule_unchanged": true
+      }
+    ],
+    "review_sha256": "4422bc1c643e1f8eaf05d7ecd9c147a3a4732105ec852cfdfe584a4c9488589d"
+  },
+  "current_market_entries_retained": 6,
+  "current_final_delivery_entries": 4,
+  "existing_model_recipes_reused_unchanged": 21,
+  "old_model_literal_omissions_preserved": 6,
+  "direct_source_312_component_rules_not_approved": 49,
+  "current_manufacturer_internal_inventory_retained": false,
+  "score_equivalence_claimed": false,
+  "runtime_change": {
+    "Premise_Python_changed": false,
+    "Brightpath_runtime_modules_changed": [
+      "brightpath/background/uvek_import.py"
+    ],
+    "reason": "Reproduced historical-model omission ownership failure; preserve separate declared caller and model source profiles."
+  },
+  "checks": {
+    "Brightpath_selected_tests_passed": 112,
+    "Premise_completed_tests_passed": 75,
+    "Premise_broader_run_deliberately_interrupted": true,
+    "Premise_run_note": "New signed/cold/warm FeSi cases, direct train, three-market and omission files completed before broader historical approval cases. Broader run stopped after 75 passing tests; not an entire-suite pass.",
+    "existing_default_materializer_full_object_parity_cases": 2,
+    "native_target_versions_tested": [
+      "2025",
+      "2026"
+    ],
+    "caller_amounts_tested": [
+      -2,
+      2
+    ],
+    "source_biosphere_version": "3.12",
+    "target_biosphere_version": "3.10",
+    "entire_repository_suites_run": false
+  },
+  "reproducible_generation": {
+    "count": 3,
+    "resources": [
+      {
+        "name": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "byte_identical": true
+      },
+      {
+        "name": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "byte_identical": true
+      },
+      {
+        "name": "ecoinvent-to-uvek-2025.json",
+        "sha256": "512973984b982c3ed984c31bc9bcd4c51ad361dcf2451fe395a363ed3f16d4b5",
+        "byte_identical": true
+      }
+    ]
+  },
+  "actual_train_import": {
+    "roots": 6,
+    "foregrounds": 34,
+    "remaining_first_cohort_rule_ids": [
+      "bp-b7606642f4256898"
+    ],
+    "remaining_first_cohort_unapproved_rule_count": 1,
+    "remaining_category": "Mixed-plastic waste treatment and collection",
+    "later_source_cohorts_complete": false,
+    "whole_train_sector_qualified": false,
+    "new_regular_Brightway_databases": 0,
+    "archive_freshness": "Recorded snapshot 20261110T030235Z-613ea498808a; live freshness not checked."
+  },
+  "cleanup": {
+    "owned_duplicate_generation_files_removed": [
+      {
+        "name": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "bytes": 18596725,
+        "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3"
+      },
+      {
+        "name": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "bytes": 18596319,
+        "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a"
+      },
+      {
+        "name": "ecoinvent-to-uvek-2025.json",
+        "bytes": 70333565,
+        "sha256": "512973984b982c3ed984c31bc9bcd4c51ad361dcf2451fe395a363ed3f16d4b5"
+      }
+    ],
+    "bytes_released": 107526609,
+    "regular_Brightway_databases_changed": false,
+    "installed_package_latest_wheel_and_active_combined_checkpoint_preserved": true
+  },
+  "operational_sectors": 12,
+  "remaining_unqualified_sectors": 7,
+  "latest_written_export_sector_count": 11,
+  "notebook_changed": false,
+  "goal_complete": false
+}
