@@ -70,3 +70,12 @@ The actual truck preparation retry reduces its first source cohort from 84 to
 49 pending rules. The truck update and export are still unfinished, and the
 overall verified count remains 14 of 19 sectors. See the
 [verification record](uvek-trucks-native-38-verification.json).
+
+The installed packages pass another 26 group and integrity checks. Premise and
+Brightpath runtime modules load from the isolated installed environment, with
+packaged review/mapping bytes and the dependency pin matching the committed
+checkouts. The ledger audit retains every previous operation: 35 are added and
+only the nine recorded approvals for the five extended rules are refreshed.
+The colleague notebook workflow is unchanged. Verified temporary resource
+copies, superseded test wheels and isolated build output were cleaned; source
+databases, current test artifacts and the last verified exports remain.

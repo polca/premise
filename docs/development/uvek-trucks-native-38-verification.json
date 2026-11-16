@@ -514,5 +514,40 @@
     "authoring_checks_in_those_files": 18,
     "additional_archive_checks": 4,
     "runtime_and_generator_Python_unchanged": true
+  },
+  "installed_package_checks": {
+    "status": "installed_truck_mapping_checks_passed",
+    "Brightpath_source_revision": "06e28c01aa67401d374a86e0e30dac40fb59ace1",
+    "installation": "Wheels built from committed checkouts; GitHub availability checked separately after batch push.",
+    "runtime_source_checkout_modules_loaded": false,
+    "Premise_approval_ledger_and_dependency_pin_match_checkout": true,
+    "packaged_review_and_resource_bytes_match_checkout": true,
+    "review_sha256": "ea21ff7ebd9021b4a897e25f72516c979a9d8ab12fe6da05715b852c453b1d2f",
+    "tests_passed": 26,
+    "wheel_sha256": {
+      "premise-2.6.0-py3-none-any.whl": "9306f75c98865e790caf2ae54b2a09fae6e93221d75920666429546f0e1a140d",
+      "brightpath-1.0.0a14-py3-none-any.whl": "c8e241b0105a2959365af5e28183d840a634143bc0a025b704fb18bba0d63de3"
+    },
+    "new_Brightway_databases": 0
+  },
+  "approval_ledger_audit": {
+    "prior_ledger_operations_retained": true,
+    "new_operations": 35,
+    "previous_changed_operations": 9,
+    "only_previous_source_profiles_changed_are_the_five_explicit_extensions": true,
+    "all_other_ledger_operations_identical": true
+  },
+  "batch_cleanup": {
+    "retired_owned_bytes": 239331128,
+    "artifacts": {
+      "trucks-native-38-generated/ecoinvent-to-ecoinvent-3.10-biosphere.json": 18596319,
+      "trucks-native-38-generated/ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": 18596725,
+      "trucks-native-38-generated/ecoinvent-to-uvek-2025.json": 70646577,
+      "dolomite-tin-installed-wheels/premise-2.6.0-py3-none-any.whl": 22902544,
+      "dolomite-tin-installed-wheels/brightpath-1.0.0a14-py3-none-any.whl": 45664621,
+      "premise-clic-worktree/build": 62924342
+    },
+    "scope": "Verified generated resource copies, superseded test wheels and isolated-worktree build output. Source/biosphere databases, current test wheels, latest verified and fallback exports and active checkpoints retained.",
+    "Brightway_databases_deleted": 0
   }
 }
