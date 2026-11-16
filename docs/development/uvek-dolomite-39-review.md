@@ -33,3 +33,10 @@ The actual battery preparation retry reduces its first source-version cohort
 from nine to eight pending rules. This is not completion of the battery sector;
 14 of the 19 sectors remain qualified. See the
 [verification record](uvek-dolomite-39-verification.json).
+
+The installable Premise and Brightpath wheels pass another 34 checks covering
+both new decisions, permissions, cache replay and resource integrity. Imported
+modules come from the isolated installed environment; packaged mapping bytes
+and Premise's pinned dependency match the committed checkouts. Superseded test
+wheels, temporary generated copies and the isolated build directory were cleaned
+after checking their ownership and, where applicable, checksums.

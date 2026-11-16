@@ -139,5 +139,36 @@
   "runtime_or_generator_Python_changed": false,
   "new_Brightway_databases": 0,
   "qualified_sector_count": 14,
-  "newly_qualified_sectors": 0
+  "newly_qualified_sectors": 0,
+  "packaged_install_check": {
+    "status": "installed_wheel_dolomite_and_tin_checks_passed",
+    "Brightpath_source_revision": "b641a4c739919926c06e884e106a4aa32dad9dac",
+    "installation": "Wheels built from committed local checkouts; GitHub distribution checked separately after batch push.",
+    "source_checkout_modules_loaded": false,
+    "Premise_approval_ledger_and_dependency_pin_match_checkout": true,
+    "packaged_review_and_resource_bytes_match_checkout": true,
+    "review_sha256": {
+      "uvek_battery_dolomite_39_review.json": "ee4cb7409214d35dba7b1fc1ca7bcaab6bacf43c984344b18fa520ad072c1415",
+      "uvek_truck_tin_38_review.json": "650f4a431d99fd6f454ea466634480d0db7f91ae216acbd9ef2efd28b25b2f95"
+    },
+    "tests_passed": 34,
+    "wheel_sha256": {
+      "premise-2.6.0-py3-none-any.whl": "fe8fe9e16f68cf7544b5602ff04314f0b674ae273354811a3db0767620347c77",
+      "brightpath-1.0.0a14-py3-none-any.whl": "bdd1ee7315b81d2d1fd3c3e225a481361dfdec905d1ea2af1677847e8412d2a3"
+    },
+    "new_Brightway_databases": 0
+  },
+  "batch_cleanup": {
+    "retired_owned_bytes": 239054538,
+    "artifacts": {
+      "dolomite-39-generated/ecoinvent-to-ecoinvent-3.10-biosphere.json": 18596319,
+      "dolomite-39-generated/ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": 18596725,
+      "dolomite-39-generated/ecoinvent-to-uvek-2025.json": 70612783,
+      "manganese-installed-wheels/premise-2.6.0-py3-none-any.whl": 22898975,
+      "manganese-installed-wheels/brightpath-1.0.0a14-py3-none-any.whl": 45649768,
+      "premise-clic-worktree/build": 62699968
+    },
+    "scope": "Temporary byte-identical generated resources, previous test wheels and the isolated worktree build directory. Current installed packages and test wheels, source databases, biosphere, latest verified export, fallback export and active checkpoints retained.",
+    "Brightway_databases_deleted": 0
+  }
 }

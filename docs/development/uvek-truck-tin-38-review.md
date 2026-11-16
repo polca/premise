@@ -23,3 +23,8 @@ warnings and withdrawal. Two signed native-supplier inventory calculations are
 finite without writing a database. The actual truck preparation retry clears
 tin from its first source-version cohort; other required mappings still stop
 the update. See the [verification record](uvek-truck-tin-38-verification.json).
+
+The matching installable packages pass a further 34 combined dolomite/tin and
+integrity checks, with no imports from either source checkout. The colleague
+instructions pin this reviewed Brightpath revision. The existing notebook
+workflow is unchanged; a complete truck run remains unfinished.
