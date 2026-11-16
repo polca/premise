@@ -11,6 +11,7 @@ import numpy as np
 import pandas as pd
 import yaml
 from ..transport.car_energy import car_class, fuel_balance, fuel_spec, minimum_energy
+from ..transport.vehicle_energy import vehicle_energy_exchange
 from ..inventory.inventory_normalization import (
     normalize_inventory_numeric_types,
     normalize_inventory_uncertainty,
@@ -2422,7 +2423,7 @@ class TransportValidation(BaseDatasetValidator):
         relevant_ds = [
             ds
             for ds in self.database
-            if ds["name"].startswith(vehicle_name)
+            if ds["name"].casefold().startswith(vehicle_name.casefold())
             and ds["location"] in self.regions
             and any(
                 fuel in ds["name"] for fuel in ["gasoline", "diesel", "compressed gas"]
@@ -2433,7 +2434,8 @@ class TransportValidation(BaseDatasetValidator):
             parts = ds["name"].split(", ")
             if len(parts) < 3:
                 continue
-            powertrain = parts[-3]
+            # Optional source-model year/technology labels follow the powertrain.
+            powertrain = ds["name"][len(vehicle_name) :].lstrip(", ").split(", ")[0]
             if powertrain not in self.exhaust:
                 continue
             euro_class = transport_emission_class(ds["name"])
@@ -2541,16 +2543,19 @@ class TransportValidation(BaseDatasetValidator):
             if "plugin" in ds["name"]:
                 continue
 
-            if ds["name"].startswith(vehicle_name) and ds["location"] in self.regions:
+            if (
+                ds["name"].casefold().startswith(vehicle_name.casefold())
+                and ds["location"] in self.regions
+            ):
                 if (
                     vehicle_name == "transport, passenger car"
                     and car_class(ds["name"]) is not None
                 ):
                     self.check_car_fuel_energy(ds)
                     continue
-                if vehicle_name == "transport, passenger car" and ds["name"].startswith(
-                    "transport, passenger car, battery electric,"
-                ):
+                if vehicle_name == "transport, passenger car" and ds[
+                    "name"
+                ].casefold().startswith("transport, passenger car, battery electric,"):
                     self.check_car_electric_energy(ds, elec_minimum, elec_maximum)
                     continue
                 electricity_consumption = sum(
@@ -2654,13 +2659,7 @@ class TransportValidation(BaseDatasetValidator):
         electricity = [
             e
             for e in ds["exchanges"]
-            if e.get("type") == "technosphere"
-            and (
-                e.get("product", "").startswith("electricity,")
-                or e.get("name", "").startswith(
-                    ("market for electricity", "market group for electricity")
-                )
-            )
+            if e.get("unit") == "kilowatt hour" and vehicle_energy_exchange(e)
         ]
         production = [e for e in ds["exchanges"] if e.get("type") == "production"]
         valid = (
@@ -2763,7 +2762,7 @@ class TransportValidation(BaseDatasetValidator):
 
         for ds in self.database:
             if (
-                not ds.get("name", "").startswith(vehicle_name)
+                not ds.get("name", "").casefold().startswith(vehicle_name.casefold())
                 or COMPRESSION_KEY not in ds
                 or ds.get("emptied", False)
             ):
@@ -2817,7 +2816,7 @@ class TransportValidation(BaseDatasetValidator):
 
         providers = {activity_key(ds): ds for ds in self.database}
         for ds in self.database:
-            if not ds.get("name", "").startswith(vehicle_name):
+            if not ds.get("name", "").casefold().startswith(vehicle_name.casefold()):
                 continue
             try:
                 balance = vehicle_fuel_carbon(ds, providers)

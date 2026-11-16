@@ -108,6 +108,41 @@ def test_above_floor_unchanged(energy):
     assert ds == before
 
 
+@pytest.mark.parametrize(
+    "fuel,native_supplier",
+    [
+        ("petrol", "Fuel supply for gasoline vehicles"),
+        ("diesel", "Fuel supply for diesel vehicles"),
+        ("natural gas", "Fuel supply for gas vehicles"),
+    ],
+)
+def test_native_names_use_the_shared_energy_floor_without_changing_fixed_inputs(
+    fuel, native_supplier
+):
+    ds = car(0.4, fuel=fuel)
+    powertrain = {
+        "petrol": "gasoline",
+        "diesel": "diesel",
+        "natural gas": "compressed gas",
+    }[fuel]
+    ds["name"] = f"Transport, passenger car, {powertrain}, Compact, 2021, EURO-6d"
+    ds["exchanges"][1]["name"] = native_supplier
+    ds["exchanges"][1].update(
+        {"uncertainty type": 3, "loc": ds["exchanges"][1]["amount"], "scale": 0.001}
+    )
+    before = deepcopy(ds)
+    assert car_class(ds["name"]) == (powertrain, "compact")
+    event = apply_floor(ds)
+    assert event["floor correction factor"] == pytest.approx(0.852 / 0.4)
+    assert fuel_balance(ds)[0] == pytest.approx(0.852)
+    assert ds["exchanges"][1]["amount"] == ds["exchanges"][1]["loc"]
+    assert ds["exchanges"][1]["scale"] == pytest.approx(0.001 * 0.852 / 0.4)
+    for index in (0, 2, 4, 5):
+        assert ds["exchanges"][index] == before["exchanges"][index]
+    once = deepcopy(ds)
+    assert apply_floor(ds) is None and ds == once
+
+
 def test_multiple_fuels_and_nonunit_production():
     ds = car(0.4, production=2)
     extra = car(0.4, fuel="diesel", production=2)

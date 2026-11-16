@@ -1,5 +1,23 @@
 """Identify purchased vehicle energy without selecting fuel-labelled equipment."""
 
+from functools import lru_cache
+
+from ..core.filesystem_constants import DATA_DIR
+from ..core.runtime_cache import load_yaml_cached
+
+
+@lru_cache(maxsize=1)
+def _energy_aliases():
+    definitions = load_yaml_cached(
+        DATA_DIR / "transport" / "vehicle_energy_aliases.yaml"
+    )
+    return {(name, row["unit"]): row["product"] for name, row in definitions.items()}
+
+
+def canonical_vehicle_energy_product(product, unit):
+    """Interpret exact declared labels without changing the supplier or unit."""
+    return _energy_aliases().get((product, unit), product)
+
 
 def vehicle_energy_exchange(exchange):
     """Match an energy product and unit, including direct or market suppliers."""
@@ -12,6 +30,7 @@ def vehicle_energy_exchange(exchange):
             .removeprefix("market for ")
             .removeprefix("market group for ")
         )
+    product = canonical_vehicle_energy_product(product, exchange.get("unit"))
     for prefix, units in (
         ("electricity", {"kilowatt hour"}),
         ("hydrogen", {"kilogram"}),

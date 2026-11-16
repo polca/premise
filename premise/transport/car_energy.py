@@ -12,6 +12,7 @@ import yaml
 
 from ..core.filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .vehicle_emissions import fuel_proportional_emission
+from .vehicle_energy import canonical_vehicle_energy_product
 
 
 @lru_cache(maxsize=1)
@@ -28,6 +29,7 @@ def fuel_properties():
 
 @lru_cache(maxsize=2048)
 def car_class(name):
+    name = name.casefold()
     if not name.startswith("transport, passenger car, "):
         return None
     parts = name.split(", ")
@@ -38,9 +40,11 @@ def car_class(name):
 
 @lru_cache(maxsize=4096)
 def fuel_spec(name, unit):
-    if not name.startswith(("market for ", "market group for ")):
-        return None
-    stem = name.removeprefix("market for ").removeprefix("market group for ")
+    stem = canonical_vehicle_energy_product(name, unit)
+    if stem == name:
+        if not name.startswith(("market for ", "market group for ")):
+            return None
+        stem = name.removeprefix("market for ").removeprefix("market group for ")
     family = next(
         (
             f

@@ -1,0 +1,35 @@
+# Exact native energy-product labels for the existing vehicle classifiers.
+# This interprets purchased energy; it neither renames suppliers nor authorizes
+# background mappings, pressure changes or unit conversions. Fuel calorific
+# values and the provisional car floor retain their existing shared policies.
+---
+Fuel supply for gasoline vehicles:
+  product: petrol
+  unit: kilogram
+Fuel supply for diesel vehicles:
+  product: diesel
+  unit: kilogram
+Fuel supply for gas vehicles:
+  product: natural gas
+  unit: kilogram
+Petrol, at regional storage:
+  product: petrol
+  unit: kilogram
+Petrol, unleaded, at regional storage:
+  product: petrol
+  unit: kilogram
+Diesel, at regional storage:
+  product: diesel
+  unit: kilogram
+Natural gas, from high pressure network (1-5 bar), at service station:
+  product: natural gas
+  unit: kilogram
+Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station:
+  product: hydrogen
+  unit: kilogram
+Hydrogen production, steam methane reforming of natural gas, 25 bar:
+  product: hydrogen
+  unit: kilogram
+Electricity, low voltage, at grid:
+  product: electricity, low voltage
+  unit: kilowatt hour

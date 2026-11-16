@@ -14,6 +14,15 @@ from premise.vehicle_energy import vehicle_energy_exchange
         ("hydrogen, gaseous, low pressure", "kilogram"),
         ("electricity, low voltage", "kilowatt hour"),
         ("liquefied petroleum gas", "kilogram"),
+        ("Fuel supply for gasoline vehicles", "kilogram"),
+        ("Fuel supply for gas vehicles", "kilogram"),
+        ("Fuel supply for diesel vehicles", "kilogram"),
+        ("Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station", "kilogram"),
+        (
+            "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+            "kilogram",
+        ),
+        ("Electricity, low voltage, at grid", "kilowatt hour"),
     ],
 )
 @pytest.mark.parametrize(
@@ -38,6 +47,13 @@ def test_vehicle_energy_identification_uses_products_and_units(product, unit, su
         ("market for electricity meter", "electricity meter", "unit"),
         ("market for diesel", "diesel", "unit"),
         ("market for electricity", "electricity", "kilogram"),
+        ("Hydrogen chloride, at plant", "Hydrogen chloride, at plant", "kilogram"),
+        ("Fuel supply for gas vehicles", "Fuel supply for gas vehicles", "cubic meter"),
+        (
+            "Fuel supply for gasoline vehicles",
+            "Fuel supply for gasoline vehicles",
+            "unit",
+        ),
     ],
 )
 def test_fuel_labelled_equipment_and_wrong_units_are_not_energy(name, product, unit):
