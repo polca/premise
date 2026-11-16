@@ -206,3 +206,137 @@ def test_relinking_keeps_distinct_origins_without_hiding_exact_duplicates(
     assert (edges[0]["comment"] == edges[1]["comment"]) is duplicate
     report = validate(owner.database)
     assert bool(rule_issues(report, "GRAPH.DUPLICATE_SUPPLIER")) is duplicate
+
+
+def test_shared_train_update_refreshes_native_carbon_origin_and_keeps_recorded_total(
+    monkeypatch,
+):
+    from copy import deepcopy
+    from types import SimpleNamespace
+    from premise.fuels.properties import PROPERTIES_KEY
+    from premise.inventory.inventory_store import get_scenario_inventory
+    import premise.inventory.inventory_imports as imports
+    import premise.transport.transport as module
+
+    fuel_name = "Diesel, at regional storage"
+    rail_name = "Transport, freight, rail, diesel, with particle filter"
+    fuel = {
+        "name": fuel_name,
+        "reference product": fuel_name,
+        "location": "EUR",
+        "unit": "kilogram",
+        PROPERTIES_KEY: {
+            "reference unit": "kilogram",
+            "canonical market name": "market for diesel",
+            "fossil CO2 kg per unit": 1.6,
+            "non-fossil CO2 kg per unit": 1.6,
+            "unresolved CO2 kg per unit": 0,
+        },
+        "exchanges": [],
+    }
+    rail = {
+        "name": rail_name,
+        "reference product": rail_name,
+        "location": "EUR",
+        "unit": "ton kilometer",
+        "exchanges": [
+            {
+                "name": fuel_name,
+                "product": fuel_name,
+                "location": "EUR",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 0.1,
+            },
+            {
+                "name": "Carbon dioxide, fossil",
+                "categories": ("air", "unspecified"),
+                "unit": "kilogram",
+                "type": "biosphere",
+                "amount": 0.2,
+            },
+        ],
+    }
+    for activity in (fuel, rail):
+        activity["exchanges"].insert(
+            0,
+            {
+                "name": activity["name"],
+                "product": activity["reference product"],
+                "location": activity["location"],
+                "unit": activity["unit"],
+                "type": "production",
+                "amount": 1,
+            },
+        )
+    unmapped = deepcopy(rail)
+    unmapped_name = "Transport, freight, rail, diesel, without particle filter"
+    unmapped.update(name=unmapped_name, **{"reference product": unmapped_name})
+    unmapped["exchanges"][0].update(name=unmapped_name, product=unmapped_name)
+
+    class PreparedTransport:
+        def __init__(self, **kwargs):
+            self.database = kwargs["database"]
+            self.vehicle_map = {"train, diesel-electric": [rail]}
+            self.cache = {}
+            self.index = {}
+
+        def regionalize_transport_datasets(self):
+            pass
+
+        def create_vehicle_markets(self):
+            pass
+
+        def relink_transport_datasets(self):
+            pass
+
+    monkeypatch.setattr(module, "Transport", PreparedTransport)
+    monkeypatch.setattr(
+        imports,
+        "get_biosphere_code",
+        lambda version: {
+            (name, "air", "unspecified", "kilogram"): code
+            for name, code in [
+                ("Carbon dioxide, fossil", "fossil"),
+                ("Carbon dioxide, non-fossil", "biogenic"),
+            ]
+        },
+    )
+    iam = SimpleNamespace(
+        **{
+            name: None
+            for name in [
+                "passenger_car_fleet",
+                "road_freight_fleet",
+                "bus_fleet",
+                "two_wheelers_fleet",
+                "sea_freight_fleet",
+            ]
+        },
+        rail_freight_fleet=True,
+    )
+    scenario = {
+        "database": [fuel, rail, unmapped],
+        "iam data": iam,
+        "model": "remind",
+        "pathway": "test",
+        "year": 2050,
+    }
+    result = module._update_vehicles(
+        scenario, "train", "2026", "cutoff", family="uvek", biosphere_version="3.10"
+    )
+    updated = next(a for a in get_scenario_inventory(result) if a["name"] == rail_name)
+    carbon = {
+        e["name"]: e["amount"] for e in updated["exchanges"] if e["type"] == "biosphere"
+    }
+    assert carbon == {
+        "Carbon dioxide, fossil": pytest.approx(0.1),
+        "Carbon dioxide, non-fossil": pytest.approx(0.1),
+    }
+    assert sum(carbon.values()) == pytest.approx(0.2)
+    control = next(
+        a for a in get_scenario_inventory(result) if a["name"] == unmapped_name
+    )
+    assert [e["amount"] for e in control["exchanges"] if e["type"] == "biosphere"] == [
+        0.2
+    ]

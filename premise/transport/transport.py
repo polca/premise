@@ -100,7 +100,28 @@ def _update_vehicles(
         # IAM efficiency scaling and any passenger-car energy floor. Rail
         # refreshes classification while retaining its recorded exhaust total.
         update_vehicle_fuel_co2(
-            trspt.database, biosphere_version or version, vehicle_type
+            trspt.database,
+            biosphere_version or version,
+            vehicle_type,
+            recorded_exhaust_filters=(
+                [
+                    {
+                        "exact": True,
+                        "fltr": {
+                            "name": sorted(
+                                {
+                                    a["name"]
+                                    for rows in trspt.vehicle_map.values()
+                                    for a in rows
+                                }
+                            ),
+                            "unit": "ton kilometer",
+                        },
+                    }
+                ]
+                if vehicle_type == "train" and trspt.vehicle_map
+                else ()
+            ),
         )
 
     replace_scenario_inventory(scenario, trspt.database)
