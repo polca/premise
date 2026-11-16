@@ -25,9 +25,9 @@ instead of creating it again. Do not use the default branch for this test.
 
 Record `git rev-parse HEAD` with your results. Use the `premise-CLIC` branch,
 not the default branch. Focused development commits are now published in batches
-of roughly 5-10, so a local progress report can be ahead of GitHub. The already
-published branch contains the runnable three-sector example; pending carbon-
-removal mappings are not needed to run it.
+of roughly 5-10, so a local progress report can be ahead of GitHub. The published branch retains the runnable three-sector example. The wider
+sector status is tracked separately; the notebook still defaults to biomass,
+electricity and heat.
 
 ## 2. Install in a separate environment
 
@@ -45,7 +45,7 @@ already belongs to an environment you need, register a different name and select
 it manually in JupyterLab. Registering a kernel does not move Brightway projects.
 
 Premise installs Brightpath directly from GitHub at
-`9f3267e36224b36a1c54283ff3e1fa774b6445f5`. Installing only the published
+`4117937c6d745dedeb6dd46b1038aa2cdc288730`. Installing only the published
 Brightpath alpha14 package is insufficient. Internet access is needed for the
 installation, biosphere installation and first CLIC inventory download.
 
@@ -53,11 +53,13 @@ If you previously installed another GitHub revision, the unchanged alpha14
 version number can make pip keep it. To update that existing environment explicitly:
 
 ```bash
-python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@9f3267e36224b36a1c54283ff3e1fa774b6445f5"
+python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@4117937c6d745dedeb6dd46b1038aa2cdc288730"
 ```
 
 Restart the notebook kernel after upgrading. A fresh environment uses the pinned
-revision automatically through Premise's requirement.
+revision automatically through Premise's requirement. This revision includes
+the source-3.7 car corrections and historical-stock validation support required
+by the current packaged approval ledger, even when only three sectors are run.
 
 ## 3. Prepare the source data once
 
