@@ -1056,7 +1056,8 @@ def check_scenario_data_file(
         )
 
     try:
-        np.array_equal(df.iloc[:, 6:], df.iloc[:, 6:].astype(float))
+        # Check numeric convertibility without rewriting the scenario values.
+        df.iloc[:, 6:].astype(float)
     except ValueError as e:
         raise TypeError(
             f"All values provided in the time series must be numerical "

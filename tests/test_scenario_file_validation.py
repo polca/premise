@@ -30,6 +30,15 @@ def test_valid_scenario_returns_original_package_without_changing_rows():
     assert rows == before
 
 
+@pytest.mark.parametrize("value", [1, 1.5, "1.25", " 2e-3 ", "inf", "NaN", True])
+def test_convertible_time_series_values_are_accepted_without_rewriting(value):
+    rows = [["baseline", "EUR", "power", "kWh", 1, 2, value]]
+    data = package(rows)
+
+    assert check_scenario_data_file(data, "baseline") is data
+    assert rows[0][-1] is value
+
+
 def test_missing_cells_precede_missing_scenarios_and_variables():
     rows = [["other", "EUR", "power", "kWh", None, 2, None]]
     data = package(rows, variables=("missing",))
