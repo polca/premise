@@ -156,7 +156,7 @@ def get_biosphere_flow_categories(
 
 
 def remove_nones(database: List[dict]) -> List[dict]:
-    """Remove exchanges with ``None`` values from the database.
+    """Remove None-valued fields, replacing each exchange dictionary.
 
     :param database: Wurst inventory database.
     :type database: List[dict]
@@ -164,21 +164,23 @@ def remove_nones(database: List[dict]) -> List[dict]:
     :rtype: List[dict]
     """
 
-    def exists(exchange: Dict[str, Any]) -> Dict[str, Any]:
-        return {key: value for key, value in exchange.items() if value is not None}
-
     for dataset in database:
-        dataset["exchanges"] = [exists(exc) for exc in dataset["exchanges"]]
+        dataset["exchanges"] = [
+            {key: value for key, value in exc.items() if value is not None}
+            for exc in dataset["exchanges"]
+        ]
 
     return database
 
 
 def remove_categories(database: List[dict]) -> List[dict]:
-    """Remove category metadata from datasets and exchanges.
+    """Remove dataset categories and production/technosphere exchange categories.
+
+    Keep categories on biosphere exchanges.
 
     :param database: Wurst inventory database.
     :type database: List[dict]
-    :return: Database without category fields.
+    :return: Database with category metadata removed where appropriate.
     :rtype: List[dict]
     """
     for dataset in database:
@@ -186,12 +188,13 @@ def remove_categories(database: List[dict]) -> List[dict]:
             del dataset["categories"]
         for exc in dataset["exchanges"]:
             try:
-                if exc["type"] in ["production", "technosphere"]:
-                    if "categories" in exc:
-                        del exc["categories"]
+                if (
+                    exc["type"] in ["production", "technosphere"]
+                    and "categories" in exc
+                ):
+                    del exc["categories"]
             except KeyError:
                 print(f"Exchange {exc['name']} in {dataset['name']} has no type")
-                pass
 
     return database
 
