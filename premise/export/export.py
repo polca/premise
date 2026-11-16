@@ -1120,45 +1120,44 @@ def _build_superstructure_db(
 
 
 def check_geographical_linking(scenario, original_database):
+    """Prefer an indexed local supplier for eligible new regional activities.
 
-    # geo = Geomap(scenario["model"])
-
+    Original activity identities, global locations, markets, import/mix/transport
+    names and self-supply exchanges retain their links. Name exclusions remain
+    case-sensitive. Only exchange locations change; the supplier index is read-only.
+    """
     index = scenario.get("index") or {}
-    database = scenario["database"]
-    original_datasets = [
+    original_datasets = {
         (a["name"], a["reference product"], a["location"]) for a in original_database
-    ]
+    }
+    supplier_locations = {}
+    excluded_names = ("import", "mix", "transport")
 
-    datasets_to_check = [
-        ds
-        for ds in database
-        if (ds["name"], ds["reference product"], ds["location"])
-        not in original_datasets
-    ]
-
-    FORBIDDEN = ["import", "mix", "transport"]
-
-    for ds in datasets_to_check:
-        if ds["location"] not in ["GLO", "RoW", "World"]:
-            if "market" not in ds["name"]:
-                for exc in ds["exchanges"]:
-                    if exc["type"] == "technosphere":
-                        if not any(x in exc["name"] for x in FORBIDDEN) and not any(
-                            x in ds["name"] for x in FORBIDDEN
-                        ):
-                            if exc["location"] != ds["location"]:
-                                # check if exchange from the same location as the dataset is available
-                                key = (exc["name"], exc["product"])
-                                if ds["location"] in [
-                                    k["location"] for k in index.get(key, [])
-                                ]:
-                                    # if ds["location"] not in geo.iam_to_ecoinvent_location(exc["location"]):
-                                    if (exc["name"], exc["product"]) != (
-                                        ds["name"],
-                                        ds["reference product"],
-                                    ):
-                                        # there is a better match available
-                                        exc["location"] = ds["location"]
+    for ds in scenario["database"]:
+        name, product, location = ds["name"], ds["reference product"], ds["location"]
+        if (
+            (name, product, location) in original_datasets
+            or location in {"GLO", "RoW", "World"}
+            or "market" in name
+            or any(word in name for word in excluded_names)
+        ):
+            continue
+        for exc in ds["exchanges"]:
+            if (
+                exc["type"] != "technosphere"
+                or any(word in exc["name"] for word in excluded_names)
+                or exc["location"] == location
+            ):
+                continue
+            key = (exc["name"], exc["product"])
+            if key == (name, product):
+                continue
+            locations = supplier_locations.get(key)
+            if locations is None:
+                locations = {provider["location"] for provider in index.get(key, ())}
+                supplier_locations[key] = locations
+            if location in locations:
+                exc["location"] = location
 
     return scenario
 

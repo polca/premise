@@ -181,6 +181,13 @@ recording. Callers certify before choosing an export path and own writing and
 cleanup. Brightway's fast preparation and the final superstructure union checks
 remain separate because they operate on different runtime inventory layouts.
 
+Before standard export validation, geographical linking prefers an indexed
+supplier in the activity's own region for eligible new activities. Original
+activity identities, global locations, markets, import/mix/transport names, and
+self-supply exchanges retain their links. Name exclusions remain case-sensitive.
+Identity lookups use a set; supplier locations are cached only for that call so
+later exports see changes to the supplier index. Only exchange locations change.
+
 ``NewDatabase.get_validation_report()`` and the immutable ``ValidationIssue``,
 ``ValidationRuleResult``, ``ValidationPhaseResult``, ``ValidationReport``, and
 ``PremiseValidationError`` types are exported from ``premise``.
