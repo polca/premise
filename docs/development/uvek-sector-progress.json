@@ -2413,8 +2413,9 @@
         },
         {
           "code": "current_required_import_cohort",
-          "finding": "The real shared car run fetched CLIC archive 20261116T105339Z-a5e07aec4916, newer than the November10 isolated checks. Its first refused source3.10 cohort contains21 correspondences. Eight source3.9 mappings now have focused conversion/replay proofs; the current complete import and sector run remain unfinished.",
-          "remaining_rule_ids": [
+          "finding": "The actual shared preparation clears the reviewed source3.10 cohort and now refuses source3.8 metalworking correspondences. No full car transformation, market validation or sector qualification is claimed.",
+          "review": "docs/development/uvek-passenger-car-source310-verification.json",
+          "reviewed_source310_rule_ids": [
             "bp-15a5350bb1bcdb67",
             "bp-1a39c7b4c1f58b77",
             "bp-37b9b46586e881e7",
@@ -2437,7 +2438,15 @@
             "bp-ef673f7bc19f4581",
             "bp-f7dd94e542cba21d"
           ],
-          "review": "docs/development/uvek-passenger-car-source39-verification.json"
+          "current_source_version": "3.8",
+          "remaining_rule_ids": [
+            "bp-d643951f06313a19",
+            "bp-4844549cc0c07d18",
+            "bp-0028acc612584b3f",
+            "bp-fa83088d5d2b33b6",
+            "bp-25caf9ffefc8a1ab",
+            "bp-2bab3a3e3d0b3ad7"
+          ]
         },
         {
           "code": "sector_integration_unfinished",
@@ -2469,6 +2478,10 @@
         {
           "review": "docs/development/uvek-passenger-car-source39.md",
           "decision": "Approve six independently checked native supplies and two allocated rare-earth processing proxies. Preserve actual oxide identities and source freight; native Nd activity is an explicitly warned burden reference, not a chemical substitution. Four source allocation vectors (348 groups) match their reference process proportionally."
+        },
+        {
+          "review": "docs/development/uvek-passenger-car-source310.md",
+          "decision": "Use fourteen reviewed native supplies, the existing allocated aluminium stock, five explicit historical-model wrappers and a mixed-plastic treatment market preserving its original three treatment shares and freight. No new source omissions or runtime Python changes."
         }
       ],
       "implementation_commits": [
@@ -2483,7 +2496,9 @@
         "Four Premise exact-approval/drift checks passed after the service changes. The installed-wheel frontier also validates the entire approval ledger.",
         "All three forward migration resources regenerate byte-identically; documentation reference generation and --check passed.",
         "Ten focused remaining-source312 tests pass; the same actual import has advanced to its source3.9 cohort. All three forward resources regenerate byte-identically.",
-        "Seven source3.9 migration/replay checks pass; all three forward resources regenerate byte-identically. The first real car attempt identified a newer archive with a source3.10 cohort, which is not qualified yet."
+        "Seven source3.9 migration/replay checks pass; all three forward resources regenerate byte-identically. The first real car attempt identified a newer archive with a source3.10 cohort, which is not qualified yet.",
+        "Eight focused source3.10 migration/replay tests pass; all three forward resources regenerate byte-identically. Full shared car integration remains pending.",
+        "The actual shared preparation clears source3.10 and reaches source3.8; that next cohort still needs review. No sector admission or database write."
       ],
       "integration_exports": [],
       "static_audit": {

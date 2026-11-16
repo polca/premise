@@ -2,8 +2,9 @@
 
 The isolated November 10 car archive's source-3.9 cohort needed eight
 correspondences. The subsequent full workflow downloaded the newer November 16
-archive and stopped first on 21 source-3.10 correspondences. That current archive
-and the complete car run remain unfinished; the results below establish the
+archive and stopped first on 21 source-3.10 correspondences. A later identity/background comparison found the same 48 foregrounds in both
+archives: the newer archive did not introduce that dependency cohort. The
+complete current car run remains unfinished; the results below establish the
 reviewed source-3.9 mappings and focused conversion checks.
 
 Six use

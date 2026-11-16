@@ -1,0 +1,657 @@
+{
+  "date": "2026-11-16",
+  "new_exact_source_310_scopes": 21,
+  "old_scopes_rebound_after_exact_effective_rule_comparison": [
+    {
+      "rule_id": "bp-8a6394dd395bb22d",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-64033d1871a0085f",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-8b6f1fcdfadf34af",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-61babdae6914f05a",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-61babdae6914f05a",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-eb04730488ad462a",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-eb04730488ad462a",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-edf1518533a281df",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.6",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-edf1518533a281df",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-7ca3587cbfe4ce9b",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.6",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-7ca3587cbfe4ce9b",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-82cb48b8f46820d5",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-82cb48b8f46820d5",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-9caeb1b3bd66b612",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-9caeb1b3bd66b612",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.6",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-9caeb1b3bd66b612",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-ef673f7bc19f4581",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-3c10f9aaee8ffe42",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-f7dd94e542cba21d",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-f7dd94e542cba21d",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-4458360e03e22566",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-4f69327dbf9d3e42",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.6",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-4f69327dbf9d3e42",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-4f69327dbf9d3e42",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-61babdae6914f05a",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-edf1518533a281df",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-15a5350bb1bcdb67",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-7ca3587cbfe4ce9b",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-9caeb1b3bd66b612",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-82cb48b8f46820d5",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.7",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-7ca3587cbfe4ce9b",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.7",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-4f69327dbf9d3e42",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.7",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-9caeb1b3bd66b612",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.7",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-61babdae6914f05a",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.6",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-4f69327dbf9d3e42",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-8a6394dd395bb22d",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-8b6f1fcdfadf34af",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-64033d1871a0085f",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-1a39c7b4c1f58b77",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-1a39c7b4c1f58b77",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-e9cdd018f5d75d22",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-37b9b46586e881e7",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-ef673f7bc19f4581",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-15a5350bb1bcdb67",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-68dbc38e44c4b3fe",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-7ca3587cbfe4ce9b",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-edf1518533a281df",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-3c10f9aaee8ffe42",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    }
+  ],
+  "review_sha256": "1338cde4e54f6d7088d1e294649f6e2f1633abe291c8ed019aa800fd0a6729aa",
+  "direct_native_supplies": 14,
+  "existing_allocated_stock": 1,
+  "older_model_wrappers": 5,
+  "current_plastic_market": 1,
+  "runtime_Python_changes": false,
+  "new_source_omissions": 0,
+  "new_Brightway_databases": 0,
+  "car_sector_qualified": false,
+  "tests": {
+    "focused_Brightpath_passed": 8,
+    "focused_Premise_exact_approval_and_drift_passed": 4,
+    "broader_approval_run": {
+      "passed_before_manual_interrupt": 94,
+      "full_suite_completed": false,
+      "reason": "The parametrized historical approval suite was broader than this group; completed the four relevant exact-approval/drift checks and actual car preparation instead."
+    }
+  },
+  "clean_regeneration": [
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+      "identical": true,
+      "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3"
+    },
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+      "identical": true,
+      "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a"
+    },
+    {
+      "file": "ecoinvent-to-uvek-2025.json",
+      "identical": true,
+      "sha256": "92b0e5b99272413d9c5d5557466ad0deb07ecec4a8a6202d9fe31f214c49caa7"
+    }
+  ],
+  "archive": {
+    "archive_metadata": {
+      "created_at": "2026-11-16T10:54:55.973093+00:00",
+      "fingerprint": "a5e07aec49160ee6b32a869f37c455b0cb71bec501d669243b0c6ff8a3bbcc9c",
+      "record_id": 24278693
+    },
+    "roots": 9,
+    "foregrounds": 48,
+    "source_version_counts": {
+      "3.12": 17,
+      "3.9": 14,
+      "3.10": 3,
+      "3.8": 2,
+      "3.7": 12
+    },
+    "source310_foregrounds": [
+      {
+        "name": "dry combustion equipment lifecycle, historical Notter engineering reference",
+        "code": "clic-3e0116e4cec54757a3e837897e0b7f8c",
+        "slug": "dry-combustion-equipment-lifecycle-historical-notter-engineering-reference"
+      },
+      {
+        "name": "fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+        "code": "clic-15167012dba04d39b16719152f4fa8b5",
+        "slug": "fuel-cell-stack-production-1-kwe-proton-exchange-membrane-pem"
+      },
+      {
+        "name": "polymer electrolyte membrane (nafion) production",
+        "code": "clic-971046dd82a24418bab3fa262151aa39",
+        "slug": "polymer-electrolyte-membrane-nafion-production"
+      }
+    ]
+  },
+  "archive_scope_comparison": {
+    "foregrounds_in_each_archive": 48,
+    "new_or_removed_foreground_identities": 0,
+    "changed_names_or_background_contexts": 0,
+    "content_byte_identity_claimed": false
+  },
+  "actual_shared_preparation": {
+    "current_source_version": "3.8",
+    "errors": [
+      {
+        "code": "migration.unapproved_correspondence",
+        "rule_id": "bp-d643951f06313a19",
+        "source": {
+          "location": "RER",
+          "name": "metal working, average for chromium steel product manufacturing",
+          "reference product": "metal working, average for chromium steel product manufacturing",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Chromium steel product manufacturing, average metal working",
+          "reference product": "Chromium steel product manufacturing, average metal working",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "code": "migration.unapproved_correspondence",
+        "rule_id": "bp-4844549cc0c07d18",
+        "source": {
+          "location": "RER",
+          "name": "epoxy resin production, liquid",
+          "reference product": "epoxy resin, liquid",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Epoxy resin, liquid, at plant",
+          "reference product": "Epoxy resin, liquid, at plant",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "code": "migration.unapproved_correspondence",
+        "rule_id": "bp-0028acc612584b3f",
+        "source": {
+          "location": "GLO",
+          "name": "market for glass fibre",
+          "reference product": "glass fibre",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Glass fibre, at plant",
+          "reference product": "Glass fibre, at plant",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "code": "migration.unapproved_correspondence",
+        "rule_id": "bp-fa83088d5d2b33b6",
+        "source": {
+          "location": "RER",
+          "name": "polyethylene production, high density, granulate",
+          "reference product": "polyethylene, high density, granulate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polyethylene, HDPE, granulate, at plant",
+          "reference product": "Polyethylene, HDPE, granulate, at plant",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "code": "migration.unapproved_correspondence",
+        "rule_id": "bp-25caf9ffefc8a1ab",
+        "source": {
+          "location": "RER",
+          "name": "market for polyurethane, flexible foam",
+          "reference product": "polyurethane, flexible foam",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polyurethane, flexible foam, at plant",
+          "reference product": "Polyurethane, flexible foam, at plant",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "code": "migration.unapproved_correspondence",
+        "rule_id": "bp-2bab3a3e3d0b3ad7",
+        "source": {
+          "location": "GLO",
+          "name": "market for aluminium, wrought alloy",
+          "reference product": "aluminium, wrought alloy",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Aluminium, production mix, wrought alloy, at plant",
+          "reference product": "Aluminium, production mix, wrought alloy, at plant",
+          "unit": "kilogram"
+        }
+      }
+    ],
+    "source310_cohort_cleared_in_actual_shared_preparation": true,
+    "full_car_update_passed": false,
+    "new_Brightway_databases": 0
+  },
+  "packaged_wheel": {
+    "wheel": "brightpath-1.0.0a14-py3-none-any.whl",
+    "wheel_sha256": "ebfd15da5d7387a855ff18873e7099ee46def159bb7c84223e6f9ec3c3f22a78",
+    "packaged_resources_identical": {
+      "brightpath/data/export/uvek_passenger_car_310_review.json": true,
+      "brightpath/data/migrations/RESOURCE_MANIFEST.json": true,
+      "brightpath/data/migrations/uvek/ecoinvent-to-uvek-2025.json": true
+    },
+    "isolated_install_review_hash_verified": true
+  },
+  "owned_obsolete_artifact_cleanup": {
+    "removed": [
+      {
+        "owned_obsolete_artifact": "native-car-remaining-regenerated",
+        "bytes": 107585962
+      },
+      {
+        "owned_obsolete_artifact": "native-car-39-regenerated",
+        "bytes": 107613528
+      },
+      {
+        "owned_obsolete_artifact": "before-native-car-remaining-312.private.json",
+        "bytes": 59622481
+      },
+      {
+        "owned_obsolete_artifact": "before-native-car-39.private.json",
+        "bytes": 59645452
+      },
+      {
+        "owned_obsolete_artifact": "native-car-310-regenerated",
+        "bytes": 107639709
+      },
+      {
+        "owned_obsolete_artifact": "before-native-car-310.private.json",
+        "bytes": 59670126
+      }
+    ],
+    "bytes_freed": 501777258,
+    "Brightway_databases_deleted": 0,
+    "active_checkpoints_and_archives_preserved": true
+  }
+}
