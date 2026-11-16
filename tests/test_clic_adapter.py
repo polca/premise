@@ -184,7 +184,16 @@ def test_null_optional_production_volumes_use_premise_fallback():
     assert "production volume" not in records[0]["exchanges"][0]
 
 
-def test_conditional_compression_contract_preserves_balance_and_pressure_caveats():
+@pytest.mark.parametrize(
+    "hydrogen_product",
+    [
+        "hydrogen, gaseous, low pressure",
+        "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+    ],
+)
+def test_conditional_compression_contract_preserves_balance_and_pressure_caveats(
+    hydrogen_product,
+):
     from premise.transport.vehicle_hydrogen import prepare_hydrogen_compression
     from premise.inventory.clic_adapter import _normalize_compression_contract
 
@@ -202,7 +211,7 @@ def test_conditional_compression_contract_preserves_balance_and_pressure_caveats
             {
                 "type": "technosphere",
                 "name": "hydrogen market",
-                "product": "hydrogen, gaseous, low pressure",
+                "product": hydrogen_product,
                 "unit": "kilogram",
                 "amount": 0.1,
             },
@@ -213,6 +222,13 @@ def test_conditional_compression_contract_preserves_balance_and_pressure_caveats
                 "unit": "kilowatt hour",
                 "amount": 0.2,
                 "comment": "Explicit 30-bar delivery scenario, conditional on fuel not already dispensed. Existing delivery retained.",
+            },
+            {
+                "type": "technosphere",
+                "name": "hydrogen chloride market",
+                "product": "Hydrogen chloride, at plant",
+                "unit": "kilogram",
+                "amount": 10,
             },
         ],
     }

@@ -71,6 +71,21 @@ def prepare_hydrogen_compression(dataset):
     specification = compression_specification(dataset)
     if specification is None:
         return None
+    # Geographic relinking can replace a native product label with an IAM one.
+    products = {
+        e.get("product", e.get("reference product"))
+        for e in dataset["exchanges"]
+        if e.get("type") == "technosphere"
+        and e.get("unit") == "kilowatt hour"
+        and str(e.get("comment", "")).startswith(COMPRESSION_COMMENT)
+    }
+    if products:
+        if len(products) != 1 or not isinstance(next(iter(products)), str):
+            raise ValueError("Compression electricity requires one current product")
+        product = next(iter(products))
+        if product != specification["electricity product"]:
+            specification = {**specification, "electricity product": product}
+            dataset[COMPRESSION_KEY] = specification
     exchanges = [
         e for e in dataset["exchanges"] if compression_electricity(e, specification)
     ]

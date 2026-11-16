@@ -26,7 +26,9 @@ def _folded(identity):
 
 def _normalize_compression_contract(activity, diagnostics):
     """Adapt the published conditional-delivery metadata without changing its LCI."""
+    from ..core.filesystem_constants import VARIABLES_DIR
     from ..transport.vehicle_hydrogen import COMPRESSION_KEY, COMPRESSION_COMMENT
+    from .activity_maps import get_mapping
 
     value = activity.get(COMPRESSION_KEY)
     if value is None:
@@ -42,6 +44,18 @@ def _normalize_compression_contract(activity, diagnostics):
         raise ClicInventoryError(
             f"Unrecognized hydrogen compression metadata in {activity['name']!r}."
         )
+    # Native products use process names; their exact fuel roles live in YAML.
+    native_hydrogen = set()
+    for role, aliases in get_mapping(
+        VARIABLES_DIR / "fuels.yaml", "uvek_aliases"
+    ).items():
+        fltr = aliases.get("fltr", {})
+        if not role.startswith("hydrogen,") or not aliases.get("exact"):
+            continue
+        if not isinstance(fltr, dict) or fltr.get("unit") != "kilogram":
+            continue
+        products = fltr.get("reference product", ())
+        native_hydrogen.update([products] if isinstance(products, str) else products)
     electricity = [
         edge
         for edge in activity["exchanges"]
@@ -56,7 +70,10 @@ def _normalize_compression_contract(activity, diagnostics):
         for edge in activity["exchanges"]
         if edge["type"] == "technosphere"
         and edge.get("unit") == "kilogram"
-        and str(edge.get("product", "")).startswith("hydrogen,")
+        and (
+            str(edge.get("product", "")).startswith("hydrogen,")
+            or edge.get("product") in native_hydrogen
+        )
     ]
     products = [
         {edge["product"] for edge in edges} for edges in (electricity, hydrogen)

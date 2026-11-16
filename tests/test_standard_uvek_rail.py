@@ -71,16 +71,23 @@ def test_rail_energy_filters_preserve_voltage_and_diesel_delivery_interface():
     ]
     grids = [{"name": n, "unit": "kilowatt hour"} for n in names]
     diesel = {"name": "Diesel, at regional storage", "unit": "kilogram"}
+    hydrogen = {
+        "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+        "unit": "kilogram",
+    }
     unrelated = [
         {"name": "market group for electricity, low voltage", "unit": "kilowatt hour"},
         {**diesel, "unit": "unit"},
         {"name": "Fuel supply for diesel vehicles", "unit": "kilogram"},
+        {"name": "Hydrogen chloride, at plant", "unit": "kilogram"},
+        {**hydrogen, "unit": "unit"},
     ]
     selected = InventorySet(
-        [*grids, diesel, *unrelated], "2026", "remind", family="uvek"
+        [*grids, diesel, hydrogen, *unrelated], "2026", "remind", family="uvek"
     ).generate_vehicle_fuel_map("train")
     assert selected["train, electric"] == grids
     assert selected["train, diesel-electric"] == [diesel]
+    assert selected["train, fuel cell"] == [hydrogen]
 
 
 def test_native_generic_freight_users_follow_the_shared_relinker():

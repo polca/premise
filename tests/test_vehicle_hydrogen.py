@@ -145,6 +145,22 @@ def test_separate_auxiliary_electricity_and_alias_are_not_scaled_twice():
     assert auxiliary[0]["amount"] == pytest.approx(0.005)
 
 
+@pytest.mark.parametrize("compact", [False, True])
+def test_marked_compression_survives_grid_product_relinking(compact):
+    ds = vehicle("truck", compact=compact, residual=0.005)
+    specification = json.loads(ds[COMPRESSION_KEY])
+    specification["electricity product"] = "Electricity, low voltage, at grid"
+    ds[COMPRESSION_KEY] = json.dumps(specification)
+    # Regional relinking changes the provider product, retaining its purpose.
+    assert ds["exchanges"][2]["product"] == "electricity, low voltage"
+    assert prepare_hydrogen_compression(ds) is not None
+    transformer(ds, "truck", 0.8, electricity_alias=True).adjust_transport_efficiency(
+        ds
+    )
+    assert ds["exchanges"][2]["amount"] == pytest.approx(0.025 * 0.8)
+    assert ds["exchanges"][3]["amount"] == pytest.approx(0.005)
+
+
 def test_no_iam_efficiency_keeps_documented_compression_exchange():
     ds = vehicle()
     transformer(ds, "truck", 1, data=False).adjust_transport_efficiency(ds)

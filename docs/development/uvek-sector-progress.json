@@ -2951,7 +2951,7 @@
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
       },
       "latest_native_mapping_review": "docs/development/uvek-native-rail-verification.json",
-      "current_native_first_checkpoint": "native_electric_and_diesel_aliases_checked_required_hydrogen_migration_pending",
+      "current_native_first_checkpoint": "standalone_shared_update_physical_and_signed_LCI_passed_combined_pending",
       "current_required_frontier": {
         "evidence": "docs/development/uvek-hydrogen-train-direct-39-verification.json#actual_train_import",
         "all_required_source_cohorts_harmonized": true,
@@ -2959,10 +2959,13 @@
         "source_foregrounds": 34,
         "harmonized_records": 89,
         "remaining_mapping_refusals": 0,
-        "shared_update_and_physical_checks_pending": true,
+        "shared_update_and_physical_checks_pending": false,
         "sector_qualified": false,
-        "native_electric_and_diesel_mappings_retained": true
-      }
+        "native_electric_and_diesel_mappings_retained": true,
+        "standalone_signed_LCI_checks_passed": 104,
+        "combined_and_public_verification_pending": true
+      },
+      "latest_standalone_verification": "docs/development/uvek-native-trains-standalone-verification.json"
     },
     {
       "sector": "final energy",
@@ -3816,6 +3819,7 @@
     "latest_combined_no_write_evidence": "docs/development/uvek-native-two-wheelers-verification.json",
     "qualification_evidence_note": "Latest actual Brightway export covers eleven sectors; the twelve-sector checkpoint adds 182 no-write signed LCI checks and a complete comparison against that export. Full goal remains unfinished.",
     "latest_owned_analysis_cleanup": "docs/development/uvek-hydrogen-train-ferrosilicon-312-verification.json#cleanup",
-    "latest_train_mapping_verification": "docs/development/uvek-hydrogen-train-direct-39-verification.json"
+    "latest_train_mapping_verification": "docs/development/uvek-hydrogen-train-direct-39-verification.json",
+    "latest_train_standalone_verification": "docs/development/uvek-native-trains-standalone-verification.json"
   }
 }

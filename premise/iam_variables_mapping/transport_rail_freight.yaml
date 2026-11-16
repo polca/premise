@@ -126,6 +126,11 @@ train, diesel-electric:
       - diesel
 
 train, fuel cell:
+  uvek_fuel_aliases:
+    fltr:
+      name: Hydrogen production, steam methane reforming of natural gas, 25 bar
+      unit: kilogram
+    exact: true
   iam_aliases:
     remind: ES|Transport|Freight|Rail|Liquids|Hydrogen
     remind-eu: ES|Transport|Freight|Rail|Liquids|Hydrogen

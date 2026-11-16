@@ -1,0 +1,553 @@
+{
+  "date": "2026-11-16",
+  "background": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_family": "ecoinvent",
+    "biosphere_version": "3.10"
+  },
+  "scenario": "REMIND SSP2-NPi 2050",
+  "archive_snapshot": "20261110T030235Z-613ea498808a",
+  "runtime_fixes": {
+    "premise/inventory/clic_adapter.py": "Bind documented compression hydrogen purchases using exact kg-product declarations from the existing fuel YAML; do not match other hydrogen chemicals.",
+    "premise/transport/vehicle_hydrogen.py": "Rebind explicit marked compression electricity to its current product after geographic relinking. Preserve the existing compression/auxiliary-power separation and pressure metadata.",
+    "sector_transformation_equations_changed": false,
+    "NewDatabase_API_changed": false
+  },
+  "YAML_extension": "train fuel-cell native hydrogen fuel selector in transport_rail_freight.yaml",
+  "tests": {
+    "adapter_tests_passed": 13,
+    "hydrogen_coupling_and_rail_tests_passed": 28,
+    "entire_repository_suites_run": false
+  },
+  "actual_shared_run": {
+    "status": "shared_train_update_and_exhaustive_graph_checks_passed",
+    "source_prototypes_by_role": {
+      "train, electric": 5,
+      "train, diesel-electric": 1,
+      "train, fuel cell": 6
+    },
+    "selected_train_records": 64,
+    "activities": 12088,
+    "additional_inventory_records": 89,
+    "new_Brightway_databases": 0,
+    "validation_disabled": false,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "physical_quantity_and_LCI_checks_complete": false,
+    "sector_qualified": false
+  },
+  "physical_checks": {
+    "status": "standalone_shared_train_physical_checks_passed",
+    "regional_services": 39,
+    "regional_and_World_markets": 13,
+    "source_reference": "positive one tonne-kilometre",
+    "service_checks": [
+      {
+        "role": "train, electric",
+        "region": "CAZ",
+        "source_region": "RER",
+        "factor": 0.9847324789609779,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, electric",
+        "region": "CHA",
+        "source_region": "RER",
+        "factor": 0.9827960987624169,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, electric",
+        "region": "EUR",
+        "source_region": "FR",
+        "factor": 0.9999924628296687,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, electric",
+        "region": "IND",
+        "source_region": "RER",
+        "factor": 0.9925270169081005,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, electric",
+        "region": "JPN",
+        "source_region": "RER",
+        "factor": 0.9925361530088661,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, electric",
+        "region": "LAM",
+        "source_region": "RER",
+        "factor": 1.0,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, electric",
+        "region": "MEA",
+        "source_region": "RER",
+        "factor": 0.946408808583325,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, electric",
+        "region": "NEU",
+        "source_region": "RER",
+        "factor": 0.815075325585311,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, electric",
+        "region": "OAS",
+        "source_region": "RER",
+        "factor": 0.9829854874002428,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, electric",
+        "region": "REF",
+        "source_region": "RER",
+        "factor": 0.9865863812987692,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, electric",
+        "region": "SSA",
+        "source_region": "RER",
+        "factor": 0.9507219924620762,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, electric",
+        "region": "USA",
+        "source_region": "RER",
+        "factor": 0.9937672843600577,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, electric",
+        "region": "World",
+        "source_region": "RER",
+        "factor": 0.9542921660300747,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, diesel-electric",
+        "region": "CAZ",
+        "source_region": "CH",
+        "factor": 0.9856929309569608,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, diesel-electric",
+        "region": "CHA",
+        "source_region": "CH",
+        "factor": 0.9801974891290296,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, diesel-electric",
+        "region": "EUR",
+        "source_region": "CH",
+        "factor": 0.9685113777959947,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, diesel-electric",
+        "region": "IND",
+        "source_region": "CH",
+        "factor": 0.9925270503006522,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, diesel-electric",
+        "region": "JPN",
+        "source_region": "CH",
+        "factor": 0.9925267603056132,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, diesel-electric",
+        "region": "LAM",
+        "source_region": "CH",
+        "factor": 1.0,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, diesel-electric",
+        "region": "MEA",
+        "source_region": "CH",
+        "factor": 0.9736174332432865,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, diesel-electric",
+        "region": "NEU",
+        "source_region": "CH",
+        "factor": 0.9972355843617986,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, diesel-electric",
+        "region": "OAS",
+        "source_region": "CH",
+        "factor": 0.9719597852999095,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, diesel-electric",
+        "region": "REF",
+        "source_region": "CH",
+        "factor": 0.9999767790888402,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, diesel-electric",
+        "region": "SSA",
+        "source_region": "CH",
+        "factor": 0.9873022356861549,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, diesel-electric",
+        "region": "USA",
+        "source_region": "CH",
+        "factor": 0.9899242039921371,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, diesel-electric",
+        "region": "World",
+        "source_region": "CH",
+        "factor": 1.0,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": false
+      },
+      {
+        "role": "train, fuel cell",
+        "region": "CAZ",
+        "source_region": "RoW",
+        "factor": 1.0,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": true
+      },
+      {
+        "role": "train, fuel cell",
+        "region": "CHA",
+        "source_region": "CN",
+        "factor": 0.9976187320080421,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": true
+      },
+      {
+        "role": "train, fuel cell",
+        "region": "EUR",
+        "source_region": "Europe without Switzerland",
+        "factor": 0.9946918898338599,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": true
+      },
+      {
+        "role": "train, fuel cell",
+        "region": "IND",
+        "source_region": "IN",
+        "factor": 0.988811759815367,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": true
+      },
+      {
+        "role": "train, fuel cell",
+        "region": "JPN",
+        "source_region": "RoW",
+        "factor": 0.9987489575954273,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": true
+      },
+      {
+        "role": "train, fuel cell",
+        "region": "LAM",
+        "source_region": "RoW",
+        "factor": 0.9995367340075697,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": true
+      },
+      {
+        "role": "train, fuel cell",
+        "region": "MEA",
+        "source_region": "RoW",
+        "factor": 1.0,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": true
+      },
+      {
+        "role": "train, fuel cell",
+        "region": "NEU",
+        "source_region": "RoW",
+        "factor": 0.9883104313414277,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": true
+      },
+      {
+        "role": "train, fuel cell",
+        "region": "OAS",
+        "source_region": "RoW",
+        "factor": 0.9964694410115188,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": true
+      },
+      {
+        "role": "train, fuel cell",
+        "region": "REF",
+        "source_region": "RoW",
+        "factor": 0.9999767790888402,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": true
+      },
+      {
+        "role": "train, fuel cell",
+        "region": "SSA",
+        "source_region": "ZA",
+        "factor": 1.0,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": true
+      },
+      {
+        "role": "train, fuel cell",
+        "region": "USA",
+        "source_region": "US",
+        "factor": 0.9937670994859685,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": true
+      },
+      {
+        "role": "train, fuel cell",
+        "region": "World",
+        "source_region": "RoW",
+        "factor": 1.0,
+        "fuel_and_fixed_inputs_checked": true,
+        "shared_biosphere_scaling_checked": true,
+        "conditional_H2_compression_checked": true
+      }
+    ],
+    "market_checks": [
+      {
+        "region": "CAZ",
+        "normalized_nonnegative_tkm_mix": true,
+        "IAM_technology_shares_checked": true,
+        "World_uses_only_regional_markets": false
+      },
+      {
+        "region": "CHA",
+        "normalized_nonnegative_tkm_mix": true,
+        "IAM_technology_shares_checked": true,
+        "World_uses_only_regional_markets": false
+      },
+      {
+        "region": "EUR",
+        "normalized_nonnegative_tkm_mix": true,
+        "IAM_technology_shares_checked": true,
+        "World_uses_only_regional_markets": false
+      },
+      {
+        "region": "IND",
+        "normalized_nonnegative_tkm_mix": true,
+        "IAM_technology_shares_checked": true,
+        "World_uses_only_regional_markets": false
+      },
+      {
+        "region": "JPN",
+        "normalized_nonnegative_tkm_mix": true,
+        "IAM_technology_shares_checked": true,
+        "World_uses_only_regional_markets": false
+      },
+      {
+        "region": "LAM",
+        "normalized_nonnegative_tkm_mix": true,
+        "IAM_technology_shares_checked": true,
+        "World_uses_only_regional_markets": false
+      },
+      {
+        "region": "MEA",
+        "normalized_nonnegative_tkm_mix": true,
+        "IAM_technology_shares_checked": true,
+        "World_uses_only_regional_markets": false
+      },
+      {
+        "region": "NEU",
+        "normalized_nonnegative_tkm_mix": true,
+        "IAM_technology_shares_checked": true,
+        "World_uses_only_regional_markets": false
+      },
+      {
+        "region": "OAS",
+        "normalized_nonnegative_tkm_mix": true,
+        "IAM_technology_shares_checked": true,
+        "World_uses_only_regional_markets": false
+      },
+      {
+        "region": "REF",
+        "normalized_nonnegative_tkm_mix": true,
+        "IAM_technology_shares_checked": true,
+        "World_uses_only_regional_markets": false
+      },
+      {
+        "region": "SSA",
+        "normalized_nonnegative_tkm_mix": true,
+        "IAM_technology_shares_checked": true,
+        "World_uses_only_regional_markets": false
+      },
+      {
+        "region": "USA",
+        "normalized_nonnegative_tkm_mix": true,
+        "IAM_technology_shares_checked": true,
+        "World_uses_only_regional_markets": false
+      },
+      {
+        "region": "World",
+        "normalized_nonnegative_tkm_mix": true,
+        "IAM_technology_shares_checked": false,
+        "World_uses_only_regional_markets": true
+      }
+    ],
+    "positive_IAM_role_region_counts": {
+      "train, electric": 13,
+      "train, diesel-electric": 13,
+      "train, fuel cell": 6
+    },
+    "shared_biosphere_convention": "Train direct biosphere entries scale with the IAM traction efficiency, as in the common Premise algorithm; fixed non-traction shunting purchases remain fixed. This does not establish an independently corrected exhaust or carbon balance.",
+    "conditional_delivery_pressure_preserved_not_inferred_from_native_25bar": true,
+    "new_Brightway_databases": 0,
+    "combined_run_complete": false,
+    "public_run_complete": false,
+    "sector_qualified": false
+  },
+  "signed_LCI_checks": {
+    "status": "standalone_shared_train_signed_LCIs_passed",
+    "activities": 12088,
+    "exchanges": 420695,
+    "regional_services": 39,
+    "regional_and_World_markets": 13,
+    "selected_demands": 52,
+    "signed_LCI_solves": 104,
+    "matrix_shape": [
+      12088,
+      12088
+    ],
+    "new_Brightway_databases": 0,
+    "registry_and_processed_file_names_unchanged": true,
+    "combined_run_complete": false,
+    "public_run_complete": false,
+    "LCIA_equivalence_claimed": false,
+    "sector_qualified": false
+  },
+  "cleanup": {
+    "owned_obsolete_files_removed": [
+      {
+        "name": "train-plastic-312-regenerated/ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "bytes": 18596725
+      },
+      {
+        "name": "train-plastic-312-regenerated/ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "bytes": 18596319
+      },
+      {
+        "name": "train-plastic-312-regenerated/ecoinvent-to-uvek-2025.json",
+        "bytes": 70354374
+      },
+      {
+        "name": "train-direct-39-regenerated/ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "bytes": 18596725
+      },
+      {
+        "name": "train-direct-39-regenerated/ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "bytes": 18596319
+      },
+      {
+        "name": "train-direct-39-regenerated/ecoinvent-to-uvek-2025.json",
+        "bytes": 70360358
+      },
+      {
+        "name": "train-ferrosilicon-312-wheel/brightpath-1.0.0a14-py3-none-any.whl",
+        "bytes": 45389450
+      },
+      {
+        "name": "train-three-markets-corrected-wheel/brightpath-1.0.0a14-py3-none-any.whl",
+        "bytes": 45379908
+      }
+    ],
+    "bytes_released": 305870178,
+    "installed_package_latest_wheel_active_standalone_train_checkpoint_and_previous_combined_checkpoint_preserved": true,
+    "Brightway_databases_changed": false
+  },
+  "combined_run_complete": false,
+  "public_gate_opened": false,
+  "notebook_changed": false,
+  "operational_sectors": 12,
+  "goal_complete": false
+}
