@@ -1445,8 +1445,7 @@ class Export:
                     "flip",
                 ]
             )
-            for row in rows:
-                writer.writerow(row)
+            writer.writerows(rows)
 
         # Export A index
         with open(self.filepath / "A_matrix_index.csv", "w", encoding="utf-8") as file:
@@ -1483,8 +1482,7 @@ class Export:
                 ]
             )
             rows = self._create_B_matrix_coordinates(index_A, biosphere_codes)
-            for row in rows:
-                writer.writerow(row)
+            writer.writerows(rows)
 
         # Export B index
         with open(self.filepath / "B_matrix_index.csv", "w", encoding="utf-8") as file:
