@@ -2938,23 +2938,25 @@ class BaseTransformation:
         biggest_first=False,
         contained=False,
     ) -> dict:
-        """Find new technosphere providers based on the location of the dataset.
-        Designed to be used when the dataset's location changes, or when new datasets are added.
-        Uses the name, reference product, and unit of the exchange to filter possible inputs. These must match exactly. Searches in the list of datasets ``data``.
-        Will only search for providers contained within the location of ``dataset``, unless ``contained`` is set to ``False``, all providers whose location intersects the location of ``dataset`` will be used.
-        A ``RoW`` provider will be added if there is a single topological face in the location of ``dataset`` which isn't covered by the location of any providing activity.
-        If no providers can be found, `relink_technosphere_exchanes` will try to add a `RoW` or `GLO` providers, in that order, if available. If there are still no valid providers, a ``InvalidLink`` exception is raised, unless ``drop_invalid`` is ``True``, in which case the exchange will be deleted.
-        Allocation between providers is done using ``allocate_inputs``; results seem strange if ``contained=False``, as production volumes for large regions would be used as allocation factors.
-        Input arguments:
-            * ``dataset``: The dataset whose technosphere exchanges will be modified.
-            * ``data``: The list of datasets to search for technosphere product providers.
-            * ``model``: The IAM model
-            * ``exclusive``: Bool, default is ``True``. Don't allow overlapping locations in input providers.
-            * ``drop_invalid``: Bool, default is ``False``. Delete exchanges for which no valid provider is available.
-            * ``biggest_first``: Bool, default is ``False``. Determines search order when selecting provider locations. Only relevant if ``exclusive`` is ``True``.
-            * ``contained``: Bool, default is ``True``. If true, only use providers whose location is completely within the ``dataset`` location; otherwise use all intersecting locations.
-            * ``iam_regions``: List, lists IAM regions, if additional ones need to be defined.
-        Modifies the dataset in place; returns the modified dataset."""
+        """Relink nonzero technosphere inputs for the dataset's location.
+
+        Reuse cached allocations; otherwise select providers using the index
+        and regional or geographic matching. Remove technosphere inputs whose
+        amounts are zero or None. Keep other exchange types in their original
+        relative order, followed by the reconstructed technosphere exchanges.
+
+        Combine inputs sharing name, product, location, unit and comment, so
+        documented uses stay separate. Reapply uncertainty parameters to the
+        resulting amounts. Check the total amount and demanded product set
+        against the inputs before relinking.
+
+        :param dataset: activity to update in place
+        :param exclusive: exclude overlapping geographic matches
+        :param biggest_first: consider larger geographic matches first
+        :param contained: require contained rather than intersecting matches
+        :return: the supplied dataset with relinked exchanges
+        :raises AssertionError: if amount or demanded-product consistency checks fail
+        """
 
         exchanges = []
         exchange_amounts = []

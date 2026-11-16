@@ -455,7 +455,7 @@ class Electricity(BaseTransformation):
     :ivar database: wurst database, which is a list of dictionaries
     :vartype database: list
     :ivar iam_data: IAM data
-    :vartype iam_data: xarray.DataArray
+    :vartype iam_data: premise.data_collection.IAMDataCollection
     :ivar model: name of the IAM model (e.g., "remind", "image")
     :vartype model: str
     :vartype pathway: str
