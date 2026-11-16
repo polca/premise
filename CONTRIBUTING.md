@@ -13,6 +13,22 @@ Please note we have a [code of conduct](https://github.com/romainsacchi/premise/
 * [Semantic versioning](http://semver.org/)
 * Data should be in text formats, e.g. JSON or CSV
 
+## Runtime checks
+
+For every fix, state whether a runtime path changes. For runtime changes,
+compare the parent commit and candidate on identical representative inputs,
+and check the expected outputs. Require output equivalence when behavior should
+be unchanged. Include data and configuration changes that alter execution paths
+or workload size. Warm up both implementations, alternate their measurement
+order, and repeat timings without competing test/build jobs.
+Report absolute times, relative change and variability; distinguish the affected
+operation from total run time and state which setup or I/O costs are included.
+Exercise cold and warm caches when relevant to the change.
+
+Resolve repeatable slowdowns before accepting a fix. Differences within
+measurement noise are not evidence of a speedup; report that uncertainty.
+Documentation-only changes need no benchmark when runtime code is unchanged.
+
 ## Authors
 
 * [Romain Sacchi](https://github.com/romainsacchi)
