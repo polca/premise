@@ -784,7 +784,7 @@ class ExternalScenario(BaseTransformation):
                                 *[fetch_loc(loc) for loc in list(self.geo.geo.keys())],
                             ]
 
-                            suppliers, counter = [], 0
+                            suppliers = []
 
                             # we loop through the possible locations
                             # by order of preference
@@ -924,7 +924,7 @@ class ExternalScenario(BaseTransformation):
         :return: list of potential suppliers
         """
 
-        act, counter = [], 0
+        act = []
 
         for loc in possible_locations:
             if not act:
