@@ -139,12 +139,12 @@ class Geomap:
         if location_tuple not in self.geo:
             return []
 
-        def get_search_func(loc):
-            if contained:
-                return self.geo.contained(loc)
-            return self.geo.intersects(loc)
-
-        for region in get_search_func(location_tuple):
+        regions = (
+            self.geo.contained(location_tuple)
+            if contained
+            else self.geo.intersects(location_tuple)
+        )
+        for region in regions:
             # Skip tuple regions from unsupported models
             if (
                 isinstance(region, tuple)
