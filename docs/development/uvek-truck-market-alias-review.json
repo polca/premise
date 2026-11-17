@@ -1,0 +1,1257 @@
+{
+  "date": "2026-11-17",
+  "scope": "Existing shared truck market relinking; no new engine or quantity conversion.",
+  "native_alias_count": 21,
+  "converted_market_alias_count": 9,
+  "rows": [
+    {
+      "alias": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+      "kind": "native complete fleet market",
+      "class": "heavy",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 26 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 26 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 18 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+            "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "201111ff1fc4928f32b3f6f7650411a1d85e73e3956bf65069bd6e5f031aafe1",
+              "metadata_sha256": "55e49024c0cce9bba5b56477d81edb2142c9824bdf9431faf3fafd968e677222",
+              "reference_amount": 1,
+              "nonproduction_count": 33
+            },
+            "2026": {
+              "inventory_sha256": "b211f861619efc13e8ee05b3136f8458f4efa3cf2269d5a1f84919e1c832dc7c",
+              "metadata_sha256": "b49343b40282522bb2e19915c414ede2dca19a0bea6d515d49c1316a0a80f725",
+              "reference_amount": 1,
+              "nonproduction_count": 33
+            }
+          }
+        },
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+            "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "9d5c053efd481303713a6567d27ad9ab91ee5affe3b17a91dd9e9c7a14ff8587",
+              "metadata_sha256": "037e6543207d50f7b2c8c01d87faa42c1b3e0a873a053fed184132294da11234",
+              "reference_amount": 1,
+              "nonproduction_count": 36
+            },
+            "2026": {
+              "inventory_sha256": "824fbffaccf56d711a729813107e283f889b1e529710957915bcf57bd497c5f3",
+              "metadata_sha256": "43da2fda1a287603787fe209502a44e8e4f1e09936d08746c63eeb15d5d6f1d3",
+              "reference_amount": 1,
+              "nonproduction_count": 36
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+      "kind": "native complete fleet market",
+      "class": "small",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 3.5 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 3.5 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 3.5 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 3.5 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+            "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "0e2d71a603e662928f41f1a79430098f11bda9b08d9ec145b60710afc47ff121",
+              "metadata_sha256": "18ad314e1226b8ab8ab04be26f0fb0e991a9619f581a930262f54919cc3ccef3",
+              "reference_amount": 1,
+              "nonproduction_count": 22
+            },
+            "2026": {
+              "inventory_sha256": "aed182b8dc681a0524239aa2edb91205824d1672a34fb40125641132c5374933",
+              "metadata_sha256": "1286d8f8a747b963c8191d073a2c5242fc926fa508d0be6b522dc672654e4d20",
+              "reference_amount": 1,
+              "nonproduction_count": 22
+            }
+          }
+        },
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+            "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "f7b2a3803cbd48dbfcb5a0317245fec96437937508be1e692bcf0b14eafc8489",
+              "metadata_sha256": "17ebc1a53f4c377b74cca11b1fdbe6060c3835f6502cbcec64ff6c750de2f556",
+              "reference_amount": 1,
+              "nonproduction_count": 12
+            },
+            "2026": {
+              "inventory_sha256": "a9338af06d7d057da9dc9a8d8839a2fd5119ef822fd2f0cf08d63f262281900e",
+              "metadata_sha256": "440671974bfd5b9e1031803a1beac1c7a6368f5a54c2dba5e3e6febb54ded652",
+              "reference_amount": 1,
+              "nonproduction_count": 12
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, 3.5t-7.5t gross weight, fleet average",
+      "kind": "native complete fleet market",
+      "class": "light",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 7.5 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 7.5 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 7.5 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 7.5 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, 3.5t-7.5t gross weight, fleet average",
+            "reference product": "Transport, freight, lorry, 3.5t-7.5t gross weight, fleet average",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "044d3d300c8bcf6ad446b48a40e81497cdb9f61928a4c4a21637ef85e9542b66",
+              "metadata_sha256": "79c60a005d304c713c9665483da74308242af704018975c0c0e7dfabb96b380b",
+              "reference_amount": 1,
+              "nonproduction_count": 11
+            },
+            "2026": {
+              "inventory_sha256": "5368fb624d8d986c069fa7825dd762f5418f14fb84d9dbf301d7b91b9ff018ca",
+              "metadata_sha256": "622e683102b3083a23785182469f3950d431d8f01a9b29c89ec8700a24d1df7d",
+              "reference_amount": 1,
+              "nonproduction_count": 11
+            }
+          }
+        },
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, 3.5t-7.5t gross weight, fleet average",
+            "reference product": "Transport, freight, lorry, 3.5t-7.5t gross weight, fleet average",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "739bfc0823706ebee7fbe89d15451bb7d4911145f43710d5b54e6446237a5665",
+              "metadata_sha256": "2c2605a24e4f14cd17ea012f620613e90273d2cd8a5862fe5332edc3fb40fb80",
+              "reference_amount": 1,
+              "nonproduction_count": 3
+            },
+            "2026": {
+              "inventory_sha256": "227230d9b168fb95199a39c87c9b0ad7a044715363979a65b656304da98c21cf",
+              "metadata_sha256": "84bb89db981844bc9792a7ee8898df76cf742ccfee2e02ad5e247e8a576e2c5f",
+              "reference_amount": 1,
+              "nonproduction_count": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+      "kind": "native complete fleet market",
+      "class": "largest",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 40 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 40 metric ton",
+        "image": "market for transport, freight, lorry, 40 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 40 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+            "reference product": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "ff48a9e56db0fde20b1ce7dd078b5308031b20bad7ea30be2e99f5db2e58f3e3",
+              "metadata_sha256": "69412279f77ffa82dbd3f3aeb0d9d07afa73ddd57c900bdd7edc317968e2f44c",
+              "reference_amount": 1,
+              "nonproduction_count": 11
+            },
+            "2026": {
+              "inventory_sha256": "5dec5bbafed7105671e04370e60e3874481acfd3ad92b5175eaf4fb20c24ae83",
+              "metadata_sha256": "354b7113d9607bb396a3f2151465d63ec75f8d42dcff79f2baf57b8b6d50c2bf",
+              "reference_amount": 1,
+              "nonproduction_count": 11
+            }
+          }
+        },
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+            "reference product": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "3282aee3b1e8943b1ec07e35b0fb672ea37b717843dac5417a3170c3e0313c8b",
+              "metadata_sha256": "615ccdb1b1771989ba96b17f01291796bc0907d429b85a5ea644c6703d4aec72",
+              "reference_amount": 1,
+              "nonproduction_count": 3
+            },
+            "2026": {
+              "inventory_sha256": "5f30d62a2078718e512b2fb2d9403c5c5f1e6bbeeaba0d33d0d16a074987f714",
+              "metadata_sha256": "f90f1f43cdde53777f66a72695c154cc55d07d969b46a6e170bbdccbbf80e306",
+              "reference_amount": 1,
+              "nonproduction_count": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, 7.5t-16t gross weight, fleet average",
+      "kind": "native complete fleet market",
+      "class": "medium",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 18 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 18 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 18 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, 7.5t-16t gross weight, fleet average",
+            "reference product": "Transport, freight, lorry, 7.5t-16t gross weight, fleet average",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "df82412b618da701fdc123794e18a95a4e799866c193d615c8c5765b8456a596",
+              "metadata_sha256": "afd41e9160df71bc50183bb85ea78603909cdedb1b36a91787995000ad516a2a",
+              "reference_amount": 1,
+              "nonproduction_count": 11
+            },
+            "2026": {
+              "inventory_sha256": "f372d3d3a9645b1ba579f63cf19cee53fb766a1b039919705572e4713f631839",
+              "metadata_sha256": "973d10b855a1173ce599548383c0b813fe87eb9b473cf9d1fcedcf5aafcb8009",
+              "reference_amount": 1,
+              "nonproduction_count": 11
+            }
+          }
+        },
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, 7.5t-16t gross weight, fleet average",
+            "reference product": "Transport, freight, lorry, 7.5t-16t gross weight, fleet average",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "b2aa9a21198382352ab75615cfc063f57e1b55328f25dcad7170a5c3e4846478",
+              "metadata_sha256": "41ea03ca11b58336b4de19849416eb8c2a152dc909f64cd532d45c0629c44e2a",
+              "reference_amount": 1,
+              "nonproduction_count": 12
+            },
+            "2026": {
+              "inventory_sha256": "6bc191222b5e26aefffc73c85735711abeddd031ad7ed9828c2a5a2a4d893f83",
+              "metadata_sha256": "3f36575476c2a63a591e9995a917e0a7ea3603e02b46e491463a3dea824e5763",
+              "reference_amount": 1,
+              "nonproduction_count": 12
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, diesel, 18t gross weight, fleet average, long haul",
+      "kind": "native complete fleet market",
+      "class": "medium",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 18 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 18 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 18 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 18t gross weight, fleet average, long haul",
+            "reference product": "Transport, freight, lorry, diesel, 18t gross weight, fleet average, long haul",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "2c9622cec63803f8d01eb7ae7c4d3076e353af6930b29c18a2ef3dadd4877f4e",
+              "metadata_sha256": "73d975aff09d41448912a1e8472c4b0b35bda65efefd57682368c75695ac20c3",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "6561d174aff0d8ea0ab5c88cfa8d4e69db53083ac37aa567e5eab1ad9c22508d",
+              "metadata_sha256": "3d86c0bae2fd6f204426b400da6270d47be132d504d4c530b1bec25db791cb82",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, diesel, 18t gross weight, fleet average, regional delivery",
+      "kind": "native complete fleet market",
+      "class": "medium",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 18 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 18 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 18 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 18t gross weight, fleet average, regional delivery",
+            "reference product": "Transport, freight, lorry, diesel, 18t gross weight, fleet average, regional delivery",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "c47bfb50bbd09d35766966a798a8fb3a0f45f2af98290991da70aa70daedb532",
+              "metadata_sha256": "4637cb933a5dd9fe7126021af0c9e5d563b41969aea0368c662663e94f719acf",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "aa60eb3b75b05e8c35b1e34f1ab0251c6bc6b858a92361d7daebea93ae4e6771",
+              "metadata_sha256": "c997bc4a583c8bd60bb1b62fed279bb082ba1d451dbeb9a5ac6551833eefc674",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, diesel, 18t gross weight, fleet average, urban delivery",
+      "kind": "native complete fleet market",
+      "class": "medium",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 18 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 18 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 18 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 18t gross weight, fleet average, urban delivery",
+            "reference product": "Transport, freight, lorry, diesel, 18t gross weight, fleet average, urban delivery",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "ec02e6afaff188b4e6d0957a79dc626ca8e872e9e9aa6cd328c1c090635510cf",
+              "metadata_sha256": "9a7bc0ea823c92eeb08145865b96d1496efb58c5ecfcf838b4a85eba4703a779",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "cabedd82b70496ca7f30cad87053d3641f08c051f4dd1bc10d921aa25aaa74d3",
+              "metadata_sha256": "647c572a5d8f612ab2203dd03f77bfc1ab5aa7e8d74976f1e2b6dca2f11bc410",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, diesel, 26t gross weight, fleet average, long haul",
+      "kind": "native complete fleet market",
+      "class": "heavy",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 26 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 26 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 18 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 26t gross weight, fleet average, long haul",
+            "reference product": "Transport, freight, lorry, diesel, 26t gross weight, fleet average, long haul",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "5716c4ab21571ab398af96d2c7517635de568f7524354c9e19b26ac0233068d3",
+              "metadata_sha256": "45ab14e7e0da56d47a83a3dbbd58446bf3496f16a2f586faf9dd6a8448a3dc47",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "da1181b74010b5bf106c4e9eef36f4902c6bb5d6de541e75b4e8b23ebd1285b7",
+              "metadata_sha256": "7b0b84b94eba2a3eb5a7f55066bc0bcdc1fb8d150e52c43faeb0e2ed601f3ccf",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, diesel, 26t gross weight, fleet average, regional delivery",
+      "kind": "native complete fleet market",
+      "class": "heavy",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 26 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 26 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 18 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 26t gross weight, fleet average, regional delivery",
+            "reference product": "Transport, freight, lorry, diesel, 26t gross weight, fleet average, regional delivery",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "27afff3ee0a0d4bec1d65f688401d383cb9873a9fcc3c3de7043aebb199bbb42",
+              "metadata_sha256": "b32a7e690634cc16f800b8367de991a58a74d0ea7ee4b8e08b5a6f3910c39495",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "ca8d315cc017253faafbe2dd657fc405c1d3ccc2fa86900f1a7d6c398f3b931d",
+              "metadata_sha256": "cbdea29995d49b12d0bdd7e983b2445cf3359cdd02eed523dc0af29fa04ee93a",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, diesel, 26t gross weight, fleet average, urban delivery",
+      "kind": "native complete fleet market",
+      "class": "heavy",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 26 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 26 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 18 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 26t gross weight, fleet average, urban delivery",
+            "reference product": "Transport, freight, lorry, diesel, 26t gross weight, fleet average, urban delivery",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "f6076f718abaaafda1f9eab37a8df681dd52771deb29d5d441a6705cf6afce78",
+              "metadata_sha256": "a57ec6113edeb6fd4159d27cef910ca4a9d1a0870c9d0c5277c2534d2b700552",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "d4bb213eeebe4904b634f017146fdd1c536774938afa483086e547a50181443c",
+              "metadata_sha256": "7a1023c9f5477c0e0c26584336d09fe5c410fe85468c77d48a9abb52f36e3c47",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, diesel, 32t gross weight, fleet average, long haul",
+      "kind": "native complete fleet market",
+      "class": "heavy",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 26 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 26 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 18 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 32t gross weight, fleet average, long haul",
+            "reference product": "Transport, freight, lorry, diesel, 32t gross weight, fleet average, long haul",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "37abb111c86842643eb2493bb2bcdf96cfc6ea49d715a21d3d254a3c8b994d50",
+              "metadata_sha256": "adbd99310a286857cf62243c47be3c2e20780acf7a2d7df0a560fc840bc9b6c2",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "c285d00d5830dab2db71cdb89eb92a1586a1ca88b38e8fbbd263ecbc14c7299c",
+              "metadata_sha256": "a94cf6b1a2105e2a32042da17b5fcaaeb52b98c4d5b0a9b17419206a4968bda0",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, diesel, 32t gross weight, fleet average, regional delivery",
+      "kind": "native complete fleet market",
+      "class": "heavy",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 26 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 26 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 18 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 32t gross weight, fleet average, regional delivery",
+            "reference product": "Transport, freight, lorry, diesel, 32t gross weight, fleet average, regional delivery",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "44d8385ab0b86944e653d5971b211bc9802e87fd77970c56aad265a9d9f4537c",
+              "metadata_sha256": "acf2f02fcf040d6166392c8bdcaa62ddcde7f41f2f0670106728c66db4b1454d",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "6c4dd20e7baa14119950f2ce50da4f4212be462fd723cba802d48faf5ae40a36",
+              "metadata_sha256": "1d6de49987f6ccca2a09db95221c07afd30560047b2cf31ce1680ccfca8e6d94",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, diesel, 32t gross weight, fleet average, urban delivery",
+      "kind": "native complete fleet market",
+      "class": "heavy",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 26 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 26 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 18 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 32t gross weight, fleet average, urban delivery",
+            "reference product": "Transport, freight, lorry, diesel, 32t gross weight, fleet average, urban delivery",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "8f4eff8a21113a8e0ee2b8d3116f925eddbb08c7176e64b132463d14872e7be5",
+              "metadata_sha256": "73958c5ed9b9e32d798570de18d33846447b369ac24c2ba813e465e9bec2341b",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "59211e0ca885c5119f79fe57b5d7bff07552ea02aa1571014a652b6ee8a9daf1",
+              "metadata_sha256": "682043178e60b7279ce7c7a7f8e79647fcf976b9eacfd2801ccdb12a14f01847",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, long haul",
+      "kind": "native complete fleet market",
+      "class": "largest",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 40 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 40 metric ton",
+        "image": "market for transport, freight, lorry, 40 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 40 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, long haul",
+            "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, long haul",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "b3d83975fe88ad1a28f8d66e00ea52862c88e6c08681f5f318a4da4dcc07bc3a",
+              "metadata_sha256": "3532e500dfc79c7be16eb881cf57f357b450915d8649959cd6b3e67f86aa745b",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "495531dc059b15da7389063c9724e0f3b20ebaa23807d8717c785a2f3fd4f97b",
+              "metadata_sha256": "349c1e390d77266dfb5861ba6f572a205d4c0cd576d3584967e48fcb43117332",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        },
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, long haul",
+            "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, long haul",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "29b2551f58926da6f007590ddeb32b6d5685389ee2cacd22fbaa655df0a43ada",
+              "metadata_sha256": "b77ed2e80f5ddc275106b2208b3812bec95ca9293a26ce3f51c378329e712deb",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "414b4fa528d1dd587a9a072abf15fbfa3abb61a0f2c91116f42f7171d1a3b8ac",
+              "metadata_sha256": "43b8470249641d6c9d9bd501ab84f9ab91e4796bd3fe06b6a33282008ae49f33",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, regional delivery",
+      "kind": "native complete fleet market",
+      "class": "largest",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 40 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 40 metric ton",
+        "image": "market for transport, freight, lorry, 40 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 40 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, regional delivery",
+            "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, regional delivery",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "0e62a7b3b2f4e8a4eb47ac3a7c04daff915082096abd697b9d3b316529304ac6",
+              "metadata_sha256": "c79034ba2d4118d05038ff49c5ac5c456654532e62b8d5e2c25bf04dabe24603",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "d86031e7d6ccfc5138566835f5b686a3ca81660572533b40c60fa51746df16f5",
+              "metadata_sha256": "c27170a45cc9ff699ac969d7e24c095739cd831c9ecb6e30bdd6446342bcaf6d",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        },
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, regional delivery",
+            "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, regional delivery",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "34105c72a064039ced790d8267f66e052750c46ffb87dd1b79c1d21a2168a84e",
+              "metadata_sha256": "06214e449f7c85d9e42924f3deb6db6e48c1b5f440ac40792693a295ec10303d",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "278d253e309c0994256af01f8c86e051813a166bd2c5fd2c6e3aa82bbc1af0df",
+              "metadata_sha256": "22a5cf6c34e91dcf8a218a8045a8c2008b36176bb10bf77612b792ef3df19bbd",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, urban delivery",
+      "kind": "native complete fleet market",
+      "class": "largest",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 40 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 40 metric ton",
+        "image": "market for transport, freight, lorry, 40 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 40 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, urban delivery",
+            "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, urban delivery",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "39c7fbaeaec7fad3ec373a56d9223d3c0f65553fa98ae72212603d5026bc03d1",
+              "metadata_sha256": "5b46a23b3c16de1112f2ad80b5b49091cc0b9bc9fa8485dd9229ef1803bf8761",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "7d7c68b84e0b74aa79ac4612cb283f78a718177ccbb9f08b7b9a53f94f8c9c9f",
+              "metadata_sha256": "87b1f0234e41249f6f3300b5cdec11bf60f79c2d4d0e8a1f4e7e115b7da8d5ef",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        },
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, urban delivery",
+            "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, urban delivery",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "5bc5f03764298e2c741f92d74f32841689dfd7548caf666c7f65d3541fb8f277",
+              "metadata_sha256": "94e80d55dd4043b4f1255a54240a53d6a2e2be8a61278e1627889c3b1134d0d0",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "7d408079534f460816dfc23b96dcc8848572ea669d788f97bfcb5ada887d3fa3",
+              "metadata_sha256": "598323c2decca14d9b5a8c9909bef0b1d7e327bb5ad26934ed4d5837e5c42cba",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, diesel, 7.5t gross weight, fleet average, long haul",
+      "kind": "native complete fleet market",
+      "class": "light",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 7.5 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 7.5 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 7.5 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 7.5 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 7.5t gross weight, fleet average, long haul",
+            "reference product": "Transport, freight, lorry, diesel, 7.5t gross weight, fleet average, long haul",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "561b45c8b80d7cd0602279ef710fcecfa1c1c519a6359d19f116deeca2dd59a0",
+              "metadata_sha256": "98060953f80880165bf78a2926786feb9fea75d30bc759e84ccfd9ea37596975",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "1ccf8a3c7e2cce04c49c2c53185767a4920260b7699d05307c911da1088b4be3",
+              "metadata_sha256": "e0340a8716339f4246449a546bcd10deef2f95b1ad67c3a8eda29b1c4bfdc1b1",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        },
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 7.5t gross weight, fleet average, long haul",
+            "reference product": "Transport, freight, lorry, diesel, 7.5t gross weight, fleet average, long haul",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "a53701c3d11b13685f148599e883e2f7a89360c5610365d36896c2c77976ea7f",
+              "metadata_sha256": "8b459376950ee708ba9f7be9bcbfa713dbd543468459a17791cf079c6e04d934",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "1b716e1bf307ab9e3fc46b73d4d1ecc97332b041536cefdc9652275934269822",
+              "metadata_sha256": "37f16ae60be28545b88a164fdd4f5af4997595f7245964089a9123647e97f646",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, diesel, 7.5t gross weight, fleet average, regional delivery",
+      "kind": "native complete fleet market",
+      "class": "light",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 7.5 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 7.5 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 7.5 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 7.5 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 7.5t gross weight, fleet average, regional delivery",
+            "reference product": "Transport, freight, lorry, diesel, 7.5t gross weight, fleet average, regional delivery",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "53dab928e5c0710bb3ed81800c4e625b3fa546ed1f911551e140d7c95f13453f",
+              "metadata_sha256": "6a00ccd678aebc94327d15971d29644d807f47ff214ae875a89f2f31a890aa10",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "c855306c39c7687f81f61b6c40df28e1dc52d1314573629864f09ffc1fef266c",
+              "metadata_sha256": "5a5c6bc5436072be90866588ef25b6f2300705397acb9850b826b846065b1661",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        },
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 7.5t gross weight, fleet average, regional delivery",
+            "reference product": "Transport, freight, lorry, diesel, 7.5t gross weight, fleet average, regional delivery",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "e167be1f5ba31fc8ccadba704286c62755e4a27f3eea9e1eb12458cd233f5965",
+              "metadata_sha256": "c3cd483d76eaf222600b35a465a3afc0e888be82f2eef035a4c1880e1afd49d6",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "550ab7a3d617f26fcd3f1fa94f8b0a8c23561c80088aa9d9e4a332a19ae1092d",
+              "metadata_sha256": "1d3eb8fbbe3c5c26f7f102c4910d7465448644b07d9179d2d455a0ff26cc3899",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, diesel, 7.5t gross weight, fleet average, urban delivery",
+      "kind": "native complete fleet market",
+      "class": "light",
+      "targets": {
+        "remind": "market for transport, freight, lorry, 7.5 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 7.5 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 7.5 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 7.5 metric ton"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 7.5t gross weight, fleet average, urban delivery",
+            "reference product": "Transport, freight, lorry, diesel, 7.5t gross weight, fleet average, urban delivery",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "79b20d01f89c54338eb31933edc2c192d3c4538a5a656d21da2fa3a40328bd43",
+              "metadata_sha256": "f9d7ba1f33b0aa1f9bd4e3fa906507c8b53536501bb1f13094f67da91c880a3c",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "f045d9acf6b39ce7b09eb608af47da495ac1bf49c4891d09d3fa6693efd0a9b4",
+              "metadata_sha256": "080c1b06eae41c461bbcb349cecabd535d7add39cc1c44da93e52549be469c4a",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        },
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, diesel, 7.5t gross weight, fleet average, urban delivery",
+            "reference product": "Transport, freight, lorry, diesel, 7.5t gross weight, fleet average, urban delivery",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "0663b52bc39892cbfdd40a0493f231daf7671d2ea854a0fc42526c1aaeb9e970",
+              "metadata_sha256": "3350c4f26e43fed7d70e996501c4dc6b1deb25776e03ff93a8eaadc167e2d161",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "24970c65ca68f8d5b006d921078ce4145d64e568c304467a864bdbbf190c936e",
+              "metadata_sha256": "45801e3d155ac056d6c70420038378badada46aa8d963200c1031bb9c8fb698b",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Transport, freight, lorry, fleet average",
+      "kind": "native complete fleet market",
+      "class": "generic",
+      "targets": {
+        "remind": "market for transport, freight, lorry",
+        "remind-eu": "market for transport, freight, lorry",
+        "image": "market for transport, freight, lorry",
+        "tiam-ucl": "market for transport, freight, lorry",
+        "witch": "market for transport, freight, lorry",
+        "gcam": "market for transport, freight, lorry"
+      },
+      "witnesses": [
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, fleet average",
+            "reference product": "Transport, freight, lorry, fleet average",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "0dcfbc7b3fad9bfa100696eda53f9c9fa6a7b004c05152938b41641339b51a65",
+              "metadata_sha256": "7da5249d00f42244612354a7970c6d47eef823d021de982935db8dd22b0f84b2",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "d3b571a010da0c7fd8ba9e011a5a44f54ea908555d1cac28ec2a6b1c612ad488",
+              "metadata_sha256": "51f77ef55217705ddf6d0fc1297edcf6f8e999bb96b41466b33e310241f121a4",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        },
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, fleet average",
+            "reference product": "Transport, freight, lorry, fleet average",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "releases": {
+            "2025": {
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            },
+            "2026": {
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35",
+              "reference_amount": 1,
+              "nonproduction_count": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "alias": "Complete diesel freight, 16-32t, EURO IV, native RER conditional fleet [BrightPath UVEK conversion 14887b6a] [CLIC brightpath-uvek-import-14887b6a65bcfa1a6fe2f36c]",
+      "kind": "reviewed converted source market",
+      "recipe_id": "recycling-38-road-rer-16-32-euro-iv",
+      "source": {
+        "location": "RER",
+        "name": "market for transport, freight, lorry 16-32 metric ton, EURO4",
+        "reference product": "transport, freight, lorry 16-32 metric ton, EURO4",
+        "unit": "ton kilometer"
+      },
+      "targets": {
+        "remind": "market for transport, freight, lorry, 26 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 26 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 18 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "evidence": [
+        "brightpath/data/export/uvek_recycling_transport_38_review.json"
+      ]
+    },
+    {
+      "alias": "Complete diesel freight, 3.5-7.5t, EURO VI, native RER conditional fleet [BrightPath UVEK conversion 1722ea46] [CLIC brightpath-uvek-import-1722ea46cc065a646e1a15f3]",
+      "kind": "reviewed converted source market",
+      "recipe_id": "recycling-38-road-rer-3p5-7p5-euro-vi",
+      "source": {
+        "location": "RER",
+        "name": "market for transport, freight, lorry 3.5-7.5 metric ton, EURO6",
+        "reference product": "transport, freight, lorry 3.5-7.5 metric ton, EURO6",
+        "unit": "ton kilometer"
+      },
+      "targets": {
+        "remind": "market for transport, freight, lorry, 7.5 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 7.5 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 7.5 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 7.5 metric ton"
+      },
+      "evidence": [
+        "brightpath/data/export/uvek_recycling_transport_38_review.json"
+      ]
+    },
+    {
+      "alias": "transport, freight, lorry 16-32 metric ton, EURO5, native conditional size and duty mix [BrightPath UVEK conversion 3e8c59f0] [CLIC brightpath-uvek-import-3e8c59f08a7dbdd39af02e31]",
+      "kind": "reviewed converted source market",
+      "recipe_id": "euro-v-39-native-16-32t-conditional-fleet",
+      "source": {
+        "location": "RER",
+        "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+        "reference product": "transport, freight, lorry 16-32 metric ton, EURO5",
+        "unit": "ton kilometer"
+      },
+      "targets": {
+        "remind": "market for transport, freight, lorry, 26 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 26 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 18 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "evidence": [
+        "brightpath/data/export/uvek_euro_v_freight_39_review.json"
+      ]
+    },
+    {
+      "alias": "Complete diesel freight, 16-32t, EURO VI, native RER conditional fleet [BrightPath UVEK conversion 78f9f68a] [CLIC brightpath-uvek-import-78f9f68a266e05b6c09998f9]",
+      "kind": "reviewed converted source market",
+      "recipe_id": "recycling-38-road-rer-16-32-euro-vi",
+      "source": {
+        "location": "RER",
+        "name": "market for transport, freight, lorry 16-32 metric ton, EURO6",
+        "reference product": "transport, freight, lorry 16-32 metric ton, EURO6",
+        "unit": "ton kilometer"
+      },
+      "targets": {
+        "remind": "market for transport, freight, lorry, 26 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 26 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 18 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "evidence": [
+        "brightpath/data/export/uvek_recycling_transport_38_review.json"
+      ]
+    },
+    {
+      "alias": "Complete diesel freight, 3.5-7.5t, EURO III, native RER conditional fleet [BrightPath UVEK conversion 901e5851] [CLIC brightpath-uvek-import-901e5851c4b2d437665f7ece]",
+      "kind": "reviewed converted source market",
+      "recipe_id": "recycling-38-road-rer-3p5-7p5-euro-iii",
+      "source": {
+        "location": "RER",
+        "name": "market for transport, freight, lorry 3.5-7.5 metric ton, EURO3",
+        "reference product": "transport, freight, lorry 3.5-7.5 metric ton, EURO3",
+        "unit": "ton kilometer"
+      },
+      "targets": {
+        "remind": "market for transport, freight, lorry, 7.5 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 7.5 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 7.5 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 7.5 metric ton"
+      },
+      "evidence": [
+        "brightpath/data/export/uvek_recycling_transport_38_review.json"
+      ]
+    },
+    {
+      "alias": "Complete diesel freight, 3.5-7.5t, EURO V, native RER conditional fleet [BrightPath UVEK conversion a2a2aa23] [CLIC brightpath-uvek-import-a2a2aa23970a63ed84c0514e]",
+      "kind": "reviewed converted source market",
+      "recipe_id": "recycling-38-road-rer-3p5-7p5-euro-v",
+      "source": {
+        "location": "RER",
+        "name": "market for transport, freight, lorry 3.5-7.5 metric ton, EURO5",
+        "reference product": "transport, freight, lorry 3.5-7.5 metric ton, EURO5",
+        "unit": "ton kilometer"
+      },
+      "targets": {
+        "remind": "market for transport, freight, lorry, 7.5 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 7.5 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 7.5 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 7.5 metric ton"
+      },
+      "evidence": [
+        "brightpath/data/export/uvek_recycling_transport_38_review.json"
+      ]
+    },
+    {
+      "alias": "market for transport, freight, lorry >32 metric ton, EURO6, native Euro-VI size and duty mix [UVEK screening] [BrightPath UVEK conversion d2b51e49] [CLIC brightpath-uvek-import-d2b51e4916ef345c5c92556e]",
+      "kind": "reviewed converted source market",
+      "recipe_id": "remaining-freight-39-b84feb5869b37bc3",
+      "source": {
+        "location": "RER",
+        "name": "market for transport, freight, lorry >32 metric ton, EURO6",
+        "reference product": "transport, freight, lorry >32 metric ton, EURO6",
+        "unit": "ton kilometer"
+      },
+      "targets": {
+        "remind": "market for transport, freight, lorry, 40 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 40 metric ton",
+        "image": "market for transport, freight, lorry, 40 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 40 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "evidence": [
+        "brightpath/data/export/uvek_remaining_freight_39_review.json"
+      ]
+    },
+    {
+      "alias": "Complete diesel freight, 16-32t, EURO III, native RER conditional fleet [BrightPath UVEK conversion d7864d40] [CLIC brightpath-uvek-import-d7864d406e7ea355d7f8bec8]",
+      "kind": "reviewed converted source market",
+      "recipe_id": "recycling-38-road-rer-16-32-euro-iii",
+      "source": {
+        "location": "RER",
+        "name": "market for transport, freight, lorry 16-32 metric ton, EURO3",
+        "reference product": "transport, freight, lorry 16-32 metric ton, EURO3",
+        "unit": "ton kilometer"
+      },
+      "targets": {
+        "remind": "market for transport, freight, lorry, 26 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 26 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 18 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 18 metric ton"
+      },
+      "evidence": [
+        "brightpath/data/export/uvek_recycling_transport_38_review.json"
+      ]
+    },
+    {
+      "alias": "Complete diesel freight, 3.5-7.5t, EURO IV, native RER conditional fleet [BrightPath UVEK conversion eae8bd1a] [CLIC brightpath-uvek-import-eae8bd1a9562f2c216f14ee0]",
+      "kind": "reviewed converted source market",
+      "recipe_id": "recycling-38-road-rer-3p5-7p5-euro-iv",
+      "source": {
+        "location": "RER",
+        "name": "market for transport, freight, lorry 3.5-7.5 metric ton, EURO4",
+        "reference product": "transport, freight, lorry 3.5-7.5 metric ton, EURO4",
+        "unit": "ton kilometer"
+      },
+      "targets": {
+        "remind": "market for transport, freight, lorry, 7.5 metric ton",
+        "remind-eu": "market for transport, freight, lorry, 7.5 metric ton",
+        "image": "market for transport, freight, lorry, 18 metric ton",
+        "tiam-ucl": "market for transport, freight, lorry, 7.5 metric ton",
+        "witch": "market for transport, freight, lorry, 7.5 metric ton",
+        "gcam": "market for transport, freight, lorry, 7.5 metric ton"
+      },
+      "evidence": [
+        "brightpath/data/export/uvek_recycling_transport_38_review.json"
+      ]
+    }
+  ],
+  "existing_ecoinvent_and_other_vehicle_mappings_unchanged": true,
+  "legacy_mapping_sha256": "41b453356532db7d6786ed01c3ed47bbf3f9575af1de4942bd3a7893d706e342",
+  "limitations": [
+    "Existing model-specific weight-class fallbacks are screening proxies; no payload, capacity, distance or unit correction is applied.",
+    "Native 3.5t uses the matching 3.5t IAM role in REMIND/REMIND-EU/TIAM-UCL/GCAM; IMAGE and WITCH retain the pre-existing nearest small-freight class fallback.",
+    "IAM regional fleet substitution replaces historical fuel, EURO and duty-cycle detail for these market purchases, as in the standard ecoinvent market relinking; this is not a claim of unchanged historical fleet composition.",
+    "Only complete fleet-average and independently reviewed converted market suppliers are aliases. Explicit dated/EURO producer services and municipal waste collection remain outside this market map.",
+    "Converted helper names are bound to packaged recipe signatures; closure changes require this alias review and its regression test to be updated."
+  ],
+  "Brightway_database_writes": 0
+}

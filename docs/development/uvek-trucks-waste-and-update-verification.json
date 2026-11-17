@@ -1,0 +1,2427 @@
+{
+  "status": "current_waste_maps_and_standalone_shared_truck_checks_pass",
+  "candidate_review_proof": {
+    "review_sha256": "006ee7df900051047c74d7193b6e15f7d02d80f7d255f36363b1140ea52e6aa1",
+    "model_review_sha256": "b0fc0d53bdbc5654bc074ee7f20a1a541fa1b6f04c2514a2bdaa32b335b1df02",
+    "new_parent_correspondences": 3,
+    "new_helpers": 36,
+    "source_uncontrolled_models": 33,
+    "idempotent_review_replay": true,
+    "existing_recipe_contents_unchanged": true,
+    "preserved_older_selected_rules": [
+      {
+        "rule_id": "bp-38a8afc636bbea5a",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "selected_rule_unchanged": true
+      },
+      {
+        "rule_id": "bp-1472e083e5590d89",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "selected_rule_unchanged": true
+      },
+      {
+        "rule_id": "bp-5c29c14c8825b76f",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "selected_rule_unchanged": true
+      },
+      {
+        "rule_id": "bp-38a8afc636bbea5a",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "selected_rule_unchanged": true
+      }
+    ],
+    "new_foreground_omissions": 0,
+    "production_or_generator_Python_changes": 0,
+    "qualification_limit": "Candidate data pending migration, signed inventory checks and actual truck workflow retry."
+  },
+  "no_write_LCI": {
+    "status": "three_migrated_waste_consumers_and_33_treatments_have_finite_signed_LCIs",
+    "signed_finite_LCI_solves": 72,
+    "independent_native_model_comparisons": [
+      {
+        "recipe_id": "trucks-312-waste-market-1308b656f1d6a3e7",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 1.1102230246251565e-16,
+        "relative_infinity_norm_difference": 4.566158635995827e-18,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-waste-market-1472e083e5590d89",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 1.3877787807814457e-17,
+        "relative_infinity_norm_difference": 1.0424434292041117e-17,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-waste-market-38a8afc636bbea5a",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 2.220446049250313e-16,
+        "relative_infinity_norm_difference": 6.776755277121113e-18,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-a6ce8539832fc9c2",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 3.308722450212111e-24,
+        "relative_infinity_norm_difference": 1.0817406116212704e-25,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-1d2b8594038696db",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-ceaeb41b9808bba6",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 2.117582368135751e-22,
+        "relative_infinity_norm_difference": 6.92313991437613e-24,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-44140c64ff867e96",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 2.117582368135751e-22,
+        "relative_infinity_norm_difference": 6.92313991437613e-24,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-2a8dd562b72b58c8",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 2.117582368135751e-22,
+        "relative_infinity_norm_difference": 6.92313991437613e-24,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-f17385479d3b8f6f",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 2.117582368135751e-22,
+        "relative_infinity_norm_difference": 6.92313991437613e-24,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-7f20a97488f85be2",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-1eb94c22a876d6a1",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-7b991774a9fdc365",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-c95bce7e5f95374a",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-fbd7a78fd7668c9c",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-82c13f150733d0f7",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 4.1359030627651384e-25,
+        "relative_infinity_norm_difference": 4.1357517394042737e-25,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-0b01109d873417f6",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 4.1359030627651384e-25,
+        "relative_infinity_norm_difference": 4.1357517394042737e-25,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-ab53026fe7e90058",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-a007183189fdebe2",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 4.1359030627651384e-25,
+        "relative_infinity_norm_difference": 4.1357517394042737e-25,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-e258069ead699b91",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-3883acd78e9bbe9f",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 4.1359030627651384e-25,
+        "relative_infinity_norm_difference": 4.1357517394042737e-25,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-92545eb713a2e901",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 4.1359030627651384e-25,
+        "relative_infinity_norm_difference": 4.1357517394042737e-25,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-c6457f02b9d021c8",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-69bd140520d972f5",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-9b1a8c3b4095e474",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-11ec72321067a04c",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-3e1356a36f529063",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 4.1359030627651384e-25,
+        "relative_infinity_norm_difference": 1.003396685542632e-26,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-9449ec29e5e40eab",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-6f56f3b5c39768e3",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-d62def2cad9f5bf5",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 4.1359030627651384e-25,
+        "relative_infinity_norm_difference": 1.003396685542632e-26,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-b4462c59aa1a7e1b",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 1.0339757656912846e-25,
+        "relative_infinity_norm_difference": 2.50849171385658e-27,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-b5d965ce648273a1",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-e8c10fce14318f39",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-53485d839e312cc1",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-7edb3867ff27438b",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 4.1359030627651384e-25,
+        "relative_infinity_norm_difference": 1.003396685542632e-26,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-84e8c19c88d894c7",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "recipe_id": "trucks-312-treatment-338da188518fa5e9",
+        "independent_private_source_graph_comparison": true,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15,
+        "maximum_absolute_inventory_difference": 4.1359030627651384e-25,
+        "relative_infinity_norm_difference": 1.003396685542632e-26,
+        "relative_infinity_norm_tolerance": 1e-10
+      }
+    ],
+    "transient_activities": 39,
+    "native_endpoints_used": 6,
+    "matrix_shape": [
+      11986,
+      11986
+    ],
+    "source_and_biosphere_metadata_preserved": true,
+    "new_Brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "qualification_limit": "Numerical native-model consistency only. Native operating and incineration proxies remain explicit; source/native score equivalence and complete truck-sector export remain unproven."
+  },
+  "standalone_graph": {
+    "status": "standalone_truck_shared_update_and_exhaustive_graph_checks_passed",
+    "activities": 12746,
+    "CLIC_records": 466,
+    "source_prototypes_by_role": {
+      "truck, battery electric, 3.5 metric ton": 1,
+      "truck, fuel cell electric, 3.5 metric ton": 1,
+      "truck, diesel, 3.5 metric ton": 1,
+      "truck, compressed gas, 3.5 metric ton": 1,
+      "truck, battery electric, 7.5 metric ton": 1,
+      "truck, fuel cell electric, 7.5 metric ton": 1,
+      "truck, diesel, 7.5 metric ton": 1,
+      "truck, compressed gas, 7.5 metric ton": 1,
+      "truck, battery electric, 18 metric ton": 1,
+      "truck, fuel cell electric, 18 metric ton": 1,
+      "truck, diesel, 18 metric ton": 1,
+      "truck, compressed gas, 18 metric ton": 1,
+      "truck, battery electric, 26 metric ton": 1,
+      "truck, fuel cell electric, 26 metric ton": 1,
+      "truck, diesel, 26 metric ton": 1,
+      "truck, compressed gas, 26 metric ton": 1,
+      "truck, battery electric, 40 metric ton": 1,
+      "truck, fuel cell electric, 40 metric ton": 1,
+      "truck, diesel, 40 metric ton": 1,
+      "truck, compressed gas, 40 metric ton": 1
+    },
+    "regional_services": 260,
+    "regional_markets": 73,
+    "consumer_datasets_before": 5291,
+    "consumer_datasets_after": 5384,
+    "redirected_exchanges": 4867,
+    "freight_helpers": 9,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "validation_disabled": false,
+    "new_Brightway_databases": 0,
+    "processed_files_unchanged": true,
+    "elapsed_seconds": 60.28156641602982,
+    "sector_qualified": false
+  },
+  "standalone_physical": {
+    "status": "standalone_truck_physical_and_consumer_checks_passed",
+    "services_checked": 260,
+    "markets_checked": 73,
+    "hydrogen_compression_balances_checked": 65,
+    "native_mass_based_battery_plants_unchanged": 33,
+    "existing_consumer_exchanges_checked": 4867,
+    "IAM_efficiency_source_counts": {
+      "energy/service": 244,
+      "unavailable": 16
+    },
+    "service_checks": [
+      {
+        "role": "truck, battery electric, 3.5 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 3.5 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 3.5 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 3.5 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 3.5 metric ton",
+        "region": "JPN",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 3.5 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 3.5 metric ton",
+        "region": "MEA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 3.5 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 3.5 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 3.5 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 3.5 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 3.5 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 3.5 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 3.5 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 3.5 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 3.5 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 3.5 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 3.5 metric ton",
+        "region": "JPN",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 3.5 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 3.5 metric ton",
+        "region": "MEA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 3.5 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 3.5 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 3.5 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 3.5 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 3.5 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 3.5 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 3.5 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 3.5 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 3.5 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 3.5 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 3.5 metric ton",
+        "region": "JPN",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 3.5 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 3.5 metric ton",
+        "region": "MEA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 3.5 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 3.5 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 3.5 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 3.5 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 3.5 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 3.5 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 3.5 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 3.5 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 3.5 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.9795388705308903,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 3.5 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 3.5 metric ton",
+        "region": "JPN",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 3.5 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 3.5 metric ton",
+        "region": "MEA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 3.5 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 3.5 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 3.5 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 3.5 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 3.5 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 3.5 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 7.5 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 7.5 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 7.5 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 7.5 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 7.5 metric ton",
+        "region": "JPN",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 7.5 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 7.5 metric ton",
+        "region": "MEA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 7.5 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 7.5 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 7.5 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 7.5 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 7.5 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 7.5 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 7.5 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 7.5 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 7.5 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 7.5 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 7.5 metric ton",
+        "region": "JPN",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 7.5 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 7.5 metric ton",
+        "region": "MEA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 7.5 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 7.5 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 7.5 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 7.5 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 7.5 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 7.5 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 7.5 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 7.5 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 7.5 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 7.5 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 7.5 metric ton",
+        "region": "JPN",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 7.5 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 7.5 metric ton",
+        "region": "MEA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 7.5 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 7.5 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 7.5 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 7.5 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 7.5 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 7.5 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 7.5 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 7.5 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 7.5 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 7.5 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 7.5 metric ton",
+        "region": "JPN",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 7.5 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 7.5 metric ton",
+        "region": "MEA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 7.5 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 7.5 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 7.5 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 7.5 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 7.5 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 7.5 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 18 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 18 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 18 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 18 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 18 metric ton",
+        "region": "JPN",
+        "energy_factor": 0.9999999999997877,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 18 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 18 metric ton",
+        "region": "MEA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 18 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 18 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 18 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 18 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 18 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 18 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 18 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 18 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 18 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 18 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 18 metric ton",
+        "region": "JPN",
+        "energy_factor": 0.9999999999999591,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 18 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 18 metric ton",
+        "region": "MEA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 18 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 18 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 18 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 18 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 18 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 18 metric ton",
+        "region": "World",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 18 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 18 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 18 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 18 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 18 metric ton",
+        "region": "JPN",
+        "energy_factor": 0.9999999999999727,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 18 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 18 metric ton",
+        "region": "MEA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 18 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 18 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 18 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 18 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 18 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 18 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 18 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 18 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 18 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 18 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 18 metric ton",
+        "region": "JPN",
+        "energy_factor": 0.9999999999998417,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 18 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 18 metric ton",
+        "region": "MEA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 18 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 18 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 18 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 18 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 18 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 18 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 26 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 26 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 26 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 26 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 26 metric ton",
+        "region": "JPN",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 26 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 26 metric ton",
+        "region": "MEA",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 26 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 26 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 26 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 26 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 26 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 26 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 26 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 26 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 26 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 26 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 26 metric ton",
+        "region": "JPN",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 26 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 26 metric ton",
+        "region": "MEA",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 26 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 26 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 26 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 26 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 26 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 26 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 26 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 26 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 26 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 26 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 26 metric ton",
+        "region": "JPN",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 26 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 26 metric ton",
+        "region": "MEA",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 26 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 26 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 26 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 26 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 26 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 26 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 26 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 26 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 26 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 26 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 26 metric ton",
+        "region": "JPN",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 26 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 26 metric ton",
+        "region": "MEA",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 26 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 26 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 26 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 26 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 26 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 26 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 40 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 40 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 40 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 40 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 40 metric ton",
+        "region": "JPN",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 40 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 40 metric ton",
+        "region": "MEA",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 40 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 40 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 40 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 40 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 40 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, battery electric, 40 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 40 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 40 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 40 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 40 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 40 metric ton",
+        "region": "JPN",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 40 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 40 metric ton",
+        "region": "MEA",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 40 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 40 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 40 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 40 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 40 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, fuel cell electric, 40 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 40 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 40 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 40 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 40 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 40 metric ton",
+        "region": "JPN",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 40 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 40 metric ton",
+        "region": "MEA",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 40 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 40 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 40 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 40 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 40 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, diesel, 40 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 40 metric ton",
+        "region": "CAZ",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 40 metric ton",
+        "region": "CHA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 40 metric ton",
+        "region": "EUR",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 40 metric ton",
+        "region": "IND",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 40 metric ton",
+        "region": "JPN",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 40 metric ton",
+        "region": "LAM",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 40 metric ton",
+        "region": "MEA",
+        "energy_factor": 1.0,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 40 metric ton",
+        "region": "NEU",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 40 metric ton",
+        "region": "OAS",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 40 metric ton",
+        "region": "REF",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 40 metric ton",
+        "region": "SSA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 40 metric ton",
+        "region": "USA",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      },
+      {
+        "role": "truck, compressed gas, 40 metric ton",
+        "region": "World",
+        "energy_factor": 0.8,
+        "fixed_inputs_and_fuel_proportional_emissions_checked": true
+      }
+    ],
+    "market_checks": [
+      {
+        "market": "market for transport, freight, lorry",
+        "region": "CAZ",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry",
+        "region": "CHA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry",
+        "region": "EUR",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry",
+        "region": "IND",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry",
+        "region": "JPN",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry",
+        "region": "LAM",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry",
+        "region": "MEA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry",
+        "region": "NEU",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry",
+        "region": "OAS",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry",
+        "region": "REF",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry",
+        "region": "SSA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry",
+        "region": "USA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry",
+        "region": "World",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 18 metric ton",
+        "region": "CAZ",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 18 metric ton",
+        "region": "CHA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 18 metric ton",
+        "region": "EUR",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 18 metric ton",
+        "region": "IND",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 18 metric ton",
+        "region": "LAM",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 18 metric ton",
+        "region": "MEA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 18 metric ton",
+        "region": "NEU",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 18 metric ton",
+        "region": "OAS",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 18 metric ton",
+        "region": "REF",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 18 metric ton",
+        "region": "SSA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 18 metric ton",
+        "region": "USA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 18 metric ton",
+        "region": "World",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 26 metric ton",
+        "region": "CAZ",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 26 metric ton",
+        "region": "CHA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 26 metric ton",
+        "region": "EUR",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 26 metric ton",
+        "region": "IND",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 26 metric ton",
+        "region": "LAM",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 26 metric ton",
+        "region": "NEU",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 26 metric ton",
+        "region": "OAS",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 26 metric ton",
+        "region": "REF",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 26 metric ton",
+        "region": "SSA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 26 metric ton",
+        "region": "USA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 26 metric ton",
+        "region": "World",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 3.5 metric ton",
+        "region": "CAZ",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 3.5 metric ton",
+        "region": "CHA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 3.5 metric ton",
+        "region": "EUR",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 3.5 metric ton",
+        "region": "IND",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 3.5 metric ton",
+        "region": "JPN",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 3.5 metric ton",
+        "region": "LAM",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 3.5 metric ton",
+        "region": "MEA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 3.5 metric ton",
+        "region": "NEU",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 3.5 metric ton",
+        "region": "OAS",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 3.5 metric ton",
+        "region": "REF",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 3.5 metric ton",
+        "region": "SSA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 3.5 metric ton",
+        "region": "USA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 3.5 metric ton",
+        "region": "World",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 7.5 metric ton",
+        "region": "CAZ",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 7.5 metric ton",
+        "region": "CHA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 7.5 metric ton",
+        "region": "EUR",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 7.5 metric ton",
+        "region": "IND",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 7.5 metric ton",
+        "region": "JPN",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 7.5 metric ton",
+        "region": "LAM",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 7.5 metric ton",
+        "region": "MEA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 7.5 metric ton",
+        "region": "NEU",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 7.5 metric ton",
+        "region": "OAS",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 7.5 metric ton",
+        "region": "REF",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 7.5 metric ton",
+        "region": "SSA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 7.5 metric ton",
+        "region": "USA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 7.5 metric ton",
+        "region": "World",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 40 metric ton",
+        "region": "CAZ",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 40 metric ton",
+        "region": "CHA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 40 metric ton",
+        "region": "EUR",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 40 metric ton",
+        "region": "IND",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 40 metric ton",
+        "region": "LAM",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 40 metric ton",
+        "region": "NEU",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 40 metric ton",
+        "region": "OAS",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 40 metric ton",
+        "region": "REF",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 40 metric ton",
+        "region": "SSA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 40 metric ton",
+        "region": "USA",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      },
+      {
+        "market": "market for transport, freight, lorry, 40 metric ton",
+        "region": "World",
+        "IAM_shares_and_nonnegative_normalization_checked": true
+      }
+    ],
+    "Brightway_database_writes": 0,
+    "public_export_verified": false,
+    "sector_qualified": false
+  },
+  "normal_generator_reproduces_all_three_resources": true,
+  "canonical_biosphere_files_unchanged": true,
+  "regressions": {
+    "Brightpath_current_and_old_waste_plus_review_index": 32,
+    "Premise_current_and_old_waste": 9,
+    "energy_battery_transport_and_car_checks": 132,
+    "market_alias_checks": 6,
+    "Brightpath_current_materials_waste_older_waste_and_review_index": 54,
+    "Premise_current_materials_waste_and_older_waste": 14
+  },
+  "qualified_sectors": 14,
+  "total_sectors": 19,
+  "public_export_verified": false,
+  "qualification_limit": "Standalone diagnostic override only. Combined-sector and installed normal public export remain unfinished; proxy inventories do not establish source/native impact equivalence."
+}

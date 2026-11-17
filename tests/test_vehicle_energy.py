@@ -23,6 +23,9 @@ from premise.vehicle_energy import vehicle_energy_exchange
             "kilogram",
         ),
         ("Electricity, low voltage, at grid", "kilowatt hour"),
+        ("Diesel, fossil, at regional storage", "kilogram"),
+        ("Liquefied petroleum gas, at service station", "kilogram"),
+        ("Propane, butane, at refinery", "kilogram"),
     ],
 )
 @pytest.mark.parametrize(

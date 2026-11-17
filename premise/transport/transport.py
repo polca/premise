@@ -616,6 +616,17 @@ class Transport(BaseTransformation):
 
         if BATTERY_SIZING_KEY in ds:
             return
+        # This legacy schedule is expressed in kWh. Mass-based packs must not
+        # receive a kWh quantity here.
+        battery_exchanges = list(
+            ws.technosphere(
+                ds,
+                ws.contains("name", "market for battery"),
+                ws.equals("unit", "kilowatt hour"),
+            )
+        )
+        if not battery_exchanges:
+            return
         # detect size in name
         size = [s for s in self.battery_size["truck"] if s in ds["name"]][0]
 
@@ -656,7 +667,7 @@ class Transport(BaseTransformation):
                 [v["max"] for v in self.battery_size["truck"][size].values()],
             )
 
-        for exc in ws.technosphere(ds, ws.contains("name", "market for battery")):
+        for exc in battery_exchanges:
             exc["amount"] = mean_battery_size
             exc["uncertainty type"] = 5
             exc["loc"] = float(exc["amount"])

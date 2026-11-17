@@ -1,10 +1,26 @@
 # mapping between premise and IAM terminology regarding road freight transport
 # transport volumes (ES; units depend on IAM), energy use (FE), and optional
 # vehicle energy intensity (MJ/vehicle-km; distinct from fleet volumes)
+# Native fuel selection uses exact product/unit tuples, including approved
+# generated supply helpers. This does not rename suppliers, convert units or
+# establish a new CLIC technology role. Shared anchors keep size classes aligned.
 ---
 
 
 truck, battery electric, 3.5 metric ton:
+  uvek_fuel_aliases: &uvek_truck_electric_energy
+    fltr:
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    allow_generated_helpers: true
+    exact_identities:
+    - reference product: Electricity, low voltage, at grid
+      unit: kilowatt hour
+    - reference product: electricity, low voltage
+      unit: kilowatt hour
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|BEV
     remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|BEV
@@ -26,6 +42,31 @@ truck, battery electric, 3.5 metric ton:
       - electricity
 
 truck, fuel cell electric, 3.5 metric ton:
+  uvek_fuel_aliases: &uvek_truck_hydrogen_energy
+    fltr:
+      reference product:
+      - Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station
+      - Hydrogen production, steam methane reforming of natural gas, 25 bar
+      - hydrogen
+      - hydrogen, gaseous
+      - hydrogen, gaseous, low pressure
+      - hydrogen, gaseous, high pressure
+      unit: kilogram
+    exact: true
+    allow_generated_helpers: true
+    exact_identities:
+    - reference product: Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station
+      unit: kilogram
+    - reference product: Hydrogen production, steam methane reforming of natural gas, 25 bar
+      unit: kilogram
+    - reference product: hydrogen
+      unit: kilogram
+    - reference product: hydrogen, gaseous
+      unit: kilogram
+    - reference product: hydrogen, gaseous, low pressure
+      unit: kilogram
+    - reference product: hydrogen, gaseous, high pressure
+      unit: kilogram
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV
     remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV
@@ -45,6 +86,34 @@ truck, fuel cell electric, 3.5 metric ton:
       - hydrogen
 
 truck, gasoline, 3.5 metric ton:
+  uvek_fuel_aliases: &uvek_truck_petrol_energy
+    fltr:
+      reference product:
+      - Fuel supply for gasoline vehicles
+      - Petrol, at regional storage
+      - Petrol, fossil, at regional storage
+      - Petrol, unleaded, at regional storage
+      - petrol
+      - petrol, low-sulfur
+      - gasoline
+      unit: kilogram
+    exact: true
+    allow_generated_helpers: true
+    exact_identities:
+    - reference product: Fuel supply for gasoline vehicles
+      unit: kilogram
+    - reference product: Petrol, at regional storage
+      unit: kilogram
+    - reference product: Petrol, fossil, at regional storage
+      unit: kilogram
+    - reference product: Petrol, unleaded, at regional storage
+      unit: kilogram
+    - reference product: petrol
+      unit: kilogram
+    - reference product: petrol, low-sulfur
+      unit: kilogram
+    - reference product: gasoline
+      unit: kilogram
   iam_aliases:
     tiam-ucl:
       - Distance|Transport|Truck|Light|Ethanol|Bioethanol
@@ -69,6 +138,28 @@ truck, gasoline, 3.5 metric ton:
       - petrol, low-sulfur
 
 truck, diesel, 3.5 metric ton:
+  uvek_fuel_aliases: &uvek_truck_diesel_energy
+    fltr:
+      reference product:
+      - Fuel supply for diesel vehicles
+      - Diesel, at regional storage
+      - Diesel, fossil, at regional storage
+      - diesel
+      - diesel, low-sulfur
+      unit: kilogram
+    exact: true
+    allow_generated_helpers: true
+    exact_identities:
+    - reference product: Fuel supply for diesel vehicles
+      unit: kilogram
+    - reference product: Diesel, at regional storage
+      unit: kilogram
+    - reference product: Diesel, fossil, at regional storage
+      unit: kilogram
+    - reference product: diesel
+      unit: kilogram
+    - reference product: diesel, low-sulfur
+      unit: kilogram
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
     remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
@@ -90,6 +181,7 @@ truck, diesel, 3.5 metric ton:
       - diesel
 
 truck, diesel hybrid, 3.5 metric ton:
+    uvek_fuel_aliases: *uvek_truck_diesel_energy
     iam_aliases:
       tiam-ucl: Distance|Transport|Truck|Light|Diesel Hybrid|Diesel
       gcam: Distance|Transport|Freight|Road|Light truck|Hybrid Liquids
@@ -104,6 +196,36 @@ truck, diesel hybrid, 3.5 metric ton:
         - diesel
 
 truck, plugin diesel hybrid, 3.5 metric ton:
+  uvek_fuel_aliases: &uvek_truck_plugin_diesel_energy
+    fltr:
+      reference product:
+      - Fuel supply for diesel vehicles
+      - Diesel, at regional storage
+      - Diesel, fossil, at regional storage
+      - diesel
+      - diesel, low-sulfur
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit:
+      - kilogram
+      - kilowatt hour
+    exact: true
+    allow_generated_helpers: true
+    exact_identities:
+    - reference product: Fuel supply for diesel vehicles
+      unit: kilogram
+    - reference product: Diesel, at regional storage
+      unit: kilogram
+    - reference product: Diesel, fossil, at regional storage
+      unit: kilogram
+    - reference product: diesel
+      unit: kilogram
+    - reference product: diesel, low-sulfur
+      unit: kilogram
+    - reference product: Electricity, low voltage, at grid
+      unit: kilowatt hour
+    - reference product: electricity, low voltage
+      unit: kilowatt hour
   iam_aliases:
     tiam-ucl:
       - Distance|Transport|Truck|Light|Diesel Plug-in Hybrid|Diesel
@@ -120,6 +242,35 @@ truck, plugin diesel hybrid, 3.5 metric ton:
       - diesel
 
 truck, compressed gas, 3.5 metric ton:
+  uvek_fuel_aliases: &uvek_truck_gas_energy
+    fltr:
+      reference product:
+      - Fuel supply for gas vehicles
+      - Natural gas, from high pressure network (1-5 bar), at service station
+      - Natural gas, from medium pressure network (0.1-1 bar), at service station
+      - natural gas
+      - natural gas, high pressure
+      - natural gas, low pressure
+      unit:
+      - kilogram
+      - cubic meter
+    exact: true
+    allow_generated_helpers: true
+    exact_identities:
+    - reference product: Fuel supply for gas vehicles
+      unit: kilogram
+    - reference product: Natural gas, from high pressure network (1-5 bar), at service station
+      unit: kilogram
+    - reference product: Natural gas, from medium pressure network (0.1-1 bar), at service station
+      unit: kilogram
+    - reference product: natural gas
+      unit: kilogram
+    - reference product: natural gas
+      unit: cubic meter
+    - reference product: natural gas, high pressure
+      unit: cubic meter
+    - reference product: natural gas, low pressure
+      unit: cubic meter
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
     remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
@@ -141,6 +292,22 @@ truck, compressed gas, 3.5 metric ton:
       - natural gas
 
 truck, liquefied petroleum gas, 3.5 metric ton:
+  uvek_fuel_aliases: &uvek_truck_lpg_energy
+    fltr:
+      reference product:
+      - Liquefied petroleum gas, at service station
+      - Propane, butane, at refinery
+      - liquefied petroleum gas
+      unit: kilogram
+    exact: true
+    allow_generated_helpers: true
+    exact_identities:
+    - reference product: Liquefied petroleum gas, at service station
+      unit: kilogram
+    - reference product: Propane, butane, at refinery
+      unit: kilogram
+    - reference product: liquefied petroleum gas
+      unit: kilogram
   iam_aliases:
     tiam-ucl: Distance|Transport|Truck|Light|Liquefied Petroleum Gas|Liquefied Petroleum Gas
   energy_use_aliases:
@@ -154,6 +321,7 @@ truck, liquefied petroleum gas, 3.5 metric ton:
 
 
 truck, battery electric, 7.5 metric ton:
+  uvek_fuel_aliases: *uvek_truck_electric_energy
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(7_5t)|BEV
     remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|BEV
@@ -177,6 +345,7 @@ truck, battery electric, 7.5 metric ton:
       - electricity
 
 truck, fuel cell electric, 7.5 metric ton:
+  uvek_fuel_aliases: *uvek_truck_hydrogen_energy
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(7_5t)|FCEV
     remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|FCEV
@@ -204,6 +373,7 @@ truck, fuel cell electric, 7.5 metric ton:
       - hydrogen
 
 truck, gasoline, 7.5 metric ton:
+  uvek_fuel_aliases: *uvek_truck_petrol_energy
   iam_aliases:
     tiam-ucl:
       - Distance|Transport|Truck|Commercial|Ethanol|Bioethanol
@@ -229,6 +399,7 @@ truck, gasoline, 7.5 metric ton:
 
 
 truck, diesel, 7.5 metric ton:
+  uvek_fuel_aliases: *uvek_truck_diesel_energy
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
     remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
@@ -254,6 +425,7 @@ truck, diesel, 7.5 metric ton:
       - diesel
 
 truck, diesel hybrid, 7.5 metric ton:
+    uvek_fuel_aliases: *uvek_truck_diesel_energy
     iam_aliases:
       tiam-ucl: Distance|Transport|Truck|Commercial|Diesel Hybrid|Diesel
       gcam: Distance|Transport|Freight|Road|Medium truck|Hybrid Liquids
@@ -268,6 +440,7 @@ truck, diesel hybrid, 7.5 metric ton:
         - diesel
 
 truck, plugin diesel hybrid, 7.5 metric ton:
+    uvek_fuel_aliases: *uvek_truck_plugin_diesel_energy
     iam_aliases:
       tiam-ucl:
         - Distance|Transport|Truck|Commercial|Diesel Plug-in Hybrid|Diesel
@@ -284,6 +457,7 @@ truck, plugin diesel hybrid, 7.5 metric ton:
         - diesel
 
 truck, compressed gas, 7.5 metric ton:
+  uvek_fuel_aliases: *uvek_truck_gas_energy
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(7_5t)|Gases
     remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|Gases
@@ -304,6 +478,7 @@ truck, compressed gas, 7.5 metric ton:
       - natural gas
 
 truck, liquefied petroleum gas, 7.5 metric ton:
+  uvek_fuel_aliases: *uvek_truck_lpg_energy
   iam_aliases:
     tiam-ucl: Distance|Transport|Truck|Commercial|Liquefied Petroleum Gas|Liquefied Petroleum Gas
   energy_use_aliases:
@@ -316,6 +491,7 @@ truck, liquefied petroleum gas, 7.5 metric ton:
       - liquefied petroleum gas
 
 truck, battery electric, 18 metric ton:
+  uvek_fuel_aliases: *uvek_truck_electric_energy
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(18t)|BEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|BEV
@@ -337,6 +513,7 @@ truck, battery electric, 18 metric ton:
       - electricity
 
 truck, fuel cell electric, 18 metric ton:
+  uvek_fuel_aliases: *uvek_truck_hydrogen_energy
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(18t)|FCEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|FCEV
@@ -364,6 +541,7 @@ truck, fuel cell electric, 18 metric ton:
       - hydrogen
 
 truck, gasoline, 18 metric ton:
+    uvek_fuel_aliases: *uvek_truck_petrol_energy
     iam_aliases:
         tiam-ucl:
           - Distance|Transport|Truck|Medium|Ethanol|Bioethanol
@@ -388,6 +566,7 @@ truck, gasoline, 18 metric ton:
         - petrol, low-sulfur
 
 truck, diesel, 18 metric ton:
+  uvek_fuel_aliases: *uvek_truck_diesel_energy
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
@@ -416,6 +595,7 @@ truck, diesel, 18 metric ton:
       - diesel
 
 truck, gasoline hybrid, 18 metric ton:
+    uvek_fuel_aliases: *uvek_truck_petrol_energy
     iam_aliases:
       image: Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Gasoline
     ecoinvent_aliases:
@@ -426,6 +606,7 @@ truck, gasoline hybrid, 18 metric ton:
         - diesel
 
 truck, diesel hybrid, 18 metric ton:
+    uvek_fuel_aliases: *uvek_truck_diesel_energy
     iam_aliases:
       image:
         - Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Biofuel
@@ -439,6 +620,7 @@ truck, diesel hybrid, 18 metric ton:
         - diesel
 
 truck, compressed gas, 18 metric ton:
+  uvek_fuel_aliases: *uvek_truck_gas_energy
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(18t)|Gases
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|Gases
@@ -460,6 +642,7 @@ truck, compressed gas, 18 metric ton:
       - natural gas
 
 truck, liquefied petroleum gas, 18 metric ton:
+  uvek_fuel_aliases: *uvek_truck_lpg_energy
   iam_aliases:
       tiam-ucl: Distance|Transport|Truck|Medium|Liquefied Petroleum Gas|Liquefied Petroleum Gas
   energy_use_aliases:
@@ -472,6 +655,7 @@ truck, liquefied petroleum gas, 18 metric ton:
       - liquefied petroleum gas
 
 truck, diesel plugin hybrid, 18 metric ton:
+    uvek_fuel_aliases: *uvek_truck_plugin_diesel_energy
     iam_aliases:
         image:
           - Energy Service|Transportation|Freight|Medium Truck|Plug-in electric vehicle 10km|Biofuel
@@ -488,6 +672,7 @@ truck, diesel plugin hybrid, 18 metric ton:
         - diesel
 
 truck, battery electric, 26 metric ton:
+  uvek_fuel_aliases: *uvek_truck_electric_energy
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(26t)|BEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(26t)|BEV
@@ -505,6 +690,7 @@ truck, battery electric, 26 metric ton:
       - electricity
 
 truck, fuel cell electric, 26 metric ton:
+  uvek_fuel_aliases: *uvek_truck_hydrogen_energy
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(26t)|FCEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(26t)|FCEV
@@ -522,6 +708,7 @@ truck, fuel cell electric, 26 metric ton:
       - hydrogen
 
 truck, diesel, 26 metric ton:
+  uvek_fuel_aliases: *uvek_truck_diesel_energy
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
@@ -539,6 +726,7 @@ truck, diesel, 26 metric ton:
       - diesel
 
 truck, compressed gas, 26 metric ton:
+  uvek_fuel_aliases: *uvek_truck_gas_energy
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(26t)|Gases
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(26t)|Gases
@@ -556,6 +744,7 @@ truck, compressed gas, 26 metric ton:
       - natural gas
 
 truck, battery electric, 40 metric ton:
+  uvek_fuel_aliases: *uvek_truck_electric_energy
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(40t)|BEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(40t)|BEV
@@ -575,6 +764,7 @@ truck, battery electric, 40 metric ton:
       - electricity
 
 truck, fuel cell electric, 40 metric ton:
+  uvek_fuel_aliases: *uvek_truck_hydrogen_energy
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(40t)|FCEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(40t)|FCEV
@@ -599,6 +789,7 @@ truck, fuel cell electric, 40 metric ton:
       - hydrogen
 
 truck, diesel hybrid, 40 metric ton:
+    uvek_fuel_aliases: *uvek_truck_diesel_energy
     iam_aliases:
         image:
           - Energy Service|Transportation|Freight|Heavy Truck|Hybrid engine|Biofuel
@@ -612,6 +803,7 @@ truck, diesel hybrid, 40 metric ton:
         - diesel
 
 truck, gasoline hybrid, 40 metric ton:
+    uvek_fuel_aliases: *uvek_truck_petrol_energy
     iam_aliases:
         image: Energy Service|Transportation|Freight|Heavy Truck|Hybrid engine|Gasoline
     ecoinvent_aliases:
@@ -622,6 +814,7 @@ truck, gasoline hybrid, 40 metric ton:
         - diesel
 
 truck, diesel, 40 metric ton:
+  uvek_fuel_aliases: *uvek_truck_diesel_energy
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(40t)|Liquids
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(40t)|Liquids
@@ -652,6 +845,7 @@ truck, diesel, 40 metric ton:
       - diesel
 
 truck, gasoline, 40 metric ton:
+    uvek_fuel_aliases: *uvek_truck_petrol_energy
     iam_aliases:
         tiam-ucl:
           - Distance|Transport|Truck|Heavy|Gas|Gasoline
@@ -673,6 +867,7 @@ truck, gasoline, 40 metric ton:
         - petrol, low-sulfur
 
 truck, compressed gas, 40 metric ton:
+  uvek_fuel_aliases: *uvek_truck_gas_energy
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(40t)|Gases
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(40t)|Gases
@@ -693,6 +888,7 @@ truck, compressed gas, 40 metric ton:
       - natural gas
 
 truck, liquefied petroleum gas, 40 metric ton:
+    uvek_fuel_aliases: *uvek_truck_lpg_energy
     iam_aliases:
         tiam-ucl: Distance|Transport|Truck|Heavy|Liquefied Petroleum Gas|Liquefied Petroleum Gas
     energy_use_aliases:
@@ -705,6 +901,7 @@ truck, liquefied petroleum gas, 40 metric ton:
         - liquefied petroleum gas
 
 truck, diesel plugin hybrid, 40 metric ton:
+    uvek_fuel_aliases: *uvek_truck_plugin_diesel_energy
     iam_aliases:
         image:
           - Energy Service|Transportation|Freight|Heavy Truck|Plug-in electric vehicle 10km|Biofuel

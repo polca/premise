@@ -467,6 +467,62 @@ def test_legacy_truck_capacity_override_cannot_overwrite_the_new_contract(spec):
     assert ds == {SPEC_KEY: json.dumps(spec)}
 
 
+def test_legacy_truck_sizing_does_not_treat_pack_mass_as_kwh():
+    tr = object.__new__(Transport)
+    ds = {
+        "name": "Light duty truck, battery electric, 3.5t gross weight",
+        "unit": "unit",
+        "exchanges": [
+            {
+                "name": "market for battery, Li-ion",
+                "type": "technosphere",
+                "unit": "kilogram",
+                "amount": 875,
+            },
+            {
+                "name": "Battery cell, NMC-622",
+                "type": "technosphere",
+                "unit": "kilogram",
+                "amount": 525,
+            },
+        ],
+    }
+    original = deepcopy(ds)
+    tr.adjust_battery_size(ds)
+    assert ds == original
+
+
+def test_legacy_truck_kwh_schedule_keeps_its_original_units_and_limits():
+    from premise.transport.transport import get_battery_size
+
+    tr = object.__new__(Transport)
+    tr.year = 2050
+    tr.battery_size = get_battery_size()
+    ds = {
+        "name": "truck production, battery electric, 3.5 metric ton",
+        "exchanges": [
+            {
+                "name": "market for battery, Li-ion",
+                "type": "technosphere",
+                "unit": "kilowatt hour",
+                "amount": 100,
+            },
+            {
+                "name": "market for battery, Li-ion",
+                "type": "technosphere",
+                "unit": "kilogram",
+                "amount": 875,
+            },
+        ],
+    }
+    tr.adjust_battery_size(ds)
+    capacity, mass = ds["exchanges"]
+    assert capacity["amount"] == capacity["loc"] == 172
+    assert capacity["minimum"] == 108 and capacity["maximum"] == 236
+    assert capacity["uncertainty type"] == 5 and mass["amount"] == 875
+    assert "172 kWh" in ds["comment"]
+
+
 @pytest.mark.parametrize("family,expected", [("pass_cars", 25), ("trucks", 14)])
 def test_installed_metadata_survives_excel_import_and_matches_purchases(
     family, expected

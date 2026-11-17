@@ -39,3 +39,12 @@ Hydrogen production, steam methane reforming of natural gas, 25 bar:
 Electricity, low voltage, at grid:
   product: electricity, low voltage
   unit: kilowatt hour
+Diesel, fossil, at regional storage:
+  product: diesel
+  unit: kilogram
+Liquefied petroleum gas, at service station:
+  product: liquefied petroleum gas
+  unit: kilogram
+Propane, butane, at refinery:
+  product: liquefied petroleum gas
+  unit: kilogram
