@@ -139,12 +139,6 @@ def rescale_exchanges(
     return ds
 
 
-# Disable printing
-
-
-# Restore printing
-
-
 def eidb_label(
     scenario: Dict[str, Any],
     version: str,

@@ -72,10 +72,7 @@ def get_simapro_units() -> Dict[str, str]:
 
 
 def get_simapro_compartments() -> Dict[str, str]:
-    """
-    Load a dictionary that maps brightway2 unit to Simapro compartments.
-    :return: a dictionary that maps brightway2 unit to Simapro compartments.
-    """
+    """Map Brightway biosphere compartments to SimaPro compartments."""
 
     with open(FILEPATH_SIMAPRO_COMPARTMENTS, "r", encoding="utf-8") as stream:
         simapro_comps = yaml.safe_load(stream)
