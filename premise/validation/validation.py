@@ -1518,26 +1518,55 @@ class DatasetNormalizer(BaseDatasetValidator):
         return normalizer
 
     def normalize_dataset_integrity(self) -> None:
-        """Restore inferable product fields and remove null activity metadata."""
+        """Infer products from unique name/location matches and remove null metadata.
 
-        activities = [
-            (ds.get("name"), ds.get("reference product"), ds.get("location"))
-            for ds in self.database
-        ]
+        Build the lookup only for incomplete inventories, retaining duplicate matches
+        so ambiguous providers are never inferred.
+        """
+
+        activities = None
+        products_by_identity = None
         for dataset in self.database:
             for exchange in dataset.get("exchanges", []):
                 if (
                     exchange.get("type") == "technosphere"
                     and exchange.get("product") is None
                 ):
-                    candidates = [
-                        key
-                        for key in activities
-                        if key[0] == exchange.get("name")
-                        and key[2] == exchange.get("location")
-                    ]
+                    if activities is None:
+                        activities = [
+                            (
+                                ds.get("name"),
+                                ds.get("reference product"),
+                                ds.get("location"),
+                            )
+                            for ds in self.database
+                        ]
+                        try:
+                            products_by_identity = defaultdict(list)
+                            for name, product, location in activities:
+                                products_by_identity[name, location].append(product)
+                        except TypeError:
+                            # Preserve comparison-based matching for unhashable metadata.
+                            products_by_identity = None
+                    try:
+                        candidates = (
+                            products_by_identity.get(
+                                (exchange.get("name"), exchange.get("location")), ()
+                            )
+                            if products_by_identity is not None
+                            else None
+                        )
+                    except TypeError:
+                        candidates = None
+                    if candidates is None:
+                        candidates = [
+                            product
+                            for name, product, location in activities
+                            if name == exchange.get("name")
+                            and location == exchange.get("location")
+                        ]
                     if len(candidates) == 1:
-                        exchange["product"] = candidates[0][1]
+                        exchange["product"] = candidates[0]
         self.database = [
             {key: value for key, value in dataset.items() if value is not None}
             for dataset in self.database
