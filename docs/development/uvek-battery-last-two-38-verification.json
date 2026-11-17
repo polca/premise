@@ -1,0 +1,187 @@
+{
+  "status": "source38_required_chemistry_group_converts",
+  "source_code_changes": 0,
+  "immediate_manufacturing_models": 3,
+  "delivered_supply_models": 3,
+  "old_recipe_inventories_unchanged": 4423,
+  "normal_generator_byte_equal_files": {
+    "ecoinvent-to-ecoinvent-3.10-biosphere.json": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+    "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+    "ecoinvent-to-uvek-2025.json": "3e84591e813f29a0cfa9a5547078e64ad95aaa5019fa7ca9d2757c17e294004b"
+  },
+  "operation_coordinates": {
+    "status": "passed",
+    "retained_operation_positions": 84,
+    "uncertainty_field_checks": 405,
+    "retained_formulas": 13,
+    "negative_waste_inputs_converted_to_positive_treatment": 9,
+    "canonical_biosphere_positions": 34,
+    "new_omissions": [],
+    "new_source_code_changes": 0,
+    "qualification_limit": "Immediate selected source inventories; the documented co-product and regional manufacturing branches are complete screening substitutions."
+  },
+  "conversion_behavior": {
+    "status": "passed",
+    "added_exact_source38_scopes": 2,
+    "signed_uncertainty_exchange_checks": 16,
+    "direct_migration_cases": 8,
+    "public_harmonizer_fresh_and_warm_passed": true,
+    "input_nonmutation": true,
+    "earlier_effective_profile_checks": 0,
+    "new_immediate_manufacturing_models": 3,
+    "new_delivered_market_models": 3,
+    "new_foreground_omissions": [],
+    "source_code_changes": 0,
+    "new_Brightway_databases": 0,
+    "qualification_limit": "Required interface group only; no complete battery update or new export."
+  },
+  "in_memory_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 29,
+    "foreground_biosphere_flows": 146,
+    "native_suppliers": 84,
+    "signed_foreground_LCI_solves": 4,
+    "independent_native_reference_LCI_solves": 2,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-8fa6bb43a07f3b4e",
+        "source": {
+          "location": "GLO",
+          "name": "market for manganese sulfate",
+          "reference product": "manganese sulfate",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 7.195808393589687e-09,
+        "refined_max_abs_inventory_difference": 1.1368683772161603e-13,
+        "full_graph_residual": {
+          "residual_before": 1.7458852892385146e-12,
+          "residual_after": 3.885780586188048e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.217362083952835e-09,
+          "residual_after": 4.440892098500626e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-fc047c72b6020ab2",
+        "source": {
+          "location": "GLO",
+          "name": "market for vinyl carbonate",
+          "reference product": "vinyl carbonate",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.8684022506931797e-07,
+        "refined_max_abs_inventory_difference": 2.2737367544323206e-13,
+        "full_graph_residual": {
+          "residual_before": 4.302253525347455e-11,
+          "residual_after": 2.6645352591003757e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 8.484640348364673e-10,
+          "residual_after": 1.8577668700267558e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "new_model_signed_LCI_solves": 12,
+    "new_model_recipes_checked": [
+      "battery-38-triethylamine-delivered-supply",
+      "battery-38-manganese-sulfate-delivered-supply",
+      "battery-38-triethylamine-european-manufacturing",
+      "battery-38-vinylene-carbonate-manufacturing",
+      "battery-38-manganese-sulfate-dedicated-production",
+      "battery-38-vinylene-carbonate-delivered-supply"
+    ],
+    "qualification_limit": "Two chemical markets and retained manufacturing/emission/delivery coordinates against independent flattened native demand. No score equivalence or completed battery/export qualification."
+  },
+  "real_battery_graph_retry": {
+    "source_activities": 272,
+    "source38_group_passed": true,
+    "next_failed_source_profile": {
+      "family": "ecoinvent",
+      "version": "3.12",
+      "system_model": "cutoff"
+    },
+    "unapproved_correspondences": 73,
+    "same_identity_with_other_release_approval": 33,
+    "approval_bypass": false,
+    "validation_disabled": false,
+    "new_Brightway_databases": 0,
+    "successful_cohorts": [
+      {
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.8"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.8"
+          }
+        },
+        "activities": 204,
+        "audit_errors": 0
+      },
+      {
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.9"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          }
+        },
+        "activities": 567,
+        "audit_errors": 0
+      }
+    ]
+  },
+  "qualified_sector_count_unchanged": 15,
+  "total_sectors": 19,
+  "qualification_limit": "The source-3.8 preparation cohort is resolved, but complete battery preparation has now reached unapproved source-3.12 inputs. No battery transformation or export is claimed.",
+  "focused_tests": {
+    "Brightpath_passed": 39,
+    "Premise_passed": 10,
+    "known_pre_existing_failure": {
+      "status": "pre_existing_failure_reproduced",
+      "installed_Brightpath_revision": "9cc231a2ffccad4c4b72516731f2f1b6d2e3c266",
+      "installed_runtime_used": true,
+      "test": "test_uvek_dmc_39.py::test_replay_is_atomic_and_refuses_changed_input_or_recipe_boundaries[None]",
+      "reason": "Historical dedicated DMC authoring replay requires its original parent; the already published later source-3.8 mapping extension changes that parent. Ordinary full generator and runtime conversion are separate checks.",
+      "Python_files_modified": false
+    },
+    "baseline_failure_was_deselected_in_focused_followup": true
+  }
+}
