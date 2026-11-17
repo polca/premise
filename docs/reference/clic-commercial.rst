@@ -1,122 +1,136 @@
-Commercial CLIC inventory selection
-===================================
+.. _commercial-clic-inventory-selection:
 
-Premise uses CLIC for supplemental foreground selection, retaining required
-workbooks for inventories unavailable through that route. Use the optional
-commercial license policy to select CLIC foreground inventories with
-commercially permitted declarations and replace restricted requirements with
-reviewed alternatives. It is an opt-in inventory selection policy; it does not
-certify usage rights for the complete scenario database.
+Commercial use of CLIC inventories
+==================================
 
-Activation and defaults
------------------------
+Some inventories available through CLIC have licenses that restrict commercial
+use. If you plan to use Premise commercially, we recommend turning on commercial
+screening. Premise then checks the CLIC datasets your build needs and uses
+reviewed alternatives for restricted datasets where possible.
 
-Add these arguments to your existing ``NewDatabase`` configuration:
+This check covers the selected CLIC data. You still need the appropriate rights
+to use ecoinvent, retained workbooks and any inventories you supply yourself.
+
+.. _activation-and-defaults:
+
+Turn on commercial screening
+----------------------------
+
+Add ``clic_options`` to your usual ``NewDatabase`` call. Here,
+``build_arguments`` is a dictionary containing your existing scenario, source
+database and IAM key settings:
 
 .. code-block:: python
 
-   inventory_options = {
-       "clic_options": {"license_policy": "commercial"},
-   }
+   database = NewDatabase(
+       **build_arguments,
+       clic_options={"license_policy": "commercial"},
+   )
+   sectors = ["electricity", "fuels", "battery", "cars"]
+   database.update(sectors)
 
-The CLIC pipeline is automatic; ``NewDatabase`` and ``PathwaysDataPackage`` have
-no ``inventory_source`` argument. Without commercial screening,
-``license_policy="default"`` retains the selected CLIC inventories under their
-published declarations. This default does not exclude non-commercial licenses.
+Choose the sectors your study needs. Premise prepares the extra inventories
+before updating those sectors. Further ``update`` calls add any newly required
+inventories. You can also prepare them directly with
+``prepare_inventories(sectors)``.
 
-For older destinations, reviewed native manufacturing references can replace
-newer-source assets independently of license screening. Those substitutions are
-identified as ``older_target_compatibility`` and frozen in a compatibility recipe.
-Create a new recipe when changing that build to commercial policy; the two
-replacement plans have different selection criteria.
+Premise uses CLIC automatically; there is no ``inventory_source`` argument.
+Commercial screening is optional. If you leave it off, the default selection
+can include datasets with non-commercial licenses.
 
-``update(sectors)`` prepares the required inventories before transforming those
-sectors. ``prepare_inventories(sectors)`` can prepare them explicitly. Successive
-calls expand the required sector selection. The policy checks that selected
-graph, including upstream CLIC suppliers, rather than the entire CLIC catalogue.
+.. _license-decisions:
 
-License decisions
+Accepted licenses
 -----------------
 
-The permitted CLIC declarations are ``CC0-1.0``, ``CC-BY-3.0``, ``CC-BY-4.0`` and
-``CC-BY-SA-4.0``. Attribution and ShareAlike conditions remain visible in the
-license report. Commercial permission does not imply unrestricted redistribution.
+The policy accepts these CLIC license declarations: ``CC0-1.0``, ``CC-BY-3.0``,
+``CC-BY-4.0`` and ``CC-BY-SA-4.0``. Their conditions still apply. For example,
+you may need to credit the source or share adapted material under the same
+license. The license report records attribution and ShareAlike requirements.
 
-Non-commercial, missing, undisclosed and unrecognized declarations require an
-alternative. An explicit non-commercial source-license note also requires review
-when the selected declaration otherwise passes. This flags a conflict; it does
-not establish that the selected declaration is legally invalid.
+Datasets with non-commercial restrictions, missing licenses or unrecognized
+licenses need an alternative. Premise also flags cases where a source note
+mentions a non-commercial restriction despite an otherwise accepted license
+declaration. Such a conflict needs review before the dataset can be used.
 
-The assessment uses declared permissions from the verified archive and, in live
-mode, CLIC metadata. It does not determine ownership of underlying rights. See
-the `CLIC license guide <https://clic.psi.ch/licenses/>`__ for the platform's
-license descriptions.
+Premise checks the recorded license information; it cannot establish who owns
+the underlying rights. See the `CLIC license guide <https://clic.psi.ch/licenses/>`__
+for more about the platform's licenses.
 
-How alternatives are applied
+.. _how-alternatives-are-applied:
+
+How replacements work
+---------------------
+
+Premise checks both the CLIC datasets selected for your sectors and the CLIC
+datasets they use as inputs. It does not check unrelated catalogue entries.
+
+When a required dataset has a restriction, Premise:
+
+1. Looks for a reviewed replacement listed in the mapping catalogue.
+2. Checks that the replacement's suppliers exist in your ecoinvent database.
+3. Applies the documented conversion, such as scaling a PV installation to the
+   required power capacity.
+4. Removes inputs that are no longer needed. An input stays if another selected
+   dataset still uses it.
+5. Checks the final links to suppliers, emissions and resources.
+
+Most replacements use inventories already in your ecoinvent database. They use
+those inventories' quantities, rather than copying the restricted dataset's
+recipe. Methane-pyrolysis hydrogen uses a separately published reference recipe.
+Only the listed, reviewed alternatives are considered. If none is available,
+Premise stops instead of leaving out a required technology.
+
+The report identifies the replacement, its location, any scaling and its
+limitations. Some are approximate: a different battery chemistry may represent
+manufacturing, for example, while the vehicle keeps its assumed battery life.
+That choice needs to be considered when interpreting the results.
+
+For battery packs that exclude electronics, Premise removes the control-system
+inputs and scales the remaining inputs back to one kilogram of pack. Controls
+bought separately are still included. Other rules replace an unavailable
+supplier while keeping the quantity purchased and the license of the dataset
+making that purchase.
+
+See the full :doc:`clic-commercial-mappings` catalogue for the replacement
+datasets, conversions, sources, confidence levels and limitations.
+
+.. _validated-targets-and-result-differences:
+
+Supported versions and changes in results
+-----------------------------------------
+
+The reviewed commercial selections have been tested with:
+
+* Ecoinvent cutoff 3.8, 3.9, 3.9.1, 3.10, 3.10.1, 3.11 and 3.12.
+* Ecoinvent EN15804 3.12.
+
+These tests used a particular CLIC archive and the available ecoinvent suppliers.
+New or updated CLIC datasets may need further review.
+
+Commercial screening is not available for consequential backgrounds or ecoinvent
+3.7. Those builds use workbooks because compatible CLIC routes are
+unavailable, and that workbook selection has not been assessed by this policy.
+
+Older ecoinvent versions can also need replacements for newer-source datasets,
+even when commercial screening is off. The report labels these choices
+``older_target_compatibility``. If you have saved such a build's recipe, create a
+new recipe for a commercial build rather than changing the policy on that recipe.
+
+Replacements can substantially change environmental results. In a comparison
+using ecoinvent 3.12 cutoff, 100-year climate change scores (IPCC 2013 GWP100)
+for PV-related datasets rose by 0.1% to 324.3%; battery-related scores changed by
+-31.5% to +45.0%. These figures
+compare individual inventories before scenario updates. They do not describe
+the change in an entire future database or show that every substitute is an
+equivalent model. Review the replacements used in your own study.
+
+.. _reports-and-reproducibility:
+
+Review and repeat your build
 ----------------------------
 
-1. Resolve the required CLIC roots and their upstream dependency graph.
-2. Select applicable reviewed rules from
-   ``premise/data/clic/commercial_replacements.yaml`` and check that their
-   suppliers exist in the user's actual background database.
-3. Replace affected activities, preferably complete parent assets. Native
-   alternatives copy the native inventory's exchanges and documented conversion;
-   they do not copy restricted recipe coefficients or behavior metadata. An
-   independently sourced recipe supplies methane-pyrolysis hydrogen.
-4. Remove dependencies no longer needed by any retained activity or explicit
-   root. A shared supplier is retained while another activity still needs it.
-5. Screen all remaining CLIC inventories and the reviewed replacements, migrate
-   ordinary CLIC inventories, and validate final supplier and biosphere links.
-
-Identity matching uses the explicitly listed names, products, units and location
-preferences. There is no runtime search for a roughly named substitute. Native
-candidate lists are tried in order; unavailable candidates lead to a documented
-fallback or an unresolved requirement. Missing candidates never silently remove
-a required technology.
-
-Whole-activity replacements preserve the requested identity and Premise role
-bindings so sector updates can still find the process. Their source geography,
-conversion and technological differences are reported. PV installations use
-capacity scaling; battery packs excluding electronics remove native control
-inputs and renormalize the remaining mass. Separate control purchases remain.
-
-Reviewed background-supplier rules also support older targets when a
-permissively licensed CLIC consumer refers to an unavailable supplier. These
-replace that purchase's supplier, preserve its amount and the consumer's license,
-and undergo final strict target validation. Unknown links still fail.
-
-These are manufacturing proxies. A different battery chemistry does not change
-the consumer's assumed cycle life; a material proxy does not establish the
-original material's operational performance. Replacement limitations must be
-considered when interpreting results.
-
-The complete :doc:`clic-commercial-mappings` catalogue lists every rule, native
-candidate, independent recipe, source and documented limitation.
-
-Validated targets and result differences
-----------------------------------------
-
-The reviewed selections were validated against cutoff 3.8, 3.9, 3.9.1, 3.10,
-3.10.1, 3.11 and 3.12, and EN15804 3.12. This describes the reviewed archive and
-available native suppliers; future CLIC releases can require further review.
-
-Commercial-policy consequential and pre-3.8 builds are rejected before inventory
-loading because their automatic workbook compatibility fallbacks have not been
-assessed. Without commercial screening, consequential builds retain compatible
-workbooks because cutoff CLIC inventories cannot supply that system model;
-3.7 builds retain workbooks because reviewed CLIC routes start at 3.8.
-
-Approximate replacements can substantially change LCIA results. For one fixed
-3.12 cutoff background, the comparison of 616 untransformed activity roots found
-IPCC 2013 GWP100 changes from +0.1% to +324.3% for the PV family and from -31.5%
-to +45.0% for the battery family. These are foreground comparisons, not
-scenario-wide changes or evidence that a proxy reproduces the original model.
-The policy-off comparison reproduced all 10,472 scores across 17 methods.
-
-Reports and reproducibility
----------------------------
-
-Generate a scenario report after updating the required sectors:
+After updating your sectors, generate a report and save an inventory recipe:
 
 .. code-block:: python
 
@@ -125,45 +139,61 @@ Generate a scenario report after updating the required sectors:
    )
    database.write_inventory_recipe("export/commercial/inventory-recipe.json")
 
-The workbook contains ``CLIC Inventories``, ``CLIC Licenses`` and, when
-substitutions are used, ``CLIC Replacements`` sheets. Alongside it, Premise writes:
+The workbook has ``CLIC Inventories`` and ``CLIC Licenses`` sheets, plus a
+``CLIC Replacements`` sheet when replacements were used. Premise also writes
+these files beside it:
 
-* ``scenario_report.inventory-manifest.json``: selected versions, licenses,
-  substitutions, retained workbook sources and migration provenance.
-* ``scenario_report.inventory-licenses-N.csv``: original and used licenses,
-  citations, attribution and ShareAlike flags.
-* ``scenario_report.inventory-substitutions-N.csv``: activity or background-supplier
-  replacements, actual suppliers, conversions, confidence, geography and limitations.
-* ``scenario_report.inventory-recipe-N.json``: a recipe for scenario ``N``;
-  numbering starts at one.
+* ``scenario_report.inventory-manifest.json`` records the selected versions,
+  licenses, replacements, retained workbooks and conversion history.
+* ``scenario_report.inventory-licenses-N.csv`` lists original and used licenses,
+  citations and conditions.
+* ``scenario_report.inventory-substitutions-N.csv`` lists replacements, suppliers,
+  conversions, confidence levels, locations and limitations.
+* ``scenario_report.inventory-recipe-N.json`` saves the selection for scenario
+  ``N``. Numbering starts at one.
 
-The explicit ``inventory-recipe.json`` export freezes the build's current
-selection. To replay it, supply ``inventory_recipe`` with the same source
-database, scenario configuration and sector selection. A commercial recipe
-restores commercial policy automatically, even if it is omitted from
-``clic_options``. The recipe retains original version pins, including pruned
-activities, to reconstruct the original graph; the manifest identifies which
-inventories were actually used.
+A recipe records the inventory versions and replacement choices so you can use
+the same selection again. Reuse your source database, scenario settings and
+sectors, and pass the saved recipe:
 
-Policy, registry, target and replacement-inventory fingerprints protect replay
-and caches. Changed rules or native inventories require a reviewed new recipe.
-Cached and pinned inventories still undergo license assessment. With the
-default ``freshness="live"``, declarations of all used CLIC versions are checked,
-including specific pinned versions. ``freshness="snapshot"`` or ``offline=True``
-assesses the verified archive snapshot instead; the reports record this choice.
-Offline builds need an available local or cached archive and migration resources.
+.. code-block:: python
 
-Failures and scope
+   replay = NewDatabase(
+       **build_arguments,
+       inventory_recipe="export/commercial/inventory-recipe.json",
+   )
+   replay.update(sectors)
+
+A commercial recipe turns commercial screening back on automatically. It also
+keeps records of original versions that were replaced or became unnecessary;
+the report shows which inventories were actually used.
+
+Saved checksums detect changes to the replacement rules, target or copied
+inventories. If those no longer match, review the changes and create a new
+recipe. Using cached data or fixing a dataset version in a recipe does not
+skip the license checks.
+
+By default, ``freshness="live"`` checks the license declarations of all used CLIC
+versions online, including versions fixed in a commercial recipe. Set
+``freshness="snapshot"`` or ``offline=True`` to use the checked archive snapshot
+instead. The report records that choice. Offline builds need the archive and
+the required conversion resources available locally or in the cache.
+
+.. _failures-and-scope:
+
+When a build stops
 ------------------
 
-An essential unresolved requirement stops preparation with ``ClicLicenseError``.
-Its ``issues`` attribute contains all blocked datasets and their root-to-supplier
-paths; the message displays the first ten. Ambiguous suppliers, invalid links
-and incompatible recipes also stop preparation. Commercial mode does not fall
-back to a restricted workbook when an alternative is missing.
+If a required dataset has an unresolved license restriction, preparation stops
+with ``ClicLicenseError``. Its message lists the first ten blocked datasets; its
+``issues`` attribute holds the full list and shows which selected datasets need
+them. Missing or ambiguous suppliers, invalid links and incompatible recipes
+also stop preparation. A missing commercial replacement does not trigger a
+switch to a restricted workbook.
 
-The downloaded archive remains a mixed-license archive. Screening governs the
-selected CLIC inventories used in the build. Ecoinvent, retained workbooks and
-user inventories require separate permission assessments, including appropriate
-`ecoinvent rights <https://support.ecoinvent.org/licensing>`__. Review the exported
-sources and replacement limitations before distributing or using the result.
+The downloaded archive contains datasets with different licenses, including
+datasets your build does not use. Commercial screening checks the selected
+CLIC inventories used in the build. Review the reported sources and replacement
+limitations, and make sure you have the separate permissions needed for
+`ecoinvent <https://support.ecoinvent.org/licensing>`__, retained workbooks and
+your own inventories before using or sharing the result.

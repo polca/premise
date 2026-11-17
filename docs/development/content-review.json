@@ -584,7 +584,7 @@
   {
     "page": "reference/clic-commercial.rst",
     "review_date": "2026-11-17",
-    "disposition": "Documented implemented opt-in license decisions, native and independent replacements, graph pruning, target scope, result effects, report artifacts, cache and recipe enforcement, and separate rights assessments.",
+    "disposition": "Rewrote the commercial CLIC guide in plain English, preserving settings, license scope, replacement limits, compatibility fallbacks, report files and replay checks; retained existing section anchors.",
     "review_level": "Documentation and implementation consistency; not independent legal or proxy-accuracy validation"
   },
   {
