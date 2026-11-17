@@ -185,16 +185,19 @@ def get_simapro_biosphere_dictionnary():
 
 
 def create_index_of_A_matrix(database):
-    """Map (activity name, product, unit, location) to its matrix row number."""
-    return {
-        (
-            database[i]["name"].strip(),
-            database[i]["reference product"].strip(),
-            database[i]["unit"].strip(),
-            database[i]["location"].strip(),
-        ): i
-        for i in range(0, len(database))
-    }
+    """Map stripped activity identities to their positions; last duplicates win."""
+    index = {}
+    for i in range(len(database)):
+        dataset = database[i]
+        index[
+            (
+                dataset["name"].strip(),
+                dataset["reference product"].strip(),
+                dataset["unit"].strip(),
+                dataset["location"].strip(),
+            )
+        ] = i
+    return index
 
 
 def rev_index(inds: dict) -> dict:

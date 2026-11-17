@@ -274,3 +274,28 @@ def test_missing_biosphere_uuid_before_valid_flow_does_not_stop_export(
         [1, 0, 0.0, 0, 0.0, None, None, None, None, 0, 1],
     ]
     assert capsys.readouterr().out.count("Cannot find the biosphere flow known") == 1
+
+
+def test_activity_index_uses_positions_and_last_stripped_duplicate():
+    class ReversedIterationList(list):
+        def __iter__(self):
+            return reversed(self)
+
+    first = {
+        "name": " a ",
+        "reference product": " p ",
+        "unit": " kg ",
+        "location": " GLO ",
+    }
+    second = {**first, "name": "b"}
+    duplicate = {key: value.strip() for key, value in first.items()}
+    database = ReversedIterationList([first, second, duplicate])
+    before = deepcopy([database[i] for i in range(len(database))])
+
+    index = module.create_index_of_A_matrix(database)
+
+    assert list(index.items()) == [
+        (("a", "p", "kg", "GLO"), 2),
+        (("b", "p", "kg", "GLO"), 1),
+    ]
+    assert database == before
