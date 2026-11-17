@@ -1,0 +1,447 @@
+{
+  "status": "twenty_native_source312_supplies_verified",
+  "source_code_changes": 0,
+  "exact_source312_scopes_added": 20,
+  "unchanged_native_rules": 17,
+  "corrected_wrong_candidates": 3,
+  "new_manufacturing_inventory_models": 0,
+  "new_recipes": 0,
+  "old_recipe_inventories_unchanged": 4443,
+  "tests": {
+    "brightpath_passed": 42,
+    "premise_passed": 10,
+    "known_historical_replay_failures_not_reclassified": 2
+  },
+  "normal_generator_byte_equal_files": {
+    "ecoinvent-to-ecoinvent-3.10-biosphere.json": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+    "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+    "ecoinvent-to-uvek-2025.json": "e896ec993e913537f78b6b314523dc8ecf653db5c3280dddf43f5ae2958a71c2"
+  },
+  "temporary_output_bytes_removed": 112864101,
+  "conversion_behavior": {
+    "status": "passed",
+    "added_exact_source312_scopes": 20,
+    "signed_uncertainty_exchange_checks": 160,
+    "direct_migration_cases": 8,
+    "public_harmonizer_fresh_and_warm_passed": true,
+    "input_nonmutation": true,
+    "earlier_effective_profile_checks": 0,
+    "new_manufacturing_inventory_models": 0,
+    "new_model_profile_aliases": 0,
+    "new_foreground_omissions": [],
+    "source_code_changes": 0,
+    "new_Brightway_databases": 0,
+    "qualification_limit": "Required interface group only; no complete battery update or new export."
+  },
+  "in_memory_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 20,
+    "native_suppliers": 19,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 40,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-2164b416522ac0c4",
+        "source": {
+          "location": "GLO",
+          "name": "market for battery cell, Li-ion, NMC622",
+          "reference product": "battery cell, Li-ion, NMC622",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Battery cell, NMC-622",
+          "reference product": "Battery cell, NMC-622",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-71160c84c9244bfa",
+        "source": {
+          "location": "CN",
+          "name": "market for NCA oxide",
+          "reference product": "NCA oxide",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "NCA electrode material (LiNi0.8Co0.15Al0.05O2)",
+          "reference product": "NCA electrode material (LiNi0.8Co0.15Al0.05O2)",
+          "location": "JP",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-6d218293ccf08998",
+        "source": {
+          "location": "GLO",
+          "name": "electrolyte production, for Li-ion battery",
+          "reference product": "electrolyte, for Li-ion battery",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Electrolyte",
+          "reference product": "Electrolyte",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-6f3df80c57491efd",
+        "source": {
+          "location": "RER",
+          "name": "market for styrene butadiene rubber, emulsion polymerised",
+          "reference product": "styrene butadiene rubber, emulsion polymerised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Market for styrene butadiene rubber (SBR)",
+          "reference product": "Market for styrene butadiene rubber (SBR)",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-9cd16b2738739a5e",
+        "source": {
+          "location": "GLO",
+          "name": "market for manganese",
+          "reference product": "manganese",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Manganese, at regional storage",
+          "reference product": "Manganese, at regional storage",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-cc620f28c2eab956",
+        "source": {
+          "location": "GLO",
+          "name": "market for chemical, organic, basic precursors and materials",
+          "reference product": "chemical, organic, basic precursors and materials",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Chemicals organic, at plant",
+          "reference product": "Chemicals organic, at plant",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-bf11d565cb47b1ca",
+        "source": {
+          "location": "RoW",
+          "name": "market for hydrated lime, loose",
+          "reference product": "hydrated lime, loose",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Lime, hydrated, loose, at plant",
+          "reference product": "Lime, hydrated, loose, at plant",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-15d3e659d9435a7d",
+        "source": {
+          "location": "RER",
+          "name": "market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 5",
+          "reference product": "transport, freight, lorry, 16-32 metric ton, diesel, EURO 5",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, long haul",
+          "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, long haul",
+          "unit": "ton kilometer"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-4535df8ba0d2a220",
+        "source": {
+          "location": "CN",
+          "name": "cobalt sulfate production",
+          "reference product": "cobalt sulfate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Cobalt sulfate",
+          "reference product": "Cobalt sulfate",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-b4864c53040ba884",
+        "source": {
+          "location": "RoW",
+          "name": "market for lithium iron phosphate",
+          "reference product": "lithium iron phosphate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "JP",
+          "name": "Lithium iron phosphate [LiFePO4]",
+          "reference product": "Lithium iron phosphate [LiFePO4]",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-d48eb25095b39fa4",
+        "source": {
+          "location": "RER",
+          "name": "market for chlorine, gaseous",
+          "reference product": "chlorine, gaseous",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Chlorine, gaseous, membrane cell, at plant",
+          "reference product": "Chlorine, gaseous, membrane cell, at plant",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-254765f24c72d983",
+        "source": {
+          "location": "GLO",
+          "name": "market for copper collector foil, for Li-ion battery",
+          "reference product": "copper collector foil, for Li-ion battery",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Copper collector foil production, for Li-ion battery",
+          "reference product": "Copper collector foil production, for Li-ion battery",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-52f666736ea47479",
+        "source": {
+          "location": "RER",
+          "name": "market for tetrachloroethylene",
+          "reference product": "tetrachloroethylene",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "WEU",
+          "name": "Tetrachloroethylene, at plant",
+          "reference product": "Tetrachloroethylene, at plant",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-89125ba7f547c7cb",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "treatment of waste steel, municipal incineration",
+          "reference product": "waste steel",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, steel, 0% water, to municipal incineration",
+          "reference product": "Disposal, steel, 0% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-15038724bca1015a",
+        "source": {
+          "location": "RER",
+          "name": "market for xylene, mixed",
+          "reference product": "xylene, mixed",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Xylene, at plant",
+          "reference product": "Xylene, at plant",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-c2a6d481127e2207",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "treatment of waste aluminium, municipal incineration",
+          "reference product": "waste aluminium",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, aluminium, 0% water, to municipal incineration",
+          "reference product": "Disposal, aluminium, 0% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-5d7b1c068590069e",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "treatment of waste copper, municipal incineration",
+          "reference product": "waste copper",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, copper, 0% water, to municipal incineration",
+          "reference product": "Disposal, copper, 0% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-0258632fdcd150ed",
+        "source": {
+          "location": "RER",
+          "name": "market for hydrogen sulfide",
+          "reference product": "hydrogen sulfide",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Hydrogen sulphide, H2S, at plant",
+          "reference product": "Hydrogen sulphide, H2S, at plant",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-e63089df7d6cc779",
+        "source": {
+          "location": "CN",
+          "name": "battery cell production, Li-ion, LFP",
+          "reference product": "battery cell, Li-ion, LFP",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Battery cell, LFP",
+          "reference product": "Battery cell, LFP",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-7f7c886539fef393",
+        "source": {
+          "location": "GLO",
+          "name": "copper collector foil production, for Li-ion battery",
+          "reference product": "copper collector foil, for Li-ion battery",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Copper collector foil production, for Li-ion battery",
+          "reference product": "Copper collector foil production, for Li-ion battery",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      }
+    ],
+    "qualification_limit": "Twenty complete native counterparts only; no full battery update or export qualification."
+  },
+  "real_saved_battery_graph_retry": {
+    "source_activities": 272,
+    "public_harmonizer": true,
+    "validation_disabled": false,
+    "approval_bypass": false,
+    "before_unapproved_source312": 28,
+    "remaining_unapproved_source312": 8,
+    "error_counts": {
+      "migration.unapproved_correspondence": 8
+    }
+  },
+  "qualified_sectors": 15,
+  "total_sectors": 19,
+  "qualification_limit": "Required mapping group only. Battery update/export, final energy, emissions and metals remain unfinished."
+}

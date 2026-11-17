@@ -350019,6 +350019,1486 @@
           "fingerprint": "29131d3052e6410ffbc8219c0dd1385e0856e067a056a34442272c26ab1cee28"
         }
       ]
+    },
+    {
+      "rule_id": "bp-6f3df80c57491efd",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "RER",
+            "name": "market for styrene butadiene rubber, emulsion polymerised",
+            "reference product": "styrene butadiene rubber, emulsion polymerised",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 4,
+          "inventory_sha256": "2b15920b9b0fc2eae3125d4eabb52ce161ddd3a1a4e3fc62ff5fa60680bed2b4",
+          "metadata_sha256": "a0e9b0d96ec4c630c748867b9ae72fbe39d50f60db7b44226e318da857930803",
+          "comment_sha256": "f1bc1307d74452939573f696c455082a95c3e6b1cc26ee321bb228d86903e6e9",
+          "product_information_sha256": "c743972eda44c560d6a855b1eccb03896a4c6716287a409d5e1f95dbe6c110cc"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 13,
+            "inventory_sha256": "42c109d7f565de852e977da21b960656595c46be14ee6d064546be0ee78b749b",
+            "metadata_sha256": "a6e16dc08c177e17df17bd705615b77b1975326aff2bf5484abe0ece984799ae",
+            "comment_sha256": "ad423bba03b22e5cb2a569da772a5ec6c480146104f81c9a2764b54357f1f073",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 13,
+            "inventory_sha256": "b1102d1540b362520d3c180e1ac2ec80026fe71a68a22db979fb415b6bd1771b",
+            "metadata_sha256": "9e012fd865d689bca36eeac18ae1ad5e7269b495b29c24e0b545570e6710c271",
+            "comment_sha256": "8e4846e5dc0911c2fc62fe7e0325fe5df4014610f1bc52a8bb090db2ebff0225",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Native SBR supply includes the emulsion-polymerization ingredients; use one kg dry rubber, without a latex-water multiplier.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Native SBR supply includes the emulsion-polymerization ingredients; use one kg dry rubber, without a latex-water multiplier.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "af045afd43489c29f94608cbb7da4b675524cfec0f60448cd0fe6b5b667a05cd"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9cd16b2738739a5e",
+      "operation": "replace",
+      "mapping_method": "product_checked",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "GLO",
+            "name": "market for manganese",
+            "reference product": "manganese",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 7,
+          "inventory_sha256": "ef8c1ac07e0e0ed446325c51389dd0ca42d7a7bc9477049f8db49ae7aa221a54",
+          "metadata_sha256": "3ccfc4c57feb5df54179a61841a9215cfadd21f5612aced01c273a1ae27225e9",
+          "comment_sha256": "d3b271ba3826d86ddd785d31f9e57e0b13dc46e1fde44064623959eb9de0f86f",
+          "product_information_sha256": "463b98a8178f04cef7efe1b30034e4c357ab5f83cc1f27454fb95e851e707b30"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "inventory_sha256": "d70bba1c08e452d686599dac8c871a84582dd4174ea8ef30eacc94caa0c671a7",
+            "metadata_sha256": "c43727f4e41e8127afd144f3e51e12387a8a5a34421869187a47b057d23fb1e3",
+            "comment_sha256": "a5ae98a8de29187f09d684a0d8f9cea97358b9d1a69d33ca0125477bca52877f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "inventory_sha256": "20dbdef23d452fd1f8331fe0d10221873b3fd56b2144abbb2ee43d1bbf426270",
+            "metadata_sha256": "fe4535fbef4ad490cf5324c9c22ef2aa0063e9c22f4b80c1dfcdbcf7145e74ea",
+            "comment_sha256": "e124130c1a33e526a96f31e4398e4428a388d0f421fe5b509eb1eb7055d8b8b3",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete manganese metal supply, never manganese ore or manganese oxide; source global market mix and delivery are replaced by native regional storage.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete manganese metal supply, never manganese ore or manganese oxide; source global market mix and delivery are replaced by native regional storage.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6e9e69fe44c61e77c821f2ca9ea40113d4b3f48a1b8b20985dce02e211ad0045"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-cc620f28c2eab956",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "GLO",
+            "name": "market for chemical, organic, basic precursors and materials",
+            "reference product": "chemical, organic, basic precursors and materials",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 1,
+          "inventory_sha256": "52ce26714af737acf18220c9a2c46c61b0eb291760d6001cd37edbf3a0d367c9",
+          "metadata_sha256": "33a1fbdb9f866c60dc7137f57ad428d60e94fe85f704fe5759a3406a4f9d9e05",
+          "comment_sha256": "9d9dfe305a558e0fe4ddb7f0a6e3bde06625600c108aa498badd3fbe8d665fee",
+          "product_information_sha256": "741535e669d7e21c8ebe3b609d95b41e176a5e40e789379e5e86da113481c448"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 20,
+            "inventory_sha256": "9892205b2aa79ef1cf5955e4500430db23495de6792a199434fc29b942646bfc",
+            "metadata_sha256": "e0e36713012886e3a1338d755ad2bea01be49421200243407196fe6a35570877",
+            "comment_sha256": "9b122be2fca1b19221dfb63c15939b9ea79b1427dad862da233d2f027bb38b2e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 20,
+            "inventory_sha256": "30661529e83c4a50b7e223460ac8285666fc159a049ec753e917a4eb674cf956",
+            "metadata_sha256": "fc35eba5ba2c02141441dba8a2ef2cefe7584593c4c675979d249e8461fe5b41",
+            "comment_sha256": "cec577d261a6df55094c2d4b5053ccbf0045e2463e0308eb1dd99d7f0618e686",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Both records are deliberately generic organic-chemical aggregates. This does not authorize substituting generic chemicals for a specifically named compound.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Both records are deliberately generic organic-chemical aggregates. This does not authorize substituting generic chemicals for a specifically named compound.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "0a93dc04f5b0176f616f20b651bc42e648ae3aae0ebcdfde0c69f1d267fd50f7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-bf11d565cb47b1ca",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "RoW",
+            "name": "market for hydrated lime, loose",
+            "reference product": "hydrated lime, loose",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 14,
+          "inventory_sha256": "f136da4930731d3197f22e08963c6a0b5127e7437009c56cf7edae49dfaa8d93",
+          "metadata_sha256": "ec4ca77e654c0552bdf63027609eaeab900154cafb7c2ef45fca74f2ad1b29ad",
+          "comment_sha256": "44f940bd514489a5189b5fec59b130930ed0c3ffe4406e490d058039587cab90",
+          "product_information_sha256": "0d0227b22cb9bc98e3d2486b4b6606ae1e23f7f21df608436453f79d66f5a1f8"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 8,
+            "inventory_sha256": "d3f44e7c9bd355dc2910973147707a85311a06da504edfafcdefca03bfec07ca",
+            "metadata_sha256": "5075eb5bc09e57cccd0a71f1129d67117112e1c6ddc711f310c894b1b42581d5",
+            "comment_sha256": "011fc059ccb69853895f332d67db53df5200fd5628de8621eada7b783e12bb05",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 8,
+            "inventory_sha256": "a410255535b23d1962f9452eaca677da9333aaf46941ddf7b01229616824632c",
+            "metadata_sha256": "2e5aab06197ac564ac9a85c43bdff9fc2b0428de7e64b426316ee07a79c02bd9",
+            "comment_sha256": "ea902cfdb78f261e241eb740b5f3797edb297e5f4d37b113b1b6e4a2a252b895",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Native documentation explicitly identifies hydrated lime as calcium hydroxide. No quicklime hydration or molecular-weight multiplier is introduced.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Native documentation explicitly identifies hydrated lime as calcium hydroxide. No quicklime hydration or molecular-weight multiplier is introduced.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "bc7a3ea9042d3e03093fd8ff0e65ad7e62a65220681b9de4d551656f5ea2b3d7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-15d3e659d9435a7d",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "RER",
+            "name": "market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 5",
+            "reference product": "transport, freight, lorry, 16-32 metric ton, diesel, EURO 5",
+            "unit": "ton kilometer"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 1,
+          "inventory_sha256": "2d4ac3ab757fcfc31d6620bd9df7b792ac463d9c91629c9c281a366559a7fcef",
+          "metadata_sha256": "3e1aea1d480d34a19d8313e338de7c5ceef73472de876cfc95b5e4bacc46b24b",
+          "comment_sha256": "173cf05385b75797f64d7d9b0ac797c8269c8e8ebe3524a44c21fa0c032a1aa6",
+          "product_information_sha256": "1902172e3caf19adf166bd30156a43fd7aa43566133851aa2f549ba5fe96e84d"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 47,
+            "inventory_sha256": "a87758788838d834be9dbfe443d36271a2a666fa914163a139799db06e239fe6",
+            "metadata_sha256": "c41c444008909a23aba5072231d0363da60644ddedda63cb2639184c0ca0001a",
+            "comment_sha256": "56c858540fe6b0e06d912f27cf5d62926fbf47b667677bf211e4b10094f3064f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 47,
+            "inventory_sha256": "420dc722ba7f4ecaaaf5766bcbaf3c3776fd58516fce588af89259207bb31969",
+            "metadata_sha256": "043f84b89c4eeeea428d510f82e15e26375aa28bc44de8846e9f1cd23fe8694d",
+            "comment_sha256": "0267766cdd04973fdcbb88a375e71d3227df52d19a8757d8c3eff3e9a08df4a0",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Retain the tonne-kilometre basis and EURO-V class. Native 32-tonne gross-weight long-haul fleet replaces the source 16\u201332 tonne portfolio; no payload or distance multiplier.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Retain the tonne-kilometre basis and EURO-V class. Native 32-tonne gross-weight long-haul fleet replaces the source 16\u201332 tonne portfolio; no payload or distance multiplier.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ab99ab95888629ae213fefd01de357e34dc275421acc28afc14ac2cd7310c8d2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2164b416522ac0c4",
+      "operation": "replace",
+      "mapping_method": "reviewed_battery_native_basic_312",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "GLO",
+            "name": "market for battery cell, Li-ion, NMC622",
+            "reference product": "battery cell, Li-ion, NMC622",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 6,
+          "inventory_sha256": "e12a83f1c215186a10dccef41637fea646681ade1dacd9cb322c517a177bf47b",
+          "metadata_sha256": "ced4148e61587ee8064b0f60f864271d5b0d19c1a3221be123bcbdfacf570885",
+          "comment_sha256": "dbbc9249e5d0b927c16685599b1374161efc307be224d59c2bc4e066806c87ef",
+          "product_information_sha256": "8e24d93de027fcf35b2897c55cedf2ebf1c8ac7abe37e3e9ebe779f07abb316b"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "inventory_sha256": "8eb270f47f69cd91851f3fc147dc38f0c4ef4c4417082c5c6a584f74678f2c5c",
+            "metadata_sha256": "c4aa90876e0e2285245b083d582092f79b5faa88c533dbeab9858892153a4984",
+            "comment_sha256": "ad423bba03b22e5cb2a569da772a5ec6c480146104f81c9a2764b54357f1f073",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "inventory_sha256": "896ba8a63377d99d747cd6eb6794b0b781068a7553a3cbadf8f8079538ecf078",
+            "metadata_sha256": "29576b796fbe8ace2a0851ff880df26e0db08e5deff341b55f2fde1cdbc5719d",
+            "comment_sha256": "44218148e5274f92a6a3519501b4ca8ca6aaf98a204cd95042767f8ee45d48fe",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Correct the NMC111 candidate to the complete native NMC622 cell. This is a cell, not a pack, cathode powder or assembled battery system. Add no second electrode, electrolyte, foil or cell-production inventory.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Correct the NMC111 candidate to the complete native NMC622 cell. This is a cell, not a pack, cathode powder or assembled battery system. Add no second electrode, electrolyte, foil or cell-production inventory.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "2abdf2dcb98f535350e4131020de2b26ed6ed21742e55f743f629ff718495713"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-71160c84c9244bfa",
+      "operation": "replace",
+      "mapping_method": "reviewed_battery_native_basic_312",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "CN",
+            "name": "market for NCA oxide",
+            "reference product": "NCA oxide",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 3,
+          "inventory_sha256": "010bebb36146bd6421996bd49863bf7b8045314db7cfb2ea094a14ca021c1a52",
+          "metadata_sha256": "10fdfed5fb56242808bffd0f59f378c336728afdcc6ffae0d810f6ca40cf7697",
+          "comment_sha256": "e06a466dbaf86869750772e2dee5ec2ef462a4c1ff7e338bc40140b29d685ec1",
+          "product_information_sha256": "0ea329599f424db817938b60ce3a9335d0309426616e3c0c0d5badf27589a5f2"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "inventory_sha256": "448cd108368b6d860a64dfc45928a86af00b2e24ca6d3257cbc2da08709625a6",
+            "metadata_sha256": "1b78465e309fd29499be9e3b1e6eb5ddc7a98499d0d78a783246d3c9cd3b218a",
+            "comment_sha256": "ad423bba03b22e5cb2a569da772a5ec6c480146104f81c9a2764b54357f1f073",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "inventory_sha256": "f5268d630f907299826d17359289c05b69a3a1198a0e4b78fd2f4590755c0699",
+            "metadata_sha256": "eb968795f1942070caee7cc621980d267e68f1abd5d9fdf7cf743709fdf7e415",
+            "comment_sha256": "06f559148c60527338aa0da7b2bae36151d3fd95e2ace22ebe3f6344a4206bd2",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Correct neodymium oxide to native NCA electrode material LiNi0.8Co0.15Al0.05O2. This is active material, not the complete electrode or cell; no binder, foil or assembly is added.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Correct neodymium oxide to native NCA electrode material LiNi0.8Co0.15Al0.05O2. This is active material, not the complete electrode or cell; no binder, foil or assembly is added.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "0032a23c5252b8159078dbccc34f9810deb581fcb71af9243e2f3a6c9b99f650"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4535df8ba0d2a220",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "CN",
+            "name": "cobalt sulfate production",
+            "reference product": "cobalt sulfate",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 16,
+          "inventory_sha256": "06127889f1d53041722d7c22c89ea8e41b28458b6c1762a6ff485238ad6d8084",
+          "metadata_sha256": "716ed77ff1c4bf304493b0e5f4c93a3d32d9cc39ddc36d67b67f60876673c3bf",
+          "comment_sha256": "7b78b55ee5eb3ad1b1e19c1cd1a7d8dbcbdba827bbdea0781a7864530ce0455b",
+          "product_information_sha256": "e30efd44d5df19c2897e76d0bf690a3f05d486bc43a666a72a066625d2337bba"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "inventory_sha256": "993dbba7352e5926102de771a39f2cbb0f13226478201d901009cd8ef93c2be9",
+            "metadata_sha256": "485491eda767f618204d2d6045dc4ae92d26d810b550fadf40659581ee58b49a",
+            "comment_sha256": "ad423bba03b22e5cb2a569da772a5ec6c480146104f81c9a2764b54357f1f073",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "inventory_sha256": "fff947a4c6ee7019c509bc81facc4cf7fb4ad1876d03b70c65fb2918187a7cb0",
+            "metadata_sha256": "85aeba872aa7da4a9df96ff9d78bd52bbafae04007825baedd628d6a27d44fa9",
+            "comment_sha256": "eb8b7e992b1fcb4fdd977a25271339604663ea5ad3548532dd8f1b1b81ae40f9",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Source dry cobalt sulfate declares cobalt mass fraction 0.380316231; native manufacturing uses nominal 0.38 kg cobalt per kg sulfate. Use +1 without hydration or contained-metal scaling. Retain the complete native inventory including its signed upstream co-product exchanges; do not convert those credits to treatment burdens.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Source dry cobalt sulfate declares cobalt mass fraction 0.380316231; native manufacturing uses nominal 0.38 kg cobalt per kg sulfate. Use +1 without hydration or contained-metal scaling. Retain the complete native inventory including its signed upstream co-product exchanges; do not convert those credits to treatment burdens.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "cf4d8b13be7d88df73ca78b6897f42f1d199a2b0da2d7566f4f98e62f34ce06b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b4864c53040ba884",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "RoW",
+            "name": "market for lithium iron phosphate",
+            "reference product": "lithium iron phosphate",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 10,
+          "inventory_sha256": "a1b740dc9b17da27115368dc49b9c1fbeadd58c58e8044f0ff32ee26b8477091",
+          "metadata_sha256": "b1aa8fc9d80dcd05f5304c8246d55921fb3ce357aadf3544db25a62f058539d5",
+          "comment_sha256": "28c577757b9abf10f527241f4bcb9e57abbede416f9affb384aff48f4dd2b7df",
+          "product_information_sha256": "6d6a94ea7116e437017d0c2d45b17d1b3b0a18f64d44170bfdf9b00257aa7af9"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 10,
+            "inventory_sha256": "801349995c8d718ac348ac99366ebef4263d1cd14f767b1abbe4fd5cf48837e7",
+            "metadata_sha256": "962047d4f1b3013fa84adfcfa51d4ad9af04fac00d73f1bd3c2d62805de2e9a0",
+            "comment_sha256": "ad423bba03b22e5cb2a569da772a5ec6c480146104f81c9a2764b54357f1f073",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 10,
+            "inventory_sha256": "9bc8f589711b4d7ed04081f5bfa8e4ecccadf597a175cbc75d738b2c1858054b",
+            "metadata_sha256": "6d75757ecae11f89f4cd7fe1a241e329da3ddc4a47216579a8f7090822f91cf3",
+            "comment_sha256": "290a0b0b33f4da65b9e4c4ee2a841db93541c1da6aaf0d6d221e0b677acb1998",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete lithium iron phosphate active material, not lithium carbonate or a finished cell.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete lithium iron phosphate active material, not lithium carbonate or a finished cell.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d1082ceda40afdf3deff558a2ae60d743882174272dc88eec01c569c5fe72e7b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d48eb25095b39fa4",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "RER",
+            "name": "market for chlorine, gaseous",
+            "reference product": "chlorine, gaseous",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 3,
+          "inventory_sha256": "4148efc58aac0d24819e1f09b3d89c10d25c48107760901ee41c4dfe3be73b5b",
+          "metadata_sha256": "c124cde28f6d25a851178b79ba4494cabcb0f9a880baad8cbf6939f0bdeac3d6",
+          "comment_sha256": "6cb7ba01e1620b0f1c1bef6598796f95844bdb0fb5fb9fe141ca1a59b703b489",
+          "product_information_sha256": "8a06a5fa4e9a78805842860f067cdc86f1ef0c55a79d5e74f2cfe15c9450d32e"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 29,
+            "inventory_sha256": "b996584acfd72058a47a5d463e8c815740d5e6544138d36dde4808e82cd46f1c",
+            "metadata_sha256": "18b4944155c294af7cde3390302f2a5af18d82f86175b7b635d53b62c880b652",
+            "comment_sha256": "8ab4d574576ebfe7088f831f53dbd0a6795d6e761679fd6a2e948057d18d8da6",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 29,
+            "inventory_sha256": "fad4cf636b12ff3e8a6dda30f1fce75a3ba82d0060dcda68cea5beed9a9e5185",
+            "metadata_sha256": "18edb266ff8788e099a7c3110c9245ea2141f94212a2f16d7f01adc08b68c54e",
+            "comment_sha256": "515f6dd153eb1dcdf93e3ee9702abd1c77a9682e1033726015450be5b31ac30b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Retain gaseous chlorine and use complete native membrane-cell supply; do not add liquefaction or repeat chlor-alkali allocation.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Retain gaseous chlorine and use complete native membrane-cell supply; do not add liquefaction or repeat chlor-alkali allocation.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "3ee079888606e8d517ce45f8c3d9fd9fa14a5a8dca1f90d25c986448366a360f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-254765f24c72d983",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "GLO",
+            "name": "market for copper collector foil, for Li-ion battery",
+            "reference product": "copper collector foil, for Li-ion battery",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 5,
+          "inventory_sha256": "042f7a2b4562d67b1ff0216534a4caaabac46648064c79932d9c3d3934b0d518",
+          "metadata_sha256": "cca7795edf774a15e8fe8d246fae941e7773c8f63539bbe1dcbc789bc91e7cfe",
+          "comment_sha256": "c6ac38823bc382a1db50edcd3318bf25e6d66015981e00cb35bbfd6c3287f294",
+          "product_information_sha256": "fd5fbf531a5147ab718849bf91367b7082ff3c600b856948ba08311da93ae451"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 11,
+            "inventory_sha256": "f2e54b7b9073c044991bcf0299f6579b360f2ff892fc02660f4cdffa0e0c996e",
+            "metadata_sha256": "81759aba6fa9d4082aa96f7dcc07ffea1242aeaa7d5a138660dcb986fda74423",
+            "comment_sha256": "6ca9b8f2e9550002a37b8ea4a9c37408d0279160d0f4b63ab03f4fd6b07e690a",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 11,
+            "inventory_sha256": "a9023d4264ac40227955f0263e4b380ae445f5c6eb732b4b06acd40a0e52d1d4",
+            "metadata_sha256": "10d1c2415b9b3fb667be31f4192e4973f2a754837d280c3d8820a245b59b77ac",
+            "comment_sha256": "62289ec827d0953e0d680d05484a659d6f37f009e2f91b7e7a5755f404222743",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use finished copper collector foil, not copper metal or aluminium foil. Native complete foil manufacture replaces source market mix and final delivery.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use finished copper collector foil, not copper metal or aluminium foil. Native complete foil manufacture replaces source market mix and final delivery.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "3f845c028b01922d14e3700030dfcbd81949902fc6ef7848566c8338fa07933b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-52f666736ea47479",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "RER",
+            "name": "market for tetrachloroethylene",
+            "reference product": "tetrachloroethylene",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 3,
+          "inventory_sha256": "9fc69436e63694cd943fa4a8a07b3f668fb72ee10a84057c84668a632f08ce41",
+          "metadata_sha256": "5308f6de36d406205c1dc86bc42af1fc55f58e680914bae3c1f7edfac8b5512d",
+          "comment_sha256": "8f468d3ab788667dd48651aaa9e392915a27bb7452f73faf2de52d7b41c6fc64",
+          "product_information_sha256": "83540f6baf96032106ea9d56acab89adee664fd92ed72af21bcaaf53c31d4862"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 96,
+            "inventory_sha256": "70cc47be9ef3842894868f75f3162185fe353defa6d070854d6c69fe7f490f77",
+            "metadata_sha256": "84a6ec0f3d55700aecc29f75a0bbac9a776b60c643eb7ae51ef44d14182f34c3",
+            "comment_sha256": "2e7aa81f55b9ffdeec0bf01a8fc43f54a7a6c5e281cf5a172b0df69d3946a5b3",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 100,
+            "inventory_sha256": "90bed336814dbe2766a1c583889a68ee0a17dfb78bb62d2d1f679fcded2c9bbf",
+            "metadata_sha256": "b636bc2dc914bbb0068010fcb6e5280ff12fd3ee0b193f7b966fb8618f1a3adb",
+            "comment_sha256": "dbaacdb6826becb2e56b02cd1124fb32ce282e58ab6da197b44e9a3e810f7450",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Retain tetrachloroethylene chemical identity; native Western-European production replaces the source European delivered market.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Retain tetrachloroethylene chemical identity; native Western-European production replaces the source European delivered market.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "39ba0559c0c65c7eadf20425137ae6554c324856540193ac78385d4d9a8e3671"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-89125ba7f547c7cb",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "Europe without Switzerland",
+            "name": "treatment of waste steel, municipal incineration",
+            "reference product": "waste steel",
+            "unit": "kilogram"
+          },
+          "reference_amount": -1.0,
+          "nonproduction_count": 63,
+          "inventory_sha256": "bb8600e9e4b1d7fbb3128d4b9d75d1e085204408d427ad42ae2fd34cb691c725",
+          "metadata_sha256": "d9e7b30e63d3c04c1077ab7fbf155710ab2560dd9c9a97d51ddf71c7c3c4102b",
+          "comment_sha256": "c60a603729987fb303f9ddd1a4cffadd381bccdf790ec56a0cf1d29eaecf517f",
+          "product_information_sha256": "c91854ede76fe983bb7d316af19183a6f338de5bfba56c959d217ccbf15055ff"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 53,
+            "inventory_sha256": "2d3aecb13d57646de328b2130115d3355785abc3249db23196d91c3abc6037b7",
+            "metadata_sha256": "b4acc96195dcc5e634c758d62962839cfbd95839189045fd9484ed868b05c035",
+            "comment_sha256": "bf9b630bb9986685e59524c7eb76edc26593545b0c5293883d99eb4ce8e3b101",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 53,
+            "inventory_sha256": "7531270c31b931a96599696bfdece0f7a558dce0c01756078780b4930acc01a7",
+            "metadata_sha256": "09b59587867ea0d92c7d8f1cdd3655e1a326eb518cd6678616cc375beca9f8da",
+            "comment_sha256": "aaf5b57a2605edb1a7080f556f53b05b14f90d6de61e686b0a18389c0cdbe658",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete dry steel municipal-incineration service. Source reference is -1 kg waste and native reference is +1 kg treatment: factor -1, with no added recovery credit.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete dry steel municipal-incineration service. Source reference is -1 kg waste and native reference is +1 kg treatment: factor -1, with no added recovery credit.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "26073e432c42cda56fead258c1039b7511bf771bfb93a50516eb9430a0d07d03"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-15038724bca1015a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "RER",
+            "name": "market for xylene, mixed",
+            "reference product": "xylene, mixed",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 5,
+          "inventory_sha256": "9b0443151764ab831bfccf89d9118a5f50fe55fe6e1f20a342b6484be323acc3",
+          "metadata_sha256": "125fe30e7820faf758a6f14adab38d8aed2776b6cfa949d374054eaa2f0df23b",
+          "comment_sha256": "52368f4c09ecbaa7b1b8db4424e4fd5ceaafe797847e81047067c1081534adfa",
+          "product_information_sha256": "e583cdad32154fbb40f856a268cd14793536e93b4025c9b33595b7485603571e"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 349,
+            "inventory_sha256": "5351665fbd0f35757e454282a8e8271819633a857b9e3ad0c04e7d571908a77f",
+            "metadata_sha256": "885f7edaab5a1296348d5ea17b4e005be5224369ac750ce8463eee58bddd2bf6",
+            "comment_sha256": "78bedbb9f1847ac7cf16a6e89e65617dcb6fa2c42e126508fac3dede5029dc87",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 362,
+            "inventory_sha256": "76c1b9ca35e8cd8e0f78025d9c2a2aee68b58ae0bb0f17b242025e354f0e4490",
+            "metadata_sha256": "9fdd7ba0aefafc0e7d819b7e083ba7e061f08490baf3095e81fbac4807f626e1",
+            "comment_sha256": "5ae537a4827e0028d9d87c6ddf716df567c314d8564ca5ca4c3b363b32e2a86f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete native xylene supply for the source mixed-xylene market. Do not introduce an isomer-specific purification or density multiplier.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete native xylene supply for the source mixed-xylene market. Do not introduce an isomer-specific purification or density multiplier.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1d191c229de158274a0b4bd73352b47a458c4c315c06fd978a85d16a679219d3"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c2a6d481127e2207",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "Europe without Switzerland",
+            "name": "treatment of waste aluminium, municipal incineration",
+            "reference product": "waste aluminium",
+            "unit": "kilogram"
+          },
+          "reference_amount": -1.0,
+          "nonproduction_count": 63,
+          "inventory_sha256": "483e57ce90ffbb1749c72a8fbd831e2ecd29600f5ac9191e8346094571edddd9",
+          "metadata_sha256": "75bc30c27b22fd0d186534f21e0025243103c7be882b325c638099564ec94f6d",
+          "comment_sha256": "dcc676483700c32bd2b4eade2a9363ac29f4294de3a698f10ebfe0bbd5398cd2",
+          "product_information_sha256": "ace5445b8a9d2ff8f91fc2a1c1499855a766e4115ef736f2b2a939b2a1b823f3"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 41,
+            "inventory_sha256": "4e514343fac8a1ca770cce9e2da01a82d22d4cdc1c1609e621672ac26b375815",
+            "metadata_sha256": "8f16b464a9bee44b3f15d0e5ccd76919e81c2d6948169c0e677ccc2d836884ce",
+            "comment_sha256": "479044e18d04c87c1f0a3b57795027db89528bb2da4023298fa357b5c7f2cf4e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 41,
+            "inventory_sha256": "29ae105a5297c2a18890f1cd3619467cc2670a65e4bce06f978be3902f9f8849",
+            "metadata_sha256": "4bddda3750d20cf9a3e1d20abf58e4438830c754c8cc735c12d32b2ec6955d0b",
+            "comment_sha256": "0207087fdda7a88ac214b97a431759af763e7b2ee7fa315e3801cb11c0f4b8b3",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete dry aluminium municipal-incineration service, not landfill or metal recycling. Source -1/native +1 requires factor -1; preserve native recovery and ash treatment without adding credits.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete dry aluminium municipal-incineration service, not landfill or metal recycling. Source -1/native +1 requires factor -1; preserve native recovery and ash treatment without adding credits.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "fb18ff24eaaa4c7732af1a9579e358768c3504625824ecabe36a8832bc60a24c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5d7b1c068590069e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "Europe without Switzerland",
+            "name": "treatment of waste copper, municipal incineration",
+            "reference product": "waste copper",
+            "unit": "kilogram"
+          },
+          "reference_amount": -1.0,
+          "nonproduction_count": 63,
+          "inventory_sha256": "a166afb1d9be2badab6e6307c8a17684d0e16b8040acf31977bc3ee5614ebfee",
+          "metadata_sha256": "0c9a9d059fbdcdd00ebd706ac2397f5299556196fdce087607b801989935643b",
+          "comment_sha256": "779a91f73b54bb3e567aead2455f4efea586396433d3fc36f5843b36e09d674b",
+          "product_information_sha256": "1e3a5b8b6cf258fe797d8126c25b5e029c87b8d59f1d7ef7c3fd78bf5332429c"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 23,
+            "inventory_sha256": "fc5174618c5a3acf5b54ab04c43f63f4bcfea29944dd74d8e8ba2915f1c0ed74",
+            "metadata_sha256": "f91b1723e82a0184068c563a3c2b26fabae1f80ed3726f6492e45189897ca1f4",
+            "comment_sha256": "ad2fc01fb2cdc4713ff3bfd0beef3cd191e85e9abf935f58124af4326aa252ef",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 23,
+            "inventory_sha256": "0167f56c351278cd945346656379f9eeab0805c3ac8b2064b746d8215d53862f",
+            "metadata_sha256": "2222801c402707217edfc970d49e5db5a18349887dc0b1c415a8e914a003d125",
+            "comment_sha256": "66ed0a2e4451ccf9c542f8f8ff23f6bf49803328c88f6d047168453b0ebddfd4",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete dry copper municipal-incineration service, not landfill or copper refining. Source -1/native +1 requires factor -1; preserve native recovery and ash treatment without adding credits.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete dry copper municipal-incineration service, not landfill or copper refining. Source -1/native +1 requires factor -1; preserve native recovery and ash treatment without adding credits.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "64da1215d0bd432daec48bc0b5500f10bdf8574c05dc01f45f8c1c616ad83789"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0258632fdcd150ed",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "RER",
+            "name": "market for hydrogen sulfide",
+            "reference product": "hydrogen sulfide",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 4,
+          "inventory_sha256": "ab24387c2bb92a85e5946c5070a244b20e2bfaebd48e54ef6d045f3b919d01d9",
+          "metadata_sha256": "0d89501956fa136130e06ee81283942a507ecae6a216bd99047e42028b0a2a6c",
+          "comment_sha256": "2556d320a7f4cd97c863cc2bf69f89cd14f0ee811f0069070487cbe38521c31f",
+          "product_information_sha256": "3a899fca67dadb022a0eb1b5085ec279afe7e7c42547a2dda72b12aade8b5a06"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 9,
+            "inventory_sha256": "106e8dda1577768b12faa7d68e5d5f8e20e53a863cb2e318ef629b8573b5cf69",
+            "metadata_sha256": "e3cd636f31b804760da7c6a1a6396f2a0b78d86de59a1b1c0e41c65c3e897063",
+            "comment_sha256": "c98027d197ed2d633124ae2fee3dd6eefcc6a467764c37d4e93d8a3e7dade28e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 9,
+            "inventory_sha256": "55af6c152a4afee9c08506346f41b7553b07338b53cb4656b6ed9e7471ec8ab1",
+            "metadata_sha256": "92040e78ec3af02dc6f7df2a143aa23b189cf465222383f9cc060eebac5f51ed",
+            "comment_sha256": "c95badd5da76d98e431d68b57a3534e23dcae0c70be59ea4bdfa33e9e1ee8ff7",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Retain hydrogen sulfide H2S chemical identity and kg basis; add no sulfur, acid or gas-volume conversion.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Retain hydrogen sulfide H2S chemical identity and kg basis; add no sulfur, acid or gas-volume conversion.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "43260b1b6260cdc0f14351ec3b7ca81a6ad11a7e7a7d822bfce340f065731cf0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e63089df7d6cc779",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "CN",
+            "name": "battery cell production, Li-ion, LFP",
+            "reference product": "battery cell, Li-ion, LFP",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 14,
+          "inventory_sha256": "a5300520bc4fa0a86bf1bd7ceb10df272e5d3a70d4cd62ebc3915e978d01fc7a",
+          "metadata_sha256": "0c5d3ec0cb1c3aa6d917218e5115ae4d9f5a61610fe104c7f1bbac7b4c28a2f6",
+          "comment_sha256": "1ab870a306f34791d2a78fad233f1988b41b839d0954474a6e62513c6ff54292",
+          "product_information_sha256": "9f5c9bb5a07502784181acbea84c556176c9f0a468167f0f29aaff2e348dbd80"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 10,
+            "inventory_sha256": "d2d3d4a9e5b46fb74684859ef62971d37cfe612dc7e872b8c102cc59522c626e",
+            "metadata_sha256": "35c691690f57494074bd6ec8fe52ee18366e31110a936429616c1a0138419799",
+            "comment_sha256": "ad423bba03b22e5cb2a569da772a5ec6c480146104f81c9a2764b54357f1f073",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 10,
+            "inventory_sha256": "ae75b77c585b932d440a3cb69d53ebed1efe80cb6f0166780217368db7da1395",
+            "metadata_sha256": "a1958e587d5fbe1285eb6f4a918cb0d4c3a56fdecf7a2a993b9ce292f534f67a",
+            "comment_sha256": "06a4049fef75088f39f5202ee35a55429388703234bf71b18fb18fd77b7b4cb8",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use the complete native LFP cell for Chinese LFP cell manufacturing; add no second active material, electrolyte, foil or facility inventory. This does not authorize a pack-to-cell conversion.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use the complete native LFP cell for Chinese LFP cell manufacturing; add no second active material, electrolyte, foil or facility inventory. This does not authorize a pack-to-cell conversion.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c6088e3567a8b6845d3ef39ce632683cb2c18fd9b05c03b2729df18d082761cf"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7f7c886539fef393",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "GLO",
+            "name": "copper collector foil production, for Li-ion battery",
+            "reference product": "copper collector foil, for Li-ion battery",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 11,
+          "inventory_sha256": "590d3b206bb8668796b99ed3d7bf35aa0b666bf6812d95c849cd66f4eb7482c9",
+          "metadata_sha256": "696ad62a5a4a1d65054726541a8eb36be25bd7d11c470e9858435200d6696799",
+          "comment_sha256": "705f0e7e3a125670f8b648a6391cea63b53310b0c89762e2dffd2b4f8bc769d2",
+          "product_information_sha256": "fd5fbf531a5147ab718849bf91367b7082ff3c600b856948ba08311da93ae451"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 11,
+            "inventory_sha256": "f2e54b7b9073c044991bcf0299f6579b360f2ff892fc02660f4cdffa0e0c996e",
+            "metadata_sha256": "81759aba6fa9d4082aa96f7dcc07ffea1242aeaa7d5a138660dcb986fda74423",
+            "comment_sha256": "6ca9b8f2e9550002a37b8ea4a9c37408d0279160d0f4b63ab03f4fd6b07e690a",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 11,
+            "inventory_sha256": "a9023d4264ac40227955f0263e4b380ae445f5c6eb732b4b06acd40a0e52d1d4",
+            "metadata_sha256": "10d1c2415b9b3fb667be31f4192e4973f2a754837d280c3d8820a245b59b77ac",
+            "comment_sha256": "62289ec827d0953e0d680d05484a659d6f37f009e2f91b7e7a5755f404222743",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use the complete native copper collector-foil manufacturer once, preserving nominal kg finished foil. Thickness, yield and production-route differences remain limitations.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use the complete native copper collector-foil manufacturer once, preserving nominal kg finished foil. Thickness, yield and production-route differences remain limitations.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6059bb81ca1738886835e0bb0b4a0a73a2b188cb63aab6120754c59d105c1ec4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6d218293ccf08998",
+      "operation": "replace",
+      "mapping_method": "reviewed_battery_native_basic_312",
+      "review_path": "export/uvek_battery_basic_312_review.json",
+      "review_sha256": "6e926eda9da5c7982f49ff40336d881ea041774ad6f52ed87a707a56e3dc1b76",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "GLO",
+            "name": "electrolyte production, for Li-ion battery",
+            "reference product": "electrolyte, for Li-ion battery",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 7,
+          "inventory_sha256": "caac1b5cf91e1e61c6157be94facd97787203bcc98a7a757e74d82b46edd7e91",
+          "metadata_sha256": "2d8924a835a54a335093a3ad7e734ac279e7a4081adda5a79d3013120146a62e",
+          "comment_sha256": "f0a7d9d79b39bc19bd9f669664230e0bd6fbe698807cbbe20996ad90d520ec6a",
+          "product_information_sha256": "a3a3eb22f28e1acb59f3d16f8af4054d967d52d11776c0b09cef0a5fb7aa04dd"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 3,
+            "inventory_sha256": "1ab9b3c12ce001210e8b125ecafe41f6d87b5f951cd432e0695047d5a96d7080",
+            "metadata_sha256": "af6ac28e662f59402dce0ad8c86c83e47cf3e685983bca13bc4014adcc26bb65",
+            "comment_sha256": "ad423bba03b22e5cb2a569da772a5ec6c480146104f81c9a2764b54357f1f073",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 3,
+            "inventory_sha256": "d52a8161687685902dc68937dde6489521439c7a926c2bbcad3145db58a3070b",
+            "metadata_sha256": "083b44015c1867095f3b677c506d337f0f0cf8ff647b62d3b7b9be95b6de449c",
+            "comment_sha256": "5e667ae221abbf732c35af60f427c4f406a4022b8b3d6313b94845e32c98bce0",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Correct graphite anode to complete native lithium-battery electrolyte. Native mixture is 0.88 kg ethylene carbonate plus 0.12 kg LiPF6 per kg electrolyte, with its own facility. Retain this native solvent/salt recipe as an explicit composition proxy; add no second solvent, salt or fabrication inventory.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Correct graphite anode to complete native lithium-battery electrolyte. Native mixture is 0.88 kg ethylene carbonate plus 0.12 kg LiPF6 per kg electrolyte, with its own facility. Retain this native solvent/salt recipe as an explicit composition proxy; add no second solvent, salt or fabrication inventory.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9550f3cdc34bd5e6fdfbfccd8c4e418224b0f87990872b7e9adcfa909200f3d3"
+        }
+      ]
     }
   ],
   "superseded_operations": [
