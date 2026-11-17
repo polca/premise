@@ -1290,7 +1290,8 @@ class BaseInventoryImport:
         :returns: Nothing
         """
 
-        ALLOWED_UNITS = [
+        # Sequence membership retains diagnostics for malformed, unhashable units.
+        ALLOWED_UNITS = (
             "kilogram",
             "cubic meter",
             "cubic meter-year",
@@ -1301,7 +1302,6 @@ class BaseInventoryImport:
             "megajoule",
             "unit",
             "square meter",
-            "kilowatt hour",
             "square meter-year",
             "meter",
             "vehicle-kilometer",
@@ -1319,7 +1319,7 @@ class BaseInventoryImport:
             "Sm3",
             "standard cubic meter",
             "hour",
-        ]
+        )
 
         for dataset in self.import_db.data:
             for exchange in dataset["exchanges"]:
