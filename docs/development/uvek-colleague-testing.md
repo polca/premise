@@ -46,7 +46,7 @@ already belongs to an environment you need, register a different name and select
 it manually in JupyterLab. Registering a kernel does not move Brightway projects.
 
 Premise installs Brightpath directly from GitHub at
-`d27c0e53da3ec5241a2e9b562237a3b0dcb5741c`. Installing only the published
+`9cc231a2ffccad4c4b72516731f2f1b6d2e3c266`. Installing only the published
 Brightpath alpha14 package is insufficient. Internet access is needed for the
 installation, biosphere installation and first CLIC inventory download.
 
@@ -54,13 +54,17 @@ If you previously installed another GitHub revision, the unchanged alpha14
 version number can make pip keep it. To update that existing environment explicitly:
 
 ```bash
-python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@d27c0e53da3ec5241a2e9b562237a3b0dcb5741c"
+python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@9cc231a2ffccad4c4b72516731f2f1b6d2e3c266"
 ```
 
 Restart the notebook kernel after upgrading. A fresh environment uses the pinned
 revision automatically through Premise's requirement. This revision includes
 the source-3.7 car corrections and historical-stock validation support required
 by the current packaged approval ledger, even when only three sectors are run.
+It also packages the mapping-only source-3.8 battery proxies and their exact
+approval fingerprints. Battery preparation still has two unresolved chemical
+mappings; the previously verified fifteen-sector workflow remains the operational
+baseline.
 
 ## 3. Prepare the source data once
 
