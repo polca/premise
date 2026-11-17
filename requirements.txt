@@ -2,7 +2,7 @@ numpy>=1.26,<3
 bottleneck
 # The PyPI alpha14 lacks the reviewed UVEK migration APIs and mappings.
 # Pin the qualified GitHub revision until these changes have a released version.
-brightpath @ git+https://github.com/romainsacchi/brightpath.git@06e28c01aa67401d374a86e0e30dac40fb59ace1
+brightpath @ git+https://github.com/romainsacchi/brightpath.git@4e4dfd2036ef04a686f2b7f202ee9721b391e3e5
 bw2data
 bw2io
 ecoinvent_interface
