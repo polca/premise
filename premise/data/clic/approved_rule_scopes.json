@@ -331980,6 +331980,370 @@
           "fingerprint": "e9fc8dccba9951a3792280c6b4ff36c2d85e03baa007dc4623a9082868e167c9"
         }
       ]
+    },
+    {
+      "rule_id": "bp-c26dc8d2b74cfc97",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_disposals_39_review.json",
+      "review_sha256": "d4207497e75f86d29546f35046a37f7f20c97cd18d9ace3b9050dbe04b305de6",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected same-function native disposal and geographic screening proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for fly ash and scrubber sludge",
+            "reference product": "fly ash and scrubber sludge",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 4,
+          "inventory_sha256": "3ad8aa3e2f597611ae9b70ff081f3186c583dca3b6de51bc2f8e4e9dbe9c89b3",
+          "metadata_sha256": "8eb415f12689467525e0f571797df36c951d80e118d217b922ab37cb96d32b33"
+        },
+        "target": {
+          "recipe_ref": "casting-disposal-39-c26dc8d2b74cfc97"
+        },
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Only exact independently inspected ecoinvent3.9cut-off market interfaces gain permission. Negative source waste references become positive target treatment services once at each corresponding caller. Preserve signed caller quantities, formulas, uncertainty and separate caller operations/emissions. No inverse, other version or cross-system-model permission is inferred.",
+        "Retain every original treatment branch and final-delivery leg separately with original kg/tkm and marginal uncertainty, without regrouping or renormalizing. Complete native operations replace source treatment internals, technology, emissions, infrastructure, allocation, geography, vintage and internal uncertainty. These source/native impact differences remain unquantified; source/native functional, stochastic or LCIA equivalence is not established.",
+        "Complete same-mode rail, road, barge and ocean-container freight use original tkm without distance, payload, traction or load correction. Keep nativeUSdiesel rail for the sourceUSleg and explicitRER/CH/OCEgeographic and fleet proxies otherwise. Final market delivery remains separate from the inspected collection service's own transport; no additional collection trip is invented.",
+        "Fly ash and scrubber sludge is explicitly100%separator sludge with90%water in the inspected source, matching complete native90%-water hazardous incineration. Exclude the former dry paper-sludge-ash landfill match. No0.1dry-mass, moisture or heating-value factor is applied. All source incineration burden remains allocated to disposal; source/native recovered-energy documentation has inconsistent thermal/electric labels. Do not infer a recovery ratio or add heat, electricity or substitution credits from those labels.",
+        "Paint wastes are100%paint at0%water per source kg, not kg of a painted metal substrate or paint area. Preserve sorting and collection-for-final-disposal shares independently using their corresponding complete native paint services. Sorting remains the source cut-off handover boundary; no unlisted final treatment, recovered metal or recovery credit is added after it. Emulsion-paint remains use the corresponding hazardous-incineration collection service, not the former construction-landfill suggestion. Preserve native collection transport internally.",
+        "Underground disposal uses complete native0%-water hazardous-waste salt-mine disposal. Its documented model excludes emissions from the deposited waste material, while acknowledging nonzero flooding risk. This inherited source/native modelling boundary is not proof of absolute long-term safety or zero physical releases. No new speculative release model or avoided credit is added.",
+        "No source exchange is omitted, no zero-burden helper or new omission authority is created, and no production/generator Python module is changed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "101fefdd66f40739c01ada4c8d58ca14d624c8bfe181b3ca2dd1a8f114edb107"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-bff3edbd14ec0e95",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_disposals_39_review.json",
+      "review_sha256": "d4207497e75f86d29546f35046a37f7f20c97cd18d9ace3b9050dbe04b305de6",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected same-function native disposal and geographic screening proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for fly ash and scrubber sludge",
+            "reference product": "fly ash and scrubber sludge",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 10,
+          "inventory_sha256": "22915d061e59ea39f660faf56b6699f761b10f6376172c4c4f58e9dac7c8e7cf",
+          "metadata_sha256": "5390a04a9445bdb9ac08656cda2fdcce4c30a390383ceedd503d29a644f99e79"
+        },
+        "target": {
+          "recipe_ref": "casting-disposal-39-bff3edbd14ec0e95"
+        },
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Only exact independently inspected ecoinvent3.9cut-off market interfaces gain permission. Negative source waste references become positive target treatment services once at each corresponding caller. Preserve signed caller quantities, formulas, uncertainty and separate caller operations/emissions. No inverse, other version or cross-system-model permission is inferred.",
+        "Retain every original treatment branch and final-delivery leg separately with original kg/tkm and marginal uncertainty, without regrouping or renormalizing. Complete native operations replace source treatment internals, technology, emissions, infrastructure, allocation, geography, vintage and internal uncertainty. These source/native impact differences remain unquantified; source/native functional, stochastic or LCIA equivalence is not established.",
+        "Complete same-mode rail, road, barge and ocean-container freight use original tkm without distance, payload, traction or load correction. Keep nativeUSdiesel rail for the sourceUSleg and explicitRER/CH/OCEgeographic and fleet proxies otherwise. Final market delivery remains separate from the inspected collection service's own transport; no additional collection trip is invented.",
+        "Fly ash and scrubber sludge is explicitly100%separator sludge with90%water in the inspected source, matching complete native90%-water hazardous incineration. Exclude the former dry paper-sludge-ash landfill match. No0.1dry-mass, moisture or heating-value factor is applied. All source incineration burden remains allocated to disposal; source/native recovered-energy documentation has inconsistent thermal/electric labels. Do not infer a recovery ratio or add heat, electricity or substitution credits from those labels.",
+        "Paint wastes are100%paint at0%water per source kg, not kg of a painted metal substrate or paint area. Preserve sorting and collection-for-final-disposal shares independently using their corresponding complete native paint services. Sorting remains the source cut-off handover boundary; no unlisted final treatment, recovered metal or recovery credit is added after it. Emulsion-paint remains use the corresponding hazardous-incineration collection service, not the former construction-landfill suggestion. Preserve native collection transport internally.",
+        "Underground disposal uses complete native0%-water hazardous-waste salt-mine disposal. Its documented model excludes emissions from the deposited waste material, while acknowledging nonzero flooding risk. This inherited source/native modelling boundary is not proof of absolute long-term safety or zero physical releases. No new speculative release model or avoided credit is added.",
+        "No source exchange is omitted, no zero-burden helper or new omission authority is created, and no production/generator Python module is changed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "978904b7a1c9575f86c45281e4adb9612724b7cc9b2d7a459aaba72fb7a43298"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-dfd19ab20aef043f",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_disposals_39_review.json",
+      "review_sha256": "d4207497e75f86d29546f35046a37f7f20c97cd18d9ace3b9050dbe04b305de6",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected same-function native disposal and geographic screening proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for fly ash and scrubber sludge",
+            "reference product": "fly ash and scrubber sludge",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 4,
+          "inventory_sha256": "28f11edcea930c967a7bebe5a7bc39e22a32622ac679e20e5142b0bb6631131c",
+          "metadata_sha256": "be5f3120c6732b374b3535fc20282982e93297b9e4f0fd9e9577546c43c2bcc3"
+        },
+        "target": {
+          "recipe_ref": "casting-disposal-39-dfd19ab20aef043f"
+        },
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Only exact independently inspected ecoinvent3.9cut-off market interfaces gain permission. Negative source waste references become positive target treatment services once at each corresponding caller. Preserve signed caller quantities, formulas, uncertainty and separate caller operations/emissions. No inverse, other version or cross-system-model permission is inferred.",
+        "Retain every original treatment branch and final-delivery leg separately with original kg/tkm and marginal uncertainty, without regrouping or renormalizing. Complete native operations replace source treatment internals, technology, emissions, infrastructure, allocation, geography, vintage and internal uncertainty. These source/native impact differences remain unquantified; source/native functional, stochastic or LCIA equivalence is not established.",
+        "Complete same-mode rail, road, barge and ocean-container freight use original tkm without distance, payload, traction or load correction. Keep nativeUSdiesel rail for the sourceUSleg and explicitRER/CH/OCEgeographic and fleet proxies otherwise. Final market delivery remains separate from the inspected collection service's own transport; no additional collection trip is invented.",
+        "Fly ash and scrubber sludge is explicitly100%separator sludge with90%water in the inspected source, matching complete native90%-water hazardous incineration. Exclude the former dry paper-sludge-ash landfill match. No0.1dry-mass, moisture or heating-value factor is applied. All source incineration burden remains allocated to disposal; source/native recovered-energy documentation has inconsistent thermal/electric labels. Do not infer a recovery ratio or add heat, electricity or substitution credits from those labels.",
+        "Paint wastes are100%paint at0%water per source kg, not kg of a painted metal substrate or paint area. Preserve sorting and collection-for-final-disposal shares independently using their corresponding complete native paint services. Sorting remains the source cut-off handover boundary; no unlisted final treatment, recovered metal or recovery credit is added after it. Emulsion-paint remains use the corresponding hazardous-incineration collection service, not the former construction-landfill suggestion. Preserve native collection transport internally.",
+        "Underground disposal uses complete native0%-water hazardous-waste salt-mine disposal. Its documented model excludes emissions from the deposited waste material, while acknowledging nonzero flooding risk. This inherited source/native modelling boundary is not proof of absolute long-term safety or zero physical releases. No new speculative release model or avoided credit is added.",
+        "No source exchange is omitted, no zero-burden helper or new omission authority is created, and no production/generator Python module is changed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "7c18f8ffbacd3173c4941d27c7a158860126e9b804c5d1fb53961e641a1cf205"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-aa056a9baa1ba455",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_disposals_39_review.json",
+      "review_sha256": "d4207497e75f86d29546f35046a37f7f20c97cd18d9ace3b9050dbe04b305de6",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected same-function native disposal and geographic screening proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for hazardous waste, for underground deposit",
+            "reference product": "hazardous waste, for underground deposit",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 11,
+          "inventory_sha256": "8e27a704c96267ee4ffe6d190abb6e3ead4e76368b8cb19a887051c621b2594a",
+          "metadata_sha256": "64f339572149cbc4c31b0ab51ee7a8092794fba23bf90b94ff8df9d0782ac4be"
+        },
+        "target": {
+          "recipe_ref": "casting-disposal-39-aa056a9baa1ba455"
+        },
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Only exact independently inspected ecoinvent3.9cut-off market interfaces gain permission. Negative source waste references become positive target treatment services once at each corresponding caller. Preserve signed caller quantities, formulas, uncertainty and separate caller operations/emissions. No inverse, other version or cross-system-model permission is inferred.",
+        "Retain every original treatment branch and final-delivery leg separately with original kg/tkm and marginal uncertainty, without regrouping or renormalizing. Complete native operations replace source treatment internals, technology, emissions, infrastructure, allocation, geography, vintage and internal uncertainty. These source/native impact differences remain unquantified; source/native functional, stochastic or LCIA equivalence is not established.",
+        "Complete same-mode rail, road, barge and ocean-container freight use original tkm without distance, payload, traction or load correction. Keep nativeUSdiesel rail for the sourceUSleg and explicitRER/CH/OCEgeographic and fleet proxies otherwise. Final market delivery remains separate from the inspected collection service's own transport; no additional collection trip is invented.",
+        "Fly ash and scrubber sludge is explicitly100%separator sludge with90%water in the inspected source, matching complete native90%-water hazardous incineration. Exclude the former dry paper-sludge-ash landfill match. No0.1dry-mass, moisture or heating-value factor is applied. All source incineration burden remains allocated to disposal; source/native recovered-energy documentation has inconsistent thermal/electric labels. Do not infer a recovery ratio or add heat, electricity or substitution credits from those labels.",
+        "Paint wastes are100%paint at0%water per source kg, not kg of a painted metal substrate or paint area. Preserve sorting and collection-for-final-disposal shares independently using their corresponding complete native paint services. Sorting remains the source cut-off handover boundary; no unlisted final treatment, recovered metal or recovery credit is added after it. Emulsion-paint remains use the corresponding hazardous-incineration collection service, not the former construction-landfill suggestion. Preserve native collection transport internally.",
+        "Underground disposal uses complete native0%-water hazardous-waste salt-mine disposal. Its documented model excludes emissions from the deposited waste material, while acknowledging nonzero flooding risk. This inherited source/native modelling boundary is not proof of absolute long-term safety or zero physical releases. No new speculative release model or avoided credit is added.",
+        "No source exchange is omitted, no zero-burden helper or new omission authority is created, and no production/generator Python module is changed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f684e9f51d2c8651c82aa4c408081968a2712f2c99ba4ec9a7eea993e5f1aa39"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-237ca28caf78bdd8",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_disposals_39_review.json",
+      "review_sha256": "d4207497e75f86d29546f35046a37f7f20c97cd18d9ace3b9050dbe04b305de6",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected same-function native disposal and geographic screening proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for waste emulsion paint, separated",
+            "reference product": "waste emulsion paint, separated",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 3,
+          "inventory_sha256": "050681ca4d819ef29986a53e5d6628372df2e36538d6943af890eb87e7230905",
+          "metadata_sha256": "132c8e590682d4d54bcf6c5e1a50a115fbb0cbebaa492d857a2ab762cccc7851"
+        },
+        "target": {
+          "recipe_ref": "casting-disposal-39-237ca28caf78bdd8"
+        },
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Only exact independently inspected ecoinvent3.9cut-off market interfaces gain permission. Negative source waste references become positive target treatment services once at each corresponding caller. Preserve signed caller quantities, formulas, uncertainty and separate caller operations/emissions. No inverse, other version or cross-system-model permission is inferred.",
+        "Retain every original treatment branch and final-delivery leg separately with original kg/tkm and marginal uncertainty, without regrouping or renormalizing. Complete native operations replace source treatment internals, technology, emissions, infrastructure, allocation, geography, vintage and internal uncertainty. These source/native impact differences remain unquantified; source/native functional, stochastic or LCIA equivalence is not established.",
+        "Complete same-mode rail, road, barge and ocean-container freight use original tkm without distance, payload, traction or load correction. Keep nativeUSdiesel rail for the sourceUSleg and explicitRER/CH/OCEgeographic and fleet proxies otherwise. Final market delivery remains separate from the inspected collection service's own transport; no additional collection trip is invented.",
+        "Fly ash and scrubber sludge is explicitly100%separator sludge with90%water in the inspected source, matching complete native90%-water hazardous incineration. Exclude the former dry paper-sludge-ash landfill match. No0.1dry-mass, moisture or heating-value factor is applied. All source incineration burden remains allocated to disposal; source/native recovered-energy documentation has inconsistent thermal/electric labels. Do not infer a recovery ratio or add heat, electricity or substitution credits from those labels.",
+        "Paint wastes are100%paint at0%water per source kg, not kg of a painted metal substrate or paint area. Preserve sorting and collection-for-final-disposal shares independently using their corresponding complete native paint services. Sorting remains the source cut-off handover boundary; no unlisted final treatment, recovered metal or recovery credit is added after it. Emulsion-paint remains use the corresponding hazardous-incineration collection service, not the former construction-landfill suggestion. Preserve native collection transport internally.",
+        "Underground disposal uses complete native0%-water hazardous-waste salt-mine disposal. Its documented model excludes emissions from the deposited waste material, while acknowledging nonzero flooding risk. This inherited source/native modelling boundary is not proof of absolute long-term safety or zero physical releases. No new speculative release model or avoided credit is added.",
+        "No source exchange is omitted, no zero-burden helper or new omission authority is created, and no production/generator Python module is changed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "717a2bc04d54a12878ace1b58fdc7a55a89f7e3653a4ab8b63214bfaa22a63ac"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a479d4db4a109948",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_disposals_39_review.json",
+      "review_sha256": "d4207497e75f86d29546f35046a37f7f20c97cd18d9ace3b9050dbe04b305de6",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected same-function native disposal and geographic screening proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for waste paint on metal",
+            "reference product": "waste paint on metal",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 4,
+          "inventory_sha256": "4e8b47449ec296cc91b6e8b9ae8e805b0277beabcd1f0b2176bf952f2c986fcc",
+          "metadata_sha256": "e664c6bb6a63adfe7bc0d66ec83afc85731249a7703fec5116c671c47a486a6c"
+        },
+        "target": {
+          "recipe_ref": "casting-disposal-39-a479d4db4a109948"
+        },
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Only exact independently inspected ecoinvent3.9cut-off market interfaces gain permission. Negative source waste references become positive target treatment services once at each corresponding caller. Preserve signed caller quantities, formulas, uncertainty and separate caller operations/emissions. No inverse, other version or cross-system-model permission is inferred.",
+        "Retain every original treatment branch and final-delivery leg separately with original kg/tkm and marginal uncertainty, without regrouping or renormalizing. Complete native operations replace source treatment internals, technology, emissions, infrastructure, allocation, geography, vintage and internal uncertainty. These source/native impact differences remain unquantified; source/native functional, stochastic or LCIA equivalence is not established.",
+        "Complete same-mode rail, road, barge and ocean-container freight use original tkm without distance, payload, traction or load correction. Keep nativeUSdiesel rail for the sourceUSleg and explicitRER/CH/OCEgeographic and fleet proxies otherwise. Final market delivery remains separate from the inspected collection service's own transport; no additional collection trip is invented.",
+        "Fly ash and scrubber sludge is explicitly100%separator sludge with90%water in the inspected source, matching complete native90%-water hazardous incineration. Exclude the former dry paper-sludge-ash landfill match. No0.1dry-mass, moisture or heating-value factor is applied. All source incineration burden remains allocated to disposal; source/native recovered-energy documentation has inconsistent thermal/electric labels. Do not infer a recovery ratio or add heat, electricity or substitution credits from those labels.",
+        "Paint wastes are100%paint at0%water per source kg, not kg of a painted metal substrate or paint area. Preserve sorting and collection-for-final-disposal shares independently using their corresponding complete native paint services. Sorting remains the source cut-off handover boundary; no unlisted final treatment, recovered metal or recovery credit is added after it. Emulsion-paint remains use the corresponding hazardous-incineration collection service, not the former construction-landfill suggestion. Preserve native collection transport internally.",
+        "Underground disposal uses complete native0%-water hazardous-waste salt-mine disposal. Its documented model excludes emissions from the deposited waste material, while acknowledging nonzero flooding risk. This inherited source/native modelling boundary is not proof of absolute long-term safety or zero physical releases. No new speculative release model or avoided credit is added.",
+        "No source exchange is omitted, no zero-burden helper or new omission authority is created, and no production/generator Python module is changed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f505e09d946c5d496325692bc0e973f0a097738b62e5ce8d45b437bb396a34c2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f89c94deef675ba1",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_disposals_39_review.json",
+      "review_sha256": "d4207497e75f86d29546f35046a37f7f20c97cd18d9ace3b9050dbe04b305de6",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected same-function native disposal and geographic screening proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for waste paint on metal",
+            "reference product": "waste paint on metal",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 11,
+          "inventory_sha256": "ac1080231ab6b76c114a5d003a96298b64e207f0c0467935fbbc29f6daae79b4",
+          "metadata_sha256": "b8ff32522f53ac095e6445da2bae65d523e3c732d67b26dd16877fad444c3445"
+        },
+        "target": {
+          "recipe_ref": "casting-disposal-39-f89c94deef675ba1"
+        },
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Only exact independently inspected ecoinvent3.9cut-off market interfaces gain permission. Negative source waste references become positive target treatment services once at each corresponding caller. Preserve signed caller quantities, formulas, uncertainty and separate caller operations/emissions. No inverse, other version or cross-system-model permission is inferred.",
+        "Retain every original treatment branch and final-delivery leg separately with original kg/tkm and marginal uncertainty, without regrouping or renormalizing. Complete native operations replace source treatment internals, technology, emissions, infrastructure, allocation, geography, vintage and internal uncertainty. These source/native impact differences remain unquantified; source/native functional, stochastic or LCIA equivalence is not established.",
+        "Complete same-mode rail, road, barge and ocean-container freight use original tkm without distance, payload, traction or load correction. Keep nativeUSdiesel rail for the sourceUSleg and explicitRER/CH/OCEgeographic and fleet proxies otherwise. Final market delivery remains separate from the inspected collection service's own transport; no additional collection trip is invented.",
+        "Fly ash and scrubber sludge is explicitly100%separator sludge with90%water in the inspected source, matching complete native90%-water hazardous incineration. Exclude the former dry paper-sludge-ash landfill match. No0.1dry-mass, moisture or heating-value factor is applied. All source incineration burden remains allocated to disposal; source/native recovered-energy documentation has inconsistent thermal/electric labels. Do not infer a recovery ratio or add heat, electricity or substitution credits from those labels.",
+        "Paint wastes are100%paint at0%water per source kg, not kg of a painted metal substrate or paint area. Preserve sorting and collection-for-final-disposal shares independently using their corresponding complete native paint services. Sorting remains the source cut-off handover boundary; no unlisted final treatment, recovered metal or recovery credit is added after it. Emulsion-paint remains use the corresponding hazardous-incineration collection service, not the former construction-landfill suggestion. Preserve native collection transport internally.",
+        "Underground disposal uses complete native0%-water hazardous-waste salt-mine disposal. Its documented model excludes emissions from the deposited waste material, while acknowledging nonzero flooding risk. This inherited source/native modelling boundary is not proof of absolute long-term safety or zero physical releases. No new speculative release model or avoided credit is added.",
+        "No source exchange is omitted, no zero-burden helper or new omission authority is created, and no production/generator Python module is changed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b0e29c39ad48dfcd15a40ba86cf055c9eefd18b37c35064efce267cdaf2aa7b6"
+        }
+      ]
     }
   ],
   "superseded_operations": [

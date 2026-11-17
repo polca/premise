@@ -1,0 +1,85 @@
+{
+  "status": "seven_casting_disposal_portfolios_pass_signed_and_independent_no_write_LCIs",
+  "signed_finite_LCI_solves": 14,
+  "independent_native_model_comparisons": [
+    {
+      "rule_id": "bp-c26dc8d2b74cfc97",
+      "native_demand_coefficients_match": true,
+      "independent_native_demand_comparison": true,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_tolerance": 1e-10,
+      "production_only_source_receipts_audited": 0
+    },
+    {
+      "rule_id": "bp-bff3edbd14ec0e95",
+      "native_demand_coefficients_match": true,
+      "independent_native_demand_comparison": true,
+      "relative_infinity_norm_difference": 5.2185314658117144e-14,
+      "relative_tolerance": 1e-10,
+      "production_only_source_receipts_audited": 0
+    },
+    {
+      "rule_id": "bp-dfd19ab20aef043f",
+      "native_demand_coefficients_match": true,
+      "independent_native_demand_comparison": true,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_tolerance": 1e-10,
+      "production_only_source_receipts_audited": 0
+    },
+    {
+      "rule_id": "bp-aa056a9baa1ba455",
+      "native_demand_coefficients_match": true,
+      "independent_native_demand_comparison": true,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_tolerance": 1e-10,
+      "production_only_source_receipts_audited": 0
+    },
+    {
+      "rule_id": "bp-237ca28caf78bdd8",
+      "native_demand_coefficients_match": true,
+      "independent_native_demand_comparison": true,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_tolerance": 1e-10,
+      "production_only_source_receipts_audited": 0
+    },
+    {
+      "rule_id": "bp-a479d4db4a109948",
+      "native_demand_coefficients_match": true,
+      "independent_native_demand_comparison": true,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_tolerance": 1e-10,
+      "production_only_source_receipts_audited": 0
+    },
+    {
+      "rule_id": "bp-f89c94deef675ba1",
+      "native_demand_coefficients_match": true,
+      "independent_native_demand_comparison": true,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_tolerance": 1e-10,
+      "production_only_source_receipts_audited": 0
+    }
+  ],
+  "transient_activities": 14,
+  "native_endpoints_used": 10,
+  "matrix_shape": [
+    11961,
+    11961
+  ],
+  "source_and_biosphere_metadata_preserved": true,
+  "new_Brightway_databases": 0,
+  "new_registered_activities": 0,
+  "new_processed_files": 0,
+  "qualification_limit": "Encoded native-model consistency and actual required casting-operation frontier only. Source/native impact differences and complete casting, battery and final-energy qualification remain unfinished.",
+  "Brightpath_tests_passed": 847,
+  "Premise_tests_passed": 8,
+  "normal_generator_resources_byte_identical": true,
+  "canonical_biosphere_resources_unchanged": true,
+  "source_treatment_entries_retained": 12,
+  "source_freight_entries_retained": 35,
+  "production_and_generator_Python_changes": 0,
+  "new_omissions": 0,
+  "new_zero_authorities": 0,
+  "casting_operation_frontier_before": 11,
+  "casting_operation_frontier_after": 4,
+  "temporary_generator_bytes_removed": 111381478
+}
