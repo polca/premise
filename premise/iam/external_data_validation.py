@@ -11,7 +11,7 @@ import datapackage
 import numpy as np
 import pandas as pd
 import yaml
-from datapackage import Package, exceptions, validate
+from datapackage import Package, exceptions as exceptions, validate  # noqa: PLC0414
 from schema import And, Optional, Or, Schema, Use
 
 from ..core.efficiency_bounds import output_data, validate_policy
@@ -729,10 +729,7 @@ def check_inventories(
 def check_datapackage(datapackage: datapackage.Package):
     """Validate the descriptor, resource pairing, source version and resource names."""
 
-    try:
-        validate(datapackage.descriptor)
-    except exceptions.ValidationError as exception:
-        raise exception
+    validate(datapackage.descriptor)
 
     resource_names = [resource.name for resource in datapackage.resources]
     if "config" in resource_names and "scenario_data" not in resource_names:
