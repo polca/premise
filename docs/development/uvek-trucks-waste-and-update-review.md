@@ -2,9 +2,11 @@
 
 The three remaining ecoinvent 3.12 waste-market refusals are resolved. All truck
 inventories now prepare through the normal CLIC conversion path. The actual
-shared truck update and exhaustive graph checks pass. This evidence still uses
-a diagnostic scope override; it does not yet establish a normal public export.
-Fourteen of nineteen sectors remain qualified at this checkpoint.
+shared truck update and exhaustive graph checks pass. Subsequent verification
+also passes the normal installed fifteen-sector workflow and Brightway export.
+Fifteen of nineteen sectors are now qualified. The standalone checks below
+preceded that public verification; complete results are in
+`uvek-trucks-public-export-verification.json`.
 
 Each polyethylene, polyurethane and glass market retains all twelve original
 disposal shares and its separate road input. Thirty-three uncontrolled-treatment
@@ -63,6 +65,8 @@ Weight-class fallbacks and replacement of historical EURO/duty detail with IAM
 fleets are explicit limitations in `uvek-truck-market-alias-review.json`.
 Converted helper names bind their complete recipe signatures and are tested
 against Brightpath's current resource. A closure change requires updating that
-alias review. Combined-sector, installed-package and normal public export checks
-remain unfinished at this checkpoint. Battery, final energy, emissions and
-metals are the four other unfinished sectors.
+alias review. Combined-sector physical checks, 218 installed-package tests and
+the normal public export now pass. The written database contains 17,745 datasets
+and passes 272 signed LCI solves; all technosphere links stay inside the export.
+The combined run preserves 6,397 redirected transport quantities. Battery, final
+energy, emissions and metals are the four unfinished sectors.

@@ -1,0 +1,674 @@
+{
+  "date": "2026-11-17",
+  "status": "pending_actual_first_cohort_inputs_not_approved",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff"
+  },
+  "target_profile": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff"
+  },
+  "biosphere": {
+    "family": "ecoinvent",
+    "version": "3.10"
+  },
+  "battery_pending_unique_rules": 8,
+  "final_energy_pending_unique_rules": 18,
+  "distinct_rules": 22,
+  "shared_rules": 4,
+  "all_22_licensed_source_records_inspected_read_only": true,
+  "rules": [
+    {
+      "rule_id": "bp-d700fe3d29d48083",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for pitch",
+        "reference product": "pitch",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Pitch despergents, in paper production, at plant",
+        "reference product": "Pitch despergents, in paper production, at plant",
+        "unit": "kilogram"
+      },
+      "matching_paths": [
+        "datasets[60].exchanges[9]"
+      ],
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          1.0
+        ],
+        "nonproduction_count": 3,
+        "inventory_sha256": "a7ae4044e697ecae1643963c6dbd76549e9e914a227f9e63081809e59b699545",
+        "metadata_sha256": "c3932f495c7ca4bd4234edb17b0d93f893c642e031c885837213f0ff392f3acc"
+      }
+    },
+    {
+      "rule_id": "bp-168324086066bce9",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market group for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "mining-38-msw-europe-collection-and-treatment"
+      },
+      "matching_paths": [
+        "datasets[75].exchanges[13]",
+        "datasets[76].exchanges[7]",
+        "datasets[104].exchanges[11]"
+      ],
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          -1.0
+        ],
+        "nonproduction_count": 35,
+        "inventory_sha256": "2b7fceb0e03761435b41ba9c010c7316c1ee14d28eff15c2cdc25f53a0b54ecc",
+        "metadata_sha256": "5b7552f1cf0c3a9903022f1707ad772ae388071d74faba29194ff8d193fe6d9f"
+      }
+    },
+    {
+      "rule_id": "bp-c18af03acca016b9",
+      "source": {
+        "location": "GLO",
+        "name": "market for nickel sulfate",
+        "reference product": "nickel sulfate",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Cobalt sulfate",
+        "reference product": "Cobalt sulfate",
+        "unit": "kilogram"
+      },
+      "matching_paths": [
+        "datasets[79].exchanges[7]"
+      ],
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          1.0
+        ],
+        "nonproduction_count": 6,
+        "inventory_sha256": "2c1d760636e7868b6d099dd18abd4e51517d318551deb9398c36c2e8fb58f682",
+        "metadata_sha256": "d27cba7f60920cdaa732558517b479162f49f05f3cff2af4aa0dc61c081555c8"
+      }
+    },
+    {
+      "rule_id": "bp-9dba49829fbe9454",
+      "source": {
+        "location": "GLO",
+        "name": "market for casting, aluminium, lost-wax",
+        "reference product": "casting, aluminium, lost-wax",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Sheet rolling, aluminium",
+        "reference product": "Sheet rolling, aluminium",
+        "unit": "kilogram"
+      },
+      "matching_paths": [
+        "datasets[84].exchanges[4]"
+      ],
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          1.0
+        ],
+        "nonproduction_count": 2,
+        "inventory_sha256": "b110ac1552ca851f7b1957150d3714944d8aa58da1442487e60b0e581a1fb5b8",
+        "metadata_sha256": "69269a3360f281e755b5d2ea00069bcbe9a1f67c433dae9638cffed0d88e43c6"
+      }
+    },
+    {
+      "rule_id": "bp-6b5607ff035d8448",
+      "source": {
+        "location": "RoW",
+        "name": "market for scrap steel",
+        "reference product": "scrap steel",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Disposal, steel, 0% water, to construction waste landfill",
+        "reference product": "Disposal, steel, 0% water, to construction waste landfill",
+        "unit": "kilogram"
+      },
+      "matching_paths": [
+        "datasets[93].exchanges[59]"
+      ],
+      "sectors": [
+        "battery"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          -1.0
+        ],
+        "nonproduction_count": 10,
+        "inventory_sha256": "00b4f67903d5b080cb53b79b4bb1a800d6b835486a4471e178a99578f186186a",
+        "metadata_sha256": "6ded2fe4e138963fa4e8c30b95f5d9717476dcb6da82d08946294d288583781b"
+      }
+    },
+    {
+      "rule_id": "bp-bce58f1fed0f56b1",
+      "source": {
+        "location": "CH",
+        "name": "market for spent solvent mixture",
+        "reference product": "spent solvent mixture",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+        "reference product": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+        "unit": "kilogram"
+      },
+      "matching_paths": [
+        "datasets[93].exchanges[62]"
+      ],
+      "sectors": [
+        "battery"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          -1.0
+        ],
+        "nonproduction_count": 5,
+        "inventory_sha256": "6a067bbb02870a15d15d2e25a01554fbd87f3b7260646fad60652345b1d19ac6",
+        "metadata_sha256": "596076808795fcb35a3102652ed177d5103dc2aa2c0942e4115f2030b3c1f0ff"
+      }
+    },
+    {
+      "rule_id": "bp-6e3f61d03dd09ea6",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for spent solvent mixture",
+        "reference product": "spent solvent mixture",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+        "reference product": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+        "unit": "kilogram"
+      },
+      "matching_paths": [
+        "datasets[93].exchanges[63]"
+      ],
+      "sectors": [
+        "battery"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          -1.0
+        ],
+        "nonproduction_count": 5,
+        "inventory_sha256": "1a39c2ba8ce39e77baa96a2aa920c9ba9acf5dea297ad370cf3100cf64fb5ec0",
+        "metadata_sha256": "898cb7500dcaee93bfe47c40f57bca6a21de294d235a9a34187172a8ee74195f"
+      }
+    },
+    {
+      "rule_id": "bp-2149df101fadeeb2",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for waste mineral oil",
+        "reference product": "waste mineral oil",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+        "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+        "unit": "kilogram"
+      },
+      "matching_paths": [
+        "datasets[93].exchanges[67]"
+      ],
+      "sectors": [
+        "battery"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          -1.0
+        ],
+        "nonproduction_count": 5,
+        "inventory_sha256": "846be999a0f1ff1aba1bbe3ae88fcc686d20054ef5aebe23577089aec782e1c2",
+        "metadata_sha256": "61c333442b65458ee98945325c0c866d59c0057f9bcaf20b132e5928db81ff30"
+      }
+    },
+    {
+      "rule_id": "bp-f0ea84b691223768",
+      "source": {
+        "location": "GLO",
+        "name": "market for locomotive",
+        "reference product": "locomotive",
+        "unit": "unit"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Locomotive",
+        "reference product": "Locomotive",
+        "unit": "unit"
+      },
+      "matching_paths": [
+        "datasets[108].exchanges[0]",
+        "datasets[109].exchanges[0]"
+      ],
+      "sectors": [
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          1.0
+        ],
+        "nonproduction_count": 2,
+        "inventory_sha256": "7c27fbe143ec578cb51f48e20c79a6e7171da444673df670cabc0839ef29718b",
+        "metadata_sha256": "076f22e450ed21fb274cd9720bbd87c78520f663f32d6499441e01cbb976a4b9"
+      }
+    },
+    {
+      "rule_id": "bp-bcce1e75e09e77c0",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "pipeline construction, natural gas, high pressure distribution network",
+        "reference product": "pipeline, natural gas, high pressure distribution network",
+        "unit": "kilometer"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Pipeline, natural gas, high pressure distribution network",
+        "reference product": "Pipeline, natural gas, high pressure distribution network",
+        "unit": "kilometer"
+      },
+      "matching_paths": [
+        "datasets[23].exchanges[4]"
+      ],
+      "sectors": [
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          1.0
+        ],
+        "nonproduction_count": 24,
+        "inventory_sha256": "c0a429d8455a5441c63a9e7232ee769a2585fb0ee84715d92f002cd75305fd06",
+        "metadata_sha256": "7bf27ccec41860b4d1a1a8880bc91a49261c50429859ba6815f480c6ff1f2f89"
+      }
+    },
+    {
+      "rule_id": "bp-14c85826881a6371",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "treatment of wastewater, average, wastewater treatment",
+        "reference product": "wastewater, average",
+        "unit": "cubic meter"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Treatment, sewage, to wastewater treatment, class 1",
+        "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+        "unit": "cubic meter"
+      },
+      "matching_paths": [
+        "datasets[57].exchanges[11]",
+        "datasets[92].exchanges[9]"
+      ],
+      "sectors": [
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          -1.0
+        ],
+        "nonproduction_count": 116,
+        "inventory_sha256": "7e14f587c27fb470f890ce8275f1099b1b93087c69cdae3a585c7f25b1f817f7",
+        "metadata_sha256": "ba471afefdd5ea024c8613b35726ea92ec66555cbcc1eeb75e4110b04881719a"
+      }
+    },
+    {
+      "rule_id": "bp-dfd19ab20aef043f",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for fly ash and scrubber sludge",
+        "reference product": "fly ash and scrubber sludge",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Disposal, ash from paper prod. sludge, 0% water, to residual material landfill",
+        "reference product": "Disposal, ash from paper prod. sludge, 0% water, to residual material landfill",
+        "unit": "kilogram"
+      },
+      "matching_paths": [
+        "datasets[57].exchanges[3]"
+      ],
+      "sectors": [
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          -1.0
+        ],
+        "nonproduction_count": 4,
+        "inventory_sha256": "28f11edcea930c967a7bebe5a7bc39e22a32622ac679e20e5142b0bb6631131c",
+        "metadata_sha256": "be5f3120c6732b374b3535fc20282982e93297b9e4f0fd9e9577546c43c2bcc3"
+      }
+    },
+    {
+      "rule_id": "bp-f1810846999bc5bf",
+      "source": {
+        "location": "CH",
+        "name": "market for heat, central or small-scale, other than natural gas",
+        "reference product": "heat, central or small-scale, other than natural gas",
+        "unit": "megajoule"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Heat, heavy fuel oil, at industrial furnace 1MW",
+        "reference product": "Heat, heavy fuel oil, at industrial furnace 1MW",
+        "unit": "megajoule"
+      },
+      "matching_paths": [
+        "datasets[57].exchanges[4]"
+      ],
+      "sectors": [
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          1.0
+        ],
+        "nonproduction_count": 29,
+        "inventory_sha256": "e8941f81c2fd19961dcf07927589b07a5b6497abc34d83543efa07fa90569e90",
+        "metadata_sha256": "c7892dccd1b45796f380ed660cf220c08c22fb94adfc9502806a6ac1aabb6a17"
+      }
+    },
+    {
+      "rule_id": "bp-c39b53689522c694",
+      "source": {
+        "location": "RER",
+        "name": "infrastructure construction, for regional distribution of oil product",
+        "reference product": "infrastructure, for regional distribution of oil product",
+        "unit": "unit"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Regional distribution, oil products",
+        "reference product": "Regional distribution, oil products",
+        "unit": "unit"
+      },
+      "matching_paths": [
+        "datasets[57].exchanges[5]"
+      ],
+      "sectors": [
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          1.0
+        ],
+        "nonproduction_count": 17,
+        "inventory_sha256": "fc188eead15782b5bbc81bcdc5cfd2849638bab440e4aca9a9354a4938a9b460",
+        "metadata_sha256": "6a3e145f020ac782107e0a333b19b8af879c5cef8172450cbd7ec3f216ce3ccf"
+      }
+    },
+    {
+      "rule_id": "bp-090187e1cd9f8fc7",
+      "source": {
+        "location": "CH",
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Disposal, municipal solid waste, 22.9% water, to municipal incineration",
+        "reference product": "Disposal, municipal solid waste, 22.9% water, to municipal incineration",
+        "unit": "kilogram"
+      },
+      "matching_paths": [
+        "datasets[57].exchanges[6]"
+      ],
+      "sectors": [
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          -1.0
+        ],
+        "nonproduction_count": 5,
+        "inventory_sha256": "d7cb976217f4a26bd1c2f3b305e7aa1675d911a10a1b197fab9b4ce75373ee30",
+        "metadata_sha256": "40ab6d805fb4e11a10886aaac598722a3b3e7540b56c59987774160764f9a507"
+      }
+    },
+    {
+      "rule_id": "bp-6dd0791575d822ca",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for rainwater mineral oil storage",
+        "reference product": "rainwater mineral oil storage",
+        "unit": "cubic meter"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Treatment, rainwater mineral oil storage, to wastewater treatment, class 2",
+        "reference product": "Treatment, rainwater mineral oil storage, to wastewater treatment, class 2",
+        "unit": "cubic meter"
+      },
+      "matching_paths": [
+        "datasets[57].exchanges[7]"
+      ],
+      "sectors": [
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          -1.0
+        ],
+        "nonproduction_count": 30,
+        "inventory_sha256": "3534d6d7b47a123d64d55072ae559954073b2927f77ccd14e32d4b732da7ce11",
+        "metadata_sha256": "9964c89b5037dc95c348480aea78a7632a67cab693001e253f0a26a53735463f"
+      }
+    },
+    {
+      "rule_id": "bp-3f19534eb7d97f64",
+      "source": {
+        "location": "ENTSO-E",
+        "name": "market group for electricity, low voltage",
+        "reference product": "electricity, low voltage",
+        "unit": "kilowatt hour"
+      },
+      "target": {
+        "location": "ENTSO-E",
+        "name": "Electricity, low voltage, at grid",
+        "reference product": "Electricity, low voltage, at grid",
+        "unit": "kilowatt hour"
+      },
+      "matching_paths": [
+        "datasets[70].exchanges[2]",
+        "datasets[80].exchanges[4]"
+      ],
+      "sectors": [
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          1.0
+        ],
+        "nonproduction_count": 12,
+        "inventory_sha256": "9f79bbe125b43f6dbc3825abc2fbdc563c523b32e1a4a991067e94aad4bcf23a",
+        "metadata_sha256": "d1ca31b3d39fa7196275da0cf28dc30658b50944e881630f031b985832e83d82"
+      }
+    },
+    {
+      "rule_id": "bp-996fc7b49f1ed29c",
+      "source": {
+        "location": "RER",
+        "name": "welding, arc, aluminium",
+        "reference product": "welding, arc, aluminium",
+        "unit": "meter"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Welding, arc, aluminium",
+        "reference product": "Welding, arc, aluminium",
+        "unit": "meter"
+      },
+      "matching_paths": [
+        "datasets[70].exchanges[4]"
+      ],
+      "sectors": [
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          1.0
+        ],
+        "nonproduction_count": 12,
+        "inventory_sha256": "67fcb6b407f8f0ef4ee2ca7b3480e9999421c86a8d1b21c90b99cc7d18ad6450",
+        "metadata_sha256": "607d378170ab65c6be4f5ae1c63b5e4056f717dfb3b5d08b0e9426f7f2be05f6"
+      }
+    },
+    {
+      "rule_id": "bp-aa9896866f9437f6",
+      "source": {
+        "location": "GLO",
+        "name": "market for gas boiler",
+        "reference product": "gas boiler",
+        "unit": "unit"
+      },
+      "target": {
+        "location": "RER",
+        "name": "xxx Gas boiler",
+        "reference product": "xxx Gas boiler",
+        "unit": "unit"
+      },
+      "matching_paths": [
+        "datasets[74].exchanges[1]",
+        "datasets[75].exchanges[1]"
+      ],
+      "sectors": [
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          1.0
+        ],
+        "nonproduction_count": 2,
+        "inventory_sha256": "49792c56c98301d8be55fdb237a07254b3193e3cf23cfd8e644cd879ce80d958",
+        "metadata_sha256": "582e31fb5f7468abf768ef0f015cc4ae556d8fb599826cbdfa13e640103846f2"
+      }
+    },
+    {
+      "rule_id": "bp-a73848b70d94bf8a",
+      "source": {
+        "location": "GLO",
+        "name": "market for chimney",
+        "reference product": "chimney",
+        "unit": "meter"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Chimney",
+        "reference product": "Chimney",
+        "unit": "meter"
+      },
+      "matching_paths": [
+        "datasets[74].exchanges[2]",
+        "datasets[75].exchanges[2]"
+      ],
+      "sectors": [
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          1.0
+        ],
+        "nonproduction_count": 2,
+        "inventory_sha256": "95b102772873a0bee6cd2c7a9132f7a796e4fbf0a44d9ef991b4626509102c56",
+        "metadata_sha256": "a8eccdcdd67e3d3f6dd1523cfc2dc79854d31787fdfa44c87f0f411c64bfb181"
+      }
+    },
+    {
+      "rule_id": "bp-e69da1d0d93a9f73",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for liquefied petroleum gas",
+        "reference product": "liquefied petroleum gas",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Liquefied petroleum gas, at service station",
+        "reference product": "Liquefied petroleum gas, at service station",
+        "unit": "kilogram"
+      },
+      "matching_paths": [
+        "datasets[75].exchanges[4]"
+      ],
+      "sectors": [
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          1.0
+        ],
+        "nonproduction_count": 14,
+        "inventory_sha256": "e2f51848000f54fc76359235be160251da1681d10ece5ebf49a6315bac767e32",
+        "metadata_sha256": "142184bab6d54cf8a5dd16b5535d0a84726948dc21e60a5a0f8510d8f8e57f15"
+      }
+    },
+    {
+      "rule_id": "bp-3e953694d9531d69",
+      "source": {
+        "location": "RER",
+        "name": "market for phenolic resin",
+        "reference product": "phenolic resin",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Phenolic resin, at plant",
+        "reference product": "Phenolic resin, at plant",
+        "unit": "kilogram"
+      },
+      "matching_paths": [
+        "datasets[80].exchanges[22]"
+      ],
+      "sectors": [
+        "final energy"
+      ],
+      "source_witness": {
+        "reference_amounts": [
+          1.0
+        ],
+        "nonproduction_count": 4,
+        "inventory_sha256": "c8bec1886e86bd287877496e6e8aba0aada2bb70af51bc087f4b564d5612a7e1",
+        "metadata_sha256": "c5cbf3b696b945a45a91ce64ad6933cda33c70a7eddb5b00ab1f825117963df8"
+      }
+    }
+  ],
+  "priority": "Resolve the four shared inputs first, then battery-only waste inputs, then remaining final-energy inputs. Reuse existing reviewed operations and exact native services where physically justified.",
+  "qualification_limit": "These are the first failing reached source-3.9 cohorts, not a complete count of every downstream dependency. Existing heuristic targets are unapproved; listing them grants no approval. Emissions and metals still need filter/physical and public qualification checks.",
+  "Brightway_database_writes": 0
+}

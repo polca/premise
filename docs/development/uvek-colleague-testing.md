@@ -2,8 +2,9 @@
 
 This guide is for a colleague running the review on her own computer. The example
 builds REMIND SSP2-NPi for 2050, updates biomass, electricity and heat, exports to
-Brightway, and provides a few cells for exploring the result. Other sector updates
-are outside this review. No separate Brightpath checkout is needed.
+Brightway, and provides a few cells for exploring the result. The optional
+verified sector list now includes trucks (15 sectors in total; see the latest
+verification below). No separate Brightpath checkout is needed.
 
 ## 1. Fork and select the development branch
 
@@ -330,14 +331,36 @@ recycling parents and grants no global conversion. The notebook and qualified
 sector workflow are unchanged. See `uvek-recycling-materials-38-verification.json`.
 
 
-### Current truck mappings and diagnostic update
+### Current verified scope: fifteen sectors, including trucks
 
-The pinned Brightpath version resolves the remaining three current truck waste
-markets and preserves the earlier physical waste routes. Premise's YAML now
-selects the truck fuels and relinks native fleet-market purchases to the shared
-regional IAM markets. A small legacy battery guard keeps kg purchases outside
-the kWh sizing schedule. Standalone energy, fleet-share, compression, battery
-and consumer-quantity checks pass. Trucks remain outside the public supported
-sector list until the combined installed-package run and export are verified.
-The example notebook and fourteen-sector qualified workflow remain unchanged.
-See `uvek-trucks-waste-and-update-review.md` for evidence and proxy limits.
+The installed GitHub Brightpath revision and packaged Premise build pass the
+normal live-archive update and Brightway export for these sectors together:
+
+```python
+ndb.update([
+    "biomass", "electricity", "heat", "cement", "steel", "mining", "renewable",
+    "cdr", "fuels", "ships", "buses", "two_wheelers", "trains", "cars", "trucks",
+])
+```
+
+The example notebook's original three-sector call remains unchanged. For this
+optional broader run, replace its update cell with the list above and use the
+same export and exploration cells. Battery, final energy, emissions and metals
+are still under review; do not add them to this qualified list.
+
+The fifteen-sector export has 17745 datasets,
+including 260 regional truck services and 73 regional/World truck markets.
+All 272 signed checks of written car/truck services and markets have finite
+LCIs. The separate combined physical checks preserve 6,397 redirected consumer
+transport quantities, verify the IAM fuel factors and fleet shares, and retain
+33 native mass-based battery inventories. All 218 installed-package regressions
+pass. The three current truck waste markets retain their original fate shares
+and signed emissions with reviewed native operating/incineration proxies.
+
+Only a small legacy kWh-battery guard and the supported-sector list change in
+runtime Python; fuel selection and market relinking use mapping files and the
+shared Premise routines. Screening and recipe-signature limits remain in
+`uvek-trucks-waste-and-update-review.md` and
+`uvek-truck-market-alias-review.json`. Complete export evidence is in
+`uvek-trucks-public-export-verification.json`. This verifies links, quantities
+and finite inventories, without claiming source/native impact equivalence.
