@@ -1,24 +1,23 @@
 {
   "date": "2026-11-17",
-  "status": "installed_mapping_only_batch_verified",
-  "Brightpath_Git_revision": "9cc231a2ffccad4c4b72516731f2f1b6d2e3c266",
-  "Premise_wheel_source_revision": "c830b49ad1cd1636df2640a53e04481a4601e37e",
+  "status": "installed_source312_mapping_batch_verified",
+  "Brightpath_Git_revision": "ab59256de00a46241bcc35a176b58736232d9e48",
+  "Premise_wheel_source_revision": "5ceecaf2595cb12bdf83967ee13b1a8c0aefc301",
   "source_code_changes": 0,
   "original_Premise_master_unchanged": true,
   "installed_regressions": {
     "status": "installed_mapping_only_battery_regressions_passed",
-    "Brightpath_Git_revision": "9cc231a2ffccad4c4b72516731f2f1b6d2e3c266",
+    "Brightpath_Git_revision": "ab59256de00a46241bcc35a176b58736232d9e48",
     "runtime_packages_loaded_only_from_installed_environment": true,
-    "test_files": 12,
-    "elapsed_seconds": 111.17433116596658,
-    "tests_passed": 98,
-    "dependency_warnings": 1
+    "test_files": 14,
+    "elapsed_seconds": 115.82815804204438,
+    "tests_passed": 132
   },
   "installed_package_bytes": {
-    "Brightpath_Git_revision": "9cc231a2ffccad4c4b72516731f2f1b6d2e3c266",
+    "Brightpath_Git_revision": "ab59256de00a46241bcc35a176b58736232d9e48",
     "packages": {
       "brightpath": {
-        "verified_installed_package_files": 587,
+        "verified_installed_package_files": 590,
         "all_packaged_files_present_in_source_match": true
       },
       "premise": {
@@ -47,67 +46,68 @@
       "trucks"
     ],
     "CLIC_records": 1495,
-    "Brightpath_Git_revision": "9cc231a2ffccad4c4b72516731f2f1b6d2e3c266",
+    "Brightpath_Git_revision": "ab59256de00a46241bcc35a176b58736232d9e48",
     "CLIC_options_overridden": false,
     "freshness": "normal live default",
     "scope_gate_bypassed": false,
     "validation_disabled": false,
     "new_Brightway_databases": 0,
     "registry_and_processed_file_names_unchanged": true,
-    "elapsed_seconds": 98.51537462498527,
+    "elapsed_seconds": 107.72572616697289,
     "qualification_limit": "Preparation regression of already qualified15sectors; no sector update/export repeated and battery/final-energy sectors remain unfinished."
   },
-  "source38_unapproved_mapping_frontier": {
-    "before_batch": 26,
-    "after_batch": 2,
-    "new_scopes": 24,
-    "remaining": {
-      "bp-8fa6bb43a07f3b4e": {
-        "location": "GLO",
-        "name": "market for manganese sulfate",
-        "reference product": "manganese sulfate",
-        "unit": "kilogram"
-      },
-      "bp-fc047c72b6020ab2": {
-        "location": "GLO",
-        "name": "market for vinyl carbonate",
-        "reference product": "vinyl carbonate",
-        "unit": "kilogram"
-      }
-    }
+  "required_battery_cohorts": {
+    "source38": "conversion passed",
+    "source39": "conversion passed",
+    "source312_unapproved_before": 73,
+    "source312_unapproved_remaining": 28
   },
-  "new_reconstructed_upstream_inventory_models": 0,
-  "new_model_profile_aliases": 16,
-  "new_foreground_omissions": [],
-  "new_Brightway_databases": 0,
-  "new_export_performed": false,
+  "known_historical_test_failures": [
+    {
+      "status": "pre_existing_failure_reproduced",
+      "installed_Brightpath_revision": "9cc231a2ffccad4c4b72516731f2f1b6d2e3c266",
+      "installed_runtime_used": true,
+      "test": "test_uvek_dmc_39.py::test_replay_is_atomic_and_refuses_changed_input_or_recipe_boundaries[None]",
+      "reason": "Historical dedicated DMC authoring replay requires its original parent; the already published later source-3.8 mapping extension changes that parent. Ordinary full generator and runtime conversion are separate checks.",
+      "Python_files_modified": false
+    },
+    {
+      "status": "pre_existing_failure_reproduced",
+      "installed_Brightpath_revision": "9cc231a2ffccad4c4b72516731f2f1b6d2e3c266",
+      "installed_runtime_used": true,
+      "test": "test_uvek_named_products_39.py::test_review_replay_is_atomic_and_checks_exact_freight_dependencies[None]",
+      "pytest_exit_code": 1,
+      "Python_files_modified": false
+    }
+  ],
   "qualified_sectors": 15,
   "total_sectors": 19,
-  "qualification_limit": "Installed mapping and ordinary fifteen-sector preparation regression. Battery, final energy, emissions and metals remain unfinished; no new sector qualification or export is claimed.",
-  "cleanup": {
-    "owned_cleanup": [
-      {
-        "path": "mapping-only-battery-pip-cache",
-        "bytes_removed": 70501102
-      },
-      {
-        "path": "premise-clic-worktree/build",
-        "bytes_removed": 64298403
-      },
-      {
-        "path": "premise-clic-worktree/premise.egg-info",
-        "bytes_removed": 116052
-      },
-      {
-        "path": "closed-casting-native38-installed-wheels",
-        "bytes_removed": 23044022
-      }
-    ],
-    "total_bytes_removed": 157959579,
-    "current_installed_environment_retained": true,
-    "current_premise_wheel_retained": true,
-    "source_and_biosphere_and_latest_verified_exports_retained": true,
-    "new_Brightway_databases": 0
-  },
-  "temporary_generator_copies_removed_bytes": 338134698
+  "unfinished_sectors": [
+    "battery",
+    "final energy",
+    "emissions",
+    "metals"
+  ],
+  "new_Brightway_databases": 0,
+  "new_export_performed": false,
+  "cleanup": [
+    {
+      "path": "source312-install-cache",
+      "bytes_removed": 70708706
+    },
+    {
+      "path": "premise-clic-worktree/build",
+      "bytes_removed": 64830609
+    },
+    {
+      "path": "premise-clic-worktree/premise.egg-info",
+      "bytes_removed": 116451
+    },
+    {
+      "path": "mapping-only-battery-wheels",
+      "bytes_removed": 23101474
+    }
+  ],
+  "current_environment_and_current_wheel_retained": true,
+  "qualification_limit": "Installed mapping regression and ordinary inventory preparation for the already qualified fifteen sectors. No new sector qualification or export. Two historical standalone replay failures remain separately disclosed."
 }

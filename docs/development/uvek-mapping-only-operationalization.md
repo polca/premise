@@ -49,3 +49,23 @@ Defer refinements of an already functional native proxy unless they prevent the
 run or materially change its intended function. Keep decisions in mapping review
 data and this review trail. Commit focused groups and push batches of five to
 ten commits, rather than pushing each commit.
+
+## Current operational checkpoint
+
+The repeated user instruction is a hard constraint: no Python source or test
+changes. Resolve the next failure in the ordinary workflow with mapping and
+approval data. Prefer a complete suitable native process; do not expand an
+already functioning screening proxy into a remote upstream reconstruction.
+
+The required source-3.8 battery cohort now converts, as does the source-3.9
+cohort. The current source-3.12 retry has 28 unapproved identities, down from 73
+after two groups reusing reviewed/native supplies. This is mapping progress,
+not a qualified battery update. Fifteen sectors remain qualified; battery,
+final energy, emissions and metals remain unfinished. The latest verified
+fifteen-sector export is still the operational baseline.
+
+Two historical standalone review-replay test cases are known to fail against
+the previously published revision as well as the current resources. Their
+frozen dependency fingerprints predate subsequent reviewed overlays. Do not
+report them as passing or alter their Python fixtures under this constraint.
+The ordered normal generator and focused runtime checks are reported separately.
