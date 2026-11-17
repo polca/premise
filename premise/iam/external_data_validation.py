@@ -752,11 +752,9 @@ def check_datapackage(datapackage: datapackage.Package):
         in config["SUPPORTED_INVENTORY_SOURCE_VERSIONS"]
     ), f"The ecoinvent source version in the datapackage is not supported. Must be one of {config['SUPPORTED_INVENTORY_SOURCE_VERSIONS']}."
 
-    if (
-        sum(first == second for first in resource_names for second in resource_names)
-        / len(resource_names)
-        > 1
-    ):
+    if not resource_names:
+        raise ValueError("The datapackage contains no resources.")
+    if len(resource_names) != len(set(resource_names)):
         raise ValueError(f"Two or more resources in the datapackage are similar.")
 
 
