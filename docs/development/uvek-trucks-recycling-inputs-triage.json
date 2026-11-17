@@ -1,0 +1,21 @@
+{
+  "status": "required_input_triage_not_approval",
+  "owned_source_nodes": 43,
+  "unapproved_external_correspondences": 106,
+  "categories": {
+    "waste treatment": 31,
+    "materials/infrastructure": 18,
+    "water/wastewater": 9,
+    "transport": 31,
+    "electricity": 7,
+    "heat/fuel": 10
+  },
+  "effective_sign_review_states": {
+    "unresolved": 35,
+    "verified": 25,
+    "no sign review": 46
+  },
+  "empty_cutoff_stock_is_owned_not_mapped_to_a_treatment": true,
+  "new_Brightway_databases": 0,
+  "scope": "Required external input diagnosis for two source-3.8 polymer chains; not a blanket approval, conversion or full-sector qualification."
+}

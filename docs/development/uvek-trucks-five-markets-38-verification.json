@@ -262,5 +262,13 @@
     "bytes_removed": 239810987,
     "Brightway_databases_deleted": 0,
     "source_biosphere_last_verified_export_and_current_wheels_retained": true
+  },
+  "GitHub_install_verification": {
+    "status": "GitHub_install_matches_the_17_tested_installed_checks",
+    "Brightpath_revision": "c2eb573f629f8b116cfa87d366566a29a40b79fc",
+    "GitHub_install_verified": true,
+    "installed_runtime_files_match_tested_resources": true,
+    "source_checkout_modules_loaded": false,
+    "new_Brightway_databases": 0
   }
 }
