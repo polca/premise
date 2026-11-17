@@ -329491,6 +329491,112 @@
           "fingerprint": "723354190283ead458f71ada732643512d283dea428aefe377cd0525843c545b"
         }
       ]
+    },
+    {
+      "rule_id": "bp-c18af03acca016b9",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_shared_pitch_nickel_39_review.json",
+      "review_sha256": "2c4f2e1311d9003296580557224505ab22d21ea9c7de525b0af03d3fe7e51d95",
+      "authorization": "Standing autonomous mapping goal and automatic approval of inspected complete native, geographic, allocated-coproduct and closed source-operation proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for nickel sulfate",
+            "reference product": "nickel sulfate",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "inventory_sha256": "2c1d760636e7868b6d099dd18abd4e51517d318551deb9398c36c2e8fb58f682",
+          "metadata_sha256": "d27cba7f60920cdaa732558517b479162f49f05f3cff2af4aa0dc61c081555c8"
+        },
+        "target": {
+          "recipe_ref": "shared-39-nickel-sulfate-delivered"
+        },
+        "conversion_factor": 1,
+        "cobalt_allocation_ratio": 0.11337491313401228,
+        "source_chemical_operations_and_eight_emissions_retained": true
+      },
+      "limitations": [
+        "Only the two exact inspected ecoinvent3.9cut-off market interfaces gain permission. Preserve caller signs, kg basis, supported uncertainty, formulas and independent caller operations/emissions. No inverse, other source version or cross-system permission is inferred. No source inventory or biosphere database is changed.",
+        "Keep each source producer entry and freight leg separate at its original quantity and marginal statistics, without regrouping or renormalization. Complete native same-mode rail, road, barge and container-shipping supplies are geographic/fleet/technology/vintage proxies; no guessed payload, distance or transport multiplier.",
+        "Use all exchanges of the selected native models. Native process assumptions, allocation, background/biosphere exclusions and internal uncertainty replace corresponding source internals; their limitations and unquantified impact differences remain. No LCI/LCIA, stochastic, grade or functional-performance equivalence is established. No physical omission, new zero-burden handover, production/generator Python change or extra recovery credit.",
+        "Retain the source nickel-sulfate market shares:0.918092492672566 from allocated cobalt production and0.0819075073274339 from separate nickel-sulfate production, plus all four freight legs. Source references pure solid NiSO4 per kg; native cobalt sulfate is a different chemical and is excluded. No hydration, solution, contained-nickel or molecular-mass conversion is added.",
+        "All290nonproduction exchanges of the source nickel-sulfate cobalt coproduct equal0.11337491313401228times the corresponding same-source cobalt-metal inventory, with identical exchange identities. Use that independently checked uniform inventory ratio to scale the complete native Cobalt, at plant inventory. It is an allocation-scaled burden proxy, not physical cobalt metal consumed to manufacture NiSO4, nor proof that source/native allocation or production is identical.",
+        "Native cobalt is a weak-data global mining/beneficiation and reduction approximation. Its documentation excludes further-treatment emissions and overburden/tailings/losses. Those native exclusions and estimated95%reduction yield remain explicit; the allocation ratio does not repair them. No invented emissions, residues, recovery credit or separately added nickel-sulfate plant is attached to this allocated coproduct branch.",
+        "The separate nickel-sulfate production branch retains all23original nonproduction operations/emissions and statistics through existing reviewed native suppliers and canonical ecoinvent3.10biosphere correspondences. Its nickel feed0.399240739928257kg, sulfuric-acid entries, heat/electricity/water/nitrogen/factory inputs, wastewater routes and eight signed elementary flows remain explicit. Native chemical-plant, heat, fuel, utility, wastewater, geography and vintage differences remain reviewed proxies; no stoichiometric replacement, chemical resynthesis, calibrating energy factor or added avoided-emission credit."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5787863afba8900e10c4385c7f967bc84eb055942c53722c7c3d0b4e4ecd80a7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d700fe3d29d48083",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_shared_pitch_nickel_39_review.json",
+      "review_sha256": "2c4f2e1311d9003296580557224505ab22d21ea9c7de525b0af03d3fe7e51d95",
+      "authorization": "Standing autonomous mapping goal and automatic approval of inspected complete native, geographic, allocated-coproduct and closed source-operation proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for pitch",
+            "reference product": "pitch",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 3,
+          "inventory_sha256": "a7ae4044e697ecae1643963c6dbd76549e9e914a227f9e63081809e59b699545",
+          "metadata_sha256": "c3932f495c7ca4bd4234edb17b0d93f893c642e031c885837213f0ff392f3acc"
+        },
+        "target": {
+          "recipe_ref": "shared-39-petroleum-pitch-delivered"
+        },
+        "conversion_factor": 1,
+        "cobalt_allocation_ratio": null,
+        "source_chemical_operations_and_eight_emissions_retained": false
+      },
+      "limitations": [
+        "Only the two exact inspected ecoinvent3.9cut-off market interfaces gain permission. Preserve caller signs, kg basis, supported uncertainty, formulas and independent caller operations/emissions. No inverse, other source version or cross-system permission is inferred. No source inventory or biosphere database is changed.",
+        "Keep each source producer entry and freight leg separate at its original quantity and marginal statistics, without regrouping or renormalization. Complete native same-mode rail, road, barge and container-shipping supplies are geographic/fleet/technology/vintage proxies; no guessed payload, distance or transport multiplier.",
+        "Use all exchanges of the selected native models. Native process assumptions, allocation, background/biosphere exclusions and internal uncertainty replace corresponding source internals; their limitations and unquantified impact differences remain. No LCI/LCIA, stochastic, grade or functional-performance equivalence is established. No physical omission, new zero-burden handover, production/generator Python change or extra recovery credit.",
+        "This exact source pitch supply is a petroleum-refinery residue, not a paper-industry pitch dispersant or a coal-tar supply. Use the complete European native Bitumen, at refinery inventory per nominal source kg as a petroleum-residue production screening proxy, preserving original rail and road delivery. Source producer is a subdivided ifeu European refinery model with2018feed/complexity evidence; native production is a European refinery average with2016statistics and flow-specific coproduct allocation.",
+        "The broad source product label does not establish electrode-binder, coking, softening-point, sulfur, ash or carbon-yield equivalence with the native road-bitumen grade. This is a production-inventory proxy for the inspected petroleum route, not permission to substitute native bitumen physically for all pitches. Do not generalize to coal/plant pitch or paper dispersants. Preserve separately modelled caller baking, carbonization, energy and emissions; no invented grade, carbon-yield, heating-value, density or allocation multiplier."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ed99cb9ee546317d3b9e00bc242df736c635cb77ecd3a3ba99f7ee5881453cb6"
+        }
+      ]
     }
   ],
   "superseded_operations": [

@@ -1,0 +1,116 @@
+{
+  "status": "two_shared_source39_inputs_pass_battery_frontier_six_remain",
+  "candidate": {
+    "review_sha256": "2c4f2e1311d9003296580557224505ab22d21ea9c7de525b0af03d3fe7e51d95",
+    "new_exact_parent_correspondences": 2,
+    "new_helpers": 4,
+    "existing_recipe_dependencies": 15,
+    "all_existing_recipe_contents_unchanged": true,
+    "idempotent_review_replay": true,
+    "cobalt_source_exchanges_compared": 290,
+    "cobalt_allocation_ratio": 0.11337491313401228,
+    "source_chemical_inputs": 15,
+    "source_chemical_biosphere_flows": 8,
+    "new_foreground_omissions": 0,
+    "runtime_and_generator_Python_changes": 0,
+    "qualification_limit": "Candidate data pending signed migrations, no-write independent LCIs and actual battery/final-energy retries."
+  },
+  "no_write_LCI": {
+    "status": "four_shared_models_pass_signed_and_independent_no_write_LCIs",
+    "signed_finite_LCI_solves": 8,
+    "independent_native_demand_comparisons": [
+      {
+        "recipe": "shared-39-nickel-sulfate-allocated-cobalt",
+        "relative_infinity_norm_difference": 0.0,
+        "relative_tolerance": 1e-10,
+        "independently_reconstructed_native_demand": true
+      },
+      {
+        "recipe": "shared-39-nickel-sulfate-direct-production",
+        "relative_infinity_norm_difference": 3.9043385953844243e-13,
+        "relative_tolerance": 1e-10,
+        "independently_reconstructed_native_demand": true
+      },
+      {
+        "recipe": "shared-39-nickel-sulfate-delivered",
+        "relative_infinity_norm_difference": 3.809234310763853e-17,
+        "relative_tolerance": 1e-10,
+        "independently_reconstructed_native_demand": true
+      },
+      {
+        "recipe": "shared-39-petroleum-pitch-delivered",
+        "relative_infinity_norm_difference": 0.0,
+        "relative_tolerance": 1e-10,
+        "independently_reconstructed_native_demand": true
+      }
+    ],
+    "transient_activities": 21,
+    "unchanged_existing_chemical_dependency_helpers": 15,
+    "matrix_shape": [
+      11968,
+      11968
+    ],
+    "source_and_biosphere_metadata_preserved": true,
+    "new_Brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "qualification_limit": "Native-model consistency only. Native cobalt, petroleum-residue grade, refinery/mining allocation and other documented proxy omissions remain; source/native impact equivalence and complete battery/final-energy qualification are unproven."
+  },
+  "generator": {
+    "normal_generator_reproduces_all_three_resources": true,
+    "canonical_biosphere_files_unchanged": true
+  },
+  "actual_battery_preparation": {
+    "source39_unapproved_before": 8,
+    "source39_unapproved_after": 6,
+    "remaining": {
+      "bp-168324086066bce9": {
+        "location": "Europe without Switzerland",
+        "name": "market group for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "unit": "kilogram"
+      },
+      "bp-9dba49829fbe9454": {
+        "location": "GLO",
+        "name": "market for casting, aluminium, lost-wax",
+        "reference product": "casting, aluminium, lost-wax",
+        "unit": "kilogram"
+      },
+      "bp-6b5607ff035d8448": {
+        "location": "RoW",
+        "name": "market for scrap steel",
+        "reference product": "scrap steel",
+        "unit": "kilogram"
+      },
+      "bp-bce58f1fed0f56b1": {
+        "location": "CH",
+        "name": "market for spent solvent mixture",
+        "reference product": "spent solvent mixture",
+        "unit": "kilogram"
+      },
+      "bp-6e3f61d03dd09ea6": {
+        "location": "Europe without Switzerland",
+        "name": "market for spent solvent mixture",
+        "reference product": "spent solvent mixture",
+        "unit": "kilogram"
+      },
+      "bp-2149df101fadeeb2": {
+        "location": "Europe without Switzerland",
+        "name": "market for waste mineral oil",
+        "reference product": "waste mineral oil",
+        "unit": "kilogram"
+      }
+    },
+    "inventory_preparation_completed": false,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "tests": {
+    "Brightpath": 23,
+    "Premise": 4
+  },
+  "qualified_sectors": 15,
+  "total_sectors": 19,
+  "qualification_limit": "Only these two reached source3.9 market interfaces are resolved. Complete battery and final-energy preparation/update/export remain unfinished. Native cobalt/refinery and utility models remain explicit screening proxies; source/native impact equivalence is not established."
+}
