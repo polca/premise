@@ -279,8 +279,17 @@ SODIUM_DECISION = next(
 )
 
 
-def sodium_fixture():
-    decision = SODIUM_DECISION
+SODIUM_DECISIONS = [
+    SODIUM_DECISION,
+    next(
+        d
+        for d in json.loads(REVIEW_PATH.read_text())["decisions"]
+        if d["id"] == "uvek-2026-nickel-carbonate-sodium-water"
+    ),
+]
+
+
+def sodium_fixture(decision=SODIUM_DECISION):
     row = {
         key: copy.deepcopy(decision[key])
         for key in ("slug", "version_id", "semantic_version", "sha256")
@@ -300,8 +309,13 @@ def sodium_fixture():
     return [activity], [row], copy.deepcopy(decision["target"])
 
 
-def test_biosphere_omission_is_compartment_scoped_and_audits_actual_signed_quantity():
-    activities, versions, target = sodium_fixture()
+@pytest.mark.parametrize(
+    "decision", SODIUM_DECISIONS, ids=[d["slug"] for d in SODIUM_DECISIONS]
+)
+def test_biosphere_omission_is_compartment_scoped_and_audits_actual_signed_quantity(
+    decision,
+):
+    activities, versions, target = sodium_fixture(decision)
     before = copy.deepcopy(activities)
     result, audits = prepare_approved_omissions(activities, versions, target)
     assert activities == before
@@ -326,8 +340,11 @@ def test_biosphere_omission_is_compartment_scoped_and_audits_actual_signed_quant
         ("type", "technosphere"),
     ],
 )
-def test_biosphere_omission_does_not_extend_to_another_flow(field, value):
-    activities, versions, target = sodium_fixture()
+@pytest.mark.parametrize(
+    "decision", SODIUM_DECISIONS, ids=[d["slug"] for d in SODIUM_DECISIONS]
+)
+def test_biosphere_omission_does_not_extend_to_another_flow(field, value, decision):
+    activities, versions, target = sodium_fixture(decision)
     activities[0]["exchanges"][1][field] = value
     before = copy.deepcopy(activities)
     result, audits = prepare_approved_omissions(activities, versions, target)
@@ -336,10 +353,14 @@ def test_biosphere_omission_does_not_extend_to_another_flow(field, value):
 
 
 @pytest.mark.parametrize("change", ["owner", "target", "source", "duplicate"])
+@pytest.mark.parametrize(
+    "decision", SODIUM_DECISIONS, ids=[d["slug"] for d in SODIUM_DECISIONS]
+)
 def test_biosphere_omission_keeps_other_owners_and_contexts_or_refuses_ambiguity(
     change,
+    decision,
 ):
-    activities, versions, target = sodium_fixture()
+    activities, versions, target = sodium_fixture(decision)
     if change == "owner":
         activities[0]["location"] = "CH"
     elif change == "target":
