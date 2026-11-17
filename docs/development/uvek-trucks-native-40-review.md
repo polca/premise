@@ -55,3 +55,10 @@ waste electronics, wood, polyethylene, potassium hydroxide, PET, benzaldehyde,
 wafer fabrication and natural gas. The complete truck update/export remains
 unfinished, and the overall verified count remains 14 of 19 sectors. See the
 [verification record](uvek-trucks-native-40-verification.json).
+
+The matching installed packages pass another 16 group and integrity checks.
+Premise and Brightpath runtime modules load from the isolated environment, with
+mapping/review bytes, the approval ledger and dependency pin matching the
+committed checkouts. The colleague workflow is unchanged. Verified temporary
+resources, superseded wheels and isolated build output were cleaned; current
+test artifacts, source databases and the last verified exports remain.
