@@ -584,7 +584,7 @@
   {
     "page": "reference/clic-commercial.rst",
     "review_date": "2026-11-17",
-    "disposition": "Rewrote the commercial CLIC guide in plain English, preserving settings, license scope, replacement limits, compatibility fallbacks, report files and replay checks; retained existing section anchors.",
+    "disposition": "Shortened the commercial CLIC guide around setup, replacement review and replay; linked detailed conversions to the mapping catalogue and retained supported versions, license limits, report filenames and existing section anchors.",
     "review_level": "Documentation and implementation consistency; not independent legal or proxy-accuracy validation"
   },
   {
