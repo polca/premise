@@ -1,0 +1,113 @@
+{
+  "date": "2026-11-17",
+  "status": "installed_mapping_only_batch_verified",
+  "Brightpath_Git_revision": "9cc231a2ffccad4c4b72516731f2f1b6d2e3c266",
+  "Premise_wheel_source_revision": "c830b49ad1cd1636df2640a53e04481a4601e37e",
+  "source_code_changes": 0,
+  "original_Premise_master_unchanged": true,
+  "installed_regressions": {
+    "status": "installed_mapping_only_battery_regressions_passed",
+    "Brightpath_Git_revision": "9cc231a2ffccad4c4b72516731f2f1b6d2e3c266",
+    "runtime_packages_loaded_only_from_installed_environment": true,
+    "test_files": 12,
+    "elapsed_seconds": 111.17433116596658,
+    "tests_passed": 98,
+    "dependency_warnings": 1
+  },
+  "installed_package_bytes": {
+    "Brightpath_Git_revision": "9cc231a2ffccad4c4b72516731f2f1b6d2e3c266",
+    "packages": {
+      "brightpath": {
+        "verified_installed_package_files": 587,
+        "all_packaged_files_present_in_source_match": true
+      },
+      "premise": {
+        "verified_installed_package_files": 424,
+        "all_packaged_files_present_in_source_match": true
+      }
+    }
+  },
+  "normal_live_fifteen_sector_preparation": {
+    "status": "installed_public_fifteen_sector_inventory_preparation_passed",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel",
+      "mining",
+      "renewable",
+      "cdr",
+      "fuels",
+      "ships",
+      "buses",
+      "two_wheelers",
+      "trains",
+      "cars",
+      "trucks"
+    ],
+    "CLIC_records": 1495,
+    "Brightpath_Git_revision": "9cc231a2ffccad4c4b72516731f2f1b6d2e3c266",
+    "CLIC_options_overridden": false,
+    "freshness": "normal live default",
+    "scope_gate_bypassed": false,
+    "validation_disabled": false,
+    "new_Brightway_databases": 0,
+    "registry_and_processed_file_names_unchanged": true,
+    "elapsed_seconds": 98.51537462498527,
+    "qualification_limit": "Preparation regression of already qualified15sectors; no sector update/export repeated and battery/final-energy sectors remain unfinished."
+  },
+  "source38_unapproved_mapping_frontier": {
+    "before_batch": 26,
+    "after_batch": 2,
+    "new_scopes": 24,
+    "remaining": {
+      "bp-8fa6bb43a07f3b4e": {
+        "location": "GLO",
+        "name": "market for manganese sulfate",
+        "reference product": "manganese sulfate",
+        "unit": "kilogram"
+      },
+      "bp-fc047c72b6020ab2": {
+        "location": "GLO",
+        "name": "market for vinyl carbonate",
+        "reference product": "vinyl carbonate",
+        "unit": "kilogram"
+      }
+    }
+  },
+  "new_reconstructed_upstream_inventory_models": 0,
+  "new_model_profile_aliases": 16,
+  "new_foreground_omissions": [],
+  "new_Brightway_databases": 0,
+  "new_export_performed": false,
+  "qualified_sectors": 15,
+  "total_sectors": 19,
+  "qualification_limit": "Installed mapping and ordinary fifteen-sector preparation regression. Battery, final energy, emissions and metals remain unfinished; no new sector qualification or export is claimed.",
+  "cleanup": {
+    "owned_cleanup": [
+      {
+        "path": "mapping-only-battery-pip-cache",
+        "bytes_removed": 70501102
+      },
+      {
+        "path": "premise-clic-worktree/build",
+        "bytes_removed": 64298403
+      },
+      {
+        "path": "premise-clic-worktree/premise.egg-info",
+        "bytes_removed": 116052
+      },
+      {
+        "path": "closed-casting-native38-installed-wheels",
+        "bytes_removed": 23044022
+      }
+    ],
+    "total_bytes_removed": 157959579,
+    "current_installed_environment_retained": true,
+    "current_premise_wheel_retained": true,
+    "source_and_biosphere_and_latest_verified_exports_retained": true,
+    "new_Brightway_databases": 0
+  },
+  "temporary_generator_copies_removed_bytes": 338134698
+}

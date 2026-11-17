@@ -2405,3 +2405,33 @@ See `uvek-closed-casting-native38-installed-verification.json`. Owned temporary
 generator output, build/pip caches and obsolete wheels were removed, reclaiming
 360,511,004 bytes; active witnesses, the installed environment/current wheel,
 source/biosphere databases and both verified exports remain.
+
+## 2026-11-17: mapping-only operationalization
+
+The latest user instruction excludes further source-code changes and prioritizes
+ordinary runs and exports over deep upstream reconstruction. The unpublished
+emissions Python experiment is parked. This batch changes only Brightpath mapping
+data, Premise approval data, the dependency pin and review documentation.
+
+Twenty-four required source-3.8 scopes reduce that actual battery mapping cohort
+from 26 to two unapproved correspondences: manganese sulfate and vinyl carbonate.
+Complete native services and existing reviewed supply/treatment models replace
+their source internals as explicit screening proxies. Sixteen one-to-one aliases
+retain delegated model versions and existing omission audits; no new upstream
+manufacturing reconstruction or foreground omission is introduced. The battery
+retry uses ordinary approval and source/target validation on 272 real activities.
+It remains preparation evidence, not a complete sector update or export.
+
+The colleague requirements and guide pin Brightpath GitHub revision
+`9cc231a2ffccad4c4b72516731f2f1b6d2e3c266`. The exact GitHub install and Premise
+wheel pass 98 tests across twelve files; all 587 Brightpath and 424 Premise package
+files match source. Normal live preparation for the fifteen qualified sectors
+again returns 1,495 CLIC records without scope bypass, disabled validation or
+database writes. The registry and processed file names remain unchanged.
+Fifteen of nineteen sectors remain qualified; battery, final energy, emissions
+and metals are unfinished. See `uvek-mapping-only-installed-verification.json`
+and the individual four-input, reused-model and three-material review files.
+
+Temporary generator copies, owned installer/build caches and the obsolete prior
+wheel were removed, reclaiming 496,094,277 bytes across this batch. The current
+environment and wheel, source/biosphere databases and verified exports remain.
