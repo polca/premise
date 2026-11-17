@@ -10799,7 +10799,12 @@
         "conversion_factor": 1,
         "native_direct_technosphere_coordinates_match": true,
         "comparison_relative_tolerance": 1e-12,
-        "boundary": "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step."
+        "boundary": "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step.",
+        "source38_extension": {
+          "review_path": "export/uvek_operational_four_38_review.json",
+          "review_sha256": "ffd5faa2bd15459ec503d54afa93caf9b306d690e65b239845ca5cc680bfa07d",
+          "earlier_effective_models_unchanged": true
+        }
       },
       "limitations": [
         "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step.",
@@ -10819,7 +10824,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "c68096a8014eb04119183580165e6935b31a6139117f7a605f55d82c254ae328"
+          "fingerprint": "5798748e24fe047c35847ad17628608de6246af19ecf5ba836a53c100ccf9b0b"
         }
       ]
     },
@@ -101856,7 +101861,12 @@
         ],
         "expected_foreground_records": 2,
         "expected_foreground_biosphere_exchanges": 0,
-        "limitations": "User instructionauto-approvecomingdecisionswithinexactUVEK2026cutoff/ecoinvent3.10biosphereelectricitypilot. Onlytheencountered3.9and3.12cutoffRoWnatural-gasdistrict/industrialheatmarketprofilesqualify. Preserveall43originalpositive heat-MJ supplierentriesperprofile,marginaluncertainty,sourceorderandzeroswithoutaggregation/renormalization,evenwhenseveralentriesusethesamenativeendpoint. Sourceandnativeheatproductreferencespositive1MJmeanfactor+1:retaincallernegativeheatcreditsasnegative,no waste-signflip. Sourceheatmarketexplicitlynodeliverytransport/losses. Useexplicitcomplete nativeplant-gateheatservices,notfuel-MJburningservicesnorDistrictheat-at-consumerwrappers. Nativefurnace/boilerheatservicesalreadyincludeefficiency;nativeCHPheatservicesalreadyincludeallocatedfuel/infrastructure/emissions andexergyallocation. No extraefficiency/COP,districtnetwork,11%deliveryuplift,heat/electricitycredit orfuel/MJfactor. Sourceindustrialfurnace>100kWusescompleteSwiss1MWheatfurnace(95%Hu);lowNOx/modulating/condensing sourcebranchesusespecificcomplete nativeheatwrappers. Source200kWeleanburnuses300kWthnativeCHheatservice,source500kWeuses1MWthCHheatservicewithexplicitthermal-vs-electricalcapacity/scale/efficiencywarnings. Source1MWeleanburnusescloserexplicitnative1MWeleanburnRERheatservice,notpreviousprivate1MWthcandidate. Nativeallocationexergyandheatquality/temperature,source/nativefuel/air/water/infrastructure/internaluncertainty andvintage differencesareexplicit/unquantified. Sourceconventional100MWeandcombined-cycle400MWeheatbranches usecomplete nativecountryCHPheataverages; noassertionthatanaveragefleetmatchescycle/capacity/efficiency. USsubregionsusenationalUS;absentcountriesandRoWuseENTSO-Easexplicitgeographicproxy,notinventedcountries/globalmix. NativeRUidentityandupstreamburnersupplierareRUwhilefree-textgeographyusesROin2022; retainthiscontradictionaswarning,do notsilentlyreinterpretlocationorclaimprecisegeographicequivalence. Othernativecomment/identitygeographicinconsistenciesretainedinportableevidence. Preserveoriginaltechnologysharesbutnativeproxychoicesdo notreconstructallsourcecycle/scale/geographicdistinctionsorinternaluncertaintycorrelations. Sourceproducerinternalparameters/formulas,allocations andwater/energybalancesarereplacedbycomplete nativeheatservices; do notcopy sourceinternalpurchases/emissions/credits asecondtime. Allsource/raw/nativeinventoryfingerprintsarefreshcheckedandunit/outputheatboundarydocumented; matchingnames/MJunitsalonearenotproof. Native2991upstreambiosphereexclusionsandallproxy scoreeffects remainexplicit/unquantified,noinventory/LCIAequivalence. Preservecallerownership,formulas,signeduncertainty,foregroundlinks andseparateemissions/purchases. No physicalomission,standaloneproducer,uninspectedrelease,reverse,cross-system-model orfullscenario/certification/exportapproval."
+        "limitations": "User instructionauto-approvecomingdecisionswithinexactUVEK2026cutoff/ecoinvent3.10biosphereelectricitypilot. Onlytheencountered3.9and3.12cutoffRoWnatural-gasdistrict/industrialheatmarketprofilesqualify. Preserveall43originalpositive heat-MJ supplierentriesperprofile,marginaluncertainty,sourceorderandzeroswithoutaggregation/renormalization,evenwhenseveralentriesusethesamenativeendpoint. Sourceandnativeheatproductreferencespositive1MJmeanfactor+1:retaincallernegativeheatcreditsasnegative,no waste-signflip. Sourceheatmarketexplicitlynodeliverytransport/losses. Useexplicitcomplete nativeplant-gateheatservices,notfuel-MJburningservicesnorDistrictheat-at-consumerwrappers. Nativefurnace/boilerheatservicesalreadyincludeefficiency;nativeCHPheatservicesalreadyincludeallocatedfuel/infrastructure/emissions andexergyallocation. No extraefficiency/COP,districtnetwork,11%deliveryuplift,heat/electricitycredit orfuel/MJfactor. Sourceindustrialfurnace>100kWusescompleteSwiss1MWheatfurnace(95%Hu);lowNOx/modulating/condensing sourcebranchesusespecificcomplete nativeheatwrappers. Source200kWeleanburnuses300kWthnativeCHheatservice,source500kWeuses1MWthCHheatservicewithexplicitthermal-vs-electricalcapacity/scale/efficiencywarnings. Source1MWeleanburnusescloserexplicitnative1MWeleanburnRERheatservice,notpreviousprivate1MWthcandidate. Nativeallocationexergyandheatquality/temperature,source/nativefuel/air/water/infrastructure/internaluncertainty andvintage differencesareexplicit/unquantified. Sourceconventional100MWeandcombined-cycle400MWeheatbranches usecomplete nativecountryCHPheataverages; noassertionthatanaveragefleetmatchescycle/capacity/efficiency. USsubregionsusenationalUS;absentcountriesandRoWuseENTSO-Easexplicitgeographicproxy,notinventedcountries/globalmix. NativeRUidentityandupstreamburnersupplierareRUwhilefree-textgeographyusesROin2022; retainthiscontradictionaswarning,do notsilentlyreinterpretlocationorclaimprecisegeographicequivalence. Othernativecomment/identitygeographicinconsistenciesretainedinportableevidence. Preserveoriginaltechnologysharesbutnativeproxychoicesdo notreconstructallsourcecycle/scale/geographicdistinctionsorinternaluncertaintycorrelations. Sourceproducerinternalparameters/formulas,allocations andwater/energybalancesarereplacedbycomplete nativeheatservices; do notcopy sourceinternalpurchases/emissions/credits asecondtime. Allsource/raw/nativeinventoryfingerprintsarefreshcheckedandunit/outputheatboundarydocumented; matchingnames/MJunitsalonearenotproof. Native2991upstreambiosphereexclusionsandallproxy scoreeffects remainexplicit/unquantified,noinventory/LCIAequivalence. Preservecallerownership,formulas,signeduncertainty,foregroundlinks andseparateemissions/purchases. No physicalomission,standaloneproducer,uninspectedrelease,reverse,cross-system-model orfullscenario/certification/exportapproval.",
+        "source38_extension": {
+          "review_path": "export/uvek_operational_four_38_review.json",
+          "review_sha256": "ffd5faa2bd15459ec503d54afa93caf9b306d690e65b239845ca5cc680bfa07d",
+          "earlier_effective_models_unchanged": true
+        }
       },
       "limitations": [
         "User instructionauto-approvecomingdecisionswithinexactUVEK2026cutoff/ecoinvent3.10biosphereelectricitypilot. Onlytheencountered3.9and3.12cutoffRoWnatural-gasdistrict/industrialheatmarketprofilesqualify. Preserveall43originalpositive heat-MJ supplierentriesperprofile,marginaluncertainty,sourceorderandzeroswithoutaggregation/renormalization,evenwhenseveralentriesusethesamenativeendpoint. Sourceandnativeheatproductreferencespositive1MJmeanfactor+1:retaincallernegativeheatcreditsasnegative,no waste-signflip. Sourceheatmarketexplicitlynodeliverytransport/losses. Useexplicitcomplete nativeplant-gateheatservices,notfuel-MJburningservicesnorDistrictheat-at-consumerwrappers. Nativefurnace/boilerheatservicesalreadyincludeefficiency;nativeCHPheatservicesalreadyincludeallocatedfuel/infrastructure/emissions andexergyallocation. No extraefficiency/COP,districtnetwork,11%deliveryuplift,heat/electricitycredit orfuel/MJfactor. Sourceindustrialfurnace>100kWusescompleteSwiss1MWheatfurnace(95%Hu);lowNOx/modulating/condensing sourcebranchesusespecificcomplete nativeheatwrappers. Source200kWeleanburnuses300kWthnativeCHheatservice,source500kWeuses1MWthCHheatservicewithexplicitthermal-vs-electricalcapacity/scale/efficiencywarnings. Source1MWeleanburnusescloserexplicitnative1MWeleanburnRERheatservice,notpreviousprivate1MWthcandidate. Nativeallocationexergyandheatquality/temperature,source/nativefuel/air/water/infrastructure/internaluncertainty andvintage differencesareexplicit/unquantified. Sourceconventional100MWeandcombined-cycle400MWeheatbranches usecomplete nativecountryCHPheataverages; noassertionthatanaveragefleetmatchescycle/capacity/efficiency. USsubregionsusenationalUS;absentcountriesandRoWuseENTSO-Easexplicitgeographicproxy,notinventedcountries/globalmix. NativeRUidentityandupstreamburnersupplierareRUwhilefree-textgeographyusesROin2022; retainthiscontradictionaswarning,do notsilentlyreinterpretlocationorclaimprecisegeographicequivalence. Othernativecomment/identitygeographicinconsistenciesretainedinportableevidence. Preserveoriginaltechnologysharesbutnativeproxychoicesdo notreconstructallsourcecycle/scale/geographicdistinctionsorinternaluncertaintycorrelations. Sourceproducerinternalparameters/formulas,allocations andwater/energybalancesarereplacedbycomplete nativeheatservices; do notcopy sourceinternalpurchases/emissions/credits asecondtime. Allsource/raw/nativeinventoryfingerprintsarefreshcheckedandunit/outputheatboundarydocumented; matchingnames/MJunitsalonearenotproof. Native2991upstreambiosphereexclusionsandallproxy scoreeffects remainexplicit/unquantified,noinventory/LCIAequivalence. Preservecallerownership,formulas,signeduncertainty,foregroundlinks andseparateemissions/purchases. No physicalomission,standaloneproducer,uninspectedrelease,reverse,cross-system-model orfullscenario/certification/exportapproval."
@@ -101873,7 +101883,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "d4db10fbc2994b5950847de9a33bd25f3f1239ea208becb2f145dc6552de8d9c"
+          "fingerprint": "5ee6de33cf145c0fee8fe7edc2e86cc90d29a5e01140f81903d786d8e75987fc"
         },
         {
           "source": {
@@ -101886,7 +101896,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "39cba9230deba8b6a91a8403ca389b1bb41ccfb5e64fd42391531deacece9fea"
+          "fingerprint": "77fd588fbbb573b2d3b89318b3ff6e62475b2b2aa94398d63588f24f79ce3a59"
         }
       ]
     },
@@ -141571,6 +141581,11 @@
           "metadata_sha256": "55dbec9be92411ecc4e07c3ec81be1f92d4b12b6727930f4be4120aeda93be47",
           "inventory_sha256": "6af55f901e1f9a39912315b633873cff639c255c8c345a590435aa302982f7fb",
           "comment_sha256": "69ac7ae680251cb24912a8fca18afb0e6afb746db112269c89f11245c809e11c"
+        },
+        "source38_extension": {
+          "review_path": "export/uvek_operational_four_38_review.json",
+          "review_sha256": "ffd5faa2bd15459ec503d54afa93caf9b306d690e65b239845ca5cc680bfa07d",
+          "earlier_effective_models_unchanged": true
         }
       },
       "limitations": [
@@ -141589,7 +141604,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "616d6fde98cfe5573545399edbfab9d1f0d57d7b655ff62a2068330312ad6759"
+          "fingerprint": "fa3ab84c9af2b1d72fd909f16de8ab1cc05bdb93c9909aa5e6697df575fa73cb"
         }
       ]
     },
@@ -254020,7 +254035,12 @@
             }
           ]
         },
-        "new_source_omissions": []
+        "new_source_omissions": [],
+        "source38_extension": {
+          "review_path": "export/uvek_operational_four_38_review.json",
+          "review_sha256": "ffd5faa2bd15459ec503d54afa93caf9b306d690e65b239845ca5cc680bfa07d",
+          "earlier_effective_models_unchanged": true
+        }
       },
       "limitations": [
         "Exact ecoinvent3.9cutoff RoW decarbonised-water market: retain both original supplier rows,0.999999875009113kgdedicatedwater and1.24990887123704e-7kgallocatedwaterfromdiethyletherproduction per positive1kgwater. Preserve all source quantities, signs, uncertainty, pedigree, scale-without-pedigree and formulas without renormalization, aggregation or small-flow omission. Main dedicated-water share uses complete native RER decarbonised cooling/scrubber water removing suspended matter/carbonate hardness, under the inspected same-grade whole-process geographic-proxy authority. Native water origin/chemistry, chemicals, return water, waste/wastewater treatment, allocation, energy, internal uncertainty, geography/vintage and regionalized water-stress results differ; do not substitute drinking/deionised/ultrapure water, multiply kg to litres/m3 or add a second treatment. Source reference has1kgwater and0kgdrymass, not an active-chemical concentration. Preserve the nonempty ether-derived branch through direct reconstruction of all20allocatedsource rows(8technosphere,12biosphere) using individually reviewed backgrounds and canonical ecoinvent3.10flow identities. Source ether technology dehydrates ethanol with sulphuric acid and95%yield; native ether is an ethylene-hydration co-product and is deliberately not used. The source water/ether inventory ratio0.0004107142857142857 is not applied to native ether or reapplied to already allocated source water. Retain both fossil ethanol markets, their separately reconstructed coal-FT route and all delivery, gas-heat supply and treatment backgrounds. Reuse seven existing recipe dependencies unchanged and explicitly carry46previously approved production-only zero-burden cut-off receiver omissions, with literal audit; no new source omission, recovery credit, carbon/water-balance correction, native ether proxy or efficiency fitting. Native upstream technologies, fuel origins, allocation, electricity losses, treatment boundaries, freight fleets, biosphere exclusions, geography, vintage and internal uncertainty remain screening differences with unquantified score effects. Preserve caller signedkg, uncertainty, formulas, separate emissions and ownership with factor+1. The earlier independently reviewed3.6cutoff profile keeps its exact direct native target and factor+1, including its explicitly warned whole-market proxy boundary; only3.9gets the reconstructed two-supplier market. Reissue its approval fingerprint solely because the shared parent adds that3.9profile; grant no uninspected releases, consequential or reverse routes. Dedicated PCC, pulp heat and steel export remain unfinished."
@@ -254037,7 +254057,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "731130fe4fb50428f250f3b61617ac915ed10fd8eab25149f62ae95df20eb5a1"
+          "fingerprint": "b3c57cf5767596ba1d45bccbfb1bc993bf95ba76b84a550b2266b832a470ecf1"
         }
       ]
     },
@@ -258553,6 +258573,11 @@
             1.0
           ],
           "inventory_sha256": "1cb6cc63fc5be25d8a4604d158dfd1ea35497d5fda68f5b114b33038b21ad2fd"
+        },
+        "source38_extension": {
+          "review_path": "export/uvek_operational_four_38_review.json",
+          "review_sha256": "ffd5faa2bd15459ec503d54afa93caf9b306d690e65b239845ca5cc680bfa07d",
+          "earlier_effective_models_unchanged": true
         }
       },
       "limitations": [
@@ -258570,7 +258595,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "2a99eca4606abe534b3117c4094275a1ce3c82239c6a6837e297a6465abd401c"
+          "fingerprint": "57098485b9180e5c0b41763882302023a6f205f8133d9e38e0db54038e8f5449"
         }
       ]
     },
@@ -307155,7 +307180,12 @@
           "pilot-ng-heat-market-38d5f92829d188b38bb8"
         ],
         "model_zero_or_omission_count": 0,
-        "recipe_id": "car-310-historical-f7dd94e542cba21d"
+        "recipe_id": "car-310-historical-f7dd94e542cba21d",
+        "source38_extension": {
+          "review_path": "export/uvek_operational_four_38_review.json",
+          "review_sha256": "ffd5faa2bd15459ec503d54afa93caf9b306d690e65b239845ca5cc680bfa07d",
+          "earlier_effective_models_unchanged": true
+        }
       },
       "limitations": [
         "Reuse the complete already reviewed source3.9-derived heat, district or industrial, natural gas inventory as an explicitly older-model screening proxy for the same named product/service and signed reference unit in source3.10. Source current producer/treatment shares, route, collection/delivery, losses, allocation and internal uncertainty are replaced by that older model, not claimed preserved. Keep caller signed megajoule and separate purchases/emissions with factor 1.0. Native limitations of every delegated recipe remain. Model/caller provenance stays separate; no new content, density, energy, recovery or yield multiplier.",
@@ -307174,7 +307204,7 @@
             "system_model": "cutoff",
             "version": "2025"
           },
-          "fingerprint": "c5e3460655abe9b42a1da2833d1ebc6297a7df6043be2db648e14c7a870fe7f8"
+          "fingerprint": "b8a31320e8afe63841c35498055435c14e9f2684195bc57e3947ce6ea46e4ee4"
         }
       ]
     },
@@ -315624,7 +315654,7 @@
       "operation": "replace",
       "mapping_method": "reviewed_manganese_dioxide_complete_supply",
       "review_path": "export/uvek_battery_manganese_dioxide_39_review.json",
-      "review_sha256": "7d0db45e381b3e9307a87f758f1be44951a15b2b4d0648c6cbe3d4e2967f57d5",
+      "review_sha256": "c93b97a61f3d2d26be11a51de89f5a1d07b40c95f2041464697426bc55f6eaf6",
       "authorization": "Standing autonomous goal and auto-approval: preserve the actually required source model and signed reference basis, with documented screening limits.",
       "inspection": {
         "source_profile": {
@@ -315880,7 +315910,7 @@
       "operation": "replace",
       "mapping_method": "reviewed_manganese_dioxide_allocated_stock",
       "review_path": "export/uvek_battery_manganese_dioxide_39_review.json",
-      "review_sha256": "7d0db45e381b3e9307a87f758f1be44951a15b2b4d0648c6cbe3d4e2967f57d5",
+      "review_sha256": "c93b97a61f3d2d26be11a51de89f5a1d07b40c95f2041464697426bc55f6eaf6",
       "authorization": "Standing autonomous goal and auto-approval: preserve the actually required source model and signed reference basis, with documented screening limits.",
       "inspection": {
         "source_profile": {
@@ -316132,7 +316162,7 @@
       "operation": "replace",
       "mapping_method": "reviewed_manganese_iii_oxide_precursor",
       "review_path": "export/uvek_battery_manganese_dioxide_39_review.json",
-      "review_sha256": "7d0db45e381b3e9307a87f758f1be44951a15b2b4d0648c6cbe3d4e2967f57d5",
+      "review_sha256": "c93b97a61f3d2d26be11a51de89f5a1d07b40c95f2041464697426bc55f6eaf6",
       "authorization": "Standing autonomous goal and auto-approval: preserve the actually required source model and signed reference basis, with documented screening limits.",
       "inspection": {
         "source_profile": {
@@ -316415,7 +316445,7 @@
       "operation": "replace",
       "mapping_method": "reviewed_ships_38_native_market",
       "review_path": "export/uvek_battery_dolomite_39_review.json",
-      "review_sha256": "ee4cb7409214d35dba7b1fc1ca7bcaab6bacf43c984344b18fa520ad072c1415",
+      "review_sha256": "5357c56d1120d5566ab2947cba71608286948a6897f967313a81861fc1f909cf",
       "authorization": "Standing autonomous goal and auto-approval for analogous complete native screening proxies, preserving existing source scopes.",
       "inspection": {
         "source_witness": {
@@ -316483,7 +316513,7 @@
       "operation": "replace",
       "mapping_method": "reviewed_dolomite_production_39_native",
       "review_path": "export/uvek_battery_dolomite_39_review.json",
-      "review_sha256": "ee4cb7409214d35dba7b1fc1ca7bcaab6bacf43c984344b18fa520ad072c1415",
+      "review_sha256": "5357c56d1120d5566ab2947cba71608286948a6897f967313a81861fc1f909cf",
       "authorization": "Standing autonomous goal and auto-approval for analogous complete native screening proxies, preserving existing source scopes.",
       "inspection": {
         "source_witness": {
@@ -335565,6 +335595,362 @@
             "version": "2025"
           },
           "fingerprint": "a65bfd76963e6febfa876768019850c87ba49d03ff7b33dce597bd80f776c92e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-46ffc4892be8fcb1",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_so2_sulfite",
+      "review_path": "export/uvek_operational_four_38_review.json",
+      "review_sha256": "ffd5faa2bd15459ec503d54afa93caf9b306d690e65b239845ca5cc680bfa07d",
+      "authorization": "Standing autonomous mapping goal, automatic approval of screening proxies with warnings, and instruction to prioritize operationalization through existing complete native suppliers without source-code edits or deep upstream reconstructions.",
+      "inspection": {
+        "source": {
+          "location": "CN",
+          "name": "market for transport, freight train",
+          "reference product": "transport, freight train",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "name": "Transport, freight, rail",
+          "reference product": "Transport, freight, rail",
+          "location": "RER",
+          "unit": "ton kilometer"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "location": "CN",
+            "unit": "ton kilometer"
+          },
+          "reference_amount": 1,
+          "nonproduction_count": 3,
+          "inventory_sha256": "2c6d7fd3d96ff54c10f78022f537ea4217b25492c76ba9ae990ca1e633d7dbd9",
+          "metadata_sha256": "9d0cc9edeb16128832bc1a4d0caadaf0ecb4257e713e697bb281df47aa1a0909",
+          "comment_sha256": "d2771701f4ca8cb080036a6e63b025cff3968df74f4ae30ce9ec38fe4c86f718",
+          "product_information_sha256": "00d2c4fb04400ff490f8ac06754a81272689264f63af1510d40cbbc662a2cf4b"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+            "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92",
+            "comment_sha256": "1df979a6bc0882b7d94bc3904a8832568a6c5463344665f169125ea352d9d7a5",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+            "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Use the complete native European rail freight service per signed tonne-kilometre as a geographic and fleet screening proxy for the Chinese market. Native traction, electricity, infrastructure, train utilization and delivery replace the source portfolio; do not add a second train, fuel supply or rail infrastructure."
+      },
+      "limitations": [
+        "Use the complete native European rail freight service per signed tonne-kilometre as a geographic and fleet screening proxy for the Chinese market. Native traction, electricity, infrastructure, train utilization and delivery replace the source portfolio; do not add a second train, fuel supply or rail infrastructure.",
+        "Preserve caller signed quantities, formulas and supported uncertainty with factor +1. Complete native inventories replace source internal supplier shares, technology, allocation, geography, vintage, delivery and internal uncertainty. Environmental score differences remain unquantified, including documented exclusions in the BAFU biosphere reimport.",
+        "Only the inspected exact ecoinvent 3.8 cut-off scope is added. Earlier declared source profiles retain their targets, factors, sign reviews and recipe inventories unchanged. No uninspected release, reverse or cross-system-model route is authorized.",
+        "No new helper, native-inventory edit, foreground-exchange omission or source-code change. This review enables required input preparation; it does not qualify the complete battery sector or a new export."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c9957d7449ca949692262bb11a3039f172331fd2c3ff0e5faba86ca7414a4704"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5b8c937d3fb21468",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_silica_dependency",
+      "review_path": "export/uvek_operational_four_38_review.json",
+      "review_sha256": "ffd5faa2bd15459ec503d54afa93caf9b306d690e65b239845ca5cc680bfa07d",
+      "authorization": "Standing autonomous mapping goal, automatic approval of screening proxies with warnings, and instruction to prioritize operationalization through existing complete native suppliers without source-code edits or deep upstream reconstructions.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for chemical factory, organics",
+          "reference product": "chemical factory, organics",
+          "unit": "unit"
+        },
+        "target": {
+          "name": "Chemical plant, organics",
+          "reference product": "Chemical plant, organics",
+          "location": "RER",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for chemical factory, organics",
+            "reference product": "chemical factory, organics",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amount": 1,
+          "nonproduction_count": 2,
+          "inventory_sha256": "61c9206734667618cb2c6ff6862d8c70c9ccf6f2f921f4f6b3a860d2d3892998",
+          "metadata_sha256": "389345ea9609fbf76663e516d5aebe688a2a783b3c0ffb2f7fae7159fae77eb8",
+          "comment_sha256": "fe7f670f98c8bb2a117c3c7a607ba873e104e691237bbee47c76836291ac38c6",
+          "product_information_sha256": "a9b4d2687dd41ed638fee024b296dddde96a0fbc40c44c519941f8bc7c216e10"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Chemical plant, organics",
+              "reference product": "Chemical plant, organics",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 10,
+            "inventory_sha256": "a3fb03d807728075a8272837a874f366990d35aef384d3030dd50dafc004266e",
+            "metadata_sha256": "37c3203255909050a9d0e8723887bcf18a0a09348c07c392fc305c369240a7c6",
+            "comment_sha256": "ce692c872c81c0a66b6773336f82877227d596148e8dc34c8483c01cf26613fb",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Chemical plant, organics",
+              "reference product": "Chemical plant, organics",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 10,
+            "inventory_sha256": "b7b7060222eb0e7f6e6f2602de2be6553c20d5d29b11e69ea13927a45dea2d18",
+            "metadata_sha256": "3bb3f92ce3087278107f4b80450a0aeafdd8f225968f43ec84f03b75077eb2a0",
+            "comment_sha256": "69ac7ae680251cb24912a8fca18afb0e6afb746db112269c89f11245c809e11c",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Use one complete native European organic chemical-plant infrastructure unit per signed source unit. This is a plant construction and dismantling module, not a kg of chemical, operating plant-year or capacity-normalized service. Do not divide by lifetime, annual output or capacity or add another chemical plant."
+      },
+      "limitations": [
+        "Use one complete native European organic chemical-plant infrastructure unit per signed source unit. This is a plant construction and dismantling module, not a kg of chemical, operating plant-year or capacity-normalized service. Do not divide by lifetime, annual output or capacity or add another chemical plant.",
+        "Preserve caller signed quantities, formulas and supported uncertainty with factor +1. Complete native inventories replace source internal supplier shares, technology, allocation, geography, vintage, delivery and internal uncertainty. Environmental score differences remain unquantified, including documented exclusions in the BAFU biosphere reimport.",
+        "Only the inspected exact ecoinvent 3.8 cut-off scope is added. Earlier declared source profiles retain their targets, factors, sign reviews and recipe inventories unchanged. No uninspected release, reverse or cross-system-model route is authorized.",
+        "No new helper, native-inventory edit, foreground-exchange omission or source-code change. This review enables required input preparation; it does not qualify the complete battery sector or a new export."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "4a11c9dda825830633cd732eb42d8f6f073650cac48e176ddde17a1fc17848dc"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f7dd94e542cba21d",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_ng_heat_market",
+      "review_path": "export/uvek_operational_four_38_review.json",
+      "review_sha256": "ffd5faa2bd15459ec503d54afa93caf9b306d690e65b239845ca5cc680bfa07d",
+      "authorization": "Standing autonomous mapping goal, automatic approval of screening proxies with warnings, and instruction to prioritize operationalization through existing complete native suppliers without source-code edits or deep upstream reconstructions.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "market for heat, district or industrial, natural gas",
+          "reference product": "heat, district or industrial, natural gas",
+          "unit": "megajoule"
+        },
+        "target": {
+          "name": "Heat, natural gas, at industrial furnace 1MW",
+          "reference product": "Heat, natural gas, at industrial furnace 1MW",
+          "location": "CH",
+          "unit": "megajoule"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for heat, district or industrial, natural gas",
+            "reference product": "heat, district or industrial, natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amount": 1,
+          "nonproduction_count": 43,
+          "inventory_sha256": "31b33ea64b546fe8d04b5c3ba85a962d27a84b49a470caa145220b5684fd8933",
+          "metadata_sha256": "bd22fcd5d3e8bfbad125e8b23dfe2547c0704a71610947155f7033022a1766b3",
+          "comment_sha256": "deaaecef6012f826df98788775f3c6b07114f2a2a9d21c6cbe1af96b2c75ab54",
+          "product_information_sha256": "918cd375020761234dc80365c0f133b383b7af9b3bb4832f513485c1bd3b48c8"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Heat, natural gas, at industrial furnace 1MW",
+              "reference product": "Heat, natural gas, at industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 1,
+            "inventory_sha256": "5ccd8c8ebfd7965c28c9f08d631ff76a8a7f690b8601ea01b53881204f9a9634",
+            "metadata_sha256": "ecc0e6d7b597513548e48b939c38cb33430f8a120188d66af4d6ee1950a0ce52",
+            "comment_sha256": "9d0cceaec87dd3858247fcb8006c7549aa7389ef5cc6601634a5c27b13e0e245",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Heat, natural gas, at industrial furnace 1MW",
+              "reference product": "Heat, natural gas, at industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 1,
+            "inventory_sha256": "72bda5cc7674594ecee5b7783b11b5a4432f6552efc4dfd7ad8b6ce99e6f551f",
+            "metadata_sha256": "40110a76f4ae408f06defd5cac022714b9ec54cafb10d6599749db009166d771",
+            "comment_sha256": "7a844551e1a3f0778c2fd8296dd12e28927987f6dda3e0d6b5b0f0f05294723f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Use complete native Swiss industrial natural-gas useful heat from a 1 MW furnace per signed source MJ. This replaces the source regional and technology market portfolio with a complete screening proxy. The native service includes fuel supply, combustion, efficiency and infrastructure once. This is useful heat, not fuel input. Do not introduce an extra efficiency multiplier, district-network uplift, heat credit or second fuel supply."
+      },
+      "limitations": [
+        "Use complete native Swiss industrial natural-gas useful heat from a 1 MW furnace per signed source MJ. This replaces the source regional and technology market portfolio with a complete screening proxy. The native service includes fuel supply, combustion, efficiency and infrastructure once. This is useful heat, not fuel input. Do not introduce an extra efficiency multiplier, district-network uplift, heat credit or second fuel supply.",
+        "Preserve caller signed quantities, formulas and supported uncertainty with factor +1. Complete native inventories replace source internal supplier shares, technology, allocation, geography, vintage, delivery and internal uncertainty. Environmental score differences remain unquantified, including documented exclusions in the BAFU biosphere reimport.",
+        "Only the inspected exact ecoinvent 3.8 cut-off scope is added. Earlier declared source profiles retain their targets, factors, sign reviews and recipe inventories unchanged. No uninspected release, reverse or cross-system-model route is authorized.",
+        "No new helper, native-inventory edit, foreground-exchange omission or source-code change. This review enables required input preparation; it does not qualify the complete battery sector or a new export."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c6d001dc5cf56bf0b9e3ae39c413b4587ed4bcd4c91bafdd74c25d28f9971b7e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c5ad7d30b2b18c4c",
+      "operation": "replace",
+      "mapping_method": "reviewed_pcc_water_row",
+      "review_path": "export/uvek_operational_four_38_review.json",
+      "review_sha256": "ffd5faa2bd15459ec503d54afa93caf9b306d690e65b239845ca5cc680bfa07d",
+      "authorization": "Standing autonomous mapping goal, automatic approval of screening proxies with warnings, and instruction to prioritize operationalization through existing complete native suppliers without source-code edits or deep upstream reconstructions.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Water, decarbonised, at plant",
+          "reference product": "Water, decarbonised, at plant",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for water, decarbonised",
+            "reference product": "water, decarbonised",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "nonproduction_count": 2,
+          "inventory_sha256": "b08787e1fe62a6ca7992d077f0501b0e334a7533229218eeea6414126d7b02d7",
+          "metadata_sha256": "033de6489955101755f42557a857fbd7039483b4344647cdc4c2a7c1b44b22b2",
+          "comment_sha256": "e252d2596665142e3f2724110b231fbd336b98286b2a4dfc24448d5dab15b8c9",
+          "product_information_sha256": "1f8d486f256a90e4488d614323fd7bc09377d655b8d8bef754b6807da92a49b2"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Water, decarbonised, at plant",
+              "reference product": "Water, decarbonised, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 10,
+            "inventory_sha256": "fe8a783eee80996c8750defb54ba76ba2cd9be69a42d31ed30b60f98052a07a5",
+            "metadata_sha256": "3b3c70d060d5d803a89532a81752c7abcb2fa515c3436f504023ff456dad5cf9",
+            "comment_sha256": "1c0d605f1e9d1e8dad10703bec8c2ce32cd6df083f81b5de5728eeec0ecdd802",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Water, decarbonised, at plant",
+              "reference product": "Water, decarbonised, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 9,
+            "inventory_sha256": "e9c96822d9dacbc656070b0518561a30c22cc7411b7f7e42389f9ef8dae3446d",
+            "metadata_sha256": "776baaf4ad9a641ea6c2b7e8e697b82e230f383cfcf374b5b9392c981934a143",
+            "comment_sha256": "4cac0f4751dfcb47510638212849c3c392afa429d71119f83f76821349752873",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Use complete native European decarbonised industrial water per signed source kg, consistent with the existing whole-market proxy boundary for source 3.6. This replaces the complete source supplier mix, including its allocated co-product branch, treatment, water returns and internal uncertainty; those internal shares are not claimed preserved. This is a same-grade whole-service screening proxy, not a new exchange-level omission. Do not substitute drinking, deionised or ultrapure water or introduce a kg-to-volume or concentration factor."
+      },
+      "limitations": [
+        "Use complete native European decarbonised industrial water per signed source kg, consistent with the existing whole-market proxy boundary for source 3.6. This replaces the complete source supplier mix, including its allocated co-product branch, treatment, water returns and internal uncertainty; those internal shares are not claimed preserved. This is a same-grade whole-service screening proxy, not a new exchange-level omission. Do not substitute drinking, deionised or ultrapure water or introduce a kg-to-volume or concentration factor.",
+        "Preserve caller signed quantities, formulas and supported uncertainty with factor +1. Complete native inventories replace source internal supplier shares, technology, allocation, geography, vintage, delivery and internal uncertainty. Environmental score differences remain unquantified, including documented exclusions in the BAFU biosphere reimport.",
+        "Only the inspected exact ecoinvent 3.8 cut-off scope is added. Earlier declared source profiles retain their targets, factors, sign reviews and recipe inventories unchanged. No uninspected release, reverse or cross-system-model route is authorized.",
+        "No new helper, native-inventory edit, foreground-exchange omission or source-code change. This review enables required input preparation; it does not qualify the complete battery sector or a new export."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5a489c40b20034cdc50158e3fce2a3499100a38c21da6e19f09341c0801e844e"
         }
       ]
     }

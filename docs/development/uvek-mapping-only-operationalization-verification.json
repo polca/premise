@@ -1,0 +1,204 @@
+{
+  "status": "passed",
+  "added_source38_scopes": 4,
+  "direct_migration_cases": 8,
+  "signed_uncertainty_exchange_checks": 32,
+  "public_harmonizer_fresh_and_warm_passed": true,
+  "approval_withdrawal_refused": true,
+  "input_nonmutation": true,
+  "new_helpers": 0,
+  "new_foreground_omissions": [],
+  "source_code_changes": 0,
+  "new_Brightway_databases": 0,
+  "qualification_limit": "Four required inputs only; no complete battery update or new export.",
+  "normal_generator_byte_equal_files": {
+    "ecoinvent-to-ecoinvent-3.10-biosphere.json": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+    "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+    "ecoinvent-to-uvek-2025.json": "441f326cc3ca81b92b4aed10a1f432c11d46dfe7e95085a4d01801f4e958f031"
+  },
+  "all_existing_recipe_inventories_unchanged": true,
+  "original_correspondence_cards_unchanged": true,
+  "modified_correspondences": [
+    "bp-46ffc4892be8fcb1",
+    "bp-5b8c937d3fb21468",
+    "bp-c5ad7d30b2b18c4c",
+    "bp-f7dd94e542cba21d"
+  ],
+  "focused_existing_tests": {
+    "brightpath": 33,
+    "premise": 10
+  },
+  "native_LCI": {
+    "status": "four_operational_native_suppliers_have_finite_signed_LCIs",
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "database": "BAFU:2026-reimported",
+    "matrix_shape": [
+      11947,
+      11947
+    ],
+    "suppliers": [
+      {
+        "rule_id": "bp-46ffc4892be8fcb1",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 15.674192185130924
+      },
+      {
+        "rule_id": "bp-5b8c937d3fb21468",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 43166213606.750305
+      },
+      {
+        "rule_id": "bp-f7dd94e542cba21d",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 4.345052812192885
+      },
+      {
+        "rule_id": "bp-c5ad7d30b2b18c4c",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 0.002724154199769467
+      }
+    ],
+    "signed_finite_LCI_solves": 8,
+    "new_Brightway_databases": 0,
+    "new_helpers": 0,
+    "qualification_limit": "Native target-demand solves, not a complete battery update or comparative source LCIA."
+  },
+  "unresolved_source38_cohort_before": 26,
+  "unresolved_source38_cohort_after": 22,
+  "remaining_source38_cohort": {
+    "bp-6e3f61d03dd09ea6": {
+      "location": "Europe without Switzerland",
+      "name": "market for spent solvent mixture",
+      "reference product": "spent solvent mixture",
+      "unit": "kilogram"
+    },
+    "bp-bce58f1fed0f56b1": {
+      "location": "CH",
+      "name": "market for spent solvent mixture",
+      "reference product": "spent solvent mixture",
+      "unit": "kilogram"
+    },
+    "bp-58981d0406fe685b": {
+      "location": "RoW",
+      "name": "market for spent solvent mixture",
+      "reference product": "spent solvent mixture",
+      "unit": "kilogram"
+    },
+    "bp-7532c17fac15ff33": {
+      "location": "RoW",
+      "name": "market for sulfuric acid",
+      "reference product": "sulfuric acid",
+      "unit": "kilogram"
+    },
+    "bp-30a490e8e65d619a": {
+      "location": "GLO",
+      "name": "market for dimethyl carbonate",
+      "reference product": "dimethyl carbonate",
+      "unit": "kilogram"
+    },
+    "bp-365d5afb2cddee67": {
+      "location": "GLO",
+      "name": "market for ethylene carbonate",
+      "reference product": "ethylene carbonate",
+      "unit": "kilogram"
+    },
+    "bp-1240bf1e5820731a": {
+      "location": "GLO",
+      "name": "market for copper, anode",
+      "reference product": "copper, anode",
+      "unit": "kilogram"
+    },
+    "bp-c63a1747fd444679": {
+      "location": "GLO",
+      "name": "market for carboxymethyl cellulose, powder",
+      "reference product": "carboxymethyl cellulose, powder",
+      "unit": "kilogram"
+    },
+    "bp-f1abd225900bb9b6": {
+      "location": "GLO",
+      "name": "market for graphite, battery grade",
+      "reference product": "graphite, battery grade",
+      "unit": "kilogram"
+    },
+    "bp-46961b2d2543df96": {
+      "location": "GLO",
+      "name": "market for polyvinylfluoride",
+      "reference product": "polyvinylfluoride",
+      "unit": "kilogram"
+    },
+    "bp-82479bd5f6b8b893": {
+      "location": "CN",
+      "name": "market for synthetic graphite, battery grade",
+      "reference product": "synthetic graphite, battery grade",
+      "unit": "kilogram"
+    },
+    "bp-e1534916663b141b": {
+      "location": "RoW",
+      "name": "market for latex",
+      "reference product": "latex",
+      "unit": "kilogram"
+    },
+    "bp-3c10f9aaee8ffe42": {
+      "location": "RoW",
+      "name": "market for wastewater, average",
+      "reference product": "wastewater, average",
+      "unit": "cubic meter"
+    },
+    "bp-2d2b80140d7f768a": {
+      "location": "CN",
+      "name": "market for ammonia, anhydrous, liquid",
+      "reference product": "ammonia, anhydrous, liquid",
+      "unit": "kilogram"
+    },
+    "bp-c18af03acca016b9": {
+      "location": "GLO",
+      "name": "market for nickel sulfate",
+      "reference product": "nickel sulfate",
+      "unit": "kilogram"
+    },
+    "bp-8fa6bb43a07f3b4e": {
+      "location": "GLO",
+      "name": "market for manganese sulfate",
+      "reference product": "manganese sulfate",
+      "unit": "kilogram"
+    },
+    "bp-fc047c72b6020ab2": {
+      "location": "GLO",
+      "name": "market for vinyl carbonate",
+      "reference product": "vinyl carbonate",
+      "unit": "kilogram"
+    },
+    "bp-11eb77f35655db2a": {
+      "location": "GLO",
+      "name": "market for used Li-ion battery",
+      "reference product": "used Li-ion battery",
+      "unit": "kilogram"
+    },
+    "bp-5a066f5db7e68d53": {
+      "location": "GLO",
+      "name": "market for glass fibre reinforced plastic, polyester resin, hand lay-up",
+      "reference product": "glass fibre reinforced plastic, polyester resin, hand lay-up",
+      "unit": "kilogram"
+    },
+    "bp-3d4f6646db9a7399": {
+      "location": "RoW",
+      "name": "market for acetone, liquid",
+      "reference product": "acetone, liquid",
+      "unit": "kilogram"
+    },
+    "bp-af2ed16481887db4": {
+      "location": "GLO",
+      "name": "market for phthalic anhydride",
+      "reference product": "phthalic anhydride",
+      "unit": "kilogram"
+    },
+    "bp-72fb38e6bd3897dc": {
+      "location": "GLO",
+      "name": "market for hexafluoroethane",
+      "reference product": "hexafluoroethane",
+      "unit": "kilogram"
+    }
+  },
+  "successful_sector_count_unchanged": 15,
+  "total_sectors": 19
+}
