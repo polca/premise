@@ -192,7 +192,9 @@ only the subset needed by one IAM scenario:
 | 3.12 EN15804 | 616 | 1,123 | 272 | 305 |
 
 All these graphs passed the license gate and exact destination supplier and
-biosphere linking. The counts describe this archive, not a promise that future
+biosphere linking. Brightway LCI/LCIA checks for a PV installation, an LTO cell
+manufacturing proxy and methane-pyrolysis hydrogen also passed on all eight
+target combinations. The counts describe this archive, not a promise that future
 CLIC releases will pass without further review. The registry contains 57
 activity-family rules and 10 background-supplier rules; a rule can cover many
 geographic variants.
