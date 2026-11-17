@@ -260197,7 +260197,12 @@
           "normalized_inventory_sha256": "295923530c1393d6a93fe1744a4fa8842dbbc2881bf8b035f0a7d51710a5c982",
           "comment_sha256": "cf16beb21867c39a81d53cdfcc55207eddb6b4d8fee487b8bff8998e450b77dc"
         },
-        "conversion_factor": -1
+        "conversion_factor": -1,
+        "source39_msw_extension": {
+          "review_path": "export/uvek_msw_markets_39_review.json",
+          "review_sha256": "4f2677fc2df3f35e024f2bae63bd8465ca4ab0f79006df3b52a591ef60825c7d",
+          "earlier_selected_rule_and_recipes_unchanged": true
+        }
       },
       "scopes": [
         {
@@ -260211,7 +260216,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "a5e3cc6a7fd63a5d8187fe95ae5d987342bf5f3092cc506e25082ae7baec88d8"
+          "fingerprint": "b798c385c1d11d258aea651b61e4709c632fbd7ad4be3b4896becdb4a8f7e2ad"
         }
       ]
     },
@@ -329938,6 +329943,130 @@
             "version": "2025"
           },
           "fingerprint": "28e5a47fd184ccbac9520a03bcb4bba999d0fc324c1785a5f03c95682ae43e77"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-168324086066bce9",
+      "operation": "replace",
+      "mapping_method": "reviewed_mining_38_msw_portfolio",
+      "review_path": "export/uvek_msw_markets_39_review.json",
+      "review_sha256": "4f2677fc2df3f35e024f2bae63bd8465ca4ab0f79006df3b52a591ef60825c7d",
+      "authorization": "Standing autonomous same-function controlled disposal, geographic/machinery proxy and complete-source uncontrolled-emission helper approvals, with signed stock authorities and warnings.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market group for municipal solid waste",
+          "reference product": "municipal solid waste",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market group for municipal solid waste",
+            "reference product": "municipal solid waste",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 35,
+          "inventory_sha256": "2b7fceb0e03761435b41ba9c010c7316c1ee14d28eff15c2cdc25f53a0b54ecc",
+          "metadata_sha256": "5b7552f1cf0c3a9903022f1707ad772ae388071d74faba29194ff8d193fe6d9f"
+        },
+        "target": {
+          "recipe_ref": "msw-39-bf80bb0e671ef5073119"
+        },
+        "conversion_factor": -1,
+        "model_review_path": "export/uvek_msw_39_models_review.json",
+        "model_review_sha256": "7bc8bb56cb1bd9cb0272eee264ccf731d013da14aeca7032744e97d8567cca22"
+      },
+      "limitations": [
+        "Retain original country/disposal shares and freight without grouping or renormalization. Negative waste references become positive treatment services once at each corresponding caller. Complete same-waste22.9%-water native Swiss controlled incineration/sanitary-landfill models replace source regional technology, allocation, recovered-metal/ash handling, climate, geography and vintage; no added recovery/energy credit, moisture or heating-value correction. Native generic incineration also proxies the inspected Swiss fly-ash-extraction branch, with explicit extraction/recovery/emission/allocation differences. Uncontrolled burning/dumping keep all1008source elementary-flow entries through the existing canonical ecoinvent3.10route and retain source diesel-machine/excavation demands. Signed recovered-metal cut-off stocks use their existing exact positive-reference3.9zero-stock authorities; no virgin-metal credit or actual recycling burden is inferred. Preserve separate caller operations/emissions. Native machinery and collection/freight are functional geographic/vintage proxies. No formula occurs in the inspected source entries; preserve caller formulas without inventing parameter recalculation. No explicit source exchange omission or new zero-burden helper; source/native stochastic, climate and impact equivalence remain unproven.",
+        "Country market helpers are retained because they carry original country-specific disposal portfolios and consumer geography for the existing shared IAM road-freight relinking. No extra distribution or collection leg is added. European generic freight and Swiss21tmunicipal collection remain distinct services; no freight-fleet substitution is applied to municipal collection.",
+        "All four dry/moist/wet/very-wet open-dump classes, four corresponding unsanitary-landfill classes and open burning remain distinct original source models. Four unsanitary-landfill models retain0.046738MJdiesel machinery and0.00031708m3skid-steer excavation each per source kg. All1008original elementary-flow entries remain through existing canonical3.10correspondences; no new biosphere definition or omission is introduced.",
+        "Source3.8selected suppliers, factors, stock authorities and recipe contents remain unchanged. New permission is confined to the two inspected3.9roots. The exact3.9positive cut-off copper/iron stock authorities already exist; retain both negative recovered-stock amounts and their zero upstream allocation, without inventing virgin-metal or recycling credits."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "8ebde3f670af0546d547a44c4b8174dcdaa284d30432874c2a684adf8b6d4f37"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-090187e1cd9f8fc7",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_msw_markets_39_review.json",
+      "review_sha256": "4f2677fc2df3f35e024f2bae63bd8465ca4ab0f79006df3b52a591ef60825c7d",
+      "authorization": "Standing autonomous same-function controlled disposal, geographic/machinery proxy and complete-source uncontrolled-emission helper approvals, with signed stock authorities and warnings.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "CH",
+          "name": "market for municipal solid waste",
+          "reference product": "municipal solid waste",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for municipal solid waste",
+            "reference product": "municipal solid waste",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "d7cb976217f4a26bd1c2f3b305e7aa1675d911a10a1b197fab9b4ce75373ee30",
+          "metadata_sha256": "40ab6d805fb4e11a10886aaac598722a3b3e7540b56c59987774160764f9a507"
+        },
+        "target": {
+          "recipe_ref": "msw-39-b58e59ed90df2fc8fdac"
+        },
+        "conversion_factor": -1,
+        "model_review_path": "export/uvek_msw_39_models_review.json",
+        "model_review_sha256": "7bc8bb56cb1bd9cb0272eee264ccf731d013da14aeca7032744e97d8567cca22"
+      },
+      "limitations": [
+        "Retain original country/disposal shares and freight without grouping or renormalization. Negative waste references become positive treatment services once at each corresponding caller. Complete same-waste22.9%-water native Swiss controlled incineration/sanitary-landfill models replace source regional technology, allocation, recovered-metal/ash handling, climate, geography and vintage; no added recovery/energy credit, moisture or heating-value correction. Native generic incineration also proxies the inspected Swiss fly-ash-extraction branch, with explicit extraction/recovery/emission/allocation differences. Uncontrolled burning/dumping keep all1008source elementary-flow entries through the existing canonical ecoinvent3.10route and retain source diesel-machine/excavation demands. Signed recovered-metal cut-off stocks use their existing exact positive-reference3.9zero-stock authorities; no virgin-metal credit or actual recycling burden is inferred. Preserve separate caller operations/emissions. Native machinery and collection/freight are functional geographic/vintage proxies. No formula occurs in the inspected source entries; preserve caller formulas without inventing parameter recalculation. No explicit source exchange omission or new zero-burden helper; source/native stochastic, climate and impact equivalence remain unproven.",
+        "Country market helpers are retained because they carry original country-specific disposal portfolios and consumer geography for the existing shared IAM road-freight relinking. No extra distribution or collection leg is added. European generic freight and Swiss21tmunicipal collection remain distinct services; no freight-fleet substitution is applied to municipal collection.",
+        "All four dry/moist/wet/very-wet open-dump classes, four corresponding unsanitary-landfill classes and open burning remain distinct original source models. Four unsanitary-landfill models retain0.046738MJdiesel machinery and0.00031708m3skid-steer excavation each per source kg. All1008original elementary-flow entries remain through existing canonical3.10correspondences; no new biosphere definition or omission is introduced.",
+        "Source3.8selected suppliers, factors, stock authorities and recipe contents remain unchanged. New permission is confined to the two inspected3.9roots. The exact3.9positive cut-off copper/iron stock authorities already exist; retain both negative recovered-stock amounts and their zero upstream allocation, without inventing virgin-metal or recycling credits."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "4ec556f3843443e0b3a005ad3e6d0fdcc1e44548c86cc3c394d071829888861b"
         }
       ]
     }

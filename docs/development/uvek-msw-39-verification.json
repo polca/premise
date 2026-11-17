@@ -1,0 +1,445 @@
+{
+  "status": "46_msw_models_pass_independent_signed_no_write_LCIs",
+  "signed_finite_LCI_solves": 92,
+  "independent_source_derived_native_model_comparisons": [
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market group for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "Europe without Switzerland",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 2.6098942879028963e-12
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "DE",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "XK",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "PT",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "BA",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "DK",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "RO",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 1.840301933956227e-16
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "FI",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "LT",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "IE",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "HR",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "SE",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "NO",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "AT",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "SK",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "ME",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "SI",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "GB",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 3.249844346573118e-12
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "FR",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 3.6220950592756876e-12
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "EE",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "NL",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "BE",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "MT",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "IT",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "AL",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "CZ",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "RS",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 3.5207112979469393e-16
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "PL",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 1.9219499212392123e-12
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "HU",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 2.0864796067084332e-16
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "LU",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "BG",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 5.451798526774348e-18
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "GR",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "ES",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "IS",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "LV",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "market for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "location": "MK",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 5.478426326246878e-18
+    },
+    {
+      "source": {
+        "name": "treatment of municipal solid waste, open dump, wet infiltration class (500mm)",
+        "reference product": "municipal solid waste",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "treatment of municipal solid waste, open burning",
+        "reference product": "municipal solid waste",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "treatment of municipal solid waste, unsanitary landfill, moist infiltration class (300mm)",
+        "reference product": "municipal solid waste",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "treatment of municipal solid waste, open dump, moist infiltration class (300mm)",
+        "reference product": "municipal solid waste",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "treatment of municipal solid waste, open dump, dry infiltration class (100mm)",
+        "reference product": "municipal solid waste",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "treatment of municipal solid waste, unsanitary landfill, dry infiltration class (100mm)",
+        "reference product": "municipal solid waste",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "treatment of municipal solid waste, unsanitary landfill, wet infiltration class (500mm)",
+        "reference product": "municipal solid waste",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "treatment of municipal solid waste, open dump, very wet infiltration class (1000mm)",
+        "reference product": "municipal solid waste",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "source": {
+        "name": "treatment of municipal solid waste, unsanitary landfill, very wet infiltration class (1000mm)",
+        "reference product": "municipal solid waste",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "relative_infinity_norm_difference": 0.0
+    }
+  ],
+  "maximum_relative_difference": 3.6220950592756876e-12,
+  "relative_tolerance": 1e-10,
+  "canonical_biosphere_entries_retained": 1008,
+  "native_endpoints": 6,
+  "transient_activities": 58,
+  "matrix_shape": [
+    12005,
+    12005
+  ],
+  "new_Brightway_databases": 0,
+  "new_processed_files": 0,
+  "source_and_biosphere_metadata_preserved": true,
+  "qualification_limit": "Independent source-derived native-model consistency, not source/native impact equivalence. Controlled treatment technology/geography/allocation proxies and stochastic differences remain documented; complete battery and final-energy sectors are unfinished.",
+  "Brightpath_tests_passed": 21,
+  "Premise_tests_passed": 4,
+  "normal_generator_resources_byte_identical": true,
+  "canonical_biosphere_resources_unchanged": true,
+  "production_Python_changes": 0,
+  "first_battery_source_39_group_unapproved_rule_ids": [
+    "bp-9dba49829fbe9454"
+  ],
+  "first_group_only_not_all_remaining_dependencies": true,
+  "battery_export_performed": false,
+  "sectors_fully_qualified": 15,
+  "total_sectors": 19
+}
