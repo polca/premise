@@ -1,0 +1,50 @@
+{
+  "status": "three_casting_utility_and_stock_interfaces_pass_signed_no_write_LCIs",
+  "signed_finite_LCI_solves": 6,
+  "comparisons": [
+    {
+      "rule_id": "bp-258dc65ea1d5be21",
+      "independent_reference_comparison": true,
+      "relative_infinity_norm_difference": 1.3015300287300357e-16
+    },
+    {
+      "rule_id": "bp-a421df50d034f3d3",
+      "independent_reference_comparison": true,
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "rule_id": "bp-37b9b46586e881e7",
+      "independent_reference_comparison": true,
+      "relative_infinity_norm_difference": 0.0
+    }
+  ],
+  "native_SQLite_heat_to_fuel_nominal": 1.04,
+  "native_processed_heat_to_fuel": 1.0399999618530273,
+  "preexisting_processed_coefficient_equals_float32_nominal": true,
+  "original_nominal_vs_processed_heat_comparison_difference": 2.788212273206891e-08,
+  "private_verifier_iterative_refinement_steps_per_solve": 3,
+  "maximum_residual_after_refinement": 1.395769638876751e-16,
+  "transient_activities": 4,
+  "matrix_shape": [
+    11951,
+    11951
+  ],
+  "new_Brightway_databases": 0,
+  "new_registered_activities": 0,
+  "new_processed_files": 0,
+  "source_and_biosphere_metadata_preserved": true,
+  "qualification_limit": "Native-model consistency and zero contribution of the inspected allocated cut-off stock only. Native geography, efficiency, grid mix/losses and impact differences remain unquantified; complete casting and battery sectors remain unfinished.",
+  "Premise_tests_passed": 4,
+  "normal_generator_resources_byte_identical": true,
+  "canonical_biosphere_resources_unchanged": true,
+  "existing_stock_rule_and_all_recipes_unchanged": true,
+  "idempotent_full_review_index_replay": true,
+  "casting_operation_frontier_before": 14,
+  "casting_operation_frontier_after": 11,
+  "source_generator_output_bytes_removed_after_verification": 111306225,
+  "production_and_generator_Python_changes": 0,
+  "installed_package_and_public_export_not_yet_repeated_for_this_unpublished_group": true,
+  "Brightpath_tests_passed": 102,
+  "dependency_warnings": 2,
+  "older_residue_regression_expectations_bound_to_two_frozen_reviews": true
+}

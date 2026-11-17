@@ -331833,6 +331833,153 @@
           "fingerprint": "b36f09394bc2049661fc23e30274142d2d5e78d160fb3c17812f1dded2b56f9f"
         }
       ]
+    },
+    {
+      "rule_id": "bp-258dc65ea1d5be21",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_utilities_39_review.json",
+      "review_sha256": "78bd3410c2b52a3d42f932af7e012b3f1306421bba6cd077850cf5f13a984ac0",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected native complete-service/geographic proxies and existing cut-off stocks with warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "heat production, natural gas, at boiler modulating >100kW",
+            "reference product": "heat, district or industrial, natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 53,
+          "metadata_sha256": "922583dd8a02c370e728c7b8f6fde898610e09b35ab002e28f9c25e520002f27",
+          "inventory_sha256": "8eaa48d64fa812806481552a8576ba15c7b351a40f85cabfc6013ab4b0cf3b6e"
+        },
+        "target": {
+          "name": "xx Heat, natural gas, at boiler modulating >100kW",
+          "reference product": "xx Heat, natural gas, at boiler modulating >100kW",
+          "location": "RER",
+          "unit": "megajoule"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Only the independently inspected exact ecoinvent3.9cut-off source gains permission. Preserve signed caller quantities, units, uncertainty, formulas and separate caller emissions. No other version, inverse or cross-system permission is inferred. Complete native operations replace source internal supply, technology, geography, efficiency/losses, infrastructure, emissions, allocation, vintage and uncertainty; score effects remain unquantified. No physical omission or runtime/generator Python change.",
+        "Use the complete native useful-heat service for the same modulating above100kWboiler class, not the previously suggested below100kWprocess and not fuel combustion per MJfuel. Both references are positive1MJuseful heat. Native service already consumes1.04MJfuel-combustion service per MJheat, including fuel supply, boiler, auxiliary electricity and combustion emissions. No second efficiency or fuel multiplier, heat-distribution loss or added infrastructure. Regional fuel/auxiliary electricity mix, combustion performance, efficiency, age and allocation differ."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "37f79f1fcb3a3900de57d2fd522e3e557076be76e832a9e295958a75ed56e47d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a421df50d034f3d3",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_utilities_39_review.json",
+      "review_sha256": "78bd3410c2b52a3d42f932af7e012b3f1306421bba6cd077850cf5f13a984ac0",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected native complete-service/geographic proxies and existing cut-off stocks with warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "location": "CA-QC",
+            "unit": "kilowatt hour"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 13,
+          "metadata_sha256": "b196d474fc99728de7cf48f21899fcba2ea6ab2e641655211c3860b0813ac6da",
+          "inventory_sha256": "494bd237f7b9391c2a32e8f9fcba25606f2d00bdb4959440da72efced66d161a"
+        },
+        "target": {
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "location": "CA",
+          "unit": "kilowatt hour"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Only the independently inspected exact ecoinvent3.9cut-off source gains permission. Preserve signed caller quantities, units, uncertainty, formulas and separate caller emissions. No other version, inverse or cross-system permission is inferred. Complete native operations replace source internal supply, technology, geography, efficiency/losses, infrastructure, emissions, allocation, vintage and uncertainty; score effects remain unquantified. No physical omission or runtime/generator Python change.",
+        "Use the complete nativeCanadian medium-voltage grid per signed kWh as an explicit geographic screening proxy for the Quebec source market. The former Swiss match is excluded. NativeCAis a country-average supply, not a Quebec generation mix; provincial hydro/fossil/import differences can substantially alter impacts and are unquantified. Native generation supply, voltage transformation, losses, network and directSF6replace source market internals. Do not copy the source self-input loss on top, add another voltage conversion, or represent nationalCanadaas exactQuebec. Ordinary laterPremiseregional relinking remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5f0f45684810f1c005da79a74aa928b1834a635f280673dbb7a33fd2d93f672c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-37b9b46586e881e7",
+      "operation": "replace",
+      "mapping_method": "reviewed_cutoff_stock_recipe",
+      "review_path": "export/uvek_casting_utilities_39_review.json",
+      "review_sha256": "78bd3410c2b52a3d42f932af7e012b3f1306421bba6cd077850cf5f13a984ac0",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected native complete-service/geographic proxies and existing cut-off stocks with warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "aluminium scrap, new, Recycled Content cut-off",
+            "reference product": "aluminium scrap, new",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 0,
+          "metadata_sha256": "67d43442d761f1e27e7501aed73caafe0a09cfd43017fac314ea6668861ab7c1",
+          "inventory_sha256": "887d2d84ba21f2eabb5b319ef17cc9b630ccaff6e0fad3ad61d889e7fe7d98c2"
+        },
+        "target": {
+          "recipe_ref": "cutoff-stock-c799837c419be7ab840f"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Only the independently inspected exact ecoinvent3.9cut-off source gains permission. Preserve signed caller quantities, units, uncertainty, formulas and separate caller emissions. No other version, inverse or cross-system permission is inferred. Complete native operations replace source internal supply, technology, geography, efficiency/losses, infrastructure, emissions, allocation, vintage and uncertainty; score effects remain unquantified. No physical omission or runtime/generator Python change.",
+        "Reuse the existing exact source3.9positive1kgproduction-only new-aluminium-scrap cut-off-stock authority. The source contains no operating exchanges. Preserve the signed caller return/demand without adding virgin aluminium, recycling treatment or a recovery credit. This does not claim physical collection/recycling is burden-free. Existing zero-stock recipe, sign review and all earlier approved versions remain unchanged; no new zero authority is created."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e9fc8dccba9951a3792280c6b4ff36c2d85e03baa007dc4623a9082868e167c9"
+        }
+      ]
     }
   ],
   "superseded_operations": [
