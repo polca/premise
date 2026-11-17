@@ -1,0 +1,1067 @@
+{
+  "status": "source312_same_identity_proxies_verified",
+  "source_code_changes": 0,
+  "existing_recipe_inventories_unchanged": 4429,
+  "new_inventory_profile_aliases": 13,
+  "new_manufacturing_inventory_models": 0,
+  "normal_generator_byte_equal_files": {
+    "ecoinvent-to-ecoinvent-3.10-biosphere.json": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+    "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+    "ecoinvent-to-uvek-2025.json": "30fc3a84865d32ee0efd63ca4a6165f5d216be7397a2baa09386b5a1148807c2"
+  },
+  "behavior": {
+    "status": "passed",
+    "added_exact_source312_scopes": 33,
+    "signed_uncertainty_exchange_checks": 264,
+    "direct_migration_cases": 8,
+    "public_harmonizer_fresh_and_warm_passed": true,
+    "input_nonmutation": true,
+    "earlier_effective_profile_checks": 30,
+    "new_manufacturing_inventory_models": 0,
+    "new_model_profile_aliases": 13,
+    "new_foreground_omissions": [],
+    "source_code_changes": 0,
+    "new_Brightway_databases": 0,
+    "qualification_limit": "Required interface group only; no complete battery update or new export."
+  },
+  "in_memory_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 85,
+    "native_suppliers": 118,
+    "foreground_biosphere_flows": 281,
+    "signed_foreground_LCI_solves": 66,
+    "independent_native_reference_LCI_solves": 33,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-82479bd5f6b8b893",
+        "source": {
+          "location": "CN",
+          "name": "market for synthetic graphite, battery grade",
+          "reference product": "synthetic graphite, battery grade",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 6.983902380852669e-07,
+        "refined_max_abs_inventory_difference": 5.684341886080802e-14,
+        "full_graph_residual": {
+          "residual_before": 1.3293481097106086e-11,
+          "residual_after": 3.552713678800501e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 6.905886650617753e-09,
+          "residual_after": 3.552713678800501e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-5a066f5db7e68d53",
+        "source": {
+          "location": "GLO",
+          "name": "market for glass fibre reinforced plastic, polyester resin, hand lay-up",
+          "reference product": "glass fibre reinforced plastic, polyester resin, hand lay-up",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.08558970168815e-06,
+        "refined_max_abs_inventory_difference": 5.684341886080802e-14,
+        "full_graph_residual": {
+          "residual_before": 1.6072196461492117e-10,
+          "residual_after": 6.308273156265345e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.7128613498381964e-09,
+          "residual_after": 6.315211919570666e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-746b4e34afee8858",
+        "source": {
+          "location": "GLO",
+          "name": "market for zirconium oxide",
+          "reference product": "zirconium oxide",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.6702961147530004e-07,
+        "refined_max_abs_inventory_difference": 4.440892098500626e-16,
+        "full_graph_residual": {
+          "residual_before": 1.900324733777404e-11,
+          "residual_after": 1.2540665832443555e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.438203655919082e-09,
+          "residual_after": 1.2540665832443555e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-bfe333cadde4fa6d",
+        "source": {
+          "location": "GLO",
+          "name": "market for magnesium oxide",
+          "reference product": "magnesium oxide",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.022604578793107e-08,
+        "refined_max_abs_inventory_difference": 8.881784197001252e-16,
+        "full_graph_residual": {
+          "residual_before": 4.494621757891984e-12,
+          "residual_after": 3.3306690738754696e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.877026745128617e-09,
+          "residual_after": 7.881121443032091e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-18d0fd79bfe6791b",
+        "source": {
+          "location": "GLO",
+          "name": "market for tetrafluoroethylene",
+          "reference product": "tetrafluoroethylene",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.7503938326844946e-07,
+        "refined_max_abs_inventory_difference": 4.440892098500626e-16,
+        "full_graph_residual": {
+          "residual_before": 1.36705178816085e-11,
+          "residual_after": 3.626072454908903e-14,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.1884946675931438e-07,
+          "residual_after": 3.626072445021116e-14,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-4a7e42807ddffd8a",
+        "source": {
+          "location": "RER",
+          "name": "market group for heat, district or industrial, natural gas",
+          "reference product": "heat, district or industrial, natural gas",
+          "unit": "megajoule"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "megajoule",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.571630825480952e-09,
+        "refined_max_abs_inventory_difference": 2.220446049250313e-16,
+        "full_graph_residual": {
+          "residual_before": 7.919788657241781e-14,
+          "residual_after": 8.566973946591249e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.280785557862032e-11,
+          "residual_after": 8.566973946591249e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-46961b2d2543df96",
+        "source": {
+          "location": "GLO",
+          "name": "market for polyvinylfluoride",
+          "reference product": "polyvinylfluoride",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 6.310165190370753e-08,
+        "refined_max_abs_inventory_difference": 4.440892098500626e-16,
+        "full_graph_residual": {
+          "residual_before": 6.193235114360195e-12,
+          "residual_after": 1.537042381065343e-14,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.754011531541726e-08,
+          "residual_after": 1.537042350001732e-14,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-c18af03acca016b9",
+        "source": {
+          "location": "GLO",
+          "name": "market for nickel sulfate",
+          "reference product": "nickel sulfate",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.590252012879546e-09,
+        "refined_max_abs_inventory_difference": 2.842170943040401e-14,
+        "full_graph_residual": {
+          "residual_before": 1.526566315636301e-11,
+          "residual_after": 8.11101070405951e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.826610216845465e-08,
+          "residual_after": 8.11101069250598e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-8fa6bb43a07f3b4e",
+        "source": {
+          "location": "GLO",
+          "name": "market for manganese sulfate",
+          "reference product": "manganese sulfate",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.2720988706860226e-09,
+        "refined_max_abs_inventory_difference": 1.1368683772161603e-13,
+        "full_graph_residual": {
+          "residual_before": 6.695540329308225e-12,
+          "residual_after": 3.885780586188048e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.217362083952835e-09,
+          "residual_after": 4.440892098500626e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-2d2b80140d7f768a",
+        "source": {
+          "location": "CN",
+          "name": "market for ammonia, anhydrous, liquid",
+          "reference product": "ammonia, anhydrous, liquid",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 6.498055427073268e-09,
+        "refined_max_abs_inventory_difference": 5.684341886080802e-14,
+        "full_graph_residual": {
+          "residual_before": 3.392825970320657e-11,
+          "residual_after": 2.918564117246675e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.825538528884619e-09,
+          "residual_after": 2.927233838274931e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-7b57882e271d26d2",
+        "source": {
+          "location": "CH",
+          "name": "market for waste plastic, mixture",
+          "reference product": "waste plastic, mixture",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 4.6400446507277593e-07,
+        "refined_max_abs_inventory_difference": 4.440892098500626e-16,
+        "full_graph_residual": {
+          "residual_before": 5.764258311810686e-13,
+          "residual_after": 1.6653345369377348e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.4077033610102723e-10,
+          "residual_after": 8.364417863478632e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-7740a48a01851669",
+        "source": {
+          "location": "RER",
+          "name": "market for sulfuric acid",
+          "reference product": "sulfuric acid",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.9153176822328533e-09,
+        "refined_max_abs_inventory_difference": 5.551115123125783e-17,
+        "full_graph_residual": {
+          "residual_before": 5.473932995222564e-13,
+          "residual_after": 4.367189565832778e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.0404022129642372e-10,
+          "residual_after": 4.367189565832919e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-f1bc637c4fcf6060",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for water, deionised",
+          "reference product": "water, deionised",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 3.395875136646964e-09,
+        "refined_max_abs_inventory_difference": 5.421010862427522e-20,
+        "full_graph_residual": {
+          "residual_before": 2.5818151571975114e-12,
+          "residual_after": 1.6985196774533091e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.246500448818231e-11,
+          "residual_after": 1.6985196774533091e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-70f5ef67585d19b9",
+        "source": {
+          "location": "GLO",
+          "name": "market for paraffin",
+          "reference product": "paraffin",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.5840151351985696e-08,
+        "refined_max_abs_inventory_difference": 5.551115123125783e-17,
+        "full_graph_residual": {
+          "residual_before": 4.539690785512559e-12,
+          "residual_after": 5.620307043223551e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.7746340327060684e-11,
+          "residual_after": 5.620307043223551e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-508c267844c98459",
+        "source": {
+          "location": "GLO",
+          "name": "market for acrylonitrile",
+          "reference product": "acrylonitrile",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 4.788483920492581e-08,
+        "refined_max_abs_inventory_difference": 1.1102230246251565e-16,
+        "full_graph_residual": {
+          "residual_before": 1.2427166856187311e-11,
+          "residual_after": 8.373338698355902e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.91686769475244e-10,
+          "residual_after": 8.373338698355902e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-e0c46eb6a6d0891b",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for hazardous waste, for incineration",
+          "reference product": "hazardous waste, for incineration",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.4247322016890394e-07,
+        "refined_max_abs_inventory_difference": 4.440892098500626e-16,
+        "full_graph_residual": {
+          "residual_before": 2.586751911635087e-12,
+          "residual_after": 6.457799980040773e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 9.160744484586117e-10,
+          "residual_after": 6.457799980070429e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-12e7a5399b37ae6a",
+        "source": {
+          "location": "GLO",
+          "name": "market for sulfur",
+          "reference product": "sulfur",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 6.079119430069113e-10,
+        "refined_max_abs_inventory_difference": 5.684341886080802e-14,
+        "full_graph_residual": {
+          "residual_before": 3.4943014488760396e-13,
+          "residual_after": 6.661338147750939e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.569953981831008e-09,
+          "residual_after": 6.661338147750939e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-9f6f2c29e3e84ba1",
+        "source": {
+          "location": "GLO",
+          "name": "market for tetrahydrofuran",
+          "reference product": "tetrahydrofuran",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.1545580491656438e-07,
+        "refined_max_abs_inventory_difference": 3.552713678800501e-15,
+        "full_graph_residual": {
+          "residual_before": 1.234163840075278e-11,
+          "residual_after": 6.022505898931746e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.604951276198043e-08,
+          "residual_after": 6.022505898931746e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-af24bec618befedb",
+        "source": {
+          "location": "RER",
+          "name": "ethylene glycols production, thermal hydrolysis of ethylene oxide",
+          "reference product": "ethylene glycol",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.4247908408648868e-10,
+        "refined_max_abs_inventory_difference": 3.552713678800501e-15,
+        "full_graph_residual": {
+          "residual_before": 1.2644490870835265e-12,
+          "residual_after": 1.8553500795772546e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.441659588130959e-10,
+          "residual_after": 1.8553500795772546e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-0aad4bc42cf9b4c7",
+        "source": {
+          "location": "GLO",
+          "name": "market for N-methyl-2-pyrrolidone",
+          "reference product": "N-methyl-2-pyrrolidone",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 5.467791197588667e-08,
+        "refined_max_abs_inventory_difference": 5.684341886080802e-14,
+        "full_graph_residual": {
+          "residual_before": 6.13555982698795e-12,
+          "residual_after": 3.849269633613082e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.7917384418740238e-09,
+          "residual_after": 5.378358161026507e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-8d83e6b7c6fd6e59",
+        "source": {
+          "location": "GLO",
+          "name": "market for sheet rolling, aluminium",
+          "reference product": "sheet rolling, aluminium",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 6.41417727820226e-08,
+        "refined_max_abs_inventory_difference": 8.881784197001252e-16,
+        "full_graph_residual": {
+          "residual_before": 2.8008705676346213e-12,
+          "residual_after": 4.4212282286301176e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.92500002445491e-09,
+          "residual_after": 4.4212282286301176e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-4d54ff618e5e5e23",
+        "source": {
+          "location": "DE",
+          "name": "market for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilowatt hour",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 4.0514578358852305e-09,
+        "refined_max_abs_inventory_difference": 4.440892098500626e-16,
+        "full_graph_residual": {
+          "residual_before": 1.9598043688404318e-12,
+          "residual_after": 1.5673512793398783e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.4161955850047183e-10,
+          "residual_after": 1.5673512793398786e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-1f3253a7a5bd8588",
+        "source": {
+          "location": "GLO",
+          "name": "market for aluminium collector foil, for Li-ion battery",
+          "reference product": "aluminium collector foil, for Li-ion battery",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 7.600838216603734e-07,
+        "refined_max_abs_inventory_difference": 9.094947017729282e-13,
+        "full_graph_residual": {
+          "residual_before": 1.5020297100503474e-10,
+          "residual_after": 2.997845336133016e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.2615435674561625e-08,
+          "residual_after": 2.9978313757718907e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-c67b624e8f0271ba",
+        "source": {
+          "location": "GLO",
+          "name": "market for lithium hydroxide",
+          "reference product": "lithium hydroxide",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 7.014682523731608e-08,
+        "refined_max_abs_inventory_difference": 1.7763568394002505e-15,
+        "full_graph_residual": {
+          "residual_before": 5.065957237822262e-12,
+          "residual_after": 8.881784197001252e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 8.65693800363532e-09,
+          "residual_after": 8.881784197001252e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-dc7ba6c9f2564285",
+        "source": {
+          "location": "RoW",
+          "name": "market for ethylene oxide",
+          "reference product": "ethylene oxide",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.0902965641435003e-08,
+        "refined_max_abs_inventory_difference": 5.684341886080802e-14,
+        "full_graph_residual": {
+          "residual_before": 1.5578136546788586e-12,
+          "residual_after": 2.0872379421959576e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.1150584300667e-08,
+          "residual_after": 2.220446049250313e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-b1b0530d12f8b303",
+        "source": {
+          "location": "GLO",
+          "name": "market for inductor, miniature radio frequency chip",
+          "reference product": "inductor, miniature radio frequency chip",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.6698035071603954e-07,
+        "refined_max_abs_inventory_difference": 8.881784197001252e-16,
+        "full_graph_residual": {
+          "residual_before": 5.854411640684024e-10,
+          "residual_after": 2.046846849336707e-13,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.713684517677399e-08,
+          "residual_after": 2.0468634908892106e-13,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-9c31099652a27a68",
+        "source": {
+          "location": "GLO",
+          "name": "market for diode, glass-, for surface-mounting",
+          "reference product": "diode, glass-, for surface-mounting",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.9840680326742586e-07,
+        "refined_max_abs_inventory_difference": 3.637978807091713e-12,
+        "full_graph_residual": {
+          "residual_before": 2.4088176618574397e-10,
+          "residual_after": 1.4969572058699023e-13,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.601528927460623e-07,
+          "residual_after": 1.4969572058699023e-13,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-f91c426026b3b7a5",
+        "source": {
+          "location": "GLO",
+          "name": "market for chromium",
+          "reference product": "chromium",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 8.759452612139285e-07,
+        "refined_max_abs_inventory_difference": 1.1368683772161603e-13,
+        "full_graph_residual": {
+          "residual_before": 8.77036807003315e-11,
+          "residual_after": 5.228298021143128e-14,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.92226255076009e-08,
+          "residual_after": 5.228298021143128e-14,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-834f96388a124aa3",
+        "source": {
+          "location": "GLO",
+          "name": "market for sheet rolling, steel",
+          "reference product": "sheet rolling, steel",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.7040698569180677e-09,
+        "refined_max_abs_inventory_difference": 2.842170943040401e-14,
+        "full_graph_residual": {
+          "residual_before": 6.712482725825119e-13,
+          "residual_after": 3.2807788332821913e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.1353610886155522e-10,
+          "residual_after": 3.2807788332821913e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-365d3df4ba55618f",
+        "source": {
+          "location": "GLO",
+          "name": "market for extrusion, plastic pipes",
+          "reference product": "extrusion, plastic pipes",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.1855547654704424e-08,
+        "refined_max_abs_inventory_difference": 8.881784197001252e-16,
+        "full_graph_residual": {
+          "residual_before": 6.083988274000006e-13,
+          "residual_after": 2.1061995688136331e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.6690822619867965e-08,
+          "residual_after": 2.1061995688136331e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-89a9e0030212f423",
+        "source": {
+          "location": "CH",
+          "name": "treatment of hazardous waste, hazardous waste incineration",
+          "reference product": "hazardous waste, for incineration",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.52069389969256e-07,
+        "refined_max_abs_inventory_difference": 5.684341886080802e-14,
+        "full_graph_residual": {
+          "residual_before": 1.4374827803433497e-12,
+          "residual_after": 6.095777030101936e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.0408719756937046e-09,
+          "residual_after": 6.095777030101936e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-991e69e1c1605ac3",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "treatment of spent solvent mixture, hazardous waste incineration",
+          "reference product": "spent solvent mixture",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.7796176027550246e-08,
+        "refined_max_abs_inventory_difference": 8.673617379884035e-19,
+        "full_graph_residual": {
+          "residual_before": 1.1587210959275555e-11,
+          "residual_after": 1.7135222296770132e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 6.227260224850888e-10,
+          "residual_after": 1.7135222296770132e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-1a8ff64b231266fb",
+        "source": {
+          "location": "RoW",
+          "name": "market for steam, in chemical industry",
+          "reference product": "steam, in chemical industry",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.4003295351349152e-08,
+        "refined_max_abs_inventory_difference": 2.7755575615628914e-17,
+        "full_graph_residual": {
+          "residual_before": 8.149008677477748e-12,
+          "residual_after": 4.2895837441895984e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.4642143704042397e-10,
+          "residual_after": 4.2895837441895984e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "new_model_signed_LCI_solves": 26,
+    "new_model_recipes_checked": [
+      "battery-312-reviewed-model-7b57882e271d26d2",
+      "battery-312-reviewed-model-12e7a5399b37ae6a",
+      "battery-312-reviewed-model-746b4e34afee8858",
+      "battery-312-reviewed-model-e0c46eb6a6d0891b",
+      "battery-312-reviewed-model-46961b2d2543df96",
+      "battery-312-reviewed-model-2d2b80140d7f768a",
+      "battery-312-reviewed-model-9f6f2c29e3e84ba1",
+      "battery-312-reviewed-model-8fa6bb43a07f3b4e",
+      "battery-312-reviewed-model-4a7e42807ddffd8a",
+      "battery-312-reviewed-model-5a066f5db7e68d53",
+      "battery-312-reviewed-model-c18af03acca016b9",
+      "battery-312-reviewed-model-bfe333cadde4fa6d",
+      "battery-312-reviewed-model-70f5ef67585d19b9"
+    ],
+    "qualification_limit": "Thirty-three exact source-3.12 version proxies and thirteen inventory-profile aliases; no new manufacturing inventory or battery/export qualification."
+  },
+  "focused_tests": {
+    "Brightpath": 74,
+    "Premise": 10
+  },
+  "real_retry": {
+    "source_activities": 272,
+    "unapproved_source312_before": 73,
+    "unapproved_source312_after": 40,
+    "identities_match_expected_remaining": true,
+    "validation_disabled": false,
+    "approval_bypass": false,
+    "new_Brightway_databases": 0
+  },
+  "qualified_sectors_unchanged": 15,
+  "total_sectors": 19,
+  "qualification_limit": "Thirty-three reviewed version proxies only. Full battery update/export and remaining sectors are unfinished; the previously recorded historical DMC replay-test failure remains separate."
+}
