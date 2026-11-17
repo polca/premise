@@ -1,0 +1,419 @@
+{
+  "status": "30_recycling_transport_correspondences_verified_not_full_truck_qualification",
+  "candidate": {
+    "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+    "source_cases": 30,
+    "parent_only_component_decisions": 1,
+    "changed_rules": 22,
+    "unchanged_additional_approvals": 8,
+    "new_helpers": 17,
+    "existing_recipe_contents_unchanged": true,
+    "prior_physical_mappings": [
+      {
+        "rule_id": "bp-59f60997076df042",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": true
+      },
+      {
+        "rule_id": "bp-c87d564423c75554",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": true
+      },
+      {
+        "rule_id": "bp-55c88a17f0ffb64f",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": true
+      },
+      {
+        "rule_id": "bp-c5304556b418deab",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": false
+      },
+      {
+        "rule_id": "bp-97d38b4e34e0274c",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": true
+      },
+      {
+        "rule_id": "bp-af6afa89d820eabb",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": true
+      },
+      {
+        "rule_id": "bp-949e9423153a45de",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": true
+      },
+      {
+        "rule_id": "bp-4a797a6b30510a65",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": true
+      },
+      {
+        "rule_id": "bp-e567e56fc816d39f",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": true
+      },
+      {
+        "rule_id": "bp-4ed938d6a37fd1e3",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": true
+      },
+      {
+        "rule_id": "bp-dcfa2d2a1b36367a",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": true
+      }
+    ],
+    "new_foreground_omissions": 0,
+    "runtime_or_generator_Python_changes": 0,
+    "idempotent_review_replay": true,
+    "qualification_limit": "Candidate data pending tests and actual required-input retry; no full recycling or truck-sector qualification."
+  },
+  "normal_generator_outputs": [
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+      "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "normal_generator_matches_packaged_resource": true
+    },
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+      "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "normal_generator_matches_packaged_resource": true
+    },
+    {
+      "file": "ecoinvent-to-uvek-2025.json",
+      "sha256": "ecafad4043d15aa0b8c4bf3934f6c7f4224d18b87d3b93d91dffaf75410e355a",
+      "normal_generator_matches_packaged_resource": true
+    }
+  ],
+  "no_write_LCIs": {
+    "status": "30_converted_recycling_transport_services_have_finite_signed_LCIs",
+    "transient_activities": 49,
+    "signed_finite_LCI_solves": 60,
+    "independent_native_demand_comparisons": [
+      {
+        "rule_id": "bp-12440d4a47352c71",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-1b2a0098e7b1234c",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-223037b26a7f2e87",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-335fc75f81a6d8cd",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-4ce5be73f49060d7",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-4ed938d6a37fd1e3",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-52f9d4124445e702",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-7c30a483aa3e06f1",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-7f1f94d9dc78f0b9",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-8f330573a88a3b87",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-9d259ead32af62f1",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-a1ec216b1d119106",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-af6afa89d820eabb",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-c5304556b418deab",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-d53b4440f22f3503",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-d88c640ce4232d03",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-dcfa2d2a1b36367a",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-de2b37e25f25a1a5",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-f02439ab9ee1cabe",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-f1ce38e9b7e6abe4",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-f4b673e8412c53d8",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-ffa8c81865e2202b",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-188d081830076b75",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-4a797a6b30510a65",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-55c88a17f0ffb64f",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-59f60997076df042",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-949e9423153a45de",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-97d38b4e34e0274c",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0.0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-c87d564423c75554",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-e567e56fc816d39f",
+        "independent_native_demand_comparison": true,
+        "maximum_absolute_native_coefficient_difference": 0,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      }
+    ],
+    "matrix_shape": [
+      11996,
+      11996
+    ],
+    "source_and_biosphere_metadata_preserved": true,
+    "new_Brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "qualification_limit": "Native target-model consistency only; not source/native LCIA equivalence or complete truck-sector qualification."
+  },
+  "tests": {
+    "Brightpath_new_cases_and_generic_review_guards_and_manifest": 32,
+    "Premise_cache_withdrawal_prior_context_and_parent_scope": 6,
+    "Ruff": "both new tests pass",
+    "whitespace": "both repository diffs pass"
+  },
+  "required_input_probe": {
+    "owned_source_nodes": 43,
+    "unapproved_external_correspondences_before": 106,
+    "unapproved_external_correspondences_after": 76,
+    "public_sector_scope_gate_bypassed": false,
+    "new_Brightway_databases": 0,
+    "qualification_limit": "Owned source-chain input diagnosis only, not full sector conversion, filter coverage, export or qualification."
+  },
+  "runtime_or_generator_Python_changes": 0,
+  "new_source_omissions": 0,
+  "source_native_LCIA_equivalence_established": false,
+  "overall_sector_goal": "14/19 qualified. Trucks, battery, final energy, emissions and metals remain incomplete."
+}

@@ -30285,7 +30285,13 @@
           "uvek_whole_freight_review.json"
         ],
         "native2025_2026_direct_technosphere_vectors_match": true,
-        "limitations": "The rest-of-world 16-32 metric ton EURO3 lorry market uses the complete Swiss 16-32 t gross-weight fleet service per original tkm. The nominal weight class is retained, but EURO3 is replaced by the native mixed fleet, not an equal emission standard. Payload, empty running, fuel/drive mix, infrastructure, geography and vintage differ. No density, payload or lifetime multiplier is inferred. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+        "limitations": "The rest-of-world 16-32 metric ton EURO3 lorry market uses the complete Swiss 16-32 t gross-weight fleet service per original tkm. The nominal weight class is retained, but EURO3 is replaced by the native mixed fleet, not an equal emission standard. Payload, empty running, fuel/drive mix, infrastructure, geography and vintage differ. No density, payload or lifetime multiplier is inferred. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval.",
+        "recycling_source38_extension": {
+          "review_path": "export/uvek_recycling_transport_38_review.json",
+          "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+          "prior_physical_mapping_and_recipe_unchanged": true,
+          "sign_scope_metadata_added_only_where_previously_absent": true
+        }
       },
       "limitations": [
         "The rest-of-world 16-32 metric ton EURO3 lorry market uses the complete Swiss 16-32 t gross-weight fleet service per original tkm. The nominal weight class is retained, but EURO3 is replaced by the native mixed fleet, not an equal emission standard. Payload, empty running, fuel/drive mix, infrastructure, geography and vintage differ. No density, payload or lifetime multiplier is inferred. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
@@ -30302,7 +30308,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "06192c95a3a31adb71829c30576c6cd26e8e385ccb93e4e567c7d85ede7aa04b"
+          "fingerprint": "2b38066e5c25a340511bcac1f322817befefb4feb04fde4b7584533b06cc170c"
         }
       ]
     },
@@ -128080,6 +128086,12 @@
             "inventory_sha256": "5ef6c9a4baeecdc3a26baa1bc4079dfa0203ac0b8ee3d936522c7992804d8bfe",
             "metadata_sha256": "83cdd128b67a3946801b6fb832d87d2e2076d126cca9928a7fbd155081ab1a6d"
           }
+        },
+        "recycling_source38_extension": {
+          "review_path": "export/uvek_recycling_transport_38_review.json",
+          "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+          "prior_physical_mapping_and_recipe_unchanged": true,
+          "sign_scope_metadata_added_only_where_previously_absent": true
         }
       },
       "limitations": [
@@ -128099,7 +128111,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "49237768c8aabaf12469d0c33bb6cb158a9447e77eee67e01dcec9059efde5c1"
+          "fingerprint": "fe70b622960112a9975df2e1e4a82a90518d743c2917f6f4a85ce51cec21ed22"
         }
       ]
     },
@@ -264218,7 +264230,13 @@
           "rule_id": "bp-4ed938d6a37fd1e3",
           "reason": "The first decimal-5 name search missed Roman-numeral EURO-V models. Full name/comment search found matching native services; the unpublished all-standards draft grant was removed before this refinement. WEEE review remains unchanged."
         },
-        "new_source_omissions": []
+        "new_source_omissions": [],
+        "recycling_source38_extension": {
+          "review_path": "export/uvek_recycling_transport_38_review.json",
+          "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+          "prior_physical_mapping_and_recipe_unchanged": true,
+          "sign_scope_metadata_added_only_where_previously_absent": true
+        }
       },
       "limitations": [
         "Only the exact inspected ecoinvent 3.9 cut-off RER 16-32t Euro V freight market is reviewed. Source market contains one positive unit share of its full RER service. Source and target supply one tkm of complete transport life cycle, not vehicle-km, vehicle manufacture alone or a kg of truck. Factor +1 preserves signed caller tkm, supported uncertainty/formulas, foreground ownership and separately listed emissions/credits; no other source version, patch, inverse or cross-system-model route gains approval.",
@@ -264238,7 +264256,7 @@
             "system_model": "cutoff",
             "version": "2025"
           },
-          "fingerprint": "532ff96d1d38a07b9d17c3968e899a62e7140676c5f50d6aac7317f3f32c8c1d"
+          "fingerprint": "5abfbdee039a9230837c119668c7bbecae7337e826cb98b7f04198e0a5da29f9"
         }
       ]
     },
@@ -280510,6 +280528,12 @@
           "source_average_load_t": 5.79,
           "caller_payload_or_efficiency_factor_added": false,
           "source_transport_work_reduced_by_native_EuroVI_share": false
+        },
+        "recycling_source38_extension": {
+          "review_path": "export/uvek_recycling_transport_38_review.json",
+          "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+          "prior_physical_mapping_and_recipe_unchanged": true,
+          "sign_scope_metadata_added_only_where_previously_absent": true
         }
       },
       "limitations": [
@@ -280531,7 +280555,7 @@
             "system_model": "cutoff",
             "version": "2025"
           },
-          "fingerprint": "b28ca30157c68b2a31701c46e5bc5b50f94f313449d50709a778825dc54c01fe"
+          "fingerprint": "291fdfae7bc2e08480d9683b4d66a665a712d8da01aee0aeb03afd272bf01e9d"
         }
       ]
     },
@@ -324467,6 +324491,1521 @@
             "version": "2025"
           },
           "fingerprint": "2e1b621cf0bdb5d8fb6e1ce01730e81aa378cae5bfdf6ae702d135de94a24a78"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-12440d4a47352c71",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 3.5-7.5 metric ton, EURO6",
+            "reference product": "transport, freight, lorry 3.5-7.5 metric ton, EURO6",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "f9a5c2e02f5435e11e4aafaea7ee3fbfeaeb48c3d509da4f5ed639722df480f4",
+          "metadata_sha256": "ad75aa13e509bf5a6a57817f35a4406fcd98c17a6d94aec94fd8ea97818add4c"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-rer-3p5-7p5-euro-vi"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO VI, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b645773b8791c8c021f40889966e62cfe519975c4687acf6e80d08ec63b5eb16"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1b2a0098e7b1234c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 3.5-7.5 metric ton, EURO5",
+            "reference product": "transport, freight, lorry 3.5-7.5 metric ton, EURO5",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "223d59e572e49f3a45acfe934da3b4f192271868d83891901d83dffd11f3baad",
+          "metadata_sha256": "5f5a80a0d701f0ae6a7f39479b2f77e9633ae5316c2c49b001454d40b83459f6"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-rer-3p5-7p5-euro-v"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO V, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9a7fc848be1ea5a6eb4f58654c884757983e14775970e421a59b945ddecfc589"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-223037b26a7f2e87",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 3.5-7.5 metric ton, EURO4",
+            "reference product": "transport, freight, lorry 3.5-7.5 metric ton, EURO4",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "f058aa7087f4d89a175aa400938a0e5944b090d4615354e5f89d31b73b494785",
+          "metadata_sha256": "d8a34dccfa47aa5b4394b0ead0f1151ceec7138234da78b1f78cb01c4631188d"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-rer-3p5-7p5-euro-iv"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO IV, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a7ba0a4cabf58d22bd8fcffb807c57bdc843dc263087225795c8988a4927dbaf"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-335fc75f81a6d8cd",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 3.5-7.5 metric ton, EURO4",
+            "reference product": "transport, freight, lorry 3.5-7.5 metric ton, EURO4",
+            "location": "RoW",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "0bb0603ed2f012e0caea55624832b75648e9d51e4f68f2d9c602e54d6698b378",
+          "metadata_sha256": "e3e62b1f0fd6dcd73b0f8eb875fa5aa491dde05a1d4d936bd7225e385d484ab9"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-ch-3p5-7p5-euro-iv"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO IV, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "cd2977fccb86f253ef992bfc8938e5bc513f5224e4cbafbabe021015fbcefbf6"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4ce5be73f49060d7",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 3.5-7.5 metric ton, EURO3",
+            "reference product": "transport, freight, lorry 3.5-7.5 metric ton, EURO3",
+            "location": "RoW",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "2e7f8edddc49105e495c36984169a2e4328b717cfca60a4b63e888496c67de85",
+          "metadata_sha256": "6964f630d07bbe71dc2b2b885b70ff942892096926fb5075b38577672e59aaa1"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-ch-3p5-7p5-euro-iii"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO III, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "3ffc82ee109e71d3db3fedd3a002a69015406f1e300d8b7f41ff248c7fae8692"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4ed938d6a37fd1e3",
+      "operation": "replace",
+      "mapping_method": "reviewed_euro_v_conditional_fleet_39",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+            "reference product": "transport, freight, lorry 16-32 metric ton, EURO5",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "63d9ae285a53007b4dc147a5ea224f584dc310e234cff458eb331d9750fc3197",
+          "metadata_sha256": "2160b762e9c2518093a005a7ef3fbc4a5cfeddab5911f09c6d62b6b2c733f283"
+        },
+        "target": {
+          "recipe_ref": "euro-v-39-native-16-32t-conditional-fleet"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO V, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Reuse the unchanged nine-service EURO-V 16-32t recipe as an independently reviewed source-3.8 proxy. Its original source-3.9-only rationale records the earlier admission, not this new permission. Only adjacent numerical normalization rounding differs from the recomputed native weights, below 1e-14 per coefficient.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a9218d8d8a14233a284de5ea69315a0c707511607bffce7b1a9dde467fa1cac0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-52f9d4124445e702",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 16-32 metric ton, EURO4",
+            "reference product": "transport, freight, lorry 16-32 metric ton, EURO4",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "1a163f4c9cf5753d10183e53be29c6c9946adba610076c53bef0685e28a0b935",
+          "metadata_sha256": "0150259fcee7045d5471d3dcb0646c9e91b455f48c534f351c743e57cab8a33f"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-rer-16-32-euro-iv"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO IV, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "215cea01a598622a60c196f8b1b399e2be72c41679d9b8a2c7b5b7236a643b9e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7c30a483aa3e06f1",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 16-32 metric ton, EURO6",
+            "reference product": "transport, freight, lorry 16-32 metric ton, EURO6",
+            "location": "RoW",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "15f117f9b793082e80966b700dbaa0ee2b74e78f6284963a271832ace97da370",
+          "metadata_sha256": "65781a1077c34f531a6a406038be2cb9969ffcfec45d52092dba6042426a58de"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-ch-16-32-euro-vi"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO VI, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6b32fa01f3b7b986c4fa266e0200b4d0f816bb7eb8eadcd1199b1bbe4aaf91cf"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7f1f94d9dc78f0b9",
+      "operation": "replace",
+      "mapping_method": "pairwise_review",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry >32 metric ton, EURO4",
+            "reference product": "transport, freight, lorry >32 metric ton, EURO4",
+            "location": "RoW",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "59d3e79108805b76dbbb785595fee02c768edf2071e28faa455045762f76f5fe",
+          "metadata_sha256": "3a5e26485a5105ec4ac648a7c568b353be94a0543595c215244bd7949a6e3fae"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-ch-32-40-euro-iv"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO IV, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Correct the former all-weight-classes fleet candidate to the matching 32-40t band, then condition on EURO IV diesel. The source RoW label uses the documented Swiss geographic proxy; no source RoW equivalence is claimed.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "934d7476a0614239280be53278319a9171180969801157e034a4811075fe3113"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8f330573a88a3b87",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 3.5-7.5 metric ton, EURO3",
+            "reference product": "transport, freight, lorry 3.5-7.5 metric ton, EURO3",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "d000fc5c77f8efdb8323399ae24dbb503a76ec007d4cd6c5f1305b02506e50e1",
+          "metadata_sha256": "317c82a3e95cef1cc089928159795e48acfcb926c67c4ca4b6b79ad6e8d47783"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-rer-3p5-7p5-euro-iii"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO III, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "386d504aa48f0d7c00a10787b0be1e7bbfaf92fc3f051fec7216f433b6db0520"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9d259ead32af62f1",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+            "reference product": "transport, freight, lorry 16-32 metric ton, EURO5",
+            "location": "RoW",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "bbee4637fadce360858370b87b2f442e95c8aed4d74a43a696a6fd1d910d495e",
+          "metadata_sha256": "38a9da222a68fefb9e1bb048bbbf667da475f2b218e1814764c6b5f572412279"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-ch-16-32-euro-v"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO V, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a09ab378e5fdd3a468824a0290c05737018d67ddcaae27ee354ef817e09a2e87"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a1ec216b1d119106",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 16-32 metric ton, EURO3",
+            "reference product": "transport, freight, lorry 16-32 metric ton, EURO3",
+            "location": "BR",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "5c5a49a4b8de43a082d70e0ae6c32b40ea8f1265f6b33783b2882508941943c4",
+          "metadata_sha256": "ce84112d6b069fbed9299c09a2d28676648eac04b9a77fa95fef75cbe4d19fde"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-ch-16-32-euro-iii"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO III, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "8d894c2fcb7c53804e39356fea761e88ca6087f8100f92f584ca7e04cc567e3e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-af6afa89d820eabb",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_native_route",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry >32 metric ton, EURO4",
+            "reference product": "transport, freight, lorry >32 metric ton, EURO4",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "675348ccd22d6595a5a189302906d58e5b12b2e7caf1172ac581ed35c3f2ce8e",
+          "metadata_sha256": "f12cbc069569f6d3d48cefa1431a09aa3e9f9e4a2c9ed8790c072f2a6a79fc2d"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-rer-32-40-euro-iv"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO IV, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "efc0c55e124a3c2370c57305cbb3295ece93f24263a336d27721db7d0985e26b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c5304556b418deab",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 16-32 metric ton, EURO3",
+            "reference product": "transport, freight, lorry 16-32 metric ton, EURO3",
+            "location": "RoW",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "b3621d3d2efbf8eec6f12940330d75eba614212702cec0f5a6a8da943e37bddf",
+          "metadata_sha256": "e99d41899f9db686dfd53e6eafa203af12ca887cd78eb007f2b82ccd7cebfbd7"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-ch-16-32-euro-iii"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO III, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "495ec653bfa99e937cf750632058036b5b659c9ab78991cbce4f07d4c9cc48d2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d53b4440f22f3503",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+            "reference product": "transport, freight, lorry 16-32 metric ton, EURO5",
+            "location": "BR",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "a2f45490585e010713a5f4188f210c85f0757ff67eac0507ab37dd81dfcc6b71",
+          "metadata_sha256": "731eeed68c466879fc93a4d345f5cc73c1f5921ba8fc59f40fa805b12d94d699"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-ch-16-32-euro-v"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO V, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "87abfe63bbaad4e3e468a478992d522d6ea87a1bdd4843a3c72ef5e4def944bb"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d88c640ce4232d03",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 3.5-7.5 metric ton, EURO3",
+            "reference product": "transport, freight, lorry 3.5-7.5 metric ton, EURO3",
+            "location": "BR",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "7b3b0f36ce02a39b87ae7aac949ece35bc30423c721cacc6b279daab978f042f",
+          "metadata_sha256": "de0458985cc3d71c4f29d43344c64653f172212c401dc30654271fcc16b41527"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-ch-3p5-7p5-euro-iii"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO III, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "4e089c0ca519e38f03f1890046ca5d1120db4b4045374bfe03c2cd08a98b0a28"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-dcfa2d2a1b36367a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 16-32 metric ton, EURO6",
+            "reference product": "transport, freight, lorry 16-32 metric ton, EURO6",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "b0294131b035e417ac3a280d57c8febd4cc51d262f5fc66b1fc2faa0f106e43a",
+          "metadata_sha256": "eefcba4d8a68a64687c5d6dda33105876df12ce0dee25e88cdb1e69782fcf66b"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-rer-16-32-euro-vi"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO VI, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1253becbb67be6d59b586f7c5f79c40da76e013c3646afc78cbd9dee195f8b0c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-de2b37e25f25a1a5",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 3.5-7.5 metric ton, EURO5",
+            "reference product": "transport, freight, lorry 3.5-7.5 metric ton, EURO5",
+            "location": "BR",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "b8bf7f37130fed3b0e17718bdfbc9162927c6d3e5b2a21f896def7a37426a4b2",
+          "metadata_sha256": "1a40d17a360a6c92056547e7c7dc439d9d1d525f47b7a9e65a5e7b2a049790b6"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-ch-3p5-7p5-euro-v"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO V, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1793ff7ea6f8a318bb267b9eb5cc994939ab3ba6b1970fbfbc4fbb52c0d416c0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f02439ab9ee1cabe",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 16-32 metric ton, EURO3",
+            "reference product": "transport, freight, lorry 16-32 metric ton, EURO3",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "9dedb8ed2d6443214f4818cd6b68394c5d6f4e62c60fd2cd6140fdb90d004f6a",
+          "metadata_sha256": "ec52df87a8fbac62aeecd148424d376cc8ee1f1b9b7119e18c4bc89ac0c3e0f0"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-rer-16-32-euro-iii"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO III, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d0c037c4926053dc13729d5cfe65ab62e1b1842308392bdb051c72f52375468e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f1ce38e9b7e6abe4",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 3.5-7.5 metric ton, EURO6",
+            "reference product": "transport, freight, lorry 3.5-7.5 metric ton, EURO6",
+            "location": "RoW",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "1077b8775945f38883818ad96ce2348ae7a56cedf4cb2d491f4cbb80047efead",
+          "metadata_sha256": "94a8a169863795524c01c1f8c43f98deffaa7b2e146921a22b4f5887744357bf"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-ch-3p5-7p5-euro-vi"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO VI, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "04e3fc26f5b041186cecac421a86072ef66ed54bc36b340d9a9b3aade1363f7b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f4b673e8412c53d8",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 16-32 metric ton, EURO4",
+            "reference product": "transport, freight, lorry 16-32 metric ton, EURO4",
+            "location": "RoW",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "6569250dcce77dd26c33c9aebc9cb44ea815dc8fed7de32503e5542f9545d308",
+          "metadata_sha256": "2b2c2c9fe85ee1d4b57a5dc110a03ead61f6f440be14286e2f6a9fbbdac39e75"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-ch-16-32-euro-iv"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO IV, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "94dd2d22a618c80be53b1d18a6001ab0b793c5ebf868527980d6a3b0de17c3ac"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ffa8c81865e2202b",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 3.5-7.5 metric ton, EURO5",
+            "reference product": "transport, freight, lorry 3.5-7.5 metric ton, EURO5",
+            "location": "RoW",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "456c1d146685c34449f0a33f826368e964c058faf888e3c6a7211e8415e71257",
+          "metadata_sha256": "2ba793bd22553940fad568a7d3f71435e2aa3fde25cd41c4dd8a124da1eb4d98"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-road-ch-3p5-7p5-euro-v"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use only complete positive native diesel services matching EURO V, conditional on the source weight band. Normalize the native size/duty evidence within that subset only; do not normalize the source inventory or caller tkm. Exclude electric, gas and other EURO-standard supplies. The same nominal subsets and weights exist in native 2025 and 2026. Historical Swiss-2020 size/duty evidence is a screening proxy even for RER labels, not a projected IAM fleet. Geographic, payload, empty-running, routing, SCR/EGR, emissions, technology-year, infrastructure and internal-uncertainty differences remain unquantified.",
+        "The 7.5t native model represents the source 3.5-7.5t range; native 18/26/32t models represent 16-32t. The 40t model represents the open-ended >32t class and does not cover larger lorries. Preserve each source tkm without a capacity or mass multiplier.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6d10b4f9d5b5a37374fbbcc93dc34a15a26acaf21a49ece50cc06738ded86e5f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-188d081830076b75",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, passenger car, large size, diesel, EURO 4",
+            "reference product": "transport, passenger car, large size, diesel, EURO 4",
+            "location": "GLO",
+            "unit": "kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "inventory_sha256": "1bfa1dfd5cc651bc0b9d4d2395a82d3ba1b305c4951d191a86ac7c489b5a657f",
+          "metadata_sha256": "e001eb6b4ea6f6b786a07a9e5ee77137e45a146187f7f2dc0d261ce8379df497"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Transport, passenger car, diesel, Large, 2008, EURO-4",
+          "reference product": "Transport, passenger car, diesel, Large, 2008, EURO-4",
+          "unit": "kilometer"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use the complete native Swiss large diesel EURO-4 car service per vehicle-km as the GLO-market geographic proxy. The source comment describes 1200kg dry vehicle mass, 150000km lifetime and 97.2kg passenger load despite the large-size label. Native design, loading, geography, emissions and lifetime differ. No passenger-km, occupancy or vehicle-mass correction is introduced.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5530f8c0b35d59670c4cb4f294cc1d593ad23653b5e8bf1e5d3f9c86d6b90035"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4a797a6b30510a65",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "location": "US",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "117c530d1ddcd29fc0d07fb028040f84f634c9345a35b4c32b67b565d0685025",
+          "metadata_sha256": "b4a5ae189cac0d87ffca466e6836e277315a1216876056e1b515578557aa02a9"
+        },
+        "target": {
+          "location": "US",
+          "name": "Transport, freight, rail, diesel",
+          "reference product": "Transport, freight, rail, diesel",
+          "unit": "ton kilometer"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain complete same-mode freight rail: the US diesel service for the US market, the unchanged reviewed source-3.8 Swiss diesel/electric-with-shunting mix for CH, and the complete RER rail service as the explicit CN/IN/ZA/GLO geographic proxy. Rail traction shares, load factors, fuel/electricity, tracks, rolling stock, vintage and internal uncertainty differ. No mode switch, added vehicle/track input or invented country traction split is introduced.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6b870e4fbf87733c2eff1b5438a4d3d334992f95e46fcc7251f37b9874c104b0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-55c88a17f0ffb64f",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, sea, container ship",
+            "reference product": "transport, freight, sea, container ship",
+            "location": "GLO",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "f37b249686c4cd711b7393dd41ee40f3f0f389d14cd228f512aa298ad0a3107b",
+          "metadata_sha256": "bb73cab67671ee91fb7726bd0fc8412c80b4542c3fb947dec5e69dea6a3f323d"
+        },
+        "target": {
+          "location": "OCE",
+          "name": "Transport, transoceanic container ship",
+          "reference product": "Transport, transoceanic container ship",
+          "unit": "ton kilometer"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use the complete native transoceanic container-ship service per tkm. Global-to-OCE geography, routes, payload, ship fleet, fuel, port, emissions and vintage differences are screening limitations, not extra transport distances.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "40bb1c925ee3ea1df7c1a83be1e6a9419b9c5513e7837d29c55d12f79eb6e068"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-59f60997076df042",
+      "operation": "replace",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market group for transport, freight train",
+            "reference product": "transport, freight train",
+            "location": "GLO",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "inventory_sha256": "e3632b7d99eb00c06c34a2364f191d1cff8b69a09221898090d10b561e92f1bf",
+          "metadata_sha256": "a0df7e17e5eafa53a278429592c2f1c4693a310ab9b396ea6844354495ae1bb5"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Transport, freight, rail",
+          "reference product": "Transport, freight, rail",
+          "unit": "ton kilometer"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain complete same-mode freight rail: the US diesel service for the US market, the unchanged reviewed source-3.8 Swiss diesel/electric-with-shunting mix for CH, and the complete RER rail service as the explicit CN/IN/ZA/GLO geographic proxy. Rail traction shares, load factors, fuel/electricity, tracks, rolling stock, vintage and internal uncertainty differ. No mode switch, added vehicle/track input or invented country traction split is introduced.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "99e18f42f1ec2663159457be285f6b60d82dc0b03e0f92a935ec0584ee00e7a5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-949e9423153a45de",
+      "operation": "replace",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "location": "IN",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "inventory_sha256": "988b51de7c062b7bcd8649b7b90a85cbfa10ea03e62d01ece1afda182b91c63a",
+          "metadata_sha256": "afa89e54fc7bf8b91cf2fdf8bd329e344cb5cc1bb6b12d4632752704f4cb2d89"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Transport, freight, rail",
+          "reference product": "Transport, freight, rail",
+          "unit": "ton kilometer"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain complete same-mode freight rail: the US diesel service for the US market, the unchanged reviewed source-3.8 Swiss diesel/electric-with-shunting mix for CH, and the complete RER rail service as the explicit CN/IN/ZA/GLO geographic proxy. Rail traction shares, load factors, fuel/electricity, tracks, rolling stock, vintage and internal uncertainty differ. No mode switch, added vehicle/track input or invented country traction split is introduced.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "53a92d1934b8f2bef00a416cc03d407de87e3e7796a47b239cb7d1ed3a0a7292"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-97d38b4e34e0274c",
+      "operation": "replace",
+      "mapping_method": "reviewed_older_swiss_rail",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "location": "CH",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "inventory_sha256": "a252d0e0c90c09d3932b93cc368ca117263733f7f008b3af3cc5e2e02f2ea805",
+          "metadata_sha256": "0f19a8ca95fdb7dd5c02d3de46f312c44a04d43924aba1ec6d74a50bdcd19445"
+        },
+        "target": {
+          "recipe_ref": "older-swiss-rail-061b7121127c9a779bfc"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain complete same-mode freight rail: the US diesel service for the US market, the unchanged reviewed source-3.8 Swiss diesel/electric-with-shunting mix for CH, and the complete RER rail service as the explicit CN/IN/ZA/GLO geographic proxy. Rail traction shares, load factors, fuel/electricity, tracks, rolling stock, vintage and internal uncertainty differ. No mode switch, added vehicle/track input or invented country traction split is introduced.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "cbab69e09ca139fc8aacaba9bd9c97d3ff66e36560a7bd7609e5f6462e5d94fd"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c87d564423c75554",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market group for transport, freight, lorry, unspecified",
+            "reference product": "transport, freight, lorry, unspecified",
+            "location": "GLO",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "inventory_sha256": "26d9c01c4a5d4affe8e4971b953fb17b914116163369539e4b924ba7f0431a74",
+          "metadata_sha256": "f1b89e4f2c225137ddc873d5d2336a1f5aa085d70b15ba0781311a1022e15758"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Transport, freight, lorry, fleet average",
+          "reference product": "Transport, freight, lorry, fleet average",
+          "unit": "ton kilometer"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Use the complete native RER heavy-lorry fleet per tkm for the unspecified GLO heavy-lorry service, retaining the source mode and original quantity. Native historical Swiss fleet/size/duty evidence under the RER label, geography, fuel/drive mix, payload, infrastructure, vintage and emissions differ; no source fleet split is invented.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "bbc33aa897587f4c1e0803f710f0c770f47c9c4f39cbb85d4f098e9155abead4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e567e56fc816d39f",
+      "operation": "replace",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_recycling_transport_38_review.json",
+      "review_sha256": "da764f8c10a116353fd4433dde2ad778623b1d74fcf246703a676fc45f22e230",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function transport, geographic and conditional native-fleet proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "location": "ZA",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "inventory_sha256": "5f9c74f630f1be7b894aba86b7ff7e1a037d876e9eec15ae48d62dbeb781e802",
+          "metadata_sha256": "8c130dd2642370e69223c204a41d38f04a2bbfa279e3d705783a50a68cd3eff2"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Transport, freight, rail",
+          "reference product": "Transport, freight, rail",
+          "unit": "ton kilometer"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain complete same-mode freight rail: the US diesel service for the US market, the unchanged reviewed source-3.8 Swiss diesel/electric-with-shunting mix for CH, and the complete RER rail service as the explicit CN/IN/ZA/GLO geographic proxy. Rail traction shares, load factors, fuel/electricity, tracks, rolling stock, vintage and internal uncertainty differ. No mode switch, added vehicle/track input or invented country traction split is introduced.",
+        "Only the exact inspected source ecoinvent 3.8 cut-off context gains a new approval for UVEK 2025/native 2026 cut-off with ecoinvent 3.10 biosphere. No patch, inverse or consequential route is inferred. Prior approved physical targets, factors and existing recipe contents are preserved.",
+        "Source and native services have positive one-unit references. Factor +1 preserves signed caller quantities, supported uncertainty and formulas, foreground ownership and separate emissions. Freight remains tkm and car transport remains vehicle-km. Do not rescale payload, gross vehicle weight, distance, occupancy, fuel consumption, efficiency or lifetime.",
+        "Use complete native services with their upstream fuel, vehicle/infrastructure, operation, maintenance, releases and end-of-life inputs once. Do not add those source service inputs or credits on top. Native biosphere exclusions, technology vintage, allocation and internal uncertainty differ. Source/native LCI, LCIA and stochastic equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "2e33e77911160f6405663487840cf1141846678ecfd14d14accd39a2b0596024"
         }
       ]
     }
