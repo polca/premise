@@ -1,0 +1,232 @@
+{
+  "status": "five_required_truck_markets_tested_not_full_truck_qualification",
+  "Brightpath_revision": "c2eb573f629f8b116cfa87d366566a29a40b79fc",
+  "runtime_Python_changes": 0,
+  "generator_Python_changes": 0,
+  "Premise_production_Python_changes": 0,
+  "first_source38_truck_cohort_unapproved_rules_before": 9,
+  "first_source38_truck_cohort_unapproved_rules_after": 4,
+  "remaining_rule_ids": [
+    "bp-38a8afc636bbea5a",
+    "bp-561db61b644cb833",
+    "bp-5c29c14c8825b76f",
+    "bp-ca080a54d1c79f8d"
+  ],
+  "focused_Brightpath_tests": {
+    "new_market_tests_and_manifest": 13,
+    "previous_native_truck_tests_passed": 32
+  },
+  "focused_Premise_tests": {
+    "new_market_cache_and_withdrawal": 4,
+    "previous_native_truck_cache_tests": 8
+  },
+  "lint": "Both new test files pass Ruff and Black; both repository diffs pass whitespace checks.",
+  "normal_generator": {
+    "all_three_normal_generator_outputs_match": true,
+    "files": [
+      {
+        "file": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "generated_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "committed_resource_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a"
+      },
+      {
+        "file": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "generated_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "committed_resource_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3"
+      },
+      {
+        "file": "ecoinvent-to-uvek-2025.json",
+        "generated_sha256": "d81619019847341a6fc8ead6b47922eced5ce4f652502bb79582bbdfa6544f5c",
+        "committed_resource_sha256": "d81619019847341a6fc8ead6b47922eced5ce4f652502bb79582bbdfa6544f5c"
+      }
+    ]
+  },
+  "candidate": {
+    "review_sha256": "6dd6a52e13d6e0b13e7299a691fb9ac050610e140bb6fcae5606e07f6d57e059",
+    "native_resource_sha256": "d81619019847341a6fc8ead6b47922eced5ce4f652502bb79582bbdfa6544f5c",
+    "changed_rules": [
+      "bp-4b1d84179efa58e8",
+      "bp-51fc380f01708bab",
+      "bp-6cada1fa986bcf8b",
+      "bp-f67674df84fdfefc",
+      "bp-fb36b57c4751ac7d"
+    ],
+    "actual_required_cases": 5,
+    "new_helpers": 4,
+    "reused_existing_wafer_helper": true,
+    "all_old_recipes_unchanged": true,
+    "preserved_prior_profiles": [
+      {
+        "rule_id": "bp-4b1d84179efa58e8",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "selected_rule_unchanged": true
+      },
+      {
+        "rule_id": "bp-6cada1fa986bcf8b",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "selected_rule_unchanged": true
+      },
+      {
+        "rule_id": "bp-fb36b57c4751ac7d",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "selected_rule_unchanged": true
+      },
+      {
+        "rule_id": "bp-51fc380f01708bab",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "selected_rule_unchanged": true
+      },
+      {
+        "rule_id": "bp-f67674df84fdfefc",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "selected_rule_unchanged": true
+      }
+    ],
+    "refreshed_prior_scopes": [
+      {
+        "rule_id": "bp-4b1d84179efa58e8",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "old_fingerprint": "29be015b38b17465eb9eaca5d5258fcdb0af8bc396495e3df68e08df46bf1f6d",
+        "new_fingerprint": "29c28608fc1c3fcf55d2bf5e0456628c444af8576d9c4c41efad9459d761dc1b",
+        "effective_rule_and_existing_recipes_unchanged": true
+      },
+      {
+        "rule_id": "bp-6cada1fa986bcf8b",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "old_fingerprint": "64164e1e1a29ed940d85cc42eccc7c6a0122141a4b8e6a01ee181e071838e5a6",
+        "new_fingerprint": "969bac9299f5ceb2ca80b8ab65a3f0488049fe20e54977c7b2d30b3a28a94bc3",
+        "effective_rule_and_existing_recipes_unchanged": true
+      },
+      {
+        "rule_id": "bp-fb36b57c4751ac7d",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "old_fingerprint": "4ab517514b583d113eb009ea784e9bb23404d60be35fd8cc568c0adb856a8f6d",
+        "new_fingerprint": "0efe19a9e569d6a9f14d84459ac722fef16b250c1c024def473fd20609f69d7e",
+        "effective_rule_and_existing_recipes_unchanged": true
+      },
+      {
+        "rule_id": "bp-51fc380f01708bab",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "old_fingerprint": "ecfffb7fb5ab40798b894c665fb9080c7b8ab67d1593f971370fdea0178ddcb2",
+        "new_fingerprint": "62d5a77f47d3062cbf3391cc40b1fbc96f8003eee0bf7160165b3d21c214cd80",
+        "effective_rule_and_existing_recipes_unchanged": true
+      },
+      {
+        "rule_id": "bp-f67674df84fdfefc",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "old_fingerprint": "6af6cc714cd1c3efd52c7d7c46ba34b364566581182995dfc7d6c39a8c357664",
+        "new_fingerprint": "d57bf0d98938fffb6d0ce94d6cbb98b0da1a3e2c86e6b0b162a0045fa1ba983b",
+        "effective_rule_and_existing_recipes_unchanged": true
+      }
+    ],
+    "source38_gas_net_MJ_per_m3": 39,
+    "source39_gas_net_MJ_per_m3_preserved": 36,
+    "new_foreground_omissions": 0,
+    "runtime_or_generator_Python_changes": 0,
+    "idempotent_review_replay": true
+  },
+  "no_write_LCIs": {
+    "status": "five_converted_native_market_models_have_finite_signed_LCIs",
+    "transient_activities": 10,
+    "signed_finite_LCI_solves": 10,
+    "independent_native_demand_comparisons": [
+      {
+        "rule_id": "bp-4b1d84179efa58e8",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-51fc380f01708bab",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 3.2839579944266006e-09,
+        "relative_infinity_norm_difference": 6.458600658526456e-12,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-f67674df84fdfefc",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-fb36b57c4751ac7d",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-6cada1fa986bcf8b",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      }
+    ],
+    "matrix_shape": [
+      11957,
+      11957
+    ],
+    "source38_gas_MJ_per_m3": 39,
+    "source_and_biosphere_metadata_preserved": true,
+    "new_Brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "qualification_limit": "Native target-model consistency only; not source/native LCIA equivalence or complete truck-sector qualification."
+  },
+  "workflow_probe": {
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "validation_disabled": false,
+    "database_export_performed": false,
+    "qualification_limit": "First failing source cohort only. More required dependencies may be reported after the remaining four are resolved."
+  },
+  "all_sector_goal": "14 of 19 previously qualified; trucks, battery, final energy, emissions and metals remain unfinished."
+}

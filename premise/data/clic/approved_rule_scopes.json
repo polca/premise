@@ -3066,7 +3066,12 @@
               "recipe_ref": "whole-freight-market-composition-5c66e71f3d897b750544"
             }
           }
-        ]
+        ],
+        "source38_market_extension": {
+          "review_path": "export/uvek_trucks_five_markets_38_review.json",
+          "review_sha256": "6dd6a52e13d6e0b13e7299a691fb9ac050610e140bb6fcae5606e07f6d57e059",
+          "selected_rule_and_existing_recipe_closure_unchanged": true
+        }
       },
       "scopes": [
         {
@@ -3080,7 +3085,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "29be015b38b17465eb9eaca5d5258fcdb0af8bc396495e3df68e08df46bf1f6d"
+          "fingerprint": "29c28608fc1c3fcf55d2bf5e0456628c444af8576d9c4c41efad9459d761dc1b"
         }
       ]
     },
@@ -114592,7 +114597,12 @@
         "source_reference_state": "Sm3,15degC,1013mbar",
         "expected_foreground_records": 2,
         "expected_foreground_biosphere_exchanges": 0,
-        "energy_basis_kind": "actual source reference NCV"
+        "energy_basis_kind": "actual source reference NCV",
+        "source38_market_extension": {
+          "review_path": "export/uvek_trucks_five_markets_38_review.json",
+          "review_sha256": "6dd6a52e13d6e0b13e7299a691fb9ac050610e140bb6fcae5606e07f6d57e059",
+          "selected_rule_and_existing_recipe_closure_unchanged": true
+        }
       },
       "limitations": [
         "Autonomous user-approved source-energy-based delivered-fuel screening proxy, only for ecoinvent3.9cut-off Swiss high-pressure gas. Actual source output is positive1cubicmetre and explicitly declares36MJ net fuel energy perSm3 at15degC/1013mbar. Actual native CH high-pressure consumer supply is positive1MJ of fuel and includes upstream production/trade, transport, compression, network infrastructure, own fuel demand and leakage. A positive1-source-m3 product helper therefore purchases36MJ of that complete native supply. Caller signed volume, formulas and supported uncertainty retain factor+1; no equal-volume Sm3/Nm3 equivalence, ideal-gas state correction, invented calorific factor, extra pipeline/distribution burden or end-use combustion is introduced. This preserves the source declared net fuel energy rather than exact gas composition/volume/carbon mass: source/native density, carbon content, origins and trade mix differ, and separately listed caller stack emissions remain unchanged. Native trade2023 versus source2019statistics, allocation, technology, internal uncertainty and2991upstreambiosphere exclusions remain explicit, with unquantified score effects and no LCIA-equivalence claim. The3.6European market group lacks a verified net calorific property and must not inherit36. No other release, reverse or cross-system-model conversion is qualified."
@@ -114609,7 +114619,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "64164e1e1a29ed940d85cc42eccc7c6a0122141a4b8e6a01ee181e071838e5a6"
+          "fingerprint": "969bac9299f5ceb2ca80b8ab65a3f0488049fe20e54977c7b2d30b3a28a94bc3"
         }
       ]
     },
@@ -117239,7 +117249,12 @@
         "caller_conversion_factor": 1,
         "physical_reference": "one square metre of fabricated wafer; no mass/thickness/wafer-count conversion",
         "expected_foreground_records": 2,
-        "expected_foreground_biosphere_exchanges": 0
+        "expected_foreground_biosphere_exchanges": 0,
+        "source38_market_extension": {
+          "review_path": "export/uvek_trucks_five_markets_38_review.json",
+          "review_sha256": "6dd6a52e13d6e0b13e7299a691fb9ac050610e140bb6fcae5606e07f6d57e059",
+          "selected_rule_and_existing_recipe_closure_unchanged": true
+        }
       },
       "limitations": [
         "Autonomously approved exact3.12cut-off complete-functional fabricated-wafer screening proxy. Source generic fabricated integrated-circuit wafer and native logic-type fabricated wafer both explicitly reference positive1m2 of processed wafer, including layering/patterning/doping/heat treatment, substrate, chemicals/gases, energy, emissions, waste/water treatment, infrastructure and internal chemical transport. Keep the complete native logic-fabrication inventory as a representative non-memory manufacturing route, including its own substrate and yield. Source circuit type is unspecified; do not claim the logic subtype or its process generation is verified. Native memory fabrication is another available subtype, not a measured source mix; no invented logic/memory split or average is introduced. No raw-silicon, unfabricated-wafer, mass-based or wafer-count substitution. Caller area, signs, formulas and supported uncertainty use factor+1. Retain every original market-delivery road/rail leg separately, in addition to the native factorys internal chemical freight. Source European circa2000 versus native Ireland2017/Asian-energy global representation, generic versus logic circuit, wafer thickness/mass, fabrication yield, substrate inputs, chemicals/gases, factory throughput/capacity/lifetime, electricity/heat, emissions, effluent/waste management, allocation, native internal uncertainty and vintage differ substantially. Source nominal wafer mass .7kg/m2 versus native documented1.68kg/m2 is not an area conversion factor; keep1m2 per source1m2 and make no thickness/mass/yield compensation or extra substrate addition. Native logic uses17500kWh and14760MJheat per m2 versus source27600kWh and58959MJ; preserve complete native process quantities without tuning an energy match. The source generic silicon-wafer model itself is a proxy in the host silicon-carbide module; this mapping does not establish a SiC-specific manufacturing inventory or remove that limitation. Market delivery uses complete native RER road/rail with geographic/fleet/vintage warnings and no extra multiplier. No source chemical/emission vector is copied, no isolated avoided-emission/yield credit, source-market freight omission or added die cutting/packaging is introduced. Upstream2991biosphere exclusions and unquantified score effects remain explicit. This is a complete functional screening proxy, not scientific/LCIA equivalence. Other releases, inverse and cross-system-model conversions are not qualified."
@@ -117256,7 +117271,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "4ab517514b583d113eb009ea784e9bb23404d60be35fd8cc568c0adb856a8f6d"
+          "fingerprint": "0efe19a9e569d6a9f14d84459ac722fef16b250c1c024def473fd20609f69d7e"
         }
       ]
     },
@@ -187188,6 +187203,11 @@
           "section": "5.1.11",
           "page": 17,
           "finding": "Dissolved chemicals and solvents reference active kg; solution transport uses solution mass. No generic concentration multiplier."
+        },
+        "source38_market_extension": {
+          "review_path": "export/uvek_trucks_five_markets_38_review.json",
+          "review_sha256": "6dd6a52e13d6e0b13e7299a691fb9ac050610e140bb6fcae5606e07f6d57e059",
+          "selected_rule_and_existing_recipe_closure_unchanged": true
         }
       },
       "limitations": [
@@ -187206,7 +187226,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "ecfffb7fb5ab40798b894c665fb9080c7b8ab67d1593f971370fdea0178ddcb2"
+          "fingerprint": "62d5a77f47d3062cbf3391cc40b1fbc96f8003eee0bf7160165b3d21c214cd80"
         }
       ]
     },
@@ -288501,6 +288521,11 @@
           "original_rule_unchanged": false,
           "extra_source_manufacturing_added": false,
           "purity_yield_or_element_multiplier": false
+        },
+        "source38_market_extension": {
+          "review_path": "export/uvek_trucks_five_markets_38_review.json",
+          "review_sha256": "6dd6a52e13d6e0b13e7299a691fb9ac050610e140bb6fcae5606e07f6d57e059",
+          "selected_rule_and_existing_recipe_closure_unchanged": true
         }
       },
       "limitations": [
@@ -288520,7 +288545,7 @@
             "system_model": "cutoff",
             "version": "2025"
           },
-          "fingerprint": "6af6cc714cd1c3efd52c7d7c46ba34b364566581182995dfc7d6c39a8c357664"
+          "fingerprint": "d57bf0d98938fffb6d0ce94d6cbb98b0da1a3e2c86e6b0b162a0045fa1ba983b"
         }
       ]
     },
@@ -323864,6 +323889,472 @@
             "version": "2025"
           },
           "fingerprint": "d27b5ff7113b723dfa9edb127c7d5cc9444acb538b0e5778c22d3e091bd3ce8c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4b1d84179efa58e8",
+      "operation": "replace",
+      "mapping_method": "reviewed_market_composition",
+      "review_path": "export/uvek_trucks_five_markets_38_review.json",
+      "review_sha256": "6dd6a52e13d6e0b13e7299a691fb9ac050610e140bb6fcae5606e07f6d57e059",
+      "authorization": "Standing autonomous goal and automatic approval for analogous inspected native functional proxies, preserving exact reference and treatment signs.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for waste electric and electronic equipment",
+          "reference product": "waste electric and electronic equipment",
+          "unit": "kilogram"
+        },
+        "target_recipe": "trucks-38-weee-collection",
+        "conversion_factor": -1,
+        "source_witness": {
+          "identity": {
+            "name": "market for waste electric and electronic equipment",
+            "reference product": "waste electric and electronic equipment",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 3,
+          "inventory_sha256": "a69924357a45ee4fb21ce6ecc6cb0d0a7cb4509b123137e322bb113a0a6c4d06",
+          "metadata_sha256": "70573cf6dec1381854518e754809c6911d364ec77875b75f0c82a9c0d88f99e6",
+          "comment_sha256": "91f2eb5930ac099356acfd8ebbe1f1be60e846b67b9e5573e302dacf71963de4",
+          "product_information_sha256": "8830ac5ef48a1fe9520ad172cea12139c59630b8468912da031161416819ea77"
+        },
+        "source_supplier_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of waste electric and electronic equipment, shredding",
+              "reference product": "waste electric and electronic equipment",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 17,
+            "inventory_sha256": "f2a19dd066c619c69a36097373c20c6306936948d8764058245ee1a76be44f8f",
+            "metadata_sha256": "5e1c31ea5059b5f32dff4638183ae368beeef927cb49d39c2a83826a845352f3",
+            "comment_sha256": "aab965099de37b23cc88fdf128b8ea9d045d1ade1582733430a3680c6ba0de32",
+            "product_information_sha256": "8830ac5ef48a1fe9520ad172cea12139c59630b8468912da031161416819ea77"
+          }
+        ],
+        "reuse_existing_recipe": false
+      },
+      "limitations": [
+        "Retain the complete nonempty WEEE shredding service per kg and both original rail/road collection legs. Source shredding has a negative1kg waste reference and17nonproduction exchanges; native Swiss shredding has a positive1kg reference and20nonproduction exchanges, covering mechanical treatment, separation, infrastructure, energy and releases. Native technology/composition, allocation, residue/recovery and geography are screening differences. Do not replace paid processing by an empty recycling handover or add avoided-metal credits. Preserve source3.8transport uncertainty rather than inheriting the old mean-only market helper.",
+        "Only the independently inspected exact source ecoinvent3.8cut-off context gains permission to the UVEK2025/native2026 route with canonical ecoinvent3.10biosphere. Other releases/patches, inverse and consequential routes gain no new approval. All previously approved selected rules and their recipes remain unchanged.",
+        "Preserve signed caller quantities, formulas, ownership, supported marginal uncertainty and separate caller inputs/emissions. Negative-reference source waste uses factor-1 exactly once to a positive treatment-service helper; positive product references retain factor+1. Formula and uncertainty coordinates follow the same factor, without taking absolute values.",
+        "Complete native processing/material/fuel inventories replace source producer internals with their own technology, allocation, upstream delivery, emissions and uncertainty. Retained explicit source-market freight is additional; source and native boundaries are not claimed identical. Grade/design, geography, vintage, internal uncertainty, native biosphere exclusions and scores differ; source/native LCIA and stochastic equivalence are unverified. No source foreground omission, zeroing of a nonempty processor, invented recovery credit or concentration/yield/density/energy calibration."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "298c4bcee0f1e0fb2d8a2fafd1fb62599906eebd1cb996249a90290f65eb1562"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-51fc380f01708bab",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_final_market",
+      "review_path": "export/uvek_trucks_five_markets_38_review.json",
+      "review_sha256": "6dd6a52e13d6e0b13e7299a691fb9ac050610e140bb6fcae5606e07f6d57e059",
+      "authorization": "Standing autonomous goal and automatic approval for analogous inspected native functional proxies, preserving exact reference and treatment signs.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for potassium hydroxide",
+          "reference product": "potassium hydroxide",
+          "unit": "kilogram"
+        },
+        "target_recipe": "trucks-38-koh-delivery",
+        "conversion_factor": 1,
+        "source_witness": {
+          "identity": {
+            "name": "market for potassium hydroxide",
+            "reference product": "potassium hydroxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "inventory_sha256": "9d2ab65985981a06bb5268b0d087bb9b11a426bdeca44e5b11b999b5b37477db",
+          "metadata_sha256": "18b72b7ea0d2fa90895545ea53762a58f1e13b1b2cbcd91fc227ec3902eda9cd",
+          "comment_sha256": "4969a410f5d1758a9c620de131c3f2c3742114b14121dbe1f475a09be9c9812e",
+          "product_information_sha256": "7791d4434efdd912c77fc10d638ca833e31d4313a8ad90de2476472396900710"
+        },
+        "source_supplier_witnesses": [
+          {
+            "identity": {
+              "name": "potassium hydroxide production",
+              "reference product": "potassium hydroxide",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 12,
+            "inventory_sha256": "20babb989a1b5140fc5703b9e4a521128e2e03e1f4767e7d7e42d4cba302e5a0",
+            "metadata_sha256": "237126c29d00cf4dd40328565f791b7b7474689d3f08db7b4776eb0dd31b0aa0",
+            "comment_sha256": "f82177d4c450b02ce90ff8c5b6ec792d0fb3758b66f5054bf1465f6311aa7f06",
+            "product_information_sha256": "7791d4434efdd912c77fc10d638ca833e31d4313a8ad90de2476472396900710"
+          },
+          {
+            "identity": {
+              "name": "potassium hydroxide production",
+              "reference product": "potassium hydroxide",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 19,
+            "inventory_sha256": "b8f7e9e767ea0e3f26e95330a000f8bcc0b8cbc8904078d3216c28777eff05e5",
+            "metadata_sha256": "43f318566ca50afd6cfd0b906a6d3c6386511a107a6fc064b01cce0fea546ba1",
+            "comment_sha256": "9021eb2a12f23bec9589e397a4000b0df1f348374e9eaf120d51afce27b0ad35",
+            "product_information_sha256": "7791d4434efdd912c77fc10d638ca833e31d4313a8ad90de2476472396900710"
+          }
+        ],
+        "reuse_existing_recipe": false
+      },
+      "limitations": [
+        "Retain both source KOH producer shares and all four original final-delivery legs. Both source producers explicitly supply1kg pure KOH and state the85.6%-report data were already scaled; dry/wet reference properties are1kg active material. Reuse the documented native active-kg KOH screening basis, not a wet-mixture or inferred K2O/KCl mass conversion. No division by0.856, extra evaporation or co-product credit. Native precursor/electrolysis, chlorine/hydrogen allocation, drying, internal delivery and assay/vintage differ. Source3.8freight uncertainty differs from3.9and is retained.",
+        "Only the independently inspected exact source ecoinvent3.8cut-off context gains permission to the UVEK2025/native2026 route with canonical ecoinvent3.10biosphere. Other releases/patches, inverse and consequential routes gain no new approval. All previously approved selected rules and their recipes remain unchanged.",
+        "Preserve signed caller quantities, formulas, ownership, supported marginal uncertainty and separate caller inputs/emissions. Negative-reference source waste uses factor-1 exactly once to a positive treatment-service helper; positive product references retain factor+1. Formula and uncertainty coordinates follow the same factor, without taking absolute values.",
+        "Complete native processing/material/fuel inventories replace source producer internals with their own technology, allocation, upstream delivery, emissions and uncertainty. Retained explicit source-market freight is additional; source and native boundaries are not claimed identical. Grade/design, geography, vintage, internal uncertainty, native biosphere exclusions and scores differ; source/native LCIA and stochastic equivalence are unverified. No source foreground omission, zeroing of a nonempty processor, invented recovery credit or concentration/yield/density/energy calibration."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f88e59b766a6a32fe10d847d167a9077db61342c23901fcde0cce4ce7618be75"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f67674df84fdfefc",
+      "operation": "replace",
+      "mapping_method": "reviewed_battery_chemical_supply_39",
+      "review_path": "export/uvek_trucks_five_markets_38_review.json",
+      "review_sha256": "6dd6a52e13d6e0b13e7299a691fb9ac050610e140bb6fcae5606e07f6d57e059",
+      "authorization": "Standing autonomous goal and automatic approval for analogous inspected native functional proxies, preserving exact reference and treatment signs.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for benzaldehyde",
+          "reference product": "benzaldehyde",
+          "unit": "kilogram"
+        },
+        "target_recipe": "trucks-38-benzaldehyde-delivery",
+        "conversion_factor": 1,
+        "source_witness": {
+          "identity": {
+            "name": "market for benzaldehyde",
+            "reference product": "benzaldehyde",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "inventory_sha256": "60f03dea71fde597952b9e20abf127a867bf571526f65696b5464f54585f1940",
+          "metadata_sha256": "2138aafe49c5b590e157053f40be482a9ab42e5b57ca280bdbee5814e086abcd",
+          "comment_sha256": "1ff4460e0aa2a35a20a9ad1d8b7356189275ede63d703881412f9149d6895661",
+          "product_information_sha256": "e5a8e1d527beadf405f3e53689c8354ecfc3e6a08405b8e9695bab7c222676bc"
+        },
+        "source_supplier_witnesses": [
+          {
+            "identity": {
+              "name": "benzaldehyde production",
+              "reference product": "benzaldehyde",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 17,
+            "inventory_sha256": "24af5a751bb8b2540e1f5e783249c7df902ab780688cda87f432e3c7ba65778a",
+            "metadata_sha256": "8c434204eea0ff2d228b288345f964b5e0381939cfc445d0d6f567e93c0964d2",
+            "comment_sha256": "2a86ebefe5a679e2cf27e956e94e1f99ca29ab52dbaec7cac3e04b8115b96020",
+            "product_information_sha256": "e5a8e1d527beadf405f3e53689c8354ecfc3e6a08405b8e9695bab7c222676bc"
+          }
+        ],
+        "reuse_existing_recipe": false
+      },
+      "limitations": [
+        "Same benzaldehyde/CAS100-52-7/C7H6O product kg from the inherited benzal-chloride route. Retain the native xx-labelled complete process and every source3.8rail/barge/lorry leg, preserving its distinct temporal-pedigree and uncertainty data. Native estimated processing, grade, allocation and delivery differ. No reaction-yield, source precursor or extra plant burden is added.",
+        "Only the independently inspected exact source ecoinvent3.8cut-off context gains permission to the UVEK2025/native2026 route with canonical ecoinvent3.10biosphere. Other releases/patches, inverse and consequential routes gain no new approval. All previously approved selected rules and their recipes remain unchanged.",
+        "Preserve signed caller quantities, formulas, ownership, supported marginal uncertainty and separate caller inputs/emissions. Negative-reference source waste uses factor-1 exactly once to a positive treatment-service helper; positive product references retain factor+1. Formula and uncertainty coordinates follow the same factor, without taking absolute values.",
+        "Complete native processing/material/fuel inventories replace source producer internals with their own technology, allocation, upstream delivery, emissions and uncertainty. Retained explicit source-market freight is additional; source and native boundaries are not claimed identical. Grade/design, geography, vintage, internal uncertainty, native biosphere exclusions and scores differ; source/native LCIA and stochastic equivalence are unverified. No source foreground omission, zeroing of a nonempty processor, invented recovery credit or concentration/yield/density/energy calibration."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ece5a4b0fe9081cb2fe92598a3fe44886994821bb2036b8b0a8ce79001e80059"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fb36b57c4751ac7d",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_wafer",
+      "review_path": "export/uvek_trucks_five_markets_38_review.json",
+      "review_sha256": "6dd6a52e13d6e0b13e7299a691fb9ac050610e140bb6fcae5606e07f6d57e059",
+      "authorization": "Standing autonomous goal and automatic approval for analogous inspected native functional proxies, preserving exact reference and treatment signs.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for wafer, fabricated, for integrated circuit",
+          "reference product": "wafer, fabricated, for integrated circuit",
+          "unit": "square meter"
+        },
+        "target_recipe": "deferred-wafer-25644cb27de4f11c68be",
+        "conversion_factor": 1,
+        "source_witness": {
+          "identity": {
+            "name": "market for wafer, fabricated, for integrated circuit",
+            "reference product": "wafer, fabricated, for integrated circuit",
+            "location": "GLO",
+            "unit": "square meter"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 3,
+          "inventory_sha256": "adf2ac83c11d887870cb6c562bb71aaf54b56f02ab2fc2bf621047beaf947ac8",
+          "metadata_sha256": "282280cccb96e6a4f25d332091f96c710d7cfb3d56ef6dd42119db4c52747901",
+          "comment_sha256": "0a47011cfa23ea7f3e00afcb83180c05368ac7e7eb8d142fccbaf78d839a7470",
+          "product_information_sha256": "4c5d170c54817049ef07fe959e62faefc8d75b12979ef88be0f551cac53789a6"
+        },
+        "source_supplier_witnesses": [
+          {
+            "identity": {
+              "name": "wafer production, fabricated, for integrated circuit",
+              "reference product": "wafer, fabricated, for integrated circuit",
+              "location": "GLO",
+              "unit": "square meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 86,
+            "inventory_sha256": "ead1b8508db469e239710f4e1bf6ac3bc1aeb8452da552c8fb2d5ae76a4d7878",
+            "metadata_sha256": "c507e8ec6665fe5001d1870985377ee1c8f2dd317bfed994a71f2ec989eb5226",
+            "comment_sha256": "789479134999ad41c0d11e4c4e91fb3d19c82453bb743c1dba09c8679e49b26b",
+            "product_information_sha256": "4c5d170c54817049ef07fe959e62faefc8d75b12979ef88be0f551cac53789a6"
+          }
+        ],
+        "reuse_existing_recipe": true
+      },
+      "limitations": [
+        "Generic fabricated IC wafer and complete native logic-type fabricated wafer both reference1m2 of processed wafer. Use the previously reviewed logic subtype as a screening proxy, not a raw wafer or a measured logic/memory mix. Native fabrication includes its own substrate, chemicals/gases, energy, releases, water/waste treatment and infrastructure. Preserve both source rail/road legs, caller area and uncertainty. Source technology/circuit type, native Ireland2017/Asian-energy representation, process generation/yield/thickness and internal uncertainty differ. No area-to-mass/count, fabricated-yield, energy or process-node multiplier. The existing complete recipe is reused: nominal values and metadata match, with only adjacent-float rounding of two uncertainty-scale fields.",
+        "Only the independently inspected exact source ecoinvent3.8cut-off context gains permission to the UVEK2025/native2026 route with canonical ecoinvent3.10biosphere. Other releases/patches, inverse and consequential routes gain no new approval. All previously approved selected rules and their recipes remain unchanged.",
+        "Preserve signed caller quantities, formulas, ownership, supported marginal uncertainty and separate caller inputs/emissions. Negative-reference source waste uses factor-1 exactly once to a positive treatment-service helper; positive product references retain factor+1. Formula and uncertainty coordinates follow the same factor, without taking absolute values.",
+        "Complete native processing/material/fuel inventories replace source producer internals with their own technology, allocation, upstream delivery, emissions and uncertainty. Retained explicit source-market freight is additional; source and native boundaries are not claimed identical. Grade/design, geography, vintage, internal uncertainty, native biosphere exclusions and scores differ; source/native LCIA and stochastic equivalence are unverified. No source foreground omission, zeroing of a nonempty processor, invented recovery credit or concentration/yield/density/energy calibration."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "32ec2a44135ebb39039e42d4b780244dfb6c38904c9dfa1d60bddb188e18ba11"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6cada1fa986bcf8b",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_delivered_gas",
+      "review_path": "export/uvek_trucks_five_markets_38_review.json",
+      "review_sha256": "6dd6a52e13d6e0b13e7299a691fb9ac050610e140bb6fcae5606e07f6d57e059",
+      "authorization": "Standing autonomous goal and automatic approval for analogous inspected native functional proxies, preserving exact reference and treatment signs.",
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "market for natural gas, high pressure",
+          "reference product": "natural gas, high pressure",
+          "unit": "cubic meter"
+        },
+        "target_recipe": "trucks-38-gas-net39",
+        "conversion_factor": 1,
+        "source_witness": {
+          "identity": {
+            "name": "market for natural gas, high pressure",
+            "reference product": "natural gas, high pressure",
+            "location": "CH",
+            "unit": "cubic meter"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 17,
+          "inventory_sha256": "7c2a7a0356e5c71d51219526c4777d8d70bb18c542aeaeffce65c994f33658ad",
+          "metadata_sha256": "ee5fa807b9cce7c276a7ad250f2bcf0b85abf54d41d018c125d458fbc0972e20",
+          "comment_sha256": "5ce13d167de4159838e124032260df48a17802dff80a623511a9df4c9d84a7f0",
+          "product_information_sha256": "c0cb28ed13f5d1594d66f9555d7324ac3c82c184abf7e703a0182174771ff8b8"
+        },
+        "source_supplier_witnesses": [
+          {
+            "identity": {
+              "name": "natural gas, high pressure, import from DE",
+              "reference product": "natural gas, high pressure",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 8,
+            "inventory_sha256": "8403dfc687f99e9a1f86fe4b4130419b20031612ef53d2236445e85d226a0605",
+            "metadata_sha256": "4ac544b8e57d7252ac359635db0754a37572cc33e2c6e6a388ce1195f1c3f8b0",
+            "comment_sha256": "557db4846b1bfc80023d03a2b80aaa1bfd6d2146c8c6302d3ee7619d922cb724",
+            "product_information_sha256": "c0cb28ed13f5d1594d66f9555d7324ac3c82c184abf7e703a0182174771ff8b8"
+          },
+          {
+            "identity": {
+              "name": "natural gas, high pressure, import from DZ",
+              "reference product": "natural gas, high pressure",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 10,
+            "inventory_sha256": "da22621966a2396633319d51eec4b7da0f77d3559c87573e1c433127f189ed22",
+            "metadata_sha256": "4706bf7880d0d32b67e9067a142ad8dfa960c491d161c3e4e0500fffc8dbd2f1",
+            "comment_sha256": "565b0f0ef837c812ed231bc7e449de4f7dc4f9475be98936e240a63cf1e825c8",
+            "product_information_sha256": "c0cb28ed13f5d1594d66f9555d7324ac3c82c184abf7e703a0182174771ff8b8"
+          },
+          {
+            "identity": {
+              "name": "natural gas, high pressure, import from GB",
+              "reference product": "natural gas, high pressure",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 9,
+            "inventory_sha256": "d8fa25e15b8b3c6262451a28762e75444ca85de47988abbb989f62740eac813c",
+            "metadata_sha256": "494f3c1fb07092242672dd8ae5a65fda8d08ae8bd506c71ff6baf5f055c261bc",
+            "comment_sha256": "dad50b3fc3d05de684cbe9cc76346dd374d5326901faebe9050a509d1f0b1a8a",
+            "product_information_sha256": "c0cb28ed13f5d1594d66f9555d7324ac3c82c184abf7e703a0182174771ff8b8"
+          },
+          {
+            "identity": {
+              "name": "natural gas, high pressure, import from NL",
+              "reference product": "natural gas, high pressure",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 10,
+            "inventory_sha256": "bee82c95b269adfdb1736757780bf526704bb56b1a8b944b8258c6966e267c17",
+            "metadata_sha256": "783acf943df6e2a58cb77648c8e123401effe380d196c650c9b9bc54bcf61992",
+            "comment_sha256": "465831daa5efd3e0badd53885df25f58a6484a211e4ba0fed4235e78e10898db",
+            "product_information_sha256": "c0cb28ed13f5d1594d66f9555d7324ac3c82c184abf7e703a0182174771ff8b8"
+          },
+          {
+            "identity": {
+              "name": "natural gas, high pressure, import from NO",
+              "reference product": "natural gas, high pressure",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 11,
+            "inventory_sha256": "6fa8fa2e7b6425b7c7db6b10a862966072f8a19ced432fcb0b4ec6403883af35",
+            "metadata_sha256": "06a98ef36eeb56ebcb9187810e41d1ceb9a7402eaeaa7d8e3582b7fe34a52875",
+            "comment_sha256": "8c95be643a3f1cd9f3138de712cbde6215ca4f7879e48140653d3ab6a37ab8c6",
+            "product_information_sha256": "c0cb28ed13f5d1594d66f9555d7324ac3c82c184abf7e703a0182174771ff8b8"
+          },
+          {
+            "identity": {
+              "name": "natural gas, high pressure, import from RU",
+              "reference product": "natural gas, high pressure",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 11,
+            "inventory_sha256": "a3a628241b209f833a3af6147c2430c7ef8e28950f82daf6cc7dbd65c874f918",
+            "metadata_sha256": "7ef151fc315765a0b8a1a851f63b0fd1cacaa8ea4476a067acc7352b9066d538",
+            "comment_sha256": "446e5eca408329e80fb6ef71097263f488b36f24f3b3e7b0a52e731d63c6480f",
+            "product_information_sha256": "c0cb28ed13f5d1594d66f9555d7324ac3c82c184abf7e703a0182174771ff8b8"
+          }
+        ],
+        "reuse_existing_recipe": false
+      },
+      "limitations": [
+        "Source3.8explicitly declares39MJ net fuel energy per positive source m3, unlike source3.9with36MJ. A positive1-source-m3 helper therefore purchases39MJ of complete native Swiss high-pressure consumer gas; caller volume keeps factor+1. Native reference is positive1MJ with a documented36MJ/Nm3 calorific basis and complete production/trade/transport/compression/network/own-fuel/leakage inventory. Preserve source declared net energy, not exact source gas volume/composition/carbon mass. Do not assume equal Sm3/Nm3, apply a guessed temperature/density factor or add source pipeline losses, leakage, infrastructure or end-use combustion again. Source3.8trade/density/carbon properties, native2023trade and internal allocation differ; separate caller stack emissions remain unchanged. The12source internal formulas are replaced by the complete native supply, not transplanted into an unsupported parameter graph.",
+        "Only the independently inspected exact source ecoinvent3.8cut-off context gains permission to the UVEK2025/native2026 route with canonical ecoinvent3.10biosphere. Other releases/patches, inverse and consequential routes gain no new approval. All previously approved selected rules and their recipes remain unchanged.",
+        "Preserve signed caller quantities, formulas, ownership, supported marginal uncertainty and separate caller inputs/emissions. Negative-reference source waste uses factor-1 exactly once to a positive treatment-service helper; positive product references retain factor+1. Formula and uncertainty coordinates follow the same factor, without taking absolute values.",
+        "Complete native processing/material/fuel inventories replace source producer internals with their own technology, allocation, upstream delivery, emissions and uncertainty. Retained explicit source-market freight is additional; source and native boundaries are not claimed identical. Grade/design, geography, vintage, internal uncertainty, native biosphere exclusions and scores differ; source/native LCIA and stochastic equivalence are unverified. No source foreground omission, zeroing of a nonempty processor, invented recovery credit or concentration/yield/density/energy calibration."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6bb683a766b4b909e0762e8a4631694b75a8b729043ef458e72b32511e4bd086"
         }
       ]
     }
