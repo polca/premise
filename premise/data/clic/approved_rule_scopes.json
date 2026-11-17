@@ -327758,6 +327758,744 @@
           "fingerprint": "c7c26f48c108bd81f9bbc23d674e8b14947db528e8044fb730c7f1ee66564c2d"
         }
       ]
+    },
+    {
+      "rule_id": "bp-1a1a8f5692e27e73",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_trucks_native_services_312_review.json",
+      "review_sha256": "2f2b329cf11b2217caa7c09943f5d48c6a7fbdc6fe905bafe2b2f7ca99453f17",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function native service proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "treatment of used lorry, 28 metric ton",
+            "reference product": "used lorry, 28 metric ton",
+            "unit": "unit",
+            "location": "CH"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "98864dd016b56b7103b86c3306234f32f0cc43553777d463df665e7077944a55",
+          "metadata_sha256": "75dffeb9f47e041ce42d01e033fa5a2d94a80bf322faaaf859bf87710f6ad65b"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, lorry 28t",
+          "reference product": "Disposal, lorry 28t",
+          "unit": "unit"
+        },
+        "conversion_factor": -1,
+        "native_suppliers": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, lorry 28t",
+              "reference product": "Disposal, lorry 28t",
+              "unit": "unit",
+              "location": "CH"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 6,
+            "inventory_sha256": "9446bb448fc116205ccd671748444247e72d59ed5f1e1897b7da031b4cf0e5ff",
+            "metadata_sha256": "7b810f317aaeb0b8981e7eb00edb1cbcbc1a338d991fc04dc8849a5d0d6c584d"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, lorry 28t",
+              "reference product": "Disposal, lorry 28t",
+              "unit": "unit",
+              "location": "CH"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 6,
+            "inventory_sha256": "4802a344d8f892e5056fa1c75b1bf76f6a8934002afd81ff3ec0efdf69c771c8",
+            "metadata_sha256": "768f179e34e69bbbf22e4559c4a0eadf1db6e8410d656f99a7d4add43860bb9f"
+          }
+        }
+      },
+      "limitations": [
+        "Source reference is negative one unit of the named used lorry; native complete disposal provides positive one unit of the same nominal16t,28t or40t class. Factor-1 converts a negative source disposal demand into positive native disposal. Retain native end-of-life allocation and recovery once without inventing a second material credit or recalibrating by gross weight.",
+        "Only independently inspected exact ecoinvent 3.12 cut-off receives new Premise permission. Existing Brightpath rules, targets, factors, native inventories, authoring rules and older independently approved profiles are unchanged. No new helper, source omission, reverse route, patch or consequential permission is inferred.",
+        "Use the complete existing native service of the matching named lorry class or wear-particle treatment. Preserve the caller functional unit, signed quantity, supported uncertainty, formulas, independent operations and separately listed emissions. No truck-mass, payload, distance, lifetime or efficiency multiplier and no second vehicle, maintenance, road, fuel or disposal burden is added.",
+        "Native vehicle design, tare/gross-weight assumptions, maintenance lifetime, operation, infrastructure, geography, component composition, recovery/allocation, release compartments, emissions controls and vintage may differ. Native upstream inventories and biosphere exclusions replace the source internals. These are complete-service screening proxies; functional-performance, stochastic, LCI/LCIA equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e298f536b6f5a2b020507d78f09419adbbaf24f7ce4a0fda8c724e560d238b2a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-35217cf5e68b84a0",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_trucks_native_services_312_review.json",
+      "review_sha256": "2f2b329cf11b2217caa7c09943f5d48c6a7fbdc6fe905bafe2b2f7ca99453f17",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function native service proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "treatment of brake wear emissions, lorry",
+            "reference product": "brake wear emissions, lorry",
+            "unit": "kilogram",
+            "location": "RER"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 32,
+          "inventory_sha256": "5db25bb586d0c9f6b3b1e7d3bda7bb27ea7e82ab3c284a5464c2ca7c9713edf0",
+          "metadata_sha256": "9ad91f460f382281eda63fd5cba4ade4e4d80b598b0946ab6ff51857d6fed243"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Brake wear emissions, lorry",
+          "reference product": "Brake wear emissions, lorry",
+          "unit": "kilogram"
+        },
+        "conversion_factor": -1,
+        "native_suppliers": {
+          "2025": {
+            "identity": {
+              "name": "Brake wear emissions, lorry",
+              "reference product": "Brake wear emissions, lorry",
+              "unit": "kilogram",
+              "location": "RER"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 32,
+            "inventory_sha256": "ea76e05cf21dbc1575a3b248429bf93f586ebdb19be8dcfb603dc82a7b4b7879",
+            "metadata_sha256": "a2500eb9a0e9d3abbec30e5565c54149c0a36ded9f7150840cbf9b4e21398a69"
+          },
+          "2026": {
+            "identity": {
+              "name": "Brake wear emissions, lorry",
+              "reference product": "Brake wear emissions, lorry",
+              "unit": "kilogram",
+              "location": "RER"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 32,
+            "inventory_sha256": "876a56056d95a940c1b986fce918303851e41e744bc93f852a027434549dc182",
+            "metadata_sha256": "9c05dea70a226a0e40867a8e39512eb32cb4b1acaff176a2d4ce1b071ce5fe01"
+          }
+        }
+      },
+      "limitations": [
+        "Source reference is negative one kg of the named brake/road/tyre wear-emission treatment; native release service references positive one kg of that same wear category. Factor-1 preserves treatment demand and reverses actual negative-demand credits consistently. Native particle composition, pollutants, release compartments and vintage differ; use its complete release model once and retain separately listed caller emissions. Do not substitute truck transport per km, treat all wear as one substance, or add duplicate wear emissions.",
+        "Only independently inspected exact ecoinvent 3.12 cut-off receives new Premise permission. Existing Brightpath rules, targets, factors, native inventories, authoring rules and older independently approved profiles are unchanged. No new helper, source omission, reverse route, patch or consequential permission is inferred.",
+        "Use the complete existing native service of the matching named lorry class or wear-particle treatment. Preserve the caller functional unit, signed quantity, supported uncertainty, formulas, independent operations and separately listed emissions. No truck-mass, payload, distance, lifetime or efficiency multiplier and no second vehicle, maintenance, road, fuel or disposal burden is added.",
+        "Native vehicle design, tare/gross-weight assumptions, maintenance lifetime, operation, infrastructure, geography, component composition, recovery/allocation, release compartments, emissions controls and vintage may differ. Native upstream inventories and biosphere exclusions replace the source internals. These are complete-service screening proxies; functional-performance, stochastic, LCI/LCIA equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b7137c1c4b8f0a5f3e059d7cebb6937a35b6347408242a865783292964d046bc"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-39732882b4a46402",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_trucks_native_services_312_review.json",
+      "review_sha256": "2f2b329cf11b2217caa7c09943f5d48c6a7fbdc6fe905bafe2b2f7ca99453f17",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function native service proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "treatment of road wear emissions, lorry",
+            "reference product": "road wear emissions, lorry",
+            "unit": "kilogram",
+            "location": "RER"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 3,
+          "inventory_sha256": "8c6f0161a0efd59e450a8c026b549fcc0b2ad9d91ce0842e2d968906a476b325",
+          "metadata_sha256": "ee1bf290590e462c97d1c18539e2edc38a37a4aa06f9468b7333de0c19e98812"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Road wear emissions, lorry",
+          "reference product": "Road wear emissions, lorry",
+          "unit": "kilogram"
+        },
+        "conversion_factor": -1,
+        "native_suppliers": {
+          "2025": {
+            "identity": {
+              "name": "Road wear emissions, lorry",
+              "reference product": "Road wear emissions, lorry",
+              "unit": "kilogram",
+              "location": "RER"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 3,
+            "inventory_sha256": "e27e9cb63d87c457e37ed857b9124ea915042a8996ce4de99bb923d2c419296e",
+            "metadata_sha256": "f707080c2dcecc150e5bb7aac91b3d9ccb7462b9d9d7ddb8c07a1cd574c48294"
+          },
+          "2026": {
+            "identity": {
+              "name": "Road wear emissions, lorry",
+              "reference product": "Road wear emissions, lorry",
+              "unit": "kilogram",
+              "location": "RER"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 3,
+            "inventory_sha256": "735a94e555eea51a217565c054a503e25efe7f7e9acaf1e983ca59c2d711247c",
+            "metadata_sha256": "010717f56a68c82787ca2d56580ee4c48269b1dd345b74439f57c1debfddb18a"
+          }
+        }
+      },
+      "limitations": [
+        "Source reference is negative one kg of the named brake/road/tyre wear-emission treatment; native release service references positive one kg of that same wear category. Factor-1 preserves treatment demand and reverses actual negative-demand credits consistently. Native particle composition, pollutants, release compartments and vintage differ; use its complete release model once and retain separately listed caller emissions. Do not substitute truck transport per km, treat all wear as one substance, or add duplicate wear emissions.",
+        "Only independently inspected exact ecoinvent 3.12 cut-off receives new Premise permission. Existing Brightpath rules, targets, factors, native inventories, authoring rules and older independently approved profiles are unchanged. No new helper, source omission, reverse route, patch or consequential permission is inferred.",
+        "Use the complete existing native service of the matching named lorry class or wear-particle treatment. Preserve the caller functional unit, signed quantity, supported uncertainty, formulas, independent operations and separately listed emissions. No truck-mass, payload, distance, lifetime or efficiency multiplier and no second vehicle, maintenance, road, fuel or disposal burden is added.",
+        "Native vehicle design, tare/gross-weight assumptions, maintenance lifetime, operation, infrastructure, geography, component composition, recovery/allocation, release compartments, emissions controls and vintage may differ. Native upstream inventories and biosphere exclusions replace the source internals. These are complete-service screening proxies; functional-performance, stochastic, LCI/LCIA equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c72c635acb031872a062faa208f08e50cc2bc37ce0c459eae7bc53d608d72407"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5c8891b6124ad797",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_trucks_native_services_312_review.json",
+      "review_sha256": "2f2b329cf11b2217caa7c09943f5d48c6a7fbdc6fe905bafe2b2f7ca99453f17",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function native service proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "treatment of used lorry, 16 metric ton",
+            "reference product": "used lorry, 16 metric ton",
+            "unit": "unit",
+            "location": "CH"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "b6f05bbf443c8df9f7afd628ae0321703415db36765ed34d87b3c86553a594b6",
+          "metadata_sha256": "f45e45877b7613a93e003de7d5137d19172d6513145a75ae209f779b69a54ff5"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, lorry 16t",
+          "reference product": "Disposal, lorry 16t",
+          "unit": "unit"
+        },
+        "conversion_factor": -1,
+        "native_suppliers": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, lorry 16t",
+              "reference product": "Disposal, lorry 16t",
+              "unit": "unit",
+              "location": "CH"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 6,
+            "inventory_sha256": "6d430064b890c891c78c2b495db6fee9f2fcb2232168dd1d88dd383c78b57752",
+            "metadata_sha256": "45ea837fd7d3c5d054ebcd90bf369679e9794fd94c899084ac1df35b98776d09"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, lorry 16t",
+              "reference product": "Disposal, lorry 16t",
+              "unit": "unit",
+              "location": "CH"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 6,
+            "inventory_sha256": "5959b8c93492846fc9cd0d75feb581fcf1b96aa936ff3d617189ae54167b2fe1",
+            "metadata_sha256": "18047aa6eec49caa437bdcfa8d4176709348c91bf279bc567040739f352766e1"
+          }
+        }
+      },
+      "limitations": [
+        "Source reference is negative one unit of the named used lorry; native complete disposal provides positive one unit of the same nominal16t,28t or40t class. Factor-1 converts a negative source disposal demand into positive native disposal. Retain native end-of-life allocation and recovery once without inventing a second material credit or recalibrating by gross weight.",
+        "Only independently inspected exact ecoinvent 3.12 cut-off receives new Premise permission. Existing Brightpath rules, targets, factors, native inventories, authoring rules and older independently approved profiles are unchanged. No new helper, source omission, reverse route, patch or consequential permission is inferred.",
+        "Use the complete existing native service of the matching named lorry class or wear-particle treatment. Preserve the caller functional unit, signed quantity, supported uncertainty, formulas, independent operations and separately listed emissions. No truck-mass, payload, distance, lifetime or efficiency multiplier and no second vehicle, maintenance, road, fuel or disposal burden is added.",
+        "Native vehicle design, tare/gross-weight assumptions, maintenance lifetime, operation, infrastructure, geography, component composition, recovery/allocation, release compartments, emissions controls and vintage may differ. Native upstream inventories and biosphere exclusions replace the source internals. These are complete-service screening proxies; functional-performance, stochastic, LCI/LCIA equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d53f5771660799b407cd0e733d4cb18fc80a71c3d86776dc319674df50005304"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7bd5debfe58a82f0",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_trucks_native_services_312_review.json",
+      "review_sha256": "2f2b329cf11b2217caa7c09943f5d48c6a7fbdc6fe905bafe2b2f7ca99453f17",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function native service proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "maintenance, lorry 16 metric ton",
+            "reference product": "maintenance, lorry 16 metric ton",
+            "unit": "unit",
+            "location": "CH"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 9,
+          "inventory_sha256": "7e0371e01dbe25735d3d839cf601c41d804367d85ad99b70b6284e6596ee7ccb",
+          "metadata_sha256": "ada64970193845bd8866f0b790320b692fe82722b177a0e4478c00048205cef1"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Maintenance, lorry 16t",
+          "reference product": "Maintenance, lorry 16t",
+          "unit": "unit"
+        },
+        "conversion_factor": 1,
+        "native_suppliers": {
+          "2025": {
+            "identity": {
+              "name": "Maintenance, lorry 16t",
+              "reference product": "Maintenance, lorry 16t",
+              "unit": "unit",
+              "location": "CH"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 11,
+            "inventory_sha256": "a277aa20642bdf2d9b462493663ad0b13996dddd0b61543cda5b6dae32b13bbd",
+            "metadata_sha256": "c03e99cd9c447f2f6797a033a8261e92a29f5bc42799fb3b6f8d0c6487aaf394"
+          },
+          "2026": {
+            "identity": {
+              "name": "Maintenance, lorry 16t",
+              "reference product": "Maintenance, lorry 16t",
+              "unit": "unit",
+              "location": "CH"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 11,
+            "inventory_sha256": "197e205fc8edfe51e47630aa7b70577bfea3e7494c6adcb5d634de5f4edc34ea",
+            "metadata_sha256": "c2fff3a24c6ed2e22c52bd902bf981268ad0025c11f853d9e08c516fffe123ba"
+          }
+        }
+      },
+      "limitations": [
+        "Source and native reference one maintenance service for the named 16t,28t or40t lorry. Keep factor+1 per unit; do not reinterpret the service as a vehicle-km or add replacement materials separately. Whole-service lifetime and material/lubricant/repair differences remain explicit.",
+        "Only independently inspected exact ecoinvent 3.12 cut-off receives new Premise permission. Existing Brightpath rules, targets, factors, native inventories, authoring rules and older independently approved profiles are unchanged. No new helper, source omission, reverse route, patch or consequential permission is inferred.",
+        "Use the complete existing native service of the matching named lorry class or wear-particle treatment. Preserve the caller functional unit, signed quantity, supported uncertainty, formulas, independent operations and separately listed emissions. No truck-mass, payload, distance, lifetime or efficiency multiplier and no second vehicle, maintenance, road, fuel or disposal burden is added.",
+        "Native vehicle design, tare/gross-weight assumptions, maintenance lifetime, operation, infrastructure, geography, component composition, recovery/allocation, release compartments, emissions controls and vintage may differ. Native upstream inventories and biosphere exclusions replace the source internals. These are complete-service screening proxies; functional-performance, stochastic, LCI/LCIA equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "bad98a8a22606c9ff6e9f26d2b5f7b83084638addfb8c8c3426902c3d8af0b80"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c4add56991cdc17f",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_trucks_native_services_312_review.json",
+      "review_sha256": "2f2b329cf11b2217caa7c09943f5d48c6a7fbdc6fe905bafe2b2f7ca99453f17",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function native service proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "maintenance, lorry 40 metric ton",
+            "reference product": "maintenance, lorry 40 metric ton",
+            "unit": "unit",
+            "location": "CH"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 9,
+          "inventory_sha256": "9abbe4023602dd346e492513f1403d46d0d5ac7c6073fa2930f40be94299e0ac",
+          "metadata_sha256": "c7616536c3a3349f49c9096b9e2d64154ef836e2937882a9e09da1469bf2ea99"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Maintenance, lorry 40t",
+          "reference product": "Maintenance, lorry 40t",
+          "unit": "unit"
+        },
+        "conversion_factor": 1,
+        "native_suppliers": {
+          "2025": {
+            "identity": {
+              "name": "Maintenance, lorry 40t",
+              "reference product": "Maintenance, lorry 40t",
+              "unit": "unit",
+              "location": "CH"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 11,
+            "inventory_sha256": "a37c0c6ec4bc07d8dec3d4984c29c5545e7b83842d4f6af796ed18a22b0100c1",
+            "metadata_sha256": "323c91b8e7e2061ba19251b77431c816f825505212c04617c268ae548305de5e"
+          },
+          "2026": {
+            "identity": {
+              "name": "Maintenance, lorry 40t",
+              "reference product": "Maintenance, lorry 40t",
+              "unit": "unit",
+              "location": "CH"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 11,
+            "inventory_sha256": "3efb7c0508915d7ceaa69506e1141abafb3d006e63024a92c355e37e7787c487",
+            "metadata_sha256": "873cb44bfbfd62f6ae5a3376a4da41f6f00f0d50ca4ba6e84494ffce758538ed"
+          }
+        }
+      },
+      "limitations": [
+        "Source and native reference one maintenance service for the named 16t,28t or40t lorry. Keep factor+1 per unit; do not reinterpret the service as a vehicle-km or add replacement materials separately. Whole-service lifetime and material/lubricant/repair differences remain explicit.",
+        "Only independently inspected exact ecoinvent 3.12 cut-off receives new Premise permission. Existing Brightpath rules, targets, factors, native inventories, authoring rules and older independently approved profiles are unchanged. No new helper, source omission, reverse route, patch or consequential permission is inferred.",
+        "Use the complete existing native service of the matching named lorry class or wear-particle treatment. Preserve the caller functional unit, signed quantity, supported uncertainty, formulas, independent operations and separately listed emissions. No truck-mass, payload, distance, lifetime or efficiency multiplier and no second vehicle, maintenance, road, fuel or disposal burden is added.",
+        "Native vehicle design, tare/gross-weight assumptions, maintenance lifetime, operation, infrastructure, geography, component composition, recovery/allocation, release compartments, emissions controls and vintage may differ. Native upstream inventories and biosphere exclusions replace the source internals. These are complete-service screening proxies; functional-performance, stochastic, LCI/LCIA equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b59d6a9174e306ee95ae1dfc2fcd293ab924e42c32e1e8d795cbdf7f6b659e5b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-cbc88ba58ab83149",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_trucks_native_services_312_review.json",
+      "review_sha256": "2f2b329cf11b2217caa7c09943f5d48c6a7fbdc6fe905bafe2b2f7ca99453f17",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function native service proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "maintenance, lorry 28 metric ton",
+            "reference product": "maintenance, lorry 28 metric ton",
+            "unit": "unit",
+            "location": "CH"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 9,
+          "inventory_sha256": "0197887d2fb705f0890fe6933be0c0ea07c40635d044cb413af0300e082fc265",
+          "metadata_sha256": "3c9c9f3e2147270b3bafb8df00b5a8d3cf41fd11017d5b2b704cd9967b855b40"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Maintenance, lorry 28t",
+          "reference product": "Maintenance, lorry 28t",
+          "unit": "unit"
+        },
+        "conversion_factor": 1,
+        "native_suppliers": {
+          "2025": {
+            "identity": {
+              "name": "Maintenance, lorry 28t",
+              "reference product": "Maintenance, lorry 28t",
+              "unit": "unit",
+              "location": "CH"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 11,
+            "inventory_sha256": "da83629b06629b5396c6b48f93dde805b7a1669167accd46d8b114f6bc5e0c2a",
+            "metadata_sha256": "4e2f3078037721bb9b39ce9d063cea34476f079693577455a00700cfbdf1dcc3"
+          },
+          "2026": {
+            "identity": {
+              "name": "Maintenance, lorry 28t",
+              "reference product": "Maintenance, lorry 28t",
+              "unit": "unit",
+              "location": "CH"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 11,
+            "inventory_sha256": "053812a6202ebea46d2fc1b2464d3e673d257bf274a446ae51b91e745efcfe8e",
+            "metadata_sha256": "cdc63b5bc031bee5d955659f651030cbefec9b973487c365fbd0943dc323f189"
+          }
+        }
+      },
+      "limitations": [
+        "Source and native reference one maintenance service for the named 16t,28t or40t lorry. Keep factor+1 per unit; do not reinterpret the service as a vehicle-km or add replacement materials separately. Whole-service lifetime and material/lubricant/repair differences remain explicit.",
+        "Only independently inspected exact ecoinvent 3.12 cut-off receives new Premise permission. Existing Brightpath rules, targets, factors, native inventories, authoring rules and older independently approved profiles are unchanged. No new helper, source omission, reverse route, patch or consequential permission is inferred.",
+        "Use the complete existing native service of the matching named lorry class or wear-particle treatment. Preserve the caller functional unit, signed quantity, supported uncertainty, formulas, independent operations and separately listed emissions. No truck-mass, payload, distance, lifetime or efficiency multiplier and no second vehicle, maintenance, road, fuel or disposal burden is added.",
+        "Native vehicle design, tare/gross-weight assumptions, maintenance lifetime, operation, infrastructure, geography, component composition, recovery/allocation, release compartments, emissions controls and vintage may differ. Native upstream inventories and biosphere exclusions replace the source internals. These are complete-service screening proxies; functional-performance, stochastic, LCI/LCIA equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a2c4ebb7ce803d4e2b1147e3b412ef87aa2828271cf3de40759e9232afa711dc"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d57418d4668a6b88",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_trucks_native_services_312_review.json",
+      "review_sha256": "2f2b329cf11b2217caa7c09943f5d48c6a7fbdc6fe905bafe2b2f7ca99453f17",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function native service proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "treatment of used lorry, 40 metric ton",
+            "reference product": "used lorry, 40 metric ton",
+            "unit": "unit",
+            "location": "CH"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "c33a36019f102d69cbe0dc8b7ba92927a5d0d297972620b2df76bd19125bb0db",
+          "metadata_sha256": "56733532fddabe3add0f4629fc3771e62d6e646be32f3eab91ccbbc31e7d8730"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, lorry 40t",
+          "reference product": "Disposal, lorry 40t",
+          "unit": "unit"
+        },
+        "conversion_factor": -1,
+        "native_suppliers": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, lorry 40t",
+              "reference product": "Disposal, lorry 40t",
+              "unit": "unit",
+              "location": "CH"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 6,
+            "inventory_sha256": "f54d204d96b108663057f9f38309dc6b46357baecfeaa740a67864e381e97fe8",
+            "metadata_sha256": "42d012e34a926ae184dd10c52ee45b6c824b8444cd1369a02aee8a9feb4aa10d"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, lorry 40t",
+              "reference product": "Disposal, lorry 40t",
+              "unit": "unit",
+              "location": "CH"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 6,
+            "inventory_sha256": "99b5ba76b5693862fcba6e2843085ac4b3aaea4f59fb866d8c3d1d44a5c61a73",
+            "metadata_sha256": "d8bd14689e6c1e4cf69eec482a0e53a16b74bfebf497eff780ef2fde45ac020e"
+          }
+        }
+      },
+      "limitations": [
+        "Source reference is negative one unit of the named used lorry; native complete disposal provides positive one unit of the same nominal16t,28t or40t class. Factor-1 converts a negative source disposal demand into positive native disposal. Retain native end-of-life allocation and recovery once without inventing a second material credit or recalibrating by gross weight.",
+        "Only independently inspected exact ecoinvent 3.12 cut-off receives new Premise permission. Existing Brightpath rules, targets, factors, native inventories, authoring rules and older independently approved profiles are unchanged. No new helper, source omission, reverse route, patch or consequential permission is inferred.",
+        "Use the complete existing native service of the matching named lorry class or wear-particle treatment. Preserve the caller functional unit, signed quantity, supported uncertainty, formulas, independent operations and separately listed emissions. No truck-mass, payload, distance, lifetime or efficiency multiplier and no second vehicle, maintenance, road, fuel or disposal burden is added.",
+        "Native vehicle design, tare/gross-weight assumptions, maintenance lifetime, operation, infrastructure, geography, component composition, recovery/allocation, release compartments, emissions controls and vintage may differ. Native upstream inventories and biosphere exclusions replace the source internals. These are complete-service screening proxies; functional-performance, stochastic, LCI/LCIA equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "23a695d39770bcaee0694e9188406c1b8dba224e12be9be5f3be5db75a201c38"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ea86145d413de309",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_trucks_native_services_312_review.json",
+      "review_sha256": "2f2b329cf11b2217caa7c09943f5d48c6a7fbdc6fe905bafe2b2f7ca99453f17",
+      "authorization": "Standing autonomous goal and automatic approval of inspected same-function native service proxies with explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "treatment of tyre wear emissions, lorry",
+            "reference product": "tyre wear emissions, lorry",
+            "unit": "kilogram",
+            "location": "RER"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 92,
+          "inventory_sha256": "6d146f20bf845d3bc634dcc1c98618e1873be9338e0805d0b8e937d2f771abd6",
+          "metadata_sha256": "226258e1e451eccef6a72f8c6c7823cadd17d855ab88e06e62655c086a722c29"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Tyre wear emissions, lorry",
+          "reference product": "Tyre wear emissions, lorry",
+          "unit": "kilogram"
+        },
+        "conversion_factor": -1,
+        "native_suppliers": {
+          "2025": {
+            "identity": {
+              "name": "Tyre wear emissions, lorry",
+              "reference product": "Tyre wear emissions, lorry",
+              "unit": "kilogram",
+              "location": "RER"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 92,
+            "inventory_sha256": "32ae70bf1bb305cfee50ca6a04bd81a10452e04b98f1e8b34b683ccf766eab7e",
+            "metadata_sha256": "ca393198bac9fc4eb89a02739e389e8852b2e3f8c7a52070883bea90834a8ee6"
+          },
+          "2026": {
+            "identity": {
+              "name": "Tyre wear emissions, lorry",
+              "reference product": "Tyre wear emissions, lorry",
+              "unit": "kilogram",
+              "location": "RER"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 92,
+            "inventory_sha256": "41adf3de44c8c92c2b6e800bd8b0a1e6cede2008ba4a8220b82c9efaf925edb7",
+            "metadata_sha256": "2aff942f83ec981791db6d4e89750d66abcfee7386e3c6e238e3eb978b48af23"
+          }
+        }
+      },
+      "limitations": [
+        "Source reference is negative one kg of the named brake/road/tyre wear-emission treatment; native release service references positive one kg of that same wear category. Factor-1 preserves treatment demand and reverses actual negative-demand credits consistently. Native particle composition, pollutants, release compartments and vintage differ; use its complete release model once and retain separately listed caller emissions. Do not substitute truck transport per km, treat all wear as one substance, or add duplicate wear emissions.",
+        "Only independently inspected exact ecoinvent 3.12 cut-off receives new Premise permission. Existing Brightpath rules, targets, factors, native inventories, authoring rules and older independently approved profiles are unchanged. No new helper, source omission, reverse route, patch or consequential permission is inferred.",
+        "Use the complete existing native service of the matching named lorry class or wear-particle treatment. Preserve the caller functional unit, signed quantity, supported uncertainty, formulas, independent operations and separately listed emissions. No truck-mass, payload, distance, lifetime or efficiency multiplier and no second vehicle, maintenance, road, fuel or disposal burden is added.",
+        "Native vehicle design, tare/gross-weight assumptions, maintenance lifetime, operation, infrastructure, geography, component composition, recovery/allocation, release compartments, emissions controls and vintage may differ. Native upstream inventories and biosphere exclusions replace the source internals. These are complete-service screening proxies; functional-performance, stochastic, LCI/LCIA equivalence and quantified score effects are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f44874d53e342ab40e0e68071d3b8dd0534fa2214646da78363c7977619d390f"
+        }
+      ]
     }
   ],
   "superseded_operations": [

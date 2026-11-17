@@ -1,0 +1,121 @@
+{
+  "status": "nine_current_lorry_services_pass_next_18_truck_inputs_remain",
+  "Brightpath_revision": "62e793310387cf3e1c2599c8a62a00e42b8091e8",
+  "review_sha256": "2f2b329cf11b2217caa7c09943f5d48c6a7fbdc6fe905bafe2b2f7ca99453f17",
+  "new_exact_source_permissions": 9,
+  "modified_transformation_rules": 0,
+  "new_helpers": 0,
+  "production_or_generator_Python_changes": 0,
+  "old_mapping_resources_unchanged_after_complete_review_index_replay": true,
+  "Brightpath_service_and_review_tests_passed": 18,
+  "Premise_tests_passed": 5,
+  "no_write_LCI": {
+    "status": "nine_migrated_current_lorry_service_demands_have_finite_signed_native_LCIs",
+    "signed_finite_LCI_solves": 18,
+    "checks": [
+      {
+        "rule_id": "bp-1a1a8f5692e27e73",
+        "unit": "unit",
+        "source_reference_amount": -1.0,
+        "migrated_native_reference_demand": 1,
+        "signed_finite_LCI": true
+      },
+      {
+        "rule_id": "bp-35217cf5e68b84a0",
+        "unit": "kilogram",
+        "source_reference_amount": -1.0,
+        "migrated_native_reference_demand": 1,
+        "signed_finite_LCI": true
+      },
+      {
+        "rule_id": "bp-39732882b4a46402",
+        "unit": "kilogram",
+        "source_reference_amount": -1.0,
+        "migrated_native_reference_demand": 1,
+        "signed_finite_LCI": true
+      },
+      {
+        "rule_id": "bp-5c8891b6124ad797",
+        "unit": "unit",
+        "source_reference_amount": -1.0,
+        "migrated_native_reference_demand": 1,
+        "signed_finite_LCI": true
+      },
+      {
+        "rule_id": "bp-7bd5debfe58a82f0",
+        "unit": "unit",
+        "source_reference_amount": 1.0,
+        "migrated_native_reference_demand": 1,
+        "signed_finite_LCI": true
+      },
+      {
+        "rule_id": "bp-c4add56991cdc17f",
+        "unit": "unit",
+        "source_reference_amount": 1.0,
+        "migrated_native_reference_demand": 1,
+        "signed_finite_LCI": true
+      },
+      {
+        "rule_id": "bp-cbc88ba58ab83149",
+        "unit": "unit",
+        "source_reference_amount": 1.0,
+        "migrated_native_reference_demand": 1,
+        "signed_finite_LCI": true
+      },
+      {
+        "rule_id": "bp-d57418d4668a6b88",
+        "unit": "unit",
+        "source_reference_amount": -1.0,
+        "migrated_native_reference_demand": 1,
+        "signed_finite_LCI": true
+      },
+      {
+        "rule_id": "bp-ea86145d413de309",
+        "unit": "kilogram",
+        "source_reference_amount": -1.0,
+        "migrated_native_reference_demand": 1,
+        "signed_finite_LCI": true
+      }
+    ],
+    "matrix_shape": [
+      11947,
+      11947
+    ],
+    "new_Brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "source_and_biosphere_metadata_preserved": true,
+    "qualification_limit": "Complete native service consistency only; different designs, lifetimes, compositions, allocation and vintage remain explicit proxies. Does not establish source/native impact equivalence or complete truck preparation, sector coverage or export."
+  },
+  "actual_truck_workflow": {
+    "validation_disabled": false,
+    "public_admission_gate_bypassed_for_diagnostic_only": true,
+    "inventory_preparation_completed": false,
+    "export_performed": false,
+    "unapproved_312_group_before": 27,
+    "unapproved_312_group_after": 18,
+    "remaining_rule_ids": [
+      "bp-0721dc4212547a4d",
+      "bp-0cdecef35c6741e6",
+      "bp-1308b656f1d6a3e7",
+      "bp-138223cb80deb0c1",
+      "bp-1472e083e5590d89",
+      "bp-1b65914b2f33ba7b",
+      "bp-20d6cc6fceb46d84",
+      "bp-25caf9ffefc8a1ab",
+      "bp-3373d44a210b5187",
+      "bp-38a8afc636bbea5a",
+      "bp-4f9f0bb31d6d8487",
+      "bp-808b2ad4fb7fd8be",
+      "bp-8185695a8558088a",
+      "bp-975df496dad5c2a7",
+      "bp-a269f28fe24da747",
+      "bp-ab62d13201980583",
+      "bp-ccb4c597048fe936",
+      "bp-f0abe48d8c3176d4"
+    ]
+  },
+  "qualified_sectors": 14,
+  "total_sectors": 19,
+  "qualification_limit": "The nine current service matches are verified; complete truck preparation, filters, public admission and export remain unfinished, as do four other sectors."
+}
