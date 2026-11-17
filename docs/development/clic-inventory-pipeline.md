@@ -94,9 +94,9 @@ source-license note alongside an otherwise permitted declaration also requires
 review, without asserting that the declaration is necessarily invalid.
 
 Reviewed approximate replacements are selected from the user's native ecoinvent
-background using `premise/data/clic/commercial_replacements.yaml`. Initial rules
-cover ecoinvent 3.12 cutoff/EN15804; earlier targets remain blocked where they lack
-a reviewed alternative. The registry includes chargers/converters, conventional
+background using `premise/data/clic/commercial_replacements.yaml`. Reviewed rules
+cover cutoff targets 3.8, 3.9, 3.9.1, 3.10, 3.10.1, 3.11 and 3.12, plus
+3.12 EN15804. The registry includes chargers/converters, conventional
 PV, battery cells/packs/controls, vehicle components and selected electrolyzer
 materials/electronics. Rules state identities, applicable targets, evidence,
 conversion, limitations and confidence. Low-confidence proxies include LTO/NMC955
@@ -104,6 +104,13 @@ chemistry substitutions, coarse vehicle-component manufacturing, PFSA represente
 by PTFE resin, and SiC wafer manufacture represented by electronic-grade silicon
 wafer area. These are manufacturing-burden approximations; they do not change the
 consumer's assumed operating efficiency, conductivity or cycle life.
+
+Older backgrounds need broader proxies where a chemistry or material was not
+yet represented. These include LFP manufacturing represented by the older LMO
+inventory in 3.8, NMC532 by NMC111, NMC622/NMC955 by NMC811, and PTFE by its
+monomer where resin manufacture is unavailable. The latter omits polymerization
+and forming and is a lower-bound manufacturing proxy. Supplier-specific notes
+and confidence follow the actual selected fallback into the report.
 
 Replacement processes use the native inventory's exchanges rather than the
 restricted recipe's coefficients or behavior-bearing metadata. Whole-parent
@@ -119,10 +126,26 @@ and inventory fingerprints are checked before they pass to the adapter's exact
 supplier/biosphere matching. They bypass background migration and a second
 EN15804 scrap conversion; ordinary CLIC cohorts retain the migration pipeline.
 
+Ten reviewed background-link rules also support permissively licensed CLIC
+consumers whose supplier identity is absent in an older target. These preserve
+the consumer's purchase quantity and license, document the actual native
+supplier, and undergo strict target-catalog validation after migration. Unknown
+links still fail. Background-link substitutions are reported separately from
+whole-activity substitutions and participate in the locked replacement plan.
+
+Methane-pyrolysis hydrogen uses an independently reconstructed foreground from
+[Zhang et al. (2026), Table 1](https://doi.org/10.1016/j.ijhydene.2026.154768),
+whose published version is CC-BY-4.0. Per kg hydrogen it purchases 5.7 m³ natural
+gas and 10.3 kWh electricity and emits 0.04 kg fugitive methane. The source's
+200-bar electricity requirement is retained for the 100-bar Premise identity,
+a conservative pressure proxy. The source excludes plant construction; the
+3 kg solid-carbon output receives no credit. Native target markets provide the
+background, so the paper's reported impact score is not reproduced. The original
+CLIC recipe with conflicting source-license notes supplies no coefficients.
+
 Essential requirements without a reviewed available replacement still stop the
 build. `ClicLicenseError.issues` contains all blocked datasets with one
-root-to-supplier path each; the message displays the first ten. Methane-pyrolysis
-hydrogen with unresolved source-license notes remains blocked. Unselected
+root-to-supplier path each; the message displays the first ten. Unselected
 inventories do not affect the result. Neither caches nor pinned versions bypass
 checks. Live mode checks declarations for all used CLIC records, including
 specific pinned versions; replaced original records are not used inventories.
@@ -136,7 +159,7 @@ recipe. Policy metadata contributes to retained-inventory and scenario cache
 fingerprints. Report exports include an `inventory-licenses-N.csv` sidecar and a
 `CLIC Licenses` workbook sheet. Substitutions also appear in an
 `inventory-substitutions-N.csv` sidecar and a `CLIC Replacements` sheet, including
-the actual native supplier, conversion, confidence and limitations in the
+the substitution kind, actual supplier, conversion, confidence and limitations in the
 manifest/CSV. The inventory sheet distinguishes the original published license
 from the license of the inventory actually used. Commercial recipes additionally
 freeze the registry fingerprint, target and actual replacement-inventory
@@ -151,11 +174,70 @@ of rights underlying a third-party declaration. See the
 [CLIC license guide](https://clic.psi.ch/licenses/) and
 [ecoinvent licensing terms](https://support.ecoinvent.org/licensing).
 
-Further rollout requires an independently sourced methane-pyrolysis alternative,
-cross-version validation from ecoinvent 3.8 through 3.12, scenario/role tests, result
-comparisons and runtime benchmarks. Policy-off results must stay unchanged;
-policy-on substitution effects must be reported. No claim of inventory or LCIA
-equivalence is made for approximate replacements.
+No claim of inventory or LCIA equivalence is made for approximate replacements.
+Policy-on results should be reviewed using the exported substitution report.
+
+### Commercial-policy validation, 2026-11-17
+
+The November 16 archive (Zenodo record 24278693) was prepared against actual
+licensed source databases, with all potential sector roots selected rather than
+only the subset needed by one IAM scenario:
+
+| Target | Roots | Prepared activities | Whole-activity substitutions | Pruned published activities |
+| --- | ---: | ---: | ---: | ---: |
+| 3.8 cutoff | 736 | 1,279 | 274 | 303 |
+| 3.9 / 3.9.1 cutoff | 627 | 1,134 | 273 | 304 |
+| 3.10 / 3.10.1 cutoff | 627 | 1,134 | 273 | 304 |
+| 3.11 / 3.12 cutoff | 616 | 1,123 | 272 | 305 |
+| 3.12 EN15804 | 616 | 1,123 | 272 | 305 |
+
+All these graphs passed the license gate and exact destination supplier and
+biosphere linking. The counts describe this archive, not a promise that future
+CLIC releases will pass without further review. The registry contains 57
+activity-family rules and 10 background-supplier rules; a rule can cover many
+geographic variants.
+
+With the policy off, all 1,432 prepared 3.12 cutoff activities matched the
+pre-policy revision `4579ab66` exactly, including quantities and metadata.
+Brightway calculations for the same frozen 616 root demands also matched
+exactly across IPCC 2013 GWP100 and 16 EF v3.1 headline indicators: 10,472 score
+comparisons, maximum absolute difference zero. Six individual Brightway
+calculations per variant checked the batched matrix calculation.
+
+With the policy on, the same comparisons quantify deliberate proxy effects.
+For IPCC GWP100, 263 of the 616 roots changed by more than 1%. The following
+groups use activity-name families and include affected downstream consumers:
+
+| Family | Roots | Minimum change | Median change | Maximum change |
+| --- | ---: | ---: | ---: | ---: |
+| Photovoltaic | 239 | +0.1% | +145.4% | +324.3% |
+| Battery | 48 | −31.5% | −0.5% | +45.0% |
+| Methane-pyrolysis hydrogen | 1 | +12.4% | +12.4% | +12.4% |
+
+These are untransformed foreground comparisons using one fixed 3.12 cutoff
+background, not scenario-wide changes or validation of proxy accuracy. In
+particular, native PV manufacturing inventories differ substantially from the
+regional CLIC models. Review results and replacement limitations before using
+this option for a comparative assessment.
+
+A compact REMIND SSP2-NPi 2050 build completed all 20 sector updates after
+starting with electricity and expanding the inventory selection incrementally.
+It contained 35,071 scenario activities and 1,006 imported CLIC/retained-workbook
+records, with 41 whole-activity substitutions in the IAM-selected subset.
+Replaying the exported recipe with the same sectors restored commercial policy
+automatically and reproduced all 1,006 imported records' identities, exchanges
+and scientific metadata. Generated workbook activity UUIDs and CLIC pin/role
+provenance markers were excluded from that scientific comparison. The two
+credentialed electricity integration tests passed with default and commercial
+policies; the ordinary suite passed 3,704 tests with 25 integration skips.
+
+An alternating, otherwise idle preparation benchmark used eight measured warm
+samples per mode after warm-up, with identical archive, roots and background.
+Median times were 1.664 s before the policy changes, 1.677 s with the policy off
+(+0.8%, 13 ms), and 1.718 s with it on (+3.3%). Inventory fingerprints were
+checked on every sample. These local preparation timings exclude source
+extraction, IAM updates and live metadata requests; they are not a guarantee of
+identical runtime on other systems.
 
 ## Recipes and reproducibility
 

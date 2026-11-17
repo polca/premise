@@ -140,6 +140,29 @@ def test_shared_restricted_supplier_remains_blocked(registry, background):
         )
 
 
+def test_compact_native_quantities_remain_numeric_and_portable(registry, background):
+    import json
+    import numpy as np
+
+    archive, raw = graph()
+    edge = background[0]["exchanges"][1]
+    edge.update(amount=np.float32(0.1), loc=np.float32(0.1), scale=np.float32(0.03))
+    expected = float(edge["amount"]) * 1.5
+    resolved, report = module.replace_commercial_inventories(
+        raw,
+        archive,
+        background,
+        version="3.12",
+        system_model="cutoff",
+        registry=registry,
+    )
+    clone = next(a for a in resolved.activities if a["name"] == "restricted pack")
+    assert clone["exchanges"][1]["amount"] == expected
+    assert isinstance(clone["exchanges"][1]["loc"], float)
+    assert json.loads(json.dumps(report))["fingerprint"] == report["fingerprint"]
+    assert isinstance(edge["amount"], np.float32)
+
+
 @pytest.mark.parametrize("target,available", [("3.8", True), ("3.12", False)])
 def test_missing_or_unreviewed_native_candidate_cannot_remove_a_requirement(
     registry, background, target, available
@@ -204,6 +227,113 @@ def test_registry_change_and_supplier_change_affect_fingerprints(registry, backg
     third = prepare()
     assert second["registry_fingerprint"] == third["registry_fingerprint"]
     assert second["fingerprint"] != third["fingerprint"]
+
+
+def test_fallback_supplier_records_its_own_confidence_and_limitations(
+    registry, background
+):
+    archive, raw = graph()
+    rule = registry["rules"][0]
+    chosen = rule["suppliers"][0]
+    chosen.update(confidence="low", notes="Different chemistry in the older release.")
+    rule["suppliers"].insert(
+        0,
+        {
+            **chosen,
+            "name": "unavailable preferred supplier",
+            "notes": "Should not be reported.",
+        },
+    )
+    resolved, report = module.replace_commercial_inventories(
+        raw,
+        archive,
+        background,
+        version="3.12",
+        system_model="cutoff",
+        registry=registry,
+    )
+    replacement = report["substitutions"][0]
+    assert replacement["confidence"] == "low"
+    assert "Different chemistry" in replacement["limitations"]
+    assert "Should not be reported" not in replacement["limitations"]
+    assert "Different chemistry" in resolved.activities[0]["comment"]
+
+
+@pytest.fixture
+def pyrolysis_reference():
+    rule = next(
+        r
+        for r in module.replacement_registry()["rules"]
+        if r["id"] == "methane-pyrolysis-published-reference"
+    )
+    root = native(
+        1,
+        1,
+        rule["match"]["names"][0],
+        exchanges=[purchase("disputed component", amount=999)],
+    )
+    root["existing_license"] = "CC-BY-NC-ND-4.0"
+    component = native(2, 2, "disputed component")
+    component["selected_license"] = "CC-BY-NC-4.0"
+    archive = catalog(root, component)
+    background = []
+    for i, item in enumerate(rule["recipe"]["inputs"], 20):
+        supplier = item["suppliers"][0]
+        activity = native(i, i, supplier["name"], unit=supplier["unit"])[
+            "inventory_snapshot"
+        ]
+        activity["reference product"] = supplier["product"]
+        background.append(activity)
+    return archive, background
+
+
+def test_independent_pyrolysis_uses_published_values_and_preserves_attribution(
+    pyrolysis_reference, tmp_path, provider
+):
+    archive, background = pyrolysis_reference
+    client = ClicInventoryProvider(
+        archive=archive,
+        catalog_provider=provider,
+        options={
+            "cache_dir": tmp_path,
+            "offline": True,
+            "license_policy": "commercial",
+        },
+    )
+    methane = ("Methane, fossil", "air", "unspecified", "kilogram")
+    records = client.prepare(
+        ["dataset-1"],
+        background,
+        version="3.12",
+        biosphere_codes={methane: "methane-code"},
+        classifications={},
+    )
+    assert len(records) == 1
+    assert [e["amount"] for e in records[0]["exchanges"]] == [1, 5.7, 10.3, 0.04]
+    assert records[0]["exchanges"][-1]["input"] == ("biosphere3", "methane-code")
+    assert records[0]["uncredited solid carbon output kg per kg H2"] == 3
+    assert records[0]["proxy source pressure bar"] == 200
+    assert records[0]["proxy requested pressure bar"] == 100
+    license_row = client.manifest["license_policy"]["datasets"][0]
+    assert license_row["license"] == "CC-BY-4.0"
+    assert license_row["doi"] == "10.1016/j.ijhydene.2026.154768"
+    assert license_row["citation"].startswith("Independent premise adaptation")
+    assert "Native ecoinvent" not in license_row["citation"]
+    assert client.manifest["commercial_replacements"]["pruned_slugs"] == ["dataset-2"]
+
+
+def test_independent_recipe_missing_background_preserves_blocked_requirement(
+    pyrolysis_reference,
+):
+    archive, background = pyrolysis_reference
+    raw = archive.resolve(["dataset-1"])
+    resolved, report = module.replace_commercial_inventories(
+        raw, archive, background[:1], version="3.12", system_model="cutoff"
+    )
+    assert report["substitutions"] == []
+    assert resolved.activities == raw.activities
+    with pytest.raises(ClicLicenseError, match="dataset-1"):
+        enforce_commercial_licenses(resolved, archive)
 
 
 def test_excluding_pack_electronics_renormalizes_remaining_mass(registry, background):

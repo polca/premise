@@ -283,6 +283,11 @@ class ClicInventoryProvider:
             catalog_provider=self.catalog_provider,
             allow_documented_proxies=self.options.allow_documented_proxies,
             migration_policy=self.options.migration_policy,
+            background_aliases=(
+                replacement_report["background_aliases"]
+                if replacement_report is not None
+                else ()
+            ),
         ).harmonize(
             resolved, version=version, system_model=system_model, use_cache=use_cache
         )

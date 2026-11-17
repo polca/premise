@@ -20,10 +20,10 @@ COMMERCIAL_LICENSES = {
 }
 POLICY = {
     "name": "commercial",
-    "schema_version": 2,
+    "schema_version": 3,
     "allowed_licenses": COMMERCIAL_LICENSES,
     "source_conflicts": "block_explicit_noncommercial_license",
-    "replacements": "reviewed native ecoinvent inventories under the user's applicable license",
+    "replacements": "reviewed licensed native inventories or independently sourced permitted foreground recipes",
 }
 POLICY_FINGERPRINT = content_hash(POLICY)
 _NONCOMMERCIAL = re.compile(
@@ -89,7 +89,9 @@ def assess_commercial_licenses(resolved, archive, *, replacements=()):
         if replacement:
             # Only the planner's verified substitutions can clear an original
             # declaration. Uploaded provenance fields never grant permission.
-            license_id = "ecoinvent"
+            license_id = replacement["inventory_license"]
+            if license_id != "ecoinvent" and license_id not in COMMERCIAL_LICENSES:
+                reason = "replacement license does not establish commercial permission"
         elif license_id not in COMMERCIAL_LICENSES:
             reason = "license does not establish commercial permission"
         elif _NONCOMMERCIAL.search(source_license):
@@ -101,17 +103,18 @@ def assess_commercial_licenses(resolved, archive, *, replacements=()):
             "license": license_id,
             "license_url": (
                 "https://support.ecoinvent.org/licensing"
-                if replacement
+                if license_id == "ecoinvent"
                 else COMMERCIAL_LICENSES.get(license_id)
             ),
             "source_license": source_license,
             "citation": (
-                f"Native ecoinvent {row['background']['technosphere']['version']}: "
+                replacement.get("citation")
+                or f"Native ecoinvent {row['background']['technosphere']['version']}: "
                 f"{replacement['supplier'][0]} ({replacement['supplier'][2]})."
                 if replacement
                 else row.get("citation", "")
             ),
-            "doi": "" if replacement else row.get("doi", ""),
+            "doi": replacement.get("doi", "") if replacement else row.get("doi", ""),
             "public_url": row.get("public_url"),
             "attribution_required": license_id != "CC0-1.0",
             "share_alike": license_id == "CC-BY-SA-4.0",

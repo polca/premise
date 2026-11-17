@@ -27,6 +27,38 @@ def _definitions(scenarios):
             yield position, identity, definition
 
 
+def _substitution_rows(manifest):
+    """Activity replacements and link-level proxies share one readable report."""
+    rows = [
+        {**row, "kind": "activity"}
+        for row in manifest.get("commercial_replacements", {}).get("substitutions", ())
+    ]
+    by_code = {row["activity_code"]: row for row in manifest.get("datasets", ())}
+    for change in manifest.get("commercial_background_substitutions", ()):
+        consumer = by_code.get(change["activity_code"], {})
+        rows.append(
+            {
+                "kind": "background supplier",
+                "slug": consumer.get("slug", change["activity_code"]),
+                "version_id": consumer.get("version_id"),
+                "original_license": consumer.get("license"),
+                "original_identity": change["source"],
+                "rule": change["rule"],
+                "supplier": change["supplier"],
+                "amount": 1,
+                "accounting": {"exchange_index": change["exchange_index"]},
+                "conversion": change["conversion"],
+                "limitations": change["limitations"],
+                "evidence": change["evidence"],
+                "confidence": change["confidence"],
+                "geography_proxy": change["source"][2] != change["supplier"][2],
+                "inventory_license": "ecoinvent",
+                "review_status": change["review_status"],
+            }
+        )
+    return rows
+
+
 def write_inventory_sidecars(workbook_path, scenarios):
     """Export all selected versions and one directly reusable recipe per scenario."""
     path = Path(workbook_path)
@@ -86,15 +118,18 @@ def write_inventory_sidecars(workbook_path, scenarios):
                 writer.writeheader()
                 writer.writerows(policy["datasets"])
             manifests[-1]["license_report_file"] = license_path.name
-        replacements = manifest.get("commercial_replacements", {}).get(
-            "substitutions", ()
-        )
+        replacements = _substitution_rows(manifest)
         if replacements:
             replacement_path = path.with_name(
                 f"{path.stem}.inventory-substitutions-{position}.csv"
             )
             with replacement_path.open("w", encoding="utf-8", newline="") as stream:
-                writer = csv.DictWriter(stream, fieldnames=list(replacements[0]))
+                writer = csv.DictWriter(
+                    stream,
+                    fieldnames=list(
+                        dict.fromkeys(key for row in replacements for key in row)
+                    ),
+                )
                 writer.writeheader()
                 writer.writerows(
                     {
@@ -302,9 +337,7 @@ def write_inventory_sheet(workbook, scenarios, *, workbook_path=None):
     replacements = [
         (identity, row)
         for _, identity, definition in selected
-        for row in definition["clic inventories"]
-        .get("commercial_replacements", {})
-        .get("substitutions", ())
+        for row in _substitution_rows(definition["clic inventories"])
     ]
     if replacements:
         sheet = workbook.create_sheet("CLIC Replacements")
@@ -321,6 +354,7 @@ def write_inventory_sheet(workbook, scenarios, *, workbook_path=None):
                 "Evidence",
                 "Confidence",
                 "Geographic proxy",
+                "Kind",
             ]
         )
         for identity, row in replacements:
@@ -337,6 +371,7 @@ def write_inventory_sheet(workbook, scenarios, *, workbook_path=None):
                     "\n".join(row["evidence"]),
                     row["confidence"],
                     row["geography_proxy"],
+                    row["kind"],
                 ]
             )
         sheet.freeze_panes = "A2"

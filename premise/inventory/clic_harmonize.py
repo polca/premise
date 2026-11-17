@@ -94,9 +94,11 @@ class ClicHarmonizer:
         catalog_provider=None,
         allow_documented_proxies=None,
         migration_policy="pragmatic",
+        background_aliases=(),
     ):
         self.cache_dir = Path(cache_dir)
         self.catalog_provider = catalog_provider
+        self.background_aliases = background_aliases
         if migration_policy not in {"pragmatic", "strict"}:
             raise ValueError("CLIC migration_policy must be 'pragmatic' or 'strict'.")
         self.migration_policy = migration_policy
@@ -234,6 +236,8 @@ class ClicHarmonizer:
                 "source_catalogs": _catalog_fingerprint(provider, source_context),
                 "target_catalogs": target_catalogs,
             }
+            if self.background_aliases:
+                signature["background_aliases"] = self.background_aliases
             fingerprint = content_hash(signature)
             metadata_path = self.cache_dir / f"{fingerprint}.json"
             payload_path = self.cache_dir / f"{fingerprint}.inventory.json.gz"
@@ -273,7 +277,15 @@ class ClicHarmonizer:
                             target_context,
                             policy=policy,
                             catalog_provider=provider,
-                            additional_foreground_targets=tuple(sorted(foreign)),
+                            additional_foreground_targets=tuple(
+                                sorted(
+                                    foreign
+                                    | {
+                                        tuple(row["source"])
+                                        for row in self.background_aliases
+                                    }
+                                )
+                            ),
                         )
                     except Exception as error:
                         report = getattr(error, "report", None)
@@ -302,6 +314,30 @@ class ClicHarmonizer:
                             f"CLIC migration has unapproved losses: {unexpected_losses!r}. Diagnostic: {audit_path}"
                         )
                     cached = migrated.data
+                    alias_changes = []
+                    if self.background_aliases:
+                        from .clic_replacements import apply_background_aliases
+
+                        alias_changes = apply_background_aliases(
+                            cached, self.background_aliases
+                        )
+                        # The temporary link contracts must all resolve to real
+                        # suppliers; they are absent from this final validation.
+                        from brightpath.background import validate_background_links
+
+                        validation = validate_background_links(
+                            cached,
+                            target_context,
+                            provider,
+                            foreground_technosphere_targets=tuple(sorted(foreign)),
+                        )
+                        if validation.has_errors:
+                            raise ClicInventoryError(
+                                f"Commercial supplier proxies leave invalid target links: {validation.issues!r}"
+                            )
+                        report_data["commercial_supplier_proxies"] = alias_changes
+                        report_data["commercial_supplier_validation"] = "passed"
+                        _gzip_write(audit_path, report_data)
                     # Brightpath's immutable details contain nested mappings;
                     # its public report serializer supplies portable values.
                     issues = [
@@ -309,6 +345,7 @@ class ClicHarmonizer:
                         for stage in report_data.get("stages", ())
                         for issue in stage.get("issues", ())
                     ]
+                    issues.extend(alias_changes)
                     metadata = {
                         "fingerprint": fingerprint,
                         "source": source,
@@ -393,6 +430,12 @@ class ClicHarmonizer:
         }
         if native_replacements:
             manifest["native_replacement_count"] = len(native_replacements)
+        if self.background_aliases:
+            manifest["commercial_background_substitutions"] = [
+                item
+                for item in diagnostics
+                if item["code"] == "clic.commercial_background_proxy"
+            ]
         return HarmonizedClicInventory(
             list(activities.values()), manifest, resolved.lockfile(), diagnostics
         )

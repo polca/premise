@@ -1,5 +1,11 @@
 schema_version: 1
 target_versions:
+- '3.8'
+- '3.9'
+- 3.9.1
+- '3.10'
+- 3.10.1
+- '3.11'
 - '3.12'
 system_models:
 - cutoff
@@ -724,6 +730,21 @@ rules:
     - RoW
     - CN
     - RER
+  - name: battery cell production, Li-ion
+    product: battery cell, Li-ion
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: The older release has no requested chemistry; use legacy generic Li-ion (LMO) cell manufacture per kg.
+      Electrodes, energy use and material burdens differ; retain the consumer's own density and cycle-life assumptions.
+    confidence: low
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
   conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
     supplier.
   limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
@@ -750,6 +771,22 @@ rules:
     - RoW
     - CN
     - RER
+  - name: market for battery cell, Li-ion
+    product: battery cell, Li-ion
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: The older release has no requested chemistry; use legacy generic Li-ion (LMO) cell manufacture per kg.
+      Electrodes, energy use and material burdens differ; retain the consumer's own density and cycle-life assumptions.
+      Uses the available native market mix.
+    confidence: low
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
   conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
     supplier.
   limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
@@ -776,8 +813,38 @@ rules:
     - RoW
     - CN
     - RER
-  conversion: Native pack manufacture with the BMS input removed, renormalized to one kg of pack without electronics;
-    actual removed mass and multiplier are reported.
+  - name: battery production, Li-ion, LFP, rechargeable, prismatic
+    product: battery, Li-ion, LFP, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: Older prismatic-pack name for native LFP manufacture; the manufacturing process and reference kg, rather
+      than the dataset spelling, define the replacement.
+    confidence: medium
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
+  - name: battery production, Li-ion, rechargeable, prismatic
+    product: battery, Li-ion, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: The pre-3.9 generic Li-ion pack is an LMO manufacturing proxy. LFP requests therefore lose chemistry-specific
+      manufacturing detail; electronic boards are removed and remaining mass is renormalized.
+    confidence: low
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
+  conversion: Remove native BMS purchases or direct electronic-board inputs as present in that release, and renormalize
+    all remaining inputs to one kg of pack excluding those electronics; actual removed mass and multiplier are reported.
   limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
     geography; any separate capacity-to-mass conversion remains unchanged. The native BMS purchase is removed, and
     all remaining native inputs are divided by one minus its kg share. Separate control-unit purchases in the consuming
@@ -789,6 +856,8 @@ rules:
   exclude_inputs:
   - market for battery management system, for Li-ion battery
   - battery management system production, for Li-ion battery
+  - market for printed wiring board, surface mounted, unspecified, Pb containing
+  - market for printed wiring board, surface mounted, unspecified, Pb free
   renormalize_excluded_mass: true
   confidence: medium
 - id: battery-cell-limn2o4
@@ -807,6 +876,21 @@ rules:
     - RoW
     - CN
     - RER
+  - name: battery cell production, Li-ion
+    product: battery cell, Li-ion
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: Legacy generic Li-ion cell manufacture is the older LMO reference; source documentation contains inherited
+      wording, so identity and purchasing structure were checked together.
+    confidence: medium
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
   conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
     supplier.
   limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
@@ -832,9 +916,38 @@ rules:
     - RoW
     - CN
     - RER
-  conversion: The native LMO pack has direct printed-board inputs rather than a separate BMS. Remove those boards,
-    renormalizing the remaining inputs to one kg; retain the native pack wiring and separately model the requested
-    controls.
+  - name: battery production, Li-ion, LiMn2O4, rechargeable, prismatic
+    product: battery, Li-ion, LiMn2O4, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: Older prismatic-pack name for native LiMn2O4 manufacture; the manufacturing process and reference kg,
+      rather than the dataset spelling, define the replacement.
+    confidence: medium
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
+  - name: battery production, Li-ion, rechargeable, prismatic
+    product: battery, Li-ion, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: The pre-3.9 generic Li-ion pack is an LMO manufacturing proxy. LFP requests therefore lose chemistry-specific
+      manufacturing detail; electronic boards are removed and remaining mass is renormalized.
+    confidence: medium
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
+  conversion: Remove native BMS purchases or direct electronic-board inputs as present in that release, and renormalize
+    all remaining inputs to one kg of pack excluding those electronics; actual removed mass and multiplier are reported.
   limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
     geography; any separate capacity-to-mass conversion remains unchanged. The native BMS purchase is removed, and
     all remaining native inputs are divided by one minus its kg share. Separate control-unit purchases in the consuming
@@ -844,6 +957,8 @@ rules:
     rechargeable.'
   - https://ecoinvent.org/ecoinvent-v3-12/
   exclude_inputs:
+  - market for battery management system, for Li-ion battery
+  - battery management system production, for Li-ion battery
   - market for printed wiring board, surface mounted, unspecified, Pb containing
   - market for printed wiring board, surface mounted, unspecified, Pb free
   renormalize_excluded_mass: true
@@ -889,8 +1004,38 @@ rules:
     - RoW
     - CN
     - RER
-  conversion: Native pack manufacture with the BMS input removed, renormalized to one kg of pack without electronics;
-    actual removed mass and multiplier are reported.
+  - name: battery production, Li-ion, NCA, rechargeable, prismatic
+    product: battery, Li-ion, NCA, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: Older prismatic-pack name for native NCA manufacture; the manufacturing process and reference kg, rather
+      than the dataset spelling, define the replacement.
+    confidence: medium
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
+  - name: battery production, NCA, Li-ion, rechargeable, prismatic
+    product: battery, Li-ion, NCA, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: Older prismatic-pack name for native NCA manufacture; the manufacturing process and reference kg, rather
+      than the dataset spelling, define the replacement. This naming order is used in ecoinvent 3.8.
+    confidence: medium
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
+  conversion: Remove native BMS purchases or direct electronic-board inputs as present in that release, and renormalize
+    all remaining inputs to one kg of pack excluding those electronics; actual removed mass and multiplier are reported.
   limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
     geography; any separate capacity-to-mass conversion remains unchanged. The native BMS purchase is removed, and
     all remaining native inputs are divided by one minus its kg share. Separate control-unit purchases in the consuming
@@ -902,6 +1047,8 @@ rules:
   exclude_inputs:
   - market for battery management system, for Li-ion battery
   - battery management system production, for Li-ion battery
+  - market for printed wiring board, surface mounted, unspecified, Pb containing
+  - market for printed wiring board, surface mounted, unspecified, Pb free
   renormalize_excluded_mass: true
   confidence: medium
 - id: battery-cell-nmc111
@@ -945,8 +1092,23 @@ rules:
     - RoW
     - CN
     - RER
-  conversion: Native pack manufacture with the BMS input removed, renormalized to one kg of pack without electronics;
-    actual removed mass and multiplier are reported.
+  - name: battery production, Li-ion, NMC111, rechargeable, prismatic
+    product: battery, Li-ion, NMC111, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: Older prismatic-pack name for native NMC111 manufacture; the manufacturing process and reference kg,
+      rather than the dataset spelling, define the replacement.
+    confidence: medium
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
+  conversion: Remove native BMS purchases or direct electronic-board inputs as present in that release, and renormalize
+    all remaining inputs to one kg of pack excluding those electronics; actual removed mass and multiplier are reported.
   limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
     geography; any separate capacity-to-mass conversion remains unchanged. The native BMS purchase is removed, and
     all remaining native inputs are divided by one minus its kg share. Separate control-unit purchases in the consuming
@@ -958,6 +1120,8 @@ rules:
   exclude_inputs:
   - market for battery management system, for Li-ion battery
   - battery management system production, for Li-ion battery
+  - market for printed wiring board, surface mounted, unspecified, Pb containing
+  - market for printed wiring board, surface mounted, unspecified, Pb free
   renormalize_excluded_mass: true
   confidence: medium
 - id: battery-cell-nmc532
@@ -976,6 +1140,21 @@ rules:
     - RoW
     - CN
     - RER
+  - name: battery cell production, Li-ion, NMC111
+    product: battery cell, Li-ion, NMC111
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: The older release has no requested chemistry; use NMC111 cell manufacture per kg. Electrodes, energy
+      use and material burdens differ; retain the consumer's own density and cycle-life assumptions.
+    confidence: low
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
   conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
     supplier.
   limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
@@ -1001,8 +1180,24 @@ rules:
     - RoW
     - CN
     - RER
-  conversion: Native pack manufacture with the BMS input removed, renormalized to one kg of pack without electronics;
-    actual removed mass and multiplier are reported.
+  - name: battery production, Li-ion, NMC111, rechargeable, prismatic
+    product: battery, Li-ion, NMC111, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: Older prismatic-pack name for native NMC111 manufacture; the manufacturing process and reference kg,
+      rather than the dataset spelling, define the replacement. NMC532 manufacture is approximated by NMC111; chemistry-specific
+      material burdens are not preserved.
+    confidence: low
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
+  conversion: Remove native BMS purchases or direct electronic-board inputs as present in that release, and renormalize
+    all remaining inputs to one kg of pack excluding those electronics; actual removed mass and multiplier are reported.
   limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
     geography; any separate capacity-to-mass conversion remains unchanged. The native BMS purchase is removed, and
     all remaining native inputs are divided by one minus its kg share. Separate control-unit purchases in the consuming
@@ -1014,6 +1209,8 @@ rules:
   exclude_inputs:
   - market for battery management system, for Li-ion battery
   - battery management system production, for Li-ion battery
+  - market for printed wiring board, surface mounted, unspecified, Pb containing
+  - market for printed wiring board, surface mounted, unspecified, Pb free
   renormalize_excluded_mass: true
   confidence: medium
 - id: battery-cell-nmc622
@@ -1032,6 +1229,21 @@ rules:
     - RoW
     - CN
     - RER
+  - name: battery cell production, Li-ion, NMC811
+    product: battery cell, Li-ion, NMC811
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: The older release has no requested chemistry; use NMC811 cell manufacture per kg. Electrodes, energy
+      use and material burdens differ; retain the consumer's own density and cycle-life assumptions.
+    confidence: low
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
   conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
     supplier.
   limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
@@ -1058,6 +1270,22 @@ rules:
     - RoW
     - CN
     - RER
+  - name: market for battery cell, Li-ion, NMC811
+    product: battery cell, Li-ion, NMC811
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: The older release has no requested chemistry; use NMC811 cell manufacture per kg. Electrodes, energy
+      use and material burdens differ; retain the consumer's own density and cycle-life assumptions. Uses the available
+      native market mix.
+    confidence: low
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
   conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
     supplier.
   limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
@@ -1084,8 +1312,40 @@ rules:
     - RoW
     - CN
     - RER
-  conversion: Native pack manufacture with the BMS input removed, renormalized to one kg of pack without electronics;
-    actual removed mass and multiplier are reported.
+  - name: battery production, Li-ion, NMC811, rechargeable, prismatic
+    product: battery, Li-ion, NMC811, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: Older prismatic-pack name for native NMC811 manufacture; the manufacturing process and reference kg,
+      rather than the dataset spelling, define the replacement. NMC622 manufacture is approximated by NMC811; chemistry-specific
+      material burdens are not preserved.
+    confidence: low
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
+  - name: battery production, NMC811, Li-ion, rechargeable, prismatic
+    product: battery, Li-ion, NMC811, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: Older prismatic-pack name for native NMC811 manufacture; the manufacturing process and reference kg,
+      rather than the dataset spelling, define the replacement. NMC622 manufacture is approximated by NMC811; chemistry-specific
+      material burdens are not preserved. This naming order is used in ecoinvent 3.8.
+    confidence: low
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
+  conversion: Remove native BMS purchases or direct electronic-board inputs as present in that release, and renormalize
+    all remaining inputs to one kg of pack excluding those electronics; actual removed mass and multiplier are reported.
   limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
     geography; any separate capacity-to-mass conversion remains unchanged. The native BMS purchase is removed, and
     all remaining native inputs are divided by one minus its kg share. Separate control-unit purchases in the consuming
@@ -1097,6 +1357,8 @@ rules:
   exclude_inputs:
   - market for battery management system, for Li-ion battery
   - battery management system production, for Li-ion battery
+  - market for printed wiring board, surface mounted, unspecified, Pb containing
+  - market for printed wiring board, surface mounted, unspecified, Pb free
   renormalize_excluded_mass: true
   confidence: medium
 - id: battery-cell-nmc811
@@ -1140,8 +1402,38 @@ rules:
     - RoW
     - CN
     - RER
-  conversion: Native pack manufacture with the BMS input removed, renormalized to one kg of pack without electronics;
-    actual removed mass and multiplier are reported.
+  - name: battery production, Li-ion, NMC811, rechargeable, prismatic
+    product: battery, Li-ion, NMC811, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: Older prismatic-pack name for native NMC811 manufacture; the manufacturing process and reference kg,
+      rather than the dataset spelling, define the replacement.
+    confidence: medium
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
+  - name: battery production, NMC811, Li-ion, rechargeable, prismatic
+    product: battery, Li-ion, NMC811, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: Older prismatic-pack name for native NMC811 manufacture; the manufacturing process and reference kg,
+      rather than the dataset spelling, define the replacement. This naming order is used in ecoinvent 3.8.
+    confidence: medium
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
+  conversion: Remove native BMS purchases or direct electronic-board inputs as present in that release, and renormalize
+    all remaining inputs to one kg of pack excluding those electronics; actual removed mass and multiplier are reported.
   limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
     geography; any separate capacity-to-mass conversion remains unchanged. The native BMS purchase is removed, and
     all remaining native inputs are divided by one minus its kg share. Separate control-unit purchases in the consuming
@@ -1153,6 +1445,8 @@ rules:
   exclude_inputs:
   - market for battery management system, for Li-ion battery
   - battery management system production, for Li-ion battery
+  - market for printed wiring board, surface mounted, unspecified, Pb containing
+  - market for printed wiring board, surface mounted, unspecified, Pb free
   renormalize_excluded_mass: true
   confidence: medium
 - id: battery-cell-nmc955
@@ -1198,8 +1492,40 @@ rules:
     - RoW
     - CN
     - RER
-  conversion: Native pack manufacture with the BMS input removed, renormalized to one kg of pack without electronics;
-    actual removed mass and multiplier are reported.
+  - name: battery production, Li-ion, NMC811, rechargeable, prismatic
+    product: battery, Li-ion, NMC811, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: Older prismatic-pack name for native NMC811 manufacture; the manufacturing process and reference kg,
+      rather than the dataset spelling, define the replacement. NMC955 manufacture is approximated by NMC811; chemistry-specific
+      material burdens are not preserved.
+    confidence: low
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
+  - name: battery production, NMC811, Li-ion, rechargeable, prismatic
+    product: battery, Li-ion, NMC811, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: Older prismatic-pack name for native NMC811 manufacture; the manufacturing process and reference kg,
+      rather than the dataset spelling, define the replacement. NMC955 manufacture is approximated by NMC811; chemistry-specific
+      material burdens are not preserved. This naming order is used in ecoinvent 3.8.
+    confidence: low
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
+  conversion: Remove native BMS purchases or direct electronic-board inputs as present in that release, and renormalize
+    all remaining inputs to one kg of pack excluding those electronics; actual removed mass and multiplier are reported.
   limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
     geography; any separate capacity-to-mass conversion remains unchanged. NMC955 is approximated by NMC811 manufacturing
     per kg; chemistry-specific electrode materials and their burdens are not reproduced. This does not substitute
@@ -1213,6 +1539,8 @@ rules:
   exclude_inputs:
   - market for battery management system, for Li-ion battery
   - battery management system production, for Li-ion battery
+  - market for printed wiring board, surface mounted, unspecified, Pb containing
+  - market for printed wiring board, surface mounted, unspecified, Pb free
   renormalize_excluded_mass: true
   confidence: low
 - id: battery-cell-lto
@@ -1231,6 +1559,21 @@ rules:
     - RoW
     - CN
     - RER
+  - name: battery cell production, Li-ion
+    product: battery cell, Li-ion
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: The older release has no requested chemistry; use legacy generic Li-ion (LMO) cell manufacture per kg.
+      Electrodes, energy use and material burdens differ; retain the consumer's own density and cycle-life assumptions.
+    confidence: low
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
   conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
     supplier.
   limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
@@ -1258,6 +1601,22 @@ rules:
     - RoW
     - CN
     - RER
+  - name: market for battery cell, Li-ion
+    product: battery cell, Li-ion
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: The older release has no requested chemistry; use legacy generic Li-ion (LMO) cell manufacture per kg.
+      Electrodes, energy use and material burdens differ; retain the consumer's own density and cycle-life assumptions.
+      Uses the available native market mix.
+    confidence: low
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
   conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
     supplier.
   limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
@@ -1349,6 +1708,36 @@ rules:
     - RoW
     - CN
     - RER
+  - name: market for battery, Li-ion, LFP, rechargeable, prismatic
+    product: battery, Li-ion, LFP, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: Older native LFP pack supply name; LTO remains a chemistry proxy with no inferred change to consumer
+      performance.
+    confidence: low
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
+  - name: market for battery, Li-ion, rechargeable, prismatic
+    product: battery, Li-ion, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+    notes: Pre-3.9 generic LMO pack supply is used where LFP is unavailable. The LTO manufacturing chemistry is
+      not reproduced.
+    confidence: low
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
   conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
     supplier.
   limitations: An LFP pack supply proxy represents LTO pack manufacture per kg. It includes native controls; detailed
@@ -1523,6 +1912,21 @@ rules:
     unit: kilogram
     locations:
     - GLO
+  - name: tetrafluoroethylene production
+    product: tetrafluoroethylene
+    unit: kilogram
+    locations:
+    - same
+    - RoW
+    - RER
+    - GLO
+    notes: Earlier releases lack the native PTFE polymer inventory. One kg of its tetrafluoroethylene monomer manufacture
+      is used as a fluorinated-feedstock burden proxy; polymerization, membrane forming and ionic side chains are
+      omitted. This is a lower-bound material approximation, not functional PFSA manufacture.
+    confidence: low
+    evidence:
+    - Native ecoinvent 3.8, 3.9.1 and 3.10 background inventories and reference-unit metadata; selected release
+      and supplier are recorded at runtime.
   conversion: 'One kg of native PTFE resin manufacture per requested kg of PFSA membrane: a fluoropolymer manufacturing-burden
     proxy, not a functional membrane substitution.'
   limitations: PFSA has a fluorinated backbone and ionic sulfonic-acid side chains; PTFE alone is not proton-conducting.
@@ -1589,3 +1993,400 @@ rules:
   - https://www.sicrystal.de/index.php/en/properties-en
   - https://assets.wolfspeed.com/uploads/2026/02/Wolfspeed_Materials_Catalog.pdf
   - Native ecoinvent 3.12 single-Si wafer production, for electronics, per square metre.
+- id: methane-pyrolysis-published-reference
+  review_status: reviewed
+  confidence: low
+  match:
+    names:
+    - hydrogen production, gaseous, 100 bar, from methane pyrolysis
+    unit: kilogram
+  inventory_license: CC-BY-4.0
+  citation: Independent premise adaptation of Zhang et al. (2026), When does methane pyrolysis become competitive?
+    A life-cycle and total cost assessment of hydrogen pathways, Table 1. Pressure label and background suppliers
+    changed; carbon remains uncredited.
+  doi: 10.1016/j.ijhydene.2026.154768
+  recipe:
+    inputs:
+    - amount: 5.7
+      suppliers:
+      - name: market group for natural gas, high pressure
+        product: natural gas, high pressure
+        unit: cubic meter
+        locations:
+        - same
+        - GLO
+      - name: market for natural gas, high pressure
+        product: natural gas, high pressure
+        unit: cubic meter
+        locations:
+        - same
+        - RoW
+        - CH
+    - amount: 10.3
+      suppliers:
+      - name: market group for electricity, medium voltage
+        product: electricity, medium voltage
+        unit: kilowatt hour
+        locations:
+        - same
+        - GLO
+        - RER
+      - name: market for electricity, medium voltage
+        product: electricity, medium voltage
+        unit: kilowatt hour
+        locations:
+        - same
+        - CH
+    emissions:
+    - name: Methane, fossil
+      categories:
+      - air
+      unit: kilogram
+      amount: 0.04
+  conversion: 'Per kg H2, use the independently published Table 1 values: 5.7 m3 natural gas, 10.3 kWh net electricity
+    including purification/compression, and 0.04 kg fugitive methane. No quantities from the disputed CLIC recipe
+    are reused.'
+  limitations: The published service is H2 at 200 bar; its full energy demand is retained as a conservative proxy
+    for the requested 100 bar reference, without a pressure credit. Uses the available global background markets
+    rather than reproducing the authors' specific background. All burdens are assigned to H2; the 3 kg solid-carbon
+    coproduct is recorded as an uncredited boundary output, without a carbon-black displacement credit. Plant construction/decommissioning
+    and downstream carbon fate are excluded. Foreground values are deterministic; no unsupported uncertainty parameters
+    are invented.
+  evidence:
+  - https://doi.org/10.1016/j.ijhydene.2026.154768
+  - https://api.crossref.org/works/10.1016/j.ijhydene.2026.154768
+  - 'Crossref version-of-record license: https://creativecommons.org/licenses/by/4.0/ (effective 2026-03-28). Table
+    1 and Sections 2.1-2.2 give the foreground and no-credit boundary.'
+  metadata:
+    uncredited solid carbon output kg per kg H2: 3.0
+    proxy source pressure bar: 200
+    proxy requested pressure bar: 100
+    classifications:
+    - - ISIC rev.4 ecoinvent
+      - 3520:Manufacture of gas; distribution of gaseous fuels through mains
+    - - CPC
+      - '34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals
+        n.e.c.'
+background_proxies:
+- id: background-nmc622-pack
+  target_versions: &id001
+  - '3.8'
+  - '3.9'
+  - 3.9.1
+  - '3.10'
+  - 3.10.1
+  review_status: reviewed
+  confidence: low
+  identities:
+  - - market for battery, Li-ion, NMC622
+    - battery, Li-ion, NMC622
+    - GLO
+    - kilogram
+  - - market for battery, Li-ion, NMC622, rechargeable
+    - battery, Li-ion, NMC622, rechargeable
+    - GLO
+    - kilogram
+  suppliers:
+  - name: market for battery, Li-ion, NMC811, rechargeable, prismatic
+    product: battery, Li-ion, NMC811, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - Europe without Switzerland
+    - RoW
+    - RER
+    - CN
+    - CH
+  conversion: One kg of the reviewed native supplier per kg of the unavailable reference; purchasing amounts and
+    consumer operating assumptions are retained.
+  limitations: The older target has no native NMC622 pack. A complete NMC811 pack, including its own controls, represents
+    manufacturing per kg; this does not change the consuming vehicle's capacity, density or lifetime parameters.
+  evidence:
+  - Native ecoinvent 3.8, 3.9.1, 3.10 and 3.11 target metadata and actual background-link validation.
+  - Engineering manufacturing-burden proxy; chemical or grade equivalence is not asserted.
+- id: background-nmc532-pack
+  target_versions: *id001
+  review_status: reviewed
+  confidence: low
+  identities:
+  - - market for battery, Li-ion, NMC532
+    - battery, Li-ion, NMC532
+    - GLO
+    - kilogram
+  - - market for battery, Li-ion, NMC532, rechargeable
+    - battery, Li-ion, NMC532, rechargeable
+    - GLO
+    - kilogram
+  suppliers:
+  - name: market for battery, Li-ion, NMC111, rechargeable, prismatic
+    product: battery, Li-ion, NMC111, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - Europe without Switzerland
+    - RoW
+    - RER
+    - CN
+    - CH
+  conversion: One kg of the reviewed native supplier per kg of the unavailable reference; purchasing amounts and
+    consumer operating assumptions are retained.
+  limitations: Native NMC111 complete-pack manufacture approximates NMC532 per kg where that chemistry is absent.
+    Manufacturing cathode composition differs; no operating-property substitution is inferred.
+  evidence:
+  - Native ecoinvent 3.8, 3.9.1, 3.10 and 3.11 target metadata and actual background-link validation.
+  - Engineering manufacturing-burden proxy; chemical or grade equivalence is not asserted.
+- id: background-lfp-pack
+  target_versions:
+  - '3.8'
+  review_status: reviewed
+  confidence: low
+  identities:
+  - - market for battery, Li-ion, LFP, rechargeable, prismatic
+    - battery, Li-ion, LFP, rechargeable, prismatic
+    - GLO
+    - kilogram
+  - - market for battery, Li-ion, LFP, rechargeable
+    - battery, Li-ion, LFP, rechargeable
+    - GLO
+    - kilogram
+  suppliers:
+  - name: market for battery, Li-ion, rechargeable, prismatic
+    product: battery, Li-ion, rechargeable, prismatic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - Europe without Switzerland
+    - RoW
+    - RER
+    - CN
+    - CH
+  conversion: One kg of the reviewed native supplier per kg of the unavailable reference; purchasing amounts and
+    consumer operating assumptions are retained.
+  limitations: The pre-3.9 generic LMO complete-pack inventory is a low-confidence manufacturing proxy for unavailable
+    LFP packs; native controls are included as in the requested complete-pack boundary.
+  evidence:
+  - Native ecoinvent 3.8, 3.9.1, 3.10 and 3.11 target metadata and actual background-link validation.
+  - Engineering manufacturing-burden proxy; chemical or grade equivalence is not asserted.
+- id: background-ptfe
+  target_versions: &id002
+  - '3.8'
+  - '3.9'
+  - 3.9.1
+  - '3.10'
+  - 3.10.1
+  - '3.11'
+  review_status: reviewed
+  confidence: low
+  identities:
+  - - market for polytetrafluoroethylene
+    - polytetrafluoroethylene
+    - GLO
+    - kilogram
+  suppliers:
+  - name: tetrafluoroethylene production
+    product: tetrafluoroethylene
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - Europe without Switzerland
+    - RoW
+    - RER
+    - CN
+    - CH
+  conversion: One kg of the reviewed native supplier per kg of the unavailable reference; purchasing amounts and
+    consumer operating assumptions are retained.
+  limitations: Earlier releases have no native PTFE polymer. Tetrafluoroethylene monomer manufacture represents
+    fluorinated feedstock burden per kg; polymerization and downstream forming are omitted. This is a lower-bound
+    manufacturing proxy.
+  evidence:
+  - Native ecoinvent 3.8, 3.9.1, 3.10 and 3.11 target metadata and actual background-link validation.
+  - Engineering manufacturing-burden proxy; chemical or grade equivalence is not asserted.
+- id: background-vinylidene-fluoride
+  target_versions: *id002
+  review_status: reviewed
+  confidence: low
+  identities:
+  - - market for vinylidene fluoride
+    - vinylidene fluoride
+    - GLO
+    - kilogram
+  suppliers:
+  - name: tetrafluoroethylene production
+    product: tetrafluoroethylene
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - Europe without Switzerland
+    - RoW
+    - RER
+    - CN
+    - CH
+  conversion: One kg of the reviewed native supplier per kg of the unavailable reference; purchasing amounts and
+    consumer operating assumptions are retained.
+  limitations: Tetrafluoroethylene is a different fluoromonomer and approximates the unavailable vinylidene-fluoride
+    manufacturing burden per kg. Fluorine content and process chemistry differ; consuming polymerization operations
+    are retained, with no additional polymer product added.
+  evidence:
+  - Native ecoinvent 3.8, 3.9.1, 3.10 and 3.11 target metadata and actual background-link validation.
+  - Engineering manufacturing-burden proxy; chemical or grade equivalence is not asserted.
+- id: background-mdea
+  target_versions: *id001
+  review_status: reviewed
+  confidence: low
+  identities:
+  - - market for methyldiethanolamine
+    - methyldiethanolamine
+    - RER
+    - kilogram
+  suppliers:
+  - name: market for methyldiethanolamine
+    product: methyldiethanolamine
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - Europe without Switzerland
+    - RoW
+    - RER
+    - CN
+    - CH
+  - name: market for diethanolamine
+    product: diethanolamine
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - Europe without Switzerland
+    - RoW
+    - RER
+    - CN
+    - CH
+  conversion: One kg of the reviewed native supplier per kg of the unavailable reference; purchasing amounts and
+    consumer operating assumptions are retained.
+  limitations: Use the same amine from an available native market if present, otherwise diethanolamine as a related
+    amine-manufacturing proxy. Methylation chemistry, toxicity and solvent properties differ; capture efficiency
+    and solvent consumption are not inferred from the proxy.
+  evidence:
+  - Native ecoinvent 3.8, 3.9.1, 3.10 and 3.11 target metadata and actual background-link validation.
+  - Engineering manufacturing-burden proxy; chemical or grade equivalence is not asserted.
+- id: background-zirconium-sponge
+  target_versions:
+  - '3.8'
+  review_status: reviewed
+  confidence: low
+  identities:
+  - - market for zirconium sponge, nuclear-grade
+    - zirconium sponge, nuclear-grade
+    - GLO
+    - kilogram
+  suppliers:
+  - name: market for titanium sponge
+    product: titanium sponge
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - Europe without Switzerland
+    - RoW
+    - RER
+    - CN
+    - CH
+  conversion: One kg of the reviewed native supplier per kg of the unavailable reference; purchasing amounts and
+    consumer operating assumptions are retained.
+  limitations: Titanium sponge approximates the unavailable zirconium-metal manufacturing burden as a related sponge-metallurgy
+    reference per kg. Zirconium ore chemistry and nuclear-grade hafnium separation are not represented; physical
+    alloy or reactor performance is not changed.
+  evidence:
+  - Native ecoinvent 3.8, 3.9.1, 3.10 and 3.11 target metadata and actual background-link validation.
+  - Engineering manufacturing-burden proxy; chemical or grade equivalence is not asserted.
+- id: background-xanthate
+  target_versions:
+  - '3.8'
+  review_status: reviewed
+  confidence: low
+  identities:
+  - - market for sodium ethyl xanthate
+    - sodium ethyl xanthate
+    - GLO
+    - kilogram
+  suppliers:
+  - name: market for chemical, organic
+    product: chemical, organic
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - Europe without Switzerland
+    - RoW
+    - RER
+    - CN
+    - CH
+  conversion: One kg of the reviewed native supplier per kg of the unavailable reference; purchasing amounts and
+    consumer operating assumptions are retained.
+  limitations: No native xanthate collector is available. Generic organic-chemical manufacture is a coarse burden
+    proxy per kg; sulfur/sodium-specific production and toxicity are not represented. Flotation dosage and recovery
+    assumptions remain in the consumer.
+  evidence:
+  - Native ecoinvent 3.8, 3.9.1, 3.10 and 3.11 target metadata and actual background-link validation.
+  - Engineering manufacturing-burden proxy; chemical or grade equivalence is not asserted.
+- id: background-lfp-active-material
+  target_versions:
+  - '3.8'
+  review_status: reviewed
+  confidence: low
+  identities:
+  - - market for lithium iron phosphate
+    - lithium iron phosphate
+    - RoW
+    - kilogram
+  suppliers:
+  - name: market for cathode, LiMn2O4, for lithium-ion battery
+    product: cathode, LiMn2O4, for lithium-ion battery
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - Europe without Switzerland
+    - RoW
+    - RER
+    - CN
+    - CH
+  conversion: One kg of the reviewed native supplier per kg of the unavailable reference; purchasing amounts and
+    consumer operating assumptions are retained.
+  limitations: A native LMO cathode manufacturing reference approximates the unavailable LFP active material. It
+    includes an electrode-composite boundary and differs in chemistry; this is a low-confidence burden proxy without
+    changing capacity or cycle-life assumptions.
+  evidence:
+  - Native ecoinvent 3.8, 3.9.1, 3.10 and 3.11 target metadata and actual background-link validation.
+  - Engineering manufacturing-burden proxy; chemical or grade equivalence is not asserted.
+- id: background-recycled-hdpe
+  target_versions: *id001
+  review_status: reviewed
+  confidence: medium
+  identities:
+  - - polyethylene, high density, pellets, recycled to generic market for polyethylene, high density, granulate
+    - polyethylene, high density, granulate
+    - RER
+    - kilogram
+  suppliers:
+  - name: market for polyethylene, high density, granulate, recycled
+    product: polyethylene, high density, granulate, recycled
+    unit: kilogram
+    locations:
+    - Europe without Switzerland
+    - RoW
+    - CH
+    - GLO
+  conversion: One kg of the reviewed native supplier per kg of the unavailable reference; purchasing amounts and
+    consumer operating assumptions are retained.
+  limitations: Preserve recycled HDPE supply rather than accept a generic virgin-granulate alias. Europe without
+    Switzerland represents the unavailable RER market where possible; regional recycling mix and pellet grade can
+    differ.
+  evidence:
+  - Native ecoinvent 3.8, 3.9.1, 3.10 and 3.11 target metadata and actual background-link validation.
+  - Engineering manufacturing-burden proxy; chemical or grade equivalence is not asserted.

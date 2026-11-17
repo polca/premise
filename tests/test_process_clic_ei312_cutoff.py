@@ -30,7 +30,10 @@ pytestmark = [
 ]
 
 
-def test_live_clic_electricity_update_preserves_reviewed_role_filters(tmp_path):
+@pytest.mark.parametrize("license_policy", ["default", "commercial"])
+def test_live_clic_electricity_update_preserves_reviewed_role_filters(
+    tmp_path, license_policy
+):
     project_name = "ecoinvent-3.12-cutoff"
     biosphere_name = "ecoinvent-3.12-biosphere"
     bw2data.projects.set_current(project_name)
@@ -58,6 +61,7 @@ def test_live_clic_electricity_update_preserves_reviewed_role_filters(tmp_path):
             "cache_dir": tmp_path / "clic",
             "offline": True,
             "freshness": "snapshot",
+            "license_policy": license_policy,
         },
     )
     ndb.update(["electricity"])
@@ -92,6 +96,9 @@ def test_live_clic_electricity_update_preserves_reviewed_role_filters(tmp_path):
     recipe_path = ndb.write_inventory_recipe(tmp_path / "inventory-recipe.json")
     recipe = json.loads(recipe_path.read_text(encoding="utf-8"))
     assert set(recipe["roots"]) == set(ndb._clic_lockfile["roots"])
-    assert set(recipe["versions"]) == {
-        row["slug"] for row in ndb._clic_manifest["datasets"]
-    }
+    used_slugs = {row["slug"] for row in ndb._clic_manifest["datasets"]}
+    if license_policy == "commercial":
+        assert ndb._clic_manifest["license_policy"]["status"] == "passed"
+        assert recipe["license_policy"]["name"] == "commercial"
+        used_slugs.update(ndb._clic_manifest["commercial_replacements"]["pruned_slugs"])
+    assert set(recipe["versions"]) == used_slugs
