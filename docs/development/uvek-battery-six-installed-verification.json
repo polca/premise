@@ -1,0 +1,140 @@
+{
+  "status": "six_required_battery_inputs_verified_in_installed_packages",
+  "Brightpath_Git_revision": "1b2fb9f79486e2d002e8496736a7cb2ee34b1ce4",
+  "installed_tests": {
+    "status": "installed_six_battery_input_regressions_passed",
+    "Brightpath_Git_revision": "1b2fb9f79486e2d002e8496736a7cb2ee34b1ce4",
+    "runtime_packages_loaded_only_from_installed_environment": true,
+    "test_files": 20,
+    "scope_gate_accepts_trucks": true,
+    "elapsed_seconds": 144.76608395890798,
+    "passed": 261
+  },
+  "public_preparation": {
+    "status": "installed_public_fifteen_sector_inventory_preparation_passed",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel",
+      "mining",
+      "renewable",
+      "cdr",
+      "fuels",
+      "ships",
+      "buses",
+      "two_wheelers",
+      "trains",
+      "cars",
+      "trucks"
+    ],
+    "CLIC_records": 1495,
+    "Brightpath_Git_revision": "1b2fb9f79486e2d002e8496736a7cb2ee34b1ce4",
+    "CLIC_options_overridden": false,
+    "freshness": "normal live default",
+    "scope_gate_bypassed": false,
+    "validation_disabled": false,
+    "new_Brightway_databases": 0,
+    "registry_and_processed_file_names_unchanged": true,
+    "elapsed_seconds": 112.18470924999565,
+    "qualification_limit": "Preparation regression of already qualified15sectors; no sector update/export repeated and battery/final-energy sectors remain unfinished."
+  },
+  "artifact_comparisons": [
+    {
+      "package": "brightpath",
+      "path": "data/export/uvek_shared_pitch_nickel_39_review.json",
+      "sha256": "2c4f2e1311d9003296580557224505ab22d21ea9c7de525b0af03d3fe7e51d95",
+      "installed_bytes_equal_checkout": true
+    },
+    {
+      "package": "brightpath",
+      "path": "data/export/uvek_battery_waste_markets_39_review.json",
+      "sha256": "6d035654d3e0c8b69dffeba46a97d8cba8f9a10de9156864bd4ee0018b3030e7",
+      "installed_bytes_equal_checkout": true
+    },
+    {
+      "package": "brightpath",
+      "path": "data/export/uvek_required_inventory_reviews.json",
+      "sha256": "6fdcd684ebe208e17f349f6cd2094f81e7ca611046ad4ef035b90c6422711ae8",
+      "installed_bytes_equal_checkout": true
+    },
+    {
+      "package": "brightpath",
+      "path": "data/migrations/RESOURCE_MANIFEST.json",
+      "sha256": "99a6aeec699f2e5b56471c19d59094a37308ed9704941456d869b19346574411",
+      "installed_bytes_equal_checkout": true
+    },
+    {
+      "package": "brightpath",
+      "path": "data/migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "sha256": "70ae93c2555c32a3de6b00ee92c92ae22900718b833b4d95a725d12520cd49a0",
+      "installed_bytes_equal_checkout": true
+    },
+    {
+      "package": "premise",
+      "path": "data/clic/approved_rule_scopes.json",
+      "sha256": "cb8834925fee203fcc7ffab2e130fe4582f5cdaaf0f6994848c798b164a5693b",
+      "installed_bytes_equal_checkout": true
+    }
+  ],
+  "actual_battery_frontier": {
+    "source39_unapproved_before_shared_and_waste_batches": 8,
+    "source39_unapproved_before_waste_batch": 6,
+    "source39_unapproved_after": 2,
+    "remaining": {
+      "bp-168324086066bce9": {
+        "location": "Europe without Switzerland",
+        "name": "market group for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "unit": "kilogram"
+      },
+      "bp-9dba49829fbe9454": {
+        "location": "GLO",
+        "name": "market for casting, aluminium, lost-wax",
+        "reference product": "casting, aluminium, lost-wax",
+        "unit": "kilogram"
+      }
+    },
+    "inventory_preparation_completed": false,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "no_write_native_inventory_checks": {
+    "signed_finite_LCI_solves": 16,
+    "independent_native_demand_comparisons": 8,
+    "new_Brightway_databases": 0
+  },
+  "temporary_cleanup": {
+    "removed": [
+      {
+        "owned_temporary_directory": "shared-pitch-nickel-39-generated",
+        "bytes_removed": 110184208
+      },
+      {
+        "owned_temporary_directory": "battery-waste-markets-39-generated",
+        "bytes_removed": 110231700
+      },
+      {
+        "owned_temporary_directory": "battery-six-installed-pip-cache",
+        "bytes_removed": 69748431
+      },
+      {
+        "owned_temporary_directory": "premise-clic-worktree/build",
+        "bytes_removed": 63589292
+      },
+      {
+        "owned_temporary_directory": "trucks-installed-wheels",
+        "bytes_removed": 23001611
+      }
+    ],
+    "total_bytes_removed": 376755242,
+    "source_biosphere_latest_export_and_fallback_preserved": true,
+    "current_installed_environment_and_wheel_preserved": true
+  },
+  "new_runtime_or_generator_Python_changes": 0,
+  "qualified_sectors": 15,
+  "total_sectors": 19,
+  "qualification_limit": "The first source3.9battery group falls8to2. Municipal waste and aluminium casting remain unapproved; unseen later cohorts and full battery/final-energy update/filter/export qualification remain unfinished. The original15-sector preparation remains valid; no new sector or source/native impact equivalence is claimed."
+}

@@ -46,7 +46,7 @@ already belongs to an environment you need, register a different name and select
 it manually in JupyterLab. Registering a kernel does not move Brightway projects.
 
 Premise installs Brightpath directly from GitHub at
-`bd8e3a3b527e1a8f18fb8a0df362591356c991fe`. Installing only the published
+`1b2fb9f79486e2d002e8496736a7cb2ee34b1ce4`. Installing only the published
 Brightpath alpha14 package is insufficient. Internet access is needed for the
 installation, biosphere installation and first CLIC inventory download.
 
@@ -54,7 +54,7 @@ If you previously installed another GitHub revision, the unchanged alpha14
 version number can make pip keep it. To update that existing environment explicitly:
 
 ```bash
-python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@bd8e3a3b527e1a8f18fb8a0df362591356c991fe"
+python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@1b2fb9f79486e2d002e8496736a7cb2ee34b1ce4"
 ```
 
 Restart the notebook kernel after upgrading. A fresh environment uses the pinned
@@ -364,3 +364,22 @@ shared Premise routines. Screening and recipe-signature limits remain in
 `uvek-truck-market-alias-review.json`. Complete export evidence is in
 `uvek-trucks-public-export-verification.json`. This verifies links, quantities
 and finite inventories, without claiming source/native impact equivalence.
+
+
+### Battery work in progress: six inputs resolved
+
+The current pin adds reviewed source-3.9 pitch, nickel-sulfate, steel-disposal,
+solvent-disposal and waste-oil portfolios. The inspected first battery group
+falls from eight unresolved identities to two: European municipal waste and
+lost-wax aluminium casting. Three production-only kiln receipts remain in
+explicit omission audits; other disposal shares are not renormalized. No
+production or generator Python code changes in this batch.
+
+All 261 installed-package checks pass, and the normal live-archive preparation
+of the qualified fifteen-sector list still imports the same 1,495 CLIC records.
+The example notebook and verified sector list remain unchanged. Battery and
+final energy are still under review; this checkpoint does not add them to the
+qualified list. Details and limitations are in
+`uvek-shared-pitch-nickel-39-review.md`,
+`uvek-battery-waste-markets-39-review.md` and
+`uvek-battery-six-installed-verification.json`.
