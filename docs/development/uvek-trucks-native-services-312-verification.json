@@ -117,5 +117,39 @@
   },
   "qualified_sectors": 14,
   "total_sectors": 19,
-  "qualification_limit": "The nine current service matches are verified; complete truck preparation, filters, public admission and export remain unfinished, as do four other sectors."
+  "qualification_limit": "The nine current service matches are verified; complete truck preparation, filters, public admission and export remain unfinished, as do four other sectors.",
+  "installed_package_verification": {
+    "status": "installed_truck_mapping_checks_passed",
+    "Brightpath_source_revision": "62e793310387cf3e1c2599c8a62a00e42b8091e8",
+    "installation": "Wheels built from committed checkouts; GitHub availability checked separately after batch push.",
+    "runtime_source_checkout_modules_loaded": false,
+    "Premise_approval_ledger_and_dependency_pin_match_checkout": true,
+    "packaged_review_and_resource_bytes_match_checkout": true,
+    "review_sha256": "2f2b329cf11b2217caa7c09943f5d48c6a7fbdc6fe905bafe2b2f7ca99453f17",
+    "tests_passed": 16,
+    "wheel_sha256": {
+      "premise-2.6.0-py3-none-any.whl": "9a3a0f79285d7e7fb24a798e12ac6722ff2db61a224cd1766c6be7b7e56fddbf",
+      "brightpath-1.0.0a14-py3-none-any.whl": "064e01d1c0d5940fc13f0a49ed8d8f70dd99178035d879e9147984be39ca1e7f"
+    },
+    "new_Brightway_databases": 0
+  },
+  "cleanup": {
+    "owned_superseded_builds_removed": [
+      {
+        "path": "/private/tmp/premise-all-sectors/recycling-ch-38-installed-wheels",
+        "bytes": 69074773
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/premise-clic-worktree/build",
+        "bytes": 63456266
+      },
+      {
+        "path": "/Users/romain/GitHub/brightpath/build",
+        "bytes": 467689396
+      }
+    ],
+    "bytes_removed": 600220435,
+    "latest_tested_wheels_retained": "/private/tmp/premise-all-sectors/trucks-native-services-312-installed-wheels",
+    "Brightway_databases_deleted": 0
+  }
 }

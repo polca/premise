@@ -34,3 +34,9 @@ thirteen material/manufacturing interfaces, three waste markets, one sea-freight
 service and one antimony-mining process. It is not the count for every remaining
 sector. Complete truck preparation, filters/physical coverage, public admission
 and export remain unfinished. Fourteen of nineteen sectors remain qualified.
+
+Sixteen installed-package checks also pass, with runtime modules loaded only from
+the isolated environment. The dependency pin and packaged review/resource bytes
+match the tested checkouts. Superseded build files were removed; the latest tested
+wheels are retained. Installation and cleanup details are in the verification
+artifact.
