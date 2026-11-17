@@ -234,3 +234,25 @@ def test_conditional_compression_contract_preserves_balance_and_pressure_caveats
     ].removeprefix("Hydrogen tank compression. ")
     with pytest.raises(ClicInventoryError, match="do not balance"):
         _normalize_compression_contract(activity, [])
+
+
+def test_migrated_hydrogen_product_preserves_compression_quantities():
+    from test_vehicle_hydrogen import vehicle
+    from premise.inventory.clic_adapter import _normalize_compression_contract
+    from premise.transport.vehicle_hydrogen import prepare_hydrogen_compression
+
+    activity = vehicle(kind="car")
+    activity["code"] = "migrated-car"
+    activity["exchanges"][1]["product"] = "hydrogen, gaseous"
+    amounts = [e["amount"] for e in activity["exchanges"]]
+    diagnostics = []
+    _normalize_compression_contract(activity, diagnostics)
+    assert (
+        activity["hydrogen tank compression"]["hydrogen product"] == "hydrogen, gaseous"
+    )
+    assert [e["amount"] for e in activity["exchanges"]] == amounts
+    assert prepare_hydrogen_compression(activity) is not None
+    assert diagnostics[0]["code"] == "clic.compression_product_migrated"
+    activity["exchanges"][2]["amount"] *= 2
+    with pytest.raises(ValueError, match="hydrogen use requires"):
+        prepare_hydrogen_compression(activity)

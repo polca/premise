@@ -34,6 +34,31 @@ def _normalize_compression_contract(activity, diagnostics):
         json.loads(value) if isinstance(value, str) else copy.deepcopy(value)
     )
     if "electricity product" in specification and "hydrogen product" in specification:
+        products = {
+            edge.get("product")
+            for edge in activity["exchanges"]
+            if edge["type"] == "technosphere"
+            and edge.get("unit") == "kilogram"
+            and str(edge.get("product", "")).startswith("hydrogen,")
+        }
+        if specification[
+            "hydrogen product"
+        ] == "hydrogen, gaseous, low pressure" and products == {"hydrogen, gaseous"}:
+            # ecoinvent 3.8 uses the undifferentiated gaseous-H2 reference.
+            # Bind the migrated product while retaining the explicit delivery
+            # pressure scenario, electricity intensity and purchase quantities.
+            specification["hydrogen product"] = "hydrogen, gaseous"
+            activity[COMPRESSION_KEY] = specification
+            from ..transport.vehicle_hydrogen import prepare_hydrogen_compression
+
+            prepare_hydrogen_compression(activity)
+            diagnostics.append(
+                {
+                    "code": "clic.compression_product_migrated",
+                    "activity_code": activity["code"],
+                    "message": "Bound compression to the target's generic gaseous-hydrogen product; delivery-pressure assumptions and quantities are unchanged.",
+                }
+            )
         return
     if not specification.get(
         "delivery pressure is an explicit scenario not native-label evidence"
