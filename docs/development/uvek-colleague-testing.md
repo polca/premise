@@ -45,7 +45,7 @@ already belongs to an environment you need, register a different name and select
 it manually in JupyterLab. Registering a kernel does not move Brightway projects.
 
 Premise installs Brightpath directly from GitHub at
-`62e793310387cf3e1c2599c8a62a00e42b8091e8`. Installing only the published
+`bd8e3a3b527e1a8f18fb8a0df362591356c991fe`. Installing only the published
 Brightpath alpha14 package is insufficient. Internet access is needed for the
 installation, biosphere installation and first CLIC inventory download.
 
@@ -53,7 +53,7 @@ If you previously installed another GitHub revision, the unchanged alpha14
 version number can make pip keep it. To update that existing environment explicitly:
 
 ```bash
-python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@62e793310387cf3e1c2599c8a62a00e42b8091e8"
+python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@bd8e3a3b527e1a8f18fb8a0df362591356c991fe"
 ```
 
 Restart the notebook kernel after upgrading. A fresh environment uses the pinned
@@ -328,3 +328,16 @@ with complete packaging, retained delivery, matched soap/process bases and the
 correct plated-sheet area unit. The acid recipe is reserved for its future
 recycling parents and grants no global conversion. The notebook and qualified
 sector workflow are unchanged. See `uvek-recycling-materials-38-verification.json`.
+
+
+### Current truck mappings and diagnostic update
+
+The pinned Brightpath version resolves the remaining three current truck waste
+markets and preserves the earlier physical waste routes. Premise's YAML now
+selects the truck fuels and relinks native fleet-market purchases to the shared
+regional IAM markets. A small legacy battery guard keeps kg purchases outside
+the kWh sizing schedule. Standalone energy, fleet-share, compression, battery
+and consumer-quantity checks pass. Trucks remain outside the public supported
+sector list until the combined installed-package run and export are verified.
+The example notebook and fourteen-sector qualified workflow remain unchanged.
+See `uvek-trucks-waste-and-update-review.md` for evidence and proxy limits.
