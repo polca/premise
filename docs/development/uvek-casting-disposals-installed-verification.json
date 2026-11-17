@@ -1,0 +1,85 @@
+{
+  "status": "installed_casting_utilities_and_disposal_regressions_passed",
+  "Brightpath_Git_revision": "f919320e3b94834ca6338c407e2198d99dd315d3",
+  "runtime_packages_loaded_only_from_installed_environment": true,
+  "test_files": 29,
+  "scope_gate_accepts_trucks": true,
+  "elapsed_seconds": 232.6322318749735,
+  "tests_passed": 413,
+  "dependency_warnings": 4,
+  "public_preparation": {
+    "status": "installed_public_fifteen_sector_inventory_preparation_passed",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel",
+      "mining",
+      "renewable",
+      "cdr",
+      "fuels",
+      "ships",
+      "buses",
+      "two_wheelers",
+      "trains",
+      "cars",
+      "trucks"
+    ],
+    "CLIC_records": 1495,
+    "Brightpath_Git_revision": "f919320e3b94834ca6338c407e2198d99dd315d3",
+    "CLIC_options_overridden": false,
+    "freshness": "normal live default",
+    "scope_gate_bypassed": false,
+    "validation_disabled": false,
+    "new_Brightway_databases": 0,
+    "registry_and_processed_file_names_unchanged": true,
+    "elapsed_seconds": 99.78858179203235,
+    "qualification_limit": "Preparation regression of already qualified15sectors; no sector update/export repeated and battery/final-energy sectors remain unfinished."
+  },
+  "source_Brightpath_tests_passed": 847,
+  "source_Premise_tests_passed": 8,
+  "complete_sectors": 15,
+  "total_sectors": 19,
+  "remaining_sectors": [
+    "battery",
+    "final energy",
+    "emissions",
+    "metals"
+  ],
+  "production_Python_changes_in_batch": 0,
+  "Brightpath_install_provenance": "Exact committed revision installed through a local Git clone before batch publication; same GitHub revision is pinned in requirements.",
+  "cleanup": {
+    "removed": [
+      {
+        "path": "/private/tmp/premise-all-sectors/casting-disposals-pip-cache",
+        "bytes_removed": 23063064
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/msw-casting-installed-wheels",
+        "bytes_removed": 23018073
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/premise-clic-worktree/build",
+        "bytes_removed": 63782322
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/premise-clic-worktree/premise.egg-info",
+        "bytes_removed": 115063
+      }
+    ],
+    "post_install_bytes_removed": 109978522,
+    "generator_bytes_removed_after_byte_comparison": 111381478,
+    "retained": "Current installed environment/current Premise wheel; source and biosphere databases, latest 15-sector verified export and 14-sector fallback; private source witnesses and active closed-casting preparation."
+  },
+  "installed_byte_checks": {
+    "brightpath": {
+      "verified_installed_package_files": 579,
+      "all_packaged_files_present_in_source_match": true
+    },
+    "premise": {
+      "verified_installed_package_files": 423,
+      "all_packaged_files_present_in_source_match": true
+    }
+  }
+}

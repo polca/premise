@@ -2333,3 +2333,38 @@ validation changes or database writes. See `uvek-msw-39-review.md`,
 `uvek-msw-casting-installed-verification.json`. Temporary generator outputs,
 build directories, obsolete wheels and the owned pip cache are removed after
 verification. Source/biosphere and the latest two verified exports are retained.
+
+
+## 2026-11-17: verified casting utilities and seven disposal portfolios
+
+Fifteen of nineteen sectors remain qualified. The source-3.9 casting dependency
+group now has four unapproved interfaces, down from eleven: wax, two sodium-
+nitrite markets and X-ray film. Utility corrections use the native useful-heat
+service above 100 kW and a complete Canadian medium-voltage geographic proxy
+for Quebec, and reuse the existing verified aluminium-scrap cut-off stock.
+Seven disposal portfolios retain all twelve treatment and 35 freight entries.
+Separator sludge uses the native 90%-water hazardous incinerator; paint sorting,
+collection and disposal shares stay distinct. No new zero authority, source
+omission or production/generator Python change is introduced in this batch.
+See `uvek-casting-utilities-39-review.md` and
+`uvek-casting-disposals-39-review.md` for boundaries and limitations.
+
+Source checks pass 847 Brightpath and eight Premise tests. The exact installed
+revision passes 413 tests across 29 files, and all 579 Brightpath and 423
+Premise package files checked match source. Normal live preparation of the
+15 qualified sectors returns 1,495 CLIC records with normal admission and
+validation and no new Brightway databases. Requirements and the colleague
+guide pin `f919320e3b94834ca6338c407e2198d99dd315d3`. See
+`uvek-casting-disposals-installed-verification.json`. Temporary generator output,
+owned build/pip caches and the obsolete previous wheel are removed afterward.
+
+The full casting preflight accounts for eighteen original source foreground
+processes and all 350 nonproduction source exchange positions. Thirteen waste
+bindings are held explicitly for restoration using inspected closed waste
+models. Known chemical operations and 107 existing helpers convert without
+new global permissions for internal nitrogen-oxide gas markets. The required
+uncontrolled-treatment emissions also pass the existing canonical 3.10 route.
+This is private preparation, not a complete inventory, approved omission,
+qualified casting update or new export. Its closed-model restoration,
+independent comparisons, global casting correspondence and actual battery/
+final-energy retries remain unfinished, as do emissions and metals qualification.
