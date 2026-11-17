@@ -1812,8 +1812,8 @@ class IAMDataCollection:
             data.year.values.min() <= self.year <= data.year.values.max()
         ), f"{self.year} is outside of the boundaries of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
 
-        # check if values of input_vars are strings or lists
-        if any(isinstance(x, list) for x in input_vars.values()):
+        has_grouped_aliases = any(isinstance(x, list) for x in input_vars.values())
+        if has_grouped_aliases:
             vars = [
                 item
                 for sublist in input_vars.values()
@@ -1836,7 +1836,7 @@ class IAMDataCollection:
         else:
             return None
 
-        if any(isinstance(x, list) for x in input_vars.values()):
+        if has_grouped_aliases:
             rev_input_vars = {
                 v: k
                 for k, val in input_vars.items()
