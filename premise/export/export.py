@@ -125,12 +125,10 @@ def get_simapro_category_of_exchange():
     ) as file:
         csv_reader = csv.DictReader(file)
 
-        dict_cat = {}
-        # first row are headers
-        for row in csv_reader:
-            dict_cat[(row["name"].lower(), row["product"].lower())] = dict(row)
-
-    return dict_cat
+        return {
+            (row["name"].lower(), row["product"].lower()): dict(row)
+            for row in csv_reader
+        }
 
 
 def resolve_simapro_category(
@@ -177,11 +175,7 @@ def get_simapro_biosphere_dictionnary():
         )
     with open(filepath, encoding="utf-8") as json_file:
         data = json.load(json_file)
-    dict_bio = {}
-    for row in data:
-        dict_bio[row[2]] = row[1]
-
-    return dict_bio
+    return {row[2]: row[1] for row in data}
 
 
 def create_index_of_A_matrix(database):
