@@ -1,0 +1,286 @@
+{
+  "status": "15_current_truck_inputs_pass_three_waste_markets_remain",
+  "review_sha256": "2a6ca1f20d8fdcff454a461e132b3971f902056463bdef8f61b4ea25e5e2e4be",
+  "candidate_review_proof": {
+    "review_sha256": "2a6ca1f20d8fdcff454a461e132b3971f902056463bdef8f61b4ea25e5e2e4be",
+    "new_exact_source_cases": 15,
+    "new_market_helpers": 13,
+    "unchanged_direct_correspondences": 2,
+    "existing_recipe_contents_unchanged": true,
+    "idempotent_full_review_index_replay": true,
+    "preserved_older_physical_mappings": [
+      {
+        "rule_id": "bp-f0abe48d8c3176d4",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": false
+      },
+      {
+        "rule_id": "bp-0cdecef35c6741e6",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": false
+      },
+      {
+        "rule_id": "bp-975df496dad5c2a7",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": false
+      },
+      {
+        "rule_id": "bp-1b65914b2f33ba7b",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": true
+      },
+      {
+        "rule_id": "bp-0cdecef35c6741e6",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": false
+      },
+      {
+        "rule_id": "bp-8185695a8558088a",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": true
+      },
+      {
+        "rule_id": "bp-20d6cc6fceb46d84",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": true
+      },
+      {
+        "rule_id": "bp-1b65914b2f33ba7b",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": true
+      },
+      {
+        "rule_id": "bp-4f9f0bb31d6d8487",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": true
+      },
+      {
+        "rule_id": "bp-25caf9ffefc8a1ab",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": false
+      },
+      {
+        "rule_id": "bp-975df496dad5c2a7",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "physical_mapping_unchanged": true,
+        "selected_rule_byte_equal": false
+      }
+    ],
+    "production_or_generator_Python_changes": 0,
+    "new_foreground_omissions": 0,
+    "qualification_limit": "Candidate data pending actual migration, signed LCI checks and truck preparation retry."
+  },
+  "Brightpath_tests_passed": 30,
+  "Premise_tests_passed": 5,
+  "no_write_LCI": {
+    "status": "15_migrated_current_material_service_models_have_finite_signed_LCIs",
+    "transient_activities": 28,
+    "actual_migrated_correspondences": 15,
+    "signed_finite_LCI_solves": 30,
+    "independent_native_demand_comparisons": [
+      {
+        "rule_id": "bp-0cdecef35c6741e6",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-138223cb80deb0c1",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 3.944302662262089e-10,
+        "relative_infinity_norm_difference": 5.106862066635067e-12,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-1b65914b2f33ba7b",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 2.8933015983056976e-08,
+        "relative_infinity_norm_difference": 4.0760702608051054e-11,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-20d6cc6fceb46d84",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-25caf9ffefc8a1ab",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-3373d44a210b5187",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-4f9f0bb31d6d8487",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-8185695a8558088a",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-975df496dad5c2a7",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-a269f28fe24da747",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-ab62d13201980583",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-ccb4c597048fe936",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-f0abe48d8c3176d4",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-0721dc4212547a4d",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-808b2ad4fb7fd8be",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 0.0,
+        "relative_infinity_norm_difference": 0.0,
+        "relative_infinity_norm_tolerance": 1e-10
+      }
+    ],
+    "matrix_shape": [
+      11975,
+      11975
+    ],
+    "source_and_biosphere_metadata_preserved": true,
+    "new_Brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "qualification_limit": "Native-model consistency only. Source/native composition, grade, allocation, resource and LCIA equivalence and complete sector coverage/export remain unproven."
+  },
+  "normal_generator_reproduces_all_three_resources": true,
+  "canonical_biosphere_files_unchanged": true,
+  "actual_truck_workflow": {
+    "inventory_preparation_completed": false,
+    "public_admission_gate_bypassed_for_diagnostic_only": true,
+    "validation_disabled": false,
+    "export_performed": false,
+    "source312_unapproved_count_before": 18,
+    "source312_unapproved_count_after": 3,
+    "remaining_rule_ids": [
+      "bp-1308b656f1d6a3e7",
+      "bp-1472e083e5590d89",
+      "bp-38a8afc636bbea5a"
+    ]
+  },
+  "legacy_36_salt_source_freshly_inspected": false,
+  "legacy_36_salt_permission_preserved_from_existing_verified_record": true,
+  "qualified_sectors": 14,
+  "total_sectors": 19,
+  "qualification_limit": "Current mapped inputs and native-model consistency pass. Source/native grade, composition, resource and impact equivalence are not established; truck preparation, filters, public admission and export, and four other sectors remain unfinished."
+}
