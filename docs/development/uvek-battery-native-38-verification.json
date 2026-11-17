@@ -1,0 +1,306 @@
+{
+  "status": "fifteen_required_source38_interfaces_reviewed_battery_still_unqualified",
+  "date": "2026-11-17",
+  "initial_required_source38_interfaces": 41,
+  "resolved_interfaces": 15,
+  "remaining_required_source38_interfaces": 26,
+  "remaining_interfaces": {
+    "bp-6e3f61d03dd09ea6": {
+      "location": "Europe without Switzerland",
+      "name": "market for spent solvent mixture",
+      "reference product": "spent solvent mixture",
+      "unit": "kilogram"
+    },
+    "bp-bce58f1fed0f56b1": {
+      "location": "CH",
+      "name": "market for spent solvent mixture",
+      "reference product": "spent solvent mixture",
+      "unit": "kilogram"
+    },
+    "bp-58981d0406fe685b": {
+      "location": "RoW",
+      "name": "market for spent solvent mixture",
+      "reference product": "spent solvent mixture",
+      "unit": "kilogram"
+    },
+    "bp-7532c17fac15ff33": {
+      "location": "RoW",
+      "name": "market for sulfuric acid",
+      "reference product": "sulfuric acid",
+      "unit": "kilogram"
+    },
+    "bp-46ffc4892be8fcb1": {
+      "location": "CN",
+      "name": "market for transport, freight train",
+      "reference product": "transport, freight train",
+      "unit": "ton kilometer"
+    },
+    "bp-30a490e8e65d619a": {
+      "location": "GLO",
+      "name": "market for dimethyl carbonate",
+      "reference product": "dimethyl carbonate",
+      "unit": "kilogram"
+    },
+    "bp-365d5afb2cddee67": {
+      "location": "GLO",
+      "name": "market for ethylene carbonate",
+      "reference product": "ethylene carbonate",
+      "unit": "kilogram"
+    },
+    "bp-1240bf1e5820731a": {
+      "location": "GLO",
+      "name": "market for copper, anode",
+      "reference product": "copper, anode",
+      "unit": "kilogram"
+    },
+    "bp-c63a1747fd444679": {
+      "location": "GLO",
+      "name": "market for carboxymethyl cellulose, powder",
+      "reference product": "carboxymethyl cellulose, powder",
+      "unit": "kilogram"
+    },
+    "bp-f1abd225900bb9b6": {
+      "location": "GLO",
+      "name": "market for graphite, battery grade",
+      "reference product": "graphite, battery grade",
+      "unit": "kilogram"
+    },
+    "bp-46961b2d2543df96": {
+      "location": "GLO",
+      "name": "market for polyvinylfluoride",
+      "reference product": "polyvinylfluoride",
+      "unit": "kilogram"
+    },
+    "bp-f7dd94e542cba21d": {
+      "location": "RoW",
+      "name": "market for heat, district or industrial, natural gas",
+      "reference product": "heat, district or industrial, natural gas",
+      "unit": "megajoule"
+    },
+    "bp-c5ad7d30b2b18c4c": {
+      "location": "RoW",
+      "name": "market for water, decarbonised",
+      "reference product": "water, decarbonised",
+      "unit": "kilogram"
+    },
+    "bp-5b8c937d3fb21468": {
+      "location": "GLO",
+      "name": "market for chemical factory, organics",
+      "reference product": "chemical factory, organics",
+      "unit": "unit"
+    },
+    "bp-82479bd5f6b8b893": {
+      "location": "CN",
+      "name": "market for synthetic graphite, battery grade",
+      "reference product": "synthetic graphite, battery grade",
+      "unit": "kilogram"
+    },
+    "bp-e1534916663b141b": {
+      "location": "RoW",
+      "name": "market for latex",
+      "reference product": "latex",
+      "unit": "kilogram"
+    },
+    "bp-3c10f9aaee8ffe42": {
+      "location": "RoW",
+      "name": "market for wastewater, average",
+      "reference product": "wastewater, average",
+      "unit": "cubic meter"
+    },
+    "bp-2d2b80140d7f768a": {
+      "location": "CN",
+      "name": "market for ammonia, anhydrous, liquid",
+      "reference product": "ammonia, anhydrous, liquid",
+      "unit": "kilogram"
+    },
+    "bp-c18af03acca016b9": {
+      "location": "GLO",
+      "name": "market for nickel sulfate",
+      "reference product": "nickel sulfate",
+      "unit": "kilogram"
+    },
+    "bp-8fa6bb43a07f3b4e": {
+      "location": "GLO",
+      "name": "market for manganese sulfate",
+      "reference product": "manganese sulfate",
+      "unit": "kilogram"
+    },
+    "bp-fc047c72b6020ab2": {
+      "location": "GLO",
+      "name": "market for vinyl carbonate",
+      "reference product": "vinyl carbonate",
+      "unit": "kilogram"
+    },
+    "bp-11eb77f35655db2a": {
+      "location": "GLO",
+      "name": "market for used Li-ion battery",
+      "reference product": "used Li-ion battery",
+      "unit": "kilogram"
+    },
+    "bp-5a066f5db7e68d53": {
+      "location": "GLO",
+      "name": "market for glass fibre reinforced plastic, polyester resin, hand lay-up",
+      "reference product": "glass fibre reinforced plastic, polyester resin, hand lay-up",
+      "unit": "kilogram"
+    },
+    "bp-3d4f6646db9a7399": {
+      "location": "RoW",
+      "name": "market for acetone, liquid",
+      "reference product": "acetone, liquid",
+      "unit": "kilogram"
+    },
+    "bp-af2ed16481887db4": {
+      "location": "GLO",
+      "name": "market for phthalic anhydride",
+      "reference product": "phthalic anhydride",
+      "unit": "kilogram"
+    },
+    "bp-72fb38e6bd3897dc": {
+      "location": "GLO",
+      "name": "market for hexafluoroethane",
+      "reference product": "hexafluoroethane",
+      "unit": "kilogram"
+    }
+  },
+  "caller_quantity_relevance": "All 41 have nonzero source exchanges; not proof of a positive IAM market share for every chemistry. Shared mass adjustment also covers imported capacity datasets.",
+  "Brightpath_focused_tests_passed": 19,
+  "Premise_focused_tests_passed": 10,
+  "earlier_casting_and_omission_regressions_passed": 51,
+  "test_counts_are_overlapping_not_additive": true,
+  "native_target_LCI_checks": [
+    {
+      "status": "six_native_suppliers_have_finite_signed_LCIs",
+      "project": "bafu-2026-ecospold2-biosphere-310",
+      "database": "BAFU:2026-reimported",
+      "matrix_shape": [
+        11947,
+        11947
+      ],
+      "suppliers": [
+        {
+          "rule_id": "bp-38648d48f8a72d17",
+          "signed_finite_LCI_solves": 2,
+          "absolute_inventory_norm": 32.85449743741273
+        },
+        {
+          "rule_id": "bp-0aad4bc42cf9b4c7",
+          "signed_finite_LCI_solves": 2,
+          "absolute_inventory_norm": 927.9901020920014
+        },
+        {
+          "rule_id": "bp-b5509df47e225bda",
+          "signed_finite_LCI_solves": 2,
+          "absolute_inventory_norm": 9451.074184542931
+        },
+        {
+          "rule_id": "bp-a933dbe7465e00cb",
+          "signed_finite_LCI_solves": 2,
+          "absolute_inventory_norm": 98.46647203459716
+        },
+        {
+          "rule_id": "bp-cbe4882cc31a8fc2",
+          "signed_finite_LCI_solves": 2,
+          "absolute_inventory_norm": 4863.219524886555
+        },
+        {
+          "rule_id": "bp-5f8fe5605f8594db",
+          "signed_finite_LCI_solves": 2,
+          "absolute_inventory_norm": 33.581642652818815
+        }
+      ],
+      "signed_finite_LCI_solves": 12,
+      "new_Brightway_databases": 0,
+      "rule_resource_changed": false,
+      "qualification_limit": "Native target-demand solves, not a complete battery update or comparative source LCIA."
+    },
+    {
+      "status": "eight_reused_native_suppliers_have_finite_signed_LCIs",
+      "project": "bafu-2026-ecospold2-biosphere-310",
+      "database": "BAFU:2026-reimported",
+      "matrix_shape": [
+        11947,
+        11947
+      ],
+      "suppliers": [
+        {
+          "rule_id": "bp-2ea4357c2edb64bc",
+          "signed_finite_LCI_solves": 2,
+          "absolute_inventory_norm": 2469404230.9321003
+        },
+        {
+          "rule_id": "bp-603ffa52668e2ab6",
+          "signed_finite_LCI_solves": 2,
+          "absolute_inventory_norm": 0.6588558458398562
+        },
+        {
+          "rule_id": "bp-6db51cce596a9ea3",
+          "signed_finite_LCI_solves": 2,
+          "absolute_inventory_norm": 28678856628.988358
+        },
+        {
+          "rule_id": "bp-8693559c1c84259d",
+          "signed_finite_LCI_solves": 2,
+          "absolute_inventory_norm": 1091.7155082229287
+        },
+        {
+          "rule_id": "bp-8d83e6b7c6fd6e59",
+          "signed_finite_LCI_solves": 2,
+          "absolute_inventory_norm": 259.7374200460593
+        },
+        {
+          "rule_id": "bp-9013e7c5588ff7a5",
+          "signed_finite_LCI_solves": 2,
+          "absolute_inventory_norm": 23915566807.22439
+        },
+        {
+          "rule_id": "bp-c779db99d058b8f8",
+          "signed_finite_LCI_solves": 2,
+          "absolute_inventory_norm": 221.93083382624772
+        },
+        {
+          "rule_id": "bp-c8d707ac24ebb7e4",
+          "signed_finite_LCI_solves": 2,
+          "absolute_inventory_norm": 133.87065282836312
+        }
+      ],
+      "signed_finite_LCI_solves": 16,
+      "new_Brightway_databases": 0,
+      "rule_resource_changed": false,
+      "qualification_limit": "Native target-demand solves, not a complete battery update or comparative source LCIA."
+    }
+  ],
+  "signed_finite_LCI_solves": 28,
+  "new_Brightway_databases": 0,
+  "new_helpers": 0,
+  "new_foreground_omissions": [],
+  "production_or_generator_Python_changes": 0,
+  "reproducible_generation": [
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+      "equal": true,
+      "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "bytes": 18596725
+    },
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+      "equal": true,
+      "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "bytes": 18596319
+    },
+    {
+      "file": "ecoinvent-to-uvek-2025.json",
+      "equal": true,
+      "sha256": "7ee122714ee7f4b1d234ac7cfe004edf42a2d005d5177d6cc4177ec2b7471faf",
+      "bytes": 75495913
+    }
+  ],
+  "actual_preparation_retry": {
+    "freshness": "recorded archive snapshot",
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "migration_validation_disabled": false,
+    "export_performed": false,
+    "source39_cohort_passed": true,
+    "source38_still_refuses_unreviewed_interfaces": true
+  },
+  "qualification_limit": "Mapping and target-demand LCI checks only. Complete battery preparation, shared update, scenario validation and export remain unfinished. No source/native impact equivalence."
+}

@@ -2368,3 +2368,26 @@ This is private preparation, not a complete inventory, approved omission,
 qualified casting update or new export. Its closed-model restoration,
 independent comparisons, global casting correspondence and actual battery/
 final-energy retries remain unfinished, as do emissions and metals qualification.
+
+
+## 2026-11-17: closed casting and fifteen source-3.8 battery interfaces
+
+The complete source-3.9 casting dependency chain is now reconstructed and
+verified: 162 signed finite no-write LCIs and 81 independent graph comparisons
+pass. Exact audits retain the one new allocated-empty receipt and sixty prior
+dependency omissions. The separate one-line numeric-comment fix changes only
+provenance text handling. Source-3.9 battery preparation passes after the scoped
+nickel-carbonate sodium omission; its effect remains unquantified.
+
+The next source-3.8 cohort falls from 41 to 26 unresolved interfaces after
+fourteen named native supplier/service reviews and the primary-ingot relabelling
+correction. All 41 have nonzero source inputs; the common battery update also
+adjusts imported capacity inventories beyond the currently positive market
+shares. No inventory pruning or alternate sector logic is introduced. The new
+mapping group adds no helpers, foreground omissions or runtime Python changes.
+Twenty-eight signed native LCIs pass without database writes. See
+`uvek-battery-native-38-review.md` and its verification JSON for limits and
+remaining interfaces. Fifteen of nineteen sectors remain qualified; battery,
+final energy, emissions and metals remain unfinished. The machine-readable
+progress ledger now reflects the already verified fifteen-sector truck export
+and preserves earlier audit states as history.

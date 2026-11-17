@@ -9,7 +9,7 @@
     "biosphere_version": "3.10"
   },
   "registry_source": "premise/database/new_database.py:NewDatabase.update",
-  "current_scope_gate": "Public UVEK updates admit fourteen qualified sectors: biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses, two_wheelers, trains and cars. The unchanged no-argument default selects biomass, electricity and heat. Five other sectors remain gated.",
+  "current_scope_gate": "Public UVEK updates admit fifteen qualified sectors: biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses, two_wheelers, trains, cars, trucks. The unchanged no-argument default selects biomass, electricity and heat. Battery, final energy, emissions and metals remain gated.",
   "sectors": [
     {
       "sector": "biomass",
@@ -2332,6 +2332,28 @@
         "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
       },
       "current_mapping_frontier": {
+        "source39_cohort": "passes after closed casting and scoped nickel-carbonate sodium omission",
+        "required_source38_interfaces_before_current_review": 41,
+        "resolved_this_group": 15,
+        "required_source38_interfaces_remaining": 26,
+        "verification": "docs/development/uvek-battery-native-38-verification.json",
+        "complete_battery_update_or_export_verified": false
+      },
+      "latest_required_source39_native_supply_review": {
+        "review": "docs/development/uvek-battery-native-direct-39-review.md",
+        "verification": "docs/development/uvek-battery-native-direct-39-verification.json",
+        "pending_first_cohort_before": 27,
+        "pending_first_cohort_after": 13,
+        "full_sector_qualified": false
+      },
+      "latest_required_source39_three_supply_review": {
+        "review": "docs/development/uvek-battery-three-native-39-review.md",
+        "verification": "docs/development/uvek-battery-three-native-39-verification.json",
+        "pending_first_cohort_before": 13,
+        "pending_first_cohort_after": 10,
+        "full_sector_qualified": false
+      },
+      "historical_mapping_frontier_2026_11_15": {
         "date": "2026-11-15",
         "status": "inventory_preparation_incomplete",
         "source_profile": {
@@ -2379,20 +2401,6 @@
           "source_and_native_crude_unit": "kilogram",
           "reconstruction_and_input_permissions_pending": true
         }
-      },
-      "latest_required_source39_native_supply_review": {
-        "review": "docs/development/uvek-battery-native-direct-39-review.md",
-        "verification": "docs/development/uvek-battery-native-direct-39-verification.json",
-        "pending_first_cohort_before": 27,
-        "pending_first_cohort_after": 13,
-        "full_sector_qualified": false
-      },
-      "latest_required_source39_three_supply_review": {
-        "review": "docs/development/uvek-battery-three-native-39-review.md",
-        "verification": "docs/development/uvek-battery-three-native-39-verification.json",
-        "pending_first_cohort_before": 13,
-        "pending_first_cohort_after": 10,
-        "full_sector_qualified": false
       }
     },
     {
@@ -2672,7 +2680,7 @@
     },
     {
       "sector": "trucks",
-      "status": "audited_not_operational",
+      "status": "operational_screening_with_explicit_proxy_limitations",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -2728,24 +2736,22 @@
             "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
           }
         ],
-        "runtime_verified": false
+        "runtime_verified": true,
+        "runtime_evidence": "docs/development/uvek-trucks-public-export-verification.json"
       },
-      "blockers": [
-        {
-          "code": "scope_gate",
-          "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Thirteen sectors are admitted publicly. This sector remains gated pending its complete verified shared update and integration evidence."
-        },
-        {
-          "code": "sector_implementation_and_integration",
-          "path": "premise/transport/transport.py:47",
-          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
-        }
-      ],
+      "blockers": [],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": [],
+      "integration_exports": [
+        {
+          "evidence": "docs/development/uvek-trucks-public-export-verification.json",
+          "ordinary_installed_public_export_verified": true,
+          "signed_written_LCI_solves": 272,
+          "regional_truck_services": 260,
+          "regional_truck_markets": 73
+        }
+      ],
       "static_audit": {
         "callback": "_update_vehicles",
         "module": "premise/transport/transport.py",
@@ -2775,7 +2781,19 @@
         "verification": "docs/development/uvek-production-heat-boundary-verification.json",
         "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
       },
-      "static_audit_refresh": "Current code passes source_family and biosphere_version through the shared callback and InventorySet. This resolves the earlier static dispatch findings; a real sector run is still required."
+      "static_audit_refresh": "The shared callback now passes ordinary installed update, physical invariants, consumer-link checks, combined export and finite signed LCIs; see the linked runtime evidence. Earlier static findings remain historical.",
+      "historical_prequalification_blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Thirteen sectors are admitted publicly. This sector remains gated pending its complete verified shared update and integration evidence."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/transport/transport.py:47",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        }
+      ]
     },
     {
       "sector": "ships",
@@ -3838,7 +3856,7 @@
     "runtime_change": "One case-insensitive exclusion in the existing shared plant-efficiency selector; observed inventory coefficients unchanged."
   },
   "current_snapshot": {
-    "date": "2026-11-16",
+    "date": "2026-11-17",
     "qualified_for_encrypted_REMIND_SSP2_NPi_2050": [
       "biomass",
       "electricity",
@@ -3853,14 +3871,15 @@
       "buses",
       "two_wheelers",
       "trains",
-      "cars"
+      "cars",
+      "trucks"
     ],
     "registered_sectors_including_electricity": 19,
-    "remaining_unqualified_sector_count": 5,
-    "latest_combined_export_evidence": "docs/development/uvek-cars-public-export-verification.json",
+    "remaining_unqualified_sector_count": 4,
+    "latest_combined_export_evidence": "docs/development/uvek-trucks-public-export-verification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-battery-three-native-39-review.md",
+    "latest_mapping_review": "docs/development/uvek-battery-native-38-review.md",
     "verified_native_source_limits": [
       {
         "source_identity": {
@@ -3949,11 +3968,12 @@
     "latest_native_first_checkpoint": "docs/development/uvek-native-trains-verification.json",
     "latest_owned_database_cleanup": "docs/development/uvek-native-first-checkpoint-2026-11-15.json#cleanup",
     "latest_combined_no_write_evidence": "docs/development/uvek-native-trains-verification.json",
-    "qualification_evidence_note": "Thirteen-sector combined checkpoint and public train call verified. Latest actual Brightway export still covers eleven sectors. Full goal remains unfinished.",
+    "qualification_evidence_note": "Fifteen-sector ordinary installed workflow, physical checks, Brightway export and 272 signed written LCIs verified. Battery, final energy, emissions and metals remain unfinished.",
     "latest_owned_analysis_cleanup": "docs/development/uvek-hydrogen-train-ferrosilicon-312-verification.json#cleanup",
     "latest_train_mapping_verification": "docs/development/uvek-native-trains-verification.json",
     "latest_train_standalone_verification": "docs/development/uvek-native-trains-standalone-verification.json",
     "latest_train_runtime_verification": "docs/development/uvek-native-trains-verification.json",
-    "remaining_sector_runtime_frontiers": "docs/development/uvek-remaining-five-runtime-frontiers-2026-11-16.json"
+    "remaining_sector_runtime_frontiers": "docs/development/uvek-remaining-five-runtime-frontiers-2026-11-16.json",
+    "latest_battery_runtime_frontier": "docs/development/uvek-battery-native-38-verification.json"
   }
 }
