@@ -1,0 +1,169 @@
+{
+  "status": "four_native_source312_screening_proxies_verified",
+  "source_code_changes": 0,
+  "exact_source312_scopes_added": 4,
+  "unchanged_native_rules": 2,
+  "corrected_NMC_targets": 2,
+  "new_manufacturing_inventory_models": 0,
+  "new_recipes": 0,
+  "old_recipe_inventories_unchanged": 4443,
+  "tests": {
+    "brightpath_passed": 42,
+    "premise_passed": 10,
+    "known_historical_replay_failures_not_reclassified": 2
+  },
+  "normal_generator_byte_equal_files": {
+    "ecoinvent-to-ecoinvent-3.10-biosphere.json": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+    "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+    "ecoinvent-to-uvek-2025.json": "6a1709e008400bf411e69e868932b1e03964df770ff2db6b0a9f0e03a5830f68"
+  },
+  "temporary_generator_output_bytes_removed": 112871819,
+  "conversion_behavior": {
+    "status": "passed",
+    "added_exact_source312_scopes": 4,
+    "signed_uncertainty_exchange_checks": 32,
+    "direct_migration_cases": 8,
+    "public_harmonizer_fresh_and_warm_passed": true,
+    "input_nonmutation": true,
+    "earlier_effective_profile_checks": 0,
+    "new_manufacturing_inventory_models": 0,
+    "new_model_profile_aliases": 0,
+    "new_foreground_omissions": [],
+    "source_code_changes": 0,
+    "new_Brightway_databases": 0,
+    "qualification_limit": "Required interface group only; no complete battery update or new export."
+  },
+  "in_memory_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 4,
+    "native_suppliers": 4,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 8,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-422f8890cdad1255",
+        "source": {
+          "location": "RoW",
+          "name": "market for NMC811 oxide",
+          "reference product": "NMC811 oxide",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Positive active material, NMC-622",
+          "reference product": "Positive active material, NMC-622",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-8b019b267d41ab62",
+        "source": {
+          "location": "CN",
+          "name": "battery cell production, Li-ion, NMC532",
+          "reference product": "battery cell, Li-ion, NMC532",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Battery cell, NMC-622",
+          "reference product": "Battery cell, NMC-622",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-16a3f7dc3d16a6fc",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "treatment of hazardous waste, hazardous waste incineration, with energy recovery",
+          "reference product": "hazardous waste, for incineration",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+          "reference product": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-92c3a22d2bbc21c1",
+        "source": {
+          "location": "CA-QC",
+          "name": "treatment of wastewater, average, wastewater treatment",
+          "reference product": "wastewater, average",
+          "unit": "cubic meter"
+        },
+        "target": {
+          "name": "Treatment, sewage, to wastewater treatment, class 1",
+          "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+          "location": "CH",
+          "unit": "cubic meter"
+        },
+        "source_caller_amount": -2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      }
+    ],
+    "qualification_limit": "Four complete native screening counterparts only; no full battery update or export qualification."
+  },
+  "real_saved_battery_graph_retry": {
+    "source_activities": 272,
+    "public_harmonizer": true,
+    "validation_disabled": false,
+    "approval_bypass": false,
+    "before_unapproved_source312": 8,
+    "remaining_unapproved_source312": 4,
+    "error_counts": {
+      "migration.unapproved_correspondence": 4
+    },
+    "remaining_identities": {
+      "bp-3d42ad5090eb09e4": {
+        "location": "UN-EASIA",
+        "name": "market for lithium titanate spinel",
+        "reference product": "lithium titanate spinel",
+        "unit": "kilogram"
+      },
+      "bp-3e11dbba3332ecb2": {
+        "location": "GLO",
+        "name": "market for polyvinylidene fluoride",
+        "reference product": "polyvinylidene fluoride",
+        "unit": "kilogram"
+      },
+      "bp-73b5b823540eb127": {
+        "location": "GLO",
+        "name": "market for vinylidene fluoride",
+        "reference product": "vinylidene fluoride",
+        "unit": "kilogram"
+      },
+      "bp-d6807521c57782db": {
+        "location": "RER",
+        "name": "polyethylene, high density, pellets, recycled to generic market for polyethylene, high density, granulate",
+        "reference product": "polyethylene, high density, granulate",
+        "unit": "kilogram"
+      }
+    }
+  },
+  "qualified_sectors": 15,
+  "total_sectors": 19,
+  "qualification_limit": "Four complete native proxies only. No complete battery update or new export; final energy, emissions and metals also unfinished."
+}

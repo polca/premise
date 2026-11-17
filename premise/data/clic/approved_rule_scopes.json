@@ -351499,6 +351499,302 @@
           "fingerprint": "9550f3cdc34bd5e6fdfbfccd8c4e418224b0f87990872b7e9adcfa909200f3d3"
         }
       ]
+    },
+    {
+      "rule_id": "bp-422f8890cdad1255",
+      "operation": "replace",
+      "mapping_method": "reviewed_battery_native_basic_312",
+      "review_path": "export/uvek_battery_four_functional_312_review.json",
+      "review_sha256": "32bf3be8058bbb316f716c95aee6f5ff60a829832192925d6c78cbc21dc2e4e8",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "RoW",
+            "name": "market for NMC811 oxide",
+            "reference product": "NMC811 oxide",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 9,
+          "inventory_sha256": "eb64d33cfb211de9ff43f300308591ad4bbeb4b97db8a872a8ee2a386365c95f",
+          "metadata_sha256": "ca7f3498a9740483fb35aad72056fe3c857113c5d3089b1909d77e9a976d82b9",
+          "comment_sha256": "1da80e87bcc06425c2e56caebcfceee01f91eaa2aec740fd7b010448e8bb0ff5",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "inventory_sha256": "824368767cc647fd4e5771da3d36c9c067f5eb90f2fd25dbbeee4619b65a1505",
+            "metadata_sha256": "ece538a7216987f8dc570fa77d636bdc79dc4a41b701b260ef53fe5d38e34435",
+            "comment_sha256": "39c87e75770bf8a6444c4d2fc6cc0d899de04528d730caf5d1a9e21a730f8a84",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "inventory_sha256": "7013c89bf50a634c90ae62c63e2c16c89c3a3c491ed0ac3c06de9357954af1ec",
+            "metadata_sha256": "2ce4887781d2adf5a656a182fc48f90695c13bc12a67ca7c06b49e3f34124f23",
+            "comment_sha256": "f3ac08ac196958b7f4b67f980e2cd1599dbc25d33b9a3d334b5d8c5c9d30e1f6",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use the complete native NMC622 positive active-material process as a screening proxy for the NMC811 oxide market, instead of the older NMC111 candidate. Native Ni:Mn:Co=6:2:2 replaces source 8:1:1; this changes metal supply/allocation and calcination energy, source market delivery and internal uncertainty. Do not assert equal elemental composition, energy use, capacity or impacts. Use +1 per nominal kg active powder, not a finished cathode or cell; add no metal-content, energy, delivery or capacity multiplier.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use the complete native NMC622 positive active-material process as a screening proxy for the NMC811 oxide market, instead of the older NMC111 candidate. Native Ni:Mn:Co=6:2:2 replaces source 8:1:1; this changes metal supply/allocation and calcination energy, source market delivery and internal uncertainty. Do not assert equal elemental composition, energy use, capacity or impacts. Use +1 per nominal kg active powder, not a finished cathode or cell; add no metal-content, energy, delivery or capacity multiplier.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5e507f795b0268829a0a6b85b2d073d5184441074d830539f17e0ffb44323111"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8b019b267d41ab62",
+      "operation": "replace",
+      "mapping_method": "reviewed_battery_native_basic_312",
+      "review_path": "export/uvek_battery_four_functional_312_review.json",
+      "review_sha256": "32bf3be8058bbb316f716c95aee6f5ff60a829832192925d6c78cbc21dc2e4e8",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "CN",
+            "name": "battery cell production, Li-ion, NMC532",
+            "reference product": "battery cell, Li-ion, NMC532",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 14,
+          "inventory_sha256": "0acc4cacf6d7d87223e99e7a58f71b537f179631d6b33670916881ba9b24d5c3",
+          "metadata_sha256": "38848e293f440dcdacd5425cc0d961f7fd9e3910526103cf30b453088008dac8",
+          "comment_sha256": "e2af6e7a1fa706023d1ab803681a1662acff56c2356cb0fd2bffd51bb16bf02f",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "inventory_sha256": "8eb270f47f69cd91851f3fc147dc38f0c4ef4c4417082c5c6a584f74678f2c5c",
+            "metadata_sha256": "c4aa90876e0e2285245b083d582092f79b5faa88c533dbeab9858892153a4984",
+            "comment_sha256": "ad423bba03b22e5cb2a569da772a5ec6c480146104f81c9a2764b54357f1f073",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "inventory_sha256": "896ba8a63377d99d747cd6eb6794b0b781068a7553a3cbadf8f8079538ecf078",
+            "metadata_sha256": "29576b796fbe8ace2a0851ff880df26e0db08e5deff341b55f2fde1cdbc5719d",
+            "comment_sha256": "44218148e5274f92a6a3519501b4ca8ca6aaf98a204cd95042767f8ee45d48fe",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use the complete native NMC622 cell as a screening proxy for the Chinese NMC532 cell, instead of NMC111. Native Ni:Mn:Co=6:2:2 replaces source 5:3:2, including native component shares and manufacturing energy. Use +1 per kg cell; no capacity-equivalence or kWh scaling is established. Add no separate electrodes, electrolyte, foil, facility or pack burden. Geography, composition, energy, capacity and impact differences remain unquantified.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use the complete native NMC622 cell as a screening proxy for the Chinese NMC532 cell, instead of NMC111. Native Ni:Mn:Co=6:2:2 replaces source 5:3:2, including native component shares and manufacturing energy. Use +1 per kg cell; no capacity-equivalence or kWh scaling is established. Add no separate electrodes, electrolyte, foil, facility or pack burden. Geography, composition, energy, capacity and impact differences remain unquantified.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "8ffecafc94f3be93f3dc24a7a821af155b3bacd5e7a693e2c933946a77e1519b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-16a3f7dc3d16a6fc",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_four_functional_312_review.json",
+      "review_sha256": "32bf3be8058bbb316f716c95aee6f5ff60a829832192925d6c78cbc21dc2e4e8",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "Europe without Switzerland",
+            "name": "treatment of hazardous waste, hazardous waste incineration, with energy recovery",
+            "reference product": "hazardous waste, for incineration",
+            "unit": "kilogram"
+          },
+          "reference_amount": -1.0,
+          "nonproduction_count": 78,
+          "inventory_sha256": "4a74a0a8136e87c47c715ade9700e632c81f7cff48b9229b7290679d1a51b1ba",
+          "metadata_sha256": "bb6bd5ef601863a0f90c5783b525a52c9bc80fd466121b3d3fa68fea046e7918",
+          "comment_sha256": "89d7718725fc72a2d880ba9b857340d2b936e7c88f1dedbadcab7a39e742ddde",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 79,
+            "inventory_sha256": "922dfd4770ecc72fba41e4782de0657e48f3a3103175254d36290f2df1a9dfe5",
+            "metadata_sha256": "c1ac950e93ef5993de72f0eeaad38d9747bae9190d4cda43ede02522ac623bf2",
+            "comment_sha256": "a2435f06f1a80f4adb7bdb31f7b421bf8eed6b74f54df86cbdd12281c1eb0f48",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 80,
+            "inventory_sha256": "6d976ec7e33cbc9566c528e659c1de96928dcada831792c615287bd7b535a159",
+            "metadata_sha256": "13da750365011b0f6d064abb2ad8cefe8db14562bc6097383261df2b20ba0e1a",
+            "comment_sha256": "67ea03b0a654205c23ea321e3878f17ab79c5d4f79ea84ab323734414728b9d5",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete Swiss hazardous-waste incineration, native 25%-water mixture, as a screening proxy for the European energy-recovery service. Native waste composition, moisture, supplementary fuel, heat/electricity recovery and allocation, emissions and ash disposal replace the source plant. Preserve native signed exchanges and add no avoided-energy or recovery credit. Source -1 kg waste/native +1 kg treatment requires factor -1; no dry-mass or heating-value normalization is established.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete Swiss hazardous-waste incineration, native 25%-water mixture, as a screening proxy for the European energy-recovery service. Native waste composition, moisture, supplementary fuel, heat/electricity recovery and allocation, emissions and ash disposal replace the source plant. Preserve native signed exchanges and add no avoided-energy or recovery credit. Source -1 kg waste/native +1 kg treatment requires factor -1; no dry-mass or heating-value normalization is established.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "195de3014c8d4aa487e186950c8506a45ddb26747e413ebc66aa883a82448663"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-92c3a22d2bbc21c1",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_four_functional_312_review.json",
+      "review_sha256": "32bf3be8058bbb316f716c95aee6f5ff60a829832192925d6c78cbc21dc2e4e8",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization using complete native processes without Python changes or remote upstream reconstruction.",
+      "inspection": {
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "location": "CA-QC",
+            "name": "treatment of wastewater, average, wastewater treatment",
+            "reference product": "wastewater, average",
+            "unit": "cubic meter"
+          },
+          "reference_amount": -1.0,
+          "nonproduction_count": 116,
+          "inventory_sha256": "3e17bc223585345001d928881731f14004a56ef9a6e8021e53a704bfeeffc777",
+          "metadata_sha256": "e0d362aa0f199335fb4fe47f351b746ffa09fe8e32a827de80d63c7ea82faeae",
+          "comment_sha256": "234005688c8f07dabdb306f3b1b8de500d4ea475629ee1fd9c9285dacae9a390",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 134,
+            "inventory_sha256": "325deffc585f7e9186114d29a52ef831e90c393a5246ccdba4d7b8fe699ba1e2",
+            "metadata_sha256": "9f594f4139d789ec83bb14819ba02dd891f77e2259a819508c2fa490a2f9da37",
+            "comment_sha256": "dd1229fb80187e0f4b2f9ebb237cd092bb1e4cbb046bd154f237e3d1d95d9dda",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 135,
+            "inventory_sha256": "c4c564a533c3f8618d5158e03770e7bffbb6a0dc2801fe116f4e3e13dab0be9c",
+            "metadata_sha256": "fbc6ab22e985e6f180384a74c8a1814b33455987efe17cfdccd9ef7637468cc8",
+            "comment_sha256": "db5fcf4c9e4e5057481df255046c8064091ecdfa8fb819b301af0ed6c1fce7c9",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use the complete Swiss class-1 mechanical/biological/chemical wastewater treatment plant per cubic metre as a screening proxy for the Quebec direct treatment service, not its regional market. Native capacity, loading (documented COD 0.1556 kg/m3), climate, removal, sludge digestion, utilities, water return and internal uncertainty replace the source model. Preserve the caller volume with factor -1 for source negative waste reference/native positive treatment reference. Do not add an untreated-water fraction, sewer network, COD multiplier, water-balance correction or separate sludge/biogas inventory.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use the complete Swiss class-1 mechanical/biological/chemical wastewater treatment plant per cubic metre as a screening proxy for the Quebec direct treatment service, not its regional market. Native capacity, loading (documented COD 0.1556 kg/m3), climate, removal, sludge digestion, utilities, water return and internal uncertainty replace the source model. Preserve the caller volume with factor -1 for source negative waste reference/native positive treatment reference. Do not add an untreated-water fraction, sewer network, COD multiplier, water-balance correction or separate sludge/biogas inventory.",
+        "Complete native technology, geography, supply/delivery, grade/composition, vintage, allocation and internal uncertainty replace source details. Documented BAFU biosphere exclusions remain. Inventory and impact-score equivalence are not established.",
+        "Preserve signed caller quantities, formulas, uncertainty and separately listed inputs/emissions. No additional upstream inventory, scaling, recovery credit, foreground omission or zero-burden authority. Only this exact ecoinvent 3.12 cut-off identity is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "716204a70b6f07eb08187e450286d77e5e3a11be4df72b9834588bef0e7a2c7e"
+        }
+      ]
     }
   ],
   "superseded_operations": [
