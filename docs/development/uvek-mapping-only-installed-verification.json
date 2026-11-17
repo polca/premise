@@ -1,23 +1,71 @@
 {
   "date": "2026-11-17",
-  "status": "installed_source312_mapping_batch_verified",
-  "Brightpath_Git_revision": "ab59256de00a46241bcc35a176b58736232d9e48",
-  "Premise_wheel_source_revision": "5ceecaf2595cb12bdf83967ee13b1a8c0aefc301",
+  "status": "installed_native_supply_and_lithium_titanate_batch_verified",
+  "Brightpath_Git_revision": "d3dc9217abffcfee27a07aa2b6cdaccc32c5aa77",
+  "Premise_wheel_source_revision": "d07ee33540c50d2108c4f475b3239390a3b49115",
   "source_code_changes": 0,
   "original_Premise_master_unchanged": true,
   "installed_regressions": {
-    "status": "installed_mapping_only_battery_regressions_passed",
-    "Brightpath_Git_revision": "ab59256de00a46241bcc35a176b58736232d9e48",
+    "status": "installed_native_supply_and_LTO_batch_passed",
+    "Brightpath_Git_revision": "d3dc9217abffcfee27a07aa2b6cdaccc32c5aa77",
     "runtime_packages_loaded_only_from_installed_environment": true,
-    "test_files": 14,
-    "elapsed_seconds": 115.82815804204438,
-    "tests_passed": 132
+    "signed_uncertainty_checks": 200,
+    "public_harmonizer_fresh_and_warm_groups": 3,
+    "checks": {
+      "basic": {
+        "status": "passed",
+        "added_exact_source312_scopes": 20,
+        "signed_uncertainty_exchange_checks": 160,
+        "direct_migration_cases": 8,
+        "public_harmonizer_fresh_and_warm_passed": true,
+        "input_nonmutation": true,
+        "earlier_effective_profile_checks": 0,
+        "new_manufacturing_inventory_models": 0,
+        "new_model_profile_aliases": 0,
+        "new_foreground_omissions": [],
+        "source_code_changes": 0,
+        "new_Brightway_databases": 0,
+        "qualification_limit": "Required interface group only; no complete battery update or new export."
+      },
+      "four_functional": {
+        "status": "passed",
+        "added_exact_source312_scopes": 4,
+        "signed_uncertainty_exchange_checks": 32,
+        "direct_migration_cases": 8,
+        "public_harmonizer_fresh_and_warm_passed": true,
+        "input_nonmutation": true,
+        "earlier_effective_profile_checks": 0,
+        "new_manufacturing_inventory_models": 0,
+        "new_model_profile_aliases": 0,
+        "new_foreground_omissions": [],
+        "source_code_changes": 0,
+        "new_Brightway_databases": 0,
+        "qualification_limit": "Required interface group only; no complete battery update or new export."
+      },
+      "lto": {
+        "status": "passed",
+        "added_exact_source312_scopes": 1,
+        "signed_uncertainty_exchange_checks": 8,
+        "direct_migration_cases": 8,
+        "public_harmonizer_fresh_and_warm_passed": true,
+        "input_nonmutation": true,
+        "earlier_effective_profile_checks": 0,
+        "new_manufacturing_inventory_models": 1,
+        "new_model_profile_aliases": 0,
+        "new_foreground_omissions": [],
+        "source_code_changes": 0,
+        "new_Brightway_databases": 0,
+        "qualification_limit": "Required interface group only; no complete battery update or new export."
+      }
+    },
+    "elapsed_seconds": 50.987662416067906,
+    "focused_pytest_passes": 11
   },
   "installed_package_bytes": {
-    "Brightpath_Git_revision": "ab59256de00a46241bcc35a176b58736232d9e48",
+    "Brightpath_Git_revision": "d3dc9217abffcfee27a07aa2b6cdaccc32c5aa77",
     "packages": {
       "brightpath": {
-        "verified_installed_package_files": 590,
+        "verified_installed_package_files": 593,
         "all_packaged_files_present_in_source_match": true
       },
       "premise": {
@@ -46,22 +94,30 @@
       "trucks"
     ],
     "CLIC_records": 1495,
-    "Brightpath_Git_revision": "ab59256de00a46241bcc35a176b58736232d9e48",
+    "Brightpath_Git_revision": "d3dc9217abffcfee27a07aa2b6cdaccc32c5aa77",
     "CLIC_options_overridden": false,
     "freshness": "normal live default",
     "scope_gate_bypassed": false,
     "validation_disabled": false,
     "new_Brightway_databases": 0,
     "registry_and_processed_file_names_unchanged": true,
-    "elapsed_seconds": 107.72572616697289,
+    "elapsed_seconds": 92.62034825002775,
     "qualification_limit": "Preparation regression of already qualified15sectors; no sector update/export repeated and battery/final-energy sectors remain unfinished."
   },
   "required_battery_cohorts": {
     "source38": "conversion passed",
     "source39": "conversion passed",
-    "source312_unapproved_before": 73,
-    "source312_unapproved_remaining": 28
+    "source312_before_this_batch": 28,
+    "source312_unapproved_remaining": 3,
+    "remaining_materials": [
+      "recycled HDPE",
+      "polyvinylidene fluoride",
+      "vinylidene fluoride"
+    ]
   },
+  "new_recipes": 2,
+  "new_immediate_manufacturing_models": 1,
+  "new_foreground_omissions": [],
   "known_historical_test_failures": [
     {
       "status": "pre_existing_failure_reproduced",
@@ -92,22 +148,22 @@
   "new_export_performed": false,
   "cleanup": [
     {
-      "path": "source312-install-cache",
-      "bytes_removed": 70708706
+      "path": "native-lto-batch-install-cache",
+      "bytes_removed": 70763640
     },
     {
       "path": "premise-clic-worktree/build",
-      "bytes_removed": 64830609
+      "bytes_removed": 64957163
     },
     {
       "path": "premise-clic-worktree/premise.egg-info",
-      "bytes_removed": 116451
+      "bytes_removed": 116791
     },
     {
-      "path": "mapping-only-battery-wheels",
-      "bytes_removed": 23101474
+      "path": "source312-batch-wheels",
+      "bytes_removed": 23181790
     }
   ],
   "current_environment_and_current_wheel_retained": true,
-  "qualification_limit": "Installed mapping regression and ordinary inventory preparation for the already qualified fifteen sectors. No new sector qualification or export. Two historical standalone replay failures remain separately disclosed."
+  "qualification_limit": "Mapping regression and ordinary inventory preparation for the already qualified fifteen sectors. Battery still has three unapproved inputs; no new sector qualification or export. Two historical standalone replay failures remain separately disclosed."
 }

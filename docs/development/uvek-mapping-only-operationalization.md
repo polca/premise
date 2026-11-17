@@ -58,8 +58,8 @@ approval data. Prefer a complete suitable native process; do not expand an
 already functioning screening proxy into a remote upstream reconstruction.
 
 The required source-3.8 battery cohort now converts, as does the source-3.9
-cohort. The current source-3.12 retry has 28 unapproved identities, down from 73
-after two groups reusing reviewed/native supplies. This is mapping progress,
+cohort. The current source-3.12 retry has three unapproved identities, down from 73
+after reviewed/native supplies and a bounded immediate lithium-titanate model. This is mapping progress,
 not a qualified battery update. Fifteen sectors remain qualified; battery,
 final energy, emissions and metals remain unfinished. The latest verified
 fifteen-sector export is still the operational baseline.
