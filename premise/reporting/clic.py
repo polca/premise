@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+import csv
 import hashlib
 import json
 from pathlib import Path
@@ -70,6 +71,21 @@ def write_inventory_sidecars(workbook_path, scenarios):
                 "recipe_file": recipe_path.name if recipe_path else None,
             }
         )
+        policy = manifest.get("license_policy")
+        if policy is not None:
+            license_path = path.with_name(
+                f"{path.stem}.inventory-licenses-{position}.csv"
+            )
+            columns = (
+                list(policy["datasets"][0])
+                if policy["datasets"]
+                else ["slug", "license"]
+            )
+            with license_path.open("w", encoding="utf-8", newline="") as stream:
+                writer = csv.DictWriter(stream, fieldnames=columns)
+                writer.writeheader()
+                writer.writerows(policy["datasets"])
+            manifests[-1]["license_report_file"] = license_path.name
     if not manifests:
         return None, ()
     manifest_path = path.with_suffix(".inventory-manifest.json")
@@ -197,3 +213,49 @@ def write_inventory_sheet(workbook, scenarios, *, workbook_path=None):
         [38, 64, 12, 12, 18, 20, 30, 24, 30, 24, 15, 32, 38, 38, 48, 64], 1
     ):
         sheet.column_dimensions[sheet.cell(1, position).column_letter].width = width
+
+    policies = [
+        (identity, definition["clic inventories"]["license_policy"])
+        for _, identity, definition in selected
+        if "license_policy" in definition["clic inventories"]
+    ]
+    if policies:
+        sheet = workbook.create_sheet("CLIC Licenses")
+        sheet.append(
+            [
+                "Scenario",
+                "Dataset slug",
+                "Version ID",
+                "License",
+                "License URL",
+                "Source license note",
+                "Citation",
+                "DOI",
+                "Attribution required",
+                "ShareAlike",
+                "Policy scope",
+            ]
+        )
+        for identity, policy in policies:
+            for row in policy["datasets"]:
+                sheet.append(
+                    [
+                        " | ".join(str(item) for item in identity),
+                        row["slug"],
+                        row["version_id"],
+                        row["license"],
+                        row["license_url"],
+                        row["source_license"],
+                        row["citation"],
+                        row["doi"],
+                        row["attribution_required"],
+                        row["share_alike"],
+                        policy["scope"],
+                    ]
+                )
+        sheet.freeze_panes = "A2"
+        sheet.auto_filter.ref = sheet.dimensions
+        for cell in sheet[1]:
+            cell.font = Font(bold=True)
+        for column in sheet.columns:
+            sheet.column_dimensions[column[0].column_letter].width = 35

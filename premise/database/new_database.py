@@ -692,7 +692,7 @@ class NewDatabase:
         :param inventory_source: ``"clic"`` lazily selects required CLIC inventories
             when sectors are updated; ``"workbooks"`` uses the legacy bundled provider.
         :param inventory_recipe: Optional JSON/YAML CLIC version recipe or lockfile.
-        :param clic_options: CLIC archive, cache, freshness, and migration options.
+        :param clic_options: CLIC archive, cache, freshness, migration and license-policy options.
         """
         self._inventory_api_active = False
         self.sector_update_methods = None
@@ -723,6 +723,8 @@ class NewDatabase:
         self.version = check_db_version(source_version)
         self.source_type = source_type
         self.system_model = check_system_model(system_model)
+        if self._clic_provider is not None:
+            self._clic_provider.check_system_model(self.system_model)
         self._clic_workbook_fallback = (
             inventory_source == "clic" and self.system_model == "consequential"
         )
@@ -1631,6 +1633,11 @@ class NewDatabase:
                 "policy": provider.manifest["policy"],
                 "engine": provider.manifest["brightpath_version"],
                 "resources": provider.manifest["migration_resource_fingerprint"],
+                **(
+                    {"license_policy": provider.manifest["license_policy"]}
+                    if "license_policy" in provider.manifest
+                    else {}
+                ),
             },
         )
         records.extend(retained)
@@ -1676,6 +1683,8 @@ class NewDatabase:
             "retained_workbooks": workbooks,
             "user_inventories": user_sources,
         }
+        if "license_policy" in provider.manifest:
+            semantic["license_policy"] = provider.manifest["license_policy"]
         self._clic_semantic_fingerprint = content_hash(semantic)
         self._clic_manifest = provider.manifest
         self._clic_lockfile = provider.lockfile

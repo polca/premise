@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 import gzip
 import hashlib
 import json
@@ -40,6 +40,8 @@ class ClicInventoryOptions:
     ``freshness='snapshot'`` explicitly accepts latest as of the archive date.
     Offline runs always report snapshot freshness. No credentials are needed
     to use public Zenodo archives or public CLIC version metadata.
+    ``license_policy='commercial'`` screens the selected foreground, including
+    upstream suppliers; the default preserves existing license handling.
     """
 
     archive_path: str | Path | None = None
@@ -49,8 +51,11 @@ class ClicInventoryOptions:
     freshness: str = "live"
     allow_documented_proxies: bool | None = None
     migration_policy: str = "pragmatic"
+    license_policy: str = "default"
 
     def __post_init__(self):
+        if self.license_policy not in {"default", "commercial"}:
+            raise ValueError("CLIC license_policy must be 'default' or 'commercial'.")
         if self.freshness not in {"live", "snapshot"}:
             raise ValueError("CLIC freshness must be 'live' or 'snapshot'.")
         if self.migration_policy not in {"pragmatic", "strict"}:
@@ -81,12 +86,32 @@ class ClicInventoryProvider:
             raise TypeError("clic_options must be ClicInventoryOptions or a mapping.")
         self.options = options
         self.recipe = ClicRecipe.read(recipe)
+        if self.recipe.license_policy is not None:
+            from .clic_licenses import POLICY_FINGERPRINT
+
+            if self.recipe.license_policy["fingerprint"] != POLICY_FINGERPRINT:
+                raise ClicInventoryError(
+                    "CLIC recipe license policy changed; review and regenerate the recipe."
+                )
+            # A commercial recipe cannot silently replay without its checks.
+            self.options = replace(options, license_policy="commercial")
         self.archive = archive
         self.session = session
         self.catalog_provider = catalog_provider
         self.manifest = None
         self.lockfile = None
         self.diagnostics = []
+        self.license_report = None
+
+    def check_system_model(self, system_model):
+        if (
+            self.options.license_policy == "commercial"
+            and system_model == "consequential"
+        ):
+            raise ClicInventoryError(
+                "CLIC commercial policy does not yet support consequential builds: "
+                "their workbook fallback has not been assessed."
+            )
 
     @property
     def cache_dir(self):
@@ -169,7 +194,16 @@ class ClicInventoryProvider:
         else:
             resolved = archive.resolve(roots, recipe=self.recipe)
         if not self.options.offline and self.options.freshness == "live":
-            verify_latest_versions(resolved, session=self.session)
+            if self.options.license_policy == "commercial":
+                verify_latest_versions(
+                    resolved, session=self.session, verify_licenses=True
+                )
+            else:
+                verify_latest_versions(resolved, session=self.session)
+        if self.options.license_policy == "commercial":
+            from .clic_licenses import enforce_commercial_licenses
+
+            self.license_report = enforce_commercial_licenses(resolved, archive)
         return resolved
 
     def prepare(
@@ -188,6 +222,7 @@ class ClicInventoryProvider:
         from ..core.utils import check_ecoinvent_target_version
 
         version = check_ecoinvent_target_version(version)
+        self.check_system_model(system_model)
         resolved = self.resolve(roots, use_cache=use_cache)
         harmonized = ClicHarmonizer(
             self.cache_dir / "harmonized",
@@ -259,6 +294,12 @@ class ClicInventoryProvider:
         )
         self.lockfile = harmonized.lockfile
         self.lockfile["namespace_slugs"] = namespace_slugs
+        if self.license_report is not None:
+            self.manifest["license_policy"] = self.license_report
+            self.lockfile["license_policy"] = {
+                "name": "commercial",
+                "fingerprint": self.license_report["policy_fingerprint"],
+            }
         self.diagnostics = harmonized.diagnostics + diagnostics
         return records
 

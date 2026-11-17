@@ -180,15 +180,22 @@ class ClicArchiveStore:
 
 
 def verify_latest_versions(
-    resolved, *, session=None, base_url=DEFAULT_CLIC_API, timeout=30
+    resolved,
+    *,
+    session=None,
+    base_url=DEFAULT_CLIC_API,
+    timeout=30,
+    verify_licenses=False,
 ):
     """Verify unpinned versions against live CLIC, never silently accept staleness.
 
     This transfers public metadata only. Inventory payloads stay in the archive
     cache. A newer publication absent from the daily backup stops the build so
     that a successful default build cannot falsely claim to use latest data.
+    ``verify_licenses`` also checks declaration corrections and pinned versions;
+    pinning does not excuse a changed or missing public license declaration.
     """
-    rows = [row for row in resolved.versions if not row["pinned"]]
+    rows = [row for row in resolved.versions if verify_licenses or not row["pinned"]]
     if not rows:
         return
     session = session if session is not None else _session()
@@ -214,7 +221,31 @@ def verify_latest_versions(
                 catalog.update((item["slug"], item) for item in payload["results"])
 
     def check(row):
-        if catalog is None:
+        if row["pinned"]:
+            # Most lockfiles pin the catalog's latest versions. Reuse broad
+            # metadata checks instead of issuing one request per pinned node.
+            version = (
+                (catalog or {}).get(row["slug"], {}).get("latest_published_version")
+            )
+            if not version or version["id"] != row["version_id"]:
+                response = session.get(
+                    f"{base_url.rstrip('/')}/versions/{row['version_id']}/",
+                    timeout=timeout,
+                )
+                if getattr(response, "status_code", None) == 404:
+                    return {
+                        "slug": row["slug"],
+                        "reason": "pinned version is no longer public",
+                    }
+                response.raise_for_status()
+                version = response.json()
+            if version.get("status") not in {"published", "superseded"}:
+                return {
+                    "slug": row["slug"],
+                    "reason": "pinned version is no longer public",
+                }
+            latest = version
+        elif catalog is None:
             url = f"{base_url.rstrip('/')}/datasets/{quote(row['slug'], safe='')}/"
             response = session.get(url, timeout=timeout)
             if getattr(response, "status_code", None) == 404:
@@ -223,9 +254,10 @@ def verify_latest_versions(
             dataset = response.json()
         else:
             dataset = catalog.get(row["slug"], {})
-        latest = dataset.get("latest_published_version")
-        if dataset.get("status", "published") != "published" or not latest:
-            return {"slug": row["slug"], "reason": "no longer publicly published"}
+        if not row["pinned"]:
+            latest = dataset.get("latest_published_version")
+            if dataset.get("status", "published") != "published" or not latest:
+                return {"slug": row["slug"], "reason": "no longer publicly published"}
         if (
             latest["id"] != row["version_id"]
             or latest["semantic_version"] != row["semantic_version"]
@@ -236,13 +268,30 @@ def verify_latest_versions(
                 "live": latest["semantic_version"],
                 "version_id": latest["id"],
             }
+        if verify_licenses and latest.get("selected_license") != row.get("license"):
+            return {
+                "slug": row["slug"],
+                "reason": "license declaration differs from archive",
+                "archived_license": row.get("license"),
+                "live_license": latest.get("selected_license"),
+            }
         return None
 
     with ThreadPoolExecutor(max_workers=min(4, len(rows))) as executor:
         changes = [result for result in executor.map(check, rows) if result is not None]
     if changes:
+        change_types = (
+            "newer, withdrawn or metadata-corrected"
+            if verify_licenses
+            else "newer or withdrawn"
+        )
+        instruction = (
+            "Refresh the daily archive; pinning does not bypass license checks; "
+            if verify_licenses
+            else "Refresh the daily archive or explicitly choose a pinned recipe; "
+        )
         raise ClicSnapshotOutdated(
-            "CLIC has newer or withdrawn datasets than the selected archive. "
-            "Refresh the daily archive or explicitly choose a pinned recipe; "
-            f"no stale inventories were imported. Changes: {json.dumps(changes, sort_keys=True)}"
+            f"CLIC has {change_types} datasets than the selected archive. "
+            f"{instruction}no stale inventories were imported. "
+            f"Changes: {json.dumps(changes, sort_keys=True)}"
         )

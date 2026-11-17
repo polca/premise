@@ -81,6 +81,56 @@ The whole compressed archive is downloaded once, because Zenodo distributes a
 single ZIP. Only the selected roots and upstream activities are imported and
 harmonized. Live freshness checks transfer metadata, not inventory packages.
 
+## Commercial CLIC policy (development)
+
+Set `clic_options={"license_policy": "commercial"}` to screen the complete
+selected CLIC foreground graph before harmonization and import. The default
+`license_policy="default"` preserves existing selection and output behavior.
+The commercial policy permits CC0-1.0, CC-BY-3.0, CC-BY-4.0 and CC-BY-SA-4.0.
+Attribution and ShareAlike obligations are retained; commercially permitted
+does not mean unrestricted redistribution. Non-commercial, missing, undisclosed
+and unrecognized declarations block preparation. An explicit non-commercial
+source-license note alongside an otherwise permitted declaration also requires
+review, without asserting that the declaration is necessarily invalid.
+
+**Replacement coverage is not implemented yet.** At this stage the switch stops
+on restricted inventories rather than substituting them. `ClicLicenseError.issues`
+contains all blocked datasets, each with one root-to-supplier dependency path;
+the exception message displays the first ten. Unselected inventories do not
+affect the result. Neither cached resolution nor pinned versions bypass checks.
+Live mode additionally checks license declarations against current public
+metadata, including the specific versions selected by pins. Offline and snapshot
+mode assess the verified archive's declarations and source notes only.
+
+The manifest's `license_policy` records the policy fingerprint, selected licenses,
+source notes, citations and conditions. Commercial recipes restore this policy
+automatically on replay; a changed policy fingerprint requires review and a new
+recipe. Policy metadata contributes to retained-inventory and scenario cache
+fingerprints. Report exports include an `inventory-licenses-N.csv` sidecar and a
+`CLIC Licenses` workbook sheet. Default builds do not add these files or sheets.
+
+The scope is CLIC foreground selection. Ecoinvent, retained workbooks and
+user-supplied inventories require separate permission assessments. In particular,
+consequential builds are rejected under this policy because their automatic
+workbook fallback has not been assessed. The switch cannot establish ownership
+of rights underlying a third-party declaration. See the
+[CLIC license guide](https://clic.psi.ch/licenses/) and
+[ecoinvent licensing terms](https://support.ecoinvent.org/licensing).
+
+Implementation continues in these batches:
+
+1. License enforcement, cache/recipe integration and reporting.
+2. A YAML registry of reviewed native ecoinvent or permitted CLIC replacements,
+   starting with chargers/converters, conventional PV and battery supply chains.
+   Each rule must state target compatibility, conversion, evidence and limitations.
+   Reasonably equivalent proxies are acceptable when documented; runtime fuzzy
+   matching is not an authorization mechanism.
+3. Harder technology proxies, dependency pruning and role compatibility checks,
+   cross-version validation from ecoinvent 3.8 through 3.12, result comparisons and
+   runtime benchmarks. Restricted recipe coefficients must not be copied into
+   supposedly permissive replacements. Policy-off results must stay unchanged;
+   policy-on substitution effects must be reported.
+
 ## Recipes and reproducibility
 
 Pass `inventory_recipe` as a JSON/YAML path or mapping. A partial recipe can pin

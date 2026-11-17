@@ -178,11 +178,20 @@ def test_live_withdrawal_does_not_reuse_a_cached_published_version():
         verify_latest_versions(resolved, session=session)
 
 
-def test_broad_scope_checks_latest_using_catalog_pages_without_inventory_downloads():
+@pytest.mark.parametrize("pinned", [False, True])
+def test_broad_scope_checks_latest_using_catalog_pages_without_inventory_downloads(
+    pinned,
+):
     from types import SimpleNamespace
 
     rows = [
-        {"slug": str(i), "version_id": i, "semantic_version": "1.0.0", "pinned": False}
+        {
+            "slug": str(i),
+            "version_id": i,
+            "semantic_version": "1.0.0",
+            "pinned": pinned,
+            "license": "CC-BY-4.0",
+        }
         for i in range(101)
     ]
     items = [
@@ -191,6 +200,8 @@ def test_broad_scope_checks_latest_using_catalog_pages_without_inventory_downloa
             "latest_published_version": {
                 "id": row["version_id"],
                 "semantic_version": "1.0.0",
+                "status": "published",
+                "selected_license": "CC-BY-4.0",
             },
         }
         for row in rows
@@ -204,5 +215,44 @@ def test_broad_scope_checks_latest_using_catalog_pages_without_inventory_downloa
             for i in range(2)
         }
     )
-    verify_latest_versions(SimpleNamespace(versions=rows), session=session)
+    verify_latest_versions(
+        SimpleNamespace(versions=rows), session=session, verify_licenses=pinned
+    )
     assert len(session.calls) == 2
+
+
+@pytest.mark.parametrize("pinned", [False, True])
+def test_commercial_freshness_checks_license_corrections_even_for_pinned_version(
+    pinned,
+):
+    from types import SimpleNamespace
+
+    row = {
+        "slug": "one",
+        "version_id": 1,
+        "semantic_version": "1.0.0",
+        "pinned": pinned,
+        "license": "CC-BY-4.0",
+    }
+    version = {
+        "id": 1,
+        "semantic_version": "1.0.0",
+        "status": "superseded" if pinned else "published",
+        "selected_license": "CC-BY-4.0",
+    }
+    url = (
+        "https://clic.psi.ch/api/versions/1/"
+        if pinned
+        else "https://clic.psi.ch/api/datasets/one/"
+    )
+    session = Session(
+        {url: version if pinned else {"latest_published_version": version}}
+    )
+    resolved = SimpleNamespace(versions=[row])
+    verify_latest_versions(resolved, session=session, verify_licenses=True)
+    payload = session.responses[url]
+    (payload if pinned else payload["latest_published_version"])[
+        "selected_license"
+    ] = "CC-BY-NC-4.0"
+    with pytest.raises(ClicSnapshotOutdated, match="license declaration differs"):
+        verify_latest_versions(resolved, session=session, verify_licenses=True)
