@@ -1,0 +1,188 @@
+{
+  "status": "source_38_recycling_parents_convert_next_truck_cohort_unfinished",
+  "Brightpath_revision": "34039bf312c8de7067ace96135ffdfbe54b944f0",
+  "review_sha256": "cdd7a42d51e7e70a590f3f4b8fe9d0349664d9fc14703abb3d07c0bc3506c840",
+  "new_migrated_parent_correspondences": 2,
+  "new_helpers": 30,
+  "native_endpoints_checked_in_both_releases": 54,
+  "Brightpath_new_and_required_review_tests_passed": 20,
+  "Premise_new_recycling_tests_passed": 5,
+  "older_pet_and_approval_regressions": "running",
+  "normal_generator_reproduces_all_three_resources": true,
+  "canonical_biosphere_files_unchanged": true,
+  "new_production_or_generator_Python_changes": 0,
+  "new_foreground_omissions": 0,
+  "inherited_omissions": [
+    {
+      "recipe_id": "packaging-hdpe-015c128d7978ed807056",
+      "omission_count": 4,
+      "prior_rule_id": "bp-eae66c60e7256051",
+      "prior_review_path": "export/uvek_packaging_hdpe_review.json",
+      "prior_review_sha256": "dfc0dda86956a7b7c65dcc374a22a1417ab2f232181c1a9385f5976e75dc5b3a",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "rationale": "The reused source-3.8 HDPE supply helper retains exactly four previously approved tiny recycled-supply omissions, unchanged from export/uvek_packaging_hdpe_review.json. Their source quantities and audits remain visible; no new omission or renormalization is authorized, and score effects remain unquantified."
+    }
+  ],
+  "no_write_LCI": {
+    "status": "two_migrated_recycling_parents_and_eight_processing_or_portfolio_models_have_finite_signed_LCIs",
+    "signed_finite_LCI_solves": 20,
+    "independent_native_model_comparisons": [
+      {
+        "recipe_id": "recycling-38-owned-3dd2d92974b1835d",
+        "independent_private_source_graph_comparison": true,
+        "maximum_absolute_inventory_difference": 4.2516109033385874e-07,
+        "relative_infinity_norm_difference": 1.0374247605427333e-09,
+        "relative_infinity_norm_tolerance": 1e-08,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15
+      },
+      {
+        "recipe_id": "recycling-38-owned-b4ae7bb575f129cd",
+        "independent_private_source_graph_comparison": true,
+        "maximum_absolute_inventory_difference": 2.3695648110333423e-08,
+        "relative_infinity_norm_difference": 2.9817716228962346e-11,
+        "relative_infinity_norm_tolerance": 1e-08,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15
+      },
+      {
+        "recipe_id": "recycling-38-ch-heat-96a0736abf7d8584",
+        "independent_private_source_graph_comparison": true,
+        "maximum_absolute_inventory_difference": 2.4586717617359685e-13,
+        "relative_infinity_norm_difference": 2.4586717617359685e-13,
+        "relative_infinity_norm_tolerance": 1e-08,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15
+      },
+      {
+        "recipe_id": "recycling-38-ch-heat-e1e78b3a4f5e06c7",
+        "independent_private_source_graph_comparison": true,
+        "maximum_absolute_inventory_difference": 5.0154325137441447e-14,
+        "relative_infinity_norm_difference": 5.0154325137441447e-14,
+        "relative_infinity_norm_tolerance": 1e-08,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15
+      },
+      {
+        "recipe_id": "recycling-38-ch-heat-f1810846999bc5bf",
+        "independent_private_source_graph_comparison": true,
+        "maximum_absolute_inventory_difference": 1.995971610213587e-09,
+        "relative_infinity_norm_difference": 9.67910676106452e-10,
+        "relative_infinity_norm_tolerance": 1e-08,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15
+      },
+      {
+        "recipe_id": "recycling-38-ch-waste-090187e1cd9f8fc7",
+        "independent_private_source_graph_comparison": true,
+        "maximum_absolute_inventory_difference": 2.220446049250313e-16,
+        "relative_infinity_norm_difference": 2.22279966397555e-17,
+        "relative_infinity_norm_tolerance": 1e-08,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15
+      },
+      {
+        "recipe_id": "recycling-38-ch-waste-4fd6d63ab0a5b89b",
+        "independent_private_source_graph_comparison": true,
+        "maximum_absolute_inventory_difference": 8.673617379884035e-19,
+        "relative_infinity_norm_difference": 2.7518688870415384e-20,
+        "relative_infinity_norm_tolerance": 1e-08,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15
+      },
+      {
+        "recipe_id": "recycling-38-ch-waste-84dcff7694e15d91",
+        "independent_private_source_graph_comparison": true,
+        "maximum_absolute_inventory_difference": 1.734723475976807e-18,
+        "relative_infinity_norm_difference": 5.503737774083077e-20,
+        "relative_infinity_norm_tolerance": 1e-08,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15
+      },
+      {
+        "recipe_id": "recycling-38-owned-02b85fc7d24856d5",
+        "independent_private_source_graph_comparison": true,
+        "maximum_absolute_inventory_difference": 4.251608629601833e-07,
+        "relative_infinity_norm_difference": 1.062848707314744e-09,
+        "relative_infinity_norm_tolerance": 1e-08,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15
+      },
+      {
+        "recipe_id": "recycling-38-owned-3dc36871c20fc7ba",
+        "independent_private_source_graph_comparison": true,
+        "maximum_absolute_inventory_difference": 6.633814564338536e-08,
+        "relative_infinity_norm_difference": 2.849657716190698e-10,
+        "relative_infinity_norm_tolerance": 1e-08,
+        "flattened_native_and_biosphere_coefficients_match": true,
+        "coefficient_relative_tolerance": 1e-12,
+        "coefficient_absolute_tolerance": 1e-15
+      }
+    ],
+    "transient_activities": 68,
+    "native_endpoints_used": 141,
+    "matrix_shape": [
+      12015,
+      12015
+    ],
+    "source_and_biosphere_metadata_preserved": true,
+    "new_Brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "qualification_limit": "Numerical native-model consistency only. Swiss operating proxies and inherited omissions remain explicit; source/native score equivalence and complete truck sector/export are unproven."
+  },
+  "actual_truck_workflow": {
+    "stage": "inventory preparation",
+    "next_unapproved_source": "ecoinvent 3.12 cutoff",
+    "next_group_count": 27,
+    "next_unapproved_rule_ids": [
+      "bp-0721dc4212547a4d",
+      "bp-0cdecef35c6741e6",
+      "bp-1308b656f1d6a3e7",
+      "bp-138223cb80deb0c1",
+      "bp-1472e083e5590d89",
+      "bp-1a1a8f5692e27e73",
+      "bp-1b65914b2f33ba7b",
+      "bp-20d6cc6fceb46d84",
+      "bp-25caf9ffefc8a1ab",
+      "bp-3373d44a210b5187",
+      "bp-35217cf5e68b84a0",
+      "bp-38a8afc636bbea5a",
+      "bp-39732882b4a46402",
+      "bp-4f9f0bb31d6d8487",
+      "bp-5c8891b6124ad797",
+      "bp-7bd5debfe58a82f0",
+      "bp-808b2ad4fb7fd8be",
+      "bp-8185695a8558088a",
+      "bp-975df496dad5c2a7",
+      "bp-a269f28fe24da747",
+      "bp-ab62d13201980583",
+      "bp-c4add56991cdc17f",
+      "bp-cbc88ba58ab83149",
+      "bp-ccb4c597048fe936",
+      "bp-d57418d4668a6b88",
+      "bp-ea86145d413de309",
+      "bp-f0abe48d8c3176d4"
+    ],
+    "public_admission_gate_bypassed_for_diagnostic_only": true,
+    "validation_disabled": false,
+    "export_performed": false,
+    "elapsed_seconds": 66.90202833293006
+  },
+  "qualified_sectors": 14,
+  "total_sectors": 19,
+  "qualification_limit": "The two parent conversions and native-model consistency pass. Complete truck inventory preparation, supplier/filter/physical coverage, public admission and export remain unfinished; four other sectors also remain. No source/native LCIA equivalence is established."
+}

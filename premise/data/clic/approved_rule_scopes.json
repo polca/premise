@@ -135562,6 +135562,11 @@
           "primary312_hashes_still_match": true,
           "warning_refinement": "Earlier3.12 market recipe, quantities and freight uncertainty remain unchanged. Source3.9 adds its own seven shares, recycled-content screening warning and preserved delivery uncertainty. Original shared card is archived unchanged.",
           "new_review": "export/uvek_pet_market_39_review.json"
+        },
+        "recycling_ch_38_extension": {
+          "review_path": "export/uvek_recycling_ch_38_review.json",
+          "review_sha256": "cdd7a42d51e7e70a590f3f4b8fe9d0349664d9fc14703abb3d07c0bc3506c840",
+          "older_selected_rules_and_recipes_unchanged": true
         }
       },
       "limitations": [
@@ -135583,7 +135588,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "1c2041acaee05fb20b03ea8b7c8c07b5a00ab2a70e11af7c82d6435ac4284e16"
+          "fingerprint": "928fa36d29ac50820f2568b9b6bbb67dd6c1265b0f23d60ed313c36fe06377c5"
         }
       ]
     },
@@ -272504,6 +272509,11 @@
           "source39_freight_lognormal_scale": 0.4049691346263318,
           "earlier312_freight_lognormal_scale": 0.44944410108488464,
           "new_mass_omission_or_renormalization": false
+        },
+        "recycling_ch_38_extension": {
+          "review_path": "export/uvek_recycling_ch_38_review.json",
+          "review_sha256": "cdd7a42d51e7e70a590f3f4b8fe9d0349664d9fc14703abb3d07c0bc3506c840",
+          "older_selected_rules_and_recipes_unchanged": true
         }
       },
       "limitations": [
@@ -272526,7 +272536,7 @@
             "system_model": "cutoff",
             "version": "2025"
           },
-          "fingerprint": "9ee5a94caf74213e20098b6ce21d59c5152257ed9b56e24c82dffb271eeea0c9"
+          "fingerprint": "2e0e887c87971c008114e6575897a2cf3552dd6f72b47ac20834051ff0e7cba8"
         }
       ]
     },
@@ -326928,6 +326938,824 @@
             "version": "2025"
           },
           "fingerprint": "f3b70684b480760e375a20cea181542a80e68aaf77e909bfcd49d0aeca491ce6"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-561db61b644cb833",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_recycling_ch_38_review.json",
+      "review_sha256": "cdd7a42d51e7e70a590f3f4b8fe9d0349664d9fc14703abb3d07c0bc3506c840",
+      "authorization": "Standing autonomous integration goal and automatic approval of explicit same-function native/complete source-model screening proxies with logged limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for polyethylene, high density, granulate, recycled",
+            "reference product": "polyethylene, high density, granulate, recycled",
+            "unit": "kilogram",
+            "location": "RoW"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "nonzero_nonproduction_count": 6,
+          "inventory_sha256": "dde7674fb53366d7d39ba0adc1f5a679f4abd35e8f8030d1f8bbdf0dae45d539",
+          "metadata_sha256": "82528cbdb1979b5653a34cb20d8e42b683978ca8e5f600292d3a5a1564531a23"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-owned-3dd2d92974b1835d"
+        },
+        "conversion_factor": 1,
+        "nested_recipe_inspections": [
+          {
+            "date": "2026-11-11",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "source": {
+              "identity": {
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "metadata_sha256": "5765d453e7deca5f8520ee77d247f8d2aed917ff43d725bf259808918e8d0e4a",
+              "enriched_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+              "nonproduction_counts": {
+                "technosphere": 9
+              },
+              "name": "market for polyethylene, high density, granulate",
+              "reference product": "polyethylene, high density, granulate",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "source_producer_witnesses": [
+              {
+                "identity": {
+                  "name": "polyethylene production, high density, granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "40eba4e3373ecb480e997a3c4456ade0f79504de9cf63fe12cb2a12157aee1ed",
+                "enriched_inventory_sha256": "f64330c56617d55590551a9bada7d11366f97f5e65184f045400299d77000f45",
+                "nonproduction_counts": {
+                  "technosphere": 23,
+                  "biosphere": 29
+                }
+              },
+              {
+                "identity": {
+                  "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "location": "CH",
+                  "unit": "kilogram"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "f30193d284979ae87e781215b5b516451ed3e2e918469a7f7a71bb9653bdf9d6",
+                "enriched_inventory_sha256": "871a26ff5e2e3c23c2beabc633adbf0bf416857a3dfd5b1875e734e0b0d48d97",
+                "nonproduction_counts": {
+                  "technosphere": 1
+                }
+              },
+              {
+                "identity": {
+                  "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "location": "Europe without Switzerland",
+                  "unit": "kilogram"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "8617d380f2c09cb03fb8e945bf2b16502a1d346f156b0c5a747468fdab380f94",
+                "enriched_inventory_sha256": "d55140bbf3ce64201e7a8abe4774fd0a0f82f73a2b7c4269824da04bb39e1b8a",
+                "nonproduction_counts": {
+                  "technosphere": 1
+                }
+              },
+              {
+                "identity": {
+                  "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "location": "US",
+                  "unit": "kilogram"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "871645efa22f7314a4a2cf404b8d2b9afeb1a143ae485adfd9ad1b998353322b",
+                "enriched_inventory_sha256": "b23e10ef21492934fbb8466ddd5d1ca618453a119d55af186511a3d2aeac14f5",
+                "nonproduction_counts": {
+                  "technosphere": 1
+                }
+              },
+              {
+                "identity": {
+                  "name": "polyethylene production, high density, granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "0cf5a62b705e781f589cba90e055564cb4979f6298790d59f9265f12667cefe2",
+                "enriched_inventory_sha256": "1c79fef90d7b677e3027cad9f29e98ae44a6fbfbfb8d40e67207a806cc361485",
+                "nonproduction_counts": {
+                  "technosphere": 37,
+                  "biosphere": 29
+                }
+              },
+              {
+                "identity": {
+                  "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "175e3741d5119ba96c2fbc2922b98f1eabee374673f166b7610ab91405e659ba",
+                "enriched_inventory_sha256": "51142ca4d8eee516c25b5c980dcba08cf2b668bc081c412972814a0083143ae6",
+                "nonproduction_counts": {
+                  "technosphere": 1
+                }
+              }
+            ],
+            "basis": "Inspected 3.8 source market: preserve both original positive virgin shares separately and all three freight entries in source order. Exactly four nonempty recycled-to-generic supplies are omitted with source-specific audit, no renormalization or claim of zero score effect. Only independently inspected exact cut-off profiles qualify. Preserve signed caller kg, uncertainty, formulas, both separate original virgin-production entries and all original freight rows, without aggregation or renormalization. Complete native European virgin HDPE is a same-product stock screening proxy; grade, allocation, geography, vintage, production boundary, internal uncertainty and biosphere exclusions differ with unquantified score effects. Native generic European rail/road and oceanic container freight replace source fleets at original tonne-km, without payload/distance scaling or duplicated infrastructure. Source 3.8 alone omits four explicitly enumerated positive nonempty recycled-to-generic supplies, total 1.173141240030732e-13 kg/kg, with signed source statistics and audit; no empty recycling handover or virgin replacement is invented. Source 3.11 contains no such entries and has no omission. No general trace threshold or omission in another source is approved. No density, purity, energy, recycled-content or avoided-product factor is added. The inherited global 3.9 omission description concerns that historical profile only; current-profile recipe audits and limitations govern these new correspondences.",
+            "conversion_factor": 1,
+            "generated_recipe_id": "packaging-hdpe-015c128d7978ed807056",
+            "retention": {
+              "virgin_producer_rows": 2,
+              "freight_rows": 3,
+              "retained_rows": 5,
+              "omitted_rows": 4,
+              "source_order_preserved": true,
+              "no_renormalization": true
+            },
+            "native_2026_witnesses": [
+              {
+                "identity": {
+                  "name": "Transport, transoceanic container ship",
+                  "reference product": "Transport, transoceanic container ship",
+                  "location": "OCE",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 36,
+                "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+                "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40"
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, rail",
+                  "reference product": "Transport, freight, rail",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 66,
+                "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+                "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205"
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, fleet average",
+                  "reference product": "Transport, freight, lorry, fleet average",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 4,
+                "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+                "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4"
+              },
+              {
+                "identity": {
+                  "name": "Polyethylene, HDPE, granulate, at plant",
+                  "reference product": "Polyethylene, HDPE, granulate, at plant",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 412,
+                "metadata_sha256": "f4b5cd694a50b0f7259d4f9d3123bb99049241f615f79ff3097eb53d2b2bd595",
+                "inventory_sha256": "e81744e0e1da1b6fb4c183a9aed47d0dbd44916af24413616f099429080f47e6"
+              }
+            ],
+            "source_freight_witnesses": [
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.8",
+                  "system_model": "cutoff"
+                },
+                "identity": {
+                  "name": "market for transport, freight, sea, container ship",
+                  "reference product": "transport, freight, sea, container ship",
+                  "location": "GLO",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "cf7f1bb5db45c0369797389bdcda3dbe86f7f20bc71e372a56f8977e3f6214cc",
+                "inventory_sha256": "3cb6175aed5647fc48a31feb1d2d780ed7d90dd83a79549a3f7e34a1d0fc857d"
+              },
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.8",
+                  "system_model": "cutoff"
+                },
+                "identity": {
+                  "name": "market group for transport, freight train",
+                  "reference product": "transport, freight train",
+                  "location": "GLO",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "61387a49aa96d7d788814ead1bd1f09a7132c9c3ac3b03ca07606ac9e3951efa",
+                "inventory_sha256": "d3d7f76f82083f70cbc8e61a2073811fd2cf687b31c02c1f6a2d2acc0a1ed16a"
+              },
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.8",
+                  "system_model": "cutoff"
+                },
+                "identity": {
+                  "name": "market group for transport, freight, lorry, unspecified",
+                  "reference product": "transport, freight, lorry, unspecified",
+                  "location": "GLO",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "1db3619a1d8ec65867b0ded8c78bf7c9fd230ebbb32a5545bf6130cbf477c3cb",
+                "inventory_sha256": "1bf0bfd30b1d056d1ae9d698ad13dbb96cd75c42b954098b9d1119880c113313"
+              }
+            ],
+            "existing_recipe_dependencies": {
+              "pilot-nitrate-hdpe-dfcfe7b3600a00f94f69": "77224a164615264bf1cf7e8888d83ed6c3ea881e0140f6a3dfe5d919731cc47d",
+              "heat-310-waste-57bf3348f28eb377601d": "57bf3348f28eb377601d08010a1e367c8423ad21799f9e25f1ed5225ed3c1351"
+            },
+            "approved_recipe_source_omissions": {
+              "packaging-hdpe-015c128d7978ed807056": [
+                {
+                  "original_index": 5,
+                  "rationale": "Scoped same-kind auto-approved omission: positive nonempty recycled-to-generic HDPE stock at 2.93285310007683e-14 kg/kg. Not an empty cut-off supplier. Preserve source position and signed uncertainty; do not renormalize. Receiver inventory SHA256: 871a26ff5e2e3c23c2beabc633adbf0bf416857a3dfd5b1875e734e0b0d48d97",
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for polyethylene, high density, granulate",
+                    "reference product": "polyethylene, high density, granulate",
+                    "unit": "kilogram"
+                  },
+                  "source_exchange": {
+                    "amount": 2.93285310007683e-14,
+                    "loc": 2.93285310007683e-14,
+                    "location": "CH",
+                    "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                    "reference product": "polyethylene, high density, granulate",
+                    "type": "technosphere",
+                    "uncertainty type": 0,
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "system_model": "cutoff",
+                    "version": "3.8"
+                  }
+                },
+                {
+                  "original_index": 6,
+                  "rationale": "Scoped same-kind auto-approved omission: positive nonempty recycled-to-generic HDPE stock at 2.93285310007683e-14 kg/kg. Not an empty cut-off supplier. Preserve source position and signed uncertainty; do not renormalize. Receiver inventory SHA256: d55140bbf3ce64201e7a8abe4774fd0a0f82f73a2b7c4269824da04bb39e1b8a",
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for polyethylene, high density, granulate",
+                    "reference product": "polyethylene, high density, granulate",
+                    "unit": "kilogram"
+                  },
+                  "source_exchange": {
+                    "amount": 2.93285310007683e-14,
+                    "loc": 2.93285310007683e-14,
+                    "location": "Europe without Switzerland",
+                    "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                    "reference product": "polyethylene, high density, granulate",
+                    "type": "technosphere",
+                    "uncertainty type": 0,
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "system_model": "cutoff",
+                    "version": "3.8"
+                  }
+                },
+                {
+                  "original_index": 7,
+                  "rationale": "Scoped same-kind auto-approved omission: positive nonempty recycled-to-generic HDPE stock at 2.93285310007683e-14 kg/kg. Not an empty cut-off supplier. Preserve source position and signed uncertainty; do not renormalize. Receiver inventory SHA256: b23e10ef21492934fbb8466ddd5d1ca618453a119d55af186511a3d2aeac14f5",
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for polyethylene, high density, granulate",
+                    "reference product": "polyethylene, high density, granulate",
+                    "unit": "kilogram"
+                  },
+                  "source_exchange": {
+                    "amount": 2.93285310007683e-14,
+                    "loc": 2.93285310007683e-14,
+                    "location": "US",
+                    "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                    "reference product": "polyethylene, high density, granulate",
+                    "type": "technosphere",
+                    "uncertainty type": 0,
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "system_model": "cutoff",
+                    "version": "3.8"
+                  }
+                },
+                {
+                  "original_index": 9,
+                  "rationale": "Scoped same-kind auto-approved omission: positive nonempty recycled-to-generic HDPE stock at 2.93285310007683e-14 kg/kg. Not an empty cut-off supplier. Preserve source position and signed uncertainty; do not renormalize. Receiver inventory SHA256: 51142ca4d8eee516c25b5c980dcba08cf2b668bc081c412972814a0083143ae6",
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for polyethylene, high density, granulate",
+                    "reference product": "polyethylene, high density, granulate",
+                    "unit": "kilogram"
+                  },
+                  "source_exchange": {
+                    "amount": 2.93285310007683e-14,
+                    "loc": 2.93285310007683e-14,
+                    "location": "RoW",
+                    "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                    "reference product": "polyethylene, high density, granulate",
+                    "type": "technosphere",
+                    "uncertainty type": 0,
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "system_model": "cutoff",
+                    "version": "3.8"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "limitations": [
+        "Exact inspected ecoinvent 3.8 cut-off inputs only. Only two parent correspondences gain permission, through complete closed native-facing helper graphs. No global approval is granted to their twelve parent-only utility interfaces, uninspected versions, patch releases, reverse conversions or consequential system models.",
+        "Use the complete Swiss mechanical-recycling inventory for the same positively referenced kg of recycled HDPE or amorphous PET. Retain every original global/regional market producer entry and finished-product delivery amount, including the four recycled-PET regional bridges. Recycled grade, original recycled supply shares, collection, sorting, washing, paid processing, containers, infrastructure, chemicals, utilities, signed handovers and independent emissions remain represented. No substitution by virgin resin or empty native recycling handover, deleted physical demand, renormalization or invented avoided-virgin credit.",
+        "Non-Swiss recycled producers use Swiss operational data: source-region yield, electricity, heat, water, residues, direct emissions, allocation, internal delivery and uncertainty therefore change. Country-specific performance and LCIA equivalence are not established. Preserve original market shares and delivery separately; do not calibrate energy, mass or yield to the displaced regional inventory.",
+        "Preserve positive source kg references, caller signs, supported uncertainty and formulas. Owned source-3.8 biosphere exchanges migrate independently through the canonical ecoinvent 3.8-to-3.10 flow route. Two container formulas retain nominal parameter values independently recovered from their original purchased-material quantities; current signed amounts are checked. Other parameterizations and stochastic dependence are not established.",
+        "Retain Swiss waste-market incineration, open burning and wet-500mm open dumping separately, including source rounding and collection/freight. Complete native matching incinerators approximate fly-ash extraction without invented recovered-metal credit; retain the existing complete source-3.8 public uncontrolled-treatment models. Negative-reference treatment services are converted once per caller and child service; positive freight remains positive.",
+        "Retain all three Swiss heat market portfolios, their original provider quantities and uncertainty, including tiny entries. Use complete native same-fuel heat production per MJ, keeping cogeneration heat allocation and excluding added electricity credits or duplicate district networks. Technology, thermal/electrical capacity, allocation, efficiency, fuel quality, controls, vintage and uncertainty differ. Solar-only systems exclude auxiliary heating. Recovered MSW heat remains its native explicitly zero-allocated heat coproduct. Two waste-wood heat outputs have 41 explicitly zero source exchanges each; preserve verified zero allocation without zeroing nonempty treatment.",
+        "Five production-only Recycled Content cut-off stocks retain their signed physical handover and zero allocated burden. Collection, sorting, washing, production and treatment remain nonempty. Do not infer zero burden from a waste/recycling name alone. Native and source heat cut-off allocation differ from a consequential avoided-product credit.",
+        "Reuse the complete reviewed source-3.9 Swiss wastewater and source-3.10 mixed-plastic-waste helpers as explicit inventory-version screening proxies, retaining their original audit contexts. Water routes, technologies, fate shares, emissions, geography, allocation, vintage and score differences remain unquantified. Complete native Swiss electricity/tap water/facility and European rail are parent-only geographic or scale proxies with no extra loss, size, density or efficiency multipliers.",
+        "Existing native biosphere exclusions, complete upstream producer inventories and historical reviewed helper omissions remain visible in provenance. No new physical foreground omission, production Python change or generator Python change. Finite LCIs establish numerical consistency only; full truck-sector behavior, impact equivalence and the remaining sectors require separate verification.",
+        "The reused source-3.8 HDPE supply helper retains exactly four previously approved tiny recycled-supply omissions, unchanged from export/uvek_packaging_hdpe_review.json. Their source quantities and audits remain visible; no new omission or renormalization is authorized, and score effects remain unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ad04740363c8776b00d7fb75a9c55bc16136b4653c1fed1d9360f1e04f4eeb39"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ca080a54d1c79f8d",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_312_market_composition",
+      "review_path": "export/uvek_recycling_ch_38_review.json",
+      "review_sha256": "cdd7a42d51e7e70a590f3f4b8fe9d0349664d9fc14703abb3d07c0bc3506c840",
+      "authorization": "Standing autonomous integration goal and automatic approval of explicit same-function native/complete source-model screening proxies with logged limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for polyethylene terephthalate, granulate, amorphous",
+            "reference product": "polyethylene terephthalate, granulate, amorphous",
+            "unit": "kilogram",
+            "location": "GLO"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 10,
+          "nonzero_nonproduction_count": 10,
+          "inventory_sha256": "0f9d16fcf05e4c9fa87cd2963901627bd42bd1134e73d855a1d6cc4617c2aa38",
+          "metadata_sha256": "8e543c60c34df8e4002d869d9993e06c19a2086b318df389f770880bc51b9e6d"
+        },
+        "target": {
+          "recipe_ref": "recycling-38-owned-b4ae7bb575f129cd"
+        },
+        "conversion_factor": 1,
+        "nested_recipe_inspections": [
+          {
+            "date": "2026-11-11",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "source": {
+              "identity": {
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "metadata_sha256": "5765d453e7deca5f8520ee77d247f8d2aed917ff43d725bf259808918e8d0e4a",
+              "enriched_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+              "nonproduction_counts": {
+                "technosphere": 9
+              },
+              "name": "market for polyethylene, high density, granulate",
+              "reference product": "polyethylene, high density, granulate",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "source_producer_witnesses": [
+              {
+                "identity": {
+                  "name": "polyethylene production, high density, granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "40eba4e3373ecb480e997a3c4456ade0f79504de9cf63fe12cb2a12157aee1ed",
+                "enriched_inventory_sha256": "f64330c56617d55590551a9bada7d11366f97f5e65184f045400299d77000f45",
+                "nonproduction_counts": {
+                  "technosphere": 23,
+                  "biosphere": 29
+                }
+              },
+              {
+                "identity": {
+                  "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "location": "CH",
+                  "unit": "kilogram"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "f30193d284979ae87e781215b5b516451ed3e2e918469a7f7a71bb9653bdf9d6",
+                "enriched_inventory_sha256": "871a26ff5e2e3c23c2beabc633adbf0bf416857a3dfd5b1875e734e0b0d48d97",
+                "nonproduction_counts": {
+                  "technosphere": 1
+                }
+              },
+              {
+                "identity": {
+                  "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "location": "Europe without Switzerland",
+                  "unit": "kilogram"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "8617d380f2c09cb03fb8e945bf2b16502a1d346f156b0c5a747468fdab380f94",
+                "enriched_inventory_sha256": "d55140bbf3ce64201e7a8abe4774fd0a0f82f73a2b7c4269824da04bb39e1b8a",
+                "nonproduction_counts": {
+                  "technosphere": 1
+                }
+              },
+              {
+                "identity": {
+                  "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "location": "US",
+                  "unit": "kilogram"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "871645efa22f7314a4a2cf404b8d2b9afeb1a143ae485adfd9ad1b998353322b",
+                "enriched_inventory_sha256": "b23e10ef21492934fbb8466ddd5d1ca618453a119d55af186511a3d2aeac14f5",
+                "nonproduction_counts": {
+                  "technosphere": 1
+                }
+              },
+              {
+                "identity": {
+                  "name": "polyethylene production, high density, granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "0cf5a62b705e781f589cba90e055564cb4979f6298790d59f9265f12667cefe2",
+                "enriched_inventory_sha256": "1c79fef90d7b677e3027cad9f29e98ae44a6fbfbfb8d40e67207a806cc361485",
+                "nonproduction_counts": {
+                  "technosphere": 37,
+                  "biosphere": 29
+                }
+              },
+              {
+                "identity": {
+                  "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "175e3741d5119ba96c2fbc2922b98f1eabee374673f166b7610ab91405e659ba",
+                "enriched_inventory_sha256": "51142ca4d8eee516c25b5c980dcba08cf2b668bc081c412972814a0083143ae6",
+                "nonproduction_counts": {
+                  "technosphere": 1
+                }
+              }
+            ],
+            "basis": "Inspected 3.8 source market: preserve both original positive virgin shares separately and all three freight entries in source order. Exactly four nonempty recycled-to-generic supplies are omitted with source-specific audit, no renormalization or claim of zero score effect. Only independently inspected exact cut-off profiles qualify. Preserve signed caller kg, uncertainty, formulas, both separate original virgin-production entries and all original freight rows, without aggregation or renormalization. Complete native European virgin HDPE is a same-product stock screening proxy; grade, allocation, geography, vintage, production boundary, internal uncertainty and biosphere exclusions differ with unquantified score effects. Native generic European rail/road and oceanic container freight replace source fleets at original tonne-km, without payload/distance scaling or duplicated infrastructure. Source 3.8 alone omits four explicitly enumerated positive nonempty recycled-to-generic supplies, total 1.173141240030732e-13 kg/kg, with signed source statistics and audit; no empty recycling handover or virgin replacement is invented. Source 3.11 contains no such entries and has no omission. No general trace threshold or omission in another source is approved. No density, purity, energy, recycled-content or avoided-product factor is added. The inherited global 3.9 omission description concerns that historical profile only; current-profile recipe audits and limitations govern these new correspondences.",
+            "conversion_factor": 1,
+            "generated_recipe_id": "packaging-hdpe-015c128d7978ed807056",
+            "retention": {
+              "virgin_producer_rows": 2,
+              "freight_rows": 3,
+              "retained_rows": 5,
+              "omitted_rows": 4,
+              "source_order_preserved": true,
+              "no_renormalization": true
+            },
+            "native_2026_witnesses": [
+              {
+                "identity": {
+                  "name": "Transport, transoceanic container ship",
+                  "reference product": "Transport, transoceanic container ship",
+                  "location": "OCE",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 36,
+                "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+                "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40"
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, rail",
+                  "reference product": "Transport, freight, rail",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 66,
+                "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+                "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205"
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, fleet average",
+                  "reference product": "Transport, freight, lorry, fleet average",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 4,
+                "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+                "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4"
+              },
+              {
+                "identity": {
+                  "name": "Polyethylene, HDPE, granulate, at plant",
+                  "reference product": "Polyethylene, HDPE, granulate, at plant",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 412,
+                "metadata_sha256": "f4b5cd694a50b0f7259d4f9d3123bb99049241f615f79ff3097eb53d2b2bd595",
+                "inventory_sha256": "e81744e0e1da1b6fb4c183a9aed47d0dbd44916af24413616f099429080f47e6"
+              }
+            ],
+            "source_freight_witnesses": [
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.8",
+                  "system_model": "cutoff"
+                },
+                "identity": {
+                  "name": "market for transport, freight, sea, container ship",
+                  "reference product": "transport, freight, sea, container ship",
+                  "location": "GLO",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "cf7f1bb5db45c0369797389bdcda3dbe86f7f20bc71e372a56f8977e3f6214cc",
+                "inventory_sha256": "3cb6175aed5647fc48a31feb1d2d780ed7d90dd83a79549a3f7e34a1d0fc857d"
+              },
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.8",
+                  "system_model": "cutoff"
+                },
+                "identity": {
+                  "name": "market group for transport, freight train",
+                  "reference product": "transport, freight train",
+                  "location": "GLO",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "61387a49aa96d7d788814ead1bd1f09a7132c9c3ac3b03ca07606ac9e3951efa",
+                "inventory_sha256": "d3d7f76f82083f70cbc8e61a2073811fd2cf687b31c02c1f6a2d2acc0a1ed16a"
+              },
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.8",
+                  "system_model": "cutoff"
+                },
+                "identity": {
+                  "name": "market group for transport, freight, lorry, unspecified",
+                  "reference product": "transport, freight, lorry, unspecified",
+                  "location": "GLO",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "1db3619a1d8ec65867b0ded8c78bf7c9fd230ebbb32a5545bf6130cbf477c3cb",
+                "inventory_sha256": "1bf0bfd30b1d056d1ae9d698ad13dbb96cd75c42b954098b9d1119880c113313"
+              }
+            ],
+            "existing_recipe_dependencies": {
+              "pilot-nitrate-hdpe-dfcfe7b3600a00f94f69": "77224a164615264bf1cf7e8888d83ed6c3ea881e0140f6a3dfe5d919731cc47d",
+              "heat-310-waste-57bf3348f28eb377601d": "57bf3348f28eb377601d08010a1e367c8423ad21799f9e25f1ed5225ed3c1351"
+            },
+            "approved_recipe_source_omissions": {
+              "packaging-hdpe-015c128d7978ed807056": [
+                {
+                  "original_index": 5,
+                  "rationale": "Scoped same-kind auto-approved omission: positive nonempty recycled-to-generic HDPE stock at 2.93285310007683e-14 kg/kg. Not an empty cut-off supplier. Preserve source position and signed uncertainty; do not renormalize. Receiver inventory SHA256: 871a26ff5e2e3c23c2beabc633adbf0bf416857a3dfd5b1875e734e0b0d48d97",
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for polyethylene, high density, granulate",
+                    "reference product": "polyethylene, high density, granulate",
+                    "unit": "kilogram"
+                  },
+                  "source_exchange": {
+                    "amount": 2.93285310007683e-14,
+                    "loc": 2.93285310007683e-14,
+                    "location": "CH",
+                    "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                    "reference product": "polyethylene, high density, granulate",
+                    "type": "technosphere",
+                    "uncertainty type": 0,
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "system_model": "cutoff",
+                    "version": "3.8"
+                  }
+                },
+                {
+                  "original_index": 6,
+                  "rationale": "Scoped same-kind auto-approved omission: positive nonempty recycled-to-generic HDPE stock at 2.93285310007683e-14 kg/kg. Not an empty cut-off supplier. Preserve source position and signed uncertainty; do not renormalize. Receiver inventory SHA256: d55140bbf3ce64201e7a8abe4774fd0a0f82f73a2b7c4269824da04bb39e1b8a",
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for polyethylene, high density, granulate",
+                    "reference product": "polyethylene, high density, granulate",
+                    "unit": "kilogram"
+                  },
+                  "source_exchange": {
+                    "amount": 2.93285310007683e-14,
+                    "loc": 2.93285310007683e-14,
+                    "location": "Europe without Switzerland",
+                    "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                    "reference product": "polyethylene, high density, granulate",
+                    "type": "technosphere",
+                    "uncertainty type": 0,
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "system_model": "cutoff",
+                    "version": "3.8"
+                  }
+                },
+                {
+                  "original_index": 7,
+                  "rationale": "Scoped same-kind auto-approved omission: positive nonempty recycled-to-generic HDPE stock at 2.93285310007683e-14 kg/kg. Not an empty cut-off supplier. Preserve source position and signed uncertainty; do not renormalize. Receiver inventory SHA256: b23e10ef21492934fbb8466ddd5d1ca618453a119d55af186511a3d2aeac14f5",
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for polyethylene, high density, granulate",
+                    "reference product": "polyethylene, high density, granulate",
+                    "unit": "kilogram"
+                  },
+                  "source_exchange": {
+                    "amount": 2.93285310007683e-14,
+                    "loc": 2.93285310007683e-14,
+                    "location": "US",
+                    "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                    "reference product": "polyethylene, high density, granulate",
+                    "type": "technosphere",
+                    "uncertainty type": 0,
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "system_model": "cutoff",
+                    "version": "3.8"
+                  }
+                },
+                {
+                  "original_index": 9,
+                  "rationale": "Scoped same-kind auto-approved omission: positive nonempty recycled-to-generic HDPE stock at 2.93285310007683e-14 kg/kg. Not an empty cut-off supplier. Preserve source position and signed uncertainty; do not renormalize. Receiver inventory SHA256: 51142ca4d8eee516c25b5c980dcba08cf2b668bc081c412972814a0083143ae6",
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for polyethylene, high density, granulate",
+                    "reference product": "polyethylene, high density, granulate",
+                    "unit": "kilogram"
+                  },
+                  "source_exchange": {
+                    "amount": 2.93285310007683e-14,
+                    "loc": 2.93285310007683e-14,
+                    "location": "RoW",
+                    "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                    "reference product": "polyethylene, high density, granulate",
+                    "type": "technosphere",
+                    "uncertainty type": 0,
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "system_model": "cutoff",
+                    "version": "3.8"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "limitations": [
+        "Exact inspected ecoinvent 3.8 cut-off inputs only. Only two parent correspondences gain permission, through complete closed native-facing helper graphs. No global approval is granted to their twelve parent-only utility interfaces, uninspected versions, patch releases, reverse conversions or consequential system models.",
+        "Use the complete Swiss mechanical-recycling inventory for the same positively referenced kg of recycled HDPE or amorphous PET. Retain every original global/regional market producer entry and finished-product delivery amount, including the four recycled-PET regional bridges. Recycled grade, original recycled supply shares, collection, sorting, washing, paid processing, containers, infrastructure, chemicals, utilities, signed handovers and independent emissions remain represented. No substitution by virgin resin or empty native recycling handover, deleted physical demand, renormalization or invented avoided-virgin credit.",
+        "Non-Swiss recycled producers use Swiss operational data: source-region yield, electricity, heat, water, residues, direct emissions, allocation, internal delivery and uncertainty therefore change. Country-specific performance and LCIA equivalence are not established. Preserve original market shares and delivery separately; do not calibrate energy, mass or yield to the displaced regional inventory.",
+        "Preserve positive source kg references, caller signs, supported uncertainty and formulas. Owned source-3.8 biosphere exchanges migrate independently through the canonical ecoinvent 3.8-to-3.10 flow route. Two container formulas retain nominal parameter values independently recovered from their original purchased-material quantities; current signed amounts are checked. Other parameterizations and stochastic dependence are not established.",
+        "Retain Swiss waste-market incineration, open burning and wet-500mm open dumping separately, including source rounding and collection/freight. Complete native matching incinerators approximate fly-ash extraction without invented recovered-metal credit; retain the existing complete source-3.8 public uncontrolled-treatment models. Negative-reference treatment services are converted once per caller and child service; positive freight remains positive.",
+        "Retain all three Swiss heat market portfolios, their original provider quantities and uncertainty, including tiny entries. Use complete native same-fuel heat production per MJ, keeping cogeneration heat allocation and excluding added electricity credits or duplicate district networks. Technology, thermal/electrical capacity, allocation, efficiency, fuel quality, controls, vintage and uncertainty differ. Solar-only systems exclude auxiliary heating. Recovered MSW heat remains its native explicitly zero-allocated heat coproduct. Two waste-wood heat outputs have 41 explicitly zero source exchanges each; preserve verified zero allocation without zeroing nonempty treatment.",
+        "Five production-only Recycled Content cut-off stocks retain their signed physical handover and zero allocated burden. Collection, sorting, washing, production and treatment remain nonempty. Do not infer zero burden from a waste/recycling name alone. Native and source heat cut-off allocation differ from a consequential avoided-product credit.",
+        "Reuse the complete reviewed source-3.9 Swiss wastewater and source-3.10 mixed-plastic-waste helpers as explicit inventory-version screening proxies, retaining their original audit contexts. Water routes, technologies, fate shares, emissions, geography, allocation, vintage and score differences remain unquantified. Complete native Swiss electricity/tap water/facility and European rail are parent-only geographic or scale proxies with no extra loss, size, density or efficiency multipliers.",
+        "Existing native biosphere exclusions, complete upstream producer inventories and historical reviewed helper omissions remain visible in provenance. No new physical foreground omission, production Python change or generator Python change. Finite LCIs establish numerical consistency only; full truck-sector behavior, impact equivalence and the remaining sectors require separate verification.",
+        "The reused source-3.8 HDPE supply helper retains exactly four previously approved tiny recycled-supply omissions, unchanged from export/uvek_packaging_hdpe_review.json. Their source quantities and audits remain visible; no new omission or renormalization is authorized, and score effects remain unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c7c26f48c108bd81f9bbc23d674e8b14947db528e8044fb730c7f1ee66564c2d"
         }
       ]
     }
