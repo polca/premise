@@ -1,0 +1,290 @@
+{
+  "date": "2026-11-17",
+  "status": "40_actual_truck_supplies_verified_complete_sector_unfinished",
+  "review": "brightpath/data/export/uvek_trucks_native_40_review.json",
+  "mapping_changes": {
+    "review_sha256": "fef8bd3f13b8a20892d10e5aa454bc9da16a7c8d636e38c947c38c07aaafe3b1",
+    "native_resource_sha256": "6e332d4bee02bc098d26b6de874d37ae331f48148894b8e37b52ed99081f7866",
+    "actual_required_cases": 40,
+    "changed_rules": [
+      "bp-565489cccf0b67ff",
+      "bp-ee5f7ed1ceecb6c5"
+    ],
+    "unchanged_rule_approvals": 38,
+    "new_scopes": 40,
+    "all_previous_approval_operations_unchanged": true,
+    "all_previous_rules_except_two_unapproved_fuel_mappings_unchanged": true,
+    "all_recipes_unchanged": true,
+    "new_helpers": 0,
+    "new_foreground_omissions": 0,
+    "runtime_or_generator_Python_changes": 0,
+    "idempotent_review_replay": true
+  },
+  "generator_reproduction": [
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+      "identical": true,
+      "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "bytes": 18596725
+    },
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+      "identical": true,
+      "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "bytes": 18596319
+    },
+    {
+      "file": "ecoinvent-to-uvek-2025.json",
+      "identical": true,
+      "sha256": "6e332d4bee02bc098d26b6de874d37ae331f48148894b8e37b52ed99081f7866",
+      "bytes": 70656134
+    }
+  ],
+  "Brightpath_new_and_previous_group_tests_passed": 33,
+  "Premise_new_and_previous_group_tests_passed": 8,
+  "native_inventory_checks": {
+    "status": "all_40_migrated_truck_supplies_have_finite_signed_native_LCIs",
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "source_database": "BAFU:2026-reimported",
+    "biosphere": "ecoinvent-3.10-biosphere",
+    "matrix_shape": [
+      11947,
+      11947
+    ],
+    "signed_finite_LCI_solves": 80,
+    "migrated_records": 40,
+    "new_helpers": 0,
+    "cases": [
+      {
+        "rule_id": "bp-ee5f7ed1ceecb6c5",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 142.09484786612126
+      },
+      {
+        "rule_id": "bp-565489cccf0b67ff",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 149.04389864544277
+      },
+      {
+        "rule_id": "bp-cbc88ba58ab83149",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 5583936.919719301
+      },
+      {
+        "rule_id": "bp-c4add56991cdc17f",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 7404256.08636052
+      },
+      {
+        "rule_id": "bp-26ab81ba3944d3c6",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 807.9938131922376
+      },
+      {
+        "rule_id": "bp-ca10bbc54d8e4d19",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 9.896990624631329
+      },
+      {
+        "rule_id": "bp-7deb6e9c067dacdd",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 95.4330089296035
+      },
+      {
+        "rule_id": "bp-d60752dc04604fa3",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 9381.905046514044
+      },
+      {
+        "rule_id": "bp-650d9e755cc074db",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 148.6986161283897
+      },
+      {
+        "rule_id": "bp-b1f751c6264edb23",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 0.3450690270446455
+      },
+      {
+        "rule_id": "bp-0f79620dc03cb676",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 6.89280739031966
+      },
+      {
+        "rule_id": "bp-15fd1f39ad026cbc",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 76.79748203987269
+      },
+      {
+        "rule_id": "bp-0bc79f8cfb508061",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 91.83401284958146
+      },
+      {
+        "rule_id": "bp-b1fea532c8586e9d",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 356.22359814961476
+      },
+      {
+        "rule_id": "bp-b2c765b1fdf075b2",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 180.19457699916987
+      },
+      {
+        "rule_id": "bp-3335f58496f1a41e",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 537.8151715436485
+      },
+      {
+        "rule_id": "bp-54f7c1e279a292d9",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 12006.605169838502
+      },
+      {
+        "rule_id": "bp-e5d364b47c7b470f",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 14892.157590383702
+      },
+      {
+        "rule_id": "bp-4ff01e6c2ffb529d",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 55876.28000149177
+      },
+      {
+        "rule_id": "bp-6ff0ed6b48374b39",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 3037.7706689445636
+      },
+      {
+        "rule_id": "bp-6fd62020eca3508d",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 3900.5502374861744
+      },
+      {
+        "rule_id": "bp-7274189a0c647a23",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 63636.10564766218
+      },
+      {
+        "rule_id": "bp-9c31099652a27a68",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 64171.13276292635
+      },
+      {
+        "rule_id": "bp-848f2edb14b80a03",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 6964.807472794041
+      },
+      {
+        "rule_id": "bp-b1b0530d12f8b303",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 11192.827565702173
+      },
+      {
+        "rule_id": "bp-86e14c4f2b1be80d",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 14436.2911794131
+      },
+      {
+        "rule_id": "bp-caa0d550d47e54ec",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 8021.504771667618
+      },
+      {
+        "rule_id": "bp-8282cb27172d524b",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 104570.51929576865
+      },
+      {
+        "rule_id": "bp-0219a82088b2fc58",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 72385.60043300159
+      },
+      {
+        "rule_id": "bp-0dfe55c22e3d4b95",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 729.8860332792447
+      },
+      {
+        "rule_id": "bp-2a2c48b3e3925513",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 36079.345703931926
+      },
+      {
+        "rule_id": "bp-0d1fada13a96a314",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 53534.27597722875
+      },
+      {
+        "rule_id": "bp-881ae008b85dd540",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 183.1098945227568
+      },
+      {
+        "rule_id": "bp-8c6775e26e569761",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 1455.3885507294788
+      },
+      {
+        "rule_id": "bp-996fc7b49f1ed29c",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 73.258132526311
+      },
+      {
+        "rule_id": "bp-280ab8f7bf7e61d5",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 685.9307777479395
+      },
+      {
+        "rule_id": "bp-822ad9d47a5226a1",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 2911.7478462915333
+      },
+      {
+        "rule_id": "bp-04c6252d37192b41",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 267.203116669848
+      },
+      {
+        "rule_id": "bp-e69da1d0d93a9f73",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 241.28592739083342
+      },
+      {
+        "rule_id": "bp-7bd5debfe58a82f0",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 4605989.403059239
+      }
+    ],
+    "new_Brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "source_and_biosphere_metadata_preserved": true,
+    "qualification_limit": "Exact migrated supplier linkage and deterministic native demand checks; not source/native LCIA equivalence, stochastic correlation or complete truck sector/export qualification."
+  },
+  "actual_first_cohort": {
+    "sector": "trucks",
+    "first_source_cohort": "ecoinvent3.8cutoff",
+    "before": 49,
+    "after": 9,
+    "cleared_cases": 40,
+    "remaining_rule_ids": [
+      "bp-38a8afc636bbea5a",
+      "bp-4b1d84179efa58e8",
+      "bp-51fc380f01708bab",
+      "bp-561db61b644cb833",
+      "bp-5c29c14c8825b76f",
+      "bp-6cada1fa986bcf8b",
+      "bp-ca080a54d1c79f8d",
+      "bp-f67674df84fdfefc",
+      "bp-fb36b57c4751ac7d"
+    ],
+    "qualification_limit": "Actual first import cohort only; later sources, eligible sector/filter coverage, update and export remain unfinished."
+  },
+  "qualified_sectors": 14,
+  "newly_qualified_sectors": 0,
+  "runtime_or_generator_Python_changes": 0,
+  "new_helpers": 0,
+  "new_Brightway_databases": 0,
+  "qualification_limit": "Actual reviewed first import cohort, not later source cohorts, physical sector/filter coverage, a complete truck update or export."
+}
