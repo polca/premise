@@ -351795,6 +351795,512 @@
           "fingerprint": "716204a70b6f07eb08187e450286d77e5e3a11be4df72b9834588bef0e7a2c7e"
         }
       ]
+    },
+    {
+      "rule_id": "bp-3d42ad5090eb09e4",
+      "operation": "replace",
+      "mapping_method": "reviewed_battery_lto_312",
+      "review_path": "export/uvek_battery_lto_312_review.json",
+      "review_sha256": "d20d1e76c33ad7af68f49e71a14e2c5b3b82325e236080baa4170e3b66e77f51",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization retaining immediate production rather than remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "UN-EASIA",
+          "name": "market for lithium titanate spinel",
+          "reference product": "lithium titanate spinel",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "UN-EASIA",
+            "name": "market for lithium titanate spinel",
+            "reference product": "lithium titanate spinel",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "nonproduction_count": 4,
+          "inventory_sha256": "3c04e24ebe228e455a213767bb5b90a337176df027e415cbd3557416ee26efb9",
+          "metadata_sha256": "92cca1e185bd08016099273729d180cf7b172407d5d26411a563f13ee32e9a1c",
+          "comment_sha256": "9d64019ab5d498599467702f2a1dd71df38cc76c052c09372f6b4e3d80d3f687",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "manufacturer_witness": {
+          "identity": {
+            "name": "lithium titanate spinel production",
+            "reference product": "lithium titanate spinel",
+            "location": "UN-EASIA",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "nonproduction_count": 10,
+          "inventory_sha256": "30ba98f98cda0dc50f2d4bde86725a642a097e1a2c86c10f9e15583abb264b07",
+          "metadata_sha256": "6ba850031cbbc284dece160d20b4d04e4efcfa02e25103d9806778cef87a52a4",
+          "comment_sha256": "d81254a776302bcfe6a8c669eda44a1f50365a5cba5aafc66d3e5d59003b54cb",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_suppliers": [
+          {
+            "identity": {
+              "name": "Refractory, high aluminium oxide, packed, at plant",
+              "reference product": "Refractory, high aluminium oxide, packed, at plant",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Refractory, high aluminium oxide, packed, at plant",
+                  "reference product": "Refractory, high aluminium oxide, packed, at plant",
+                  "location": "DE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 19,
+                "inventory_sha256": "943ee92e99f10c375cb38a5c6689ccd3858b1678728897001dd5b1016839f88a",
+                "metadata_sha256": "c67c26d8430950376b99aace571312c609531ed0965085fa0fa1668d41e03854",
+                "comment_sha256": "0d3d211f3d12cc325b60a1564f05835ecabcfa0c231c09c740fcee3663c9c5dc",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Refractory, high aluminium oxide, packed, at plant",
+                  "reference product": "Refractory, high aluminium oxide, packed, at plant",
+                  "location": "DE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 19,
+                "inventory_sha256": "543af13325e21fd8f0f40ff141903d47aca53af1f903e406ba40ca1df76113fc",
+                "metadata_sha256": "ab685b333e6a4309565e5048d4f04cb63b6d5715d1bdaa0f1dc85b4b5d6edb63",
+                "comment_sha256": "8af0dbd9b7eddde96f09f5f8cc603f0b76bea7180f2bd23a0846c931c67e7f84",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Facilities, chemical production",
+              "reference product": "Facilities, chemical production",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Facilities, chemical production",
+                  "reference product": "Facilities, chemical production",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 13,
+                "inventory_sha256": "0c88c65628e54e861a1076c2fa9f1b5f3c6a4b92ec754f88bb4eb41430192b4d",
+                "metadata_sha256": "72ddd72458d821d9f476158be7bed8adf5a754847216ec031e96d65beeb5040b",
+                "comment_sha256": "eee01fe043ac578f23b9985349e1f14652f34e5efbc3e7532997c0b65b4c4bef",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Facilities, chemical production",
+                  "reference product": "Facilities, chemical production",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 13,
+                "inventory_sha256": "3cf70dd8a5e5f46db244acd07b57ce405941076425616349c6b61056123cd431",
+                "metadata_sha256": "a34aff6afdcfb07a9f28cb0fca12c1b0f9a0dbfb85acad8ddc5387443d8baa07",
+                "comment_sha256": "de68d9344da33923fc990bb67bee3719bf1f0c1a965a98d2d3d1e0f414a6cc07",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Disposal, hazardous waste, 0% water, to underground deposit",
+              "reference product": "Disposal, hazardous waste, 0% water, to underground deposit",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Disposal, hazardous waste, 0% water, to underground deposit",
+                  "reference product": "Disposal, hazardous waste, 0% water, to underground deposit",
+                  "location": "DE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 15,
+                "inventory_sha256": "d4aa171da4bc964632bc2d8f11e6bf265e278f19eda77028e1c458186b08f5b8",
+                "metadata_sha256": "b8c8cb805ab565ecd8d30273b2763a116289369cb1628cb3f42dea3b2f82d9aa",
+                "comment_sha256": "3afe079f46acf8a872b3d12a779a7f45dd392f4395a5a11c0d95f6602e7616c5",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Disposal, hazardous waste, 0% water, to underground deposit",
+                  "reference product": "Disposal, hazardous waste, 0% water, to underground deposit",
+                  "location": "DE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 15,
+                "inventory_sha256": "80712eed65e9f1f264a35df9404c1c9804f3acf5cf6e1b3e42951d754d8c9f04",
+                "metadata_sha256": "469f4e239ee3805b58399c85d9ea55c36bca7792c9a27c02e656557795660442",
+                "comment_sha256": "eca71a545649b9312dd35ddc0582c496363afbaf0ebc10a97fc35639af443a37",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Lithium hydroxide, at plant",
+              "reference product": "Lithium hydroxide, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Lithium hydroxide, at plant",
+                  "reference product": "Lithium hydroxide, at plant",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 16,
+                "inventory_sha256": "774ba8adc9f0de4b61d8afc29bee4a2b585f1308577cc8d269b566d04145ea83",
+                "metadata_sha256": "ac25fc344b5a2d2d84e39ec8242bff7a657a04f14466fa740698fa469e369cf7",
+                "comment_sha256": "038c8ce28cde9ceb647f3f9ccad94e7a8d88c097eb39760c9a31638adf59593f",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Lithium hydroxide, at plant",
+                  "reference product": "Lithium hydroxide, at plant",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 16,
+                "inventory_sha256": "4cddea3ddf85364df4e372ac71b75e7e36baeffcf60d3ae617e8e3a6643eb86f",
+                "metadata_sha256": "cc28270439b06a9a0dc2d166bf90190e478f54e568a2d1ef56c999470dcb7d91",
+                "comment_sha256": "e406798bb2a110c5426477e4b5d5682cc00acc4437db76b052cdf3825d563202",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Nitrogen, liquid, at plant",
+              "reference product": "Nitrogen, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Nitrogen, liquid, at plant",
+                  "reference product": "Nitrogen, liquid, at plant",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 6,
+                "inventory_sha256": "81040a2f4b26a7c17ae5aa043d745afada9b2cef1e3c0f907923e89e0a5a8914",
+                "metadata_sha256": "ffa0ab3c4ba098b36feee2fc6ea82cb1bfd20ef3950eb734312dbb01bd10e082",
+                "comment_sha256": "5a6b64ae435daf2b533e11f5e8e4e551dc904080df8f6cc84b4146aa6e3fa8b2",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Nitrogen, liquid, at plant",
+                  "reference product": "Nitrogen, liquid, at plant",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 6,
+                "inventory_sha256": "170042411760772ef45f4797aece8549afc58ed912dbc0c5225efe50fee335a9",
+                "metadata_sha256": "f57d0d49649f0f1151e301b9d4113005913ebe692a9291e4aecf8ac18c89f8fc",
+                "comment_sha256": "aafa56b6e6349bae1acfb9896ed9c2380c6bb33c93137f137ffd0177c00f29d3",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Titanium dioxide, production mix, at plant",
+              "reference product": "Titanium dioxide, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Titanium dioxide, production mix, at plant",
+                  "reference product": "Titanium dioxide, production mix, at plant",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 2,
+                "inventory_sha256": "bbb46d69f32dcaa591001e44994a6907e756b1847bc3c068eb92a455cc50e041",
+                "metadata_sha256": "87584812fcaf7138bf936c80c39f5caa4049477656efa39f04f3e3428585f8cb",
+                "comment_sha256": "ec66db3abefd8b5594ffff31c565f88c4747c24418352c43250b1c9acb6fd8ba",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Titanium dioxide, production mix, at plant",
+                  "reference product": "Titanium dioxide, production mix, at plant",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 2,
+                "inventory_sha256": "b505300d55d5999447f6183d88cac0d0fcbc0fd99b9a2d812dab939998fefa6b",
+                "metadata_sha256": "f91650bfb9e6a7d015965ff64b66dd1f6997d6f24b129711992c6e900fb9af1b",
+                "comment_sha256": "e8efc219d488a8b3f0b8fb3933efb522d940d9771bb2c7e965ffbc202eabd6d8",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Treatment, sewage, to wastewater treatment, class 1",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Treatment, sewage, to wastewater treatment, class 1",
+                  "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+                  "location": "CH",
+                  "unit": "cubic meter"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 134,
+                "inventory_sha256": "325deffc585f7e9186114d29a52ef831e90c393a5246ccdba4d7b8fe699ba1e2",
+                "metadata_sha256": "9f594f4139d789ec83bb14819ba02dd891f77e2259a819508c2fa490a2f9da37",
+                "comment_sha256": "dd1229fb80187e0f4b2f9ebb237cd092bb1e4cbb046bd154f237e3d1d95d9dda",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Treatment, sewage, to wastewater treatment, class 1",
+                  "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+                  "location": "CH",
+                  "unit": "cubic meter"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 135,
+                "inventory_sha256": "c4c564a533c3f8618d5158e03770e7bffbb6a0dc2801fe116f4e3e13dab0be9c",
+                "metadata_sha256": "fbc6ab22e985e6f180384a74c8a1814b33455987efe17cfdccd9ef7637468cc8",
+                "comment_sha256": "db5fcf4c9e4e5057481df255046c8064091ecdfa8fb819b301af0ed6c1fce7c9",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "GLO",
+              "unit": "kilowatt hour"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Electricity, medium voltage, at grid",
+                  "reference product": "Electricity, medium voltage, at grid",
+                  "location": "GLO",
+                  "unit": "kilowatt hour"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 6,
+                "inventory_sha256": "3e84871942f1fecbfdc9e2548c8db28e688fd33b6c6f7db1f6c4f2abec2a6ce7",
+                "metadata_sha256": "857616342fe196acecdff387a38366b355d49f3a5be4b858238a4e5b78a2adef",
+                "comment_sha256": "ff9e65abeed617cb90769f540734050526ade434c102aa21114d0db25692fc08",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Electricity, medium voltage, at grid",
+                  "reference product": "Electricity, medium voltage, at grid",
+                  "location": "GLO",
+                  "unit": "kilowatt hour"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 6,
+                "inventory_sha256": "df6265cee2d83a8d75948019652480f0facad9b37834aa12550fbeba296855ce",
+                "metadata_sha256": "08dd5a8361445e7603507c61a01f94e0ad0947949f25287dd087bcf6268aa7c7",
+                "comment_sha256": "636195f1ff887a418421be1b9d2d560d1c6d059c465df7bdd1def04471b6ee97",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Transport, aircraft, freight",
+              "reference product": "Transport, aircraft, freight",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, aircraft, freight",
+                  "reference product": "Transport, aircraft, freight",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 39,
+                "inventory_sha256": "48fbaa6e3873f04123115b3b5ed40356d647777f499858167cea61feffc47859",
+                "metadata_sha256": "d644449b36db60004e99d0823380a33e4bb811901e59ea741608d47335037fcb",
+                "comment_sha256": "0f1eacb604f6ad81533710f367ee87115bd481a9a0549fdf7cdd5c44fc4f5182",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, aircraft, freight",
+                  "reference product": "Transport, aircraft, freight",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 42,
+                "inventory_sha256": "4dc78391f9cc65dc4a80578e6eb7e2fc547aa32ed91f74ac47ce39d06bb58e86",
+                "metadata_sha256": "ecebabaaca63251d3bbbc1b427e0c1791f26eb6e54fbc2089682d03197eabdec",
+                "comment_sha256": "60b23cc4259f243e0e7e84ac5a5d1f28cdffdefb66bd0f43762e27a37f83a332",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+                  "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+                  "location": "CH",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 33,
+                "inventory_sha256": "201111ff1fc4928f32b3f6f7650411a1d85e73e3956bf65069bd6e5f031aafe1",
+                "metadata_sha256": "55e49024c0cce9bba5b56477d81edb2142c9824bdf9431faf3fafd968e677222",
+                "comment_sha256": "0716216989810c286263da289b407ae09aa4a17e1c375b712652b6590cfd6b6d",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+                  "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+                  "location": "CH",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 33,
+                "inventory_sha256": "b211f861619efc13e8ee05b3136f8458f4efa3cf2269d5a1f84919e1c832dc7c",
+                "metadata_sha256": "b49343b40282522bb2e19915c414ede2dca19a0bea6d515d49c1316a0a80f725",
+                "comment_sha256": "e78bd24873ab081049b2259a8aed8a850d784fac68070ff8567fc59c82fec143",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, rail",
+                  "reference product": "Transport, freight, rail",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 66,
+                "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+                "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92",
+                "comment_sha256": "1df979a6bc0882b7d94bc3904a8832568a6c5463344665f169125ea352d9d7a5",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, rail",
+                  "reference product": "Transport, freight, rail",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 66,
+                "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+                "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476",
+                "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          }
+        ],
+        "position_counts": {
+          "plant": {
+            "original_nonproduction_positions": 10,
+            "retained_positions": 10
+          },
+          "market": {
+            "original_nonproduction_positions": 4,
+            "retained_positions": 4
+          }
+        },
+        "retained_all_immediate_source_positions": true,
+        "new_foreground_omissions": []
+      },
+      "limitations": [
+        "Retain the immediate lithium titanate Li4Ti5O12 synthesis and delivered-market inventory, using complete native inputs rather than lithium carbonate as a product substitute. Preserve all ten producer positions and four market positions, including signed biosphere emissions, quantities, formulas and supported uncertainty.",
+        "Native high-aluminium-oxide refractory replaces the alumina saggar per signed kg; composition, forming, vessel geometry and service-life differences are unquantified. Do not add a saggar lifetime/yield factor.",
+        "Chemical-factory stock is measured in kg, not plant units. Complete native Facilities, chemical production has the same kg basis, already documented in the fuels material-stock review. Preserve 4.000000053405728e-10 kg without plant-count, lifetime, throughput, capacity or plant-mass conversion.",
+        "Retain 0.2199999988079071 kg lithium hydroxide, 0.8999999761581421 kg titanium dioxide, 0.75 kg liquid nitrogen and 3.2499999629799277 kWh electricity. Native production mixes, allocation, geography, vintage and internal uncertainty replace source details. No stoichiometric fit, extra calcination energy or yield correction is introduced.",
+        "Native positive treatment services replace negative source underground hazardous-waste and wastewater inputs with factor -1. Swiss class-1 treatment per m3 replaces the source wastewater market, including its internal route, loading and untreated shares. No COD, water-balance or recovery multiplier is added.",
+        "Retain each source freight row and quantity. European rail/air and Swiss fleet-average 16\u201332t road transport replace World/East-Asia transport portfolios with explicit fleet, traction and geography differences.",
+        "The two direct air flows are mapped through the existing canonical ecoinvent 3.12 to 3.10 biosphere route with the same quantities; inferred reverse-route warnings use the existing public pragmatic policy. Unresolved/ambiguous/invalid mappings remain errors, with full coverage required.",
+        "No source-code change, new foreground omission, zero-burden authority, extra recovery credit or system-model conversion. Only the inspected ecoinvent 3.12 cut-off identity qualifies. Source process is retained only at the immediate synthesis/delivery level; native input inventories are not scientifically equivalent. Documented BAFU biosphere exclusions and impact-score differences remain unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d7e0e7eb76cc9b5517f1a128f3c0290e6c2c608f32ebd18758e9cd485a6049db"
+        }
+      ]
     }
   ],
   "superseded_operations": [
