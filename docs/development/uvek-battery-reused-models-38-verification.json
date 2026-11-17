@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "added_exact_source38_scopes": 17,
+  "signed_uncertainty_exchange_checks": 136,
+  "direct_migration_cases": 8,
+  "public_harmonizer_fresh_and_warm_passed": true,
+  "input_nonmutation": true,
+  "earlier_effective_profile_checks": 22,
+  "new_foreground_omissions": [],
+  "source_code_changes": 0,
+  "new_Brightway_databases": 0,
+  "qualification_limit": "Required interface group only; no complete battery update or new export.",
+  "existing_recipe_inventories_unchanged": 4407,
+  "new_model_profile_aliases": 16,
+  "new_reconstructed_inventory_models": 0,
+  "normal_generator_byte_equal_files": {
+    "ecoinvent-to-ecoinvent-3.10-biosphere.json": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+    "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+    "ecoinvent-to-uvek-2025.json": "9ab431cb46b74b5e84a62e74e005736bdf39c09a270628f03c9360b2ee1af05d"
+  },
+  "focused_existing_tests": {
+    "Brightpath": 54,
+    "Premise": 10
+  },
+  "actual_preparation_retry": {
+    "source_graph_activities": 272,
+    "status": "preparation_failed",
+    "validation_disabled": false,
+    "approval_bypass": false,
+    "unapproved_correspondence_errors": 5,
+    "unresolved_identities": {
+      "bp-1240bf1e5820731a": {
+        "location": "GLO",
+        "name": "market for copper, anode",
+        "reference product": "copper, anode",
+        "unit": "kilogram"
+      },
+      "bp-82479bd5f6b8b893": {
+        "location": "CN",
+        "name": "market for synthetic graphite, battery grade",
+        "reference product": "synthetic graphite, battery grade",
+        "unit": "kilogram"
+      },
+      "bp-e1534916663b141b": {
+        "location": "RoW",
+        "name": "market for latex",
+        "reference product": "latex",
+        "unit": "kilogram"
+      },
+      "bp-8fa6bb43a07f3b4e": {
+        "location": "GLO",
+        "name": "market for manganese sulfate",
+        "reference product": "manganese sulfate",
+        "unit": "kilogram"
+      },
+      "bp-fc047c72b6020ab2": {
+        "location": "GLO",
+        "name": "market for vinyl carbonate",
+        "reference product": "vinyl carbonate",
+        "unit": "kilogram"
+      }
+    },
+    "error_identities_match_remaining_cohort": true
+  },
+  "qualified_sector_count_unchanged": 15,
+  "total_sectors": 19
+}
