@@ -1273,17 +1273,15 @@ class IAMDataCollection:
         :return: technology labels mapped to this model's aliases
         """
 
-        dict_vars = {}
-
         out = load_yaml_cached(filepath)
 
-        for key, values in out.items():
-            if variable in values:
-                if self.model in values[variable]:
-                    if values[variable][self.model] is not None:
-                        dict_vars[key] = values[variable][self.model]
-
-        return dict_vars
+        return {
+            key: values[variable][self.model]
+            for key, values in out.items()
+            if variable in values
+            and self.model in values[variable]
+            and values[variable][self.model] is not None
+        }
 
     def __report_cdr_data_coverage(
         self, data, production_labels, energy_labels, efficiency_labels
