@@ -1,0 +1,77 @@
+{
+  "status": "passed",
+  "added_source38_scopes": 3,
+  "direct_migration_cases": 8,
+  "signed_uncertainty_exchange_checks": 24,
+  "public_harmonizer_fresh_and_warm_passed": true,
+  "approval_withdrawal_refused": true,
+  "input_nonmutation": true,
+  "new_helpers": 0,
+  "new_foreground_omissions": [],
+  "source_code_changes": 0,
+  "new_Brightway_databases": 0,
+  "qualification_limit": "Three required inputs only; no complete battery update or new export.",
+  "focused_existing_tests": {
+    "Brightpath": 66,
+    "Premise": 10
+  },
+  "native_LCI": {
+    "status": "three_functional_native_suppliers_have_finite_signed_LCIs",
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "database": "BAFU:2026-reimported",
+    "matrix_shape": [
+      11947,
+      11947
+    ],
+    "suppliers": [
+      {
+        "rule_id": "bp-1240bf1e5820731a",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 1133.9115634450745
+      },
+      {
+        "rule_id": "bp-82479bd5f6b8b893",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 266.99494465815417
+      },
+      {
+        "rule_id": "bp-e1534916663b141b",
+        "signed_finite_LCI_solves": 2,
+        "absolute_inventory_norm": 47.385613949573205
+      }
+    ],
+    "signed_finite_LCI_solves": 6,
+    "new_Brightway_databases": 0,
+    "new_helpers": 0,
+    "qualification_limit": "Native target-demand solves, not a complete battery update or comparative source LCIA."
+  },
+  "normal_generator_byte_equal_files": {
+    "ecoinvent-to-ecoinvent-3.10-biosphere.json": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+    "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+    "ecoinvent-to-uvek-2025.json": "0cee2f7b85a13b5b5baf76eb597e510166db4cf0c026b2be71c15423b246e7fe"
+  },
+  "existing_recipe_inventories_unchanged": 4423,
+  "actual_preparation_retry": {
+    "source_graph_activities": 272,
+    "validation_disabled": false,
+    "approval_bypass": false,
+    "unapproved_correspondence_errors": 2,
+    "error_identities_match_remaining_cohort": true,
+    "unresolved_identities": {
+      "bp-8fa6bb43a07f3b4e": {
+        "location": "GLO",
+        "name": "market for manganese sulfate",
+        "reference product": "manganese sulfate",
+        "unit": "kilogram"
+      },
+      "bp-fc047c72b6020ab2": {
+        "location": "GLO",
+        "name": "market for vinyl carbonate",
+        "reference product": "vinyl carbonate",
+        "unit": "kilogram"
+      }
+    }
+  },
+  "qualified_sector_count_unchanged": 15,
+  "total_sectors": 19
+}

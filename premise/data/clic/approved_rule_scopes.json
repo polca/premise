@@ -128653,6 +128653,11 @@
               ]
             }
           ]
+        },
+        "source38_functional_proxy_review": {
+          "review_path": "export/uvek_battery_three_functional_38_review.json",
+          "review_sha256": "5b211d34ffcd7deaf3d0e5ef874f0966a8b15c5c41bcd405af9bca9983205553",
+          "earlier_effective_models_unchanged": true
         }
       },
       "limitations": [
@@ -128672,7 +128677,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "3f62408af10c520833aa8f100b7fd120964ba79dc37f67b5a5d9de113cf9e877"
+          "fingerprint": "e93264967bd145312430cd8fc2d5674d39bd74a3f88d2f789931bc7c31be7406"
         }
       ]
     },
@@ -341065,6 +341070,337 @@
             "version": "2025"
           },
           "fingerprint": "cf4c8253dfc85de127b826a0495893739691c0dcb81f1b8fea015397d92de0f8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1240bf1e5820731a",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_correct_native_boundary",
+      "review_path": "export/uvek_battery_three_functional_38_review.json",
+      "review_sha256": "5b211d34ffcd7deaf3d0e5ef874f0966a8b15c5c41bcd405af9bca9983205553",
+      "authorization": "Standing automatic approval of modelling decisions with warnings and a review log; mapping-only operationalization using complete functional native services, with no deep upstream reconstruction or source-code edits.",
+      "inspection": {
+        "rule_id": "bp-1240bf1e5820731a",
+        "source": {
+          "location": "GLO",
+          "name": "market for copper, anode",
+          "reference product": "copper, anode",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Copper, primary, at refinery",
+          "reference product": "Copper, primary, at refinery",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for copper, anode",
+            "reference product": "copper, anode",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "nonproduction_count": 12,
+          "inventory_sha256": "4c78e121083893f0de588dc299768485abe1f56fec0a787a8c7653bda5c01233",
+          "metadata_sha256": "cdd3aefcd5bd82b655c03f82a4ab83d7e65229203b0b62d8ef9f029239cd8638",
+          "comment_sha256": "b3acf6eae5cfd954a3317f84521e40241d58ab206ee5843b2619ea5565950f98",
+          "product_information_sha256": "4c5d170c54817049ef07fe959e62faefc8d75b12979ef88be0f551cac53789a6"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Copper, primary, at refinery",
+              "reference product": "Copper, primary, at refinery",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 47,
+            "inventory_sha256": "4302ff288c1f634897a7d1858705d24c229afdf2e4984d138061557869904232",
+            "metadata_sha256": "2d7356e9356e1fea76a43de7fec75ca4b5f6861ef09a0672cffcf3112147598c",
+            "comment_sha256": "94a2ee2a8b6c9dd52735dc8dccd8359c4fa39237817df6b070110990fe008ce8",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Copper, primary, at refinery",
+              "reference product": "Copper, primary, at refinery",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 47,
+            "inventory_sha256": "32099aa4cc0736b9e52b242d3561bdb9dec4c1a5b070eb5ad6ebe765905be09a",
+            "metadata_sha256": "edf3a117d6d94bdf9b216ca2d25a63a631c293d1996760d47ac9cc23851e94ff",
+            "comment_sha256": "8e82bc65dcc3c8e95874e2dcd0fd62f250c23c92665528ce82794c8fc8f11a1e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Complete global native refined primary copper supplies the inspected battery current-collector and tab material requirements per signed kg. All five actual callers have no separate refining input; their rolling and other manufacturing stay separate. This extends the previously reviewed anode-to-refined-copper material proxy, not an exact anode production match. Native electrorefining and SX-EW, purity, source smelting boundaries and allocation differ. Retain the complete native inventory once; do not subtract guessed refining burdens, invent a purity/yield factor, add a recovery credit or claim a conservative score bound.",
+        "inspected_callers_without_separate_refining": [
+          {
+            "name": "anode current collector, LTO",
+            "reference product": "Anode current collector, LTO",
+            "location": "JP",
+            "unit": "kilogram"
+          },
+          {
+            "name": "battery cell production, Li-ion, NCA",
+            "reference product": "battery cell, Li-ion, NCA",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          {
+            "name": "battery cell production, Li-ion, NMC111",
+            "reference product": "battery cell, Li-ion, NMC111",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          {
+            "name": "battery cell production, Li-ion, NMC811",
+            "reference product": "battery cell, Li-ion, NMC811",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          {
+            "name": "tab copper",
+            "reference product": "Tab Copper",
+            "location": "GLO",
+            "unit": "kilogram"
+          }
+        ]
+      },
+      "limitations": [
+        "Complete global native refined primary copper supplies the inspected battery current-collector and tab material requirements per signed kg. All five actual callers have no separate refining input; their rolling and other manufacturing stay separate. This extends the previously reviewed anode-to-refined-copper material proxy, not an exact anode production match. Native electrorefining and SX-EW, purity, source smelting boundaries and allocation differ. Retain the complete native inventory once; do not subtract guessed refining burdens, invent a purity/yield factor, add a recovery credit or claim a conservative score bound.",
+        "Preserve caller signed kg, formulas, supported uncertainty, separate manufacturing and emissions with factor +1. Native technology, allocation, geography, delivery, vintage and internal uncertainty replace source internals; impact-score differences and the BAFU reimport biosphere exclusions remain unquantified.",
+        "Authorize only the independently inspected exact ecoinvent 3.8 cut-off source for this additional scope. Earlier declared source profiles retain their effective targets, factors and sign decisions. No uninspected release, inverse, consequential or general downstream-refining equivalence is granted.",
+        "No new helper, reconstructed upstream inventory, foreground exchange omission or source-code change. These are operational screening proxies, not source/native inventory or LCIA equivalence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "54fd5d5aee2e9fd66028d870158da995151af03e070aba71907cbc86d996b4a0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-82479bd5f6b8b893",
+      "operation": "replace",
+      "mapping_method": "reviewed_native_battery_grade_carbon_function",
+      "review_path": "export/uvek_battery_three_functional_38_review.json",
+      "review_sha256": "5b211d34ffcd7deaf3d0e5ef874f0966a8b15c5c41bcd405af9bca9983205553",
+      "authorization": "Standing automatic approval of modelling decisions with warnings and a review log; mapping-only operationalization using complete functional native services, with no deep upstream reconstruction or source-code edits.",
+      "inspection": {
+        "rule_id": "bp-82479bd5f6b8b893",
+        "source": {
+          "location": "CN",
+          "name": "market for synthetic graphite, battery grade",
+          "reference product": "synthetic graphite, battery grade",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Graphite, battery grade, at plant",
+          "reference product": "Graphite, battery grade, at plant",
+          "location": "CN",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for synthetic graphite, battery grade",
+            "reference product": "synthetic graphite, battery grade",
+            "location": "CN",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "nonproduction_count": 5,
+          "inventory_sha256": "49efe30dc7a01b4d6187c878a3801ab43103267916da9d07ba05f7fc0aebae10",
+          "metadata_sha256": "a1a4b7ab040ad22ba5301ed84922fc763761a6a89c3210636646cbc15b4ff2cd",
+          "comment_sha256": "81749fecd7417691ee1447aa6bd3ec924778462fe3258888d4d98b6d0be224fa",
+          "product_information_sha256": "3e87b48cb573fc0627a69e8379809fc1d25a7d38470d62f41c18fa4bd4a9d1f4"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Graphite, battery grade, at plant",
+              "reference product": "Graphite, battery grade, at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 19,
+            "inventory_sha256": "995750604393d4952051e995cd631d28bf7173c7ff726111327ce2ebe13b1294",
+            "metadata_sha256": "9090d21c6d23a64d9740ef07240cf70cf83a6254cf9fb8e2e6bfab2eadf46b6e",
+            "comment_sha256": "3a90b8c88ff916b36173fd587611581aa2bbb1cf38f9f16f025ab9eb6c7dab0a",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Graphite, battery grade, at plant",
+              "reference product": "Graphite, battery grade, at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 20,
+            "inventory_sha256": "8eca2c5edafce401420833ea2be5c2fefdd57d4d09e0995a05dd8232d1dda5da",
+            "metadata_sha256": "f1f5cdc4f188a61ebeaf98d5f2353c5ac8d25dde3a943cde90d6f7bdc889d0d3",
+            "comment_sha256": "1d6f33978a9c8c4e2ed2e08428589f3005606943f86776bb1eb5da5fe1885ef8",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Use complete native Chinese battery-grade graphite per signed kg as a functional screening proxy for synthetic battery-grade graphite. The source graphitizes amorphous carbon; native documentation instead approximates graphite mining/crushing/milling and adds hard-coal coke and electricity for the battery grade. These manufacturing routes are not equivalent. Battery-grade carbon function is the matching basis, not a claim that mining represents synthetic graphitization. Source synthesis, purification, morphology, performance, delivery and internal uncertainty are replaced; energy and impact differences remain unquantified. Do not add a guessed graphitization process, electricity multiplier or a second graphite inventory."
+      },
+      "limitations": [
+        "Use complete native Chinese battery-grade graphite per signed kg as a functional screening proxy for synthetic battery-grade graphite. The source graphitizes amorphous carbon; native documentation instead approximates graphite mining/crushing/milling and adds hard-coal coke and electricity for the battery grade. These manufacturing routes are not equivalent. Battery-grade carbon function is the matching basis, not a claim that mining represents synthetic graphitization. Source synthesis, purification, morphology, performance, delivery and internal uncertainty are replaced; energy and impact differences remain unquantified. Do not add a guessed graphitization process, electricity multiplier or a second graphite inventory.",
+        "Preserve caller signed kg, formulas, supported uncertainty, separate manufacturing and emissions with factor +1. Native technology, allocation, geography, delivery, vintage and internal uncertainty replace source internals; impact-score differences and the BAFU reimport biosphere exclusions remain unquantified.",
+        "Authorize only the independently inspected exact ecoinvent 3.8 cut-off source for this additional scope. Earlier declared source profiles retain their effective targets, factors and sign decisions. No uninspected release, inverse, consequential or general downstream-refining equivalence is granted.",
+        "No new helper, reconstructed upstream inventory, foreground exchange omission or source-code change. These are operational screening proxies, not source/native inventory or LCIA equivalence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "eb9d5fcc44b4f98bd24edb3516c114f6c5847a4aca5d5726320f679f3475f317"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e1534916663b141b",
+      "operation": "replace",
+      "mapping_method": "reviewed_native_styrene_butadiene_dispersion",
+      "review_path": "export/uvek_battery_three_functional_38_review.json",
+      "review_sha256": "5b211d34ffcd7deaf3d0e5ef874f0966a8b15c5c41bcd405af9bca9983205553",
+      "authorization": "Standing automatic approval of modelling decisions with warnings and a review log; mapping-only operationalization using complete functional native services, with no deep upstream reconstruction or source-code edits.",
+      "inspection": {
+        "rule_id": "bp-e1534916663b141b",
+        "source": {
+          "location": "RoW",
+          "name": "market for latex",
+          "reference product": "latex",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Latex, at plant",
+          "reference product": "Latex, at plant",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for latex",
+            "reference product": "latex",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "nonproduction_count": 10,
+          "inventory_sha256": "c845c30b0b4678f74fa21623830d5691ec111a6debaf9ba831cd990f90676e84",
+          "metadata_sha256": "f7728c0a16b161c64cc864a909729c69c5c1dd4a34e8a89c743292b1c6ced1db",
+          "comment_sha256": "73f0c04f813840cb1f1361052aa11bd2c75f718478d1d5f00a068bead2cb2488",
+          "product_information_sha256": "2b514a25bb50a5fcd565f0e3788247a13e27dae19a592da56b6620c6186a3447"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Latex, at plant",
+              "reference product": "Latex, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 1281,
+            "inventory_sha256": "0a41aed8715bc44a97aa8ad71c06f4728931c47136d81c06501bf33d41272d22",
+            "metadata_sha256": "9f57a37c3d7f42b6c9114926e0356604740b1c7b46bb11ea299befaaaab5ae0a",
+            "comment_sha256": "88cfb96032c8a7063c41c5f438edbff38d3ad2d6e02dcccba847bb192b01229a",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Latex, at plant",
+              "reference product": "Latex, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 1301,
+            "inventory_sha256": "96e592cebc0283f5a9446b268eaa39cf75256fa55f68c71c5932679f85f08126",
+            "metadata_sha256": "e20940bbd3fd864da4c5abb51d506975dac21c5bc4dd2030b14ba9c43f3d7c8c",
+            "comment_sha256": "8e61c4e8df8604fa1a0cf196622a041fddbd9ecda7169a5e7d3da876fbc875ee",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Use complete native European styrene-butadiene latex dispersion per signed nominal kg for the RoW latex market. The inspected source producer and native process both inherit the APME survey of 17 European plants and emulsion polymerization of styrene and butadiene. This is synthetic latex dispersion, not natural-rubber latex, dry rubber or separate monomer supplies. Exact solids fraction, viscosity and monomer ratio remain unestablished, so introduce no wet/dry or concentration factor. The whole native at-plant aggregate replaces the source market production and final delivery; freight, geography, vintage, grade and internal uncertainty are not claimed preserved. Retain the complete nonempty native biosphere aggregate once; its zero direct technosphere count does not mean zero burden. Its embedded utilities cannot be individually relinked to IAM markets.",
+        "source_producer_witness": {
+          "identity": {
+            "name": "latex production",
+            "reference product": "latex",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "nonproduction_count": 1966,
+          "inventory_sha256": "a89b0772765bd6f221f58dbdfcf1c82c16f1de1cfbcb1884515d5db3af44a5da",
+          "metadata_sha256": "b0e3a5b4d5b527e09a2be127b1ade28bf51997e0bd1ac1f455c9fa7cdbef277b",
+          "comment_sha256": "a29bdfd5d3c179950f50323f483bf81fc312093118b7294af308360e671951af",
+          "product_information_sha256": "2b514a25bb50a5fcd565f0e3788247a13e27dae19a592da56b6620c6186a3447"
+        }
+      },
+      "limitations": [
+        "Use complete native European styrene-butadiene latex dispersion per signed nominal kg for the RoW latex market. The inspected source producer and native process both inherit the APME survey of 17 European plants and emulsion polymerization of styrene and butadiene. This is synthetic latex dispersion, not natural-rubber latex, dry rubber or separate monomer supplies. Exact solids fraction, viscosity and monomer ratio remain unestablished, so introduce no wet/dry or concentration factor. The whole native at-plant aggregate replaces the source market production and final delivery; freight, geography, vintage, grade and internal uncertainty are not claimed preserved. Retain the complete nonempty native biosphere aggregate once; its zero direct technosphere count does not mean zero burden. Its embedded utilities cannot be individually relinked to IAM markets.",
+        "Preserve caller signed kg, formulas, supported uncertainty, separate manufacturing and emissions with factor +1. Native technology, allocation, geography, delivery, vintage and internal uncertainty replace source internals; impact-score differences and the BAFU reimport biosphere exclusions remain unquantified.",
+        "Authorize only the independently inspected exact ecoinvent 3.8 cut-off source for this additional scope. Earlier declared source profiles retain their effective targets, factors and sign decisions. No uninspected release, inverse, consequential or general downstream-refining equivalence is granted.",
+        "No new helper, reconstructed upstream inventory, foreground exchange omission or source-code change. These are operational screening proxies, not source/native inventory or LCIA equivalence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "2ab7e43b62d2f149d154a685c41ce51c1503591df53bd72774dc4f0884857f8e"
         }
       ]
     }
