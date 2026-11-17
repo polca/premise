@@ -1817,9 +1817,7 @@ class ExternalScenario(BaseTransformation):
         ]
 
     def find_best_substitute_suppliers(self, new_name, new_ref, regions):
-        # find the best suppliers for new dataset
-        # if there are several suppliers with the same name and product, the one
-        # with the highest production volume is chosen
+        """Return the highest-share substitute as a one-item list, or no matches."""
         suppliers = get_shares_from_production_volume(
             list(
                 ws.get_many(
@@ -1830,10 +1828,11 @@ class ExternalScenario(BaseTransformation):
                 )
             )
         )
-        if len(suppliers) > 0:
-            return suppliers.sort(key=lambda x: x["share"], reverse=True)[0]
-        else:
-            return []
+        return (
+            [max(suppliers, key=lambda supplier: supplier["share"])]
+            if suppliers
+            else []
+        )
 
     def write_log(self, dataset, status="created"):
         """Record a structured external-scenario provenance event."""
