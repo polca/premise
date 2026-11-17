@@ -783,7 +783,7 @@ def migrate_import_db(importer, version_in: str, version_out: str):
 
 
 def check_for_duplicate_datasets(data: List[dict]) -> List[dict]:
-    """Check whether there are duplicate datasets in the inventory to import."""
+    """Report duplicate identities and retain their first records in place."""
     datasets = [(ds["name"], ds["reference product"], ds["location"]) for ds in data]
     duplicates = [
         item
@@ -799,20 +799,14 @@ def check_for_duplicate_datasets(data: List[dict]) -> List[dict]:
             table.add_row(duplicate)
         print(table)
 
-        # remove duplicates
-        duplicates_added = []
+        seen = set()
+        unique = []
         for ds in data:
-            if (ds["name"], ds["reference product"], ds["location"]) in duplicates:
-                if (
-                    ds["name"],
-                    ds["reference product"],
-                    ds["location"],
-                ) not in duplicates_added:
-                    duplicates_added.append(
-                        (ds["name"], ds["reference product"], ds["location"])
-                    )
-                else:
-                    data.remove(ds)
+            identity = (ds["name"], ds["reference product"], ds["location"])
+            if identity not in seen:
+                seen.add(identity)
+                unique.append(ds)
+        data[:] = unique
 
     return data
 
