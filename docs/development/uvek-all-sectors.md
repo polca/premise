@@ -2391,3 +2391,17 @@ remaining interfaces. Fifteen of nineteen sectors remain qualified; battery,
 final energy, emissions and metals remain unfinished. The machine-readable
 progress ledger now reflects the already verified fifteen-sector truck export
 and preserves earlier audit states as history.
+
+
+The colleague requirements and guide now pin Brightpath
+`d27c0e53da3ec5241a2e9b562237a3b0dcb5741c`. The exact GitHub install and
+Premise wheel pass **504 tests across 37 files**. All 584 Brightpath and 424
+Premise installed package files match their committed sources. Normal live
+preparation again resolves 1,495 CLIC records for the fifteen qualified sectors
+with ordinary admission and validation, unchanged database registry/processed
+file names, and no database writes. The previous verified export is retained;
+this preparation check does not qualify battery or claim a new export.
+See `uvek-closed-casting-native38-installed-verification.json`. Owned temporary
+generator output, build/pip caches and obsolete wheels were removed, reclaiming
+360,511,004 bytes; active witnesses, the installed environment/current wheel,
+source/biosphere databases and both verified exports remain.

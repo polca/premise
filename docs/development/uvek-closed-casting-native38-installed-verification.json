@@ -1,0 +1,106 @@
+{
+  "status": "installed_closed_casting_and_source38_regressions_passed",
+  "Brightpath_Git_revision": "d27c0e53da3ec5241a2e9b562237a3b0dcb5741c",
+  "runtime_packages_loaded_only_from_installed_environment": true,
+  "test_files": 37,
+  "scope_gate_accepts_trucks": true,
+  "elapsed_seconds": 298.0747089999495,
+  "tests_passed": 504,
+  "dependency_warnings": 4,
+  "public_preparation": {
+    "status": "installed_public_fifteen_sector_inventory_preparation_passed",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel",
+      "mining",
+      "renewable",
+      "cdr",
+      "fuels",
+      "ships",
+      "buses",
+      "two_wheelers",
+      "trains",
+      "cars",
+      "trucks"
+    ],
+    "CLIC_records": 1495,
+    "Brightpath_Git_revision": "d27c0e53da3ec5241a2e9b562237a3b0dcb5741c",
+    "CLIC_options_overridden": false,
+    "freshness": "normal live default",
+    "scope_gate_bypassed": false,
+    "validation_disabled": false,
+    "new_Brightway_databases": 0,
+    "registry_and_processed_file_names_unchanged": true,
+    "elapsed_seconds": 253.38099112501368,
+    "qualification_limit": "Preparation regression of already qualified15sectors; no sector update/export repeated and battery/final-energy sectors remain unfinished."
+  },
+  "installed_byte_checks": {
+    "brightpath": {
+      "verified_installed_package_files": 584,
+      "all_packaged_files_present_in_source_match": true
+    },
+    "premise": {
+      "verified_installed_package_files": 424,
+      "all_packaged_files_present_in_source_match": true
+    }
+  },
+  "cleanup": {
+    "removed": [
+      {
+        "path": "/private/tmp/premise-all-sectors/battery-native-38-generated",
+        "bytes_removed": 112688957
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/closed-casting-native38-pip-cache",
+        "bytes_removed": 70350685
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/casting-disposals-installed-wheels",
+        "bytes_removed": 23022107
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/battery-three-native-39-pip-cache",
+        "bytes_removed": 67478627
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/battery-three-native-39-premise-wheel",
+        "bytes_removed": 22895124
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/premise-clic-worktree/build",
+        "bytes_removed": 63959905
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/premise-clic-worktree/premise.egg-info",
+        "bytes_removed": 115599
+      }
+    ],
+    "bytes_removed": 360511004,
+    "retained": "Current installed environment and current Premise wheel, all private source witnesses and active preparation files; all source/biosphere databases, latest verified 15-sector export and 14-sector fallback. No Brightway database deleted or written."
+  },
+  "complete_sectors": 15,
+  "total_sectors": 19,
+  "remaining_sectors": [
+    "battery",
+    "final energy",
+    "emissions",
+    "metals"
+  ],
+  "installed_Premise_source_commit": "7488871ef6d13e68409b6b94e9f1f9a605cde134",
+  "Brightpath_install_provenance": "Exact GitHub revision installed with pip; Premise requirements and colleague guide pin the same revision.",
+  "production_Python_changes_in_batch": {
+    "file": "brightpath/background/uvek_import.py",
+    "changed_lines": 1,
+    "reason": "A reproduced numeric source comment requires string coercion before appending recipe provenance. Mapping, quantities, uncertainty and transformation logic are unchanged."
+  },
+  "Premise_production_Python_changes_in_batch": 0,
+  "qualified_sector_update_or_export_repeated": false,
+  "qualification_limit": "Installed regressions, complete package-byte comparison and ordinary live preparation of the already qualified fifteen sectors. Battery, final energy, emissions and metals remain unfinished. The existing fifteen-sector export is retained; no new export is claimed.",
+  "Premise_wheel": {
+    "sha256": "da08f99caea2f1e4d633fb4529cf645b35b976d32f0f1434a38b59fb7ce0f17e",
+    "bytes": 23044022
+  }
+}

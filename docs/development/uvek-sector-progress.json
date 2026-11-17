@@ -3969,11 +3969,13 @@
     "latest_owned_database_cleanup": "docs/development/uvek-native-first-checkpoint-2026-11-15.json#cleanup",
     "latest_combined_no_write_evidence": "docs/development/uvek-native-trains-verification.json",
     "qualification_evidence_note": "Fifteen-sector ordinary installed workflow, physical checks, Brightway export and 272 signed written LCIs verified. Battery, final energy, emissions and metals remain unfinished.",
-    "latest_owned_analysis_cleanup": "docs/development/uvek-hydrogen-train-ferrosilicon-312-verification.json#cleanup",
+    "latest_owned_analysis_cleanup": "docs/development/uvek-closed-casting-native38-installed-verification.json#cleanup",
     "latest_train_mapping_verification": "docs/development/uvek-native-trains-verification.json",
     "latest_train_standalone_verification": "docs/development/uvek-native-trains-standalone-verification.json",
     "latest_train_runtime_verification": "docs/development/uvek-native-trains-verification.json",
     "remaining_sector_runtime_frontiers": "docs/development/uvek-remaining-five-runtime-frontiers-2026-11-16.json",
-    "latest_battery_runtime_frontier": "docs/development/uvek-battery-native-38-verification.json"
+    "latest_battery_runtime_frontier": "docs/development/uvek-battery-native-38-verification.json",
+    "latest_installed_regression_evidence": "docs/development/uvek-closed-casting-native38-installed-verification.json",
+    "latest_required_source38_mapping_evidence": "docs/development/uvek-battery-native-38-verification.json"
   }
 }
