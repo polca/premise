@@ -168,6 +168,67 @@ How to use it?
 
 The best way is to follow the [numbered example notebooks](https://github.com/polca/premise/tree/master/examples).
 
+Commercial CLIC inventory workflow
+----------------------------------
+
+To screen the required CLIC inventories and their upstream suppliers for
+commercially permitted licenses, explicitly select the CLIC provider and its
+commercial policy. The default workbook provider and default CLIC license
+handling remain unchanged.
+
+First select your existing Brightway project containing the source and biosphere
+databases. Adapt the database names below to that project, and set
+`IAM_FILES_KEY` to your IAM encryption key in the environment.
+
+```python
+import os
+from premise import NewDatabase
+
+build_arguments = {
+    "scenarios": [{"model": "remind", "pathway": "SSP2-NPi", "year": 2050}],
+    "source_db": "ecoinvent-3.12-cutoff",
+    "source_version": "3.12",
+    "system_model": "cutoff",
+    "biosphere_name": "ecoinvent-3.12-biosphere",
+    "key": os.environ["IAM_FILES_KEY"].encode(),
+}
+sectors = ["electricity", "fuels", "battery", "cars"]
+
+database = NewDatabase(
+    **build_arguments,
+    inventory_source="clic",
+    clic_options={"license_policy": "commercial"},
+)
+database.update(sectors)
+database.generate_scenario_report(
+    filepath="export/commercial", name="scenario_report.xlsx"
+)
+database.write_inventory_recipe("export/commercial/inventory-recipe.json")
+```
+
+Review the report's `CLIC Licenses` and `CLIC Replacements` sheets and the
+adjacent license/substitution CSV files. Restricted requirements are replaced
+using reviewed alternatives, unused dependencies are pruned, and essential
+unresolved requirements stop the build. Some alternatives are approximate and
+can materially change impacts. Ecoinvent, retained workbooks and user inventories
+require separate usage rights.
+
+To reproduce the same selection, reuse the source database, scenario settings
+and sectors with the exported recipe. It restores commercial policy automatically:
+
+```python
+replay = NewDatabase(
+    **build_arguments,
+    inventory_source="clic",
+    inventory_recipe="export/commercial/inventory-recipe.json",
+)
+replay.update(sectors)
+```
+
+See the [behavior, scope and report guide](docs/reference/clic-commercial.rst)
+and the [complete replacement mappings](docs/reference/clic-commercial-mappings.rst)
+for candidate suppliers, conversions, sources, confidence and limitations.
+
 Sequential scenario arrays in Brightway 2.5
 --------------------------------------------
 
