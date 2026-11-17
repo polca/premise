@@ -69,14 +69,14 @@ Release notes are maintained in [`CHANGELOG.md`](CHANGELOG.md).
 What's new in 2.7.0
 -------------------
 
-**Version 2.7.0 makes CLIC the standard supplemental inventory pipeline and
+**Version 2.7.0 makes [CLIC](https://clic.psi.ch/) the standard supplemental inventory pipeline and
 adds optional commercial-license screening with documented alternatives.**
 
-- Select versioned CLIC inventories lazily from the sectors and technologies
+- Select versioned [CLIC](https://clic.psi.ch/) inventories lazily from the sectors and technologies
   needed by a build, retaining required workbook-only inventories automatically.
   The `inventory_source` constructor selector has been removed.
 - Enable `clic_options={"license_policy": "commercial"}` to screen selected
-  CLIC inventories and suppliers, use reviewed alternatives and stop on
+  [CLIC](https://clic.psi.ch/) inventories and suppliers, use reviewed alternatives and stop on
   unresolved restrictions. Review the documented proxy and usage-rights scope.
 - Preserve archive/version pins, migration provenance and actual replacement
   choices in reports and replayable inventory recipes. Browse all 67 reviewed
@@ -175,7 +175,7 @@ Premise, we recommend the following workflow.
 
 Premise's own license permits commercial use, but some external inventories
 are published under licenses that restrict it. This workflow checks the selected
-CLIC inventories and replaces restricted datasets with documented alternatives
+[CLIC](https://clic.psi.ch/) inventories and replaces restricted datasets with documented alternatives
 where available.
 
 First select your existing Brightway project containing the source and biosphere
