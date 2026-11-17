@@ -45,7 +45,7 @@ already belongs to an environment you need, register a different name and select
 it manually in JupyterLab. Registering a kernel does not move Brightway projects.
 
 Premise installs Brightpath directly from GitHub at
-`c2eb573f629f8b116cfa87d366566a29a40b79fc`. Installing only the published
+`df4ff0b0dec486be6b66cae7d365e2eb72af7227`. Installing only the published
 Brightpath alpha14 package is insufficient. Internet access is needed for the
 installation, biosphere installation and first CLIC inventory download.
 
@@ -53,7 +53,7 @@ If you previously installed another GitHub revision, the unchanged alpha14
 version number can make pip keep it. To update that existing environment explicitly:
 
 ```bash
-python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@c2eb573f629f8b116cfa87d366566a29a40b79fc"
+python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@df4ff0b0dec486be6b66cae7d365e2eb72af7227"
 ```
 
 Restart the notebook kernel after upgrading. A fresh environment uses the pinned
@@ -310,3 +310,9 @@ including a separate 39 MJ/m³ gas basis. This does not add trucks to the
 qualified notebook workflow; its first inspected source cohort still has four
 unresolved recycling/waste mappings. See
 `uvek-trucks-five-markets-38-verification.json` for tests and limitations.
+
+The current pin also includes two waste-market proxies that retain the original
+source-3.8 treatment shares and collection transport. The qualified notebook
+workflow is unchanged. Trucks still needs its two polymer-recycling chains;
+see `uvek-trucks-two-waste-markets-38-verification.json` and
+`uvek-trucks-recycling-inputs-triage.md` for progress and limitations.
