@@ -66,25 +66,24 @@ Changelog
 ---------
 Release notes are maintained in [`CHANGELOG.md`](CHANGELOG.md).
 
-What's new in 2.6.0
+What's new in 2.7.0
 -------------------
 
-**Version 2.6.0 adds physical inventory auditing and EN15804 support, and
-corrects fuel-carbon, resource and manufacturing accounting.**
+**Version 2.7.0 makes CLIC the standard supplemental inventory pipeline and
+adds optional commercial-license screening with documented alternatives.**
 
-- Audit thousands of activities using physical CO2, water, land and 65 RELICS
-  resource indicators, supplier tracing and explicit scientific contracts.
-  Use the read-only Python API or `python -m premise.audit`; keep generated
-  results local.
-- Select `system_model="EN15804"` through the existing `NewDatabase` argument
-  with the matching ecoinvent source database.
-- Preserve fossil CO2 from conventional kerosene and refresh rail CO2 origin
-  from final regional fuel suppliers. Restore iridium resource attribution
-  and apply reviewed battery, hydrogen, transport and other inventory references.
-- Import bundled source profiles through shared preparation, with explicit
-  scientific checks and target-specific supplier choices. Python modules are
-  grouped by topic; supported public imports and cached class paths remain
-  compatible.
+- Select versioned CLIC inventories lazily from the sectors and technologies
+  needed by a build, retaining required workbook-only inventories automatically.
+  The `inventory_source` constructor selector has been removed.
+- Enable `clic_options={"license_policy": "commercial"}` to screen selected
+  CLIC inventories and suppliers, use reviewed alternatives and stop on
+  unresolved restrictions. Review the documented proxy and usage-rights scope.
+- Preserve archive/version pins, migration provenance and actual replacement
+  choices in reports and replayable inventory recipes. Browse all 67 reviewed
+  activity and background-supplier mappings in the documentation.
+- Improve source-cache preservation, inventory classification, IAM aliases,
+  carbon/resource validation, compact-store amounts and export linking. Remove
+  redundant runtime work while retaining validation checks.
 
 **Regenerate scenario databases and exports to apply these changes.** Updating
 Premise does not modify saved databases. Reviewed inventories retain the source
@@ -95,8 +94,8 @@ Python 3.12 and NumPy 1.x. Brightpath handles openLCA and SimaPro
 exports; openLCA requires a matching local method package. The read-only inventory
 store API introduced in 2.5 remains the supported integration interface.
 
-See the [2.6 release and migration guide](https://premise.readthedocs.io/en/latest/development/releases-2-6.html)
-and the [full 2.6.0 changelog](CHANGELOG.md#260---2026-11-02) for details.
+See the [2.7 release and migration guide](https://premise.readthedocs.io/en/latest/development/releases-2-7.html)
+and the [full 2.7.0 changelog](CHANGELOG.md#270---2026-11-17) for details.
 
 
 Documentation
@@ -171,10 +170,10 @@ The best way is to follow the [numbered example notebooks](https://github.com/po
 Commercial CLIC inventory workflow
 ----------------------------------
 
-To screen the required CLIC inventories and their upstream suppliers for
-commercially permitted licenses, explicitly select the CLIC provider and its
-commercial policy. The default workbook provider and default CLIC license
-handling remain unchanged.
+Premise selects required supplemental inventories from CLIC and retains the
+workbooks needed for inventories unavailable through that route. To screen
+the selected CLIC inventories and upstream suppliers for commercially permitted
+licenses, enable the optional commercial policy.
 
 First select your existing Brightway project containing the source and biosphere
 databases. Adapt the database names below to that project, and set
@@ -196,7 +195,6 @@ sectors = ["electricity", "fuels", "battery", "cars"]
 
 database = NewDatabase(
     **build_arguments,
-    inventory_source="clic",
     clic_options={"license_policy": "commercial"},
 )
 database.update(sectors)
@@ -219,7 +217,6 @@ and sectors with the exported recipe. It restores commercial policy automaticall
 ```python
 replay = NewDatabase(
     **build_arguments,
-    inventory_source="clic",
     inventory_recipe="export/commercial/inventory-recipe.json",
 )
 replay.update(sectors)

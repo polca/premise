@@ -8,6 +8,7 @@ implementation details.
    :maxdepth: 1
    :titlesonly:
 
+   /development/releases-2-7
    /development/releases-2-6
    /development/releases-2-5
    /development/contributing

@@ -223,6 +223,7 @@ def check(root, repo):
             "troubleshooting",
         ],
         "development/index": [
+            "releases-2-7",
             "releases-2-6",
             "releases-2-5",
             "contributing",

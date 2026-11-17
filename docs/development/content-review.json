@@ -592,5 +592,11 @@
     "review_date": "2026-11-17",
     "disposition": "Documented mapping selection, location preferences, applicability, confidence and sector boundaries; all activity and background rules, candidates, conversions and evidence are generated directly from the runtime YAML and checked for drift.",
     "review_level": "Documentation and registry consistency; not independent legal or proxy-accuracy validation"
+  },
+  {
+    "page": "development/releases-2-7.rst",
+    "review_date": "2026-11-17",
+    "disposition": "Documented automatic hybrid CLIC selection, removed constructor selector, optional commercial policy, older-target native references, recipe migration, consequential fallback and result-affecting corrections since v.2.6.0.",
+    "review_level": "Release and implementation consistency; not independent legal or scientific validation"
   }
 ]

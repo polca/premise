@@ -2,6 +2,101 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.7.0] - 2026-11-17
+
+This release makes CLIC the standard supplemental inventory pipeline, adds an
+optional commercial-license policy, and improves import, validation, cache and
+export reliability. Rebuild scenario databases and exports to apply these
+changes; updating Premise does not modify saved results.
+
+### Added
+
+- Resolve versioned CLIC inventories from verified Zenodo archives. Select
+  required roots from scenario technologies and sector updates, traverse their
+  upstream suppliers, and prepare inventories lazily. Retain required workbook
+  recipes and user-supplied inventories in the hybrid dependency graph.
+- Add `clic_options={"license_policy": "commercial"}` to screen the selected
+  CLIC foreground and upstream suppliers. Preserve attribution and ShareAlike
+  obligations; block unresolved non-commercial, undisclosed, unknown or
+  conflicting declarations, including cached and pinned inventories.
+- Add reviewed native manufacturing alternatives and an independently sourced
+  methane-pyrolysis reference. Document 57 activity-family rules and 10
+  background-supplier rules, with conversions, fallback order, evidence,
+  confidence and limitations. Prune dependencies made unnecessary by replacing
+  complete assets while retaining shared suppliers.
+- Export CLIC version manifests, migration provenance, license and substitution
+  reports, and reusable inventory recipes. Freeze archive/version pins,
+  replacement choices and relevant fingerprints for replay and cache reuse.
+  Generate the complete replacement catalogue from the runtime YAML with a
+  documentation drift check.
+
+### Changed
+
+- Remove the `inventory_source` constructor selector from `NewDatabase` and
+  `PathwaysDataPackage`. CLIC selection is automatic; only required workbook
+  inventories remain. Consequential builds automatically use compatible
+  workbooks because CLIC cutoff inventories cannot supply that system model.
+  Version 3.7 also retains compatible workbooks because reviewed CLIC routes
+  start at 3.8. Commercial policy blocks both unassessed compatibility fallbacks.
+- Use reviewed native manufacturing references for newer-source assets when
+  building against older backgrounds. Keep strict destination linking and
+  record target-compatibility replacements separately from license screening.
+- Share normal and incremental sector dispatch, exporter preparation and
+  validation stages. Remove unused helpers, obsolete writers and redundant
+  scans; reuse activity, supplier, geography and matrix indexes.
+- Always produce current semantic certification for production updates and
+  exports. Recover missing or stale reports and remove the private implicit
+  certification bypass while retaining diagnostic failure reports.
+- Expand the workflow and methodology documentation, link inventory sources
+  to CLIC, and clarify battery scenarios, source boundaries and coverage gaps.
+
+### Fixed
+
+- Preserve saved scenario bases when source, classification or inventory
+  caches refresh. Name combined source checkpoints by their input fingerprints
+  and prevent replacement of bases referenced by existing scenario deltas.
+- Preserve metadata-backed numeric exchange amounts during compact-store
+  relinking and export, and normalize NumPy scalar representations when
+  fingerprinting copied replacement inventories.
+- Resolve IMAGE DAC and biomass-CCS aliases as ordered fallbacks, avoiding
+  overlapping aggregate signals. Make GAINS pollutant alignment independent
+  of xarray defaults and report missing CDR outputs with coverage context.
+- Complete reviewed import classifications, including battery cells, packs,
+  storage modules and component provision. Fill biosphere amounts across
+  equivalent compartments without requiring an identical compartment label.
+- Derive native gas carbon origin from its suppliers and refresh transport
+  exhaust checks against final regional inventories. Use gross-carbon
+  accounting for direct CCS combustion checks and IPCC diesel references for
+  electricity validation; retain contextual source comparisons for warnings.
+- Correct supported metal coproduct resource boundaries, preserve documented
+  allocated copper in anode supply, and distinguish secondary recovery from
+  virgin extraction. Correct PV metal-conversion metadata for a-Si laminates
+  and excluded Series 4/6 templates while retaining their exclusion policy.
+- Remove all repeated inventory identities while retaining the first record.
+  Select the highest-share external substitute supplier with the list return
+  contract required by relinking callers.
+- Align provider keys during export and matrix assembly. Preserve CSV numbering,
+  validate duplicate datapackage resource names in linear time, and propagate
+  original datapackage validation errors.
+- Bind hydrogen-compression metadata to the migrated gaseous-hydrogen product
+  on older targets without changing purchase quantities or delivery-pressure
+  assumptions. Include the frozen synthetic checkpoint-reader fixtures in
+  source distributions.
+
+### Upgrading
+
+- Remove `inventory_source` from existing calls, including calls that explicitly
+  selected `"clic"`. Keep `clic_options`, `inventory_recipe` and
+  `additional_inventories` as needed. Commercial screening remains opt-in;
+  default CLIC selection can include non-commercial inventories.
+- Review source and LCIA differences when moving from the 2.6 workbook pipeline
+  or enabling approximate replacements. Commercial-policy checks cover CLIC
+  foreground selection; ecoinvent, retained workbooks and user inventories
+  require their own usage rights.
+- Retain the matching source database, IAM inputs, sector selection and exported
+  inventory recipe for reproducibility. See the
+  [2.7 release and migration guide](docs/development/releases-2-7.rst).
+
 ## [2.6.0] - 2026-11-02
 
 This release adds physical inventory auditing and EN15804 support, corrects
