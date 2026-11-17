@@ -1,0 +1,434 @@
+{
+  "status": "twelve_regional_supplies_verified",
+  "source_code_changes": 0,
+  "old_recipe_inventories_unchanged": 4442,
+  "new_inventory_profile_aliases": 1,
+  "new_manufacturing_inventory_models": 0,
+  "normal_generator_byte_equal_files": {
+    "ecoinvent-to-ecoinvent-3.10-biosphere.json": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+    "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+    "ecoinvent-to-uvek-2025.json": "55655e47870ed95b9d86d68eb037be20d6e0e600841cd1ab13f02ff928d99e7e"
+  },
+  "conversion_behavior": {
+    "status": "passed",
+    "added_exact_source312_scopes": 12,
+    "signed_uncertainty_exchange_checks": 96,
+    "direct_migration_cases": 8,
+    "public_harmonizer_fresh_and_warm_passed": true,
+    "input_nonmutation": true,
+    "earlier_effective_profile_checks": 0,
+    "new_manufacturing_inventory_models": 0,
+    "new_model_profile_aliases": 1,
+    "new_foreground_omissions": [],
+    "source_code_changes": 0,
+    "new_Brightway_databases": 0,
+    "qualification_limit": "Required interface group only; no complete battery update or new export."
+  },
+  "in_memory_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 44,
+    "foreground_biosphere_flows": 157,
+    "native_suppliers": 117,
+    "signed_foreground_LCI_solves": 24,
+    "independent_native_reference_LCI_solves": 12,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-9c5fc38656c5bb31",
+        "source": {
+          "location": "RER",
+          "name": "market for calcium carbonate, precipitated",
+          "reference product": "calcium carbonate, precipitated",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 6.511235426387429e-07,
+        "refined_max_abs_inventory_difference": 2.842170943040401e-14,
+        "full_graph_residual": {
+          "residual_before": 6.720487217087004e-10,
+          "residual_after": 4.386194844976811e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.6884816250110648e-09,
+          "residual_after": 2.0448875362503962e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-441edc9ec2eb8247",
+        "source": {
+          "location": "CN",
+          "name": "market for polypropylene, granulate",
+          "reference product": "polypropylene, granulate",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.5756836546643171e-07,
+        "refined_max_abs_inventory_difference": 1.0658141036401503e-14,
+        "full_graph_residual": {
+          "residual_before": 2.616517149336185e-10,
+          "residual_after": 1.508689034630578e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.284065947841729e-10,
+          "residual_after": 1.5112892772092557e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-28feeb139604cb8e",
+        "source": {
+          "location": "RoW",
+          "name": "market for polypropylene, granulate",
+          "reference product": "polypropylene, granulate",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.5756836546643171e-07,
+        "refined_max_abs_inventory_difference": 1.0658141036401503e-14,
+        "full_graph_residual": {
+          "residual_before": 2.616517149336185e-10,
+          "residual_after": 1.508689034630578e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.284065947841729e-10,
+          "residual_after": 1.5112892772092557e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-c7a321dfc3d7235c",
+        "source": {
+          "location": "RAF",
+          "name": "market for polypropylene, granulate",
+          "reference product": "polypropylene, granulate",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.5756836546643171e-07,
+        "refined_max_abs_inventory_difference": 1.0658141036401503e-14,
+        "full_graph_residual": {
+          "residual_before": 2.616517149336185e-10,
+          "residual_after": 1.508689034630578e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.284065947841729e-10,
+          "residual_after": 1.5112892772092557e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-2e95468160171f94",
+        "source": {
+          "location": "RER",
+          "name": "market for polypropylene, granulate",
+          "reference product": "polypropylene, granulate",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.5756836546643171e-07,
+        "refined_max_abs_inventory_difference": 1.0658141036401503e-14,
+        "full_graph_residual": {
+          "residual_before": 2.616517149336185e-10,
+          "residual_after": 1.508689034630578e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.284065947841729e-10,
+          "residual_after": 1.5112892772092557e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-509f9817c34db38d",
+        "source": {
+          "location": "RLA",
+          "name": "market for polypropylene, granulate",
+          "reference product": "polypropylene, granulate",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.5756836546643171e-07,
+        "refined_max_abs_inventory_difference": 1.0658141036401503e-14,
+        "full_graph_residual": {
+          "residual_before": 2.616517149336185e-10,
+          "residual_after": 1.508689034630578e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.284065947841729e-10,
+          "residual_after": 1.5112892772092557e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-35a32a80b9b0f7f2",
+        "source": {
+          "location": "RNA",
+          "name": "market for polypropylene, granulate",
+          "reference product": "polypropylene, granulate",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.5756836546643171e-07,
+        "refined_max_abs_inventory_difference": 1.0658141036401503e-14,
+        "full_graph_residual": {
+          "residual_before": 2.616517149336185e-10,
+          "residual_after": 1.508689034630578e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.284065947841729e-10,
+          "residual_after": 1.5112892772092557e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-5cefe08656dc1f08",
+        "source": {
+          "location": "Asia without China",
+          "name": "market for polypropylene, granulate",
+          "reference product": "polypropylene, granulate",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.5756836546643171e-07,
+        "refined_max_abs_inventory_difference": 1.0658141036401503e-14,
+        "full_graph_residual": {
+          "residual_before": 2.616517149336185e-10,
+          "residual_after": 1.508689034630578e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.284065947841729e-10,
+          "residual_after": 1.5112892772092557e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-a9dfd768a446681a",
+        "source": {
+          "location": "CN",
+          "name": "market for oxygen, liquid",
+          "reference product": "oxygen, liquid",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 3.072799358960765e-06,
+        "refined_max_abs_inventory_difference": 4.440892098500626e-16,
+        "full_graph_residual": {
+          "residual_before": 1.8358921438783448e-09,
+          "residual_after": 2.220446049250313e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.5823571055387824e-08,
+          "residual_after": 2.220446049250313e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-d7d358d48a007a28",
+        "source": {
+          "location": "RoW",
+          "name": "market for sodium hydroxide, without water, in 50% solution state",
+          "reference product": "sodium hydroxide, without water, in 50% solution state",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 7.658456524950452e-06,
+        "refined_max_abs_inventory_difference": 5.551115123125783e-17,
+        "full_graph_residual": {
+          "residual_before": 1.0743835491502452e-08,
+          "residual_after": 8.881784197001252e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.7594730354057714e-08,
+          "residual_after": 2.3472871815445104e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-638ccd91797ca3d4",
+        "source": {
+          "location": "GLO",
+          "name": "lithium production, lithium chloride electrolysis",
+          "reference product": "lithium",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.000130395532323746,
+        "refined_max_abs_inventory_difference": 5.684341886080802e-14,
+        "full_graph_residual": {
+          "residual_before": 2.5274592138372426e-08,
+          "residual_after": 5.775856083325884e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 6.430453142706158e-09,
+          "residual_after": 5.775856083325884e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-1ea23b73fbc5fe51",
+        "source": {
+          "location": "GLO",
+          "name": "aluminium collector foil production, for Li-ion battery",
+          "reference product": "aluminium collector foil, for Li-ion battery",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 9.627515282772947e-06,
+        "refined_max_abs_inventory_difference": 4.440892098500626e-16,
+        "full_graph_residual": {
+          "residual_before": 4.852255989585823e-09,
+          "residual_after": 2.9978313757718907e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.2615435674561625e-08,
+          "residual_after": 2.9978313757718907e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "new_model_signed_LCI_solves": 2,
+    "new_model_recipes_checked": [
+      "battery-312-rer-precipitated-carbonate-reviewed-market"
+    ],
+    "qualification_limit": "Twelve source-3.12 regional supply proxies and one inventory-profile alias; no new manufacturing inventory or battery/export qualification."
+  },
+  "real_retry": {
+    "source_activities": 272,
+    "unapproved_source312_before": 40,
+    "unapproved_source312_after": 28,
+    "identities_match_expected_remaining": true,
+    "validation_disabled": false,
+    "approval_bypass": false,
+    "new_Brightway_databases": 0
+  },
+  "known_baseline_test_failure": {
+    "status": "pre_existing_failure_reproduced",
+    "installed_Brightpath_revision": "9cc231a2ffccad4c4b72516731f2f1b6d2e3c266",
+    "installed_runtime_used": true,
+    "test": "test_uvek_named_products_39.py::test_review_replay_is_atomic_and_checks_exact_freight_dependencies[None]",
+    "pytest_exit_code": 1,
+    "Python_files_modified": false
+  },
+  "qualified_sectors_unchanged": 15,
+  "total_sectors": 19,
+  "qualification_limit": "Regional-supply mapping group only; full battery preparation/update/export and other unfinished sectors remain unqualified.",
+  "focused_tests": {
+    "Brightpath_passed": 78,
+    "Premise_passed": 10,
+    "one_known_baseline_replay_failure_deselected_in_followup": true
+  }
+}
