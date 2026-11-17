@@ -326,5 +326,39 @@
   "source_market_vectors": "Full originals remain private; public evidence contains hashes and native-facing recipes.",
   "runtime_or_generator_Python_changes": 0,
   "source_native_LCIA_equivalence_established": false,
-  "overall_sector_goal": "14/19 qualified. Trucks, battery, final energy, emissions and metals remain unfinished."
+  "overall_sector_goal": "14/19 qualified. Trucks, battery, final energy, emissions and metals remain unfinished.",
+  "installed_package_verification": {
+    "status": "installed_truck_mapping_checks_passed",
+    "Brightpath_source_revision": "ce64213eceea1f6a36301543d9eccb6c7248ab11",
+    "installation": "Wheels built from committed checkouts; GitHub availability checked separately after batch push.",
+    "runtime_source_checkout_modules_loaded": false,
+    "Premise_approval_ledger_and_dependency_pin_match_checkout": true,
+    "packaged_review_and_resource_bytes_match_checkout": true,
+    "review_sha256": "1602713d56f7fb3af0bbd9463684fbf474ab04321e3a0723dfd0556373359e0f",
+    "tests_passed": 30,
+    "wheel_sha256": {
+      "premise-2.6.0-py3-none-any.whl": "4e5d1d4e5010327c55215092c5b6ed3aedd0f38efb134bb7917441bc29e7154f",
+      "brightpath-1.0.0a14-py3-none-any.whl": "7d48617177a8031246e66659a927d1064b59424947d706e669fcedbd05bb0f3a"
+    },
+    "new_Brightway_databases": 0
+  },
+  "cleanup": {
+    "removed_owned_superseded_builds": [
+      {
+        "path": "/private/tmp/premise-all-sectors/recycling-materials-38-generated",
+        "bytes": 108086199
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/recycling-transport-38-installed-wheels",
+        "bytes": 68915263
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/premise-clic-worktree/build",
+        "bytes": 63365200
+      }
+    ],
+    "bytes_removed": 240366662,
+    "new_Brightway_databases": 0,
+    "latest_verified_wheels_source_biosphere_and_export_retained": true
+  }
 }
