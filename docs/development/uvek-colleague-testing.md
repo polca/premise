@@ -45,7 +45,7 @@ already belongs to an environment you need, register a different name and select
 it manually in JupyterLab. Registering a kernel does not move Brightway projects.
 
 Premise installs Brightpath directly from GitHub at
-`4e4dfd2036ef04a686f2b7f202ee9721b391e3e5`. Installing only the published
+`c2eb573f629f8b116cfa87d366566a29a40b79fc`. Installing only the published
 Brightpath alpha14 package is insufficient. Internet access is needed for the
 installation, biosphere installation and first CLIC inventory download.
 
@@ -53,7 +53,7 @@ If you previously installed another GitHub revision, the unchanged alpha14
 version number can make pip keep it. To update that existing environment explicitly:
 
 ```bash
-python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@4e4dfd2036ef04a686f2b7f202ee9721b391e3e5"
+python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@c2eb573f629f8b116cfa87d366566a29a40b79fc"
 ```
 
 Restart the notebook kernel after upgrading. A fresh environment uses the pinned
@@ -304,3 +304,9 @@ The pinned Brightpath version reconstructs the wet-process PE separator using re
 ## Further battery chemical prerequisites — 15 November 2026
 
 The next pinned Brightpath version adds six reviewed chemical supplies,retaining the TiO2chloride/sulfate route split anddocumenting rare-earth ore-route/zirconia nano-grade proxy limits. No notebook workflow change is required. Battery remains unqualified with28pending first-cohort rules;continue using the documented qualified sector set. Details: `uvek-battery-chemicals-39-verification.json`.
+
+The current pin also includes five reviewed source-3.8 truck delivery markets,
+including a separate 39 MJ/m³ gas basis. This does not add trucks to the
+qualified notebook workflow; its first inspected source cohort still has four
+unresolved recycling/waste mappings. See
+`uvek-trucks-five-markets-38-verification.json` for tests and limitations.
