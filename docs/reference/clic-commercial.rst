@@ -82,6 +82,9 @@ the consumer's assumed cycle life; a material proxy does not establish the
 original material's operational performance. Replacement limitations must be
 considered when interpreting results.
 
+The complete :doc:`clic-commercial-mappings` catalogue lists every rule, native
+candidate, independent recipe, source and documented limitation.
+
 Validated targets and result differences
 ----------------------------------------
 

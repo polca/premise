@@ -83,6 +83,15 @@ harmonized. Live freshness checks transfer metadata, not inventory packages.
 
 ## Commercial CLIC policy (development)
 
+The user-facing behavior is documented in
+[`reference/clic-commercial.rst`](../reference/clic-commercial.rst), with the
+complete replacement catalogue in
+[`reference/clic-commercial-mappings.rst`](../reference/clic-commercial-mappings.rst).
+The catalogue is generated from the runtime YAML by
+`python docs/_tools/generate_documentation_reference.py`; its existing `--check`
+mode checks for drift in CI. Update the YAML and regenerate the include when
+changing rules, rather than editing the generated catalogue by hand.
+
 Set `clic_options={"license_policy": "commercial"}` to screen the complete
 selected CLIC foreground graph before harmonization and import. The default
 `license_policy="default"` preserves existing selection and output behavior.

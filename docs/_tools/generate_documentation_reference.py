@@ -26,6 +26,175 @@ def table(headers, rows):
     return "\n".join(lines) + "\n"
 
 
+def commercial_mapping_reference():
+    """Render every reviewed rule from the runtime registry, including fallbacks."""
+    registry = yaml.safe_load(
+        (ROOT / "premise/data/clic/commercial_replacements.yaml").read_text()
+    )
+
+    def literal(value):
+        return f"``{value}``"
+
+    def suppliers_table(suppliers, confidence):
+        return table(
+            [
+                "Priority",
+                "Native supplier identity",
+                "Location preference",
+                "Confidence",
+                "Qualification",
+            ],
+            [
+                [
+                    index,
+                    "; ".join(
+                        literal(supplier[key]) for key in ("name", "product", "unit")
+                    ),
+                    " → ".join(literal(location) for location in supplier["locations"]),
+                    supplier.get("confidence", confidence),
+                    " ".join(
+                        filter(
+                            None, [supplier.get("notes"), *supplier.get("evidence", ())]
+                        )
+                    )
+                    or "Inherits the rule's limitations and sources.",
+                ]
+                for index, supplier in enumerate(suppliers, 1)
+            ],
+        )
+
+    lines = [
+        ".. Generated from premise/data/clic/commercial_replacements.yaml; do not edit.",
+        "",
+        f"This registry contains {len(registry['rules'])} whole-activity rules and "
+        f"{len(registry.get('background_proxies', ()))} background-supplier rules.",
+        "",
+    ]
+    groups = (
+        ("rules", "Whole-activity replacements"),
+        ("background_proxies", "Background-supplier replacements"),
+    )
+    for group, title in groups:
+        lines.extend([title, "-" * len(title), ""])
+        for rule in registry.get(group, ()):
+            name = rule["id"]
+            lines.extend(
+                [f".. _commercial-mapping-{name}:", "", name, "~" * len(name), ""]
+            )
+            if group == "rules":
+                lines.extend(["**CLIC activity names**", ""])
+                lines.extend("* " + literal(name) for name in rule["match"]["names"])
+                lines.extend(["", ":Reference unit: " + literal(rule["match"]["unit"])])
+                if rule["match"].get("products"):
+                    lines.append(
+                        ":Reference products: "
+                        + ", ".join(literal(p) for p in rule["match"]["products"])
+                    )
+            else:
+                lines.extend(["**Original background supplier identities**", ""])
+                lines.append(
+                    table(["Name", "Product", "Location", "Unit"], rule["identities"])
+                )
+            versions = rule.get("target_versions", registry["target_versions"])
+            models = rule.get("system_models", registry["system_models"])
+            lines.extend(
+                [
+                    ":Registry target versions: " + ", ".join(versions),
+                    ":Registry system models: " + ", ".join(models),
+                    f":Review status: {rule['review_status']}",
+                    f":Confidence: {rule['confidence']}",
+                    f":Used inventory license: {rule.get('inventory_license', 'ecoinvent (separate usage rights required)')}",
+                    "",
+                    "**Conversion and boundary**",
+                    "",
+                    rule["conversion"],
+                    "",
+                    rule["limitations"],
+                    "",
+                ]
+            )
+            if rule.get("exclude_inputs"):
+                lines.extend(["**Native inputs excluded before scaling**", ""])
+                lines.extend("* " + literal(name) for name in rule["exclude_inputs"])
+                lines.append("")
+            if rule.get("renormalize_excluded_mass"):
+                lines.extend(
+                    [
+                        "Remaining native inputs are renormalized to a kilogram excluding the removed electronics.",
+                        "",
+                    ]
+                )
+            if rule.get("suppliers"):
+                if group == "rules":
+                    lines.extend(
+                        [
+                            f"Base native quantity: {rule.get('amount', 1)} native reference units per requested output, before electronics mass renormalization where listed.",
+                            "",
+                        ]
+                    )
+                lines.extend(
+                    [
+                        "**Native supplier candidates, in selection order**",
+                        "",
+                        suppliers_table(rule["suppliers"], rule["confidence"]),
+                    ]
+                )
+            if rule.get("recipe"):
+                for index, purchase in enumerate(rule["recipe"]["inputs"], 1):
+                    unit = purchase["suppliers"][0]["unit"]
+                    lines.extend(
+                        [
+                            f"**Independent purchase {index}: {purchase['amount']} {unit} per reference output**",
+                            "",
+                            suppliers_table(purchase["suppliers"], rule["confidence"]),
+                        ]
+                    )
+                emissions = rule["recipe"].get("emissions", ())
+                if emissions:
+                    lines.extend(
+                        [
+                            "**Independent foreground emissions per reference output**",
+                            "",
+                            table(
+                                ["Flow", "Compartment", "Unit", "Amount"],
+                                [
+                                    [
+                                        e["name"],
+                                        "/".join(e["categories"]),
+                                        e["unit"],
+                                        e["amount"],
+                                    ]
+                                    for e in emissions
+                                ],
+                            ),
+                        ]
+                    )
+            if rule.get("metadata"):
+                lines.extend(
+                    [
+                        "**Additional replacement metadata**",
+                        "",
+                        ".. code-block:: yaml",
+                        "",
+                    ]
+                )
+                lines.extend(
+                    "   " + line
+                    for line in yaml.safe_dump(
+                        rule["metadata"], sort_keys=False, allow_unicode=True
+                    ).splitlines()
+                )
+                lines.append("")
+            if rule.get("citation"):
+                lines.extend([rule["citation"], ""])
+            if rule.get("doi"):
+                lines.extend([f"Publication: https://doi.org/{rule['doi']}", ""])
+            lines.extend(["**Sources and assumptions**", ""])
+            lines.extend("* " + source for source in rule["evidence"])
+            lines.append("")
+    return "\n".join(lines)
+
+
 def battery_mix_table(filename, scenarios, years, groups):
     """Summarize packaged capacity shares without loading the scenario model."""
     shares = defaultdict(dict)
@@ -160,6 +329,7 @@ def generate():
         "generate_reports",
     ]
     result = {
+        "clic-commercial-mappings.inc": commercial_mapping_reference(),
         "defaults.inc": table(
             ["Argument", "Default"],
             [(f"``{n}``", f"``{ast.unparse(defaults[n])}``") for n in names],
