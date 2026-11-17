@@ -183,7 +183,6 @@ class PathwaysDataPackage:
             return arr.assign_coords(variables=("variables", new_vars))
 
         data_list, extra_units = [], {}
-        outfile = None
 
         for scenario in self.datapackage.scenarios:
             # --- base: production volumes
