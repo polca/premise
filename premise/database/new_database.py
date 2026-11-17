@@ -1537,7 +1537,7 @@ class NewDatabase:
         """
         if getattr(self, "inventory_source", "workbooks") != "clic":
             return
-        from ..inventory.clic_archive import content_hash
+        from ..inventory.clic_archive import ClicInventoryError, content_hash
         from ..inventory.clic_requirements import registry
         from ..inventory.clic_hybrid import (
             plan_hybrid_inventories,
@@ -1603,15 +1603,20 @@ class NewDatabase:
             extra_nodes=self._clic_user_inputs.required_nodes,
         )
         roots = set(plan.clic_roots) | user_roots
-        records = provider.prepare(
-            sorted(roots),
-            base,
-            version=self.version,
-            system_model=self.system_model,
-            biosphere_name=self.biosphere_name,
-            keep_uncertainty=self.keep_imports_uncertainty,
-            use_cache=self._clic_use_cache,
-        )
+        try:
+            records = provider.prepare(
+                sorted(roots),
+                base,
+                version=self.version,
+                system_model=self.system_model,
+                biosphere_name=self.biosphere_name,
+                keep_uncertainty=self.keep_imports_uncertainty,
+                use_cache=self._clic_use_cache,
+            )
+        except ClicInventoryError as error:
+            if provider.options.license_policy == "commercial":
+                error.add_note(f"Requested sectors: {', '.join(sorted(wanted))}.")
+            raise
         from ..inventory.clic_requirements import bind_activity_roles
 
         bindings = bind_activity_roles(records, sources)

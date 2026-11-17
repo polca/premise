@@ -86,6 +86,28 @@ def write_inventory_sidecars(workbook_path, scenarios):
                 writer.writeheader()
                 writer.writerows(policy["datasets"])
             manifests[-1]["license_report_file"] = license_path.name
+        replacements = manifest.get("commercial_replacements", {}).get(
+            "substitutions", ()
+        )
+        if replacements:
+            replacement_path = path.with_name(
+                f"{path.stem}.inventory-substitutions-{position}.csv"
+            )
+            with replacement_path.open("w", encoding="utf-8", newline="") as stream:
+                writer = csv.DictWriter(stream, fieldnames=list(replacements[0]))
+                writer.writeheader()
+                writer.writerows(
+                    {
+                        key: (
+                            json.dumps(value, ensure_ascii=False)
+                            if isinstance(value, (list, dict))
+                            else value
+                        )
+                        for key, value in row.items()
+                    }
+                    for row in replacements
+                )
+            manifests[-1]["substitution_report_file"] = replacement_path.name
     if not manifests:
         return None, ()
     manifest_path = path.with_suffix(".inventory-manifest.json")
@@ -117,6 +139,13 @@ def write_inventory_sheet(workbook, scenarios, *, workbook_path=None):
         "Recipe file",
         "Dataset URL",
     ]
+    commercial = any(
+        "license_policy" in definition["clic inventories"]
+        for _, _, definition in selected
+    )
+    if commercial:
+        columns[5] = "Published license (original)"
+        columns.extend(["Used inventory license", "Replacement rule"])
     sheet.append(columns)
 
     def background(value):
@@ -154,6 +183,16 @@ def write_inventory_sheet(workbook, scenarios, *, workbook_path=None):
                     manifest["resolution_fingerprint"],
                     recipe_name,
                     row.get("public_url"),
+                    *(
+                        [
+                            row.get("replacement", {}).get(
+                                "inventory_license", row.get("license")
+                            ),
+                            row.get("replacement", {}).get("rule"),
+                        ]
+                        if commercial
+                        else []
+                    ),
                 ]
             )
         for code in manifest.get("generated_helpers", ()):
@@ -259,3 +298,50 @@ def write_inventory_sheet(workbook, scenarios, *, workbook_path=None):
             cell.font = Font(bold=True)
         for column in sheet.columns:
             sheet.column_dimensions[column[0].column_letter].width = 35
+
+    replacements = [
+        (identity, row)
+        for _, identity, definition in selected
+        for row in definition["clic inventories"]
+        .get("commercial_replacements", {})
+        .get("substitutions", ())
+    ]
+    if replacements:
+        sheet = workbook.create_sheet("CLIC Replacements")
+        sheet.append(
+            [
+                "Scenario",
+                "Dataset slug",
+                "Original license",
+                "Rule",
+                "Native supplier",
+                "Amount",
+                "Conversion",
+                "Limitations",
+                "Evidence",
+                "Confidence",
+                "Geographic proxy",
+            ]
+        )
+        for identity, row in replacements:
+            sheet.append(
+                [
+                    " | ".join(str(item) for item in identity),
+                    row["slug"],
+                    row["original_license"],
+                    row["rule"],
+                    " | ".join(row["supplier"]),
+                    row["amount"],
+                    row["conversion"],
+                    row["limitations"],
+                    "\n".join(row["evidence"]),
+                    row["confidence"],
+                    row["geography_proxy"],
+                ]
+            )
+        sheet.freeze_panes = "A2"
+        sheet.auto_filter.ref = sheet.dimensions
+        for cell in sheet[1]:
+            cell.font = Font(bold=True)
+        for column in sheet.columns:
+            sheet.column_dimensions[column[0].column_letter].width = 40

@@ -95,6 +95,16 @@ class ClicInventoryProvider:
                 )
             # A commercial recipe cannot silently replay without its checks.
             self.options = replace(options, license_policy="commercial")
+            locked = self.recipe.license_policy.get("replacements")
+            if locked is not None:
+                from .clic_replacements import replacement_registry
+
+                if not isinstance(locked, Mapping) or locked.get(
+                    "registry_fingerprint"
+                ) != content_hash(replacement_registry()):
+                    raise ClicInventoryError(
+                        "Commercial replacement registry changed; review and regenerate the recipe."
+                    )
         self.archive = archive
         self.session = session
         self.catalog_provider = catalog_provider
@@ -140,7 +150,7 @@ class ClicInventoryProvider:
                 )
         return self.archive
 
-    def resolve(self, roots=None, *, use_cache=True):
+    def _resolve_native(self, roots=None, *, use_cache=True):
         archive = self.get_archive()
         roots = tuple(
             sorted(
@@ -193,17 +203,37 @@ class ClicInventoryProvider:
                     )
         else:
             resolved = archive.resolve(roots, recipe=self.recipe)
+        return resolved
+
+    def _check_resolution(self, resolved, *, replacements=()):
         if not self.options.offline and self.options.freshness == "live":
             if self.options.license_policy == "commercial":
+                replaced = {row["slug"] for row in replacements}
                 verify_latest_versions(
-                    resolved, session=self.session, verify_licenses=True
+                    replace(
+                        resolved,
+                        versions=[
+                            row
+                            for row in resolved.versions
+                            if row["slug"] not in replaced
+                        ],
+                    ),
+                    session=self.session,
+                    verify_licenses=True,
                 )
             else:
                 verify_latest_versions(resolved, session=self.session)
         if self.options.license_policy == "commercial":
             from .clic_licenses import enforce_commercial_licenses
 
-            self.license_report = enforce_commercial_licenses(resolved, archive)
+            self.license_report = enforce_commercial_licenses(
+                resolved, self.get_archive(), replacements=replacements
+            )
+
+    def resolve(self, roots=None, *, use_cache=True):
+        """Resolve and check native CLIC records; replacements need a build target."""
+        resolved = self._resolve_native(roots, use_cache=use_cache)
+        self._check_resolution(resolved)
         return resolved
 
     def prepare(
@@ -223,7 +253,31 @@ class ClicInventoryProvider:
 
         version = check_ecoinvent_target_version(version)
         self.check_system_model(system_model)
-        resolved = self.resolve(roots, use_cache=use_cache)
+        replacement_report = None
+        if self.options.license_policy == "commercial":
+            from .clic_replacements import replace_commercial_inventories
+
+            native_resolution = self._resolve_native(roots, use_cache=use_cache)
+            resolved, replacement_report = replace_commercial_inventories(
+                native_resolution,
+                self.get_archive(),
+                database,
+                version=version,
+                system_model=system_model,
+            )
+            locked = (self.recipe.license_policy or {}).get("replacements")
+            if locked is not None and locked != {
+                key: replacement_report[key]
+                for key in ("registry_fingerprint", "target", "fingerprint")
+            }:
+                raise ClicInventoryError(
+                    "Commercial replacements differ from the recipe; verify the target and native source inventories."
+                )
+            self._check_resolution(
+                resolved, replacements=replacement_report["substitutions"]
+            )
+        else:
+            resolved = self.resolve(roots, use_cache=use_cache)
         harmonized = ClicHarmonizer(
             self.cache_dir / "harmonized",
             catalog_provider=self.catalog_provider,
@@ -292,7 +346,11 @@ class ClicInventoryProvider:
                 for a in records
             ]
         )
-        self.lockfile = harmonized.lockfile
+        self.lockfile = (
+            native_resolution.lockfile()
+            if replacement_report is not None
+            else harmonized.lockfile
+        )
         self.lockfile["namespace_slugs"] = namespace_slugs
         if self.license_report is not None:
             self.manifest["license_policy"] = self.license_report
@@ -300,6 +358,12 @@ class ClicInventoryProvider:
                 "name": "commercial",
                 "fingerprint": self.license_report["policy_fingerprint"],
             }
+            if replacement_report is not None:
+                self.manifest["commercial_replacements"] = replacement_report
+                self.lockfile["license_policy"]["replacements"] = {
+                    key: replacement_report[key]
+                    for key in ("registry_fingerprint", "target", "fingerprint")
+                }
         self.diagnostics = harmonized.diagnostics + diagnostics
         return records
 

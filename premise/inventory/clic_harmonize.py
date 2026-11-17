@@ -166,16 +166,42 @@ class ClicHarmonizer:
             "validate_target": True,
             "minimum_coverage": 1.0,
         }
-        groups, contexts = defaultdict(list), {}
+        groups, contexts, native_replacements = defaultdict(list), {}, {}
         rows = {row["activity_code"]: row for row in resolved.versions}
         native_by_code = {a["code"]: a for a in resolved.activities}
         for activity in resolved.activities:
             background = rows[activity["code"]]["background"]
+            replacement = rows[activity["code"]].get("replacement")
+            if replacement is not None:
+                scientific = {
+                    key: value
+                    for key, value in activity.items()
+                    if key != "clic provenance"
+                }
+                if background["technosphere"] != {
+                    "family": "ecoinvent",
+                    "version": version,
+                    "system_model": system_model,
+                } or replacement["replacement_inventory_sha256"] != content_hash(
+                    scientific
+                ):
+                    raise ClicInventoryError(
+                        "Native commercial replacement does not match its reviewed target or inventory fingerprint."
+                    )
+                # These coefficients already belong to the actual destination
+                # background. In particular EN15804 scrap must not be treated
+                # as cut-off data. The adapter validates every native link.
+                native_replacements[activity["code"]] = copy.deepcopy(activity)
+                continue
             key = content_hash(background)
             groups[key].append(activity)
             contexts[key] = background
         self.cache_dir.mkdir(parents=True, exist_ok=True)
-        activities, summaries, diagnostics = {}, [], list(resolved.diagnostics)
+        activities, summaries, diagnostics = (
+            dict(native_replacements),
+            [],
+            list(resolved.diagnostics),
+        )
         target_catalogs = _catalog_fingerprint(provider, target_context)
         for key, records in groups.items():
             source = contexts[key]
@@ -365,6 +391,8 @@ class ClicHarmonizer:
                 code for code in activities if code not in rows
             ),
         }
+        if native_replacements:
+            manifest["native_replacement_count"] = len(native_replacements)
         return HarmonizedClicInventory(
             list(activities.values()), manifest, resolved.lockfile(), diagnostics
         )

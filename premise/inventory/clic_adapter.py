@@ -138,7 +138,14 @@ def prepare_clic_for_premise(
     if system_model == "EN15804":
         from ..iam.system_models import adapt_en15804_scrap_exchanges
 
-        count = adapt_en15804_scrap_exchanges(records, database)
+        count = adapt_en15804_scrap_exchanges(
+            [
+                record
+                for record in records
+                if not record.get("clic provenance", {}).get("replacement")
+            ],
+            database,
+        )
         if count:
             diagnostics.append(
                 {"code": "clic.en15804_native_scrap_adapted", "exchange_count": count}

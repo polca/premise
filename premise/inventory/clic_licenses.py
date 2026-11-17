@@ -20,9 +20,10 @@ COMMERCIAL_LICENSES = {
 }
 POLICY = {
     "name": "commercial",
-    "schema_version": 1,
+    "schema_version": 2,
     "allowed_licenses": COMMERCIAL_LICENSES,
     "source_conflicts": "block_explicit_noncommercial_license",
+    "replacements": "reviewed native ecoinvent inventories under the user's applicable license",
 }
 POLICY_FINGERPRINT = content_hash(POLICY)
 _NONCOMMERCIAL = re.compile(
@@ -68,7 +69,7 @@ def _root_paths(resolved):
     return parents, slugs
 
 
-def assess_commercial_licenses(resolved, archive):
+def assess_commercial_licenses(resolved, archive, *, replacements=()):
     """Return selected permissions and review issues without changing inventories.
 
     Read source notes from the verified archive, rather than relying on cached
@@ -77,26 +78,47 @@ def assess_commercial_licenses(resolved, archive):
     are flagged for review, without asserting that the declaration is invalid.
     """
     datasets, issues = [], []
+    replaced = {row["slug"]: row for row in replacements}
     for row in resolved.versions:
         native = archive.versions[row["version_id"]]
         license_id = (native.get("selected_license") or "").strip().upper()
+        original_license = license_id
+        replacement = replaced.get(row["slug"])
         source_license = native.get("existing_license") or ""
         reason = None
-        if license_id not in COMMERCIAL_LICENSES:
+        if replacement:
+            # Only the planner's verified substitutions can clear an original
+            # declaration. Uploaded provenance fields never grant permission.
+            license_id = "ecoinvent"
+        elif license_id not in COMMERCIAL_LICENSES:
             reason = "license does not establish commercial permission"
         elif _NONCOMMERCIAL.search(source_license):
             reason = "source-license conflict needs review"
         entry = {
             "slug": row["slug"],
+            "name": row["name"],
             "version_id": row["version_id"],
             "license": license_id,
-            "license_url": COMMERCIAL_LICENSES.get(license_id),
+            "license_url": (
+                "https://support.ecoinvent.org/licensing"
+                if replacement
+                else COMMERCIAL_LICENSES.get(license_id)
+            ),
             "source_license": source_license,
-            "citation": row.get("citation", ""),
-            "doi": row.get("doi", ""),
+            "citation": (
+                f"Native ecoinvent {row['background']['technosphere']['version']}: "
+                f"{replacement['supplier'][0]} ({replacement['supplier'][2]})."
+                if replacement
+                else row.get("citation", "")
+            ),
+            "doi": "" if replacement else row.get("doi", ""),
             "public_url": row.get("public_url"),
             "attribution_required": license_id != "CC0-1.0",
             "share_alike": license_id == "CC-BY-SA-4.0",
+            "replacement_rule": replacement["rule"] if replacement else None,
+            "original_license": original_license if replacement else None,
+            "original_citation": row.get("citation", "") if replacement else None,
+            "original_doi": row.get("doi", "") if replacement else None,
         }
         datasets.append(entry)
         if reason:
@@ -121,8 +143,8 @@ def assess_commercial_licenses(resolved, archive):
     }
 
 
-def enforce_commercial_licenses(resolved, archive):
-    report = assess_commercial_licenses(resolved, archive)
+def enforce_commercial_licenses(resolved, archive, *, replacements=()):
+    report = assess_commercial_licenses(resolved, archive, replacements=replacements)
     if report["issues"]:
         raise ClicLicenseError(report["issues"])
     return report

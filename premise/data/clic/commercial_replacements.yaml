@@ -1,0 +1,1591 @@
+schema_version: 1
+target_versions:
+- '3.12'
+system_models:
+- cutoff
+- EN15804
+rules:
+- id: onboard-charger
+  review_status: reviewed
+  match:
+    names:
+    - charger production, road vehicle, onboard
+    unit: kilogram
+  suppliers:
+  - name: charger production, for electric passenger car
+    product: charger, electric passenger car
+    unit: kilogram
+    locations:
+    - GLO
+  conversion: One kilogram of native onboard charger per kilogram of requested charger.
+  limitations: Passenger-car charger used for other road-vehicle classes; power rating, design year and material
+    composition can differ. Manufacturing only; does not add use-phase electricity.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation: charger production, for electric passenger car (GLO), functional
+    unit kilogram.'
+  - https://support.ecoinvent.org/licensing
+  confidence: medium
+- id: auxiliary-dc-converter
+  review_status: reviewed
+  match:
+    names:
+    - converter production, road vehicle, auxiliary dc
+    unit: kilogram
+  suppliers:
+  - name: converter production, for electric passenger car
+    product: converter, for electric passenger car
+    unit: kilogram
+    locations:
+    - GLO
+  conversion: One kilogram of native automotive converter per kilogram of requested converter.
+  limitations: Native reference is a 4.5 kg device suitable for a 100 kW electric drivetrain; auxiliary converter
+    voltage, rating and design may differ. Mass-normalized manufacturing proxy; no use-phase efficiency is inferred.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation: converter production, for electric passenger car (GLO), functional
+    unit kilogram.'
+  - https://support.ecoinvent.org/licensing
+  confidence: medium
+- id: pv-residential-electricity
+  review_status: reviewed
+  match:
+    names:
+    - electricity production, photovoltaic, residential
+    unit: kilowatt hour
+  suppliers:
+  - name: electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted
+    product: electricity, low voltage
+    unit: kilowatt hour
+    locations:
+    - same
+    - RoW
+    - CH
+  conversion: One native kWh per requested kWh; native installation, lifetime, yield and maintenance inputs are
+    retained.
+  limitations: A conventional single-Si roof generator replaces the reported residential technology mix. Uses the
+    native local generator where available, otherwise RoW then CH including that proxy yield; preserving the requested
+    location for IAM mapping does not establish local solar yield. Advanced module detail and updated national mixes
+    are lost.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: electricity production, photovoltaic, 3kWp
+    slanted-roof installation, single-Si, panel, mounted.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  confidence: medium
+- id: pv-10-kwp-facade-multicrystalline-silicon-laminate-integrated-at-building
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 10 kwp, facade, multicrystalline silicon, laminate, integrated, at
+      building
+    unit: unit
+  suppliers:
+  - name: photovoltaic facade installation, 3kWp, multi-Si, laminated, integrated, at building
+    product: photovoltaic facade installation, 3kWp, multi-Si, laminated, integrated, at building
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 3.3333333333333335
+  conversion: One requested 10 kWp installation = 10/3 = 3.33333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic facade installation, 3kWp, multi-Si,
+    laminated, integrated, at building.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: multi-Si
+    pv capacity kwp: 10.0
+  confidence: medium
+- id: pv-10-kwp-facade-multicrystalline-silicon-panel-mounted-at-building
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 10 kwp, facade, multicrystalline silicon, panel, mounted, at building
+    unit: unit
+  suppliers:
+  - name: photovoltaic facade installation, 3kWp, multi-Si, panel, mounted, at building
+    product: photovoltaic facade installation, 3kWp, multi-Si, panel, mounted, at building
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 3.3333333333333335
+  conversion: One requested 10 kWp installation = 10/3 = 3.33333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic facade installation, 3kWp, multi-Si,
+    panel, mounted, at building.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: multi-Si
+    pv capacity kwp: 10.0
+  confidence: medium
+- id: pv-10-kwp-facade-single-crystalline-silicon-laminate-integrated-at-building
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 10 kwp, facade, single-crystalline silicon, laminate, integrated,
+      at building
+    unit: unit
+  suppliers:
+  - name: photovoltaic facade installation, 3kWp, single-Si, laminated, integrated, at building
+    product: photovoltaic facade installation, 3kWp, single-Si, laminated, integrated, at building
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 3.3333333333333335
+  conversion: One requested 10 kWp installation = 10/3 = 3.33333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic facade installation, 3kWp, single-Si,
+    laminated, integrated, at building.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: single-Si
+    pv capacity kwp: 10.0
+  confidence: medium
+- id: pv-10-kwp-facade-single-crystalline-silicon-panel-mounted-at-building
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 10 kwp, facade, single-crystalline silicon, panel, mounted, at building
+    unit: unit
+  suppliers:
+  - name: photovoltaic facade installation, 3kWp, single-Si, panel, mounted, at building
+    product: photovoltaic facade installation, 3kWp, single-Si, panel, mounted, at building
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 3.3333333333333335
+  conversion: One requested 10 kWp installation = 10/3 = 3.33333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic facade installation, 3kWp, single-Si,
+    panel, mounted, at building.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: single-Si
+    pv capacity kwp: 10.0
+  confidence: medium
+- id: pv-10-kwp-flat-roof-multicrystalline-silicon-panel-mounted-on-roof
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 10 kwp, flat-roof, multicrystalline silicon, panel, mounted, on roof
+    unit: unit
+  suppliers:
+  - name: photovoltaic flat-roof installation, 3kWp, multi-Si, on roof
+    product: photovoltaic flat-roof installation, 3kWp, multi-Si, on roof
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 3.3333333333333335
+  conversion: One requested 10 kWp installation = 10/3 = 3.33333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic flat-roof installation, 3kWp,
+    multi-Si, on roof.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: multi-Si
+    pv capacity kwp: 10.0
+  confidence: medium
+- id: pv-10-kwp-flat-roof-single-crystalline-silicon-panel-mounted-on-roof
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 10 kwp, flat-roof, single-crystalline silicon, panel, mounted, on
+      roof
+    unit: unit
+  suppliers:
+  - name: photovoltaic flat-roof installation, 3kWp, single-Si, on roof
+    product: photovoltaic flat-roof installation, 3kWp, single-Si, on roof
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 3.3333333333333335
+  conversion: One requested 10 kWp installation = 10/3 = 3.33333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic flat-roof installation, 3kWp,
+    single-Si, on roof.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: single-Si
+    pv capacity kwp: 10.0
+  confidence: medium
+- id: pv-10-kwp-slanted-roof-cadmium-telluride-laminate-integrated-on-roof
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 10 kwp, slanted-roof, cadmium telluride, laminate, integrated, on
+      roof
+    unit: unit
+  suppliers:
+  - name: photovoltaic slanted-roof installation, 3kWp, CdTe, laminated, integrated, on roof
+    product: photovoltaic slanted-roof installation, 3kWp, CdTe, laminated, integrated, on roof
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 3.3333333333333335
+  conversion: One requested 10 kWp installation = 10/3 = 3.33333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available. The CdTe panel request is represented
+    by the available integrated laminate, so the mounting boundary differs.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic slanted-roof installation, 3kWp,
+    CdTe, laminated, integrated, on roof.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: CdTe
+    pv capacity kwp: 10.0
+  confidence: medium
+- id: pv-10-kwp-slanted-roof-cadmium-telluride-panel-mounted-on-roof
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 10 kwp, slanted-roof, cadmium telluride, panel, mounted, on roof
+    unit: unit
+  suppliers:
+  - name: photovoltaic slanted-roof installation, 3kWp, CdTe, laminated, integrated, on roof
+    product: photovoltaic slanted-roof installation, 3kWp, CdTe, laminated, integrated, on roof
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 3.3333333333333335
+  conversion: One requested 10 kWp installation = 10/3 = 3.33333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available. The CdTe panel request is represented
+    by the available integrated laminate, so the mounting boundary differs.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic slanted-roof installation, 3kWp,
+    CdTe, laminated, integrated, on roof.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: CdTe
+    pv capacity kwp: 10.0
+  confidence: medium
+- id: pv-10-kwp-slanted-roof-multicrystalline-silicon-laminate-integrated-on-roof
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 10 kwp, slanted-roof, multicrystalline silicon, laminate, integrated,
+      on roof
+    unit: unit
+  suppliers:
+  - name: photovoltaic slanted-roof installation, 3kWp, multi-Si, laminated, integrated, on roof
+    product: photovoltaic slanted-roof installation, 3kWp, multi-Si, laminated, integrated, on roof
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 3.3333333333333335
+  conversion: One requested 10 kWp installation = 10/3 = 3.33333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic slanted-roof installation, 3kWp,
+    multi-Si, laminated, integrated, on roof.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: multi-Si
+    pv capacity kwp: 10.0
+  confidence: medium
+- id: pv-10-kwp-slanted-roof-multicrystalline-silicon-panel-mounted-on-roof
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 10 kwp, slanted-roof, multicrystalline silicon, panel, mounted, on
+      roof
+    unit: unit
+  suppliers:
+  - name: photovoltaic slanted-roof installation, 3kWp, multi-Si, panel, mounted, on roof
+    product: photovoltaic slanted-roof installation, 3kWp, multi-Si, panel, mounted, on roof
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 3.3333333333333335
+  conversion: One requested 10 kWp installation = 10/3 = 3.33333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic slanted-roof installation, 3kWp,
+    multi-Si, panel, mounted, on roof.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: multi-Si
+    pv capacity kwp: 10.0
+  confidence: medium
+- id: pv-10-kwp-slanted-roof-single-crystalline-silicon-laminate-integrated-on-roof
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 10 kwp, slanted-roof, single-crystalline silicon, laminate, integrated,
+      on roof
+    unit: unit
+  suppliers:
+  - name: photovoltaic slanted-roof installation, 3kWp, single-Si, laminated, integrated, on roof
+    product: photovoltaic slanted-roof installation, 3kWp, single-Si, laminated, integrated, on roof
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 3.3333333333333335
+  conversion: One requested 10 kWp installation = 10/3 = 3.33333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic slanted-roof installation, 3kWp,
+    single-Si, laminated, integrated, on roof.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: single-Si
+    pv capacity kwp: 10.0
+  confidence: medium
+- id: pv-10-kwp-slanted-roof-single-crystalline-silicon-panel-mounted-on-roof
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 10 kwp, slanted-roof, single-crystalline silicon, panel, mounted,
+      on roof
+    unit: unit
+  suppliers:
+  - name: photovoltaic slanted-roof installation, 3kWp, single-Si, panel, mounted, on roof
+    product: photovoltaic slanted-roof installation, 3kWp, single-Si, panel, mounted, on roof
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 3.3333333333333335
+  conversion: One requested 10 kWp installation = 10/3 = 3.33333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic slanted-roof installation, 3kWp,
+    single-Si, panel, mounted, on roof.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: single-Si
+    pv capacity kwp: 10.0
+  confidence: medium
+- id: pv-10-mw-ground-mounted-cadmium-telluride-panel-on-open-ground
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 10 mw, ground-mounted, cadmium telluride, panel, on open ground
+    unit: unit
+  suppliers:
+  - name: photovoltaic plant construction, 570kWp, multi-Si, on open ground
+    product: photovoltaic plant, 570kWp, multi-Si, on open ground
+    unit: unit
+    locations:
+    - GLO
+  amount: 17.54385964912281
+  conversion: One requested 10000 kWp installation = 10000/570 = 17.5438596491 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: Linear installed-capacity scaling of the native 570 kWp multi-Si ground plant, including land and
+    balance of system. Economies of scale and modern plant layouts are not resolved; single-Si and CdTe requests
+    use a multi-Si technology proxy.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic plant construction, 570kWp, multi-Si,
+    on open ground.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: multi-Si
+    pv capacity kwp: 10000.0
+  confidence: low
+- id: pv-10-mw-ground-mounted-multicrystalline-silicon-panel-on-open-ground
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 10 mw, ground-mounted, multicrystalline silicon, panel, on open ground
+    unit: unit
+  suppliers:
+  - name: photovoltaic plant construction, 570kWp, multi-Si, on open ground
+    product: photovoltaic plant, 570kWp, multi-Si, on open ground
+    unit: unit
+    locations:
+    - GLO
+  amount: 17.54385964912281
+  conversion: One requested 10000 kWp installation = 10000/570 = 17.5438596491 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: Linear installed-capacity scaling of the native 570 kWp multi-Si ground plant, including land and
+    balance of system. Economies of scale and modern plant layouts are not resolved; single-Si and CdTe requests
+    use a multi-Si technology proxy.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic plant construction, 570kWp, multi-Si,
+    on open ground.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: multi-Si
+    pv capacity kwp: 10000.0
+  confidence: medium
+- id: pv-10-mw-ground-mounted-single-crystalline-silicon-panel-on-open-ground
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 10 mw, ground-mounted, single-crystalline silicon, panel, on open
+      ground
+    unit: unit
+  suppliers:
+  - name: photovoltaic plant construction, 570kWp, multi-Si, on open ground
+    product: photovoltaic plant, 570kWp, multi-Si, on open ground
+    unit: unit
+    locations:
+    - GLO
+  amount: 17.54385964912281
+  conversion: One requested 10000 kWp installation = 10000/570 = 17.5438596491 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: Linear installed-capacity scaling of the native 570 kWp multi-Si ground plant, including land and
+    balance of system. Economies of scale and modern plant layouts are not resolved; single-Si and CdTe requests
+    use a multi-Si technology proxy.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic plant construction, 570kWp, multi-Si,
+    on open ground.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: multi-Si
+    pv capacity kwp: 10000.0
+  confidence: medium
+- id: pv-250-kwp-flat-roof-multicrystalline-silicon-panel-mounted-on-roof
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 250 kwp, flat-roof, multicrystalline silicon, panel, mounted, on roof
+    unit: unit
+  suppliers:
+  - name: photovoltaic flat-roof installation, 3kWp, multi-Si, on roof
+    product: photovoltaic flat-roof installation, 3kWp, multi-Si, on roof
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 83.33333333333333
+  conversion: One requested 250 kWp installation = 250/3 = 83.3333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic flat-roof installation, 3kWp,
+    multi-Si, on roof.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: multi-Si
+    pv capacity kwp: 250.0
+  confidence: medium
+- id: pv-250-kwp-flat-roof-single-crystalline-silicon-panel-mounted-on-roof
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 250 kwp, flat-roof, single-crystalline silicon, panel, mounted, on
+      roof
+    unit: unit
+  suppliers:
+  - name: photovoltaic flat-roof installation, 3kWp, single-Si, on roof
+    product: photovoltaic flat-roof installation, 3kWp, single-Si, on roof
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 83.33333333333333
+  conversion: One requested 250 kWp installation = 250/3 = 83.3333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic flat-roof installation, 3kWp,
+    single-Si, on roof.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: single-Si
+    pv capacity kwp: 250.0
+  confidence: medium
+- id: pv-250-kwp-slanted-roof-multicrystalline-silicon-laminate-integrated-on-roof
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 250 kwp, slanted-roof, multicrystalline silicon, laminate, integrated,
+      on roof
+    unit: unit
+  suppliers:
+  - name: photovoltaic slanted-roof installation, 3kWp, multi-Si, laminated, integrated, on roof
+    product: photovoltaic slanted-roof installation, 3kWp, multi-Si, laminated, integrated, on roof
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 83.33333333333333
+  conversion: One requested 250 kWp installation = 250/3 = 83.3333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic slanted-roof installation, 3kWp,
+    multi-Si, laminated, integrated, on roof.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: multi-Si
+    pv capacity kwp: 250.0
+  confidence: medium
+- id: pv-250-kwp-slanted-roof-multicrystalline-silicon-panel-mounted-on-roof
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 250 kwp, slanted-roof, multicrystalline silicon, panel, mounted, on
+      roof
+    unit: unit
+  suppliers:
+  - name: photovoltaic slanted-roof installation, 3kWp, multi-Si, panel, mounted, on roof
+    product: photovoltaic slanted-roof installation, 3kWp, multi-Si, panel, mounted, on roof
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 83.33333333333333
+  conversion: One requested 250 kWp installation = 250/3 = 83.3333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic slanted-roof installation, 3kWp,
+    multi-Si, panel, mounted, on roof.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: multi-Si
+    pv capacity kwp: 250.0
+  confidence: medium
+- id: pv-250-kwp-slanted-roof-single-crystalline-silicon-laminate-integrated-on-roof
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 250 kwp, slanted-roof, single-crystalline silicon, laminate, integrated,
+      on roof
+    unit: unit
+  suppliers:
+  - name: photovoltaic slanted-roof installation, 3kWp, single-Si, laminated, integrated, on roof
+    product: photovoltaic slanted-roof installation, 3kWp, single-Si, laminated, integrated, on roof
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 83.33333333333333
+  conversion: One requested 250 kWp installation = 250/3 = 83.3333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic slanted-roof installation, 3kWp,
+    single-Si, laminated, integrated, on roof.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: single-Si
+    pv capacity kwp: 250.0
+  confidence: medium
+- id: pv-250-kwp-slanted-roof-single-crystalline-silicon-panel-mounted-on-roof
+  review_status: reviewed
+  match:
+    names:
+    - photovoltaic installation construction, 250 kwp, slanted-roof, single-crystalline silicon, panel, mounted,
+      on roof
+    unit: unit
+  suppliers:
+  - name: photovoltaic slanted-roof installation, 3kWp, single-Si, panel, mounted, on roof
+    product: photovoltaic slanted-roof installation, 3kWp, single-Si, panel, mounted, on roof
+    unit: unit
+    locations:
+    - same
+    - RoW
+    - GLO
+    - CH
+  amount: 83.33333333333333
+  conversion: One requested 250 kWp installation = 250/3 = 83.3333333333 native installations. This is a capacity-based
+    engineering proxy, not a measured bill of materials.
+  limitations: All native 3 kWp material, inverter and installation inputs scale linearly with rated capacity. No
+    economies of scale or updated PERC/TOPCon manufacturing are inferred. Native manufacturing/supply geography
+    is retained, with RoW/CH proxies when no local installation is available.
+  evidence:
+  - 'Native ecoinvent 3.12 inventory and reference-product metadata: photovoltaic slanted-roof installation, 3kWp,
+    single-Si, panel, mounted, on roof.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - https://support.ecoinvent.org/hubfs/Comms/2025%20v3.12%20Release/ecoinvent%20Introduction%20to%20version%203.12%20Webinar%20Q%26A.pdf
+  metadata:
+    pv technology: single-Si
+    pv capacity kwp: 250.0
+  confidence: medium
+- id: battery-cell-lfp
+  review_status: reviewed
+  match:
+    names:
+    - battery cell production, Li-ion, LFP
+    unit: kilogram
+  suppliers:
+  - name: battery cell production, Li-ion, LFP
+    product: battery cell, Li-ion, LFP
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
+    supplier.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery cell production, Li-ion,
+    LFP.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: medium
+- id: battery-cell-market-lfp
+  review_status: reviewed
+  match:
+    names:
+    - market for battery cell, Li-ion, LFP
+    - market for battery cell, Li-ion, LFP, curated supply
+    unit: kilogram
+  suppliers:
+  - name: market for battery cell, Li-ion, LFP
+    product: battery cell, Li-ion, LFP
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
+    supplier.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged. Uses the native market supply mix rather
+    than the curated source mix.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: market for battery cell, Li-ion,
+    LFP.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: medium
+- id: battery-pack-lfp
+  review_status: reviewed
+  match:
+    names:
+    - battery pack production, lithium-ion, lfp, without electronics
+    unit: kilogram
+  suppliers:
+  - name: battery production, Li-ion, LFP, rechargeable
+    product: battery, Li-ion, LFP, rechargeable
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: Native pack manufacture with the BMS input removed, renormalized to one kg of pack without electronics;
+    actual removed mass and multiplier are reported.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged. The native BMS purchase is removed, and
+    all remaining native inputs are divided by one minus its kg share. Separate control-unit purchases in the consuming
+    model are retained. Pack architecture and thermal design are represented by the native reference.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery production, Li-ion, LFP,
+    rechargeable.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  exclude_inputs:
+  - market for battery management system, for Li-ion battery
+  - battery management system production, for Li-ion battery
+  renormalize_excluded_mass: true
+  confidence: medium
+- id: battery-cell-limn2o4
+  review_status: reviewed
+  match:
+    names:
+    - battery cell production, Li-ion, LiMn2O4
+    unit: kilogram
+  suppliers:
+  - name: battery cell production, Li-ion, LiMn2O4
+    product: battery cell, Li-ion, LiMn2O4
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
+    supplier.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery cell production, Li-ion,
+    LiMn2O4.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: medium
+- id: battery-pack-limn2o4
+  review_status: reviewed
+  match:
+    names:
+    - battery pack production, lithium-ion, limn2o4, without electronics
+    unit: kilogram
+  suppliers:
+  - name: battery production, Li-ion, LiMn2O4, rechargeable
+    product: battery, Li-ion, LiMn2O4, rechargeable
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: The native LMO pack has direct printed-board inputs rather than a separate BMS. Remove those boards,
+    renormalizing the remaining inputs to one kg; retain the native pack wiring and separately model the requested
+    controls.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged. The native BMS purchase is removed, and
+    all remaining native inputs are divided by one minus its kg share. Separate control-unit purchases in the consuming
+    model are retained. Pack architecture and thermal design are represented by the native reference.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery production, Li-ion, LiMn2O4,
+    rechargeable.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  exclude_inputs:
+  - market for printed wiring board, surface mounted, unspecified, Pb containing
+  - market for printed wiring board, surface mounted, unspecified, Pb free
+  renormalize_excluded_mass: true
+  confidence: medium
+- id: battery-cell-nca
+  review_status: reviewed
+  match:
+    names:
+    - battery cell production, Li-ion, NCA
+    unit: kilogram
+  suppliers:
+  - name: battery cell production, Li-ion, NCA
+    product: battery cell, Li-ion, NCA
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
+    supplier.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery cell production, Li-ion,
+    NCA.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: medium
+- id: battery-pack-nca
+  review_status: reviewed
+  match:
+    names:
+    - battery pack production, lithium-ion, nca, retained existing cell, without electronics
+    unit: kilogram
+  suppliers:
+  - name: battery production, Li-ion, NCA, rechargeable
+    product: battery, Li-ion, NCA, rechargeable
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: Native pack manufacture with the BMS input removed, renormalized to one kg of pack without electronics;
+    actual removed mass and multiplier are reported.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged. The native BMS purchase is removed, and
+    all remaining native inputs are divided by one minus its kg share. Separate control-unit purchases in the consuming
+    model are retained. Pack architecture and thermal design are represented by the native reference.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery production, Li-ion, NCA,
+    rechargeable.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  exclude_inputs:
+  - market for battery management system, for Li-ion battery
+  - battery management system production, for Li-ion battery
+  renormalize_excluded_mass: true
+  confidence: medium
+- id: battery-cell-nmc111
+  review_status: reviewed
+  match:
+    names:
+    - battery cell production, Li-ion, NMC111
+    unit: kilogram
+  suppliers:
+  - name: battery cell production, Li-ion, NMC111
+    product: battery cell, Li-ion, NMC111
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
+    supplier.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery cell production, Li-ion,
+    NMC111.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: medium
+- id: battery-pack-nmc111
+  review_status: reviewed
+  match:
+    names:
+    - battery pack production, lithium-ion, nmc111, retained existing cell, without electronics
+    unit: kilogram
+  suppliers:
+  - name: battery production, Li-ion, NMC111, rechargeable
+    product: battery, Li-ion, NMC111, rechargeable
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: Native pack manufacture with the BMS input removed, renormalized to one kg of pack without electronics;
+    actual removed mass and multiplier are reported.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged. The native BMS purchase is removed, and
+    all remaining native inputs are divided by one minus its kg share. Separate control-unit purchases in the consuming
+    model are retained. Pack architecture and thermal design are represented by the native reference.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery production, Li-ion, NMC111,
+    rechargeable.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  exclude_inputs:
+  - market for battery management system, for Li-ion battery
+  - battery management system production, for Li-ion battery
+  renormalize_excluded_mass: true
+  confidence: medium
+- id: battery-cell-nmc532
+  review_status: reviewed
+  match:
+    names:
+    - battery cell production, Li-ion, NMC532
+    unit: kilogram
+  suppliers:
+  - name: battery cell production, Li-ion, NMC532
+    product: battery cell, Li-ion, NMC532
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
+    supplier.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery cell production, Li-ion,
+    NMC532.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: medium
+- id: battery-pack-nmc532
+  review_status: reviewed
+  match:
+    names:
+    - battery pack production, lithium-ion, nmc532, without electronics
+    unit: kilogram
+  suppliers:
+  - name: battery production, Li-ion, NMC532, rechargeable
+    product: battery, Li-ion, NMC532, rechargeable
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: Native pack manufacture with the BMS input removed, renormalized to one kg of pack without electronics;
+    actual removed mass and multiplier are reported.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged. The native BMS purchase is removed, and
+    all remaining native inputs are divided by one minus its kg share. Separate control-unit purchases in the consuming
+    model are retained. Pack architecture and thermal design are represented by the native reference.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery production, Li-ion, NMC532,
+    rechargeable.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  exclude_inputs:
+  - market for battery management system, for Li-ion battery
+  - battery management system production, for Li-ion battery
+  renormalize_excluded_mass: true
+  confidence: medium
+- id: battery-cell-nmc622
+  review_status: reviewed
+  match:
+    names:
+    - battery cell production, Li-ion, NMC622
+    unit: kilogram
+  suppliers:
+  - name: battery cell production, Li-ion, NMC622
+    product: battery cell, Li-ion, NMC622
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
+    supplier.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery cell production, Li-ion,
+    NMC622.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: medium
+- id: battery-cell-market-nmc622
+  review_status: reviewed
+  match:
+    names:
+    - market for battery cell, Li-ion, NMC622
+    - battery cell supply reference, Li-ion, NMC622, native global market
+    unit: kilogram
+  suppliers:
+  - name: market for battery cell, Li-ion, NMC622
+    product: battery cell, Li-ion, NMC622
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
+    supplier.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged. Uses the native market supply mix rather
+    than the curated source mix.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: market for battery cell, Li-ion,
+    NMC622.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: medium
+- id: battery-pack-nmc622
+  review_status: reviewed
+  match:
+    names:
+    - battery pack production, lithium-ion, nmc622, without electronics
+    unit: kilogram
+  suppliers:
+  - name: battery production, Li-ion, NMC622, rechargeable
+    product: battery, Li-ion, NMC622, rechargeable
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: Native pack manufacture with the BMS input removed, renormalized to one kg of pack without electronics;
+    actual removed mass and multiplier are reported.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged. The native BMS purchase is removed, and
+    all remaining native inputs are divided by one minus its kg share. Separate control-unit purchases in the consuming
+    model are retained. Pack architecture and thermal design are represented by the native reference.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery production, Li-ion, NMC622,
+    rechargeable.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  exclude_inputs:
+  - market for battery management system, for Li-ion battery
+  - battery management system production, for Li-ion battery
+  renormalize_excluded_mass: true
+  confidence: medium
+- id: battery-cell-nmc811
+  review_status: reviewed
+  match:
+    names:
+    - battery cell production, Li-ion, NMC811
+    unit: kilogram
+  suppliers:
+  - name: battery cell production, Li-ion, NMC811
+    product: battery cell, Li-ion, NMC811
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
+    supplier.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery cell production, Li-ion,
+    NMC811.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: medium
+- id: battery-pack-nmc811
+  review_status: reviewed
+  match:
+    names:
+    - battery pack production, lithium-ion, nmc811, retained existing cell, without electronics
+    unit: kilogram
+  suppliers:
+  - name: battery production, Li-ion, NMC811, rechargeable
+    product: battery, Li-ion, NMC811, rechargeable
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: Native pack manufacture with the BMS input removed, renormalized to one kg of pack without electronics;
+    actual removed mass and multiplier are reported.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged. The native BMS purchase is removed, and
+    all remaining native inputs are divided by one minus its kg share. Separate control-unit purchases in the consuming
+    model are retained. Pack architecture and thermal design are represented by the native reference.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery production, Li-ion, NMC811,
+    rechargeable.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  exclude_inputs:
+  - market for battery management system, for Li-ion battery
+  - battery management system production, for Li-ion battery
+  renormalize_excluded_mass: true
+  confidence: medium
+- id: battery-cell-nmc955
+  review_status: reviewed
+  match:
+    names:
+    - battery cell production, Li-ion, NMC955
+    unit: kilogram
+  suppliers:
+  - name: battery cell production, Li-ion, NMC811
+    product: battery cell, Li-ion, NMC811
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
+    supplier.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged. NMC955 is approximated by NMC811 manufacturing
+    per kg; chemistry-specific electrode materials and their burdens are not reproduced. This does not substitute
+    the proxy chemistry energy density or cycle life into the consuming model.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery cell production, Li-ion,
+    NMC811.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: low
+- id: battery-pack-nmc955
+  review_status: reviewed
+  match:
+    names:
+    - battery pack production, lithium-ion, nmc955, without electronics
+    unit: kilogram
+  suppliers:
+  - name: battery production, Li-ion, NMC811, rechargeable
+    product: battery, Li-ion, NMC811, rechargeable
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: Native pack manufacture with the BMS input removed, renormalized to one kg of pack without electronics;
+    actual removed mass and multiplier are reported.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged. NMC955 is approximated by NMC811 manufacturing
+    per kg; chemistry-specific electrode materials and their burdens are not reproduced. This does not substitute
+    the proxy chemistry energy density or cycle life into the consuming model. The native BMS purchase is removed,
+    and all remaining native inputs are divided by one minus its kg share. Separate control-unit purchases in the
+    consuming model are retained. Pack architecture and thermal design are represented by the native reference.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery production, Li-ion, NMC811,
+    rechargeable.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  exclude_inputs:
+  - market for battery management system, for Li-ion battery
+  - battery management system production, for Li-ion battery
+  renormalize_excluded_mass: true
+  confidence: low
+- id: battery-cell-lto
+  review_status: reviewed
+  match:
+    names:
+    - battery cell production, Li-ion, LTO
+    unit: kilogram
+  suppliers:
+  - name: battery cell production, Li-ion, LFP
+    product: battery cell, Li-ion, LFP
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
+    supplier.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged. LTO is approximated by LFP manufacturing
+    per kg; chemistry-specific electrode materials and their burdens are not reproduced. This does not substitute
+    the proxy chemistry energy density or cycle life into the consuming model.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery cell production, Li-ion,
+    LFP.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: low
+- id: battery-cell-market-lto
+  review_status: reviewed
+  match:
+    names:
+    - market for battery cell, Li-ion, LTO
+    unit: kilogram
+  suppliers:
+  - name: market for battery cell, Li-ion, LFP
+    product: battery cell, Li-ion, LFP
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
+    supplier.
+  limitations: Native cell manufacture per kg replaces the source-specific formulation, manufacturing energy and
+    geography; any separate capacity-to-mass conversion remains unchanged. LTO is approximated by LFP manufacturing
+    per kg; chemistry-specific electrode materials and their burdens are not reproduced. This does not substitute
+    the proxy chemistry energy density or cycle life into the consuming model. Uses the native market supply mix
+    rather than the curated source mix.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: market for battery cell, Li-ion,
+    LFP.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: low
+- id: battery-controls-per-unit
+  review_status: reviewed
+  match:
+    names:
+    - battery monitoring and central control system production, lithium-ion, lfp
+    - battery monitoring and central control system production, lithium-ion, limn2o4
+    - battery monitoring and central control system production, lithium-ion, nca
+    - battery monitoring and central control system production, lithium-ion, nmc111
+    - battery monitoring and central control system production, lithium-ion, nmc532
+    - battery monitoring and central control system production, lithium-ion, nmc622
+    - battery monitoring and central control system production, lithium-ion, nmc811
+    - battery monitoring and central control system production, lithium-ion, nmc955
+    - battery central control and protection unit production
+    - battery control and cooling system production, 16 modules
+    unit: unit
+  suppliers:
+  - name: battery management system production, for Li-ion battery
+    product: battery management system, for Li-ion battery
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: Four kg of native battery-management electronics per requested control assembly. This is an explicit
+    engineering approximation to one vehicle-pack control system, not a kg-to-unit identity conversion.
+  limitations: A single 4 kg BMS represents the complete requested control assembly regardless of module count or
+    chemistry. The native NMC622 23.5 kWh/165 kg reference pack has about 4.3 kg of BMS, motivating this rounded
+    approximation. Cooling hardware, split central/monitoring designs and modern solid-state electronics are not
+    resolved.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery management system production,
+    for Li-ion battery.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  amount: 4
+  confidence: low
+- id: battery-controls-per-kg
+  review_status: reviewed
+  match:
+    names:
+    - battery management system production, for Li-ion battery
+    - battery auxiliary interface and power conditioning unit production
+    unit: kilogram
+  suppliers:
+  - name: battery management system production, for Li-ion battery
+    product: battery management system, for Li-ion battery
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
+    supplier.
+  limitations: Native BMS electronics per kg; auxiliary power-conditioning hardware is represented by the generic
+    battery-control assembly. Specific voltage, cooling and semiconductor architecture are not resolved.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: battery management system production,
+    for Li-ion battery.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: medium
+- id: battery-lto-pack-market
+  review_status: reviewed
+  match:
+    names:
+    - market for battery, Li-ion, LTO
+    unit: kilogram
+  suppliers:
+  - name: market for battery, Li-ion, LFP, rechargeable
+    product: battery, Li-ion, LFP, rechargeable
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
+    supplier.
+  limitations: An LFP pack supply proxy represents LTO pack manufacture per kg. It includes native controls; detailed
+    LTO electrodes, cycle life, energy density and the source pack architecture are not reproduced or substituted
+    into the consuming capacity conversion.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: market for battery, Li-ion, LFP,
+    rechargeable.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: low
+- id: powertrain-electric-motor
+  review_status: reviewed
+  match:
+    names:
+    - traction powertrain production, permanent magnet motor
+    unit: kilogram
+  suppliers:
+  - name: electric motor production, vehicle (electric powertrain)
+    product: electric motor, electric passenger car
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
+    supplier.
+  limitations: Native electric-passenger-car traction motor manufacture per kg substitutes the hybrid permanent-magnet
+    motor material reference. Motor type, power rating, magnet content, design year and vehicle class can differ.
+    Uses the motor-only inventory to avoid counting the separately supplied charger, converter and controller again;
+    no use-phase efficiency is inferred.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: electric motor production, vehicle
+    (electric powertrain).'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: medium
+- id: powertrain-motorcycle
+  review_status: reviewed
+  match:
+    names:
+    - mechanical powertrain production, motorcycle, gasoline
+    unit: kilogram
+  suppliers:
+  - name: internal combustion engine production, passenger car
+    product: internal combustion engine, passenger car
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - CN
+    - RER
+  conversion: 1 native kilogram per requested kilogram; manufacturing geography remains that of the selected native
+    supplier.
+  limitations: A passenger-car engine per kg is a manufacturing proxy for the motorcycle mechanical powertrain.
+    Gearbox, starter and clutch detail and motorcycle-specific manufacturing are not resolved; no fuel consumption
+    or efficiency is inferred.
+  evidence:
+  - 'Native ecoinvent 3.12 dataset documentation and reference-unit inventory: internal combustion engine production,
+    passenger car.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: low
+- id: vehicle-auxiliary-battery
+  review_status: reviewed
+  match:
+    names:
+    - auxiliary battery production and attributed treatment, passenger car, historical burden proxy
+    unit: kilogram
+  suppliers:
+  - name: battery production, lead acid, rechargeable, stationary
+    product: battery, lead acid, rechargeable, stationary
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - RER
+    - US
+  conversion: One kg of the native manufactured component per requested kg of historical component.
+  limitations: Native stationary VRLA lead-acid manufacture per kg approximates an automotive auxiliary battery.
+    Starting performance, lifetime and design are not substituted into the vehicle. The original attributed-treatment
+    convention is not reproduced; no additional recycling credit or remelting burden is invented under the cutoff
+    background.
+  evidence:
+  - 'Native ecoinvent 3.12 documentation and inventory: battery production, lead acid, rechargeable, stationary.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: low
+- id: vehicle-dry-combustion-equipment
+  review_status: reviewed
+  match:
+    names:
+    - dry combustion equipment lifecycle, historical Notter engineering reference
+    unit: kilogram
+  suppliers:
+  - name: internal combustion engine production, passenger car
+    product: internal combustion engine, passenger car
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - RER
+    - US
+  conversion: One kg of the native manufactured component per requested kg of historical component.
+  limitations: Native passenger-car engine manufacture per kg represents the historical combustion-equipment reference.
+    Exhaust, transmission and allocated end-of-life burdens can differ; this proxy covers manufacturing and its
+    fabrication wastes, without inferring fuel consumption or adding an unsupported historical recycling allocation.
+  evidence:
+  - 'Native ecoinvent 3.12 documentation and inventory: internal combustion engine production, passenger car.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: low
+- id: vehicle-mechanical-electric-car
+  review_status: reviewed
+  match:
+    names:
+    - mechanical powertrain production and attributed treatment, electric passenger car, historical reference
+    unit: kilogram
+  suppliers:
+  - name: glider production, passenger car
+    product: glider, passenger car
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - RER
+    - US
+  conversion: One kg of the native manufactured component per requested kg of historical component.
+  limitations: A kg of native glider manufacture approximates the steel/aluminium mechanical assembly (gearbox/cooling),
+    not a whole additional car. Body materials and fabrication substitute mechanical machining and cooling detail.
+    Excludes traction motor and power electronics, which remain separately supplied; the original attributed-treatment
+    allocation is not reproduced.
+  evidence:
+  - 'Native ecoinvent 3.12 documentation and inventory: glider production, passenger car.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: low
+- id: vehicle-mechanical-electric-two-wheeler
+  review_status: reviewed
+  match:
+    names:
+    - mechanical equipment production, electric two-wheeler, historical steel-aluminium proxy
+    unit: kilogram
+  suppliers:
+  - name: glider production, electric scooter
+    product: glider, for electric scooter
+    unit: kilogram
+    locations:
+    - same
+    - GLO
+    - RoW
+    - RER
+    - US
+  conversion: One kg of the native manufactured component per requested kg of historical component.
+  limitations: Native electric-scooter glider manufacture per kg replaces the unverified historical steel/aluminium
+    mechanical-equipment proxy. Body materials and fabrication approximate the smaller mechanical assembly; detailed
+    gearbox and cooling components are not resolved. Motor and battery are excluded from the native supplier and
+    remain separate.
+  evidence:
+  - 'Native ecoinvent 3.12 documentation and inventory: glider production, electric scooter.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  confidence: low
+- id: electrolyzer-pfsa-membrane
+  review_status: reviewed
+  match:
+    names:
+    - perfluorosulfonic acid membrane production, ew1100, engineering reference
+    unit: kilogram
+  suppliers:
+  - name: polytetrafluoroethylene production, emulsion polymerization
+    product: polytetrafluoroethylene
+    unit: kilogram
+    locations:
+    - GLO
+  conversion: 'One kg of native PTFE resin manufacture per requested kg of PFSA membrane: a fluoropolymer manufacturing-burden
+    proxy, not a functional membrane substitution.'
+  limitations: PFSA has a fluorinated backbone and ionic sulfonic-acid side chains; PTFE alone is not proton-conducting.
+    The proxy omits side-chain chemistry, equivalent-weight specificity, reinforcement and membrane forming. Operational
+    conductivity, lifetime and electrolyzer efficiency remain those of the consuming model. Manufacturing and fluorinated-emission
+    impacts can be substantially biased; this is a low-confidence material proxy.
+  evidence:
+  - https://www.nafion.com/en/products/sulfonic-membranes
+  - Native ecoinvent 3.12 PTFE production inventory (GLO), per kg.
+  - The 1:1 resin mass mapping is a documented engineering assumption, not a reported PFSA inventory.
+  confidence: low
+- id: electrolyzer-power-conversion
+  review_status: reviewed
+  match:
+    names:
+    - power conversion system production, electrolysis, transformer and rectifier, 1 mw
+    unit: unit
+  suppliers:
+  - name: inverter production, 500kW
+    product: inverter, 500kW
+    unit: unit
+    locations:
+    - same
+    - RER
+    - RoW
+  amount: 2
+  conversion: Two native 500 kW inverter assemblies represent the manufacturing burden of a 1 MW electrolyzer power-conversion
+    assembly.
+  limitations: Uses legacy photovoltaic DC/AC inverter manufacturing as a capacity-normalized proxy for AC/DC conversion.
+    Native bulk metals, oil/cooling, electronics and documented end-of-life flows are retained. A separately rated
+    grid transformer, modern SiC semiconductor architecture, harmonics and voltage levels are not resolved. No operational
+    efficiency is inferred from the inverter. This is a low-confidence assembly proxy that replaces the complete
+    restricted component chain.
+  evidence:
+  - 'Native ecoinvent 3.12 inverter production, 500kW (RER/RoW): roughly 3000 kg assembly including fabrication
+    and disposal inputs.'
+  - https://ecoinvent.org/ecoinvent-v3-12/
+  - Two 500 kW units per 1 MW is an explicit capacity-based engineering approximation, not a supplier bill of materials.
+  confidence: low
+- id: semiconductor-sic-wafer
+  review_status: reviewed
+  confidence: low
+  match:
+    names:
+    - silicon carbide wafer production, physical vapour transport
+    unit: kilogram
+  suppliers:
+  - name: single-Si wafer production, for electronics
+    product: single-Si wafer, for electronics
+    unit: square meter
+    locations:
+    - same
+    - RoW
+    - RER
+    - GLO
+  amount: 0.8900756564307967
+  conversion: A 350 micrometre SiC wafer at 3210 kg/m3 has an areal mass of 1.1235 kg/m2; one requested kg is represented
+    by 1/1.1235 = 0.8900756564 m2 of native electronic-grade single-Si wafer manufacturing.
+  limitations: Electronic-grade silicon substrate manufacture is a wafer-fabrication burden proxy, not a SiC material
+    recipe. Crystal-growth route, wafer material, thickness, yield and polishing can differ substantially; SiC-specific
+    high-temperature PVT and epitaxy are not reproduced. The representative 350 micrometre thickness is an assumption
+    for the requested kg reference. Operational semiconductor performance is not changed.
+  evidence:
+  - https://www.sicrystal.de/index.php/en/properties-en
+  - https://assets.wolfspeed.com/uploads/2026/02/Wolfspeed_Materials_Catalog.pdf
+  - Native ecoinvent 3.12 single-Si wafer production, for electronics, per square metre.

@@ -93,21 +93,55 @@ and unrecognized declarations block preparation. An explicit non-commercial
 source-license note alongside an otherwise permitted declaration also requires
 review, without asserting that the declaration is necessarily invalid.
 
-**Replacement coverage is not implemented yet.** At this stage the switch stops
-on restricted inventories rather than substituting them. `ClicLicenseError.issues`
-contains all blocked datasets, each with one root-to-supplier dependency path;
-the exception message displays the first ten. Unselected inventories do not
-affect the result. Neither cached resolution nor pinned versions bypass checks.
-Live mode additionally checks license declarations against current public
-metadata, including the specific versions selected by pins. Offline and snapshot
-mode assess the verified archive's declarations and source notes only.
+Reviewed approximate replacements are selected from the user's native ecoinvent
+background using `premise/data/clic/commercial_replacements.yaml`. Initial rules
+cover ecoinvent 3.12 cutoff/EN15804; earlier targets remain blocked where they lack
+a reviewed alternative. The registry includes chargers/converters, conventional
+PV, battery cells/packs/controls, vehicle components and selected electrolyzer
+materials/electronics. Rules state identities, applicable targets, evidence,
+conversion, limitations and confidence. Low-confidence proxies include LTO/NMC955
+chemistry substitutions, coarse vehicle-component manufacturing, PFSA represented
+by PTFE resin, and SiC wafer manufacture represented by electronic-grade silicon
+wafer area. These are manufacturing-burden approximations; they do not change the
+consumer's assumed operating efficiency, conductivity or cycle life.
+
+Replacement processes use the native inventory's exchanges rather than the
+restricted recipe's coefficients or behavior-bearing metadata. Whole-parent
+replacement removes only upstream activities no longer required by another
+retained activity or root. Pack-without-electronics rules remove the native BMS
+purchase (or direct boards in the older LMO design), renormalizing remaining
+inputs to a kg excluding those electronics. Separate control purchases remain.
+PV installations scale by rated capacity; their metadata identifies the actual
+proxy technology and capacity so subsequent module-efficiency updates can run.
+Native manufacturing geography remains intact, with documented location proxies.
+Native replacements already belong to the destination background. Their target
+and inventory fingerprints are checked before they pass to the adapter's exact
+supplier/biosphere matching. They bypass background migration and a second
+EN15804 scrap conversion; ordinary CLIC cohorts retain the migration pipeline.
+
+Essential requirements without a reviewed available replacement still stop the
+build. `ClicLicenseError.issues` contains all blocked datasets with one
+root-to-supplier path each; the message displays the first ten. Methane-pyrolysis
+hydrogen with unresolved source-license notes remains blocked. Unselected
+inventories do not affect the result. Neither caches nor pinned versions bypass
+checks. Live mode checks declarations for all used CLIC records, including
+specific pinned versions; replaced original records are not used inventories.
+Offline/snapshot mode assesses the verified archive. The archive itself contains
+mixed-license material; this policy governs the foreground used in the build.
 
 The manifest's `license_policy` records the policy fingerprint, selected licenses,
 source notes, citations and conditions. Commercial recipes restore this policy
 automatically on replay; a changed policy fingerprint requires review and a new
 recipe. Policy metadata contributes to retained-inventory and scenario cache
 fingerprints. Report exports include an `inventory-licenses-N.csv` sidecar and a
-`CLIC Licenses` workbook sheet. Default builds do not add these files or sheets.
+`CLIC Licenses` workbook sheet. Substitutions also appear in an
+`inventory-substitutions-N.csv` sidecar and a `CLIC Replacements` sheet, including
+the actual native supplier, conversion, confidence and limitations in the
+manifest/CSV. The inventory sheet distinguishes the original published license
+from the license of the inventory actually used. Commercial recipes additionally
+freeze the registry fingerprint, target and actual replacement-inventory
+fingerprints; changing the source coefficients, rules or target requires a new
+reviewed recipe. Default builds do not add these files, sheets or policy fields.
 
 The scope is CLIC foreground selection. Ecoinvent, retained workbooks and
 user-supplied inventories require separate permission assessments. In particular,
@@ -117,19 +151,11 @@ of rights underlying a third-party declaration. See the
 [CLIC license guide](https://clic.psi.ch/licenses/) and
 [ecoinvent licensing terms](https://support.ecoinvent.org/licensing).
 
-Implementation continues in these batches:
-
-1. License enforcement, cache/recipe integration and reporting.
-2. A YAML registry of reviewed native ecoinvent or permitted CLIC replacements,
-   starting with chargers/converters, conventional PV and battery supply chains.
-   Each rule must state target compatibility, conversion, evidence and limitations.
-   Reasonably equivalent proxies are acceptable when documented; runtime fuzzy
-   matching is not an authorization mechanism.
-3. Harder technology proxies, dependency pruning and role compatibility checks,
-   cross-version validation from ecoinvent 3.8 through 3.12, result comparisons and
-   runtime benchmarks. Restricted recipe coefficients must not be copied into
-   supposedly permissive replacements. Policy-off results must stay unchanged;
-   policy-on substitution effects must be reported.
+Further rollout requires an independently sourced methane-pyrolysis alternative,
+cross-version validation from ecoinvent 3.8 through 3.12, scenario/role tests, result
+comparisons and runtime benchmarks. Policy-off results must stay unchanged;
+policy-on substitution effects must be reported. No claim of inventory or LCIA
+equivalence is made for approximate replacements.
 
 ## Recipes and reproducibility
 
