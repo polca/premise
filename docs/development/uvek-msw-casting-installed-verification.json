@@ -1,0 +1,87 @@
+{
+  "status": "installed_msw_and_casting_material_regressions_passed",
+  "Brightpath_Git_revision": "7c537d9a8b3fdca407e34430aef220e89d4ca4a3",
+  "runtime_packages_loaded_only_from_installed_environment": true,
+  "test_files": 24,
+  "scope_gate_accepts_trucks": true,
+  "elapsed_seconds": 175.93007949995808,
+  "tests_passed": 299,
+  "dependency_warnings": 2,
+  "public_preparation": {
+    "status": "installed_public_fifteen_sector_inventory_preparation_passed",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel",
+      "mining",
+      "renewable",
+      "cdr",
+      "fuels",
+      "ships",
+      "buses",
+      "two_wheelers",
+      "trains",
+      "cars",
+      "trucks"
+    ],
+    "CLIC_records": 1495,
+    "Brightpath_Git_revision": "7c537d9a8b3fdca407e34430aef220e89d4ca4a3",
+    "CLIC_options_overridden": false,
+    "freshness": "normal live default",
+    "scope_gate_bypassed": false,
+    "validation_disabled": false,
+    "new_Brightway_databases": 0,
+    "registry_and_processed_file_names_unchanged": true,
+    "elapsed_seconds": 102.45176687499043,
+    "qualification_limit": "Preparation regression of already qualified15sectors; no sector update/export repeated and battery/final-energy sectors remain unfinished."
+  },
+  "installed_byte_checks": {
+    "brightpath": {
+      "verified_installed_package_files": 577,
+      "all_packaged_files_present_in_source_match": true
+    },
+    "premise": {
+      "verified_installed_package_files": 423,
+      "all_packaged_files_present_in_source_match": true
+    }
+  },
+  "cleanup": {
+    "removed": [
+      {
+        "path": "/private/tmp/premise-all-sectors/casting-materials-39-generated",
+        "bytes_removed": 111300893
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/msw-casting-pip-cache",
+        "bytes_removed": 68692003
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/battery-six-installed-wheels",
+        "bytes_removed": 23006104
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/premise-clic-worktree/build",
+        "bytes_removed": 63742246
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/premise-clic-worktree/premise.egg-info",
+        "bytes_removed": 114693
+      }
+    ],
+    "bytes_removed": 266855939,
+    "retained": "Current installed environment and current Premise wheel; source/biosphere databases, latest verified 15-sector export and 14-sector fallback; private source witnesses and active work."
+  },
+  "complete_sectors": 15,
+  "total_sectors": 19,
+  "remaining_sectors": [
+    "battery",
+    "final energy",
+    "emissions",
+    "metals"
+  ],
+  "production_Python_changes_in_batch": 0,
+  "Brightpath_install_provenance": "Exact committed revision installed through a local Git clone before batch publication; same GitHub revision is pinned in requirements.",
+  "normal_public_workflow_preserved": true
+}

@@ -2300,3 +2300,36 @@ pip cache and an old wheel are removed. Sources, biosphere, the latest verified
 export and checkpoints remain. See
 [verification](uvek-battery-three-native-39-verification.json) and
 [cleanup](uvek-battery-native-review-cleanup-2026-11-16.json).
+
+
+## 2026-11-17: verified municipal waste and required casting materials
+
+Fifteen sectors remain qualified, including the full ordinary truck update and
+export documented in `uvek-trucks-public-export-verification.json`. Battery,
+final energy, emissions and metals remain unfinished. Two source-3.9 municipal
+waste roots retain 37 country markets, nine uncontrolled treatments and all
+1,008 canonical elementary-flow entries. Their 92 signed no-write LCIs and
+46 independent source-derived demand comparisons pass. Thirty-four required
+casting-material markets retain source producer/delivery quantities, AE7
+feedstocks, ammonia and titanium-dioxide routes and recovered silicon carbide.
+Their 68 signed no-write LCIs and 34 independent demand comparisons pass.
+Native proxy boundaries and solver-refinement evidence are documented in the
+individual reviews; no source/native impact equivalence is claimed.
+
+The exact casting-producer retry now has 14 unapproved operation interfaces,
+down from 52: 34 materials solved here and four wastes in the preceding batch.
+The remaining chemical-branch preflight separately exposes 16 child interfaces
+(five municipal-waste markets, three nitrogen-oxide gas markets and eight PET
+waste markets). These are inspected dependency groups, not a total remaining
+case count. No production/generator Python module changes are introduced.
+
+The colleague requirements and guide pin Brightpath revision
+`7c537d9a8b3fdca407e34430aef220e89d4ca4a3`. Installed-only regression checks
+pass 299 tests across 24 files. All 577 Brightpath and 423 Premise package files
+checked match the committed source. Normal live archive preparation for all
+15 qualified sectors returns 1,495 CLIC records without admission bypass,
+validation changes or database writes. See `uvek-msw-39-review.md`,
+`uvek-casting-materials-39-review.md` and
+`uvek-msw-casting-installed-verification.json`. Temporary generator outputs,
+build directories, obsolete wheels and the owned pip cache are removed after
+verification. Source/biosphere and the latest two verified exports are retained.
