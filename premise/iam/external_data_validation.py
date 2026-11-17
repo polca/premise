@@ -727,24 +727,21 @@ def check_inventories(
 
 
 def check_datapackage(datapackage: datapackage.Package):
-    # validate package descriptor
+    """Validate the descriptor, resource pairing, source version and resource names."""
 
     try:
         validate(datapackage.descriptor)
     except exceptions.ValidationError as exception:
         raise exception
 
-    if "config" in [i.name for i in datapackage.resources] and "scenario_data" not in [
-        i.name for i in datapackage.resources
-    ]:
+    resource_names = [resource.name for resource in datapackage.resources]
+    if "config" in resource_names and "scenario_data" not in resource_names:
         raise ValueError(
             "If the resource 'config' is present in the datapackage,"
             "so must the resource 'scenario_data'."
         )
 
-    if "scenario_data" in [i.name for i in datapackage.resources] and "config" not in [
-        i.name for i in datapackage.resources
-    ]:
+    if "scenario_data" in resource_names and "config" not in resource_names:
         raise ValueError(
             "If the resource 'scenario_data' is present in the datapackage,"
             " so must the resource 'config'."
@@ -756,12 +753,8 @@ def check_datapackage(datapackage: datapackage.Package):
     ), f"The ecoinvent source version in the datapackage is not supported. Must be one of {config['SUPPORTED_INVENTORY_SOURCE_VERSIONS']}."
 
     if (
-        sum(
-            s.name == y.name
-            for s in datapackage.resources
-            for y in datapackage.resources
-        )
-        / len(datapackage.resources)
+        sum(first == second for first in resource_names for second in resource_names)
+        / len(resource_names)
         > 1
     ):
         raise ValueError(f"Two or more resources in the datapackage are similar.")
