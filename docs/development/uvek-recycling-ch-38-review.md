@@ -46,8 +46,10 @@ Twenty Brightpath tests and five Premise tests pass, covering signs and
 uncertainty, both native releases, paid recycling, treatment fates, heat sources,
 stock authority, formulas, cache warnings and permission withdrawal. The normal
 generator reproduces all three resources; both canonical biosphere files remain
-unchanged. Additional older-PET and approval regressions are recorded separately
-in the verification artifact.
+unchanged. All six older-PET regressions pass. A broader approval sweep was stopped after
+98 passing tests; its unrelated remaining cases were not completed. Eighteen
+installed-package checks pass without loading checkout runtime modules. The
+verification artifact records that scope explicitly.
 
 Twenty signed LCI solves cover both migrated parents, both recycling producers
 and six heat/waste portfolios. Ten comparisons with the independently prepared

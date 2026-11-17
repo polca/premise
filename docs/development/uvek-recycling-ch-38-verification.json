@@ -7,7 +7,12 @@
   "native_endpoints_checked_in_both_releases": 54,
   "Brightpath_new_and_required_review_tests_passed": 20,
   "Premise_new_recycling_tests_passed": 5,
-  "older_pet_and_approval_regressions": "running",
+  "older_pet_and_approval_regressions": {
+    "older_pet_file_all_6_tests_passed": true,
+    "combined_passing_tests_before_interrupt": 98,
+    "full_unrelated_approval_sweep_completed": false,
+    "reason": "Stopped the broad unrelated parametrized conversion sweep after 98 passing tests; required parent/cache checks already verify the complete approval ledger. No failure occurred in that sweep."
+  },
   "normal_generator_reproduces_all_three_resources": true,
   "canonical_biosphere_files_unchanged": true,
   "new_production_or_generator_Python_changes": 0,
@@ -184,5 +189,43 @@
   },
   "qualified_sectors": 14,
   "total_sectors": 19,
-  "qualification_limit": "The two parent conversions and native-model consistency pass. Complete truck inventory preparation, supplier/filter/physical coverage, public admission and export remain unfinished; four other sectors also remain. No source/native LCIA equivalence is established."
+  "qualification_limit": "The two parent conversions and native-model consistency pass. Complete truck inventory preparation, supplier/filter/physical coverage, public admission and export remain unfinished; four other sectors also remain. No source/native LCIA equivalence is established.",
+  "installed_package_verification": {
+    "status": "installed_truck_mapping_checks_passed",
+    "Brightpath_source_revision": "34039bf312c8de7067ace96135ffdfbe54b944f0",
+    "installation": "Wheels built from committed checkouts; GitHub availability checked separately after batch push.",
+    "runtime_source_checkout_modules_loaded": false,
+    "Premise_approval_ledger_and_dependency_pin_match_checkout": true,
+    "packaged_review_and_resource_bytes_match_checkout": true,
+    "review_sha256": "cdd7a42d51e7e70a590f3f4b8fe9d0349664d9fc14703abb3d07c0bc3506c840",
+    "tests_passed": 18,
+    "wheel_sha256": {
+      "premise-2.6.0-py3-none-any.whl": "74a3c4cddc6415bf7b8fd25c6d718917c5aee51f9f259e017dd1fe3023995a4a",
+      "brightpath-1.0.0a14-py3-none-any.whl": "64baa69a1459654d049a85c25970d810ff4cd2b8c3fadf8edb69974bd86d690a"
+    },
+    "new_Brightway_databases": 0
+  },
+  "cleanup": {
+    "owned_superseded_builds_removed": [
+      {
+        "path": "/private/tmp/premise-all-sectors/recycling-materials-38-installed-wheels",
+        "bytes": 68984618
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/recycling-ch-38-generated",
+        "bytes": 108247146
+      },
+      {
+        "path": "/private/tmp/premise-all-sectors/premise-clic-worktree/build",
+        "bytes": 63416346
+      },
+      {
+        "path": "/Users/romain/GitHub/brightpath/build",
+        "bytes": 467652539
+      }
+    ],
+    "bytes_removed": 708300649,
+    "latest_tested_wheels_retained": "/private/tmp/premise-all-sectors/recycling-ch-38-installed-wheels",
+    "Brightway_databases_deleted": 0
+  }
 }
