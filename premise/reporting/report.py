@@ -273,10 +273,6 @@ def _add_chart_if_data(
     min_row_vals = start_row  # include header for titles_from_data=True
     max_row_vals = start_row + (n_rows - 1)
 
-    # Safety: ensure ranges make sense
-    if max_col_vals < min_col_vals or max_row_vals <= min_row_vals:
-        return
-
     values = Reference(
         worksheet,
         min_col=min_col_vals,
