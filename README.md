@@ -173,6 +173,11 @@ External inventories for commercial use
 To use external inventories with licenses compatible with commercial use of
 Premise, we recommend the following workflow.
 
+Premise's own license permits commercial use, but some external inventories
+are published under licenses that restrict it. This workflow checks the selected
+CLIC inventories and replaces restricted datasets with documented alternatives
+where available.
+
 First select your existing Brightway project containing the source and biosphere
 databases. Adapt the database names below to that project, and set
 `IAM_FILES_KEY` to your IAM encryption key in the environment.
