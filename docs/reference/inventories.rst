@@ -64,29 +64,10 @@ Commercial CLIC selection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To screen the selected CLIC activities and their upstream CLIC suppliers for
-commercially permitted licenses, use:
+commercially permitted licenses, set ``inventory_source="clic"`` and
+``clic_options={"license_policy": "commercial"}``.
 
-.. code-block:: python
-
-   db = NewDatabase(
-       # scenarios, source_db, source_version, key, ...
-       inventory_source="clic",
-       clic_options={"license_policy": "commercial"},
-   )
-
-The default policy preserves existing selections. Commercial selection retains
-attribution and ShareAlike requirements, replaces restricted activities using
-reviewed native inventories or independently sourced recipes, and stops if an
-essential requirement has no permitted alternative. Approximate replacements
-can change results substantially: the development comparison found PV climate
-scores up to 324% higher. Exported inventory reports identify every replacement,
-its source, conversion and limitations. Recipes preserve the policy and actual
-replacement choices.
-
-Reviewed targets include cutoff 3.8 through 3.12, including 3.9.1 and 3.10.1,
-and EN15804 3.12. Commercial-policy consequential builds are rejected rather
-than falling back to workbooks. This switch assesses the selected CLIC
-foreground; ecoinvent, retained workbooks and user inventories require separate
-rights assessments. It does not certify the entire resulting database for
-commercial reuse. See the `CLIC license guide <https://clic.psi.ch/licenses/>`__
-and `ecoinvent licensing terms <https://support.ecoinvent.org/licensing>`__.
+See :doc:`clic-commercial` for replacement behavior, supported targets, report
+contents, recipe replay and license scope. Approximate replacements can change
+results substantially; the policy does not certify the entire resulting database
+for commercial reuse.

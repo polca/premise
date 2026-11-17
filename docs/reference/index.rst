@@ -18,6 +18,7 @@ how inventories change, use :doc:`/methodology/index`. Start with
    /reference/iam-variables
    /reference/geography
    /reference/inventories
+   /reference/clic-commercial
    /reference/inventory-migration
    /reference/external-scenario-format
    /reference/change-report-schema
