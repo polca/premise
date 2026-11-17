@@ -1636,7 +1636,6 @@ class DatasetNormalizer(BaseDatasetValidator):
             self.correct_fields_format()
         finally:
             self._correct_fields_in_place = False
-        self.check_amount_format_for_export()
         self._defer_exchange_cleanup = False
         self.reformat_parameters()
         self.add_missing_classifications()
