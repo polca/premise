@@ -116,10 +116,7 @@ class PathwaysDataPackage:
         self._build_datapackage(name, contributors)
 
     def _add_variables_mapping(self):
-        """
-        Add variables mapping in the "pathways" folder.
-
-        """
+        """Write provider mappings and record variable renames."""
 
         mappings = {}
         for scenario in self.datapackage.scenarios:
@@ -143,34 +140,27 @@ class PathwaysDataPackage:
                             data["lhv"] = x["lhv"]
                         datasets.append(data)
 
-                    if len(datasets) == 0:
+                    if not datasets:
                         continue
+
+                    key = f"{prefix} - {sector.replace('external_', '')} - {k}"
+
+                    if key in mappings:
+                        # Compare against providers present before this batch.
+                        existing_datasets = mappings[key]["dataset"].copy()
                     else:
-                        # if existing datasets already, we just add
-                        key = f"{prefix} - {sector.replace('external_', '')} - {k}"
+                        mappings[key] = {"dataset": []}
+                        existing_datasets = []
 
-                        if key in mappings:
-                            existing_datasets = mappings[
-                                f"{prefix} - {sector.replace('external_', '')} - {k}"
-                            ]["dataset"].copy()
-                        else:
-                            mappings[
-                                f"{prefix} - {sector.replace('external_', '')} - {k}"
-                            ] = {"dataset": []}
-                            existing_datasets = []
-
-                        if len(existing_datasets) > 0:
-                            for dataset in datasets:
-                                if dataset not in existing_datasets:
-                                    mappings[key]["dataset"].append(dataset)
-
-                        else:
-                            mappings[key]["dataset"] = [
-                                json.loads(s)
-                                for s in {
-                                    json.dumps(d, sort_keys=True) for d in datasets
-                                }
-                            ]
+                    if existing_datasets:
+                        for dataset in datasets:
+                            if dataset not in existing_datasets:
+                                mappings[key]["dataset"].append(dataset)
+                    else:
+                        mappings[key]["dataset"] = [
+                            json.loads(s)
+                            for s in {json.dumps(d, sort_keys=True) for d in datasets}
+                        ]
 
                     self.variables_name_change[k] = f"{prefix} - {sector} - {k}"
 

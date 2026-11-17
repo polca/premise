@@ -1,7 +1,7 @@
+from copy import deepcopy
 from types import SimpleNamespace
 
 import yaml
-
 from premise.inventory_store import CompactInventoryStore, _compact_scenario_mapping
 from premise.pathways import PathwaysDataPackage
 
@@ -85,3 +85,28 @@ def test_variables_mapping_uses_resident_lazy_activity_fields(tmp_path, monkeypa
             ]
         }
     }
+
+
+def test_variable_mapping_preserves_provider_additions_from_each_scenario(
+    tmp_path, monkeypatch
+):
+    first = {"name": "first", "reference product": "power", "unit": "kilowatt hour"}
+    second = {**first, "name": "second"}
+    scenarios = [
+        {"mapping": {"electricity": {"grid": [first, first], "empty": []}}},
+        {"mapping": {"electricity": {"grid": [second, second, first]}}},
+    ]
+    before = deepcopy(scenarios)
+    obj = object.__new__(PathwaysDataPackage)
+    obj.datapackage = SimpleNamespace(scenarios=scenarios)
+    obj.variables_name_change = {}
+    monkeypatch.chdir(tmp_path)
+
+    obj._add_variables_mapping()
+
+    written = yaml.safe_load(
+        (tmp_path / "pathways_temp/mapping/mapping.yaml").read_text()
+    )
+    assert written == {"SE - electricity - grid": {"dataset": [first, second, second]}}
+    assert obj.variables_name_change == {"grid": "SE - electricity - grid"}
+    assert scenarios == before
