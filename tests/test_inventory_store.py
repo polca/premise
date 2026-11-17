@@ -40,7 +40,10 @@ from premise.new_database import NewDatabase
 from premise.transformation import clone_inventory_dataset
 
 
-def test_compact_exchange_protocols_preserve_generic_semantics(tmp_path):
+@pytest.mark.parametrize(
+    "amount", [np.float64(2.5), np.int64(3), np.array(0.25), 2**80]
+)
+def test_compact_exchange_protocols_preserve_generic_semantics(tmp_path, amount):
     exchange = {
         "name": "provider",
         "product": "product",
@@ -48,7 +51,7 @@ def test_compact_exchange_protocols_preserve_generic_semantics(tmp_path):
         "location": "GLO",
         "unit": "kilogram",
         "type": "technosphere",
-        "amount": np.float64(2.5),
+        "amount": amount,
         "uncertainty type": 0,
         "input": ("db", "provider-code"),
         "comment": None,

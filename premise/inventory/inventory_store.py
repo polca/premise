@@ -2108,7 +2108,7 @@ class _ColumnarExchangeMapping(MutableMapping[str, Any]):
                     storage._numeric_ints["amount"][row],
                 )
                 if kind != _NUMERIC_MISSING
-                else None
+                else self._metadata_value("amount", None)
             )
 
         changed_reference_product = self._changed_value("reference product")
@@ -2168,7 +2168,7 @@ class _ColumnarExchangeMapping(MutableMapping[str, Any]):
                     storage._numeric_ints["amount"][row],
                 )
                 if kind != _NUMERIC_MISSING
-                else None
+                else self._metadata_value("amount", None)
             )
 
         return (
