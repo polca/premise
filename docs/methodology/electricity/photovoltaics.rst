@@ -29,9 +29,8 @@ Inputs and applicability
 --------------------------
 
 The IEA report, packaged inventory sources, inherited Atlas yields and IRENA weights
-are inputs to preparation of the country inventories. The build imports these
-prepared inventories during initialization. ``ndb.update("electricity")``
-then applies the module-efficiency trajectory and regional electricity-market
+are inputs to preparation of the country inventories. ``ndb.update("electricity")``
+prepares the required inventories before applying the module-efficiency trajectory and regional electricity-market
 mapping. It does not download yields or rebuild country recipes each time.
 
 Technologies and reference systems

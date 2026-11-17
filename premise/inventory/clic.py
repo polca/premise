@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Mapping
 from collections import defaultdict
+from packaging.version import Version
 
 import portalocker
 
@@ -86,6 +87,19 @@ class ClicInventoryProvider:
             raise TypeError("clic_options must be ClicInventoryOptions or a mapping.")
         self.options = options
         self.recipe = ClicRecipe.read(recipe)
+        if self.recipe.compatibility_replacements is not None:
+            if self.options.license_policy == "commercial":
+                raise ClicInventoryError(
+                    "Create a new commercial recipe instead of changing the policy of a compatibility recipe."
+                )
+            from .clic_replacements import replacement_registry
+
+            if self.recipe.compatibility_replacements[
+                "registry_fingerprint"
+            ] != content_hash(replacement_registry()):
+                raise ClicInventoryError(
+                    "Compatibility replacement registry changed; review and regenerate the recipe."
+                )
         if self.recipe.license_policy is not None:
             from .clic_licenses import POLICY_FINGERPRINT
 
@@ -113,7 +127,13 @@ class ClicInventoryProvider:
         self.diagnostics = []
         self.license_report = None
 
-    def check_system_model(self, system_model):
+    def check_target(self, version, system_model):
+        if self.options.license_policy == "commercial" and Version(version) < Version(
+            "3.8"
+        ):
+            raise ClicInventoryError(
+                "CLIC commercial policy requires ecoinvent 3.8 or newer: the older-target workbook fallback has not been assessed."
+            )
         if (
             self.options.license_policy == "commercial"
             and system_model == "consequential"
@@ -252,9 +272,19 @@ class ClicInventoryProvider:
         from ..core.utils import check_ecoinvent_target_version
 
         version = check_ecoinvent_target_version(version)
-        self.check_system_model(system_model)
+        self.check_target(version, system_model)
         replacement_report = None
-        if self.options.license_policy == "commercial":
+        commercial = self.options.license_policy == "commercial"
+        compatibility_only = not commercial and Version(version) < Version("3.12")
+        if (
+            self.recipe.compatibility_replacements is not None
+            and self.recipe.compatibility_replacements["target"]
+            != {"version": version, "system_model": system_model}
+        ):
+            raise ClicInventoryError(
+                "Compatibility replacement target differs from the recipe."
+            )
+        if commercial or compatibility_only:
             from .clic_replacements import replace_commercial_inventories
 
             native_resolution = self._resolve_native(roots, use_cache=use_cache)
@@ -264,14 +294,19 @@ class ClicInventoryProvider:
                 database,
                 version=version,
                 system_model=system_model,
+                compatibility_only=compatibility_only,
             )
-            locked = (self.recipe.license_policy or {}).get("replacements")
+            locked = (
+                self.recipe.compatibility_replacements
+                if compatibility_only
+                else (self.recipe.license_policy or {}).get("replacements")
+            )
             if locked is not None and locked != {
                 key: replacement_report[key]
                 for key in ("registry_fingerprint", "target", "fingerprint")
             }:
                 raise ClicInventoryError(
-                    "Commercial replacements differ from the recipe; verify the target and native source inventories."
+                    "Reviewed replacements differ from the recipe; verify the target and native source inventories."
                 )
             self._check_resolution(
                 resolved, replacements=replacement_report["substitutions"]
@@ -357,6 +392,14 @@ class ClicInventoryProvider:
             else harmonized.lockfile
         )
         self.lockfile["namespace_slugs"] = namespace_slugs
+        if replacement_report is not None:
+            self.manifest["commercial_replacements"] = replacement_report
+            replacement_lock = {
+                key: replacement_report[key]
+                for key in ("registry_fingerprint", "target", "fingerprint")
+            }
+            if compatibility_only:
+                self.lockfile["compatibility_replacements"] = replacement_lock
         if self.license_report is not None:
             self.manifest["license_policy"] = self.license_report
             self.lockfile["license_policy"] = {
@@ -364,11 +407,7 @@ class ClicInventoryProvider:
                 "fingerprint": self.license_report["policy_fingerprint"],
             }
             if replacement_report is not None:
-                self.manifest["commercial_replacements"] = replacement_report
-                self.lockfile["license_policy"]["replacements"] = {
-                    key: replacement_report[key]
-                    for key in ("registry_fingerprint", "target", "fingerprint")
-                }
+                self.lockfile["license_policy"]["replacements"] = replacement_lock
         self.diagnostics = harmonized.diagnostics + diagnostics
         return records
 

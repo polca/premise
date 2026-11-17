@@ -39,7 +39,6 @@ class PathwaysDataPackage:
         use_absolute_efficiency=False,
         biosphere_name="biosphere3",
         generate_reports: bool = True,
-        inventory_source: str = "workbooks",
         inventory_recipe=None,
         clic_options=None,
     ):
@@ -69,7 +68,6 @@ class PathwaysDataPackage:
             use_absolute_efficiency=use_absolute_efficiency,
             biosphere_name=biosphere_name,
             generate_reports=generate_reports,
-            inventory_source=inventory_source,
             inventory_recipe=inventory_recipe,
             clic_options=clic_options,
         )

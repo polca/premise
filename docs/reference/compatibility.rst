@@ -38,6 +38,10 @@ does not imply identical additional inventories across system models; consult
 The package does not contain the ecoinvent source database. Database and
 biosphere identifiers must match your local import.
 
+Reviewed CLIC routes start at ecoinvent 3.8. Version 3.7 and consequential
+backgrounds retain compatible workbooks automatically; commercial policy rejects
+those unassessed fallbacks. See :doc:`inventories` for selection behavior.
+
 Dependency constraints
 ----------------------
 

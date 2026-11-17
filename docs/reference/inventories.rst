@@ -5,8 +5,9 @@ CLIC pages describe the published reference inventories. Premise's source
 selection, adaptations and generated scenario activities are documented in
 these chapters.
 
-After the ecoinvent database is extracted and checked, a number of additional inventories
-are imported, regardless of the year of scenario that is being considered.
+After extracting and checking the source database, Premise selects supplemental
+inventories from CLIC according to the sectors and scenario technologies needed
+by each build. Required workbook-only inventories remain in the hybrid pipeline.
 
 Explore the `CLIC inventory catalogue <https://clic.psi.ch/browse/>`__ and
 the dataset pages linked below for source descriptions, provenance and reuse.
@@ -44,11 +45,15 @@ Source-specific adaptations are explained with their inventories:
 Inventory source selection
 ----------------------------
 
-CLIC inventories target cutoff backgrounds. With the default license policy, if
-``inventory_source="clic"`` is requested with a consequential background, premise
-uses the established workbook inventory pipeline instead and records the fallback reason and requested
-sectors in the inventory manifest. Cutoff and EN15804 CLIC builds continue to use
-slug-based CLIC selection.
+CLIC is the standard supplemental inventory provider; there is no
+``inventory_source`` selector. Inventories are prepared lazily when sectors are
+updated, and the hybrid dependency selection retains required workbooks.
+CLIC inventories target cutoff backgrounds. Consequential builds use compatible
+workbooks instead and record the reason and requested sectors in the inventory
+manifest. Ecoinvent 3.7 builds also retain compatible workbooks because reviewed
+CLIC routes start at 3.8. Commercial policy rejects both unassessed fallbacks.
+Other cutoff and EN15804 builds use slug-based CLIC selection and strict
+destination linking.
 
 This table is generated from the constructor's inventory-selection statements.
 It records selection before activity-level filtering, migration and linking.
@@ -64,7 +69,7 @@ Commercial CLIC selection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To screen the selected CLIC activities and their upstream CLIC suppliers for
-commercially permitted licenses, set ``inventory_source="clic"`` and
+commercially permitted licenses, set
 ``clic_options={"license_policy": "commercial"}``.
 
 See :doc:`clic-commercial` for replacement behavior, supported targets, report

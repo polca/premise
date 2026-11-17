@@ -1,4 +1,4 @@
-"""Reviewed commercial alternatives, selected from the user's licensed background.
+"""Reviewed commercial and older-target alternatives from the licensed background.
 
 Rules contain identities and documented conversions, never copied restricted
 inventories. A replacement clones the native process so premise can still
@@ -14,6 +14,7 @@ from collections import defaultdict, deque
 from pathlib import Path
 
 import yaml
+from packaging.version import Version
 
 from .clic_archive import (
     ClicInventoryError,
@@ -329,13 +330,22 @@ def apply_background_aliases(records, aliases):
 
 
 def replace_commercial_inventories(
-    resolved, archive, database, *, version, system_model, registry=None
+    resolved,
+    archive,
+    database,
+    *,
+    version,
+    system_model,
+    registry=None,
+    compatibility_only=False,
 ):
     """Return an owned graph and portable record of substitutions and pruning.
 
     Identity matching is explicit and deterministic. Missing candidates leave the
     original graph in place, so the subsequent license gate reports the missing
     reviewed alternative rather than silently removing a technology.
+    Compatibility selection targets newer-source assets instead of license issues;
+    final strict migration and destination validation still determine availability.
     """
     registry = replacement_registry() if registry is None else registry
     registry_fingerprint = content_hash(registry)
@@ -357,9 +367,20 @@ def replace_commercial_inventories(
     for code, activity in activities.items():
         for supplier in _internal_suppliers(activity):
             parents[supplier].add(code)
-    issues = assess_commercial_licenses(resolved, archive)["issues"]
-    blocked_slugs = {row["slug"] for row in issues}
-    affected = {code for code, row in rows.items() if row["slug"] in blocked_slugs}
+    if compatibility_only:
+        # UVEK 2025 migrates through ecoinvent 3.12. Earlier destinations use
+        # reviewed native manufacturing references for newer-source assets;
+        # unchanged older source recipes remain in the ordinary migration path.
+        affected = {
+            code
+            for code, row in rows.items()
+            if row["background"]["technosphere"]["family"] == "uvek"
+            or Version(row["background"]["technosphere"]["version"]) > Version(version)
+        }
+    else:
+        issues = assess_commercial_licenses(resolved, archive)["issues"]
+        blocked_slugs = {row["slug"] for row in issues}
+        affected = {code for code, row in rows.items() if row["slug"] in blocked_slugs}
     queue = deque(affected)
     while queue:
         for code in parents[queue.popleft()]:
@@ -465,6 +486,8 @@ def replace_commercial_inventories(
             row["slug"] for code, row in rows.items() if code not in selected
         ),
     }
+    if compatibility_only:
+        report["reason"] = "older_target_compatibility"
     report["fingerprint"] = content_hash(report)
     replaced = {row["slug"]: row for row in substitutions}
     kept_rows = []

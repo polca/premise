@@ -655,7 +655,6 @@ class NewDatabase:
         generate_reports: bool = True,
         inventory_backend: Literal["compact", "legacy"] = "legacy",
         cleanup_expired_caches: bool = True,
-        inventory_source: Literal["workbooks", "clic"] = "workbooks",
         inventory_recipe=None,
         clic_options=None,
     ) -> None:
@@ -689,24 +688,17 @@ class NewDatabase:
         :param cleanup_expired_caches: Remove managed scenario checkpoints unused
             for more than 24 hours at startup, only when no other NewDatabase
             instance is alive. Unmarked legacy caches are never expired.
-        :param inventory_source: ``"clic"`` lazily selects required CLIC inventories
-            when sectors are updated; ``"workbooks"`` uses the legacy bundled provider.
         :param inventory_recipe: Optional JSON/YAML CLIC version recipe or lockfile.
         :param clic_options: CLIC archive, cache, freshness, migration and license-policy options.
         """
         self._inventory_api_active = False
         self.sector_update_methods = None
         self.source = source_db
-        if inventory_source not in {"workbooks", "clic"}:
-            raise ValueError("inventory_source must be 'workbooks' or 'clic'.")
-        if inventory_source != "clic" and (
-            inventory_recipe is not None or clic_options is not None
-        ):
-            raise ValueError(
-                "inventory_recipe and clic_options require inventory_source='clic'."
-            )
-        self.inventory_source = inventory_source
-        self._clic_provider = None
+        from ..inventory.clic import ClicInventoryProvider
+
+        self._clic_provider = ClicInventoryProvider(
+            recipe=inventory_recipe, options=clic_options
+        )
         self._clic_manifest = None
         self._clic_lockfile = None
         self._clic_records = []
@@ -714,20 +706,13 @@ class NewDatabase:
         self._clic_semantic_fingerprint = None
         self._clic_source_store_fingerprint = None
         self._clic_use_cache = use_cached_inventories
-        if inventory_source == "clic":
-            from ..inventory.clic import ClicInventoryProvider
-
-            self._clic_provider = ClicInventoryProvider(
-                recipe=inventory_recipe, options=clic_options
-            )
         self.version = check_db_version(source_version)
         self.source_type = source_type
         self.system_model = check_system_model(system_model)
-        if self._clic_provider is not None:
-            self._clic_provider.check_system_model(self.system_model)
-        self._clic_workbook_fallback = (
-            inventory_source == "clic" and self.system_model == "consequential"
-        )
+        self._clic_provider.check_target(self.version, self.system_model)
+        self._clic_workbook_fallback = self.system_model == "consequential" or Version(
+            self.version
+        ) < Version("3.8")
         self.system_model_args = system_args
         self.use_absolute_efficiency = use_absolute_efficiency
         self.keep_imports_uncertainty = keep_imports_uncertainty
@@ -818,7 +803,7 @@ class NewDatabase:
         compact_cache_hit = None
         compact_cache_eligible = (
             self.inventory_backend == "compact"
-            and self.inventory_source == "workbooks"
+            and self._clic_workbook_fallback
             and use_cached_database
             and use_cached_inventories
             and self.additional_inventories is None
@@ -858,7 +843,7 @@ class NewDatabase:
                 self._database = self.__clean_database()
 
             print("- Extracting inventories")
-            if self.inventory_source == "clic" and not self._clic_workbook_fallback:
+            if not self._clic_workbook_fallback:
                 # Sector requirements are known at update(), before any scenario
                 # fork or baseline certification. Never eagerly import a catalog.
                 self._database_is_complete = True
@@ -883,9 +868,7 @@ class NewDatabase:
                 imported_inventory_data = True
                 self._database_is_complete = True
 
-        if self.additional_inventories and (
-            self.inventory_source == "workbooks" or self._clic_workbook_fallback
-        ):
+        if self.additional_inventories and self._clic_workbook_fallback:
             print("- Importing additional inventories")
             data = self.__import_additional_inventories(self.additional_inventories)
             self._database.extend(data)
@@ -1006,7 +989,7 @@ class NewDatabase:
                 FILEPATH_CLASSIFICATIONS.read_bytes()
             ).hexdigest()[:16]
             inventory_label += f"_classifications_{classification_digest}"
-        if inventories and getattr(self, "inventory_source", "workbooks") == "clic":
+        if inventories and not getattr(self, "_clic_workbook_fallback", True):
             fingerprint = (
                 getattr(self, "_clic_semantic_fingerprint", None) or "unresolved"
             )
@@ -1535,7 +1518,7 @@ class NewDatabase:
         Explicit lockfile roots override automatic sector discovery. Calling
         this method is optional: :meth:`update` invokes it with its actual scope.
         """
-        if getattr(self, "inventory_source", "workbooks") != "clic":
+        if not hasattr(self, "_clic_provider"):
             return
         from ..inventory.clic_archive import ClicInventoryError, content_hash
         from ..inventory.clic_requirements import registry
@@ -1559,7 +1542,11 @@ class NewDatabase:
         if self._clic_workbook_fallback:
             self._clic_manifest = {
                 "provider": "workbooks",
-                "reason": "CLIC cutoff inventories cannot be migrated across ecoinvent system models.",
+                "reason": (
+                    "CLIC cutoff inventories cannot be migrated across ecoinvent system models."
+                    if self.system_model == "consequential"
+                    else "CLIC migrations require reviewed targets from ecoinvent 3.8 onward."
+                ),
                 "requested_system_model": self.system_model,
                 "requested_sectors": sorted(wanted),
             }
@@ -1716,8 +1703,10 @@ class NewDatabase:
 
     def write_inventory_recipe(self, path) -> Path:
         """Export exact root and upstream CLIC versions for build reproduction."""
-        if self._clic_provider is None:
-            raise ValueError("A CLIC recipe is available only for CLIC-backed builds.")
+        if self._clic_workbook_fallback:
+            raise ValueError(
+                "A CLIC recipe is unavailable for this workbook compatibility fallback."
+            )
         return self._clic_provider.write_recipe(path)
 
     @staticmethod
@@ -1748,9 +1737,7 @@ class NewDatabase:
 
         if self._can_reload_original_database():
             database = self._load_pickled_database(self.database_cache_filepath)
-            if getattr(self, "inventory_source", "workbooks") == "clic" and not getattr(
-                self, "_clic_workbook_fallback", False
-            ):
+            if not getattr(self, "_clic_workbook_fallback", True):
                 # Converted records retain behavior-bearing contracts (battery
                 # boundaries, compression, etc.) beyond the legacy hot cache.
                 from ..inventory.inventory_copy import clone_inventory_dataset

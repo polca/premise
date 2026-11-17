@@ -55,6 +55,13 @@ class DummyIAMDataCollection:
         return {}
 
 
+@pytest.mark.parametrize("builder", [NewDatabase, PathwaysDataPackage])
+@pytest.mark.parametrize("source", ["clic", "workbooks"])
+def test_inventory_provider_selector_is_no_longer_public(builder, source):
+    with pytest.raises(TypeError, match="inventory_source"):
+        builder(scenarios=[], inventory_source=source)
+
+
 @pytest.mark.parametrize("version", ["3.5", "3.6", "3.6.1", 3.6])
 def test_background_versions_before_37_are_rejected(version):
     with pytest.raises(ValueError, match="minimum supported version is 3.7"):
@@ -205,8 +212,9 @@ def test_ecospold_constructor_does_not_check_biosphere_database(
         return []
 
     def fake_find_cached_inventories(self, db_name):
-        self.inventories_metadata_cache_filepath = Path("inventories-metadata.pickle")
-        return []
+        raise AssertionError(
+            "CLIC requirements must be selected before importing inventories"
+        )
 
     monkeypatch.setattr(
         new_database_module,
@@ -253,9 +261,21 @@ def test_ecospold_constructor_does_not_check_biosphere_database(
 
     assert obj.biosphere_name == "missing-biosphere"
     assert obj.system_model == system_model
+    from premise.inventory.clic import ClicInventoryProvider
+
+    assert isinstance(obj._clic_provider, ClicInventoryProvider)
+    assert obj._clic_provider.archive is None
+    assert obj._clic_loaded_sectors == set()
 
 
-def test_constructor_clears_importer_state_after_inventory_cache_miss(monkeypatch):
+@pytest.mark.parametrize(
+    "version,system_model", [("3.7", "cutoff"), ("3.12", "consequential")]
+)
+def test_workbook_fallback_constructor_clears_importer_state_after_inventory_cache_miss(
+    monkeypatch,
+    version,
+    system_model,
+):
     calls = {"clear_inventory_importer_state": 0}
 
     def fake_find_cached_db(self, db_name):
@@ -308,6 +328,8 @@ def test_constructor_clears_importer_state_after_inventory_cache_miss(monkeypatc
         source_type="ecospold",
         source_file_path=".",
         biosphere_name="missing-biosphere",
+        source_version=version,
+        system_model=system_model,
         quiet=True,
     )
 
@@ -1050,9 +1072,14 @@ def test_pathways_datapackage_does_not_prevalidate_biosphere_database(monkeypatc
         source_type="ecospold",
         source_file_path=".",
         biosphere_name="missing-biosphere",
+        clic_options={"license_policy": "commercial"},
+        inventory_recipe={"roots": ["example-root"]},
     )
 
     assert captured["biosphere_name"] == "missing-biosphere"
+    assert captured["clic_options"] == {"license_policy": "commercial"}
+    assert captured["inventory_recipe"] == {"roots": ["example-root"]}
+    assert "inventory_source" not in captured
 
 
 def test_update_uses_in_memory_base_database_for_first_scenario_when_reloadable():
@@ -1199,7 +1226,14 @@ def test_compact_source_checkpoint_is_invalidated_with_underlying_caches(
     assert obj._find_compact_source_checkpoint("source-db") is None
 
 
-def test_constructor_marks_database_complete_after_inventory_cache_miss(monkeypatch):
+@pytest.mark.parametrize(
+    "version,system_model", [("3.7", "cutoff"), ("3.12", "consequential")]
+)
+def test_workbook_fallback_constructor_marks_database_complete_after_inventory_cache_miss(
+    monkeypatch,
+    version,
+    system_model,
+):
     def fake_find_cached_db(self, db_name):
         self.database_cache_filepath = Path("db-cache.pickle")
         self.database_metadata_cache_filepath = Path("db-metadata.pickle")
@@ -1243,8 +1277,9 @@ def test_constructor_marks_database_complete_after_inventory_cache_miss(monkeypa
             }
         ],
         source_db="source-db",
-        source_version="3.12",
+        source_version=version,
         biosphere_name="biosphere3",
+        system_model=system_model,
         quiet=True,
     )
 

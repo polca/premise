@@ -55,7 +55,6 @@ def test_live_clic_electricity_update_preserves_reviewed_role_filters(
         biosphere_name=biosphere_name,
         generate_reports=False,
         inventory_backend="compact",
-        inventory_source="clic",
         clic_options={
             "archive_path": CLIC_ARCHIVE,
             "cache_dir": tmp_path / "clic",

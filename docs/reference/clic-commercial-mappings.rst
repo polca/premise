@@ -11,9 +11,11 @@ not copies of native ecoinvent inventory coefficients.
 How to read a mapping
 ---------------------
 
-Whole-activity rules apply to restricted requirements and affected parent
-activities in the selected graph. They are not a general replacement of every
-matching, permissively licensed CLIC process. One rule can cover multiple CLIC
+Commercial screening applies whole-activity rules to restricted requirements
+and affected parent activities. Independently, older-target compatibility uses
+the same reviewed rules for newer-source assets that need native manufacturing
+references. Compatibility selection is recorded as ``older_target_compatibility``;
+it is not a commercial-license assessment. One rule can cover multiple CLIC
 versions and locations that share the listed activity name and reference unit.
 
 Native supplier identities are shown as name; reference product; unit. Candidate

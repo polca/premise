@@ -5,7 +5,7 @@ CLIC records. Workbooks containing licensed ecoinvent-derived recipes remain
 bundled and continue through premise's existing source profiles, migration,
 gap filling and linking. User-supplied inventories are also preserved.
 
-**Rollout is pending.** The target range now starts at ecoinvent **3.7**;
+**Premise 2.7 uses this hybrid pipeline automatically.** The target range starts at ecoinvent **3.7**;
 3.5 and 3.6 background builds are rejected before downloading inventories.
 Older native inventory sources remain supported for migration into newer
 backgrounds. Cutoff and EN15804 CLIC builds do not fall back to public workbook
@@ -13,6 +13,8 @@ replacements. Consequential builds use the workbook pipeline because CLIC
 inventories are published against cutoff backgrounds and cannot be migrated
 reliably across ecoinvent system models; the fallback and its reason are recorded
 in the inventory manifest.
+Version 3.7 also retains compatible workbooks because reviewed CLIC routes start
+at 3.8. Commercial policy rejects both unassessed compatibility fallbacks.
 
 ## Current interface
 
@@ -22,7 +24,6 @@ from premise import NewDatabase
 database = NewDatabase(
     # Existing scenario, source database, biosphere and explicit IAM key arguments
     **build_arguments,
-    inventory_source="clic",
     clic_options={
         "cache_dir": "/path/to/private/premise-clic-cache",
         "migration_policy": "pragmatic",  # Default; all warnings are recorded.
@@ -35,9 +36,9 @@ database.write_inventory_recipe("inventory-recipe.json")
 `update` prepares inventories lazily, before the scenario is forked or certified.
 `prepare_inventories(sectors)` can prepare the same scope explicitly. Multiple
 calls expand the union of required sectors without changing canonical names.
-The legacy `inventory_source="workbooks"` default remains in place during
-development. When `system_model="consequential"` is requested in CLIC mode,
-premise automatically selects that pipeline before inventory preparation and
+The public `inventory_source` selector has been removed from `NewDatabase` and
+`PathwaysDataPackage`. When `system_model="consequential"` is requested,
+premise automatically selects compatible workbooks before inventory preparation and
 records the requested sectors and fallback reason in the manifest. Other CLIC
 builds do not silently substitute public workbook replacements.
 
@@ -315,7 +316,14 @@ copied beside exports with verified hashes. Database metadata includes manifest
 and recipe for Brightway, superstructure and scenario-array exports. Matrix,
 SimaPro and openLCA exports also emit inventory sidecars.
 
-## Current conversion gaps
+## Raw conversion gaps and target compatibility
+
+The audit below describes raw Brightpath conversion before the reviewed native
+alternatives were added. Premise 2.7 uses the replacement registry for newer-source
+assets on older targets, recording `older_target_compatibility` independently of
+license screening. Compatibility recipes freeze those choices; destination
+validation remains strict. The raw-route audit is not a failure report for the
+reviewed hybrid builds validated above.
 
 The complete all-cohort audit is in
 [`brightpath-clic-target-blockers.json`](brightpath-clic-target-blockers.json), with

@@ -31,7 +31,7 @@ pig-iron activities are regionalized before the mapped steel routes.
 
 Inputs are the source database, additional steel inventories, and production
 and efficiency variables mapped in ``iam_variables_mapping/steel.yaml``.
-Inventories enter during initialization; ``ndb.update("steel")`` performs the
+``ndb.update("steel")`` prepares the required inventories before performing the
 scenario transformation. Apply upstream energy updates in the default order
 for prospective fuel and electricity suppliers. Model aliases describe
 mapping coverage, not guaranteed availability in every scenario file.

@@ -173,6 +173,21 @@ def test_consequential_commercial_build_cannot_fall_back_to_workbooks(tmp_path):
             scenarios=[],
             source_version="3.12",
             system_model="consequential",
-            inventory_source="clic",
+            clic_options={"license_policy": "commercial"},
+        )
+
+
+def test_unsupported_commercial_target_fails_before_archive_download(tmp_path):
+    client = ClicInventoryProvider(
+        options={"cache_dir": tmp_path, "license_policy": "commercial"}
+    )
+    client.get_archive = Mock(side_effect=AssertionError("No archive request expected"))
+    with pytest.raises(ClicInventoryError, match="3.8 or newer"):
+        client.prepare([], [], version="3.7")
+    client.get_archive.assert_not_called()
+    with pytest.raises(ClicInventoryError, match="3.8 or newer"):
+        NewDatabase(
+            scenarios=[],
+            source_version="3.7",
             clic_options={"license_policy": "commercial"},
         )

@@ -278,6 +278,16 @@ def test_declared_missing_foreground_is_not_treated_as_background():
         {"versions": {"dataset-1": "not a version"}},
         {"versions": {"dataset-1": {"version": "1.0.0", "version_id": True}}},
         {"schema_version": 99},
+        {"compatibility_replacements": []},
+        {"compatibility_replacements": {"target": {}}},
+        {
+            "compatibility_replacements": {
+                "target": {},
+                "registry_fingerprint": "x",
+                "fingerprint": "y",
+            },
+            "license_policy": {"name": "commercial", "fingerprint": "z"},
+        },
     ],
 )
 def test_invalid_recipes_fail_before_inventory_use(recipe):

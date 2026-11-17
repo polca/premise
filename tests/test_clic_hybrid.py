@@ -10,6 +10,7 @@ import pytest
 
 from premise.database.new_database import NewDatabase
 from premise.inventory import clic_hybrid as module
+from premise.inventory.clic import ClicInventoryProvider
 from premise.inventory.clic_archive import ClicInventoryError
 
 
@@ -215,23 +216,41 @@ def test_consequential_plan_retains_workbooks_instead_of_clic(monkeypatch):
     assert [path.name for path, _ in consequential.sources] == ["lci-test.xlsx"]
 
 
-def test_consequential_database_records_workbook_fallback_before_clic_resolution():
+@pytest.mark.parametrize(
+    "system_model,reason",
+    [
+        (
+            "consequential",
+            "CLIC cutoff inventories cannot be migrated across ecoinvent system models.",
+        ),
+        (
+            "cutoff",
+            "CLIC migrations require reviewed targets from ecoinvent 3.8 onward.",
+        ),
+    ],
+)
+def test_incompatible_target_records_workbook_fallback_before_clic_resolution(
+    system_model, reason
+):
     database = object.__new__(NewDatabase)
-    database.inventory_source = "clic"
-    database.system_model = "consequential"
+    database.system_model = system_model
     database._clic_workbook_fallback = True
     database._clic_loaded_sectors = set()
     database._clic_manifest = None
+    database._clic_provider = ClicInventoryProvider()
 
     database.prepare_inventories(["electricity", "fuel"])
 
     assert database._clic_loaded_sectors == {"electricity", "fuel"}
     assert database._clic_manifest == {
         "provider": "workbooks",
-        "reason": "CLIC cutoff inventories cannot be migrated across ecoinvent system models.",
-        "requested_system_model": "consequential",
+        "reason": reason,
+        "requested_system_model": system_model,
         "requested_sectors": ["electricity", "fuel"],
     }
+
+    with pytest.raises(ValueError, match="workbook compatibility fallback"):
+        database.write_inventory_recipe("unused-recipe.json")
 
 
 def test_generated_helper_without_slug_cannot_replace_a_retained_activity(

@@ -92,6 +92,7 @@ class ClicRecipe:
     user_inventories: Mapping[str, str] | None = None
     namespace_slugs: tuple[str, ...] | None = None
     license_policy: Mapping | None = None
+    compatibility_replacements: Mapping | None = None
 
     @classmethod
     def read(cls, value: ClicRecipe | Mapping | str | Path | None) -> ClicRecipe:
@@ -174,6 +175,19 @@ class ClicRecipe:
             or not isinstance(license_policy.get("fingerprint"), str)
         ):
             raise ClicResolutionError("Invalid recipe license_policy.")
+        compatibility = value.get("compatibility_replacements")
+        if compatibility is not None and license_policy is not None:
+            raise ClicResolutionError(
+                "A recipe cannot combine compatibility and commercial replacement plans."
+            )
+        if compatibility is not None and (
+            not isinstance(compatibility, Mapping)
+            or any(
+                key not in compatibility
+                for key in ("registry_fingerprint", "target", "fingerprint")
+            )
+        ):
+            raise ClicResolutionError("Invalid recipe compatibility_replacements.")
         return cls(
             result,
             tuple(roots),
@@ -183,6 +197,7 @@ class ClicRecipe:
             copy.deepcopy(value.get("user_inventories")),
             tuple(namespaces) if namespaces is not None else None,
             copy.deepcopy(license_policy),
+            copy.deepcopy(compatibility),
         )
 
 

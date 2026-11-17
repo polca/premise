@@ -458,6 +458,83 @@ def test_native_migration_bypass_requires_matching_inventory_fingerprint(
         )
 
 
+@pytest.mark.parametrize("source_version,expected", [("3.8", 0), ("3.12", 1)])
+def test_older_target_references_depend_on_source_context_not_license(
+    registry, background, source_version, expected
+):
+    archive, raw = graph()
+    registry["target_versions"].append("3.11")
+    for row in raw.versions:
+        row["background"]["technosphere"]["version"] = source_version
+        row["license"] = "CC-BY-4.0"
+    resolved, report = module.replace_commercial_inventories(
+        raw,
+        archive,
+        background,
+        version="3.11",
+        system_model="cutoff",
+        registry=registry,
+        compatibility_only=True,
+    )
+    assert len(report["substitutions"]) == expected
+    assert report["reason"] == "older_target_compatibility"
+    if expected:
+        assert report["substitutions"][0]["original_license"] == "CC-BY-4.0"
+        assert resolved.activities[0]["exchanges"][1]["amount"] == 6
+
+
+def test_compatibility_recipe_locks_target_native_inventory_and_registry(
+    tmp_path, monkeypatch, provider, registry
+):
+    registry["target_versions"].append("3.11")
+    archive = catalog(native(1, 1, "restricted pack"))
+    background = [native(99, 99, "native pack")["inventory_snapshot"]]
+    monkeypatch.setattr(module, "replacement_registry", lambda: registry)
+
+    def client(recipe=None):
+        return ClicInventoryProvider(
+            archive=archive,
+            recipe=recipe,
+            catalog_provider=provider,
+            options={"cache_dir": tmp_path, "offline": True},
+        )
+
+    first = client()
+    records = first.prepare(
+        ["dataset-1"],
+        background,
+        version="3.11",
+        biosphere_codes={},
+        classifications={},
+    )
+    assert "license_policy" not in first.lockfile
+    assert first.lockfile["compatibility_replacements"]["target"]["version"] == "3.11"
+    replay = client(first.lockfile)
+    again = replay.prepare(
+        ["dataset-1"],
+        background,
+        version="3.11",
+        biosphere_codes={},
+        classifications={},
+    )
+    assert [{k: v for k, v in a.items() if k != "clic provenance"} for a in again] == [
+        {k: v for k, v in a.items() if k != "clic provenance"} for a in records
+    ]
+    assert (
+        replay.manifest["commercial_replacements"]
+        == first.manifest["commercial_replacements"]
+    )
+    with pytest.raises(ClicInventoryError, match="target differs"):
+        replay.prepare(["dataset-1"], background, version="3.12")
+    changed = deepcopy(background)
+    changed[0]["exchanges"][0]["amount"] = 2
+    with pytest.raises(ClicInventoryError, match="differ from the recipe"):
+        replay.prepare(["dataset-1"], changed, version="3.11")
+    registry["rules"][0]["conversion"] = "Changed conversion."
+    with pytest.raises(ClicInventoryError, match="registry changed"):
+        client(first.lockfile)
+
+
 def test_commercial_preparation_and_recipe_replay_use_reviewed_native_inventory(
     tmp_path, monkeypatch, provider, registry
 ):

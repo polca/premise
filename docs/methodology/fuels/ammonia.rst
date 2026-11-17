@@ -25,7 +25,7 @@ market mapping in the current fuels configuration.
 Inputs and applicability
 --------------------------
 
-Production routes are imported during initialization according to the
+Production routes are prepared before the fuels update according to the
 inventory-selection rules. The supporting-activity filter in
 ``premise/data/fuels/liquid_fuel_activities.yml`` selects
 `ammonia production, with market-average hydrogen <https://clic.psi.ch/datasets/ammonia-production-with-market-average-hydrogen/>`__. It is processed within

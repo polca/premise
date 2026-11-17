@@ -1,7 +1,9 @@
 Commercial CLIC inventory selection
 ===================================
 
-Use the commercial license policy to select CLIC foreground inventories with
+Premise uses CLIC for supplemental foreground selection, retaining required
+workbooks for inventories unavailable through that route. Use the optional
+commercial license policy to select CLIC foreground inventories with
 commercially permitted declarations and replace restricted requirements with
 reviewed alternatives. It is an opt-in inventory selection policy; it does not
 certify usage rights for the complete scenario database.
@@ -14,13 +16,19 @@ Add these arguments to your existing ``NewDatabase`` configuration:
 .. code-block:: python
 
    inventory_options = {
-       "inventory_source": "clic",
        "clic_options": {"license_policy": "commercial"},
    }
 
-``inventory_source="workbooks"`` remains the constructor default. Selecting CLIC
-without this policy uses ``license_policy="default"`` and preserves the existing
-inventory selection. Passing ``clic_options`` requires ``inventory_source="clic"``.
+The CLIC pipeline is automatic; ``NewDatabase`` and ``PathwaysDataPackage`` have
+no ``inventory_source`` argument. Without commercial screening,
+``license_policy="default"`` retains the selected CLIC inventories under their
+published declarations. This default does not exclude non-commercial licenses.
+
+For older destinations, reviewed native manufacturing references can replace
+newer-source assets independently of license screening. Those substitutions are
+identified as ``older_target_compatibility`` and frozen in a compatibility recipe.
+Create a new recipe when changing that build to commercial policy; the two
+replacement plans have different selection criteria.
 
 ``update(sectors)`` prepares the required inventories before transforming those
 sectors. ``prepare_inventories(sectors)`` can prepare them explicitly. Successive
@@ -92,9 +100,11 @@ The reviewed selections were validated against cutoff 3.8, 3.9, 3.9.1, 3.10,
 3.10.1, 3.11 and 3.12, and EN15804 3.12. This describes the reviewed archive and
 available native suppliers; future CLIC releases can require further review.
 
-Commercial-policy consequential builds are rejected before inventory loading.
-Their automatic workbook fallback has not been assessed. With the default
-license policy, the existing consequential workbook fallback remains available.
+Commercial-policy consequential and pre-3.8 builds are rejected before inventory
+loading because their automatic workbook compatibility fallbacks have not been
+assessed. Without commercial screening, consequential builds retain compatible
+workbooks because cutoff CLIC inventories cannot supply that system model;
+3.7 builds retain workbooks because reviewed CLIC routes start at 3.8.
 
 Approximate replacements can substantially change LCIA results. For one fixed
 3.12 cutoff background, the comparison of 616 untransformed activity roots found
