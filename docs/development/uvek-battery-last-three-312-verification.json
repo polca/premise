@@ -1,0 +1,136 @@
+{
+  "status": "source312_last_three_disposed",
+  "source_code_changes": 0,
+  "new_native_end_product_screening_proxy": 1,
+  "new_scoped_foreground_omissions": 2,
+  "raw_correspondences_and_existing_recipes_unchanged": true,
+  "conversion_behavior": {
+    "status": "passed",
+    "added_exact_source312_scopes": 1,
+    "signed_uncertainty_exchange_checks": 8,
+    "direct_migration_cases": 8,
+    "public_harmonizer_fresh_and_warm_passed": true,
+    "input_nonmutation": true,
+    "earlier_effective_profile_checks": 0,
+    "new_manufacturing_inventory_models": 0,
+    "new_model_profile_aliases": 0,
+    "new_foreground_omissions": [],
+    "source_code_changes": 0,
+    "new_Brightway_databases": 0,
+    "qualification_limit": "Required interface group only; no complete battery update or new export."
+  },
+  "native_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 1,
+    "native_suppliers": 1,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 2,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-d6807521c57782db",
+        "source": {
+          "location": "RER",
+          "name": "polyethylene, high density, pellets, recycled to generic market for polyethylene, high density, granulate",
+          "reference product": "polyethylene, high density, granulate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polyethylene, HDPE, granulate, at plant",
+          "reference product": "Polyethylene, HDPE, granulate, at plant",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      }
+    ],
+    "qualification_limit": "One native virgin-HDPE end-product screening proxy for recycled HDPE; no full battery update or export qualification."
+  },
+  "scoped_omission_checks": {
+    "status": "two_exact_consumer_omissions_verified",
+    "new_omissions": 2,
+    "all_actual_omission_warnings": 8,
+    "all_actual_omission_resolution_statuses": {
+      "native_barium_carbonate_supply_unavailable_upstream_burden_omitted": 1,
+      "final_unsupported_exchange_omission": 2,
+      "screening omission; exact biosphere correspondence remains unresolved": 2,
+      "screening omission; exact generic-sodium biosphere correspondence unresolved": 3
+    },
+    "input_nonmutation": true,
+    "all_other_exchanges_retained": true,
+    "nonempty_consumers": true,
+    "wrong_consumer_and_destination_untouched": true,
+    "different_source_refused": true,
+    "actual_signed_quantity_audited": true,
+    "warning_in_activity_comment": true,
+    "new_zero_burden_suppliers": 0,
+    "new_Brightway_databases": 0,
+    "omissions": [
+      {
+        "activity": {
+          "name": "cathode, NMC955, for Li-ion battery",
+          "reference product": "cathode, NMC955, for Li-ion battery",
+          "location": "GLO"
+        },
+        "exchange": {
+          "name": "market for polyvinylidene fluoride",
+          "reference product": "polyvinylidene fluoride",
+          "location": "GLO",
+          "unit": "kilogram",
+          "type": "technosphere",
+          "amount": 0.04994640943193998
+        },
+        "decision_id": "uvek-2026-final-unsupported-bp-3e11dbba3332ecb2"
+      },
+      {
+        "activity": {
+          "name": "gasket production, FKM, for VRFB system",
+          "reference product": "gasket, FKM",
+          "location": "RER"
+        },
+        "exchange": {
+          "name": "market for vinylidene fluoride",
+          "reference product": "vinylidene fluoride",
+          "location": "GLO",
+          "unit": "kilogram",
+          "type": "technosphere",
+          "amount": 0.44434630923297097
+        },
+        "decision_id": "uvek-2026-final-unsupported-bp-73b5b823540eb127"
+      }
+    ]
+  },
+  "tests": {
+    "brightpath_passed": 9,
+    "premise_approval_passed": 10,
+    "premise_omission_passed": 39,
+    "known_historical_replay_failures_not_reclassified": 2
+  },
+  "normal_generator_byte_equal_files": {
+    "ecoinvent-to-ecoinvent-3.10-biosphere.json": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+    "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+    "ecoinvent-to-uvek-2025.json": "069234a25b7c90d1f89682f51ccb48467b43a9d2cd18270565f216b6d5d64d0e"
+  },
+  "temporary_generator_output_bytes_removed": 112884588,
+  "real_saved_graph_retry": {
+    "source312_cohort_cleared": true,
+    "next_and_final_cohort": "ecoinvent 3.10 cut-off",
+    "remaining_unapproved_source310_correspondences": 9,
+    "source_graph_activities": 272,
+    "validation_disabled": false,
+    "approval_bypass": false
+  },
+  "public_battery_scope_refused_by_unchanged_Python_allow_list": true,
+  "qualified_sectors": 15,
+  "total_sectors": 19,
+  "qualification_limit": "Explicit screening proxy and unsupported-exchange omissions only. Not a complete material balance/LCIA estimate; battery update and export remain unqualified."
+}

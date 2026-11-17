@@ -352301,6 +352301,82 @@
           "fingerprint": "d7e0e7eb76cc9b5517f1a128f3c0290e6c2c608f32ebd18758e9cd485a6049db"
         }
       ]
+    },
+    {
+      "rule_id": "bp-d6807521c57782db",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_recycled_hdpe_312_review.json",
+      "review_sha256": "1b63e10f35f91fbef53592e111352f512ebeededaa3732617c2fae84cd58d009",
+      "authorization": "Standing automatic approval of documented modelling decisions; prioritize a working standard workflow with complete native screening proxies and explicit scoped omit-and-warn decisions.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "polyethylene, high density, pellets, recycled to generic market for polyethylene, high density, granulate",
+          "reference product": "polyethylene, high density, granulate",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "RER",
+            "name": "polyethylene, high density, pellets, recycled to generic market for polyethylene, high density, granulate",
+            "reference product": "polyethylene, high density, granulate",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "nonproduction_count": 1,
+          "inventory_sha256": "512ec94f986082142ef81521bb5837fb5d89db21ae0adbe4ce571819d91d52a7",
+          "metadata_sha256": "59c174dd0208581a6a5c970f90503b76ba895c4341ce3fba42792d239f7db99d",
+          "comment_sha256": "4b40c68465521965d49de6e9d0e8a5bd4bae1e59f8218fc615f1b0ad5bae61d8",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 408,
+            "inventory_sha256": "cac81e9c3ffcc0511aa8ce93ce59f9ed76c6e5ea247b824ff6a1455e48ef5266",
+            "metadata_sha256": "fc954d0337336fca11ed20ffca59c51b44cb83514a9fad14277a8c8eca2d087b",
+            "comment_sha256": "0c1043038d73c61148ceac04ec64bff3ee15d9c2cade94d427234021c9fcf603",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 412,
+            "inventory_sha256": "ede7bffe5843afa2ba487d89b8c4d4acb8d1751e56a3fc54c607e36d20dcb674",
+            "metadata_sha256": "29df786ca0dd4c88a057568141ca68555dd22d8adb6347981a9507dd1cb802e2",
+            "comment_sha256": "ed946c8aca355e2d873a2ed6b788e0483f32b1be602a8ca165abf2c3c93e91fc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete native virgin HDPE granulate as an explicit end-product screening proxy for recycled HDPE pellets entering the generic HDPE market, at +1 per signed kg. The polymer and nominal finished-granulate mass basis match; recycled content and recycling technology do not. This does not establish recycling equivalence.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete native virgin HDPE granulate as an explicit end-product screening proxy for recycled HDPE pellets entering the generic HDPE market, at +1 per signed kg. The polymer and nominal finished-granulate mass basis match; recycled content and recycling technology do not. This does not establish recycling equivalence.",
+        "The source recycled-flake supply, its allocated recovered-product branches, washing, yield, pelletising, collection, energy, residues and freight are replaced by the complete native virgin-HDPE model. No circularity, recycled-content, recycling benefit, conservative-bound or impact-score equivalence claim is supported. Impact differences remain unquantified.",
+        "The inspected all-solid-state sulfidic-cell caller contains 0.0181320334647884 kg per kg cell. Preserve the actual signed caller quantity, uncertainty and formula without renormalizing other components. Add neither separate pelletising/virgin feedstock nor an avoided-virgin or recycling credit.",
+        "Only this exact ecoinvent 3.12 cut-off identity is approved. Do not replace nonempty recycling inventories with the empty PE recycling handover. Native geography, vintage, delivery, allocation, internal uncertainty and documented BAFU biosphere exclusions remain limitations. No Python changes or further upstream reconstruction."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "906b6e290751887ec76de5fe8212563f48c4ad1338ab3aa9e42a150262c09813"
+        }
+      ]
     }
   ],
   "superseded_operations": [
