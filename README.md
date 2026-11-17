@@ -167,13 +167,11 @@ How to use it?
 
 The best way is to follow the [numbered example notebooks](https://github.com/polca/premise/tree/master/examples).
 
-Commercial CLIC inventory workflow
-----------------------------------
+External inventories for commercial use
+--------------------------------------
 
-Premise selects required supplemental inventories from CLIC and retains the
-workbooks needed for inventories unavailable through that route. To screen
-the selected CLIC inventories and upstream suppliers for commercially permitted
-licenses, enable the optional commercial policy.
+To use external inventories with licenses compatible with commercial use of
+Premise, we recommend the following workflow.
 
 First select your existing Brightway project containing the source and biosphere
 databases. Adapt the database names below to that project, and set
