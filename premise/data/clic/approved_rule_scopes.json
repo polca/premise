@@ -27504,7 +27504,12 @@
             "nonproduction_exchanges": 109
           }
         ],
-        "limitations": "Preserve the complete original3.9RoW/DE mixed-plastic and3.12RoW untreated-wood market treatment shares and every original collection-freight exchange without renormalization. Negative source waste references require factor-1 to positive treatment helpers. Open-burning/open-dump/unsanitary branches use complete inspected source-emission helpers: no physical emission, fossil/biogenic split, land, water, resource flow or marginal uncertainty is omitted, and no branch is replaced by controlled disposal or empty allocation. The unsanitary native diesel-MJ and skid-steer-m3 services reuse exact earlier operating inventory witnesses; retain their technology, fleet/filter, allocation, geography and vintage limitations, without extra fuel or infrastructure. Controlled fractions use complete native ordinary mixed-plastic incineration/sanitary-landfill or untreated-wood incineration, with all44 declared composition/heating-value coordinates matched to native2026; unknown entries stay unknown. Native2025 comments are shorter but full inventories and positive references are inspected. Native controlled-process emissions, biosphere coverage, water/oxygen, residue, background energy, allocation, technology, geography and vintage differ; score effects are unquantified and no LCIA equality is claimed. The source3.12wood comment reports3.5MJ thermal output versus native3.49MJ; retain the complete native service with an explicit reporting/performance limitation, not an efficiency correction or added heat credit. Do not rescale by product-name moisture labels: actual composition matches; no dry-mass/heating-value, capacity, lifetime or allocation multiplier is introduced. Preserve original road and country-specific rail tkm separately through complete native RER same-mode freight services. The inspected CN/RoW rail markets include steam, electric and diesel supply; their whole-country traction mixes are geographic/fleet proxies, not individual steam-to-electric correspondences. Original source country freight quantities and uncertainty remain intact, while vehicle/traction/fuel/load/age/duty/background shares are not reconstructed. No extra vehicle, road or track is added. Canonical source biosphere labels use the same publisher UUID/unit/full receiving context in3.10. CAS/label metadata changes, including calcium/sodium ionic labels and missing NOx/PCB CAS, are retained as warnings; no chemical stoichiometry, charge/mass conversion, speciation proxy or compartment relocation is inferred. Retain the3.12wood controlled-branch nonphysical waste indicator once outside the native process, which lacks it; keep its exact source amount where supported, or omit only that indicator with an explicit warning and omission audit under the existing policy. Preserve caller signed quantities, uncertainty, formulas, ownership, separate emissions and collection. No new recycling/recovery credit, fly-ash-extraction proxy, paperboard disposal proxy, inverse or cross-system-model route is added. Only the three enumerated exact cut-off profiles qualify. Raw child-rule hashes are drift witnesses, not approval of unrelated heuristic endpoints."
+        "limitations": "Preserve the complete original3.9RoW/DE mixed-plastic and3.12RoW untreated-wood market treatment shares and every original collection-freight exchange without renormalization. Negative source waste references require factor-1 to positive treatment helpers. Open-burning/open-dump/unsanitary branches use complete inspected source-emission helpers: no physical emission, fossil/biogenic split, land, water, resource flow or marginal uncertainty is omitted, and no branch is replaced by controlled disposal or empty allocation. The unsanitary native diesel-MJ and skid-steer-m3 services reuse exact earlier operating inventory witnesses; retain their technology, fleet/filter, allocation, geography and vintage limitations, without extra fuel or infrastructure. Controlled fractions use complete native ordinary mixed-plastic incineration/sanitary-landfill or untreated-wood incineration, with all44 declared composition/heating-value coordinates matched to native2026; unknown entries stay unknown. Native2025 comments are shorter but full inventories and positive references are inspected. Native controlled-process emissions, biosphere coverage, water/oxygen, residue, background energy, allocation, technology, geography and vintage differ; score effects are unquantified and no LCIA equality is claimed. The source3.12wood comment reports3.5MJ thermal output versus native3.49MJ; retain the complete native service with an explicit reporting/performance limitation, not an efficiency correction or added heat credit. Do not rescale by product-name moisture labels: actual composition matches; no dry-mass/heating-value, capacity, lifetime or allocation multiplier is introduced. Preserve original road and country-specific rail tkm separately through complete native RER same-mode freight services. The inspected CN/RoW rail markets include steam, electric and diesel supply; their whole-country traction mixes are geographic/fleet proxies, not individual steam-to-electric correspondences. Original source country freight quantities and uncertainty remain intact, while vehicle/traction/fuel/load/age/duty/background shares are not reconstructed. No extra vehicle, road or track is added. Canonical source biosphere labels use the same publisher UUID/unit/full receiving context in3.10. CAS/label metadata changes, including calcium/sodium ionic labels and missing NOx/PCB CAS, are retained as warnings; no chemical stoichiometry, charge/mass conversion, speciation proxy or compartment relocation is inferred. Retain the3.12wood controlled-branch nonphysical waste indicator once outside the native process, which lacks it; keep its exact source amount where supported, or omit only that indicator with an explicit warning and omission audit under the existing policy. Preserve caller signed quantities, uncertainty, formulas, ownership, separate emissions and collection. No new recycling/recovery credit, fly-ash-extraction proxy, paperboard disposal proxy, inverse or cross-system-model route is added. Only the three enumerated exact cut-off profiles qualify. Raw child-rule hashes are drift witnesses, not approval of unrelated heuristic endpoints.",
+        "source38_waste_market_extension": {
+          "review_path": "export/uvek_trucks_two_waste_markets_38_review.json",
+          "review_sha256": "72375bf71642b768eacd0f127f29c0bd66dfb90d698a4812ed6d2c4359dd1f6b",
+          "selected_prior_rule_and_recipe_unchanged": true
+        }
       },
       "limitations": [
         "Preserve the complete original3.9RoW/DE mixed-plastic and3.12RoW untreated-wood market treatment shares and every original collection-freight exchange without renormalization. Negative source waste references require factor-1 to positive treatment helpers. Open-burning/open-dump/unsanitary branches use complete inspected source-emission helpers: no physical emission, fossil/biogenic split, land, water, resource flow or marginal uncertainty is omitted, and no branch is replaced by controlled disposal or empty allocation. The unsanitary native diesel-MJ and skid-steer-m3 services reuse exact earlier operating inventory witnesses; retain their technology, fleet/filter, allocation, geography and vintage limitations, without extra fuel or infrastructure. Controlled fractions use complete native ordinary mixed-plastic incineration/sanitary-landfill or untreated-wood incineration, with all44 declared composition/heating-value coordinates matched to native2026; unknown entries stay unknown. Native2025 comments are shorter but full inventories and positive references are inspected. Native controlled-process emissions, biosphere coverage, water/oxygen, residue, background energy, allocation, technology, geography and vintage differ; score effects are unquantified and no LCIA equality is claimed. The source3.12wood comment reports3.5MJ thermal output versus native3.49MJ; retain the complete native service with an explicit reporting/performance limitation, not an efficiency correction or added heat credit. Do not rescale by product-name moisture labels: actual composition matches; no dry-mass/heating-value, capacity, lifetime or allocation multiplier is introduced. Preserve original road and country-specific rail tkm separately through complete native RER same-mode freight services. The inspected CN/RoW rail markets include steam, electric and diesel supply; their whole-country traction mixes are geographic/fleet proxies, not individual steam-to-electric correspondences. Original source country freight quantities and uncertainty remain intact, while vehicle/traction/fuel/load/age/duty/background shares are not reconstructed. No extra vehicle, road or track is added. Canonical source biosphere labels use the same publisher UUID/unit/full receiving context in3.10. CAS/label metadata changes, including calcium/sodium ionic labels and missing NOx/PCB CAS, are retained as warnings; no chemical stoichiometry, charge/mass conversion, speciation proxy or compartment relocation is inferred. Retain the3.12wood controlled-branch nonphysical waste indicator once outside the native process, which lacks it; keep its exact source amount where supported, or omit only that indicator with an explicit warning and omission audit under the existing policy. Preserve caller signed quantities, uncertainty, formulas, ownership, separate emissions and collection. No new recycling/recovery credit, fly-ash-extraction proxy, paperboard disposal proxy, inverse or cross-system-model route is added. Only the three enumerated exact cut-off profiles qualify. Raw child-rule hashes are drift witnesses, not approval of unrelated heuristic endpoints."
@@ -27521,7 +27526,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "128820f4c22d9c36b99549ffd62388fe1d8788009a56b75740c80cdb423d51d6"
+          "fingerprint": "a2c0345a6600ad23e6be5c975f4e271ac079f630b629b8f14a078850634bf39b"
         }
       ]
     },
@@ -37437,7 +37442,12 @@
             ]
           }
         ],
-        "limitations": "Preserve all12 original rest-of-world polyethylene-treatment shares and4 separate original collection-freight entries with signed quantities and supported uncertainty, without aggregation or renormalization. Nine exact previously reviewed uncontrolled-treatment recipes remain unchanged; two new hyperarid(-250mm) helpers retain their complete101-flow source inventories, original operating inputs and separately inspected canonical3.10 definition metadata. Open burning, open dumps and five infiltration classes remain their source fates rather than controlled incineration or an empty allocation. All1145 foreground elementary exchanges are retained across11 shared treatment helpers, including signed/zero amounts, uncertainty, full compartments and emission/resource roles. Publisher UUID/unit/context/role identify canonical definitions; Ca/Na/Sr names, sodium CAS changes and removal of an individual CAS for generic NOx remain metadata warnings without molecular/speciation/compartment factors. The ordinary-incineration portion uses the exact complete native polyethylene0.4%-water incinerator from the prior44-coordinate composition review, not the raw genericPE/PP wrapper with additional collection. Native energy, ash/residue treatment, internal residue transport, infrastructure, allocation and emissions remain once, with geographic, technology, vintage, biosphere-exclusion and unquantified-score limitations. Original country-allocated rail entries use the complete generic RER freight-rail service from the already inspected whole-freight authority; do not select the raw coal-only CN train or diesel-only US target. Keep road freight at its original tkm through the inspected complete RER heavy fleet. Source-specific quantities/uncertainty remain separate even where native suppliers coincide. Native traction, wagon/fleet, loading, fuel, infrastructure, geography and vintage differences remain screening warnings. Retain as-received kg and net tkm; introduce no moisture, dry-mass, density, heating-value, distance, payload, capacity, lifetime, recovery or avoided-production factor. Source market/treatments have no parameters/formulas. Preserve caller-owned signed quantities, formulas, uncertainty, production, foreground suppliers and separate emissions. Negative waste reference-1 maps to positive helper treatment via factor-1. Raw child hashes freeze drift and do not grant standalone approvals. No new treatment model, polymer blend, FAE assumption, physical omission, inverse or cross-system-model conversion is inferred. Only the exact3.9cutoff RoW parent closure qualifies for UVEK2026cutoff/ecoinvent3.10biosphere; other profiles and European/Swiss branches remain unapproved."
+        "limitations": "Preserve all12 original rest-of-world polyethylene-treatment shares and4 separate original collection-freight entries with signed quantities and supported uncertainty, without aggregation or renormalization. Nine exact previously reviewed uncontrolled-treatment recipes remain unchanged; two new hyperarid(-250mm) helpers retain their complete101-flow source inventories, original operating inputs and separately inspected canonical3.10 definition metadata. Open burning, open dumps and five infiltration classes remain their source fates rather than controlled incineration or an empty allocation. All1145 foreground elementary exchanges are retained across11 shared treatment helpers, including signed/zero amounts, uncertainty, full compartments and emission/resource roles. Publisher UUID/unit/context/role identify canonical definitions; Ca/Na/Sr names, sodium CAS changes and removal of an individual CAS for generic NOx remain metadata warnings without molecular/speciation/compartment factors. The ordinary-incineration portion uses the exact complete native polyethylene0.4%-water incinerator from the prior44-coordinate composition review, not the raw genericPE/PP wrapper with additional collection. Native energy, ash/residue treatment, internal residue transport, infrastructure, allocation and emissions remain once, with geographic, technology, vintage, biosphere-exclusion and unquantified-score limitations. Original country-allocated rail entries use the complete generic RER freight-rail service from the already inspected whole-freight authority; do not select the raw coal-only CN train or diesel-only US target. Keep road freight at its original tkm through the inspected complete RER heavy fleet. Source-specific quantities/uncertainty remain separate even where native suppliers coincide. Native traction, wagon/fleet, loading, fuel, infrastructure, geography and vintage differences remain screening warnings. Retain as-received kg and net tkm; introduce no moisture, dry-mass, density, heating-value, distance, payload, capacity, lifetime, recovery or avoided-production factor. Source market/treatments have no parameters/formulas. Preserve caller-owned signed quantities, formulas, uncertainty, production, foreground suppliers and separate emissions. Negative waste reference-1 maps to positive helper treatment via factor-1. Raw child hashes freeze drift and do not grant standalone approvals. No new treatment model, polymer blend, FAE assumption, physical omission, inverse or cross-system-model conversion is inferred. Only the exact3.9cutoff RoW parent closure qualifies for UVEK2026cutoff/ecoinvent3.10biosphere; other profiles and European/Swiss branches remain unapproved.",
+        "source38_waste_market_extension": {
+          "review_path": "export/uvek_trucks_two_waste_markets_38_review.json",
+          "review_sha256": "72375bf71642b768eacd0f127f29c0bd66dfb90d698a4812ed6d2c4359dd1f6b",
+          "selected_prior_rule_and_recipe_unchanged": true
+        }
       },
       "limitations": [
         "Preserve all12 original rest-of-world polyethylene-treatment shares and4 separate original collection-freight entries with signed quantities and supported uncertainty, without aggregation or renormalization. Nine exact previously reviewed uncontrolled-treatment recipes remain unchanged; two new hyperarid(-250mm) helpers retain their complete101-flow source inventories, original operating inputs and separately inspected canonical3.10 definition metadata. Open burning, open dumps and five infiltration classes remain their source fates rather than controlled incineration or an empty allocation. All1145 foreground elementary exchanges are retained across11 shared treatment helpers, including signed/zero amounts, uncertainty, full compartments and emission/resource roles. Publisher UUID/unit/context/role identify canonical definitions; Ca/Na/Sr names, sodium CAS changes and removal of an individual CAS for generic NOx remain metadata warnings without molecular/speciation/compartment factors. The ordinary-incineration portion uses the exact complete native polyethylene0.4%-water incinerator from the prior44-coordinate composition review, not the raw genericPE/PP wrapper with additional collection. Native energy, ash/residue treatment, internal residue transport, infrastructure, allocation and emissions remain once, with geographic, technology, vintage, biosphere-exclusion and unquantified-score limitations. Original country-allocated rail entries use the complete generic RER freight-rail service from the already inspected whole-freight authority; do not select the raw coal-only CN train or diesel-only US target. Keep road freight at its original tkm through the inspected complete RER heavy fleet. Source-specific quantities/uncertainty remain separate even where native suppliers coincide. Native traction, wagon/fleet, loading, fuel, infrastructure, geography and vintage differences remain screening warnings. Retain as-received kg and net tkm; introduce no moisture, dry-mass, density, heating-value, distance, payload, capacity, lifetime, recovery or avoided-production factor. Source market/treatments have no parameters/formulas. Preserve caller-owned signed quantities, formulas, uncertainty, production, foreground suppliers and separate emissions. Negative waste reference-1 maps to positive helper treatment via factor-1. Raw child hashes freeze drift and do not grant standalone approvals. No new treatment model, polymer blend, FAE assumption, physical omission, inverse or cross-system-model conversion is inferred. Only the exact3.9cutoff RoW parent closure qualifies for UVEK2026cutoff/ecoinvent3.10biosphere; other profiles and European/Swiss branches remain unapproved."
@@ -37454,7 +37464,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "044d4a85f7053bb14b548b4882419ec049f006e2baf08ffba694b1304cee22bf"
+          "fingerprint": "99c670c23b67fb95aa9ac4fd73814a807e86ebb0645789c96f8a81138eb05ee9"
         }
       ]
     },
@@ -324355,6 +324365,108 @@
             "version": "2025"
           },
           "fingerprint": "6bb683a766b4b909e0762e8a4631694b75a8b729043ef458e72b32511e4bd086"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5c29c14c8825b76f",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_uncontrolled_market",
+      "review_path": "export/uvek_trucks_two_waste_markets_38_review.json",
+      "review_sha256": "72375bf71642b768eacd0f127f29c0bd66dfb90d698a4812ed6d2c4359dd1f6b",
+      "authorization": "Standing autonomous goal and automatic approval of inspected screening proxies with explicit warnings; no new physical omissions.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for waste wood, untreated",
+            "reference product": "waste wood, untreated",
+            "unit": "kilogram",
+            "location": "RoW"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 19,
+          "inventory_sha256": "eb18bc21dbd3f43b84051a8a4c25ca607eda4fa131e5681d8e983e284e683eea",
+          "metadata_sha256": "a59a077881ac2750ba026ffddb00ccd89598e4b39dbf58d868926136487ed2c1"
+        },
+        "adopted_source_versions": [
+          "3.12"
+        ],
+        "source38_treatment_shares_retained": 12,
+        "source38_transport_entries_retained": 7
+      },
+      "limitations": [
+        "Use the existing complete reviewed 3.12 treatment models as screening proxies for the same source-3.8 waste type, treatment technology and infiltration class. This is an explicit inventory-version substitution, not an exact source-inventory reconstruction. Treatment emissions, operating inputs, temporal modelling, geography, allocation, uncertainty and score effects differ and remain unquantified. The source municipal-incineration inventory is replaced by the already-reviewed complete native incinerator; no additional recovery or energy credit is invented.",
+        "Retain all twelve original source-3.8 treatment shares and all seven original collection-transport entries without renormalization, grouping or changing nominal quantities. Retain market transport uncertainty and its supported constant formula. Source negative treatment inputs and the negative market reference each change sign once at their own boundary; no absolute-value operation is used.",
+        "Use complete existing same-mode native collection services: RER heavy-lorry fleet, US diesel rail for the US entry and RER rail for other entries. The original country entries remain separate. Geography, fuel, fleet, payload, vintage and infrastructure differ; no distance multiplier or extra infrastructure is added.",
+        "Preserve caller quantities, signs, formulas, uncertainty and separately listed emissions. Reused uncontrolled-treatment models remain nonempty and retain their complete reviewed elemental releases and operating services. No paid treatment is replaced by an empty recycling handover, zero burden or omission. Existing canonical-biosphere screening correspondences and their limitations remain in force.",
+        "Only the exact ecoinvent 3.8 cut-off context gains permission. Existing reviewed source profiles and all their recipe bodies remain unchanged; no consequential, reverse or patch-release permission is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e8a22bcae518071df2157e43dc861730e0891be9e647df8f05fb530087d5335f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-38a8afc636bbea5a",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_pe_row",
+      "review_path": "export/uvek_trucks_two_waste_markets_38_review.json",
+      "review_sha256": "72375bf71642b768eacd0f127f29c0bd66dfb90d698a4812ed6d2c4359dd1f6b",
+      "authorization": "Standing autonomous goal and automatic approval of inspected screening proxies with explicit warnings; no new physical omissions.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for waste polyethylene",
+            "reference product": "waste polyethylene",
+            "unit": "kilogram",
+            "location": "RoW"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 19,
+          "inventory_sha256": "f7ac63e9b145a9269d20ea5b480173d268c8146c051896d2998404c290c4b39d",
+          "metadata_sha256": "34235079012a255b56aac670409379c6f878c8ea73a660ef11afb0a745517580"
+        },
+        "adopted_source_versions": [
+          "3.9"
+        ],
+        "source38_treatment_shares_retained": 12,
+        "source38_transport_entries_retained": 7
+      },
+      "limitations": [
+        "Use the existing complete reviewed 3.9 treatment models as screening proxies for the same source-3.8 waste type, treatment technology and infiltration class. This is an explicit inventory-version substitution, not an exact source-inventory reconstruction. Treatment emissions, operating inputs, temporal modelling, geography, allocation, uncertainty and score effects differ and remain unquantified. The source municipal-incineration inventory is replaced by the already-reviewed complete native incinerator; no additional recovery or energy credit is invented.",
+        "Retain all twelve original source-3.8 treatment shares and all seven original collection-transport entries without renormalization, grouping or changing nominal quantities. Retain market transport uncertainty and its supported constant formula. Source negative treatment inputs and the negative market reference each change sign once at their own boundary; no absolute-value operation is used.",
+        "Use complete existing same-mode native collection services: RER heavy-lorry fleet, US diesel rail for the US entry and RER rail for other entries. The original country entries remain separate. Geography, fuel, fleet, payload, vintage and infrastructure differ; no distance multiplier or extra infrastructure is added.",
+        "Preserve caller quantities, signs, formulas, uncertainty and separately listed emissions. Reused uncontrolled-treatment models remain nonempty and retain their complete reviewed elemental releases and operating services. No paid treatment is replaced by an empty recycling handover, zero burden or omission. Existing canonical-biosphere screening correspondences and their limitations remain in force.",
+        "Only the exact ecoinvent 3.8 cut-off context gains permission. Existing reviewed source profiles and all their recipe bodies remain unchanged; no consequential, reverse or patch-release permission is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "2e1b621cf0bdb5d8fb6e1ce01730e81aa378cae5bfdf6ae702d135de94a24a78"
         }
       ]
     }

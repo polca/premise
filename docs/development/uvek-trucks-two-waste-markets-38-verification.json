@@ -1,0 +1,85 @@
+{
+  "status": "two_waste_market_proxies_tested_not_full_truck_qualification",
+  "first_source38_cohort_pending_before": 4,
+  "first_source38_cohort_pending_after": 2,
+  "remaining_rule_ids": [
+    "bp-561db61b644cb833",
+    "bp-ca080a54d1c79f8d"
+  ],
+  "candidate": {
+    "review_sha256": "72375bf71642b768eacd0f127f29c0bd66dfb90d698a4812ed6d2c4359dd1f6b",
+    "changed_rules": [
+      "bp-38a8afc636bbea5a",
+      "bp-5c29c14c8825b76f"
+    ],
+    "new_helpers": 2,
+    "all_old_recipes_unchanged": true,
+    "all_prior_selected_rules_unchanged": true,
+    "new_foreground_omissions": 0,
+    "runtime_or_generator_Python_changes": 0,
+    "source38_shares_and_seven_freight_entries_retained_per_market": true,
+    "idempotent_review_replay": true,
+    "qualification_limit": "Candidate mappings only, pending tests and workflow retry. Complete later-version treatment models are screening proxies, not exact source-3.8 inventories."
+  },
+  "normal_generator_outputs": [
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+      "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "normal_generator_matches_packaged_resource": true
+    },
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+      "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "normal_generator_matches_packaged_resource": true
+    },
+    {
+      "file": "ecoinvent-to-uvek-2025.json",
+      "sha256": "ebfb7453b9256409787ee6a1ffdc3824541a6ee5facd9b1629646ea7411aa4fd",
+      "normal_generator_matches_packaged_resource": true
+    }
+  ],
+  "LCIs": {
+    "status": "two_waste_markets_have_finite_signed_LCIs",
+    "transient_activities": 26,
+    "signed_finite_LCI_solves": 4,
+    "independent_native_demand_comparisons": [
+      {
+        "rule_id": "bp-5c29c14c8825b76f",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 5.437951521372608e-18,
+        "relative_infinity_norm_difference": 4.500778847802376e-19,
+        "relative_infinity_norm_tolerance": 1e-10
+      },
+      {
+        "rule_id": "bp-38a8afc636bbea5a",
+        "independent_native_demand_comparison": true,
+        "native_demand_coefficients_exactly_equal": true,
+        "maximum_absolute_inventory_difference": 1.7140322791469025e-11,
+        "relative_infinity_norm_difference": 5.086092132029917e-13,
+        "relative_infinity_norm_tolerance": 1e-10
+      }
+    ],
+    "matrix_shape": [
+      11973,
+      11973
+    ],
+    "source_and_biosphere_metadata_preserved": true,
+    "new_Brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "qualification_limit": "Native target-model consistency only; not source/native LCIA equivalence or complete truck-sector qualification."
+  },
+  "tests": {
+    "Brightpath_new_and_manifest": 13,
+    "Premise_cache_and_withdrawal": 4,
+    "Ruff": "both changed test files pass",
+    "whitespace": "both repository diffs pass"
+  },
+  "source_version_proxy_limit": "Complete later-reviewed treatment models are used as explicit screening proxies. Their operating inputs and emissions are not claimed identical to source 3.8. All original source 3.8 market shares and collection legs remain unchanged.",
+  "public_sector_gate_bypassed_for_diagnostic_only": true,
+  "validation_disabled": false,
+  "export_performed": false,
+  "runtime_or_generator_Python_changes": 0,
+  "qualification_limit": "No full-sector qualification; the next run can uncover further source cohorts."
+}
