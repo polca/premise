@@ -94,19 +94,16 @@ def load_simapro_categories():
             "The dictionary of Simapro categories could not be found."
         )
     with open(filepath, encoding="latin1") as f:
-        csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
-    _, *data = csv_list
+        _, *data = [[val.strip() for val in row.split(";")] for row in f.readlines()]
 
-    dict_cat = {}
-    for row in data:
-        _, cat_code, category_1, category_2, category_3 = row
-        dict_cat[str(cat_code)] = {
+    return {
+        str(cat_code): {
             "category 1": category_1,
             "category 2": category_2,
             "category 3": category_3,
         }
-
-    return dict_cat
+        for _, cat_code, category_1, category_2, category_3 in data
+    }
 
 
 def get_simapro_category_of_exchange():
