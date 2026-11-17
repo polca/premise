@@ -204070,7 +204070,12 @@
             "metadata_sha256": "99936ae4e9efe17c8180adc83af59b15b2bea996a114c47eee47f4c7948555b9",
             "inventory_sha256": "064349a0ba8f43d2be25927725e07c84613706072bc308aad39c7feb9e3d3ba7"
           }
-        ]
+        ],
+        "source39_waste_portfolio_extension": {
+          "review_path": "export/uvek_battery_waste_markets_39_review.json",
+          "review_sha256": "6d035654d3e0c8b69dffeba46a97d8cba8f9a10de9156864bd4ee0018b3030e7",
+          "previous_selected_rule_and_recipes_unchanged": true
+        }
       },
       "limitations": [
         "Exact requested 3.7 cut-off only, using explicitly limited 3.7.1 functional-reference and fixed-allocation proxy evidence. Preserve one kg wet waste-oil treatment service: both inspected incinerators and native hazardous-waste incineration describe 10 percent water. Keep two separate native treatment shares 0.397600148816246 and 0.397566014085865, original road 0.01932 and rail 0.0112 tonne-km and their marginal uncertainty. Do not renormalise to one kg of incineration, divide by dry matter or add fuel/energy/recovery credits. The remaining 0.204833837097889 kg is a clinker-kiln waste receipt with 57 zero allocated nominal exchanges and zero uncertainty bounds; all inherited formulas also occur in the nonzero clinker activity. Explicitly omit that allocated-zero receipt from the target supplier graph and retain its signed quantity and evidence in the omission audit. This is not a claim that physical co-processing or kiln emissions are zero; parameter recalculation and other allocations are not represented. Source negative waste reference becomes positive target treatment reference at factor -1; keep internal treatment/transport burdens positive. Native Swiss incineration replaces European with/without-energy-recovery variants using its complete disposal inventory, residues and allocation once. Geography, vintage, technology, uncertainty, fleet and native biosphere exclusions differ and score effects are unquantified.",
@@ -204088,7 +204093,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "eac3ec3fc6bf666bf8fd4afa89d3e434a279ea3f138dcf40c417c871c021a5e0"
+          "fingerprint": "bdaa9664062e6ad220635d83a73f588a8eed9dc6c97b2a34d92407aa81be3057"
         }
       ]
     },
@@ -329595,6 +329600,344 @@
             "version": "2025"
           },
           "fingerprint": "ed99cb9ee546317d3b9e00bc242df736c635cb77ecd3a3ba99f7ee5881453cb6"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2149df101fadeeb2",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_waste_markets_39_review.json",
+      "review_sha256": "6d035654d3e0c8b69dffeba46a97d8cba8f9a10de9156864bd4ee0018b3030e7",
+      "authorization": "Standing autonomous goal, automatic same-function native disposal/freight proxy approvals and previously approved warning/audit treatment of inventory-empty allocated clinker-kiln receipts.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for waste mineral oil",
+          "reference product": "waste mineral oil",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for waste mineral oil",
+            "reference product": "waste mineral oil",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "846be999a0f1ff1aba1bbe3ae88fcc686d20054ef5aebe23577089aec782e1c2",
+          "metadata_sha256": "61c333442b65458ee98945325c0c866d59c0057f9bcaf20b132e5928db81ff30"
+        },
+        "target": {
+          "recipe_ref": "battery-waste-39-2149df101fadeeb2"
+        },
+        "conversion_factor": -1,
+        "approved_recipe_source_omissions": {
+          "battery-waste-39-2149df101fadeeb2": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "Europe without Switzerland",
+                "name": "market for waste mineral oil",
+                "reference product": "waste mineral oil",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "846be999a0f1ff1aba1bbe3ae88fcc686d20054ef5aebe23577089aec782e1c2",
+              "original_index": 3,
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "waste mineral oil",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": -0.204833837097889,
+                "uncertainty type": 0,
+                "loc": -0.204833837097889
+              },
+              "rationale": "Independently inspected3.9cut-off clinker-kiln receipt is production-only with zero nonproduction exchanges. Its fixed allocated source LCI contribution is exactly zero. Omit only this empty terminal with signed source quantity and fate retained in this audit. Do not renormalize other shares, add clinker production, create a physical zero-treatment service or invent a recovery/avoided-fuel credit. Physical kiln processing/emissions are not asserted to be zero."
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "Only the exact independently inspected ecoinvent3.9cut-off waste market interfaces gain new permission. Negative source market and treatment references become positive target services exactly once at each corresponding caller. Preserve original kg, signs of independent operations/emissions, uncertainty, formulas and source boundaries; no cross-system, other source version or inverse permission is inferred.",
+        "Retain every nonempty source disposal branch separately at its original share, plus every original rail and road leg at its tkm and marginal statistics. Complete native Swiss disposal and RER/US freight replace regional technology, feedstock variations, infrastructure, allocation, geography and vintage. Keep US diesel rail for the US leg; other rail uses RER as an explicit traction/geography proxy. No grouping, share renormalization, distance, payload, dry-mass or heating-value correction.",
+        "Source solvent mixtures reference16.5%water and source waste mineral oil10%water; selected native complete hazardous-waste incinerators have those same nominal waste labels and water percentages. Steel is100%steel scrap with0%water and no heating value: preserve its original inert-landfill and municipal-incineration shares with complete same-material native services; do not replace disposal by steel recycling or by the whole building-waste sorting/deconstruction mix.",
+        "For each inspected CH/European solvent pair and European oil pair, all69/69/53nonproduction exchange identities and nominal quantities are identical between records labelled without and with energy recovery. Keep both original market entries separately using the complete matching native incinerator per kg. This does not establish uncertainty, recovered-energy, allocation or source/native process equivalence. Retain native controls, ash/residue handling and allocation; add no invented heat/electricity or fuel-replacement credit.",
+        "Exactly three original clinker-kiln receipts have one negative-kg production exchange and zero nonproduction exchanges in the inspected3.9cut-off database. Omit only those inventory-empty terminals with an explicit signed source-exchange audit and warning. Their contribution in this fixed source model is exactly zero; this does not claim physical co-processing or kiln emissions are zero. Preserve the incineration shares below one and original freight without renormalization. Do not invent clinker manufacture, landfill, a zero-treatment supplier or an avoided-fuel credit.",
+        "Native fate processes and source allocations have different controls, emissions, residue recovery, internal uncertainty, regional and temporal assumptions. Those source/native score differences remain unquantified. No nonempty operation or source foreground exchange is silently omitted. Earlier source3.7waste-oil physical targets, quantities, omission and recipes remain unchanged; the old limited3.7.1patch inference is not asserted as fresh bare3.7inspection. No production/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a8a53f83c26fc13a29ad32a0c974cc2bf7b9484cacb89777ee13fdb80a6eb02a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6b5607ff035d8448",
+      "operation": "replace",
+      "mapping_method": "pairwise_review",
+      "review_path": "export/uvek_battery_waste_markets_39_review.json",
+      "review_sha256": "6d035654d3e0c8b69dffeba46a97d8cba8f9a10de9156864bd4ee0018b3030e7",
+      "authorization": "Standing autonomous goal, automatic same-function native disposal/freight proxy approvals and previously approved warning/audit treatment of inventory-empty allocated clinker-kiln receipts.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "market for scrap steel",
+          "reference product": "scrap steel",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for scrap steel",
+            "reference product": "scrap steel",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 10,
+          "inventory_sha256": "00b4f67903d5b080cb53b79b4bb1a800d6b835486a4471e178a99578f186186a",
+          "metadata_sha256": "6ded2fe4e138963fa4e8c30b95f5d9717476dcb6da82d08946294d288583781b"
+        },
+        "target": {
+          "recipe_ref": "battery-waste-39-6b5607ff035d8448"
+        },
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Only the exact independently inspected ecoinvent3.9cut-off waste market interfaces gain new permission. Negative source market and treatment references become positive target services exactly once at each corresponding caller. Preserve original kg, signs of independent operations/emissions, uncertainty, formulas and source boundaries; no cross-system, other source version or inverse permission is inferred.",
+        "Retain every nonempty source disposal branch separately at its original share, plus every original rail and road leg at its tkm and marginal statistics. Complete native Swiss disposal and RER/US freight replace regional technology, feedstock variations, infrastructure, allocation, geography and vintage. Keep US diesel rail for the US leg; other rail uses RER as an explicit traction/geography proxy. No grouping, share renormalization, distance, payload, dry-mass or heating-value correction.",
+        "Source solvent mixtures reference16.5%water and source waste mineral oil10%water; selected native complete hazardous-waste incinerators have those same nominal waste labels and water percentages. Steel is100%steel scrap with0%water and no heating value: preserve its original inert-landfill and municipal-incineration shares with complete same-material native services; do not replace disposal by steel recycling or by the whole building-waste sorting/deconstruction mix.",
+        "For each inspected CH/European solvent pair and European oil pair, all69/69/53nonproduction exchange identities and nominal quantities are identical between records labelled without and with energy recovery. Keep both original market entries separately using the complete matching native incinerator per kg. This does not establish uncertainty, recovered-energy, allocation or source/native process equivalence. Retain native controls, ash/residue handling and allocation; add no invented heat/electricity or fuel-replacement credit.",
+        "Exactly three original clinker-kiln receipts have one negative-kg production exchange and zero nonproduction exchanges in the inspected3.9cut-off database. Omit only those inventory-empty terminals with an explicit signed source-exchange audit and warning. Their contribution in this fixed source model is exactly zero; this does not claim physical co-processing or kiln emissions are zero. Preserve the incineration shares below one and original freight without renormalization. Do not invent clinker manufacture, landfill, a zero-treatment supplier or an avoided-fuel credit.",
+        "Native fate processes and source allocations have different controls, emissions, residue recovery, internal uncertainty, regional and temporal assumptions. Those source/native score differences remain unquantified. No nonempty operation or source foreground exchange is silently omitted. Earlier source3.7waste-oil physical targets, quantities, omission and recipes remain unchanged; the old limited3.7.1patch inference is not asserted as fresh bare3.7inspection. No production/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "15856e46c826f9e13ef5ad08b36da931c6a6286d1ba8ae7b6551be3f212acb29"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6e3f61d03dd09ea6",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_waste_markets_39_review.json",
+      "review_sha256": "6d035654d3e0c8b69dffeba46a97d8cba8f9a10de9156864bd4ee0018b3030e7",
+      "authorization": "Standing autonomous goal, automatic same-function native disposal/freight proxy approvals and previously approved warning/audit treatment of inventory-empty allocated clinker-kiln receipts.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for spent solvent mixture",
+          "reference product": "spent solvent mixture",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for spent solvent mixture",
+            "reference product": "spent solvent mixture",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "1a39c2ba8ce39e77baa96a2aa920c9ba9acf5dea297ad370cf3100cf64fb5ec0",
+          "metadata_sha256": "898cb7500dcaee93bfe47c40f57bca6a21de294d235a9a34187172a8ee74195f"
+        },
+        "target": {
+          "recipe_ref": "battery-waste-39-6e3f61d03dd09ea6"
+        },
+        "conversion_factor": -1,
+        "approved_recipe_source_omissions": {
+          "battery-waste-39-6e3f61d03dd09ea6": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "Europe without Switzerland",
+                "name": "market for spent solvent mixture",
+                "reference product": "spent solvent mixture",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "1a39c2ba8ce39e77baa96a2aa920c9ba9acf5dea297ad370cf3100cf64fb5ec0",
+              "original_index": 3,
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "spent solvent mixture",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": -0.235520805022856,
+                "uncertainty type": 0,
+                "loc": -0.235520805022856
+              },
+              "rationale": "Independently inspected3.9cut-off clinker-kiln receipt is production-only with zero nonproduction exchanges. Its fixed allocated source LCI contribution is exactly zero. Omit only this empty terminal with signed source quantity and fate retained in this audit. Do not renormalize other shares, add clinker production, create a physical zero-treatment service or invent a recovery/avoided-fuel credit. Physical kiln processing/emissions are not asserted to be zero."
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "Only the exact independently inspected ecoinvent3.9cut-off waste market interfaces gain new permission. Negative source market and treatment references become positive target services exactly once at each corresponding caller. Preserve original kg, signs of independent operations/emissions, uncertainty, formulas and source boundaries; no cross-system, other source version or inverse permission is inferred.",
+        "Retain every nonempty source disposal branch separately at its original share, plus every original rail and road leg at its tkm and marginal statistics. Complete native Swiss disposal and RER/US freight replace regional technology, feedstock variations, infrastructure, allocation, geography and vintage. Keep US diesel rail for the US leg; other rail uses RER as an explicit traction/geography proxy. No grouping, share renormalization, distance, payload, dry-mass or heating-value correction.",
+        "Source solvent mixtures reference16.5%water and source waste mineral oil10%water; selected native complete hazardous-waste incinerators have those same nominal waste labels and water percentages. Steel is100%steel scrap with0%water and no heating value: preserve its original inert-landfill and municipal-incineration shares with complete same-material native services; do not replace disposal by steel recycling or by the whole building-waste sorting/deconstruction mix.",
+        "For each inspected CH/European solvent pair and European oil pair, all69/69/53nonproduction exchange identities and nominal quantities are identical between records labelled without and with energy recovery. Keep both original market entries separately using the complete matching native incinerator per kg. This does not establish uncertainty, recovered-energy, allocation or source/native process equivalence. Retain native controls, ash/residue handling and allocation; add no invented heat/electricity or fuel-replacement credit.",
+        "Exactly three original clinker-kiln receipts have one negative-kg production exchange and zero nonproduction exchanges in the inspected3.9cut-off database. Omit only those inventory-empty terminals with an explicit signed source-exchange audit and warning. Their contribution in this fixed source model is exactly zero; this does not claim physical co-processing or kiln emissions are zero. Preserve the incineration shares below one and original freight without renormalization. Do not invent clinker manufacture, landfill, a zero-treatment supplier or an avoided-fuel credit.",
+        "Native fate processes and source allocations have different controls, emissions, residue recovery, internal uncertainty, regional and temporal assumptions. Those source/native score differences remain unquantified. No nonempty operation or source foreground exchange is silently omitted. Earlier source3.7waste-oil physical targets, quantities, omission and recipes remain unchanged; the old limited3.7.1patch inference is not asserted as fresh bare3.7inspection. No production/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "fd1962cfb4b6f50f219deca8d9c8ccc9d1af7e83062be41425d60760bbc193c9"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-bce58f1fed0f56b1",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_waste_markets_39_review.json",
+      "review_sha256": "6d035654d3e0c8b69dffeba46a97d8cba8f9a10de9156864bd4ee0018b3030e7",
+      "authorization": "Standing autonomous goal, automatic same-function native disposal/freight proxy approvals and previously approved warning/audit treatment of inventory-empty allocated clinker-kiln receipts.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "CH",
+          "name": "market for spent solvent mixture",
+          "reference product": "spent solvent mixture",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for spent solvent mixture",
+            "reference product": "spent solvent mixture",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "6a067bbb02870a15d15d2e25a01554fbd87f3b7260646fad60652345b1d19ac6",
+          "metadata_sha256": "596076808795fcb35a3102652ed177d5103dc2aa2c0942e4115f2030b3c1f0ff"
+        },
+        "target": {
+          "recipe_ref": "battery-waste-39-bce58f1fed0f56b1"
+        },
+        "conversion_factor": -1,
+        "approved_recipe_source_omissions": {
+          "battery-waste-39-bce58f1fed0f56b1": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "CH",
+                "name": "market for spent solvent mixture",
+                "reference product": "spent solvent mixture",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "6a067bbb02870a15d15d2e25a01554fbd87f3b7260646fad60652345b1d19ac6",
+              "original_index": 3,
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "spent solvent mixture",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": -0.153288626972837,
+                "uncertainty type": 0,
+                "loc": -0.153288626972837
+              },
+              "rationale": "Independently inspected3.9cut-off clinker-kiln receipt is production-only with zero nonproduction exchanges. Its fixed allocated source LCI contribution is exactly zero. Omit only this empty terminal with signed source quantity and fate retained in this audit. Do not renormalize other shares, add clinker production, create a physical zero-treatment service or invent a recovery/avoided-fuel credit. Physical kiln processing/emissions are not asserted to be zero."
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "Only the exact independently inspected ecoinvent3.9cut-off waste market interfaces gain new permission. Negative source market and treatment references become positive target services exactly once at each corresponding caller. Preserve original kg, signs of independent operations/emissions, uncertainty, formulas and source boundaries; no cross-system, other source version or inverse permission is inferred.",
+        "Retain every nonempty source disposal branch separately at its original share, plus every original rail and road leg at its tkm and marginal statistics. Complete native Swiss disposal and RER/US freight replace regional technology, feedstock variations, infrastructure, allocation, geography and vintage. Keep US diesel rail for the US leg; other rail uses RER as an explicit traction/geography proxy. No grouping, share renormalization, distance, payload, dry-mass or heating-value correction.",
+        "Source solvent mixtures reference16.5%water and source waste mineral oil10%water; selected native complete hazardous-waste incinerators have those same nominal waste labels and water percentages. Steel is100%steel scrap with0%water and no heating value: preserve its original inert-landfill and municipal-incineration shares with complete same-material native services; do not replace disposal by steel recycling or by the whole building-waste sorting/deconstruction mix.",
+        "For each inspected CH/European solvent pair and European oil pair, all69/69/53nonproduction exchange identities and nominal quantities are identical between records labelled without and with energy recovery. Keep both original market entries separately using the complete matching native incinerator per kg. This does not establish uncertainty, recovered-energy, allocation or source/native process equivalence. Retain native controls, ash/residue handling and allocation; add no invented heat/electricity or fuel-replacement credit.",
+        "Exactly three original clinker-kiln receipts have one negative-kg production exchange and zero nonproduction exchanges in the inspected3.9cut-off database. Omit only those inventory-empty terminals with an explicit signed source-exchange audit and warning. Their contribution in this fixed source model is exactly zero; this does not claim physical co-processing or kiln emissions are zero. Preserve the incineration shares below one and original freight without renormalization. Do not invent clinker manufacture, landfill, a zero-treatment supplier or an avoided-fuel credit.",
+        "Native fate processes and source allocations have different controls, emissions, residue recovery, internal uncertainty, regional and temporal assumptions. Those source/native score differences remain unquantified. No nonempty operation or source foreground exchange is silently omitted. Earlier source3.7waste-oil physical targets, quantities, omission and recipes remain unchanged; the old limited3.7.1patch inference is not asserted as fresh bare3.7inspection. No production/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "28e5a47fd184ccbac9520a03bcb4bba999d0fc324c1785a5f03c95682ae43e77"
         }
       ]
     }
