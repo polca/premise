@@ -411,7 +411,7 @@ def get_regions_definition(model: str) -> None:
 def clear_existing_cache(
     all_versions: bool = False, filter: Optional[str] = None
 ) -> None:
-    """Delete cached databases except for the active version.
+    """Delete matching cache files, optionally including the active version.
 
     :param all_versions: Whether to delete cached files for every version.
     :type all_versions: bool
@@ -419,13 +419,13 @@ def clear_existing_cache(
     :type filter: str, optional
     """
 
-    [
-        f.unlink()
-        for f in DIR_CACHED_DB.glob("*")
-        if f.is_file()
-        and (all_versions or "".join(tuple(map(str, __version__))) not in f.name)
-        and (filter is None or filter in f.name)
-    ]
+    for file in DIR_CACHED_DB.glob("*"):
+        if (
+            file.is_file()
+            and (all_versions or "".join(tuple(map(str, __version__))) not in file.name)
+            and (filter is None or filter in file.name)
+        ):
+            file.unlink()
 
 
 # clear the cache folder
