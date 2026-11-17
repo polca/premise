@@ -8653,7 +8653,12 @@
         "comparison_relative_tolerance": 1e-12,
         "conversion_factor": 1,
         "boundary": "Same generic industrial/abrasive silicon carbide, CAS 409-21-2, not a fabricated semiconductor wafer or an electronic-grade crystal specification. Retain complete native production from silica sand per kg. The source market includes both production and recovered sawing-slurry supply, while this native producer is a primary-production screening proxy. Recovery shares, allocation, purity, geographic supply, delivery and vintage are not reconstructed; add no recovery credit or purity multiplier.",
-        "inspected_upstream_producers": []
+        "inspected_upstream_producers": [],
+        "casting_materials_39_extension": {
+          "review_path": "export/uvek_casting_materials_39_review.json",
+          "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+          "prior_physical_mapping_and_recipes_unchanged": true
+        }
       },
       "limitations": [
         "Same generic industrial/abrasive silicon carbide, CAS 409-21-2, not a fabricated semiconductor wafer or an electronic-grade crystal specification. Retain complete native production from silica sand per kg. The source market includes both production and recovered sawing-slurry supply, while this native producer is a primary-production screening proxy. Recovery shares, allocation, purity, geographic supply, delivery and vintage are not reconstructed; add no recovery credit or purity multiplier.",
@@ -8673,7 +8678,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "8ddf53e1154fea473d34a0cece03f6be73bd3c92062ddd02b55299e86bca4529"
+          "fingerprint": "91d9d4b4e8b82bb46a34639ad6c2d75473c749915e6d9b57f694d60135935ecf"
         }
       ]
     },
@@ -138935,7 +138940,12 @@
         "native_reference_evidence": "export/uvek_fuels_312_dependencies_review.json",
         "routing_comparison": null,
         "prior_profile_entries_preserved": [],
-        "physical_omissions": []
+        "physical_omissions": [],
+        "casting_materials_39_extension": {
+          "review_path": "export/uvek_casting_materials_39_review.json",
+          "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+          "prior_physical_mapping_and_recipes_unchanged": true
+        }
       },
       "limitations": [
         "Retain the actual 3.12 European AE7 market's separate coconut-oil, palm-kernel-oil and petrochemical production shares using the corresponding complete native AE7 inventories, not AE3/AE11, unspecified surfactant or coconut-only supply. All have positive one-kg references. Retain the three original barge, unspecified-heavy-lorry and train freight quantities through their already reviewed complete native freight correspondences. No producer-share renormalization, feedstock or resin addition, allocation repeat or hidden transport omission. Source/native feedstock, processing, freight-fleet class, internal uncertainty, allocation, geography and vintage differences remain explicit; no LCIA equivalence is claimed.",
@@ -138953,7 +138963,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "c746e80bdb5f314bdbb6f8532910a216ece32daeb3b6c92beff41241acf74b2f"
+          "fingerprint": "118dc49e8e3f470bad53f8062d15ca014825e65a37a6cbb481db942bffe78feb"
         }
       ]
     },
@@ -302230,6 +302240,11 @@
             "metadata_sha256": "0d6e806d694e636e78e7d45b2a42b8b005127dc66045d1bd9d2e4731d50c5002",
             "comment_sha256": "f1e3bdf9b0f47f95dc47a92ef768ecbc9656df4f76edb5065c41fbd0c3cddebb"
           }
+        },
+        "casting_materials_39_extension": {
+          "review_path": "export/uvek_casting_materials_39_review.json",
+          "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+          "prior_physical_mapping_and_recipes_unchanged": true
         }
       },
       "limitations": [
@@ -302250,7 +302265,7 @@
             "system_model": "cutoff",
             "version": "2025"
           },
-          "fingerprint": "c9bf223d10bec8705c3addc84114ee35527080617969d5e9e37071bf660fe4ea"
+          "fingerprint": "26f9c9210d7f879139a77acb3c0bcf54d2ca96a160bcf46f5bd59f22176646b5"
         }
       ]
     },
@@ -308029,6 +308044,11 @@
             "reference_amount": 1.0,
             "nonproduction_count": 3
           }
+        },
+        "casting_materials_39_extension": {
+          "review_path": "export/uvek_casting_materials_39_review.json",
+          "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+          "prior_physical_mapping_and_recipes_unchanged": true
         }
       },
       "limitations": [
@@ -308049,7 +308069,7 @@
             "system_model": "cutoff",
             "version": "2025"
           },
-          "fingerprint": "82c770eb696118c5e197b1fc3ff088403908f216f0f1976f38fbdac89a4be0e4"
+          "fingerprint": "31c6b65bd57f94743a2bd9faae7c084ffaef0844b1146d67885446364f0ab2a2"
         }
       ]
     },
@@ -321090,6 +321110,11 @@
             "comment_sha256": "34164df4eee45adc5d9648e60295af508ca0b4dbdf6abb157d30f21ab0dad90b",
             "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
           }
+        },
+        "casting_materials_39_extension": {
+          "review_path": "export/uvek_casting_materials_39_review.json",
+          "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+          "prior_physical_mapping_and_recipes_unchanged": true
         }
       },
       "limitations": [
@@ -321110,7 +321135,7 @@
             "system_model": "cutoff",
             "version": "2025"
           },
-          "fingerprint": "1446ffaf6695b022bdca6fbf1305351cd126376ec490bcca17f08f8c94cbc0f6"
+          "fingerprint": "9f290ad2fa79b076c1a4235f23b7ce712a3e6922eb6198c89cd1d22445e57e7d"
         }
       ]
     },
@@ -321375,6 +321400,11 @@
             "comment_sha256": "ee8d2c4390f44140b143e144e488c2d39131dc4049962ca98db999f462af82ee",
             "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
           }
+        },
+        "casting_materials_39_extension": {
+          "review_path": "export/uvek_casting_materials_39_review.json",
+          "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+          "prior_physical_mapping_and_recipes_unchanged": true
         }
       },
       "limitations": [
@@ -321395,7 +321425,7 @@
             "system_model": "cutoff",
             "version": "2025"
           },
-          "fingerprint": "5d1ab4f82c1652fe7b14915fd976f012c5fb2432c663cdd088e44af29d101e61"
+          "fingerprint": "9be58247277a7011cf73ed2a3e81bcf3477578e9e1d4a0f516fa0835a57d56e6"
         }
       ]
     },
@@ -330067,6 +330097,1740 @@
             "version": "2025"
           },
           "fingerprint": "4ec556f3843443e0b3a005ad3e6d0fdcc1e44548c86cc3c394d071829888861b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ea3aedf71e1949d6",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for zircon",
+            "reference product": "zircon",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 7,
+          "inventory_sha256": "d511c002f7b2e18dee3c9ddf2402f1f8c66bceb5aece6179962e87213ca36ab0",
+          "metadata_sha256": "dd1a4df0a16e8dd3150008dcfc5d68170eb19583a2217fe8451708166cf2f81f"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-ea3aedf71e1949d6"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Source zircon is zircon sand/zirconium silicate, not zirconium oxide. Native50%zirconium label describes that mineral composition, not a50%solution or one kg contained zirconium. Use+1kgzircon, without a2or0.5assay multiplier. PreserveAU/RoW/ZAproducer entries; native Australian mineral-sands mining replaces geography, mining mix, titania-slag coproduct allocation and runoff data.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "7337b12d9d33c039527ce2a9b3a502c4ec7eeb9cae0f6c4ea7e80594ef9cbeaa"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-453788094d436898",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ammonia, anhydrous, liquid",
+            "reference product": "ammonia, anhydrous, liquid",
+            "location": "RAF",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "inventory_sha256": "575811c2948887fc33970a91f009c24b4cb206eb1adbb8f94dd51c8911725270",
+          "metadata_sha256": "8a22234a918c0b351b016f2761e2077e82c18837895730c78d15b00a0020ba7d"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-453788094d436898"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Preserve steam-reforming and partial-oxidation producer shares using their separate native liquid-ammonia models, not the delivered storehouse mix, which would duplicate final delivery. The RAFcoal/Fischer-Tropsch ammonia coproduct uses native heavy-fuel-oil partial-oxidation ammonia as a complete production screening proxy; coal feedstock and source coproduct allocation are replaced, with no synthetic-fuel inventory or avoided-fuel credit added. Factor+1kgNH3; no aqueous-ammonia dilution or nitrogen-content correction.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "4ed3191d8729e532722bc8f0dd258c080c6913dc7b4dcac5b4fd04f662177125"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8d3e02760638dae3",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ammonia, anhydrous, liquid",
+            "reference product": "ammonia, anhydrous, liquid",
+            "location": "SAS",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "4412f0c39909550698d7c6f1ead27d2652883c1aca5c2da286cbef4b53fa2363",
+          "metadata_sha256": "8a56294b0e005f7dd11cef684d8f41d0b4b1417d2df66f239a93c98b449c87db"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-8d3e02760638dae3"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Preserve steam-reforming and partial-oxidation producer shares using their separate native liquid-ammonia models, not the delivered storehouse mix, which would duplicate final delivery. The RAFcoal/Fischer-Tropsch ammonia coproduct uses native heavy-fuel-oil partial-oxidation ammonia as a complete production screening proxy; coal feedstock and source coproduct allocation are replaced, with no synthetic-fuel inventory or avoided-fuel credit added. Factor+1kgNH3; no aqueous-ammonia dilution or nitrogen-content correction.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "fb95ce0ac39e41e916f9a7d613431d2fdbb1ca7632a9abe07568df292e1a77fa"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1a966b3046a6a915",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ammonia, anhydrous, liquid",
+            "reference product": "ammonia, anhydrous, liquid",
+            "location": "UN-SEASIA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "9367b2a4bc67127e203065d2f9f6b329350d31a0042d4a2b66e0a84fc0309aea",
+          "metadata_sha256": "42c4ccb470f64f7acfc13cdc39286613ed0a5253f573c6462b0640a6f799d398"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-1a966b3046a6a915"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Preserve steam-reforming and partial-oxidation producer shares using their separate native liquid-ammonia models, not the delivered storehouse mix, which would duplicate final delivery. The RAFcoal/Fischer-Tropsch ammonia coproduct uses native heavy-fuel-oil partial-oxidation ammonia as a complete production screening proxy; coal feedstock and source coproduct allocation are replaced, with no synthetic-fuel inventory or avoided-fuel credit added. Factor+1kgNH3; no aqueous-ammonia dilution or nitrogen-content correction.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "2bc1ba6b4f45b8bc33be1973a29460f3c93e065aee4c0adffaa30c4f6d5006d8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7b76e4593bdbc136",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ammonia, anhydrous, liquid",
+            "reference product": "ammonia, anhydrous, liquid",
+            "location": "RLA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "81423884ba2300f47d830cb1ded1bc5327850cd666b6c709b67ab5f143ff0afc",
+          "metadata_sha256": "8ed6534c276e466a2614e0bf7daefd2300a2764bae0f0b0cb27dd8abf2084d5f"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-7b76e4593bdbc136"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Preserve steam-reforming and partial-oxidation producer shares using their separate native liquid-ammonia models, not the delivered storehouse mix, which would duplicate final delivery. The RAFcoal/Fischer-Tropsch ammonia coproduct uses native heavy-fuel-oil partial-oxidation ammonia as a complete production screening proxy; coal feedstock and source coproduct allocation are replaced, with no synthetic-fuel inventory or avoided-fuel credit added. Factor+1kgNH3; no aqueous-ammonia dilution or nitrogen-content correction.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "87b91a5beffc185e980f641a36faa8cea186c80fcaab5c3ba3e48f5e8e739099"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-09d503bdaf113659",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for clay",
+            "reference product": "clay",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 3,
+          "inventory_sha256": "6c89c25693b20724c93444d5491be24051a52386a9caafc0eab5ec4249273874",
+          "metadata_sha256": "3e37b081ee6f0a6575a471ef045a302b5bcfc0ebd3243f187d880b16e6f0329f"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-09d503bdaf113659"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Native clay/kaolin mining is a complete same-mineral production proxy. Preserve source producer and freight entries, without converting mineral mass to contained aluminium or adding a guessed drying, grading or extraction correction. Moisture, grade, mine technology and allocation differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f1c8eb276322b61f53c179d43379cccc51bcf8a31b7a607f8a9842dba382d408"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ae5ff850e0925fa1",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for clay",
+            "reference product": "clay",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "inventory_sha256": "5c3f86ff548ac6bf401676def26654446e691395ce2deccaebe2960d1e5da55f",
+          "metadata_sha256": "eeed19e69d9250a43c74095cb8169da01b42f3c083581821c81dfefd7a09ab09"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-ae5ff850e0925fa1"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Native clay/kaolin mining is a complete same-mineral production proxy. Preserve source producer and freight entries, without converting mineral mass to contained aluminium or adding a guessed drying, grading or extraction correction. Moisture, grade, mine technology and allocation differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5cedc65c864e018a565d0c7257919b9dd2e2c91c5289afe5502bee2230278404"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-92c5d186d8e2543e",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_312_dependency",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ethoxylated alcohol (AE7)",
+            "reference product": "ethoxylated alcohol (AE7)",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "inventory_sha256": "f756bd3154b291d0dc43f55e0d9f7bd39884ed8e49169279c38ebf094a0ab842",
+          "metadata_sha256": "1f67f9883da5e614f48d7b5552cc5067cd20317c066abfda4426b9178a273ba9"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-92c5d186d8e2543e"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Preserve the three exact AE7feedstock shares:0.055045871559633palm-kernel oil,0.917431192660551petrochemical and0.0275229357798165coconut oil. Use the corresponding complete nativeAE7model for each, not AE3/AE11or a single coconut-oil proxy. Both references are per kg active substance. Preserve the earlier3.12mapping and recipes unchanged.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "bc32eaa320c985c9e7717a0270597e69d273753d05ac433fc9248ba31d3d0a3a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ec88710374651f3c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ethoxylated alcohol (AE7)",
+            "reference product": "ethoxylated alcohol (AE7)",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 14,
+          "inventory_sha256": "017e7083e4cb255eddc08fc2138f858849d08df7ab60dc76e7ed7b4307a5101e",
+          "metadata_sha256": "4488601cae6938ce1b8a9604d89e8cbb8df86197a796749a2bf08a88433244b6"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-ec88710374651f3c"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Preserve the three exact AE7feedstock shares:0.055045871559633palm-kernel oil,0.917431192660551petrochemical and0.0275229357798165coconut oil. Use the corresponding complete nativeAE7model for each, not AE3/AE11or a single coconut-oil proxy. Both references are per kg active substance. Preserve the earlier3.12mapping and recipes unchanged.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "55eaa699688b7014a809ad44ec4a37a2bac343dfef07025b9adbf84d52ccdd7a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2e5ec9c4f6ba2bfc",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for aluminium oxide, non-metallurgical",
+            "reference product": "aluminium oxide, non-metallurgical",
+            "location": "IAI Area, EU27 & EFTA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "178e36e65daf0f69e8d9506627c215910df39c55743ba326c133b587169ecdbf",
+          "metadata_sha256": "ce9e4f232d6bdf8423c932b90f3f03bfe9d2bec6c8aab6ff5b63b750f7070228"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-2e5ec9c4f6ba2bfc"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Use complete nativeAl2O3per nominal kg as a screening proxy for non-metallurgical alumina. Native generic/aluminium-industry grade and inclusion of hydroxide production differ; non-metallurgical purity, surface area and ceramic performance are not established. No aluminium-metal, hydroxide-molecular-mass, density or grade multiplier.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a30699931cfe5c1d3ed2e897fc6d955021e80a755b098d75e41a86b5069c87b1"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6f73073a055e3259",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for isopropanol",
+            "reference product": "isopropanol",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 11,
+          "inventory_sha256": "ffc19fc23b29b8c282c2396a3df6ff5c102866f6fcf78fd781dd374de33ffd19",
+          "metadata_sha256": "d8d1774b709c04e7a3a640b658eb52e33c8eb8c23408656ab1d11b1590328a8b"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-6f73073a055e3259"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Source and native reference the same liquid organic chemical per nominal kg. Keep factor+1with no part count, solvent dilution, density or molecular-mass conversion. Native feedstock, manufacturing route, delivery boundary and grade differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ee4ae645907b712712c137867371dca147c20dd33e5cc4813b9c5384e57adb22"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-650d9e755cc074db",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for isopropanol",
+            "reference product": "isopropanol",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "inventory_sha256": "6148dd0d54e0a08d053a54b26a70ef8094289ad9e72fc25a6ded327c28d20099",
+          "metadata_sha256": "e73fe260774f4454fec1fba79065e75235a2f4b04b2aa2becddb76ba9aef9f82"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-650d9e755cc074db"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Source and native reference the same liquid organic chemical per nominal kg. Keep factor+1with no part count, solvent dilution, density or molecular-mass conversion. Native feedstock, manufacturing route, delivery boundary and grade differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "86b9d83d8152da5ce5b8e17f7f6dba5f069cc6f1ea08d5a88b258cadaff5ebf1"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7d4666b1f033a9c2",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for kaolin",
+            "reference product": "kaolin",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 7,
+          "inventory_sha256": "a7e7ff498d8f4626aa811476f7fa3f20fd485f9094662791c414785abcc57eec",
+          "metadata_sha256": "a5e42ae4b29847e18d31adeff840ac6463408b4f4d3bd0316a7a74483a703766"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-7d4666b1f033a9c2"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Native clay/kaolin mining is a complete same-mineral production proxy. Preserve source producer and freight entries, without converting mineral mass to contained aluminium or adding a guessed drying, grading or extraction correction. Moisture, grade, mine technology and allocation differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c93c14e3c77658079c5f218db735f7b886a4cf8d635da17e1d98e2a87b033f4e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d6eed8333eaacc02",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for methyl ethyl ketone",
+            "reference product": "methyl ethyl ketone",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "4870d26ad5655cfb84ff4a95839976d3ad1e548ca62f7cf64896653041b09ed4",
+          "metadata_sha256": "75027150ce91f3809c824886331f0c54474fbf2dc078847b4ae2115ed57f3389"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-d6eed8333eaacc02"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Retain directMEK, butane-oxidation coproduct and the RoWmarket source coal/Fischer-Tropsch coproduct entries separately. Each produces positive one kgMEK. Complete nativeMEKproduction replaces those upstream routes and allocated burdens; no assertion of identical coproduction, catalyst, feedstock or allocation and no fuel-production credit.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "39e98595ed9d9a8a760bdb5659bd862d399a76bb452191e17ff5e772f37a5d0a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-73e8940744b37a10",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for methyl ethyl ketone",
+            "reference product": "methyl ethyl ketone",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 13,
+          "inventory_sha256": "e55e071ac76a8a56b0d19439b9b928a261fdb627f43d4458cc64a56ae6dee532",
+          "metadata_sha256": "b9b3df73b2b0f060d02e1270642bb5c0290049afde6cc71e208e856166580e7c"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-73e8940744b37a10"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Retain directMEK, butane-oxidation coproduct and the RoWmarket source coal/Fischer-Tropsch coproduct entries separately. Each produces positive one kgMEK. Complete nativeMEKproduction replaces those upstream routes and allocated burdens; no assertion of identical coproduction, catalyst, feedstock or allocation and no fuel-production credit.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "943fd05a1f313f92e90b163caae1c5940b01f4ac1d0cf7b802f530fe5b815405"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a66aa0d16a517cb0",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for nitric acid, without water, in 50% solution state",
+            "reference product": "nitric acid, without water, in 50% solution state",
+            "location": "CN",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "e9b3cd0032787ead090938fb6ad8d33003e170d35a0892d660c44c48b8a33273",
+          "metadata_sha256": "40af07a84d33768fadabf5002844f4552f273dac71a5a63b3ee2e79eeeaeb550"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-a66aa0d16a517cb0"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Both source and native inventories explicitly reference one kg100%HNO3 despite the native50%solution label. Factor+1, without multiplying by2or adding water. Native document states Inventory refers to1kg100%nitric acid. Source native production energy, NOx/N2O, ammonia technology and vintage differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b7c001e67bed3cda21a1b7f29e3d54df2ed9aadfa2e08a6fffbd592180845214"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2c5ff1a10340d4b6",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for nitric acid, without water, in 50% solution state",
+            "reference product": "nitric acid, without water, in 50% solution state",
+            "location": "SAS",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "f16468dc060c4a1eca4bd379d7ad69843bc7c5fd8daf9a206e28da21c6192f83",
+          "metadata_sha256": "b0552202cf75ddccc4494f4994f0912380fb15efa6aeb36972ae494448f33927"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-2c5ff1a10340d4b6"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Both source and native inventories explicitly reference one kg100%HNO3 despite the native50%solution label. Factor+1, without multiplying by2or adding water. Native document states Inventory refers to1kg100%nitric acid. Source native production energy, NOx/N2O, ammonia technology and vintage differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "dee2b3486d331c7c75f5037cfb0708e4cfe2df1d08b715345d57a0b2cd405500"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-db36ad46555a7aa3",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for nitric acid, without water, in 50% solution state",
+            "reference product": "nitric acid, without water, in 50% solution state",
+            "location": "RU",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 7,
+          "inventory_sha256": "103bd898d0d5d5027e63e4b5567dc89977e9f0bf8914df46c9e9cd4d3c6a4e20",
+          "metadata_sha256": "f3ccb87cc57c2883b532530af80ee2e3ce6eea9a9044f630d56cddc4809096cd"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-db36ad46555a7aa3"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Both source and native inventories explicitly reference one kg100%HNO3 despite the native50%solution label. Factor+1, without multiplying by2or adding water. Native document states Inventory refers to1kg100%nitric acid. Source native production energy, NOx/N2O, ammonia technology and vintage differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "03c54af8c41434875cea25648f07596b3c6b7e1b86b1170a552044bd57a05b3e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-69c6422be04b781e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for nitric acid, without water, in 50% solution state",
+            "reference product": "nitric acid, without water, in 50% solution state",
+            "location": "UN-OCEANIA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "d2979690a5caf56af3d70da3a2dd896e4c728bc43063ba5905f93dae5d91ea2f",
+          "metadata_sha256": "b1e3323ca90954ab93b3026d98de1aed589a74bfce24e9d94522b076c926a796"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-69c6422be04b781e"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Both source and native inventories explicitly reference one kg100%HNO3 despite the native50%solution label. Factor+1, without multiplying by2or adding water. Native document states Inventory refers to1kg100%nitric acid. Source native production energy, NOx/N2O, ammonia technology and vintage differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e3d55f8a6dae89071c0a50fe4f4cf6f496bddc8de9caf8e9b7553f0003896924"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-15fd1f39ad026cbc",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for nitric acid, without water, in 50% solution state",
+            "reference product": "nitric acid, without water, in 50% solution state",
+            "location": "RER w/o RU",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "inventory_sha256": "5dae4507fae4e87d81a983e65ba39daf1c9e04e9161f2895f7538341fd45aceb",
+          "metadata_sha256": "47bd8b36be5a65b6cf34afdd781fc2b966315937f98a008d2d37cdf6c57c9e94"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-15fd1f39ad026cbc"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Both source and native inventories explicitly reference one kg100%HNO3 despite the native50%solution label. Factor+1, without multiplying by2or adding water. Native document states Inventory refers to1kg100%nitric acid. Source native production energy, NOx/N2O, ammonia technology and vintage differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d2cd8212236927791608ce90f785ffe9c54ad12030b7ab290b8b7ef3376ca453"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-304c49a322b22984",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for nitric acid, without water, in 50% solution state",
+            "reference product": "nitric acid, without water, in 50% solution state",
+            "location": "UN-SEASIA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "ce346fc0145532d05ab6dd1a4a6a48055ca85ba950bd74022823919227d942a3",
+          "metadata_sha256": "ae320156ad249061d150a4459e81c23c1094785ee86533d0162f8cec8bf9939d"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-304c49a322b22984"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Both source and native inventories explicitly reference one kg100%HNO3 despite the native50%solution label. Factor+1, without multiplying by2or adding water. Native document states Inventory refers to1kg100%nitric acid. Source native production energy, NOx/N2O, ammonia technology and vintage differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "0ca618a01b9875f245d51f5ad6bffe854caa467ee5c6364c0f95681d3cead49b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-07782013a4cecabf",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for nitric acid, without water, in 50% solution state",
+            "reference product": "nitric acid, without water, in 50% solution state",
+            "location": "RLA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "fd2083c926cbd9f3e3ac648757026c20446a1155aad728d01e5df15507897802",
+          "metadata_sha256": "b80439278c90a752a32690fe68d231b375c5a31c3a054ea455aa906d94d7ec30"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-07782013a4cecabf"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Both source and native inventories explicitly reference one kg100%HNO3 despite the native50%solution label. Factor+1, without multiplying by2or adding water. Native document states Inventory refers to1kg100%nitric acid. Source native production energy, NOx/N2O, ammonia technology and vintage differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "fb7ceb82ffa0d6d033fe926a456dc81a92de7c98d054661cdc42215ec88ddc62"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d49763b3c29edf0c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for nitric acid, without water, in 50% solution state",
+            "reference product": "nitric acid, without water, in 50% solution state",
+            "location": "RAF",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "4466b1c0d733fd91ed868c578053cb547c9aada10a58006b027165cabcde2d5e",
+          "metadata_sha256": "34ee3a61884e2ad16f06a4ed1f5ff6755d992a85aea394fbc31d9b7303fbcfca"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-d49763b3c29edf0c"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Both source and native inventories explicitly reference one kg100%HNO3 despite the native50%solution label. Factor+1, without multiplying by2or adding water. Native document states Inventory refers to1kg100%nitric acid. Source native production energy, NOx/N2O, ammonia technology and vintage differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f9f6ed498c99866929af34d46d6ac34203515b54833790793c1d21aa2f87a9b8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c3b1beea5639b3e3",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for propylene glycol, liquid",
+            "reference product": "propylene glycol, liquid",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 11,
+          "inventory_sha256": "9a4b4da570f49344d2e655841cf71d49b1034fd9b38803b859b8daa9cf2bee43",
+          "metadata_sha256": "e0c7733d5b448eb3207d6223c508e46ba1088d3f5faf1539d044fd34311c0c98"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-c3b1beea5639b3e3"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Source and native reference the same liquid organic chemical per nominal kg. Keep factor+1with no part count, solvent dilution, density or molecular-mass conversion. Native feedstock, manufacturing route, delivery boundary and grade differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d419e6ba42f1105e7fc7018286c1fc37ed8c01225deed2be53ae6bef24112c7a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-749975840ba7535f",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for propylene glycol, liquid",
+            "reference product": "propylene glycol, liquid",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "inventory_sha256": "8baa53a160b724e4848d6fdee2e8cd16e32a533815b6c90ea0a6fba29c8fcfe3",
+          "metadata_sha256": "bd22b1aa2a7976660bd42bcdf9911e77dc2c363f106be983ab65efe4abcef9bb"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-749975840ba7535f"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Source and native reference the same liquid organic chemical per nominal kg. Keep factor+1with no part count, solvent dilution, density or molecular-mass conversion. Native feedstock, manufacturing route, delivery boundary and grade differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "40df8dee20a3fd7c8c57520917739f6756f79fd39cbf85bcc4e848464dd7c67d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1f0fa3bbee140c45",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for silicon carbide",
+            "reference product": "silicon carbide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 7,
+          "inventory_sha256": "9164d55e6b1963e753bc5106578c93c2977a7daf1badd7a793158b82befa68ba",
+          "metadata_sha256": "ddfbcc6b39406dca87730b0e1f18b76ba9fa80e49958090058668b080f188ff9"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-1f0fa3bbee140c45"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Preserve separate virgin and recovered silicon-carbide shares. Source sawing-slurry recovery uses the complete nativeSilicon carbide,recycling process, not virginSiCor a zero-burden handover. Product grade, slurry yield, allocation and regional recovery technology differ; no recovery credit or yield multiplier.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6ee9bd1e3f02d3b760ff71e4a2ae12a853b7597b6e562919f9f6120f63758ef3"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d21d0bac2a023032",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for steel, low-alloyed, hot rolled",
+            "reference product": "steel, low-alloyed, hot rolled",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "inventory_sha256": "55d649a86f5ab848be40adae9e6e00bc2abaf2ae429ddf078149cfeb852bb68d",
+          "metadata_sha256": "66b8ffe487a3630722574caa4a21df84ea87205b671cf80a878e6a9ce3bc15b1"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-d21d0bac2a023032"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "NativeSteel,low-alloyed explicitly includes steel production mix and one kg hot rolling per reference kg. Do not add hot rolling again. Preserve both regional source producer entries; regional steelmaking shares and allocation are replaced by the native production mix.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "148a1a6e633a457ab9ff664b2c2178d54c10f64e15dcd31086e75db5a1047e30"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c97e0ad679099caa",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for titanium dioxide",
+            "reference product": "titanium dioxide",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 12,
+          "inventory_sha256": "cd996d02bf6c1a18ddf79a941ec63e2c20eacefa5679b09e3e5c41ae9e458356",
+          "metadata_sha256": "ac707dd102f0f55651bd84075a8c58945aa695cb3aeb55432c462f9a1ba1705a"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-c97e0ad679099caa"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Preserve the original chloride-process and sulfate-process shares through their separate complete native processes, not a generic production mix. Native pigment grade, feedstock, emissions, residue handling and allocation differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d91b208efc85801572302f27e555df2dc3e011a7c4bf00c7fe7371916fcd73f0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2d2b80140d7f768a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ammonia, anhydrous, liquid",
+            "reference product": "ammonia, anhydrous, liquid",
+            "location": "CN",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "inventory_sha256": "bc7159db2f6c588343386507ed98dd524dcd98a145cb1ac3ad7404e32f7928f7",
+          "metadata_sha256": "3ebffefa8034cd19933cd7d54f30cd1e352505c07a0415cc994f8b9ad05eb887"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-2d2b80140d7f768a"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Preserve steam-reforming and partial-oxidation producer shares using their separate native liquid-ammonia models, not the delivered storehouse mix, which would duplicate final delivery. The RAFcoal/Fischer-Tropsch ammonia coproduct uses native heavy-fuel-oil partial-oxidation ammonia as a complete production screening proxy; coal feedstock and source coproduct allocation are replaced, with no synthetic-fuel inventory or avoided-fuel credit added. Factor+1kgNH3; no aqueous-ammonia dilution or nitrogen-content correction.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "998c1bbf1b77d0a367bdde0e45de067f8030cb48b95ca0da06d3f951a7d7da5c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-813e89e197b90e26",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for water, deionised",
+            "reference product": "water, deionised",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "7ba2d24b6fe76431037acdf22815210c343aef137095e8657f307374d392a386",
+          "metadata_sha256": "de1ff23b52d7f50252f80134ff2619f883c17039b3265cfb7e1037d072c586ef"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-813e89e197b90e26"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Complete native ion-exchange water supply is used per kg, including regeneration, chemicals, electricity and spent-resin replacement. Source/raw-water quality, plant size, treatment technology and regeneration demand may differ. No invented conductivity, density or water-balance multiplier.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c5e916508610e360714545ae04db92e33f3af6bdcaf982e1f88620fa7b845a18"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-587a97cfe8d95f2a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ammonia, anhydrous, liquid",
+            "reference product": "ammonia, anhydrous, liquid",
+            "location": "UN-OCEANIA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "53d95a7ab1179767706715512b052c0ebfdb7cf83349b476bcf36bc19f79418f",
+          "metadata_sha256": "69799eaa127e3fe158285abac2be926e189cb561f858a91caf2b430ab014dd69"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-587a97cfe8d95f2a"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Preserve steam-reforming and partial-oxidation producer shares using their separate native liquid-ammonia models, not the delivered storehouse mix, which would duplicate final delivery. The RAFcoal/Fischer-Tropsch ammonia coproduct uses native heavy-fuel-oil partial-oxidation ammonia as a complete production screening proxy; coal feedstock and source coproduct allocation are replaced, with no synthetic-fuel inventory or avoided-fuel credit added. Factor+1kgNH3; no aqueous-ammonia dilution or nitrogen-content correction.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "4c08dcf23bdea0071507ca2888d80197c827d9be1a798bf610f654d40f83dc6e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4fd79dc05e902fab",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for nitric acid, without water, in 50% solution state",
+            "reference product": "nitric acid, without water, in 50% solution state",
+            "location": "RNA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "959a6789f89209f41bb9a5e35b71e01728a70e29e41f453b5f494382a62e9858",
+          "metadata_sha256": "9462fd49276514e0c2b68e3bb5a2fbc76835a2d314510eeb8557c5e54d49dfc0"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-4fd79dc05e902fab"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Both source and native inventories explicitly reference one kg100%HNO3 despite the native50%solution label. Factor+1, without multiplying by2or adding water. Native document states Inventory refers to1kg100%nitric acid. Source native production energy, NOx/N2O, ammonia technology and vintage differ.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1eda83146da1dc88c52808343b354b03c7d0b10c5e7643542d8335981f624fa5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3e18b3af2fd06dd1",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for aluminium, primary, ingot",
+            "reference product": "aluminium, primary, ingot",
+            "location": "IAI Area, North America",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 10,
+          "inventory_sha256": "2239f6b3d2d375d16913af29caa85ef6a3f1e3e967b5fc6456aa245a05a2f2aa",
+          "metadata_sha256": "671009fd3e3ea83104628191a4def3e27e7a5892eb85a70091d7c65c48a61e28"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-3e18b3af2fd06dd1"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Retain all nineNorth-American primary-ingot provider entries and their final freight. Complete nativeEuropean primary solid-aluminium supply replacesCanadian production and import internals, regional smelter electricity, alloy/grade, casting yields and allocation. Do not replace the source ingot with the liquid-aluminium intermediate or add a separate ingot-casting operation.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "61336c4a030d8dea7190de4393011919ae50985702ef3c69dd3183e5dd109866"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c050583a8ee4b3d7",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_casting_materials_39_review.json",
+      "review_sha256": "7fa342c0652c3b067c1872f3c028ccb4e5f54dbab0e3b3c354ae8352fd908711",
+      "authorization": "Standing autonomous integration goal and automatic approval of inspected complete native product/service screening proxies with explicit limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ammonia, anhydrous, liquid",
+            "reference product": "ammonia, anhydrous, liquid",
+            "location": "RNA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "b0f453e270ba7d6767b34702bbce3549e0eff6cb0832f447ac4e0faa1b016991",
+          "metadata_sha256": "e74903cb5e8662d1413d01c87e845c1f909cb2221a9f5b3d8c3ca48fdd4ece35"
+        },
+        "target": {
+          "recipe_ref": "casting-39-delivered-c050583a8ee4b3d7"
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain every original positive product-supply entry and final-delivery leg separately, with its original kg/tkm and uncertainty. Use complete native production rather than recursively reconstructing its upstream database. Geography, source import internals, coproduct allocation, technology, emissions, vintage and internal uncertainty differ; their score effects are unquantified.",
+        "Preserve steam-reforming and partial-oxidation producer shares using their separate native liquid-ammonia models, not the delivered storehouse mix, which would duplicate final delivery. The RAFcoal/Fischer-Tropsch ammonia coproduct uses native heavy-fuel-oil partial-oxidation ammonia as a complete production screening proxy; coal feedstock and source coproduct allocation are replaced, with no synthetic-fuel inventory or avoided-fuel credit added. Factor+1kgNH3; no aqueous-ammonia dilution or nitrogen-content correction.",
+        "Only the independently inspected exact ecoinvent 3.9 cut-off source gains new permission. Preserve original caller signs, units, supported uncertainty, formulas and independent operations/emissions. Existing independently approved physical targets, factors and recipe bodies stay unchanged. No inverse, patch or cross-system-model permission is inferred.",
+        "The thirty-four market helpers retain every original producer entry and final-delivery leg, its source quantity and marginal uncertainty, without grouping or renormalization. Complete native production replaces source internal technology, energy, feedstock, geography, infrastructure, emissions, allocation and uncertainty. Retaining producer shares does not retain their original allocated burdens, coproduct routes or regional production technology. No extra upstream production, invented recovered-product credit, purity/density/yield/strength/assay correction or added energy calibration.",
+        "Use complete same-mode freight proxies with each original tkm unchanged: native barge, light/heavy road, ocean bulk/container and rail; retain US diesel rail for the US leg and explicit RER/CH/OCE proxies otherwise. Geography, fuel mix, payload, technology, traction, infrastructure, fleet and vintage differ, including Swiss fleet weights inside European road services. No guessed distance, load or transport multiplier and no duplicate upstream delivery.",
+        "Native grade, technology, allocation, background/biosphere exclusions, vintage and internal uncertainty differ. Preserve independent caller operations and emissions. Functional-performance, stochastic and LCI/LCIA equivalence and quantified score differences are not established. No new physical omission or runtime/generator Python change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b36f09394bc2049661fc23e30274142d2d5e78d160fb3c17812f1dded2b56f9f"
         }
       ]
     }

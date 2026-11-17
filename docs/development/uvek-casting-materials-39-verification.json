@@ -1,0 +1,306 @@
+{
+  "status": "34_required_casting_material_market_models_have_finite_signed_LCIs",
+  "transient_activities": 68,
+  "actual_migrated_correspondences": 34,
+  "signed_finite_LCI_solves": 68,
+  "independent_native_demand_comparisons": [
+    {
+      "rule_id": "bp-ea3aedf71e1949d6",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-453788094d436898",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-8d3e02760638dae3",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 7.105427357601002e-15,
+      "relative_infinity_norm_difference": 9.435783724109024e-17,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-1a966b3046a6a915",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 7.105427357601002e-15,
+      "relative_infinity_norm_difference": 9.435783724109024e-17,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-7b76e4593bdbc136",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 7.105427357601002e-15,
+      "relative_infinity_norm_difference": 9.435783724109024e-17,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-09d503bdaf113659",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-ae5ff850e0925fa1",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-92c5d186d8e2543e",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-ec88710374651f3c",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-2e5ec9c4f6ba2bfc",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-6f73073a055e3259",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-650d9e755cc074db",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-7d4666b1f033a9c2",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-d6eed8333eaacc02",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-73e8940744b37a10",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 1.4210854715202004e-14,
+      "relative_infinity_norm_difference": 1.3345043294990663e-16,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-a66aa0d16a517cb0",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 2.220446049250313e-16,
+      "relative_infinity_norm_difference": 5.123930055881302e-18,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-2c5ff1a10340d4b6",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 2.220446049250313e-16,
+      "relative_infinity_norm_difference": 5.123930055881302e-18,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-db36ad46555a7aa3",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 2.220446049250313e-16,
+      "relative_infinity_norm_difference": 5.123930055881302e-18,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-69c6422be04b781e",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 2.220446049250313e-16,
+      "relative_infinity_norm_difference": 5.123930055881302e-18,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-15fd1f39ad026cbc",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 7.105427357601002e-15,
+      "relative_infinity_norm_difference": 1.7532518546824652e-16,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-304c49a322b22984",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 2.220446049250313e-16,
+      "relative_infinity_norm_difference": 5.123930055881302e-18,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-07782013a4cecabf",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 2.220446049250313e-16,
+      "relative_infinity_norm_difference": 5.123930055881302e-18,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-d49763b3c29edf0c",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 2.220446049250313e-16,
+      "relative_infinity_norm_difference": 5.123930055881302e-18,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-c3b1beea5639b3e3",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 5.684341886080802e-14,
+      "relative_infinity_norm_difference": 5.0191702741469414e-17,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-749975840ba7535f",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-1f0fa3bbee140c45",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-d21d0bac2a023032",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-c97e0ad679099caa",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-2d2b80140d7f768a",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-813e89e197b90e26",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-587a97cfe8d95f2a",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 7.105427357601002e-15,
+      "relative_infinity_norm_difference": 9.435783724109024e-17,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-4fd79dc05e902fab",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 7.105427357601002e-15,
+      "relative_infinity_norm_difference": 1.7200198498661004e-16,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-3e18b3af2fd06dd1",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 0.0,
+      "relative_infinity_norm_difference": 0.0,
+      "relative_infinity_norm_tolerance": 1e-10
+    },
+    {
+      "rule_id": "bp-c050583a8ee4b3d7",
+      "independent_native_demand_comparison": true,
+      "native_demand_coefficients_exactly_equal": true,
+      "maximum_absolute_inventory_difference": 1.4210854715202004e-14,
+      "relative_infinity_norm_difference": 1.9392987903931802e-16,
+      "relative_infinity_norm_tolerance": 1e-10
+    }
+  ],
+  "matrix_shape": [
+    12015,
+    12015
+  ],
+  "private_verifier_iterative_refinement_steps_per_solve": 3,
+  "source_and_biosphere_metadata_preserved": true,
+  "new_Brightway_databases": 0,
+  "new_registered_activities": 0,
+  "new_processed_files": 0,
+  "qualification_limit": "Native-model consistency only. Source/native composition, grade, allocation, resource and LCIA equivalence and complete sector coverage/export remain unproven.",
+  "original_unrefined_comparison_failure": {
+    "rule_id": "bp-a66aa0d16a517cb0",
+    "relative_difference": 1.5179523906185792e-10,
+    "exact_demand_coefficients_equal": true
+  },
+  "maximum_residual_after_refinement": 1.7243844005765601e-15,
+  "Brightpath_tests_passed": 60,
+  "Premise_tests_passed": 13,
+  "normal_generator_resources_byte_identical": true,
+  "canonical_biosphere_resources_unchanged": true,
+  "remaining_unapproved_casting_operation_rules": 14,
+  "original_unapproved_casting_operation_rules": 52,
+  "previously_solved_waste_rules": 4,
+  "new_material_rules": 34,
+  "production_and_generator_Python_changes": 0,
+  "complete_casting_and_battery_qualified": false
+}
