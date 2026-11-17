@@ -1,0 +1,697 @@
+{
+  "date": "2026-11-17",
+  "source_version": "3.8",
+  "system_model": "cutoff",
+  "actual_reported_interfaces": 41,
+  "other_version_approval_candidates": 30,
+  "new_physical_reviews": 11,
+  "records": [
+    {
+      "rule_id": "bp-6e3f61d03dd09ea6",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for spent solvent mixture",
+        "reference product": "spent solvent mixture",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        -1.0
+      ],
+      "source_inventory_sha256": "ea2dd19563e6d4f6d880c1f04d89aab42f87df0ac0a8da25ecdcb69f2c2c374d",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-bce58f1fed0f56b1",
+      "source": {
+        "location": "CH",
+        "name": "market for spent solvent mixture",
+        "reference product": "spent solvent mixture",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        -1.0
+      ],
+      "source_inventory_sha256": "b482a8fd30b3d917a518c867a646410c46b00858e530b344a1b919d241c12eea",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-58981d0406fe685b",
+      "source": {
+        "location": "RoW",
+        "name": "market for spent solvent mixture",
+        "reference product": "spent solvent mixture",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        -1.0
+      ],
+      "source_inventory_sha256": "f546591e9e08a29444befe492543be0bfacec9f6762b0280fe9bc2ee745a28a2",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-7532c17fac15ff33",
+      "source": {
+        "location": "RoW",
+        "name": "market for sulfuric acid",
+        "reference product": "sulfuric acid",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "eee07092934e9215b0eec4dc701833fa5a6b6b1c08093da620766839d0d53e34",
+      "existing_approved_versions": [
+        "3.12",
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-38648d48f8a72d17",
+      "source": {
+        "location": "GLO",
+        "name": "market for transport, freight, aircraft, unspecified",
+        "reference product": "transport, freight, aircraft, unspecified",
+        "unit": "ton kilometer"
+      },
+      "category": "native_counterpart_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "103aaac68048005be81a6ee15939b317bc581512cfcc6155a910ae3ce0fb22a7",
+      "existing_approved_versions": []
+    },
+    {
+      "rule_id": "bp-c779db99d058b8f8",
+      "source": {
+        "location": "GLO",
+        "name": "market group for transport, freight, light commercial vehicle",
+        "reference product": "transport, freight, light commercial vehicle",
+        "unit": "ton kilometer"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "4a3b8218f28cd337a5f1a72dec71b4ce29c0378e4ba79c60661d33c3c6b537d1",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-8d83e6b7c6fd6e59",
+      "source": {
+        "location": "GLO",
+        "name": "market for sheet rolling, aluminium",
+        "reference product": "sheet rolling, aluminium",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "d3f573591433760fba9bf61420794df754728a27631d5f5344b22d851a921be2",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-2ea4357c2edb64bc",
+      "source": {
+        "location": "GLO",
+        "name": "market for aluminium casting facility",
+        "reference product": "aluminium casting facility",
+        "unit": "unit"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "9d9f8c89fef9ce2079385cf5213afaadfbcad985629470c46a22d1df419e9053",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-0aad4bc42cf9b4c7",
+      "source": {
+        "location": "GLO",
+        "name": "market for N-methyl-2-pyrrolidone",
+        "reference product": "N-methyl-2-pyrrolidone",
+        "unit": "kilogram"
+      },
+      "category": "native_counterpart_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "516b847c44608537e32b408238196270169a2a9598c572590d05bd6494ac6f61",
+      "existing_approved_versions": []
+    },
+    {
+      "rule_id": "bp-46ffc4892be8fcb1",
+      "source": {
+        "location": "CN",
+        "name": "market for transport, freight train",
+        "reference product": "transport, freight train",
+        "unit": "ton kilometer"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "2c6d7fd3d96ff54c10f78022f537ea4217b25492c76ba9ae990ca1e633d7dbd9",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-9013e7c5588ff7a5",
+      "source": {
+        "location": "GLO",
+        "name": "market for metal working factory",
+        "reference product": "metal working factory",
+        "unit": "unit"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "4a6bf5d83de0bf54e660680b6d4d8eeeadfe1e335ce2b9625324bc5d39422dc9",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-30a490e8e65d619a",
+      "source": {
+        "location": "GLO",
+        "name": "market for dimethyl carbonate",
+        "reference product": "dimethyl carbonate",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "d224f28002d9e40e0a269907aaa9504d0f2e4d77c34885b8d35f3638bf176de6",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-365d5afb2cddee67",
+      "source": {
+        "location": "GLO",
+        "name": "market for ethylene carbonate",
+        "reference product": "ethylene carbonate",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "bf7de83f83d265af602d5d5605ff44a5bfbad78b2090e35d920fb2947572eb84",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-b5509df47e225bda",
+      "source": {
+        "location": "GLO",
+        "name": "market for lithium hexafluorophosphate",
+        "reference product": "lithium hexafluorophosphate",
+        "unit": "kilogram"
+      },
+      "category": "native_counterpart_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "cfa77d66db54ac56915f1abaed55fb095051b033fab2222ef6a9b52f28b5b1c9",
+      "existing_approved_versions": []
+    },
+    {
+      "rule_id": "bp-1240bf1e5820731a",
+      "source": {
+        "location": "GLO",
+        "name": "market for copper, anode",
+        "reference product": "copper, anode",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "4c78e121083893f0de588dc299768485abe1f56fec0a787a8c7653bda5c01233",
+      "existing_approved_versions": [
+        "3.10"
+      ]
+    },
+    {
+      "rule_id": "bp-c8d707ac24ebb7e4",
+      "source": {
+        "location": "GLO",
+        "name": "market for carbon black",
+        "reference product": "carbon black",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "2b41acfdaa3041729180eaaeb76d1bc090546b42100ead7f169100a0ad14c2a4",
+      "existing_approved_versions": [
+        "3.10",
+        "3.12",
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-c63a1747fd444679",
+      "source": {
+        "location": "GLO",
+        "name": "market for carboxymethyl cellulose, powder",
+        "reference product": "carboxymethyl cellulose, powder",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "d20fc6585e8aa8d9c85cd33120c321f7be749c98434ec1fcaffd6c385637e2c1",
+      "existing_approved_versions": [
+        "3.12",
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-f1abd225900bb9b6",
+      "source": {
+        "location": "GLO",
+        "name": "market for graphite, battery grade",
+        "reference product": "graphite, battery grade",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "6db8194a1dd8ccc2c1c5572480d2b9ac219a6f4db309fa71dbd2047d89a4e48a",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-46961b2d2543df96",
+      "source": {
+        "location": "GLO",
+        "name": "market for polyvinylfluoride",
+        "reference product": "polyvinylfluoride",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "cfe6e31445fca7255d097271e21ce88c0880803a85f1074f0f8a30d82cc27a7b",
+      "existing_approved_versions": [
+        "3.6",
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-f7dd94e542cba21d",
+      "source": {
+        "location": "RoW",
+        "name": "market for heat, district or industrial, natural gas",
+        "reference product": "heat, district or industrial, natural gas",
+        "unit": "megajoule"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "31b33ea64b546fe8d04b5c3ba85a962d27a84b49a470caa145220b5684fd8933",
+      "existing_approved_versions": [
+        "3.10",
+        "3.12",
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-c5ad7d30b2b18c4c",
+      "source": {
+        "location": "RoW",
+        "name": "market for water, decarbonised",
+        "reference product": "water, decarbonised",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "b08787e1fe62a6ca7992d077f0501b0e334a7533229218eeea6414126d7b02d7",
+      "existing_approved_versions": [
+        "3.6",
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-5b8c937d3fb21468",
+      "source": {
+        "location": "GLO",
+        "name": "market for chemical factory, organics",
+        "reference product": "chemical factory, organics",
+        "unit": "unit"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "61c9206734667618cb2c6ff6862d8c70c9ccf6f2f921f4f6b3a860d2d3892998",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-82479bd5f6b8b893",
+      "source": {
+        "location": "CN",
+        "name": "market for synthetic graphite, battery grade",
+        "reference product": "synthetic graphite, battery grade",
+        "unit": "kilogram"
+      },
+      "category": "native_counterpart_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "49efe30dc7a01b4d6187c878a3801ab43103267916da9d07ba05f7fc0aebae10",
+      "existing_approved_versions": []
+    },
+    {
+      "rule_id": "bp-e1534916663b141b",
+      "source": {
+        "location": "RoW",
+        "name": "market for latex",
+        "reference product": "latex",
+        "unit": "kilogram"
+      },
+      "category": "native_counterpart_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "c845c30b0b4678f74fa21623830d5691ec111a6debaf9ba831cd990f90676e84",
+      "existing_approved_versions": []
+    },
+    {
+      "rule_id": "bp-603ffa52668e2ab6",
+      "source": {
+        "location": "RoW",
+        "name": "market for water, deionised",
+        "reference product": "water, deionised",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "1528d5c789a12e6169aa31392305edc216ef6cb056f605d682f31c03a7ecb2ac",
+      "existing_approved_versions": [
+        "3.12",
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-3c10f9aaee8ffe42",
+      "source": {
+        "location": "RoW",
+        "name": "market for wastewater, average",
+        "reference product": "wastewater, average",
+        "unit": "cubic meter"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        -1.0
+      ],
+      "source_inventory_sha256": "e6c306c403eb7018ad751a61f1e807213990d5faf1cfc2f3433b2cac10876f27",
+      "existing_approved_versions": [
+        "3.10",
+        "3.12",
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-f0ba995aa8a02a6e",
+      "source": {
+        "location": "GLO",
+        "name": "aluminium ingot, primary, to aluminium, wrought alloy market",
+        "reference product": "aluminium, wrought alloy",
+        "unit": "kilogram"
+      },
+      "category": "primary_ingot_adapter_boundary",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "a0210a3b5977e8c1b7f092ce82a1931ef7b4eba778ba50556e20b73f59284aa3",
+      "existing_approved_versions": []
+    },
+    {
+      "rule_id": "bp-a933dbe7465e00cb",
+      "source": {
+        "location": "RoW",
+        "name": "market for nylon 6",
+        "reference product": "nylon 6",
+        "unit": "kilogram"
+      },
+      "category": "native_counterpart_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "ceddeaa997e75f85adced91e71920a9ae8d789bef59daac86470aef63274a5df",
+      "existing_approved_versions": []
+    },
+    {
+      "rule_id": "bp-6db51cce596a9ea3",
+      "source": {
+        "location": "GLO",
+        "name": "market for plastic processing factory",
+        "reference product": "plastic processing factory",
+        "unit": "unit"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "14662cac7afc70ac293ab1690b9b869726007f578e372865109235669f52a588",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-2d2b80140d7f768a",
+      "source": {
+        "location": "CN",
+        "name": "market for ammonia, anhydrous, liquid",
+        "reference product": "ammonia, anhydrous, liquid",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "1ec3b644c86aed2faa299d8f5c26da4d7d9b65355c6767bfb8fc9fd0d1b588e9",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-c18af03acca016b9",
+      "source": {
+        "location": "GLO",
+        "name": "market for nickel sulfate",
+        "reference product": "nickel sulfate",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "2f54b60ce9babf231c4343f5b7a5275b3491cb865d8ba264d93fb1f9becf3083",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-8fa6bb43a07f3b4e",
+      "source": {
+        "location": "GLO",
+        "name": "market for manganese sulfate",
+        "reference product": "manganese sulfate",
+        "unit": "kilogram"
+      },
+      "category": "wrong_substance_requires_reconstruction",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "73a0166df85f95adb3b3a2f1e1b29a0c2da4af14380f59f89ab0c5feae46d76d",
+      "existing_approved_versions": []
+    },
+    {
+      "rule_id": "bp-fc047c72b6020ab2",
+      "source": {
+        "location": "GLO",
+        "name": "market for vinyl carbonate",
+        "reference product": "vinyl carbonate",
+        "unit": "kilogram"
+      },
+      "category": "wrong_substance_requires_reconstruction",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "0781e781130bb16b35811597d1bfe51f5dbde9d55da7a9a006777d3beb45fccb",
+      "existing_approved_versions": []
+    },
+    {
+      "rule_id": "bp-11eb77f35655db2a",
+      "source": {
+        "location": "GLO",
+        "name": "market for used Li-ion battery",
+        "reference product": "used Li-ion battery",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        -1.0
+      ],
+      "source_inventory_sha256": "06886f7ad01e26e9585a189eea8185a31ea5343f70b269c8ea1a14b0af72cf7c",
+      "existing_approved_versions": [
+        "3.12"
+      ]
+    },
+    {
+      "rule_id": "bp-5a066f5db7e68d53",
+      "source": {
+        "location": "GLO",
+        "name": "market for glass fibre reinforced plastic, polyester resin, hand lay-up",
+        "reference product": "glass fibre reinforced plastic, polyester resin, hand lay-up",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "6ea317716319010236681ee24ae2952be5bfb9f410bc08a355758f238ba01e0f",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-8693559c1c84259d",
+      "source": {
+        "location": "RER",
+        "name": "ethylene glycol production",
+        "reference product": "ethylene glycol",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "7f412b2ec72afe9534d72a9760b308b4f7ec2f9d8a3a2ddf8da53d749015ffa8",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-3d4f6646db9a7399",
+      "source": {
+        "location": "RoW",
+        "name": "market for acetone, liquid",
+        "reference product": "acetone, liquid",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "c2e040cffe5c96149d14da4fa06393818d58d3e91e94a5f83d7163196f6abc1e",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-5f8fe5605f8594db",
+      "source": {
+        "location": "RoW",
+        "name": "market for residue from shredder fraction from manual dismantling",
+        "reference product": "residue from shredder fraction from manual dismantling",
+        "unit": "kilogram"
+      },
+      "category": "native_counterpart_review",
+      "source_reference_amounts": [
+        -1.0
+      ],
+      "source_inventory_sha256": "6421d719b750da466717135f6ee917d4c5035638512ea90b06b981e8f287dd5a",
+      "existing_approved_versions": []
+    },
+    {
+      "rule_id": "bp-af2ed16481887db4",
+      "source": {
+        "location": "GLO",
+        "name": "market for phthalic anhydride",
+        "reference product": "phthalic anhydride",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "469919c998235eacc1e005c02b029632e43035cdfaf5a64f7c6ce3ce0a980db1",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-72fb38e6bd3897dc",
+      "source": {
+        "location": "GLO",
+        "name": "market for hexafluoroethane",
+        "reference product": "hexafluoroethane",
+        "unit": "kilogram"
+      },
+      "category": "version_scope_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "502e6503e8a56480b4558c3ba35dbad0d1be32cea217eb36285f7f6210a611fb",
+      "existing_approved_versions": [
+        "3.9"
+      ]
+    },
+    {
+      "rule_id": "bp-cbe4882cc31a8fc2",
+      "source": {
+        "location": "IAI Area, Asia, without China and GCC",
+        "name": "aluminium production, primary, ingot",
+        "reference product": "aluminium, primary, ingot",
+        "unit": "kilogram"
+      },
+      "category": "native_counterpart_review",
+      "source_reference_amounts": [
+        1.0
+      ],
+      "source_inventory_sha256": "1d3c983fe2d8fac9ad7022cb0748e7e7c3624e56ce0cecbcc846f2a8dfd36054",
+      "existing_approved_versions": []
+    }
+  ],
+  "qualification_limit": "Read-only primary reference inspection and actual first failing3.8cohort. Cross-version basis, model reuse and complete battery qualification remain unverified."
+}

@@ -1,0 +1,369 @@
+{
+  "status": "81_closed_casting_models_match_independent_source_native_graphs",
+  "signed_finite_LCI_solves": 162,
+  "independent_model_comparisons": [
+    {
+      "recipe_id": "msw-39-f6222fe23eeaeefd8c5b",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "msw-39-1da7d5543144d0ca5111",
+      "relative_infinity_norm_difference": 4.0417705432130927e-16
+    },
+    {
+      "recipe_id": "msw-39-b3f25752edc80000d143",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "msw-39-cf6a963baee3bec4a669",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "msw-39-36fefe1b6ca478ef1a12",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-2e8703f31d9f2557180a",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-79bbda927e4e15655389",
+      "relative_infinity_norm_difference": 1.7540810234621777e-16
+    },
+    {
+      "recipe_id": "casting-waste-39-f286a26e36aecab4503e",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-2505082bcae52fc850c0",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-fbcc46e158123a71b69a",
+      "relative_infinity_norm_difference": 3.0500945504480305e-18
+    },
+    {
+      "recipe_id": "casting-waste-39-75e1d80676901c800dfc",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-d9e64954ff486372cdf9",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-52e3c7c1e7090e76b387",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "msw-39-0a65ede7d1f18569c7d3",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "msw-39-17d36ab19d19a78aba0f",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-3de6986cb724ab842c16",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-3e8ec2455e3b5d8596d8",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-536893d5a1466842e7a0",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-493bbe2728d764c8edc0",
+      "relative_infinity_norm_difference": 3.450166014697773e-16
+    },
+    {
+      "recipe_id": "casting-waste-39-435331cb4d487ddab5d5",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-7b511010dd9c871bbc46",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-e975d3a3656fd463bcbe",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-013b2455d4fcd0827199",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-3a6964a8fd7685592070",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-2d43178b4ee4f92e3012",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-4c84b2a5af24039357c6",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-a82813612749ff83c54c",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-e92a5c1f1a941ac86d70",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-591cd4e3d91b99f883db",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-53df2196e81259c4849e",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-c3b256373909e0abda0d",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-b8b7ea4e0cca4a0e2120",
+      "relative_infinity_norm_difference": 1.2534461075742173e-18
+    },
+    {
+      "recipe_id": "casting-waste-39-55b50ebd9b1d73b3d65d",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-dc2011cdf7c5364cb5ab",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-005b4eaf9d9817e46c04",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-932964c76bc4b8419c50",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-e159a3105b32f56b32c7",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-cfdf70cbe66d310c379f",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-93a90a9a0b7fc27a742e",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-2bffdae6a09b611afd1c",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-9202651aa4d510079f18",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-8b394d3e34625c33c63c",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-6a41396edee9af46c5fd",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-b79e2b0ca29f6c45f0d2",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-9e7d1fd445a0a3f04dc3",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-46b40cccab52e04cd886",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-e2e3a378ea6a34d944c2",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-0569a5d7adf643cabd82",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-9e98ff96980ddc8b0ddf",
+      "relative_infinity_norm_difference": 1.6998321074003945e-16
+    },
+    {
+      "recipe_id": "casting-waste-39-9fdc522bd9ace9ee0fcb",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-1dd9b508095de11ab8cc",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-268e31020ae8c704193a",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-af61bc2b28a3cefd6c59",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-112899577070f01245c5",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-b80ed84852bd48e4b45d",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-360db955ebfcd89494a7",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-485422c02e97e045b51f",
+      "relative_infinity_norm_difference": 1.2007540444371312e-16
+    },
+    {
+      "recipe_id": "casting-waste-39-18cc6ec7c30466729be4",
+      "relative_infinity_norm_difference": 1.9162076397953348e-16
+    },
+    {
+      "recipe_id": "casting-waste-39-66033bb21ba15dea64c2",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-e7c1069e52cb793a2c55",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-20fe225ed81492811535",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-0c6fece39acff757f8b7",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "casting-waste-39-503df29ec97cc4912ff1",
+      "relative_infinity_norm_difference": 0.0
+    },
+    {
+      "recipe_id": "closed-casting-39-9baa143a42b2ff13167f",
+      "relative_infinity_norm_difference": 4.539559055431904e-18
+    },
+    {
+      "recipe_id": "closed-casting-39-3beed6e15f574f34d9cf",
+      "relative_infinity_norm_difference": 2.1335717523188065e-16
+    },
+    {
+      "recipe_id": "closed-casting-39-eac66e10ca50bd84309e",
+      "relative_infinity_norm_difference": 2.118522899114467e-16
+    },
+    {
+      "recipe_id": "closed-casting-39-d30bc5310f3d3199b9bf",
+      "relative_infinity_norm_difference": 1.4687262165613974e-17
+    },
+    {
+      "recipe_id": "closed-casting-39-e424ee186f699e1302dd",
+      "relative_infinity_norm_difference": 1.5834346772645112e-16
+    },
+    {
+      "recipe_id": "closed-casting-39-98623f9aac39379ca4c9",
+      "relative_infinity_norm_difference": 1.4082829998076858e-16
+    },
+    {
+      "recipe_id": "closed-casting-39-567c58e587a14e74fc09",
+      "relative_infinity_norm_difference": 3.9241861252104276e-17
+    },
+    {
+      "recipe_id": "closed-casting-39-fe01acd3c53df3547b08",
+      "relative_infinity_norm_difference": 1.608188887560058e-16
+    },
+    {
+      "recipe_id": "closed-casting-39-ba5524bd3f7f5faaa1e0",
+      "relative_infinity_norm_difference": 4.0044781547880424e-18
+    },
+    {
+      "recipe_id": "closed-casting-39-2a20c4b6cfe995ccbe7c",
+      "relative_infinity_norm_difference": 5.937083399934934e-19
+    },
+    {
+      "recipe_id": "closed-casting-39-8dadfbe95f8b60649550",
+      "relative_infinity_norm_difference": 1.5824176610330852e-16
+    },
+    {
+      "recipe_id": "closed-casting-39-4adedadd908ea1d688e3",
+      "relative_infinity_norm_difference": 3.376797637473903e-17
+    },
+    {
+      "recipe_id": "closed-casting-39-62c08d55efaa12aedaaa",
+      "relative_infinity_norm_difference": 2.1097173832508383e-16
+    },
+    {
+      "recipe_id": "closed-casting-39-3b6a8a645e1dcb970ee1",
+      "relative_infinity_norm_difference": 5.267680582409008e-17
+    },
+    {
+      "recipe_id": "closed-casting-39-adaf7dd1ef881d045652",
+      "relative_infinity_norm_difference": 2.611953898697192e-16
+    },
+    {
+      "recipe_id": "closed-casting-39-e3858331e4177d791cc0",
+      "relative_infinity_norm_difference": 1.2413223069390274e-16
+    },
+    {
+      "recipe_id": "closed-casting-39-5f012c1d716969f112e9",
+      "relative_infinity_norm_difference": 1.748474517843555e-16
+    },
+    {
+      "recipe_id": "closed-casting-39-a4e85d7682866bb7346d",
+      "relative_infinity_norm_difference": 3.871005192676487e-18
+    }
+  ],
+  "root_consumer_relative_difference": 3.871005192676487e-18,
+  "maximum_relative_difference": 4.0417705432130927e-16,
+  "relative_tolerance": 1e-10,
+  "source_foreground_exchange_positions_checked": 350,
+  "restored_waste_bindings": 13,
+  "new_empty_receipt_omissions_checked": 1,
+  "new_uncontrolled_emission_entries_retained": 1335,
+  "unchanged_existing_recipe_dependencies": 154,
+  "transient_activities": 317,
+  "matrix_shape": [
+    12264,
+    12264
+  ],
+  "private_verifier_residual_correction_steps": 3,
+  "maximum_matrix_residual": 5.5180850935465e-14,
+  "new_Brightway_databases": 0,
+  "new_registered_activities": 0,
+  "new_processed_files": 0,
+  "source_and_biosphere_metadata_preserved": true,
+  "qualification_limit": "Independent consistency of the encoded native/proxy model, not source/native impact or uncertainty equivalence. Sixty prior dependency omissions and one new allocated-empty receipt retain explicit audits; complete battery/final-energy qualification requires actual shared transformations and export.",
+  "Brightpath_casting_and_generic_tests_passed": 22,
+  "Brightpath_comment_and_prior_mapping_regressions_passed": 58,
+  "Premise_casting_omission_and_nested_audit_tests_passed": 56,
+  "normal_generator_resources_byte_identical": true,
+  "canonical_biosphere_resources_unchanged": true,
+  "production_annotation_fix_changed_lines": 1,
+  "scientific_transformation_or_generator_Python_changes": 0,
+  "all_recipe_vectors_and_audits_unchanged_by_final_metadata_clarification": true,
+  "first_battery_source_39_cohort_passed": true,
+  "next_battery_source_38_unapproved_interfaces": 41,
+  "full_battery_update_or_export_passed": false,
+  "temporary_generator_bytes_removed": 112686257,
+  "generator_metadata_cleanup": {
+    "only_structural_difference_was_unused_review_cards": true,
+    "unused_intermediate_review_cards_removed": 4,
+    "all_rules_recipes_and_coverage_unchanged": true,
+    "casting_approval_fingerprint_unchanged": true,
+    "normal_generator_output_adopted": true
+  }
+}
