@@ -1,0 +1,47 @@
+{
+  "status": "preliminary_unapplied_shared_adapter_packet",
+  "runtime_files": [
+    "premise/emissions/emissions.py"
+  ],
+  "mapping_files": [
+    "premise/data/GAINS_emission_factors/gains_ecoinvent_sectoral_mapping.yaml"
+  ],
+  "new_regression_file": "tests/test_contextual_emissions.py",
+  "legacy_component_test_refresh": "tests/test_uvek_emissions_callback.py",
+  "candidate_sha256": "0c5adb49359293da98e613c3699cda148411662eaac2d8bf20cb5b0b0b262141",
+  "original_runtime_source_sha256": "4bc1329580af55a31879ffed56ee1b2de52d8e13c8e54dc9c1f659aa297dcc59",
+  "focused_existing_and_new_tests_passed": 807,
+  "exact_physical_graph_preview": {
+    "status": "unapplied_one_runtime_file_proposal_matches_physical_preview_and_replays_idempotently",
+    "source_activities": 19735,
+    "result_activities": 20069,
+    "all_physical_exchange_positions_compared": 589554,
+    "sector_contract_passed": true,
+    "copy_preparation": {
+      "copies": 334,
+      "relinked_exchanges": 1634,
+      "reused_positions": 2363,
+      "nonemitting_positions": 3
+    },
+    "repeat_update_preserves_dataset_count_and_all_amounts": true,
+    "source_fork_unchanged": true,
+    "repository_runtime_source_unchanged": true,
+    "no_Brightway_database_written": true,
+    "elapsed_seconds": 15.969299416989088,
+    "qualification_limit": "Exact unapplied module/YAML preview on a calculation-only graph. Prepared-foreground coverage, normal installed workflow, full validation and export remain separate requirements."
+  },
+  "installed_resources_verification": {
+    "status": "installed_packages_match_current_source",
+    "package_files": {
+      "premise": 426,
+      "brightpath": 607
+    },
+    "canonical_NMVOC_mapping_present": true,
+    "pollutant_mapping_sha256": "a069ca94f1030f5b40f3530dd6c4015a8f4aa2d7940643bc2fc10021fcf80ab3",
+    "runtime_candidate_applied": false
+  },
+  "complete_coverage_review_finished": false,
+  "applied": false,
+  "approval_requested": false,
+  "qualification_limit": "Preliminary review packet. The full-run coverage audit and any resulting refinements remain unfinished; this is not a request to approve an incomplete patch."
+}
