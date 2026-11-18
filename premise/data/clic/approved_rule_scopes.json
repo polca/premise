@@ -354967,6 +354967,831 @@
           "fingerprint": "e86390bc7d7e5f68c738c8f32d55ff81d98a6384401200718f25f8893f0f197b"
         }
       ]
+    },
+    {
+      "rule_id": "bp-f0ea84b691223768",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_native_39_review.json",
+      "review_sha256": "0b13605ddbe5c3bf64c9777b0d00e7a06c8117bff1be82d4573e69a62e328963",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for locomotive",
+          "reference product": "locomotive",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for locomotive",
+            "reference product": "locomotive",
+            "unit": "unit"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 2,
+          "inventory_sha256": "7c27fbe143ec578cb51f48e20c79a6e7171da444673df670cabc0839ef29718b",
+          "metadata_sha256": "076f22e450ed21fb274cd9720bbd87c78520f663f32d6499441e01cbb976a4b9",
+          "comment_sha256": "614e8a06e016d3cfb836c784b2069ca9e98e0173702402243982be9d49f95d84",
+          "product_information_sha256": "edcd37a43404d11fbb5c8b887250d3d31d78a7328700eb7b7ab9a5ad0f183e23"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 18,
+            "inventory_sha256": "8639d4548657b7f4734a70fc20f40cd580071d1b5e0104a83f2a141a69df897e",
+            "metadata_sha256": "202fa758b393a056994c51212198faaa59edfb0757c71550c02b9a0db28804f1",
+            "comment_sha256": "3f4a03414b1fbdf8dee849d47bf35af005a7a7bc34e03584081957c0bafdb4db",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 18,
+            "inventory_sha256": "ec868b9ce93d691d78035b82e77168c8dd5286e278072aa4594fc11f2dd133f2",
+            "metadata_sha256": "7213b3f0598e07b2381948caaf5913f017ac927a9b6b1edab5cd7db2e72b7c57",
+            "comment_sha256": "1248b5a0431762801e0b4dae95b6c7badd1cc0bf59a6f9086a2c1c4e89c9a85e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete native locomotive manufacture per unit. Traction, installed power, vehicle mass, service life and source global delivered portfolio differ; introduce no capacity, tonnage or lifetime scaling.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete native locomotive manufacture per unit. Traction, installed power, vehicle mass, service life and source global delivered portfolio differ; introduce no capacity, tonnage or lifetime scaling.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.9 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ae3b0f87274f49b92ae7d729c7d833e001214f71b8e23be179049082663dd035"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-bcce1e75e09e77c0",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_native_39_review.json",
+      "review_sha256": "0b13605ddbe5c3bf64c9777b0d00e7a06c8117bff1be82d4573e69a62e328963",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "pipeline construction, natural gas, high pressure distribution network",
+          "reference product": "pipeline, natural gas, high pressure distribution network",
+          "unit": "kilometer"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "Europe without Switzerland",
+            "name": "pipeline construction, natural gas, high pressure distribution network",
+            "reference product": "pipeline, natural gas, high pressure distribution network",
+            "unit": "kilometer"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 24,
+          "inventory_sha256": "c0a429d8455a5441c63a9e7232ee769a2585fb0ee84715d92f002cd75305fd06",
+          "metadata_sha256": "7bf27ccec41860b4d1a1a8880bc91a49261c50429859ba6815f480c6ff1f2f89",
+          "comment_sha256": "9a582b9843505209b78438e19f5584e0953cd4c3511723a8cf9788c07e0531c8",
+          "product_information_sha256": "c8dad71169005b3ac9f086ab08576da10dd87573bdfbe43a97168cac52019564"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 28,
+            "inventory_sha256": "97e5a28aa384316efdf0a86e230a3c49afa73d7067d792ba24a2cc54ff1a5371",
+            "metadata_sha256": "424403516e022967d8b20efa911cffd0a5a29512f754339c79804f762c5aa617",
+            "comment_sha256": "5886dcbf7f498e537c331746de42938a8dfaaa1ef8a4fd5800db2695434e7c40",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 28,
+            "inventory_sha256": "0ce1bb6717fa11d604e555a20771ae620fa40286f657ac0f2bee7ec07b203eed",
+            "metadata_sha256": "c6a2b0803aedbd9400b5c8b44d0b49a896d4a3ee7c6316d6e8cf4e9b3ef3515e",
+            "comment_sha256": "2e82f11b9d2d048d854d4018982c68f42bcf9de93b782c2ae7879e1386558f0b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete native high-pressure gas-distribution network per kilometre, not trunk transmission or gas transport per tonne-km. Native Swiss geometry, pressure class, materials, life and installation replace the European source model; no diameter or pressure multiplier.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete native high-pressure gas-distribution network per kilometre, not trunk transmission or gas transport per tonne-km. Native Swiss geometry, pressure class, materials, life and installation replace the European source model; no diameter or pressure multiplier.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.9 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "425a62fa94a05c82167f365e42466598579d74d1b605dcacb07260c126dac080"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-14c85826881a6371",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_native_39_review.json",
+      "review_sha256": "0b13605ddbe5c3bf64c9777b0d00e7a06c8117bff1be82d4573e69a62e328963",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "treatment of wastewater, average, wastewater treatment",
+          "reference product": "wastewater, average",
+          "unit": "cubic meter"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "Europe without Switzerland",
+            "name": "treatment of wastewater, average, wastewater treatment",
+            "reference product": "wastewater, average",
+            "unit": "cubic meter"
+          },
+          "reference_amount": -1.0,
+          "nonproduction_count": 116,
+          "inventory_sha256": "7e14f587c27fb470f890ce8275f1099b1b93087c69cdae3a585c7f25b1f817f7",
+          "metadata_sha256": "ba471afefdd5ea024c8613b35726ea92ec66555cbcc1eeb75e4110b04881719a",
+          "comment_sha256": "a33c1708be3564e1327177b608794312c87f754adb5c402d753fec1ac5480ca4",
+          "product_information_sha256": "4431464937150ef5c60501809b06f57af46126b2d3072c585f9f99b86f9445bc"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 134,
+            "inventory_sha256": "325deffc585f7e9186114d29a52ef831e90c393a5246ccdba4d7b8fe699ba1e2",
+            "metadata_sha256": "9f594f4139d789ec83bb14819ba02dd891f77e2259a819508c2fa490a2f9da37",
+            "comment_sha256": "dd1229fb80187e0f4b2f9ebb237cd092bb1e4cbb046bd154f237e3d1d95d9dda",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 135,
+            "inventory_sha256": "c4c564a533c3f8618d5158e03770e7bffbb6a0dc2801fe116f4e3e13dab0be9c",
+            "metadata_sha256": "fbc6ab22e985e6f180384a74c8a1814b33455987efe17cfdccd9ef7637468cc8",
+            "comment_sha256": "db5fcf4c9e4e5057481df255046c8064091ecdfa8fb819b301af0ed6c1fce7c9",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use the complete Swiss class-1 direct wastewater treatment service per m3. Source reference -1/native +1 requires factor -1. Loading, capacity, removal, sludge digestion, emissions and internal uncertainty differ; add no COD or water-balance correction.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use the complete Swiss class-1 direct wastewater treatment service per m3. Source reference -1/native +1 requires factor -1. Loading, capacity, removal, sludge digestion, emissions and internal uncertainty differ; add no COD or water-balance correction.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.9 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "20b3f640fbd1043cbf9981932f60ecca19cae2e193ff6412eab013ab14b78f5d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c39b53689522c694",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_native_39_review.json",
+      "review_sha256": "0b13605ddbe5c3bf64c9777b0d00e7a06c8117bff1be82d4573e69a62e328963",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "infrastructure construction, for regional distribution of oil product",
+          "reference product": "infrastructure, for regional distribution of oil product",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "RER",
+            "name": "infrastructure construction, for regional distribution of oil product",
+            "reference product": "infrastructure, for regional distribution of oil product",
+            "unit": "unit"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 17,
+          "inventory_sha256": "fc188eead15782b5bbc81bcdc5cfd2849638bab440e4aca9a9354a4938a9b460",
+          "metadata_sha256": "6a3e145f020ac782107e0a333b19b8af879c5cef8172450cbd7ec3f216ce3ccf",
+          "comment_sha256": "1119585a96b7317945c16461982ff7bdb9a686c9fa5aa41edacc76ecaee7b32b",
+          "product_information_sha256": "eaa4ed9f6d3017738522aba4b08e10e9dfeb0eb772f029050d713812a0619b5d"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "inventory_sha256": "482bba68ee60e2393dbb07b52fdd660c5a3b5b24e9a680c463fcf30d61a11d5c",
+            "metadata_sha256": "f7861e8756d8525294cb255d9bcdb6e0965aea1ccb022b60ceefce8eaa9936fe",
+            "comment_sha256": "07ee18bf30b83cfc7fca8c464bc6fc9d9570820b292bd0f2c980542f04b165e6",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "inventory_sha256": "da0f7c2821b0b37cac0581d06973cfd7290cd7d78e0d542d30d0b9ba345a4a08",
+            "metadata_sha256": "8ca8e8629bceac5a3359854ee747800357515d98e253473197f6200b3675900e",
+            "comment_sha256": "9196a70a7c4d5a4879c70cbd69434c35eec6cec3df90c7c014e7b2201d3ff015",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete native regional oil-products distribution infrastructure per asset unit. Native capacity, storage, material mix, construction, life, geography and vintage replace source assumptions; no throughput, lifetime or asset-mass conversion.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete native regional oil-products distribution infrastructure per asset unit. Native capacity, storage, material mix, construction, life, geography and vintage replace source assumptions; no throughput, lifetime or asset-mass conversion.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.9 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ae6d0e4dddfa12b21e3a0fccb493f25821e1f950f82e172d462535c05343654f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6dd0791575d822ca",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_native_39_review.json",
+      "review_sha256": "0b13605ddbe5c3bf64c9777b0d00e7a06c8117bff1be82d4573e69a62e328963",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for rainwater mineral oil storage",
+          "reference product": "rainwater mineral oil storage",
+          "unit": "cubic meter"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "Europe without Switzerland",
+            "name": "market for rainwater mineral oil storage",
+            "reference product": "rainwater mineral oil storage",
+            "unit": "cubic meter"
+          },
+          "reference_amount": -1.0,
+          "nonproduction_count": 30,
+          "inventory_sha256": "3534d6d7b47a123d64d55072ae559954073b2927f77ccd14e32d4b732da7ce11",
+          "metadata_sha256": "9964c89b5037dc95c348480aea78a7632a67cab693001e253f0a26a53735463f",
+          "comment_sha256": "9d7f05db90491c2c876e3ddf198cdc0dbe1b4a8c49e5a253f26ec488d1be57d7",
+          "product_information_sha256": "ce0fdfc4f86fbf68744f86a23472b388dfd1a9e92291e74eae00799c3269d490"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 117,
+            "inventory_sha256": "b6a237c5fd8a5e5338a88eaafd52b4eeb9f45f7b96ad309631a32e9a176587b0",
+            "metadata_sha256": "a793d6f699976c2d6db22e8eaad2ed02daf48b634f7848e1959efae0fa7dc9aa",
+            "comment_sha256": "6d7e457ebb8260415a3c3a46611b6b155067274eb1c9a1fc5d132e0032394b76",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 118,
+            "inventory_sha256": "1c6ca0fdcc681de2fc68fd02fe7d77e97d2981780294610124ec3bd1865c386c",
+            "metadata_sha256": "2cd4513b9f3de1bcdc30c4d36c2c2a1b119fe5472380631eb5bf963dc2ae659f",
+            "comment_sha256": "7d2c54ce9b93fc05f3010178e8d284d04d862e921e9cedbc023c16a03a1631f6",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete native rainwater-from-mineral-oil-storage treatment, capacity class 2, per m3. Source -1/native +1 requires factor -1. Retain the wastewater subtype; pollutant loading, routing, removal, geography and sludge handling differ. Add no density or COD multiplier.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete native rainwater-from-mineral-oil-storage treatment, capacity class 2, per m3. Source -1/native +1 requires factor -1. Retain the wastewater subtype; pollutant loading, routing, removal, geography and sludge handling differ. Add no density or COD multiplier.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.9 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c49607f5b826c65e1d44193c6b709a2d976ab81c02724a191630de923cec2027"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3f19534eb7d97f64",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_native_39_review.json",
+      "review_sha256": "0b13605ddbe5c3bf64c9777b0d00e7a06c8117bff1be82d4573e69a62e328963",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "ENTSO-E",
+          "name": "market group for electricity, low voltage",
+          "reference product": "electricity, low voltage",
+          "unit": "kilowatt hour"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "ENTSO-E",
+            "name": "market group for electricity, low voltage",
+            "reference product": "electricity, low voltage",
+            "unit": "kilowatt hour"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 12,
+          "inventory_sha256": "9f79bbe125b43f6dbc3825abc2fbdc563c523b32e1a4a991067e94aad4bcf23a",
+          "metadata_sha256": "d1ca31b3d39fa7196275da0cf28dc30658b50944e881630f031b985832e83d82",
+          "comment_sha256": "d78247b454153cb2fb02fb077e4cae782137508218f45ce34c50d1afd0e9b5f8",
+          "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "inventory_sha256": "00aa2056d7170cb5b9dd46cb520804be911e8d7208eb7bc9ce0e4d00d15dec98",
+            "metadata_sha256": "85244ed9a1f747332e9e0e3333ff662ef9f352b60555332d262d808048248dbe",
+            "comment_sha256": "5ac7469195fa3dc0015ab869c48c92d695715d379f574beaa3d006bd0ab04164",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "inventory_sha256": "2b16331e66030dac5793b6916e5157f5b0e30cf8de560087a467c7cccad0158a",
+            "metadata_sha256": "4f8578dd24f02dc5e10bbbde219e5628745ead9139bcfee105ed2c7b42f0ccac",
+            "comment_sha256": "fe99f5b8da7da10d96aab25b6fdc2db42c411d30540e964273a840cd61c3d180",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use the complete native ENTSO-E low-voltage grid per kWh, preserving voltage. Native historical generation, imports, losses and infrastructure replace source shares; add no extra losses or generation inventory.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use the complete native ENTSO-E low-voltage grid per kWh, preserving voltage. Native historical generation, imports, losses and infrastructure replace source shares; add no extra losses or generation inventory.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.9 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "049ff6bd111cb22deb6db0c32b797fa93e259c729ed7e9838f3a740b9916343f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-996fc7b49f1ed29c",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_final_energy_native_39_review.json",
+      "review_sha256": "0b13605ddbe5c3bf64c9777b0d00e7a06c8117bff1be82d4573e69a62e328963",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "welding, arc, aluminium",
+          "reference product": "welding, arc, aluminium",
+          "unit": "meter"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "RER",
+            "name": "welding, arc, aluminium",
+            "reference product": "welding, arc, aluminium",
+            "unit": "meter"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 12,
+          "inventory_sha256": "67fcb6b407f8f0ef4ee2ca7b3480e9999421c86a8d1b21c90b99cc7d18ad6450",
+          "metadata_sha256": "607d378170ab65c6be4f5ae1c63b5e4056f717dfb3b5d08b0e9426f7f2be05f6",
+          "comment_sha256": "7e95700060fdbc1d7335b908c2e39e489eca9905eb789e59d68110c686643a59",
+          "product_information_sha256": "5e2c4c1b61d5303190089e9e1043b42e2a67ec3ae9794f7b4d7e409d28c97a48"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 15,
+            "inventory_sha256": "71331b14083a061a3923f4356404d940bacd1ab2e4a401fad20aa0d95c56c502",
+            "metadata_sha256": "a915b260348ae7e6ed6ee26622429b767492bb06ad99af26824ce581bb3b8d73",
+            "comment_sha256": "2fbfd4a1bcb132945719ace173b4d7eb26736edcbea1316ca60b8082c108fe85",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 15,
+            "inventory_sha256": "31e55beac5f187e620059993aaeff9da18abd07daafc9bf26c9108bac1e16df5",
+            "metadata_sha256": "6d78a2cb1ac8da43d7751fa47434401554610c5c9122f15eef91f4e8d83378f0",
+            "comment_sha256": "9c3551ff4d8cd365a12b198a528eb346401614b75fe0a24ee7eedcb015ee3e69",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete native aluminium arc welding per metre. Retain process and length basis; weld geometry, alloy, filler, electricity and equipment differences remain, without converting weld length to metal mass.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete native aluminium arc welding per metre. Retain process and length basis; weld geometry, alloy, filler, electricity and equipment differences remain, without converting weld length to metal mass.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.9 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "76efd5b858184439f7eda30d315293d4d9c33939f06dc422d341b77db705d87a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-aa9896866f9437f6",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_native_39_review.json",
+      "review_sha256": "0b13605ddbe5c3bf64c9777b0d00e7a06c8117bff1be82d4573e69a62e328963",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for gas boiler",
+          "reference product": "gas boiler",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for gas boiler",
+            "reference product": "gas boiler",
+            "unit": "unit"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 2,
+          "inventory_sha256": "49792c56c98301d8be55fdb237a07254b3193e3cf23cfd8e644cd879ce80d958",
+          "metadata_sha256": "582e31fb5f7468abf768ef0f015cc4ae556d8fb599826cbdfa13e640103846f2",
+          "comment_sha256": "88131f2cf35c457fbb0378d81c1338f321d8fd481ca3157f8e2bbcb8646d26b4",
+          "product_information_sha256": "4204bb8266e8917d98c0e2c71175ae0d7692c29462531906935e93cf90a6fa42"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 1,
+            "inventory_sha256": "ec86b7aec8359b6b23bdbe68fdb826fd1a6d800718e3b2439d6dcd55240f5b19",
+            "metadata_sha256": "f0078d61a26795176b92a98f929e966941ec2eba54df19a29781d08784ab357a",
+            "comment_sha256": "810fae64a9a2dfae6536da69bb17af12cfc0dee159eebbbec90a2f196cbde179",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 1,
+            "inventory_sha256": "b4dcc29db1829c8020e40f2cab3ba0c2a17ed37ca1fe94717684e0c39e1f2161",
+            "metadata_sha256": "fc99243956de589da906c87bcb6973aaeb48c83af5600c26b4abb311285eb6e2",
+            "comment_sha256": "58e951511aa544e0d877edcf0230b33e4b07636ae9740c1078b1859b46d38097",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete native xxx Gas boiler per unit. Source and native documentation both describe about 10 kW gas input and borrow the oil-boiler 10 kW manufacturing inventory. Retain the native xxx label and historical approximation. Do not substitute heat delivery or add another oil/gas boiler, lifetime or power multiplier.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete native xxx Gas boiler per unit. Source and native documentation both describe about 10 kW gas input and borrow the oil-boiler 10 kW manufacturing inventory. Retain the native xxx label and historical approximation. Do not substitute heat delivery or add another oil/gas boiler, lifetime or power multiplier.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.9 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b2762a70d00e36e7470efc8a1ac71f10309c5d87061b1f68d0e6ca0e3c6c7f4e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a73848b70d94bf8a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_native_39_review.json",
+      "review_sha256": "0b13605ddbe5c3bf64c9777b0d00e7a06c8117bff1be82d4573e69a62e328963",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for chimney",
+          "reference product": "chimney",
+          "unit": "meter"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for chimney",
+            "reference product": "chimney",
+            "unit": "meter"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 2,
+          "inventory_sha256": "95b102772873a0bee6cd2c7a9132f7a796e4fbf0a44d9ef991b4626509102c56",
+          "metadata_sha256": "a8eccdcdd67e3d3f6dd1523cfc2dc79854d31787fdfa44c87f0f411c64bfb181",
+          "comment_sha256": "cc79b4112fbadc5a19636025a75413f693d347b18a11117a629bbce90910bf08",
+          "product_information_sha256": "14b27d0f626b4b9367d91af706964aec4ebac7d0fc551bb10d9cc1eed57a3f9f"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 9,
+            "inventory_sha256": "b21d59c25d1595ed5595648848047fb9e0a5dbab943c962881eef25ef3c9eb42",
+            "metadata_sha256": "72149fd3845d38cf82c2780dc14de0fe34d286b7d6a7dfaf76d2fcbba47b885e",
+            "comment_sha256": "f5738ebd06d1a153676f3590f0c3aff8e7b59d8c2e232ec73afc0e38a7312419",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 9,
+            "inventory_sha256": "13b1bd16cd23bae1b6d4c6ee6891e479ee8bdee6d30e64f4b43eadc3147eca4f",
+            "metadata_sha256": "4e716161a32f223e0bb88fe01d9bc30d11a4229dc0e600e393255065e25c7533",
+            "comment_sha256": "e3bdab56eee78bce99c63fec2a7a67aed62610a6f97b495af308f3d98d765069",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete native chimney per metre. Native Swiss geometry, materials, installation, life and vintage replace source assumptions; no cross-sectional-area or height multiplier.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete native chimney per metre. Native Swiss geometry, materials, installation, life and vintage replace source assumptions; no cross-sectional-area or height multiplier.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.9 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "adf356aeba0214f9a9edd685ca80dbef116e49ec9a06bc1b25931fbdb01f0a45"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e69da1d0d93a9f73",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_final_energy_native_39_review.json",
+      "review_sha256": "0b13605ddbe5c3bf64c9777b0d00e7a06c8117bff1be82d4573e69a62e328963",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for liquefied petroleum gas",
+          "reference product": "liquefied petroleum gas",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "Europe without Switzerland",
+            "name": "market for liquefied petroleum gas",
+            "reference product": "liquefied petroleum gas",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 14,
+          "inventory_sha256": "e2f51848000f54fc76359235be160251da1681d10ece5ebf49a6315bac767e32",
+          "metadata_sha256": "142184bab6d54cf8a5dd16b5535d0a84726948dc21e60a5a0f8510d8f8e57f15",
+          "comment_sha256": "da4ba6214370f4f652c8002fd057131ec75e5ba4d28dce2eaf1c88689c2b34f7",
+          "product_information_sha256": "139662b4bc4be6c19a1ead5892e01ad6436cff4b98f702a424eed3a39d30d71a"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "inventory_sha256": "18c1beb18ee4b84a74aba1f7994a0dce1aa8b058672ee32af359ae00a225f306",
+            "metadata_sha256": "2dca26c0a23d4d4ab08e708116fe27fc4cbfebe9781a2618799fad5bd51065ed",
+            "comment_sha256": "480f1351c9e816d8dcbfd8a2e3d8fc6c7cc957b42b2a0f0dd09eb977a6fba09d",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "inventory_sha256": "7cef2f130723c1a0ca3630e7f9557c8cfff3594e8ae535155a6cf3221279cb8d",
+            "metadata_sha256": "f3054ddecdd8b9d8fbe60635bef16500efdcb1bd1030e856b91042b9ae1dff39",
+            "comment_sha256": "9b814dc37c11351275461b8084781fe799d083b21ace33f4c33760b06acb4bd3",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete Swiss LPG supply at service station per kg. Propane/butane blend, allocation, production, geography and final-delivery boundary differ. Keep caller mass and separate combustion; add no heating-value or density correction, fuel-production or retail burden.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete Swiss LPG supply at service station per kg. Propane/butane blend, allocation, production, geography and final-delivery boundary differ. Keep caller mass and separate combustion; add no heating-value or density correction, fuel-production or retail burden.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.9 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "116d941dab0b6ad409567a3c3c5d293547def04d0900baf9a0b536f993607e77"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3e953694d9531d69",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_final_energy_native_39_review.json",
+      "review_sha256": "0b13605ddbe5c3bf64c9777b0d00e7a06c8117bff1be82d4573e69a62e328963",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "market for phenolic resin",
+          "reference product": "phenolic resin",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "RER",
+            "name": "market for phenolic resin",
+            "reference product": "phenolic resin",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 4,
+          "inventory_sha256": "c8bec1886e86bd287877496e6e8aba0aada2bb70af51bc087f4b564d5612a7e1",
+          "metadata_sha256": "c5cbf3b696b945a45a91ce64ad6933cda33c70a7eddb5b00ab1f825117963df8",
+          "comment_sha256": "a53e53e735f3a3f29dd10c16670ef2803a8895172be83a3318fcbb041b9fd6c4",
+          "product_information_sha256": "98d9194b7e6d1af29aedfe8ef415f9a73336e1d66572b0023dc8420a30ff5da8"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 20,
+            "inventory_sha256": "1a056655d143b9d4a0e4826187e86b8fff49eefbf5a0c3d48825162301c7a3f3",
+            "metadata_sha256": "bb8f6c9fa9db5b4d3d09597bb01c41fee938a48a15c8f706b8f35e8b7607e84c",
+            "comment_sha256": "6bea8f0daaf440c748d0187ab342f4a9eb00f6721b584a445b62023b23bcde52",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 20,
+            "inventory_sha256": "44bbaea6692f6615af776fef3d15ec8b1a6334b38a1ba11f90b0629dc6bf8988",
+            "metadata_sha256": "78ea058c5f56650e898592fda0e0ca48cd91fef3c988f9993e9413a336b0174b",
+            "comment_sha256": "0f5866077d58e0942bc9220bd199818470209784047ba804acadf61effa4b069",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete native phenolic resin per kg pure resin. Source production declares dry mass 1 kg and zero water; native documentation explicitly references 1 kg pure resin. No water/solvent multiplier. Native stoichiometric manufacture has documented uncertain/incomplete process emissions and omitted solid wastes; preserve those limitations.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete native phenolic resin per kg pure resin. Source production declares dry mass 1 kg and zero water; native documentation explicitly references 1 kg pure resin. No water/solvent multiplier. Native stoichiometric manufacture has documented uncertain/incomplete process emissions and omitted solid wastes; preserve those limitations.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.9 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "657c99f86058dd22a07c734a41eac182fc36b83701fb23593b11aaa12a8026be"
+        }
+      ]
     }
   ],
   "superseded_operations": [

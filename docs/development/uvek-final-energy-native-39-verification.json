@@ -1,0 +1,252 @@
+{
+  "status": "mapping_group_verified_not_sector_qualified",
+  "source_code_changes": 0,
+  "new_Brightway_databases": 0,
+  "conversion_behavior": {
+    "status": "passed",
+    "added_exact_source39_scopes": 11,
+    "signed_uncertainty_exchange_checks": 88,
+    "direct_migration_cases": 8,
+    "public_harmonizer_fresh_and_warm_passed": true,
+    "input_nonmutation": true,
+    "earlier_effective_profile_checks": 0,
+    "new_manufacturing_inventory_models": 0,
+    "new_model_profile_aliases": 0,
+    "new_foreground_omissions": [],
+    "source_code_changes": 0,
+    "new_Brightway_databases": 0,
+    "qualification_limit": "Required final-energy interface group only; no complete final-energy update or export."
+  },
+  "in_memory_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 11,
+    "native_suppliers": 11,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 22,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-f0ea84b691223768",
+        "source": {
+          "location": "GLO",
+          "name": "market for locomotive",
+          "reference product": "locomotive",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Locomotive",
+          "reference product": "Locomotive",
+          "unit": "unit"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-bcce1e75e09e77c0",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "pipeline construction, natural gas, high pressure distribution network",
+          "reference product": "pipeline, natural gas, high pressure distribution network",
+          "unit": "kilometer"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Pipeline, natural gas, high pressure distribution network",
+          "reference product": "Pipeline, natural gas, high pressure distribution network",
+          "unit": "kilometer"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-14c85826881a6371",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "treatment of wastewater, average, wastewater treatment",
+          "reference product": "wastewater, average",
+          "unit": "cubic meter"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Treatment, sewage, to wastewater treatment, class 1",
+          "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+          "unit": "cubic meter"
+        },
+        "source_caller_amount": -2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-c39b53689522c694",
+        "source": {
+          "location": "RER",
+          "name": "infrastructure construction, for regional distribution of oil product",
+          "reference product": "infrastructure, for regional distribution of oil product",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Regional distribution, oil products",
+          "reference product": "Regional distribution, oil products",
+          "unit": "unit"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-6dd0791575d822ca",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for rainwater mineral oil storage",
+          "reference product": "rainwater mineral oil storage",
+          "unit": "cubic meter"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Treatment, rainwater mineral oil storage, to wastewater treatment, class 2",
+          "reference product": "Treatment, rainwater mineral oil storage, to wastewater treatment, class 2",
+          "unit": "cubic meter"
+        },
+        "source_caller_amount": -2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-3f19534eb7d97f64",
+        "source": {
+          "location": "ENTSO-E",
+          "name": "market group for electricity, low voltage",
+          "reference product": "electricity, low voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "ENTSO-E",
+          "name": "Electricity, low voltage, at grid",
+          "reference product": "Electricity, low voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-996fc7b49f1ed29c",
+        "source": {
+          "location": "RER",
+          "name": "welding, arc, aluminium",
+          "reference product": "welding, arc, aluminium",
+          "unit": "meter"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Welding, arc, aluminium",
+          "reference product": "Welding, arc, aluminium",
+          "unit": "meter"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-aa9896866f9437f6",
+        "source": {
+          "location": "GLO",
+          "name": "market for gas boiler",
+          "reference product": "gas boiler",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "xxx Gas boiler",
+          "reference product": "xxx Gas boiler",
+          "unit": "unit"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-a73848b70d94bf8a",
+        "source": {
+          "location": "GLO",
+          "name": "market for chimney",
+          "reference product": "chimney",
+          "unit": "meter"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Chimney",
+          "reference product": "Chimney",
+          "unit": "meter"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-e69da1d0d93a9f73",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for liquefied petroleum gas",
+          "reference product": "liquefied petroleum gas",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Liquefied petroleum gas, at service station",
+          "reference product": "Liquefied petroleum gas, at service station",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-3e953694d9531d69",
+        "source": {
+          "location": "RER",
+          "name": "market for phenolic resin",
+          "reference product": "phenolic resin",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Phenolic resin, at plant",
+          "reference product": "Phenolic resin, at plant",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      }
+    ],
+    "qualification_limit": "Eleven complete native final-energy support services; no full final-energy update or export qualification."
+  },
+  "tests": {
+    "brightpath_review_manifest_passed": 9,
+    "premise_scoped_approval_passed": 10
+  },
+  "qualified_sectors": 15,
+  "total_sectors": 19
+}
