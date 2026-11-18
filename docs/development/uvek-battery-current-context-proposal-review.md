@@ -23,8 +23,10 @@ interpreter preview; no repository Python file was changed by that preview.
 The user approved this exact four-file patch on 18 November 2026. Its bytes
 are applied exactly. All 92 battery tests pass against the applied source. Two
 public-boundary tests still expect battery refusal; their small test-only
-refresh is proposed separately. An installed live workflow, combined run and
-export/finite-LCI checks remain required. Battery is not yet publicly qualified.
+refresh is proposed separately. The installed normal live seventeen-sector run, exhaustive graph validation,
+Brightway export and 1,958 signed written-LCI checks now pass. Battery is
+qualified for the inspected coupled REMIND SSP2-NPi 2050 scenario; see
+`uvek-battery-public-qualification.json` for the exact scope and limits.
 
 Review the exact `proposed-battery-current-context-compatibility.patch` and
 `uvek-battery-current-context-proposal-verification.json`. The previous proposal

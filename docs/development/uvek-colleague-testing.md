@@ -3,7 +3,7 @@
 This guide is for a colleague running the review on her own computer. The example
 builds REMIND SSP2-NPi for 2050, updates biomass, electricity and heat, exports to
 Brightway, and provides a few cells for exploring the result. The optional
-verified sector list now includes final energy (16 sectors in total; see the
+verified sector list now includes battery and final energy (17 sectors in total; see the
 latest verification below). No separate Brightpath checkout is needed.
 
 ## 1. Fork and select the development branch
@@ -412,5 +412,22 @@ ndb.update([
 
 Keep the ordinary preceding updates: final energy uses their regional fuel,
 heat, biomass and electricity markets. The notebook still defaults to the
-simpler biomass/electricity/heat run. The approved battery compatibility change
-is not yet export-qualified; emissions and metals are still under review.
+simpler biomass/electricity/heat run. The later battery qualification below extends this to seventeen sectors;
+emissions and metals are still under review.
+
+
+## Optional battery extension — 18 November 2026
+
+The installed normal live seventeen-sector run also passes update, exhaustive
+graph validation and Brightway export. It contains 19,723 activities and 29
+battery transformation targets. All 32 battery-capacity datasets, the 876 new
+final-energy activities and representatives of all 203 active final-energy
+roles pass 1,958 signed written-inventory calculations. See
+[battery qualification](uvek-battery-public-qualification.json).
+
+To reproduce it, add `"battery"` between `"cdr"` and `"cars"` in the optional
+sixteen-sector update cell above. Use the notebook's existing export cell.
+Keep the default three-sector example for the simplest review. Native and
+curated proxy limitations remain visible in provenance and warnings. This run
+does not qualify metals or emissions. Two older public-boundary tests still
+expect battery refusal; their separately proposed test-only refresh is pending.

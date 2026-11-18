@@ -11,5 +11,6 @@
   "applied_source_bytes_match_approved_proposal": true,
   "applied_battery_tests_passed": 92,
   "additional_public_boundary_tests_requiring_refresh": 2,
-  "installed_live_update_and_export_pending": true
+  "installed_live_update_and_export_pending": false,
+  "installed_public_qualification": "docs/development/uvek-battery-public-qualification.json"
 }

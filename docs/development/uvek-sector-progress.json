@@ -9,7 +9,7 @@
     "biosphere_version": "3.10"
   },
   "registry_source": "premise/database/new_database.py:NewDatabase.update",
-  "current_scope_gate": "The public scope admits sixteen export-qualified sectors plus the approved battery candidate. Final energy is qualified through the installed ordinary live sixteen-sector run and Brightway export, with all 203 positive roles and 1894 signed written LCIs. The no-argument default remains biomass, electricity and heat. Battery live/combined/export checks are pending; emissions and metals remain gated.",
+  "current_scope_gate": "Seventeen sectors are qualified through the installed normal live combined update and Brightway export, including battery and final energy. The no-argument default remains biomass, electricity and heat. Metals and emissions remain gated.",
   "sectors": [
     {
       "sector": "biomass",
@@ -2395,7 +2395,7 @@
     },
     {
       "sector": "battery",
-      "status": "exact_compatibility_patch_approved_applied_installed_integration_pending",
+      "status": "operational_screening_with_explicit_proxy_limitations",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -2404,23 +2404,14 @@
       "native_mapping_coverage": {
         "kind": "static_declarations_only",
         "files": [],
-        "runtime_verified": false,
+        "runtime_verified": true,
         "runtime_inventory_preparation_verified": true,
         "prepared_records": 951,
         "archive_records": 941,
         "all_four_archive_source_cohorts_pass": true,
         "review": "docs/development/uvek-battery-compatibility-proposal.md"
       },
-      "blockers": [
-        {
-          "code": "no_source_change_instruction",
-          "finding": "Unchanged Python requires a source-context and signed-treatment compatibility adaptation plus battery admission. Concrete four-file patch is prepared and preview-tested but not applied."
-        },
-        {
-          "code": "public_export_and_combined_integration",
-          "finding": "Normal released battery update/export and combined-sector qualification remain pending; private preview does not establish public support."
-        }
-      ],
+      "blockers": [],
       "decisions": [
         "docs/development/uvek-battery-last-three-312-review.md",
         "docs/development/uvek-battery-final-310-review.md",
@@ -2432,7 +2423,63 @@
         "Fourteen actual-source native supply approvals pass12Brightpath and4Premise checks plus28signed native-target LCIs. Required first source3.9cohort changes27to13; complete update/export remains unqualified.",
         "Unapplied proposal: 92 existing battery tests pass; 29 targets/23 density-learning activities; exhaustive graph certification of 12,898 activities has zero errors. Actual source unchanged."
       ],
-      "integration_exports": [],
+      "integration_exports": [
+        {
+          "status": "installed_public_seventeen_sector_update_export_and_signed_LCIs_passed",
+          "sectors": [
+            "biomass",
+            "electricity",
+            "cement",
+            "steel",
+            "fuels",
+            "renewable",
+            "mining",
+            "heat",
+            "cdr",
+            "battery",
+            "cars",
+            "two_wheelers",
+            "trucks",
+            "ships",
+            "buses",
+            "trains",
+            "final energy"
+          ],
+          "activities": 19723,
+          "CLIC_records": 2405,
+          "positive_final_energy_roles": 203,
+          "positive_final_energy_roles_with_suppliers": 203,
+          "validation_errors": 0,
+          "battery_transformation_targets": 29,
+          "Brightpath_Git_revision": "02326bb7b334a36b6bab1d3cbeef2d0a4f157e19",
+          "CLIC_options_overridden": false,
+          "CLIC_freshness": "normal live default",
+          "public_scope_gate_bypassed": false,
+          "validation_disabled": false,
+          "runtime_modules_from_installed_packages": true,
+          "sector_qualified": true,
+          "battery_capacity_activities_checked": 32,
+          "database": "BAFU:2026-REMIND-SSP2-NPi-2050-seventeen-battery-20261118-134809",
+          "project": "bafu-2026-ecospold2-biosphere-310",
+          "exported_activities": 19723,
+          "all_876_new_final_energy_activities_present": true,
+          "all_203_positive_roles_have_written_LCI_representatives": true,
+          "signed_written_LCI_solves": 1958,
+          "unique_demands_checked": 979,
+          "signed_linearity_passed": true,
+          "regional_low_voltage_electricity_markets": 13,
+          "EUR_and_NEU_markets_present": true,
+          "technosphere_links_stay_in_export": true,
+          "biosphere_database": "ecoinvent-3.10-biosphere",
+          "source_database_metadata_unchanged": true,
+          "new_Brightway_databases": 1,
+          "elapsed_seconds": 509.4205694589764,
+          "installed_Premise_revision": "30f51fb6",
+          "existing_installed_functional_tests_passed": 380,
+          "existing_public_boundary_tests_pending_authorized_refresh": 2,
+          "qualification_limit": "Reviewed BAFU 2026 source, ecoinvent 3.10 biosphere and ordinary coupled REMIND SSP2-NPi 2050 seventeen-sector workflow. Complete-process proxy/source-exclusion limitations remain. Public-boundary tests that still expect battery refusal need their separately proposed refresh; metals and emissions remain unfinished."
+        }
+      ],
       "static_audit": {
         "callback": "_update_battery",
         "module": "premise/batteries/battery.py",
@@ -2530,8 +2577,19 @@
         "review": "docs/development/uvek-battery-current-context-proposal-review.md",
         "verification": "docs/development/uvek-battery-current-context-proposal-verification.json",
         "battery_tests_passed": 92,
-        "installed_live_and_export_pending": true
-      }
+        "installed_live_and_export_pending": false,
+        "public_qualification": "docs/development/uvek-battery-public-qualification.json"
+      },
+      "historical_blockers_before_qualification": [
+        {
+          "code": "no_source_change_instruction",
+          "finding": "Unchanged Python requires a source-context and signed-treatment compatibility adaptation plus battery admission. Concrete four-file patch is prepared and preview-tested but not applied."
+        },
+        {
+          "code": "public_export_and_combined_integration",
+          "finding": "Normal released battery update/export and combined-sector qualification remain pending; private preview does not establish public support."
+        }
+      ]
     },
     {
       "sector": "cars",
