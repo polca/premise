@@ -1,0 +1,489 @@
+{
+  "status": "all_source37_archive_interfaces_verified_retained_workbook_mapping_pending",
+  "source_code_changes": 0,
+  "new_Brightway_databases": 0,
+  "exact_source37_scopes": 18,
+  "complete_native_services": 16,
+  "new_immediate_facility_helpers": 1,
+  "independently_empty_cutoff_handover_scopes": 1,
+  "new_foreground_omissions": [],
+  "conversion_behavior": {
+    "native": {
+      "status": "passed",
+      "added_exact_source37_scopes": 16,
+      "signed_uncertainty_exchange_checks": 128,
+      "direct_migration_cases": 8,
+      "public_harmonizer_fresh_and_warm_passed": true,
+      "input_nonmutation": true,
+      "earlier_effective_profile_checks": 1,
+      "new_manufacturing_inventory_models": 0,
+      "new_model_profile_aliases": 0,
+      "new_foreground_omissions": [],
+      "source_code_changes": 0,
+      "new_Brightway_databases": 0,
+      "qualification_limit": "Required interface group only; no complete final-energy update or new export."
+    },
+    "dismantling_and_stock": {
+      "status": "passed",
+      "added_exact_source37_scopes": 2,
+      "signed_uncertainty_exchange_checks": 16,
+      "direct_migration_cases": 8,
+      "public_harmonizer_fresh_and_warm_passed": true,
+      "input_nonmutation": true,
+      "earlier_effective_profile_checks": 0,
+      "new_manufacturing_inventory_models": 0,
+      "new_model_profile_aliases": 0,
+      "new_foreground_omissions": [],
+      "source_code_changes": 0,
+      "new_Brightway_databases": 0,
+      "qualification_limit": "Required interface group only; no complete final-energy update or new export."
+    }
+  },
+  "in_memory_LCI": {
+    "native": {
+      "project": "bafu-2026-ecospold2-biosphere-310",
+      "foreground_datapackage_filesystem": "memory",
+      "transient_activities": 16,
+      "native_suppliers": 16,
+      "foreground_biosphere_flows": 1,
+      "signed_foreground_LCI_solves": 32,
+      "foreground_emissions_preserved": true,
+      "new_brightway_databases": 0,
+      "new_registered_activities": 0,
+      "new_processed_files": 0,
+      "native_source_and_biosphere_metadata_preserved": true,
+      "database_registry_unchanged": true,
+      "checks": [
+        {
+          "rule_id": "bp-565489cccf0b67ff",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "market for diesel, low-sulfur",
+            "reference product": "diesel, low-sulfur",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Diesel, fossil, at regional storage",
+            "reference product": "Diesel, fossil, at regional storage",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-27a33f5d7d497710",
+          "source": {
+            "location": "GLO",
+            "name": "charger production, for electric scooter",
+            "reference product": "charger, for electric scooter",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Charger, for electric scooter",
+            "reference product": "Charger, for electric scooter",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-3350b9becf815a20",
+          "source": {
+            "location": "GLO",
+            "name": "transport, freight, sea, container ship",
+            "reference product": "transport, freight, sea, container ship",
+            "unit": "ton kilometer"
+          },
+          "target": {
+            "location": "OCE",
+            "name": "Transport, transoceanic container ship",
+            "reference product": "Transport, transoceanic container ship",
+            "unit": "ton kilometer"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-f743734fc76a50a2",
+          "source": {
+            "location": "GLO",
+            "name": "treatment of waste electric and electronic equipment, shredding",
+            "reference product": "waste electric and electronic equipment",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Shredding, electrical and electronic scrap",
+            "reference product": "Shredding, electrical and electronic scrap",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": -2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-830ac7cecb81fcf4",
+          "source": {
+            "location": "CH",
+            "name": "maintenance, motor scooter",
+            "reference product": "maintenance, motor scooter",
+            "unit": "unit"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Maintenance, scooter",
+            "reference product": "Maintenance, scooter",
+            "unit": "unit"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-2b48c67db8f27300",
+          "source": {
+            "location": "CH",
+            "name": "petrol production, 5% ethanol by volume from biomass",
+            "reference product": "petrol, 5% ethanol by volume from biomass",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "xx Petrol, 5% vol. ethanol, from biomass, at service station",
+            "reference product": "xx Petrol, 5% vol. ethanol, from biomass, at service station",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-8b6f1fcdfadf34af",
+          "source": {
+            "location": "RER",
+            "name": "metal working, average for steel product manufacturing",
+            "reference product": "metal working, average for steel product manufacturing",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Steel product manufacturing, average metal working",
+            "reference product": "Steel product manufacturing, average metal working",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-edf1518533a281df",
+          "source": {
+            "location": "GLO",
+            "name": "market for aluminium, cast alloy",
+            "reference product": "aluminium, cast alloy",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Aluminium, production mix, cast alloy, at plant",
+            "reference product": "Aluminium, production mix, cast alloy, at plant",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-61babdae6914f05a",
+          "source": {
+            "location": "GLO",
+            "name": "market group for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "unit": "kilowatt hour"
+          },
+          "target": {
+            "location": "GLO",
+            "name": "Electricity, medium voltage, at grid",
+            "reference product": "Electricity, medium voltage, at grid",
+            "unit": "kilowatt hour"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-10799085709611fb",
+          "source": {
+            "location": "GLO",
+            "name": "market for glider, for electric scooter",
+            "reference product": "glider, for electric scooter",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Glider, for electric scooter",
+            "reference product": "Glider, for electric scooter",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-b531fa282aec9f8f",
+          "source": {
+            "location": "RER",
+            "name": "motor scooter production",
+            "reference product": "motor scooter, 50 cubic cm engine",
+            "unit": "unit"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Scooter, ICE, at regional storage",
+            "reference product": "Scooter, ICE, at regional storage",
+            "unit": "unit"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-34f7b4af26714213",
+          "source": {
+            "location": "RER",
+            "name": "injection moulding",
+            "reference product": "injection moulding",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Injection moulding",
+            "reference product": "Injection moulding",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-34ba86add143613d",
+          "source": {
+            "location": "CH",
+            "name": "road construction",
+            "reference product": "road",
+            "unit": "meter-year"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Road",
+            "reference product": "Road",
+            "unit": "meter-year"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-cd25d986728f174c",
+          "source": {
+            "location": "CH",
+            "name": "road maintenance",
+            "reference product": "road maintenance",
+            "unit": "meter-year"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Operation, maintenance, road",
+            "reference product": "Operation, maintenance, road",
+            "unit": "meter-year"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-fe65c4020c8f8f4b",
+          "source": {
+            "location": "CH",
+            "name": "market for electricity, low voltage",
+            "reference product": "electricity, low voltage",
+            "unit": "kilowatt hour"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Electricity, low voltage, at grid",
+            "reference product": "Electricity, low voltage, at grid",
+            "unit": "kilowatt hour"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-e235ec08e7729377",
+          "source": {
+            "location": "GLO",
+            "name": "market for maintenance, electric scooter, without battery",
+            "reference product": "maintenance, electric scooter, without battery",
+            "unit": "unit"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Maintenance, electric scooter, without battery",
+            "reference product": "Maintenance, electric scooter, without battery",
+            "unit": "unit"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        }
+      ],
+      "qualification_limit": "Sixteen complete native source-3.7 support services; no full final-energy update or export qualification."
+    },
+    "dismantling_and_stock": {
+      "project": "bafu-2026-ecospold2-biosphere-310",
+      "foreground_datapackage_filesystem": "memory",
+      "transient_activities": 4,
+      "foreground_biosphere_flows": 1,
+      "native_suppliers": 1,
+      "signed_foreground_LCI_solves": 4,
+      "independent_native_reference_LCI_solves": 2,
+      "foreground_emissions_preserved": true,
+      "new_brightway_databases": 0,
+      "new_registered_activities": 0,
+      "new_processed_files": 0,
+      "native_source_and_biosphere_metadata_preserved": true,
+      "database_registry_unchanged": true,
+      "checks": [
+        {
+          "rule_id": "bp-de7bbb22092c2263",
+          "source": {
+            "location": "GLO",
+            "name": "manual dismantling of used electric scooter",
+            "reference product": "manual dismantling of electric scooter",
+            "unit": "unit"
+          },
+          "source_caller_amount": 2.5,
+          "unit": "unit",
+          "standard_signed_LCIs_finite_and_reverse": true,
+          "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+          "unrefined_max_abs_inventory_difference": 0.0,
+          "refined_max_abs_inventory_difference": 2.7755575615628914e-17,
+          "full_graph_residual": {
+            "residual_before": 1.8984387976787646e-11,
+            "residual_after": 4.481718971439875e-18,
+            "correction_steps": 6
+          },
+          "native_reference_residual": {
+            "residual_before": 1.8984387976787646e-11,
+            "residual_after": 2.661101508714581e-18,
+            "correction_steps": 6
+          },
+          "comparison_tolerance": {
+            "rtol": 1e-08,
+            "atol": 1e-11
+          },
+          "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+        },
+        {
+          "rule_id": "bp-37b9b46586e881e7",
+          "source": {
+            "location": "GLO",
+            "name": "aluminium scrap, new, Recycled Content cut-off",
+            "reference product": "aluminium scrap, new",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "unit": "kilogram",
+          "standard_signed_LCIs_finite_and_reverse": true,
+          "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+          "unrefined_max_abs_inventory_difference": 0.0,
+          "refined_max_abs_inventory_difference": 0.0,
+          "full_graph_residual": {
+            "residual_before": 0.0,
+            "residual_after": 0.0,
+            "correction_steps": 6
+          },
+          "native_reference_residual": {
+            "residual_before": 0.0,
+            "residual_after": 0.0,
+            "correction_steps": 6
+          },
+          "comparison_tolerance": {
+            "rtol": 1e-08,
+            "atol": 1e-11
+          },
+          "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+        }
+      ],
+      "new_model_signed_LCI_solves": 2,
+      "new_model_recipes_checked": [
+        "final-energy-37-scooter-manual-dismantling-facility"
+      ],
+      "qualification_limit": "One source-3.7 facility-only dismantling service and one independently empty cut-off handover; no final-energy/export qualification."
+    }
+  },
+  "normal_generator": {
+    "byte_equal_files": {
+      "ecoinvent-to-ecoinvent-3.10-biosphere.json": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "ecoinvent-to-uvek-2025.json": "52f86d5c45b903d0c19f2662669a61b8eb862f1fd171484faaacebfd82f7bb36"
+    },
+    "owned_temporary_bytes_removed": 112940308
+  },
+  "tests": {
+    "brightpath_review_manifest_passed": 9,
+    "premise_scoped_approval_passed": 10,
+    "broad_reference_sign_stock_passed": 806,
+    "broad_reference_sign_stock_failed": 8,
+    "failures_reproduced_against_previous_installed_package": {
+      "tested_baseline_revision": "aa438db835a59a4be33935992196c0361811b3d9",
+      "pytest_exit_code": 1,
+      "failing_test_ids": [
+        "tests/test_uvek_reference_signs.py::test_used_li_ion_market_keeps_exact_reviewed_profile_treatment_mix_and_delivery[2--10-3.8]",
+        "tests/test_uvek_reference_signs.py::test_used_li_ion_market_keeps_exact_reviewed_profile_treatment_mix_and_delivery[2--10-3.10]",
+        "tests/test_uvek_reference_signs.py::test_used_li_ion_market_keeps_exact_reviewed_profile_treatment_mix_and_delivery[2-10-3.8]",
+        "tests/test_uvek_reference_signs.py::test_used_li_ion_market_keeps_exact_reviewed_profile_treatment_mix_and_delivery[2-10-3.10]",
+        "tests/test_uvek_reference_signs.py::test_used_li_ion_market_keeps_exact_reviewed_profile_treatment_mix_and_delivery[3--10-3.8]",
+        "tests/test_uvek_reference_signs.py::test_used_li_ion_market_keeps_exact_reviewed_profile_treatment_mix_and_delivery[3--10-3.10]",
+        "tests/test_uvek_reference_signs.py::test_used_li_ion_market_keeps_exact_reviewed_profile_treatment_mix_and_delivery[3-10-3.8]",
+        "tests/test_uvek_reference_signs.py::test_used_li_ion_market_keeps_exact_reviewed_profile_treatment_mix_and_delivery[3-10-3.10]"
+      ],
+      "qualification_limit": "Existing fixture failures reproduced against the prior installed package. Inspect exact failure count in this log; no claim that the full suite passes."
+    },
+    "existing_expectation_conflict": "Eight tests expect source 3.8/3.10 used-Li-ion routes to raise, although earlier reviewed mappings intentionally enabled those routes. No Python test edits under the current instruction."
+  },
+  "actual_preparation_progress": {
+    "all_CLIC_archive_cohorts_clear": true,
+    "retained_workbook_category_validation_failure_reproduced": true,
+    "after_category_correction_retained_source310_unapproved_correspondences": 52,
+    "source_code_unchanged": true,
+    "scope_gate_bypassed_for_diagnostic_only": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "qualified_sectors": 15,
+  "total_sectors": 19,
+  "qualification_limit": "Required mapping groups and actual snapshot preparation progress only, not a complete final-energy update/export. Eight pre-existing rejection expectations remain failing, alongside separately documented earlier historical replay failures."
+}
