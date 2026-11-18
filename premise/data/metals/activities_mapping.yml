@@ -125,6 +125,9 @@ Wind-Gearbox:
 #LCo
 PEMFC:
   uvek_aliases:
+    clic_slugs:
+      - fuel-cell-stack-production-1-kwe-proton-exchange-membrane-pem
+    clic_role_key: metals.yaml:PEMFC
     fltr:
       name:
         - Fuel cell stack production, 1 kWe, proton exchange membrane (PEM)
@@ -145,8 +148,8 @@ PEMFC:
       - Native stacks retain their own technology, material composition,
         geography, allocation, vintage and biosphere limitations. This selector does
         not establish score equivalence or authorize extrapolating unsupported years.
-      - Published CLIC stacks require their own reviewed role binding; native names
-        cannot establish that binding. This native selector does not admit them.
+      - Published CLIC stacks enter only through the reviewed metals.yaml:PEMFC
+        binding and its positive one-unit reference check, never through native names.
   ecoinvent_aliases:
     # Capacity-based intensities apply to the configured stack, not its materials.
     fltr:

@@ -1,0 +1,13 @@
+{
+  "status": "published_PEM_stack_bound_by_existing_declarative_role_pipeline",
+  "matched_native_and_published_stacks": 2,
+  "published_role_binding": "metals.yaml:PEMFC",
+  "real_physical_production_reference_checked": true,
+  "existing_binding_function_used_without_source_changes": true,
+  "classification_declaration_requests_no_extra_roots": true,
+  "source_files_modified": 0,
+  "private_record_provenance_restored_from_actual_prepared_metadata": true,
+  "qualification_limit": "Actual prepared physical/reference replay and existing role-binding/filter functions only; installed metals preparation/update/export remains to be verified.",
+  "existing_requirements_hybrid_and_mapping_tests_passed": 64,
+  "documentation_reference_regeneration_and_check": "passed"
+}

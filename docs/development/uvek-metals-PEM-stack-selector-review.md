@@ -6,9 +6,10 @@ unit. The added capacity entry uses the same 0.001 MW per unit conversion as
 Premise's existing one-kilowatt curated stack. No material intensity, efficiency,
 allocation, operating inventory or unsupported-year rule changes.
 
-The published CLIC stack remains a separate identity. Its inspected metadata has
-no metals role binding; native aliases cannot establish one. That binding and
-full metals integration remain unfinished. This change does not qualify metals.
+The published CLIC stack remains a separate identity. Its original inspected metadata had no metals role binding; native aliases
+cannot establish one. A subsequent classification-only mapping now supplies
+that reviewed binding; see `uvek-metals-published-PEM-binding-review.md`.
+Full metals integration remains unfinished. This change does not qualify metals.
 
 A case-sensitive mask now excludes two capitalized treatment records that the
 broad existing solid-oxide-stack filter previously matched. Disposal is not

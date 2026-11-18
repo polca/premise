@@ -19,7 +19,8 @@
     "buses": ["transport_bus.yaml"],
     "trucks": ["transport_road_freight.yaml"],
     "trains": ["transport_rail_freight.yaml"],
-    "ships": ["transport_sea_freight.yaml"]
+    "ships": ["transport_sea_freight.yaml"],
+    "metals": ["metals.yaml"]
   },
   "mappings": {
     "electricity.yaml": {

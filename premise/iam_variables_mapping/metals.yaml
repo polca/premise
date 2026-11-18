@@ -1,0 +1,15 @@
+# Classification-only binding for an already prepared published stack.
+# With no IAM aliases this declaration requests no additional inventory root.
+PEMFC:
+  uvek_aliases:
+    clic_slugs:
+      - fuel-cell-stack-production-1-kwe-proton-exchange-membrane-pem
+    clic_unit: unit
+    clic_reference_amount: 1
+    clic_limitations:
+      - The published reference provides one 1 kWe PEM stack. The existing
+        0.001 MW per unit conversion applies only to stack material intensities;
+        balance of plant, complete vehicles, operation and treatment are excluded.
+      - Preserve the curated stack's technology, geography, allocation, vintage,
+        source conversion and uncertainty limitations. Unsupported-year and
+        material-design guards remain unchanged; score equivalence is not established.
