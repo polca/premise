@@ -1,0 +1,83 @@
+{
+  "status": "combined_background_metals_filter_census_complete",
+  "metadata_after_ordinary_preceding_updates": 18705,
+  "current_uvek_role_counts": {
+    "ICEV": 0,
+    "EV": 3,
+    "Wind-DDPM": 0,
+    "Wind-Gearbox": 0,
+    "PEMFC": 0,
+    "SOFC - Y": 0,
+    "PEMEL": 1,
+    "AEL": 1,
+    "HTEL - Yttrium": 1,
+    "c-Si": 0,
+    "a-Si": 0,
+    "CIGS": 0,
+    "CdTe": 0,
+    "perovskite": 0,
+    "Parabolic Trough - PB": 0,
+    "CSP Tower - PB": 0,
+    "Nuclear": 0
+  },
+  "common_foreground_roles_missed_by_empty_uvek_aliases": [
+    {
+      "role": "ICEV",
+      "common_foreground_matches": 1,
+      "examples": [
+        {
+          "name": "frame, blanks and saddle, for lorry [CLIC frame-blanks-and-saddle-for-lorry]",
+          "reference product": "frame, blanks and saddle, for lorry",
+          "location": "RER",
+          "unit": "kilogram"
+        }
+      ]
+    },
+    {
+      "role": "PEMFC",
+      "common_foreground_matches": 1,
+      "examples": [
+        {
+          "name": "fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+          "reference product": "fuel cell stack, 1 kWe, proton exchange membrane (PEM)",
+          "location": "GLO",
+          "unit": "unit"
+        }
+      ]
+    },
+    {
+      "role": "SOFC - Y",
+      "common_foreground_matches": 2,
+      "examples": [
+        {
+          "name": "Treatment of fuel cell stack, 1MWe, SOEC",
+          "reference product": "Treatment of fuel cell stack, 1MWe, SOEC",
+          "location": "RER",
+          "unit": "unit"
+        },
+        {
+          "name": "Treatment of fuel cell stack, 1MWe, AEC",
+          "reference product": "Treatment of fuel cell stack, 1MWe, AEC",
+          "location": "RER",
+          "unit": "unit"
+        }
+      ]
+    }
+  ],
+  "qualification_limit": "Identity/filter census only; these candidate boundaries need checking against the existing material rules before extending selectors.",
+  "boundary_review": [
+    {
+      "role": "ICEV",
+      "finding": "The only extra common-foreground match is a lorry-frame component per kilogram. Whole-vehicle material intensities must not be applied to it merely to increase coverage; retain the existing component boundary restrictions."
+    },
+    {
+      "role": "PEMFC",
+      "finding": "The common foreground contains the configured one-kWe PEM stack per unit. Its existing conversion is 0.001 MW per unit. This is a plausible exact selector extension; native and curated stack identities require separate reference/output checks before changing mappings."
+    },
+    {
+      "role": "SOFC - Y",
+      "finding": "The broad ecoinvent filter also matches two treatment services in the combined metadata census. They are not solid-oxide stack production. Do not copy that filter to UVEK; require exact production/reference identities."
+    }
+  ],
+  "source_files_modified_by_census": false
+}

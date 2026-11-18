@@ -20,6 +20,8 @@ merely to fill a missing prerequisite. This follows the normal coupled Premise
 workflow rather than introducing a UVEK sector engine.
 
 The user approved this exact support-list change on 18 November 2026.
-The patch is applied. Installed-package, live public API and Brightway export
-checks remain required before claiming final-energy qualification. See the exact
-`proposed-final-energy-public-admission.patch`.
+The patch is applied. Installed-package, normal live public API, Brightway
+export and 1,894 signed written-LCI checks now pass for the coupled sixteen-
+sector REMIND SSP2-NPi 2050 workflow. See
+`uvek-final-energy-public-qualification.json` for the exact scope and limits,
+and `proposed-final-energy-public-admission.patch` for the approved change.

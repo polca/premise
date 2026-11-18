@@ -1,0 +1,52 @@
+{
+  "status": "installed_complete_final_energy_candidate_regressions_and_bytes_passed",
+  "Brightpath_Git_revision": "02326bb7b334a36b6bab1d3cbeef2d0a4f157e19",
+  "runtime_packages_loaded_only_from_installed_environment": true,
+  "package_bytes": {
+    "premise": {
+      "all_packaged_files_match_source": true,
+      "packaged_files": 425
+    },
+    "brightpath": {
+      "all_packaged_files_match_source": true,
+      "packaged_files": 607
+    }
+  },
+  "elapsed_seconds": 4.370571292005479,
+  "public_support_list_unchanged_during_check": true,
+  "source_revision": "cb93c08e",
+  "existing_focused_tests_passed": 290,
+  "default_no_argument_scope_unchanged": true,
+  "approved_public_final_energy_support_list_applied": true,
+  "existing_fifteen_sector_live_preparation": {
+    "status": "installed_public_fifteen_sector_inventory_preparation_passed",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel",
+      "mining",
+      "renewable",
+      "cdr",
+      "fuels",
+      "ships",
+      "buses",
+      "two_wheelers",
+      "trains",
+      "cars",
+      "trucks"
+    ],
+    "CLIC_records": 1495,
+    "Brightpath_Git_revision": "02326bb7b334a36b6bab1d3cbeef2d0a4f157e19",
+    "CLIC_options_overridden": false,
+    "freshness": "normal live default",
+    "scope_gate_bypassed": false,
+    "validation_disabled": false,
+    "new_Brightway_databases": 0,
+    "registry_and_processed_file_names_unchanged": true,
+    "elapsed_seconds": 65.99683016701601,
+    "qualification_limit": "Preparation regression of already qualified15sectors; no sector update/export repeated and battery/final-energy sectors remain unfinished."
+  },
+  "qualification_limit": "Installed package bytes and existing focused tests pass; fifteen-sector ordinary live preparation is unchanged. Final-energy live update/export is a separate check. Earlier broader historical rejection/replay failures remain disclosed; this is not a full-suite pass."
+}

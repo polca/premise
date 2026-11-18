@@ -3,8 +3,8 @@
 This guide is for a colleague running the review on her own computer. The example
 builds REMIND SSP2-NPi for 2050, updates biomass, electricity and heat, exports to
 Brightway, and provides a few cells for exploring the result. The optional
-verified sector list now includes trucks (15 sectors in total; see the latest
-verification below). No separate Brightpath checkout is needed.
+verified sector list now includes final energy (16 sectors in total; see the
+latest verification below). No separate Brightpath checkout is needed.
 
 ## 1. Fork and select the development branch
 
@@ -388,3 +388,29 @@ qualified list. Details and limitations are in
 `uvek-shared-pitch-nickel-39-review.md`,
 `uvek-battery-waste-markets-39-review.md` and
 `uvek-battery-six-installed-verification.json`.
+
+
+## Optional complete final-energy workflow — 18 November 2026
+
+The installed package completed the ordinary live sixteen-sector run and a
+Brightway export with 19,581 activities. All 203 positive final-energy roles
+have suppliers. All 876 new final-energy datasets were found in the export;
+1,894 positive/negative inventory calculations pass, and EUR/NEU electricity
+markets remain present. See [qualification](uvek-final-energy-public-qualification.json)
+for the exact source, scenario and remaining screening limitations.
+
+To repeat that combined check, restart the notebook kernel and use this update
+cell before the notebook's normal export cell:
+
+```python
+ndb.update([
+    "biomass", "electricity", "cement", "steel", "fuels", "renewable",
+    "mining", "heat", "cdr", "cars", "two_wheelers", "trucks", "ships",
+    "buses", "trains", "final energy",
+])
+```
+
+Keep the ordinary preceding updates: final energy uses their regional fuel,
+heat, biomass and electricity markets. The notebook still defaults to the
+simpler biomass/electricity/heat run. The approved battery compatibility change
+is not yet export-qualified; emissions and metals are still under review.

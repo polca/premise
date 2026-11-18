@@ -1,0 +1,32 @@
+{
+  "status": "superseded_owned_duplicate_exports_removed",
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "removed": [
+    {
+      "name": "BAFU:2026-controlled-TIAM-native-NG-CCS-20261111-224046",
+      "activities": 12074
+    },
+    {
+      "name": "BAFU:2026-controlled-TIAM-native-NG-CCS-20261111-224626",
+      "activities": 12075
+    },
+    {
+      "name": "BAFU:2026-real-REMIND-SSP2-NPi-2050-clean-four-sectors-20261112-010534",
+      "activities": 13891
+    },
+    {
+      "name": "BAFU:2026-REMIND-SSP2-NPi-2050-steel-diagnostic-20261112-215902",
+      "activities": 12503
+    },
+    {
+      "name": "BAFU:2026-REMIND-SSP2-NPi-2050-five-sector-diagnostic-20261112-222920",
+      "activities": 14488
+    }
+  ],
+  "no_other_database_depended_on_removed_exports": true,
+  "source_and_biosphere_counts_unchanged": true,
+  "latest_sixteen_sector_export_and_recent_fallbacks_retained": true,
+  "SQLite_pages_reusable_without_full_vacuum": true,
+  "physical_disk_space_reclamation_claimed": false,
+  "elapsed_seconds": 54.430581792024896
+}

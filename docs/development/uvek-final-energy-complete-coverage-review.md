@@ -30,12 +30,18 @@ final-energy roles. They do not alter the default three-sector workflow.
 Standard electricity, biomass, heat and fuel markets come from the preceding
 updates; native country grids are not cloned again to fill prerequisites.
 All original ecoinvent selectors, IAM aliases and LHVs remain unchanged.
-Two hundred twelve current existing unit/regression checks pass. Earlier
+Two hundred ninety current existing unit/regression checks pass from the
+installed packages, whose 425 Premise and 607 Brightpath files match the
+reviewed checkouts. Normal live preparation of the existing fifteen sectors
+also passes with 1,495 CLIC records. Earlier
 broader rejection/replay-test failures remain separately disclosed; the whole
 suite is not claimed green.
 
-Public admission is still pending approval of its separate support-list patch.
-The exact installed packages, ordinary live archive resolution and Brightway
-export must then be verified before claiming final-energy qualification.
+The exact public support-list change was approved and applied. The installed
+ordinary live sixteen-sector update and Brightway export now pass. All 876
+new activities and actual suppliers for every positive role are present in the
+written database; 1,894 signed LCIs pass there, with EUR and NEU grids present.
+Final energy is qualified for this coupled REMIND scenario. See
+`uvek-final-energy-public-qualification.json` for the precise scope and limits.
 The large private diagnostic checkpoint was replaced with a calculation-only
 physical snapshot; original provenance in the source and repositories remains.

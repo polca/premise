@@ -1,0 +1,19 @@
+{
+  "status": "only_exact_explicitly_approved_python_exceptions_are_applied",
+  "Premise_baseline": "b94770a9",
+  "Brightpath_baseline": "d3dc921",
+  "Premise_modified_python_files": [
+    "premise/batteries/battery.py",
+    "premise/database/background.py",
+    "premise/database/new_database.py",
+    "premise/energy/final_energy.py",
+    "premise/transport/vehicle_energy_use.py",
+    "premise/validation/validation.py"
+  ],
+  "Brightpath_modified_python_files": [],
+  "original_Premise_master_unchanged": true,
+  "original_Premise_master_revision": "61f20a34ef8bb17d5762e8a294e249d0a40a887d",
+  "changes": "Existing YAML alias lookup in fuel classifier; source family/biosphere forwarding in two existing files; final-energy support-list entry and error text in background.py. Each exception was explicitly approved. The separately approved battery patch forwards context and reads generated waste-reference signs in the existing battery class/validator.",
+  "no_new_alternative_sector_engine": true,
+  "verification_revision": "30f51fb6"
+}
