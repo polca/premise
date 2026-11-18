@@ -1,0 +1,804 @@
+{
+  "schema_version": 1,
+  "purpose": "Retain existing GAINS source-class assignments after explicit Premise renaming of native templates. Class selectors intentionally omit geography; the shared adapter binds the operating region.",
+  "bindings": [
+    {
+      "caller": {
+        "name": "Electricity, hard coal, at power plant [Premise Coal CHP co-generation proxy]",
+        "reference product": "Electricity, hard coal, at power plant",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Hard coal, burned in power plant",
+        "reference product": "Hard coal, burned in power plant",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_Coal_New"
+    },
+    {
+      "caller": {
+        "name": "Electricity, lignite, at power plant [Premise Coal CHP co-generation proxy]",
+        "reference product": "Electricity, lignite, at power plant",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Lignite, burned in power plant",
+        "reference product": "Lignite, burned in power plant",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_Coal_New"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, HU]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, DE]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, FR]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, CZ]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, FI]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, NL]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, PL]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, ES]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, JP]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, GR]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, RoE]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, DK]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, BE]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, HR]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, SK]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, CH]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, AT]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, SE]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, BG]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, IT]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, MX]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, LBFAC32]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in gas turbine",
+        "reference product": "Natural gas, burned in gas turbine",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "heat supply, frozen legacy mix, Heat, natural gas, at industrial furnace 1MW",
+        "reference product": "heat, frozen producer, Heat, natural gas, at industrial furnace 1MW",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in industrial furnace 1MWth",
+        "reference product": "Natural gas, burned in industrial furnace 1MWth",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "heat supply, frozen legacy mix, Heat, at cogen 1MWth, natural gas, allocation exergy",
+        "reference product": "heat, frozen producer, Heat, at cogen 1MWth, natural gas, allocation exergy",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 1MWth",
+        "reference product": "Natural gas, burned in cogen 1MWth",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "heat supply, frozen legacy mix, Heat, light fuel oil, at industrial furnace 1MW",
+        "reference product": "heat, frozen producer, Heat, light fuel oil, at industrial furnace 1MW",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Light fuel oil, burned in industrial furnace 1MW, non-modulating",
+        "reference product": "Light fuel oil, burned in industrial furnace 1MW, non-modulating",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_LLF"
+    },
+    {
+      "caller": {
+        "name": "heat supply, frozen legacy mix, Heat, at cogen 1MWth, wood chips, allocation exergy",
+        "reference product": "heat, frozen producer, Heat, at cogen 1MWth, wood chips, allocation exergy",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Wood chips, burned in cogen 1MWth",
+        "reference product": "Wood chips, burned in cogen 1MWth",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_Bio_Trad_Old"
+    },
+    {
+      "caller": {
+        "name": "heat supply, frozen legacy mix, Heat, mixed chips from forest, at furnace 1000kW",
+        "reference product": "heat, frozen producer, Heat, mixed chips from forest, at furnace 1000kW",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Wood chips, from forest, mixed, burned in furnace 1000kW",
+        "reference product": "Wood chips, from forest, mixed, burned in furnace 1000kW",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_Bio_Trad"
+    },
+    {
+      "caller": {
+        "name": "heat supply, frozen legacy mix, Heat, at nuclear power plant, allocation exergy",
+        "reference product": "heat, frozen producer, Heat, at nuclear power plant, allocation exergy",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Diesel, burned in diesel-electric generating set",
+        "reference product": "Diesel, burned in diesel-electric generating set",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_LLF"
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "coal_CHP",
+      "original_caller": {
+        "name": "Electricity, hard coal, at power plant",
+        "reference product": "Electricity, hard coal, at power plant",
+        "unit": "kilowatt hour"
+      },
+      "renamed_caller": {
+        "name": "Electricity, hard coal, at power plant [Premise Coal CHP co-generation proxy]",
+        "reference product": "Electricity, hard coal, at power plant",
+        "unit": "kilowatt hour"
+      },
+      "sector": "Power_Gen_Coal_New"
+    },
+    {
+      "kind": "coal_CHP",
+      "original_caller": {
+        "name": "Electricity, lignite, at power plant",
+        "reference product": "Electricity, lignite, at power plant",
+        "unit": "kilowatt hour"
+      },
+      "renamed_caller": {
+        "name": "Electricity, lignite, at power plant [Premise Coal CHP co-generation proxy]",
+        "reference product": "Electricity, lignite, at power plant",
+        "unit": "kilowatt hour"
+      },
+      "sector": "Power_Gen_Coal_New"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, HU]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, DE]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, FR]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, CZ]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, FI]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, NL]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, PL]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, ES]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, JP]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, GR]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, RoE]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, DK]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, BE]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, HR]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, SK]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, CH]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, AT]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, SE]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, BG]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, IT]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, MX]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "fossil_supply_baseline",
+      "original_caller": {
+        "name": "Natural gas, high pressure, at consumer",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "renamed_caller": {
+        "name": "Natural gas, high pressure, at consumer [fossil supply baseline, LBFAC32]",
+        "reference product": "Natural gas, high pressure, at consumer",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "kind": "frozen_heat",
+      "original_caller_name": "Heat, natural gas, at industrial furnace 1MW",
+      "renamed_caller": {
+        "name": "heat supply, frozen legacy mix, Heat, natural gas, at industrial furnace 1MW",
+        "reference product": "heat, frozen producer, Heat, natural gas, at industrial furnace 1MW",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas",
+      "basis": "Explicit frozen producer in premise/data/heat/uvek2026_frozen_heat_inventory.json, preserving the original MJ service."
+    },
+    {
+      "kind": "frozen_heat",
+      "original_caller_name": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+      "renamed_caller": {
+        "name": "heat supply, frozen legacy mix, Heat, at cogen 1MWth, natural gas, allocation exergy",
+        "reference product": "heat, frozen producer, Heat, at cogen 1MWth, natural gas, allocation exergy",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas",
+      "basis": "Explicit frozen producer in premise/data/heat/uvek2026_frozen_heat_inventory.json, preserving the original MJ service."
+    },
+    {
+      "kind": "frozen_heat",
+      "original_caller_name": "Heat, light fuel oil, at industrial furnace 1MW",
+      "renamed_caller": {
+        "name": "heat supply, frozen legacy mix, Heat, light fuel oil, at industrial furnace 1MW",
+        "reference product": "heat, frozen producer, Heat, light fuel oil, at industrial furnace 1MW",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_LLF",
+      "basis": "Explicit frozen producer in premise/data/heat/uvek2026_frozen_heat_inventory.json, preserving the original MJ service."
+    },
+    {
+      "kind": "frozen_heat",
+      "original_caller_name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+      "renamed_caller": {
+        "name": "heat supply, frozen legacy mix, Heat, at cogen 1MWth, wood chips, allocation exergy",
+        "reference product": "heat, frozen producer, Heat, at cogen 1MWth, wood chips, allocation exergy",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_Bio_Trad_Old",
+      "basis": "Explicit frozen producer in premise/data/heat/uvek2026_frozen_heat_inventory.json, preserving the original MJ service."
+    },
+    {
+      "kind": "frozen_heat",
+      "original_caller_name": "Heat, mixed chips from forest, at furnace 1000kW",
+      "renamed_caller": {
+        "name": "heat supply, frozen legacy mix, Heat, mixed chips from forest, at furnace 1000kW",
+        "reference product": "heat, frozen producer, Heat, mixed chips from forest, at furnace 1000kW",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_Bio_Trad",
+      "basis": "Explicit frozen producer in premise/data/heat/uvek2026_frozen_heat_inventory.json, preserving the original MJ service."
+    },
+    {
+      "kind": "frozen_heat",
+      "original_caller_name": "Heat, at nuclear power plant, allocation exergy",
+      "renamed_caller": {
+        "name": "heat supply, frozen legacy mix, Heat, at nuclear power plant, allocation exergy",
+        "reference product": "heat, frozen producer, Heat, at nuclear power plant, allocation exergy",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_LLF",
+      "basis": "Explicit frozen producer in premise/data/heat/uvek2026_frozen_heat_inventory.json, preserving the original MJ service."
+    }
+  ],
+  "limitations": [
+    "These are aliases for existing process functions, not new inventories or changed factors.",
+    "Frozen heat retains its complete source composition and reference basis; only existing reviewed burner controls are assigned."
+  ]
+}
