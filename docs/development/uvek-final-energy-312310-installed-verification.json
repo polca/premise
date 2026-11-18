@@ -1,0 +1,150 @@
+{
+  "date": "2026-11-18",
+  "status": "installed_mapping_and_live_fifteen_sector_preparation_passed",
+  "Brightpath_Git_revision": "aa438db835a59a4be33935992196c0361811b3d9",
+  "Premise_wheel_source_revision": "2aa52c49ff4827b5e0cc79a63674da9c3a98caad",
+  "source_code_changes": 0,
+  "original_Premise_master_unchanged": true,
+  "installed_regressions": {
+    "status": "installed_final_energy_mapping_checks_passed",
+    "Brightpath_Git_revision": "aa438db835a59a4be33935992196c0361811b3d9",
+    "runtime_packages_loaded_only_from_installed_environment": true,
+    "signed_uncertainty_checks": 88,
+    "public_harmonizer_fresh_and_warm_groups": 3,
+    "checks": {
+      "verify_final_energy_electronics312.private.py": {
+        "status": "passed",
+        "added_exact_source312_scopes": 8,
+        "signed_uncertainty_exchange_checks": 64,
+        "direct_migration_cases": 8,
+        "public_harmonizer_fresh_and_warm_passed": true,
+        "input_nonmutation": true,
+        "earlier_effective_profile_checks": 0,
+        "new_manufacturing_inventory_models": 0,
+        "new_model_profile_aliases": 0,
+        "new_foreground_omissions": [],
+        "source_code_changes": 0,
+        "new_Brightway_databases": 0,
+        "qualification_limit": "Required interface group only; no complete final-energy update or new export."
+      },
+      "verify_final_energy_models312.private.py": {
+        "status": "passed",
+        "added_exact_source312_scopes": 2,
+        "signed_uncertainty_exchange_checks": 16,
+        "direct_migration_cases": 8,
+        "public_harmonizer_fresh_and_warm_passed": true,
+        "input_nonmutation": true,
+        "earlier_effective_profile_checks": 1,
+        "new_manufacturing_inventory_models": 0,
+        "new_model_profile_aliases": 1,
+        "new_foreground_omissions": [],
+        "source_code_changes": 0,
+        "new_Brightway_databases": 0,
+        "qualification_limit": "Required interface group only; no complete final-energy update or new export."
+      },
+      "verify_final_energy_storage310.private.py": {
+        "status": "passed",
+        "added_exact_source310_scopes": 1,
+        "signed_uncertainty_exchange_checks": 8,
+        "direct_migration_cases": 8,
+        "public_harmonizer_fresh_and_warm_passed": true,
+        "input_nonmutation": true,
+        "earlier_effective_profile_checks": 0,
+        "new_manufacturing_inventory_models": 0,
+        "new_model_profile_aliases": 0,
+        "new_foreground_omissions": [],
+        "source_code_changes": 0,
+        "new_Brightway_databases": 0,
+        "qualification_limit": "Required interface group only; no complete final-energy update or new export."
+      }
+    },
+    "elapsed_seconds": 53.78262695798185,
+    "focused_pytest_passes": 58
+  },
+  "installed_package_bytes": {
+    "Brightpath_Git_revision": "aa438db835a59a4be33935992196c0361811b3d9",
+    "packages": {
+      "brightpath": {
+        "verified_installed_package_files": 602,
+        "all_packaged_files_present_in_source_match": true
+      },
+      "premise": {
+        "verified_installed_package_files": 424,
+        "all_packaged_files_present_in_source_match": true
+      }
+    }
+  },
+  "normal_live_fifteen_sector_preparation": {
+    "status": "installed_public_fifteen_sector_inventory_preparation_passed",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel",
+      "mining",
+      "renewable",
+      "cdr",
+      "fuels",
+      "ships",
+      "buses",
+      "two_wheelers",
+      "trains",
+      "cars",
+      "trucks"
+    ],
+    "CLIC_records": 1495,
+    "Brightpath_Git_revision": "aa438db835a59a4be33935992196c0361811b3d9",
+    "CLIC_options_overridden": false,
+    "freshness": "normal live default",
+    "scope_gate_bypassed": false,
+    "validation_disabled": false,
+    "new_Brightway_databases": 0,
+    "registry_and_processed_file_names_unchanged": true,
+    "elapsed_seconds": 79.61169575003441,
+    "qualification_limit": "Preparation regression of already qualified15sectors; no sector update/export repeated and battery/final-energy sectors remain unfinished."
+  },
+  "new_exact_final_energy_correspondences": 11,
+  "new_inventory_profile_aliases": 1,
+  "new_upstream_manufacturing_models": 0,
+  "new_foreground_omissions": [],
+  "qualified_sectors": 15,
+  "total_sectors": 19,
+  "unfinished_sectors": [
+    "battery",
+    "final energy",
+    "emissions",
+    "metals"
+  ],
+  "final_energy_remaining_frontier": {
+    "source39_cleared": true,
+    "source38_cleared": true,
+    "source312_cleared": true,
+    "source310_cleared": true,
+    "source37_unapproved_correspondences": 18,
+    "source37_local_reference_witnesses_available": true,
+    "source37_new_aluminium_cutoff_stock_verified_empty": true,
+    "source37_dismantling_boundary_correction_required": true,
+    "callback_context_and_filter_coverage": "pending after inventory preparation"
+  },
+  "unapplied_battery_patch_unchanged": true,
+  "new_Brightway_databases": 0,
+  "new_export_performed": false,
+  "cleanup": [
+    {
+      "path": "premise-clic-worktree/build",
+      "bytes_removed": 65334812
+    },
+    {
+      "path": "premise-clic-worktree/premise.egg-info",
+      "bytes_removed": 118175
+    },
+    {
+      "path": "final-energy-mapping-wheels",
+      "bytes_removed": 23251191
+    }
+  ],
+  "current_environment_and_wheel_retained": true,
+  "known_historical_replay_failures": "Two historical standalone replay failures remain disclosed in the installed report at commit b87b91ec; they are not reclassified as passing.",
+  "qualification_limit": "Installed data and ordinary live preparation regression pass. No new sector update or export is qualified. Previous qualified export remains authoritative; four sectors remain unfinished."
+}

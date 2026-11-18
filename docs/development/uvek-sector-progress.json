@@ -3798,8 +3798,12 @@
         "source_version": "3.7",
         "unapproved_correspondences": 18,
         "review_basis": "Exact legacy scooter/utility interfaces required by the normal final-energy preparation graph; no upstream manufacturing reconstruction.",
-        "callback_context_and_filter_coverage_pending": true
-      }
+        "callback_context_and_filter_coverage_pending": true,
+        "source37_local_reference_witnesses_available": true,
+        "dismantling_boundary_correction_required": true,
+        "source_new_aluminium_scrap_empty": true
+      },
+      "latest_installed_interface_verification": "docs/development/uvek-final-energy-312310-installed-verification.json"
     },
     {
       "sector": "emissions",
@@ -4204,9 +4208,9 @@
     "battery_public_support_still_pending": true
   },
   "latest_remaining_sector_checkpoint": "docs/development/uvek-remaining-sector-diagnostics-2026-11-18.json",
-  "latest_installed_mapping_verification": "docs/development/uvek-final-energy-installed-verification.json",
+  "latest_installed_mapping_verification": "docs/development/uvek-final-energy-312310-installed-verification.json",
   "latest_normal_live_preparation": {
-    "verification": "docs/development/uvek-final-energy-installed-verification.json",
+    "verification": "docs/development/uvek-final-energy-312310-installed-verification.json",
     "sectors": 15,
     "CLIC_records": 1495,
     "source_code_changes": 0,

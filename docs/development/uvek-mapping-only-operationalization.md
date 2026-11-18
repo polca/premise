@@ -98,3 +98,19 @@ result. It does not repeat sector transformations or create a new export.
 Final energy still needs ten source-3.12 correspondences plus callback/filter
 coverage; battery's proposed code patch remains unapplied. Four sectors remain
 unqualified. See `uvek-final-energy-installed-verification.json`.
+
+The next installed batch pins Brightpath `aa438db835a59a4be33935992196c0361811b3d9`.
+Eight native electronic supplies, two reviewed service/paint models and one
+chemical-storage infrastructure scope pass 88 signed uncertainty checks and
+58 focused installed tests. All 602 Brightpath and 424 Premise packaged files
+match source. Ordinary live preparation again returns 1,495 records for the
+fifteen qualified sectors without database writes or policy bypasses.
+
+Final energy now clears source 3.9, 3.8, 3.12 and 3.10, then reaches eighteen
+source-3.7 legacy scooter/utility correspondences. Their local reference witnesses
+are available. One raw dismantling match is too broad: the source includes only
+a facility, whereas the target also disposes of the vehicle and batteries. That
+requires a narrow immediate-model correction, not upstream reconstruction.
+The source new-aluminium scrap handover is independently verified empty.
+Python source remains unchanged and the battery patch remains unapplied.
+See `uvek-final-energy-312310-installed-verification.json`.
