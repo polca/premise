@@ -481,7 +481,7 @@
  CHEM:
    ecoinvent_aliases:
      fltr:
-@@ -534,6 +549,16 @@
+@@ -534,6 +549,21 @@
      mask:
      - market
    gains_aliases_IAM: CHEM
@@ -495,10 +495,15 @@
 +        name:
 +        - Epoxy resin, liquid, at plant
 +        - Ethoxylated alcohols (AE7), petrochemical, at plant
++        - carbon disulfide production
++        - lithium hydroxide production, battery grade
++      reviewed_CLIC_process_names:
++      - carbon disulfide production
++      - lithium hydroxide production, battery grade
  Transformations_Coal:
    ecoinvent_aliases:
      fltr:
-@@ -577,6 +602,26 @@
+@@ -577,6 +607,26 @@
        - xx Heat, natural gas, at boiler modulating <100kW
      exact: true
      use_legacy_templates: false
@@ -525,7 +530,7 @@
    ecoinvent_aliases:
      fltr:
      - propane, burned in building machine
-@@ -602,6 +647,19 @@
+@@ -602,6 +652,19 @@
        - Heat, light fuel oil, at boiler 10kW, condensing, modulating
        - Heat, light fuel oil, at boiler 10kW, non-modulating
        - Heat, propane/butane, at boiler condensing modulating 50kW
@@ -545,7 +550,7 @@
    ecoinvent_aliases:
      fltr:
      - petrol, unleaded, burned in machinery
-@@ -640,6 +698,24 @@
+@@ -640,6 +703,24 @@
        - Heat, softwood logs, at furnace 15kW
        - Heat, softwood logs, at furnace 50kW
        - Heat, softwood logs, at wood heater 6kW
@@ -570,7 +575,7 @@
    ecoinvent_aliases:
      fltr:
      - treatment of stalk, in wood heater 6kW
-@@ -656,6 +732,17 @@
+@@ -656,6 +737,17 @@
        - Heat, hard coal coke, at stove 5-15kW
        - xx Heat, anthracite, at stove 5-15kW
        - xx Heat, lignite briquette, at stove 5-15kW
@@ -588,7 +593,7 @@
    ecoinvent_aliases:
      fltr:
      - heat production, hard coal coke, stove
-@@ -674,6 +761,15 @@
+@@ -674,6 +766,15 @@
      mask:
      - market
    gains_aliases_IAM: Waste_Water_Industrial
@@ -604,7 +609,7 @@
  Waste_Solid_Industrial:
    ecoinvent_aliases:
      fltr:
-@@ -830,6 +926,27 @@
+@@ -830,6 +931,30 @@
      mask:
      - market
    gains_aliases_IAM: Waste_Solid_Industrial
@@ -627,12 +632,15 @@
 +        - Disposal, refinery sludge, 89.5% water, to hazardous waste incineration
 +        - Disposal, residue from cooling tower, 30% water, to sanitary landfill
 +        - Disposal, solvents mixture, 16.5% water, to hazardous waste incineration
++        - treatment of sulfidic tailings, roasting and leaching
 +        - xx Disposal, building, concrete, not reinforced, to recycling
 +        - xx Disposal, building, mineral wool, to recycling
++      reviewed_CLIC_process_names:
++      - treatment of sulfidic tailings, roasting and leaching
  End_Use_Industry_NatGas:
    uvek_aliases:
      fltr:
-@@ -1522,6 +1639,32 @@
+@@ -1522,6 +1647,32 @@
        - "xxx Zinc , from Imperial smelting furnace"
      exact: true
      use_legacy_templates: false
@@ -665,7 +673,7 @@
    ecoinvent_aliases:
      fltr:
      - heat production, natural gas
-@@ -1943,6 +2086,18 @@
+@@ -1943,6 +2094,18 @@
        - xxx Particle board, outdoor use, at plant
        - xxx Petrol, unleaded, at regional storage
        - xxx Polylactide, granulate, NatureWorks Nebraska
@@ -684,7 +692,7 @@
    ecoinvent_aliases:
      fltr:
      - heat production, light fuel oil
-@@ -2065,6 +2220,16 @@
+@@ -2065,6 +2228,16 @@
        - xxx Fibreboard soft, latex bonded, at plant (u=7%)
        - xxx Fibreboard soft, without adhesives, at plant (u=7%)
        - xxx Particle board, outdoor use, at plant
@@ -701,7 +709,7 @@
    ecoinvent_aliases:
      fltr:
      - heat production, heavy fuel oil
-@@ -2125,6 +2290,17 @@
+@@ -2125,6 +2298,17 @@
        - xx Metal working machine operation, process heat from hard coal
        - xxx Butanol, 1-, at plant
        - xxx Zinc , from Imperial smelting furnace
@@ -719,7 +727,7 @@
    ecoinvent_aliases:
      fltr:
      - treatment of coal tar, in industrial
-@@ -2244,6 +2420,38 @@
+@@ -2244,6 +2428,38 @@
        - xxx Three layered laminated board, at plant
        - xxx Window frame, wood, U=1.5 W/m2K, at plant
        - xxx Window frame, wood-metal, U=1.6 W/m2K, at plant
@@ -758,7 +766,7 @@
    ecoinvent_aliases:
      fltr:
      - heat production, softwood chips
-@@ -2381,6 +2589,40 @@
+@@ -2381,6 +2597,40 @@
      mask:
      - market
    gains_aliases_IAM: Waste_Solid_Municipal
@@ -799,7 +807,7 @@
  Power_Gen_NatGas:
    uvek_aliases:
      fltr:
-@@ -2424,6 +2666,35 @@
+@@ -2424,6 +2674,38 @@
        - "xx Electricity, natural gas, at turbine, 10MW"
      exact: true
      use_legacy_templates: false
@@ -830,12 +838,15 @@
 +        - Natural gas, burned in cogen 300kWth
 +        - Natural gas, burned in cogen 50kWth
 +        - Natural gas, burned in combined cycle plant, best technology
++        - electricity production, at natural gas-fired combined cycle power plant, post, pipeline 200km, storage 1000m
 +      context_resources:
 +      - GAINS_emission_factors/uvek2026_gas_review.json
++      reviewed_CLIC_process_names:
++      - electricity production, at natural gas-fired combined cycle power plant, post, pipeline 200km, storage 1000m
    ecoinvent_aliases:
      fltr:
      - natural gas, burned in solid oxide fuel cell 125kWe, future
-@@ -2460,6 +2731,16 @@
+@@ -2460,6 +2742,16 @@
      fltr:
        name:
        - Electricity, oil, at power plant
@@ -852,7 +863,7 @@
    ecoinvent_aliases:
      fltr:
      - heat and power co-generation, diesel, 200kW electrical, SCR-NOx reduction
-@@ -2484,6 +2765,17 @@
+@@ -2484,6 +2776,17 @@
        - Heat, peat, at cogen, allocation exergy
      exact: true
      use_legacy_templates: false
@@ -870,7 +881,7 @@
    ecoinvent_aliases:
      fltr:
      - electricity production, hard coal
-@@ -2514,6 +2806,19 @@
+@@ -2514,6 +2817,19 @@
        - "Paper, recycling, average, at plant"
      exact: true
      use_legacy_templates: false
@@ -890,7 +901,7 @@
    ecoinvent_aliases:
      fltr:
      - treatment of bagasse, from sweet sorghum
-@@ -2578,6 +2883,20 @@
+@@ -2578,6 +2894,25 @@
        - "xx Electricity, nuclear, at pressure water reactor, centrifugal enrichment"
      exact: true
      use_legacy_templates: false
@@ -906,12 +917,41 @@
 +        - Diesel, burned in cogen 300kWth
 +        - Diesel, burned in cogen 50kWth
 +        - Diesel, burned in diesel-electric generating set
++        - hydrogen production, steam methane reforming
++        - hydrogen production, steam methane reforming, with CCS
 +      context_resources:
 +      - GAINS_emission_factors/uvek2026_ordinary_combustion_review.json
++      reviewed_CLIC_process_names:
++      - hydrogen production, steam methane reforming
++      - hydrogen production, steam methane reforming, with CCS
    ecoinvent_aliases:
      fltr:
      - electricity production, at hydrogen-fired combined cycle power plant, by auto-thermal
-@@ -2621,6 +2940,17 @@
+@@ -2610,6 +2945,23 @@
+     mask:
+     - market
+   gains_aliases_IAM: Power_Gen_Coal_IGCC_CCS
++  uvek_aliases:
++    emission_sources:
++      exact: true
++      emission_compartments:
++      - air
++      use_legacy_templates: false
++      fltr:
++        name:
++        - electricity production, at hard coal-fired IGCC power plant
++        - electricity production, at hard coal-fired IGCC power plant, pre, pipeline 200km, storage 1000m
++        - electricity production, at lignite-fired IGCC power plant
++        - electricity production, at lignite-fired IGCC power plant, pre, pipeline 200km, storage 1000m
++      reviewed_CLIC_process_names:
++      - electricity production, at hard coal-fired IGCC power plant
++      - electricity production, at hard coal-fired IGCC power plant, pre, pipeline 200km, storage 1000m
++      - electricity production, at lignite-fired IGCC power plant
++      - electricity production, at lignite-fired IGCC power plant, pre, pipeline 200km, storage 1000m
+ Power_Gen_Coal_New:
+   uvek_aliases:
+     use_legacy_templates: false
+@@ -2621,6 +2973,17 @@
        - Heat, hard coal, at cogen, allocation exergy
        - Heat, lignite, at cogen, allocation exergy
        - Paper, recycling, average, at plant
@@ -929,7 +969,7 @@
    ecoinvent_aliases:
      fltr:
      - electricity production, hard coal
-@@ -2654,6 +2984,15 @@
+@@ -2654,6 +3017,22 @@
      mask:
      - market
    gains_aliases_IAM: Power_Gen_Bio_Trad_New
@@ -942,10 +982,17 @@
 +      fltr:
 +        name:
 +        - Heat, at cogen with biogas engine, allocation exergy
++        - electricity production, at biomass-fired IGCC power plant
++        - electricity production, at biomass-fired IGCC power plant, post, pipeline 200km, storage 1000m
++        - electricity production, at wood burning power plant, post, pipeline 200km, storage 1000m
++      reviewed_CLIC_process_names:
++      - electricity production, at biomass-fired IGCC power plant
++      - electricity production, at biomass-fired IGCC power plant, post, pipeline 200km, storage 1000m
++      - electricity production, at wood burning power plant, post, pipeline 200km, storage 1000m
  Losses_Prod_Conventional_Gas:
    ecoinvent_aliases:
      fltr:
-@@ -2672,6 +3011,15 @@
+@@ -2672,6 +3051,15 @@
      mask:
      - market
    gains_aliases_IAM: AACID
@@ -961,7 +1008,7 @@
  CEMENT:
    ecoinvent_aliases:
      fltr:
-@@ -2680,6 +3028,15 @@
+@@ -2680,6 +3068,15 @@
      mask:
      - market
    gains_aliases_IAM: CEMENT
@@ -977,7 +1024,7 @@
  NACID:
    ecoinvent_aliases:
      fltr:
-@@ -2687,6 +3044,15 @@
+@@ -2687,6 +3084,15 @@
      mask:
      - market
    gains_aliases_IAM: NACID
@@ -993,7 +1040,7 @@
  CUSM:
    ecoinvent_aliases:
      fltr:
-@@ -2709,6 +3075,21 @@
+@@ -2709,6 +3115,21 @@
      mask:
      - market
    gains_aliases_IAM: STEEL
@@ -1015,7 +1062,7 @@
  Losses_Distribution_Use:
    ecoinvent_aliases:
      fltr:
-@@ -3361,6 +3742,22 @@
+@@ -3361,6 +3782,29 @@
        - "xxx Zinc , from Imperial smelting furnace"
      exact: true
      use_legacy_templates: false
@@ -1033,12 +1080,121 @@
 +        - Diesel, burned in building machine, with particle filter, without building machine and lubricating oil
 +        - Diesel, burned in compaction roller, average, with particle filter
 +        - Transport, barge
++        - transport, freight train, diesel-electric
++        - transport, freight, sea, container ship, powered with biodiesel
++        - transport, freight, sea, container ship, powered with liquid ammonia
 +      context_resources:
 +      - GAINS_emission_factors/uvek2026_heating_combustion_review.json
++      reviewed_CLIC_process_names:
++      - transport, freight train, diesel-electric
++      - transport, freight, sea, container ship, powered with biodiesel
++      - transport, freight, sea, container ship, powered with liquid ammonia
    ecoinvent_aliases:
      fltr:
      - transport, freight, sea
-@@ -3455,6 +3852,17 @@
+@@ -3396,6 +3840,21 @@
+     mask:
+     - market
+   gains_aliases_IAM: End_Use_Transport_HDT_HLF
++  uvek_aliases:
++    emission_sources:
++      exact: true
++      emission_compartments:
++      - air
++      use_legacy_templates: false
++      fltr:
++        name:
++        - transport, freight, lorry, diesel, 18 metric ton
++        - transport, freight, lorry, diesel, 26 metric ton
++        - transport, freight, lorry, diesel, 40 metric ton
++      reviewed_CLIC_process_names:
++      - transport, freight, lorry, diesel, 18 metric ton
++      - transport, freight, lorry, diesel, 26 metric ton
++      - transport, freight, lorry, diesel, 40 metric ton
+ End_Use_Transport_NatGas:
+   ecoinvent_aliases:
+     fltr:
+@@ -3407,6 +3866,31 @@
+     mask:
+     - market
+   gains_aliases_IAM: End_Use_Transport_NatGas
++  uvek_aliases:
++    emission_sources:
++      exact: true
++      emission_compartments:
++      - air
++      use_legacy_templates: false
++      fltr:
++        name:
++        - transport, freight, lorry, compressed gas, 18 metric ton
++        - transport, freight, lorry, compressed gas, 26 metric ton
++        - transport, freight, lorry, compressed gas, 3.5 metric ton
++        - transport, freight, lorry, compressed gas, 40 metric ton
++        - transport, freight, lorry, compressed gas, 7.5 metric ton
++        - transport, passenger car, compressed gas, medium, EURO-6
++        - transport, passenger car, compressed gas, mini, EURO-6
++        - transport, passenger car, compressed gas, van, EURO-6
++      reviewed_CLIC_process_names:
++      - transport, freight, lorry, compressed gas, 18 metric ton
++      - transport, freight, lorry, compressed gas, 26 metric ton
++      - transport, freight, lorry, compressed gas, 3.5 metric ton
++      - transport, freight, lorry, compressed gas, 40 metric ton
++      - transport, freight, lorry, compressed gas, 7.5 metric ton
++      - transport, passenger car, compressed gas, medium, EURO-6
++      - transport, passenger car, compressed gas, mini, EURO-6
++      - transport, passenger car, compressed gas, van, EURO-6
+ End_Use_Transport_MC_LLF:
+   ecoinvent_aliases:
+     fltr:
+@@ -3430,6 +3914,25 @@
+     - compressed gas
+     - market
+   gains_aliases_IAM: End_Use_Transport_LDT_LLF
++  uvek_aliases:
++    emission_sources:
++      exact: true
++      emission_compartments:
++      - air
++      use_legacy_templates: false
++      fltr:
++        name:
++        - transport, passenger car, gasoline, medium, EURO-6
++        - transport, passenger car, gasoline, mini, EURO-6
++        - transport, passenger car, gasoline, van, EURO-6
++        - transport, passenger car, plugin gasoline hybrid, mini, EURO-6
++        - transport, passenger car, plugin gasoline hybrid, van, EURO-6
++      reviewed_CLIC_process_names:
++      - transport, passenger car, gasoline, medium, EURO-6
++      - transport, passenger car, gasoline, mini, EURO-6
++      - transport, passenger car, gasoline, van, EURO-6
++      - transport, passenger car, plugin gasoline hybrid, mini, EURO-6
++      - transport, passenger car, plugin gasoline hybrid, van, EURO-6
+ End_Use_Transport_LDT_HLF:
+   ecoinvent_aliases:
+     fltr:
+@@ -3447,6 +3950,21 @@
+     - petrol
+     - market
+   gains_aliases_IAM: End_Use_Transport_LDT_HLF
++  uvek_aliases:
++    emission_sources:
++      exact: true
++      emission_compartments:
++      - air
++      use_legacy_templates: false
++      fltr:
++        name:
++        - transport, freight, lorry, diesel, 3.5 metric ton
++        - transport, freight, lorry, diesel, 7.5 metric ton
++        - transport, passenger car, diesel, medium, EURO-6
++      reviewed_CLIC_process_names:
++      - transport, freight, lorry, diesel, 3.5 metric ton
++      - transport, freight, lorry, diesel, 7.5 metric ton
++      - transport, passenger car, diesel, medium, EURO-6
+ Waste_Water_Municipal:
+   ecoinvent_aliases:
+     fltr:
+@@ -3455,6 +3973,17 @@
      mask:
      - market
    gains_aliases_IAM: Waste_Water_Municipal
@@ -1056,7 +1212,7 @@
  End_Use_Services_Coal_Heat:
    ecoinvent_aliases:
      fltr:
-@@ -3479,6 +3887,20 @@
+@@ -3479,6 +4008,20 @@
        - Heat, softwood chips from industry, at furnace 50kW
        - Heat, wood pellets, at furnace 15kW
        - Heat, wood pellets, at furnace 50kW
@@ -1077,7 +1233,7 @@
    ecoinvent_aliases:
      fltr:
      - heat production, wood pellet
-@@ -3572,6 +3994,16 @@
+@@ -3572,6 +4115,16 @@
        - "Sewer system, construction, vitrified clay pipe, DN 800, profile 3"
      exact: true
      use_legacy_templates: false

@@ -13,3 +13,9 @@ The normal private nineteen-sector callbacks and exhaustive validation have pass
 Next: finish the bounded foreground/renamed-technology audit, refine this exact packet if needed, and request the required source exception. Normal installed public execution and export still require approval. The separate metals support-list request remains pending.
 
 Exact preliminary packet: `proposed-shared-emissions-adapter-preliminary.patch`. Evidence: `uvek-emissions-shared-adapter-preliminary-verification.json`.
+
+## Bounded CLIC filter audit
+
+The completed run exposed 35 missing canonical CLIC process names across 412 regional datasets. All are explicitly tagged as ecoinvent cut-off inventories and already have one unambiguous classification under the existing ecoinvent GAINS filters. Eleven existing GAINS classes receive the 35 names in their candidate `emission_sources` filters. This is a YAML-only extension: no additional Python, upstream mapping or new emissions model is needed. A metadata audit now covers all 412 known eligible classifications with zero gaps or ambiguities. The other 503 emitting CLIC records have no classification under the existing source filters and retain the ordinary shared skip behaviour; this is not a claim to classify every imported process.
+
+The full candidate workflow is being repeated with those aliases so its vehicle-emissions refresh and other sector interactions are checked through the normal callbacks. It will save physical and lightweight audit data before optional follow-up checks and will not write a Brightway database.

@@ -43,5 +43,17 @@
   "complete_coverage_review_finished": false,
   "applied": false,
   "approval_requested": false,
-  "qualification_limit": "Preliminary review packet. The full-run coverage audit and any resulting refinements remain unfinished; this is not a request to approve an incomplete patch."
+  "qualification_limit": "Preliminary review packet. The full-run coverage audit and any resulting refinements remain unfinished; this is not a request to approve an incomplete patch.",
+  "prepared_CLIC_alias_audit": {
+    "status": "mapping_only_CLIC_GAINS_alias_extension_covers_all_known_eligible_classes",
+    "eligible_emitting_CLIC_records": 915,
+    "known_legacy_classifications_covered": 412,
+    "missing_known_classifications": 0,
+    "ambiguous_legacy_classifications": 0,
+    "new_unique_name_aliases": 35,
+    "existing_GAINS_classes": 11,
+    "additional_runtime_code_changes": 0,
+    "qualification_limit": "Classification audit only. Coupled normal updates, validation and export must still be verified with the extended candidate YAML."
+  },
+  "remaining_coverage_check": "Coupled validation with the extended 35-name mapping is running; Native renamed-technology coverage and public export remain separate requirements."
 }
