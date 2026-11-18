@@ -1,0 +1,3502 @@
+{
+  "schema_version": 1,
+  "target": {
+    "technosphere": {
+      "family": "uvek",
+      "version": "2026",
+      "system_model": "cutoff"
+    },
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.10"
+    }
+  },
+  "review": {
+    "basis": "Four source-normalized energy-use templates for existing biofuel roles, using shared Premise normalization and complete native FAME supply.",
+    "source_archive_date": "2026-11-16",
+    "limitations": [
+      "Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified.",
+      "Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented.",
+      "Use the existing representative diesel vehicle powertrain, service energy denominator and signed equipment exchanges through shared normalization. Non-CO2 exhaust retains that powertrain proxy; no whole-vehicle body, roads, lifetime or payload factor is added twice. The legacy product label heat denotes this existing per-MJ energy-use inventory, not an added useful-heat output."
+    ],
+    "sources": [
+      {
+        "name": "biodiesel, burned in passenger train",
+        "source": [
+          "transport, freight train, diesel-electric",
+          "transport, freight train",
+          "Europe without Switzerland",
+          "ton kilometer"
+        ],
+        "source_unit": "ton kilometer",
+        "retained_equipment_entries": 4,
+        "purchased_MJ_per_source_service": 0.391702807508409,
+        "fuel_kg_per_MJ": 0.02631578947368421,
+        "biosphere_CO2_kg_per_MJ": 0.0734
+      },
+      {
+        "name": "biodiesel, burned in heavy-duty vehicle",
+        "source": [
+          "transport, freight, lorry, diesel, 40 metric ton",
+          "transport, freight, lorry",
+          "RER",
+          "ton kilometer"
+        ],
+        "source_unit": "ton kilometer",
+        "retained_equipment_entries": 8,
+        "purchased_MJ_per_source_service": 1.21344861574471,
+        "fuel_kg_per_MJ": 0.02631578947368421,
+        "biosphere_CO2_kg_per_MJ": 0.0734
+      },
+      {
+        "name": "biodiesel, burned in passenger car",
+        "source": [
+          "transport, passenger car, diesel, medium, EURO-6",
+          "transport, passenger car, EURO-6",
+          "RER",
+          "kilometer"
+        ],
+        "source_unit": "kilometer",
+        "retained_equipment_entries": 1,
+        "purchased_MJ_per_source_service": 1.8660749271512032,
+        "fuel_kg_per_MJ": 0.02631578947368421,
+        "biosphere_CO2_kg_per_MJ": 0.0734
+      },
+      {
+        "name": "biodiesel, burned in single deck coach or urban bus",
+        "source": [
+          "transport, passenger bus, diesel, 13m single deck urban bus, EURO-VI",
+          "transport, passenger bus, EURO-VI",
+          "RER",
+          "person kilometer"
+        ],
+        "source_unit": "person kilometer",
+        "retained_equipment_entries": 7,
+        "purchased_MJ_per_source_service": 1.3696471899747849,
+        "fuel_kg_per_MJ": 0.02631578947368421,
+        "biosphere_CO2_kg_per_MJ": 0.0734
+      }
+    ]
+  },
+  "supplier_checks": [
+    {
+      "identity": {
+        "name": "Biodiesel, from used cooking oil, at fuelling station",
+        "reference product": "Biodiesel, from used cooking oil, at fuelling station",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production",
+            "name": "Biodiesel, from used cooking oil, at fuelling station",
+            "product": "Biodiesel, from used cooking oil, at fuelling station",
+            "unit": "kilogram"
+          },
+          "amount": 1
+        }
+      ]
+    }
+  ],
+  "activities": [
+    {
+      "name": "biodiesel, burned in passenger train",
+      "reference product": "heat",
+      "location": "RER",
+      "unit": "megajoule",
+      "database": "premise-UVEK-final-energy",
+      "code": "uvek-biodiesel-energy-passenger-train-v1",
+      "type": "process",
+      "production amount": 1,
+      "exchanges": [
+        {
+          "name": "biodiesel, burned in passenger train",
+          "product": "heat",
+          "location": "RER",
+          "unit": "megajoule",
+          "type": "production",
+          "amount": 1.0,
+          "uncertainty type": 0,
+          "input": [
+            "premise-UVEK-final-energy",
+            "uvek-biodiesel-energy-passenger-train-v1"
+          ]
+        },
+        {
+          "name": "Biodiesel, from used cooking oil, at fuelling station",
+          "product": "Biodiesel, from used cooking oil, at fuelling station",
+          "location": "RER",
+          "unit": "kilogram",
+          "type": "technosphere",
+          "amount": 0.02631578947368421,
+          "comment": "Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified. Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented.",
+          "uncertainty type": 0
+        },
+        {
+          "amount": 1.6548105390607962e-07,
+          "comment": "The weight of the diesel tank is calculated based on the following formula:  17.159*ln(V_diesel)-54.98 taken from Wolff et al. (2020).\nV_diesel is taken from  Vossloh Rail Vehicles (2012), being 5,000l.\nIt is assumed that a diesel tank for heavy-duty road vehicles is similar in structure and material composition as a diesel tank used in locomotives.\nThe lifetime of the tank is assumed to be the same as the whole locomotive (40 years).\n\nVossloh Rail Vehicles (2012). UKlight diesel-electric locomotive. Retrieved from archieved version on April, 8, 2024, from https://web.archive.org/web/20140429192021/http://www.vossloh-innotrans.com/media/downloads/pdfs/vrv/Vossloh_UKLIGHT_us.pdf, orginial version archieved on April, 29, 2014, from https://www.vossloh.com/de/produkte-und-loesungen/innotrans/media/downloads/pdfs/vrv/Vossloh_UKLIGHT_us.pdf \nWolff, S., Seidenfus, M., Gordon, K., \u00c1lvarez, S., Kalt, S., & Lienkamp, M. (2020). Scalable Life-Cycle Inventory for Heavy-Duty Vehicle Production. Sustainability, 12(13), Article 13. https://doi.org/10.3390/su12135396 Energy-use allocation: 91.16651916503906 * 7.109999811127921e-10 / 0.391702807508409 MJ per ton kilometer.",
+          "location": "RER",
+          "name": "fuel tank, for diesel vehicle, adapted to locomotives",
+          "product": "fuel tank",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0
+        },
+        {
+          "amount": 2.2689395106567126e-05,
+          "comment": "Needs to have a power of 2.8MW Vossloh Rail Vehicles (2012).\nAccording to Wolff et al. (2020) the ICE has a maximum power output of 352kW. Therefore 2,800kW (ABB, 2018b) though 352kW mulitplied with the engine weight from Wolff et al. (2020) of 1,206kg.\nThe lifetime of the ICE is assumed to be the same as the whole locomotive (40 years).\n\nABB (2018b). BORDLINE CC1500 DE. Retrieved on April, 8, 2024, from https://search.abb.com/library/Download.aspx?DocumentID=3BHS340077%20ZAB%20E01&LanguageCode=en&DocumentPartId=&Action=Launch\nVossloh Rail Vehicles (2012). UKlight diesel-electric locomotive. Retrieved from archieved version on April, 8, 2024, from https://web.archive.org/web/20140429192021/http://www.vossloh-innotrans.com/media/downloads/pdfs/vrv/Vossloh_UKLIGHT_us.pdf, orginial version archieved on April, 29, 2014, from https://www.vossloh.com/de/produkte-und-loesungen/innotrans/media/downloads/pdfs/vrv/Vossloh_UKLIGHT_us.pdf\nWolff, S., Seidenfus, M., Gordon, K., \u00c1lvarez, S., Kalt, S., & Lienkamp, M. (2020). Scalable Life-Cycle Inventory for Heavy-Duty Vehicle Production. Sustainability, 12(13), Article 13. https://doi.org/10.3390/su12135396 Energy-use allocation: 12500.0 * 7.109999811127921e-10 / 0.391702807508409 MJ per ton kilometer.",
+          "location": "RER",
+          "name": "internal combustion engine, for lorry, adapted to locomotives",
+          "product": "internal combustion engine, for lorry",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0
+        },
+        {
+          "amount": 2.3088728460442706e-06,
+          "comment": "ecoinvent inventory for 1 unit (max. power output 100kW, 53kg). The power output at wheel is 4x 600kW, so 2,400kW (Vossloh Rail Vehicles, 2012). This equals 24 ecoinvent equivalents.\nThe motors lifetime is assumed to equal the lifetime of the locomotive (40 years). Exact information on motors, including their lifetime is not available as locomotivve motors are produced to fit the vehicle and its power requirement. ABB (2017) mentiones that electric motors were still in good condition at the time of overhaul/maintainance after 20 years and the locomotive was prepared to run another 20 years. Material and energy requirements for maintainace of the motor are not considered.\n\nABB (2017). IGBT converters extend life of Re460 locomotives. Retrieved on April, 6, 2024, from: https://library.e.abb.com/public/bfe91c518ff94330a3c591b4bbeb8b6a/65-69%201m6073_EN_72dpi.pdf?x-sign=opZfNERrVHhA5Ti99s4UxUeA3lIqHQkHDxt5CPVCyqbrd2RFMCmG94YZ6PDJII6i\nVossloh Rail Vehicles (2012). UKlight diesel-electric locomotive. Retrieved from archieved version on April, 8, 2024, from https://web.archive.org/web/20140429192021/http://www.vossloh-innotrans.com/media/downloads/pdfs/vrv/Vossloh_UKLIGHT_us.pdf, orginial version archieved on April, 29, 2014, from https://www.vossloh.com/de/produkte-und-loesungen/innotrans/media/downloads/pdfs/vrv/Vossloh_UKLIGHT_us.pdf Energy-use allocation: 1272.0 * 7.109999811127921e-10 / 0.391702807508409 MJ per ton kilometer.",
+          "location": "GLO",
+          "name": "electric motor production, asynchronous, traction",
+          "product": "electric motor, asynchronous, traction",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0
+        },
+        {
+          "amount": 8.277091334875688e-06,
+          "location": "GLO",
+          "name": "traction converter production, rail, medium voltage",
+          "product": "traction converter, rail, medium voltage",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "comment": " Energy-use allocation: 4560.0 * 7.109999811127921e-10 / 0.391702807508409 MJ per ton kilometer."
+        },
+        {
+          "amount": 4.164734855757135e-07,
+          "categories": [
+            "air"
+          ],
+          "comment": "2.0E-05 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Ammonia",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "87883a4e-1e3e-4c9d-90c0-f1bea36f8014"
+          ]
+        },
+        {
+          "amount": 2.0823673190395106e-06,
+          "categories": [
+            "air"
+          ],
+          "comment": "1.0E-04 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Benzene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "28999907-a8a7-45b3-857e-836495ca2aa0"
+          ]
+        },
+        {
+          "amount": 2.0823673300934773e-10,
+          "categories": [
+            "air"
+          ],
+          "comment": "1.0E-08 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Cadmium II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "1c5a7322-9261-4d59-a692-adde6c12de92"
+          ]
+        },
+        {
+          "amount": 0.00032901403031325546,
+          "categories": [
+            "air"
+          ],
+          "comment": "1.58E-02 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Carbon monoxide, fossil",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "ba2f3f82-c93a-47a5-822a-37ec97495275"
+          ]
+        },
+        {
+          "amount": 1.041183682761429e-09,
+          "categories": [
+            "air"
+          ],
+          "comment": "5.0E-08 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Chromium III",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e142b577-e934-4085-9a07-3983d4d92afb"
+          ]
+        },
+        {
+          "amount": 3.540024563904115e-08,
+          "categories": [
+            "air"
+          ],
+          "comment": "1.7E-06 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Copper ion",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "ec8144d6-d123-43b1-9c17-a295422a0498"
+          ]
+        },
+        {
+          "amount": 2.0823673190395106e-06,
+          "categories": [
+            "air"
+          ],
+          "comment": "1.0E-04 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Dinitrogen monoxide",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "20185046-64bb-4c09-a8e7-e8a9e144ca98"
+          ]
+        },
+        {
+          "amount": 3.165665293834434e-05,
+          "categories": [
+            "soil"
+          ],
+          "comment": "1.24E-05 kg/tkm, emission of particulates due to abrasion from rail tracks, wheels,and brakes Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Iron ion",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "ce567bdc-76ec-4ca0-be79-8bb796e448b3"
+          ]
+        },
+        {
+          "amount": 2.290604111818223e-12,
+          "categories": [
+            "air"
+          ],
+          "comment": "1.1E-10 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Lead II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "8e123669-94d3-41d8-9480-a79211fe7c43"
+          ]
+        },
+        {
+          "amount": 4.1647347487604057e-13,
+          "categories": [
+            "air"
+          ],
+          "comment": "2.0E-11 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Mercury II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "71234253-b3a7-4dfe-b166-a484ad15bee7"
+          ]
+        },
+        {
+          "amount": 2.707077529263238e-06,
+          "categories": [
+            "air"
+          ],
+          "comment": "1.3E-04 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Methane, fossil",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "0795345f-c7ae-410c-ad25-1845784c75f5"
+          ]
+        },
+        {
+          "amount": 0.000109324287514746,
+          "categories": [
+            "air"
+          ],
+          "comment": "5.25E-03 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "NMVOC, non-methane volatile organic compounds",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "d3260d0e-8203-4cbb-a45a-6a13131a5108"
+          ]
+        },
+        {
+          "amount": 1.4576571133507437e-09,
+          "categories": [
+            "air"
+          ],
+          "comment": "7.0E-08 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Nickel II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "a5506f4b-113f-4713-95c3-c819dde6e48b"
+          ]
+        },
+        {
+          "amount": 0.0011453020437566922,
+          "categories": [
+            "air"
+          ],
+          "comment": "5.5E-02 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Nitrogen oxides",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "c1b91234-6f24-417b-8309-46111d09c457"
+          ]
+        },
+        {
+          "amount": 2.561311905452905e-05,
+          "categories": [
+            "air"
+          ],
+          "comment": "1.28E-03 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Particulate Matter, < 2.5 um",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "21e46cb8-6233-4c99-bac3-c41d2ab99498"
+          ]
+        },
+        {
+          "amount": 4.633054007475022e-05,
+          "categories": [
+            "air"
+          ],
+          "comment": "4.59E-05 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007), plus\n1.77E-05 kg/tkm, emission of particulates due to abrasion from rail tracks, wheels,and brakes Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Particulate Matter, > 10 um",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "66020d27-7ae4-4e59-83a3-89214b72c40a"
+          ]
+        },
+        {
+          "amount": 4.3841314801733606e-05,
+          "categories": [
+            "air"
+          ],
+          "comment": "1.07E-04 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007), plus\n1.63E-05 kg/tkm, emission of particulates due to abrasion from rail tracks, wheels,and brakes Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Particulate Matter, > 2.5 um and < 10um",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "b967e1bf-f09b-4c89-8740-ace21db47bba"
+          ]
+        },
+        {
+          "amount": 2.0823673300934773e-10,
+          "categories": [
+            "air"
+          ],
+          "comment": "1.0E-08 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Selenium IV",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "454c61fd-c52b-4a04-9731-f141bb7b5264"
+          ]
+        },
+        {
+          "amount": 1.2494203623999578e-05,
+          "categories": [
+            "air"
+          ],
+          "comment": "6.0E-04 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Sulfur dioxide",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "fd7aa71c-508c-480d-81a6-8052aad92646"
+          ]
+        },
+        {
+          "amount": 8.32946971151427e-07,
+          "categories": [
+            "air"
+          ],
+          "comment": "4.0E-05 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Toluene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "3b1ecf8e-1d2c-4330-81da-a79f9068976d"
+          ]
+        },
+        {
+          "amount": 8.32946971151427e-07,
+          "categories": [
+            "air"
+          ],
+          "comment": "4.0E-05 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Xylenes, unspecified",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "5c234628-ab1e-4284-ae2b-f1c2f6883f71"
+          ]
+        },
+        {
+          "amount": 2.0823673371793532e-08,
+          "categories": [
+            "air"
+          ],
+          "comment": "1.0E-06 kg/kg fuel for diesel locomotives, according to Spielmann et al. (2007)\n\nSpielmann, M., Bauer, C., Dones, R., Institut, P. S., & Tuchschmid, M. (2007). Transport Services. Swiss Centre for Life Cycle Inventories, ecoinvent report No. 14.",
+          "name": "Zinc II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "5ce378a0-b48d-471c-977d-79681521efde"
+          ]
+        },
+        {
+          "name": "Carbon dioxide, non-fossil",
+          "unit": "kilogram",
+          "categories": [
+            "air"
+          ],
+          "type": "biosphere",
+          "amount": 0.0734,
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "eba59fd6-f37e-41dc-9ca3-c7ea22d602c7"
+          ]
+        }
+      ],
+      "energy use source": "{\"source\": [\"transport, freight train, diesel-electric\", \"transport, freight train\", \"Europe without Switzerland\", \"ton kilometer\"], \"source unit\": \"ton kilometer\", \"purchased MJ per source service\": 0.391702807508409, \"boundary\": \"energy-specific equipment; excludes chassis, body, roads and whole-vehicle maintenance\", \"retained equipment\": [{\"supplier\": [\"fuel tank, for diesel vehicle, adapted to locomotives\", \"fuel tank\", \"RER\", \"kilogram\"], \"amount per vehicle\": 91.16651916503906, \"vehicle per source service\": 7.109999811127921e-10, \"replacement correction factor\": 1.0, \"amount per MJ\": 1.6548105390607962e-07}, {\"supplier\": [\"internal combustion engine, for lorry, adapted to locomotives\", \"internal combustion engine, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 12500.0, \"vehicle per source service\": 7.109999811127921e-10, \"replacement correction factor\": 1.0, \"amount per MJ\": 2.2689395106567126e-05}, {\"supplier\": [\"electric motor production, asynchronous, traction\", \"electric motor, asynchronous, traction\", \"GLO\", \"kilogram\"], \"amount per vehicle\": 1272.0, \"vehicle per source service\": 7.109999811127921e-10, \"replacement correction factor\": 1.0, \"amount per MJ\": 2.3088728460442706e-06}, {\"supplier\": [\"traction converter production, rail, medium voltage\", \"traction converter, rail, medium voltage\", \"GLO\", \"kilogram\"], \"amount per vehicle\": 4560.0, \"vehicle per source service\": 7.109999811127921e-10, \"replacement correction factor\": 1.0, \"amount per MJ\": 8.277091334875688e-06}], \"excluded\": [{\"supplier\": [\"Locomotive\", \"Locomotive\", \"RER\", \"unit\"], \"amount per vehicle\": 1.0, \"vehicle per source service\": 7.109999811127921e-10}, {\"supplier\": [\"traction generator production, synchronous, rail\", \"traction generator, synchronous, rail\", \"GLO\", \"kilogram\"], \"amount per vehicle\": 7050.0, \"vehicle per source service\": 7.109999811127921e-10}, {\"supplier\": \"Maintenance, locomotive\", \"amount per source service\": 7.109999811127921e-10}, {\"supplier\": \"Goods wagon\", \"amount per source service\": 4.589999846871251e-08}, {\"supplier\": \"Maintenance, goods wagon\", \"amount per source service\": 4.589999846871251e-08}, {\"supplier\": \"Railway track\", \"amount per source service\": 9.300000237999484e-05}], \"alternative fuel recipe retained\": true, \"alternative fuel basis\": \"Supplier mass shares retained; total fuel energy corrected to 1 MJ using premise fuel-specific LHVs. Total combustion CO2 uses the corresponding kg/MJ factor; inherited fossil/biogenic and compartment shares retained. Other exhaust factors retain the source powertrain proxy.\"}",
+      "comment": "Produces consumption of 1 MJ of purchased energy. Representative powertrain carrier: diesel. energy-specific equipment; excludes chassis, body, roads and whole-vehicle maintenance. Source transport, freight train, diesel-electric [Europe without Switzerland]; 0.391702807508409 purchased MJ per ton kilometer. All retained exchanges divided by this energy; lifetime, occupancy/payload and replacement allocation are carried by source production links. Baseline source specifications: This dataset provides 1 ton-kilometer of freight rail transport in Europe without Switzerland using a diesel-electric locomotive configuration. Within this workbook, the transport rows are structured as comparative decarbonization scenarios across diesel-electric, catenary-electric, and hydrogen fuel-cell traction for regional rail freight. This activity should therefore be read as a scenario-specific transport service inventory rather than as a generic average freight-rail market dataset. Screening limitations: Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified. Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented. Use the existing representative diesel vehicle powertrain, service energy denominator and signed equipment exchanges through shared normalization. Non-CO2 exhaust retains that powertrain proxy; no whole-vehicle body, roads, lifetime or payload factor is added twice. The legacy product label heat denotes this existing per-MJ energy-use inventory, not an added useful-heat output.",
+      "premise modelling limitations": [
+        "Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified.",
+        "Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented.",
+        "Use the existing representative diesel vehicle powertrain, service energy denominator and signed equipment exchanges through shared normalization. Non-CO2 exhaust retains that powertrain proxy; no whole-vehicle body, roads, lifetime or payload factor is added twice. The legacy product label heat denotes this existing per-MJ energy-use inventory, not an added useful-heat output."
+      ],
+      "premise final energy": {
+        "kind": "shared_normalized_biodiesel_energy_use",
+        "nominal_fuel_LHV_MJ_per_kg": 38,
+        "template_source": [
+          "transport, freight train, diesel-electric",
+          "transport, freight train",
+          "Europe without Switzerland",
+          "ton kilometer"
+        ],
+        "normalization": "Reconstructed by the existing final-energy callback from scenario vehicle sources before export.",
+        "limitations": [
+          "Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified.",
+          "Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented.",
+          "Use the existing representative diesel vehicle powertrain, service energy denominator and signed equipment exchanges through shared normalization. Non-CO2 exhaust retains that powertrain proxy; no whole-vehicle body, roads, lifetime or payload factor is added twice. The legacy product label heat denotes this existing per-MJ energy-use inventory, not an added useful-heat output."
+        ]
+      }
+    },
+    {
+      "name": "biodiesel, burned in heavy-duty vehicle",
+      "reference product": "heat",
+      "location": "RER",
+      "unit": "megajoule",
+      "database": "premise-UVEK-final-energy",
+      "code": "uvek-biodiesel-energy-heavy-duty-vehicle-v1",
+      "type": "process",
+      "production amount": 1,
+      "exchanges": [
+        {
+          "name": "biodiesel, burned in heavy-duty vehicle",
+          "product": "heat",
+          "location": "RER",
+          "unit": "megajoule",
+          "type": "production",
+          "amount": 1.0,
+          "uncertainty type": 0,
+          "input": [
+            "premise-UVEK-final-energy",
+            "uvek-biodiesel-energy-heavy-duty-vehicle-v1"
+          ]
+        },
+        {
+          "name": "Biodiesel, from used cooking oil, at fuelling station",
+          "product": "Biodiesel, from used cooking oil, at fuelling station",
+          "location": "RER",
+          "unit": "kilogram",
+          "type": "technosphere",
+          "amount": 0.02631578947368421,
+          "comment": "Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified. Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented.",
+          "uncertainty type": 0
+        },
+        {
+          "amount": 9.728173947714166e-11,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Toluene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "77f17646-cede-4a49-99dd-55950098b077"
+          ]
+        },
+        {
+          "amount": 7.909004966828987e-07,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "NMVOC, non-methane volatile organic compounds",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "33b38ccb-593b-4b11-b965-10d747ba3556"
+          ]
+        },
+        {
+          "amount": 1.9725119909117488e-05,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Dinitrogen monoxide",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "afd6d670-bbb0-4625-9730-04088a5b035e"
+          ]
+        },
+        {
+          "amount": 1.0891785667383483e-10,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Ethane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "9ea11aea-7cb7-4b38-b936-a42c2a4bac97"
+          ]
+        },
+        {
+          "amount": 2.1783571334766967e-10,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Pentane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "0b9698ec-8b52-4986-8f9f-ad30915aa00c"
+          ]
+        },
+        {
+          "amount": 1.6967614933018167e-12,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Selenium IV",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e6551223-73b6-4289-b841-c5cdeb25abd9"
+          ]
+        },
+        {
+          "amount": 1.6967614933018167e-12,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Arsenic ion",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "7348af7c-e102-4a03-a0df-efce16469eed"
+          ]
+        },
+        {
+          "amount": 6.332384967496953e-13,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Arsenic ion",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "f4d0a2c8-efef-4188-85da-5801097389a2"
+          ]
+        },
+        {
+          "amount": 1.7825281720711253e-07,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Particulate Matter, < 2.5 um",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "230d8a0a-517c-43fe-8357-1818dd12997a"
+          ]
+        },
+        {
+          "amount": 3.3862406993506187e-12,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Nickel II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e8fc62ba-678e-4706-97d2-b79d83e227d5"
+          ]
+        },
+        {
+          "amount": 2.3921713728083593e-08,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Methane, fossil",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "70ef743b-3ed5-4a6d-b192-fb6d62378555"
+          ]
+        },
+        {
+          "amount": 8.957152706959857e-11,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Mercury II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "5ec9c16a-959d-44cd-be7d-a935727d2151"
+          ]
+        },
+        {
+          "amount": 6.894575065141807e-06,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Ammonia",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "0f440cc0-0f74-446d-99d6-8ff0e97a2444"
+          ]
+        },
+        {
+          "amount": 2.918452069947744e-10,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Ethane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e7e0031e-791d-42f4-b26c-ec322db637bc"
+          ]
+        },
+        {
+          "amount": 1.2637591807090713e-12,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Nickel II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e43a270f-4f88-4789-a0b8-7aba56677743"
+          ]
+        },
+        {
+          "amount": 8.447396030244011e-13,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Cadmium II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e2d58f90-9aac-4ac4-87f7-bbd6cfc358e3"
+          ]
+        },
+        {
+          "amount": 2.573084455215544e-06,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Ammonia",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "9990b51b-7023-4700-bca0-1a32ef921f74"
+          ]
+        },
+        {
+          "amount": 1.4592261264670767e-09,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Butane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "fa5512cf-04a2-4014-8e96-d3e2d137f0df"
+          ]
+        },
+        {
+          "amount": 4.94632667010338e-10,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "PAH, polycyclic aromatic hydrocarbons",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "9d1efa17-070a-4602-a65f-daf5056b0647"
+          ]
+        },
+        {
+          "amount": 9.685376857601082e-11,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Copper ion",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e336eee7-148a-4d1c-8027-780cbfafa12b"
+          ]
+        },
+        {
+          "amount": 0.0001875399656764509,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Nitrogen oxides",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "77357947-ccc5-438e-9996-95e65e1e1bce"
+          ]
+        },
+        {
+          "amount": 5.445893291157765e-10,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Butane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "892f10da-7bf2-42b3-b171-221989661a05"
+          ]
+        },
+        {
+          "amount": 3.614623177491154e-11,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Copper ion",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "88cde01c-df69-40bb-9b14-6eac71bea5b8"
+          ]
+        },
+        {
+          "amount": 5.381168253433068e-11,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Chromium III",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "7705f0e1-5b14-44f4-b330-1245b5c7fc08"
+          ]
+        },
+        {
+          "amount": 3.630595146216824e-10,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Propane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "98c66fdb-091d-46e9-a533-686f821e8f6a"
+          ]
+        },
+        {
+          "amount": 3.6305953177665825e-11,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Toluene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "39946c56-cdf6-4a22-9ac9-1cd333b65533"
+          ]
+        },
+        {
+          "amount": 7.361498013107805e-06,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Dinitrogen monoxide",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "6dc1b46f-ee89-4495-95c4-b8a637bcd6cb"
+          ]
+        },
+        {
+          "amount": 1.1387421511635574e-10,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Zinc II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "748f22a9-eba4-4726-bef5-92c7442ce189"
+          ]
+        },
+        {
+          "amount": 2.876484031569656e-13,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Chromium VI",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "03b279a7-4626-4703-a451-d0650599dbd9"
+          ]
+        },
+        {
+          "amount": 1.664551973950848e-08,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Benzene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "5e883a00-04e6-4d96-8dce-12d7117c6635"
+          ]
+        },
+        {
+          "amount": 9.188384105079646e-06,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Carbon monoxide, fossil",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "099b36ab-4c03-4587-87f4-2f81e337afb8"
+          ]
+        },
+        {
+          "amount": 1.0735158370028058e-13,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Chromium VI",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "7a59e8d5-cd11-4ee7-b1ca-30979d2b0b3a"
+          ]
+        },
+        {
+          "amount": 8.927684392638375e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Methane, fossil",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "5f7aad3d-566c-4d0d-ad59-e765f971aa0f"
+          ]
+        },
+        {
+          "amount": 4.677309222599151e-07,
+          "categories": [
+            "air"
+          ],
+          "name": "Sulfur dioxide",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "fd7aa71c-508c-480d-81a6-8052aad92646"
+          ]
+        },
+        {
+          "amount": 2.951674189425606e-07,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "NMVOC, non-methane volatile organic compounds",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "175baa64-d985-4c5e-84ef-67cc3a1cf952"
+          ]
+        },
+        {
+          "amount": 3.049700096659221e-08,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Formaldehyde",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "20664d0e-24e3-4daa-8c5c-2ade6e0c2723"
+          ]
+        },
+        {
+          "amount": 6.999070275642402e-05,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Nitrogen oxides",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "d068f3e2-b033-417b-a359-ca4f25da9731"
+          ]
+        },
+        {
+          "amount": 8.17166652779932e-08,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Formaldehyde",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "9167dca7-615e-435c-8ba6-dbbf50e50e34"
+          ]
+        },
+        {
+          "amount": 3.051257429942547e-10,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Zinc II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "ada3ecfe-8244-4389-bcce-e83ca4f66e09"
+          ]
+        },
+        {
+          "amount": 3.42914333803737e-06,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Carbon monoxide, fossil",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "6edcc2df-88a3-48e1-83d8-ffc38d31c35b"
+          ]
+        },
+        {
+          "amount": 3.557983348509673e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "m-Xylene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "10571d92-ea97-4ac6-adb6-b25893a631cb"
+          ]
+        },
+        {
+          "amount": 1.3253673594612008e-09,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "PAH, polycyclic aromatic hydrocarbons",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "13d898ac-b9be-4723-a153-565e2a9144ac"
+          ]
+        },
+        {
+          "amount": 4.776281389151941e-07,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Particulate Matter, < 2.5 um",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "66f50b33-fd62-4fdd-a373-c5b0de7de00d"
+          ]
+        },
+        {
+          "amount": 5.836904139895488e-10,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Pentane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "2f052025-4072-4d8e-b22d-68d50bfb260c"
+          ]
+        },
+        {
+          "amount": 1.059280274612293e-07,
+          "categories": [
+            "air"
+          ],
+          "name": "1,1,1,2-Tetrafluoroethane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e87f039d-d9ce-4242-ac18-c9284cc80f3d"
+          ]
+        },
+        {
+          "amount": 1.659182127981483e-08,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Acetaldehyde",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "5ad58fcc-e9ba-4155-a3c9-e4ffb3065a6f"
+          ]
+        },
+        {
+          "amount": 6.2121777914705255e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Benzene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "1bb6a502-3ff9-4a79-835c-5588b855f1f5"
+          ]
+        },
+        {
+          "amount": 3.342846901993836e-11,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Mercury II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "a850e6de-a007-432f-be7f-ce6e2cf1f2ae"
+          ]
+        },
+        {
+          "amount": 3.1526036431689613e-13,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Cadmium II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "36e53653-1338-42c7-816c-f6667809e0b1"
+          ]
+        },
+        {
+          "amount": 9.728174176447178e-10,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Propane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "9beb60a3-3a8c-4345-9a0e-107eec2f709f"
+          ]
+        },
+        {
+          "amount": 1.4418831549438935e-10,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Chromium III",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "4d40d8e3-9bc7-4ab1-ac5c-4f4a76fda8e5"
+          ]
+        },
+        {
+          "amount": 6.4261540469688804e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Acrolein",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "7ed6dc0d-9c2e-4046-a44b-e8a708c2081e"
+          ]
+        },
+        {
+          "amount": 4.973915714002537e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Benzaldehyde",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "fe65f7e4-ee5b-4a6f-9d60-6c2f829dca3f"
+          ]
+        },
+        {
+          "amount": 1.089178658231553e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Heptane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "f4bb66f1-c78c-409f-8368-85c1205a3573"
+          ]
+        },
+        {
+          "amount": 1.4522380584867295e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "o-Xylene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "5a6eb27d-9157-46d5-be32-92bbd543ada9"
+          ]
+        },
+        {
+          "amount": 6.332384967496953e-13,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Selenium IV",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "a79be2ee-ac83-4328-a136-a34ba1f99089"
+          ]
+        },
+        {
+          "amount": 2.0331334465691897e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Styrene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "d85a44cb-8407-4997-a146-581e4f35f39d"
+          ]
+        },
+        {
+          "amount": 4.445775435778456e-08,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Acetaldehyde",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "fc9f9a81-c4b9-4dce-bc20-9f04e05ca2f1"
+          ]
+        },
+        {
+          "amount": 1.7218867395678098e-08,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Acrolein",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "12840cef-c3b8-4ef2-b7d4-3a73dbd6a280"
+          ]
+        },
+        {
+          "amount": 1.3327598457044865e-08,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Benzaldehyde",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "2813518d-c4a8-4a8d-9542-f1882ec27c1c"
+          ]
+        },
+        {
+          "amount": 2.9184522529341534e-09,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Heptane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "025fcb20-0591-4bae-80fc-7c34e9af2e7b"
+          ]
+        },
+        {
+          "amount": 9.53361021715357e-09,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "m-Xylene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "d24f41d7-279e-4f5a-9ac9-00f726dc3bcc"
+          ]
+        },
+        {
+          "amount": 3.891269670578871e-09,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "o-Xylene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "92259b90-6f92-42ec-b3f2-30775167aff7"
+          ]
+        },
+        {
+          "amount": 5.4477776851995465e-09,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Styrene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "2d456fb8-592b-46a7-97f0-81fc2a18e587"
+          ]
+        },
+        {
+          "amount": 2.479166578229208e-05,
+          "location": "RER",
+          "name": "exhaust system, for lorry [CLIC exhaust-system-for-lorry]",
+          "product": "exhaust system, for lorry",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "comment": " Energy-use allocation: 220.0 * 1.3674278420694463e-07 / 1.21344861574471 MJ per ton kilometer."
+        },
+        {
+          "amount": 6.181935378832421e-06,
+          "location": "RER",
+          "name": "fuel tank, for diesel vehicle",
+          "product": "fuel tank",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "comment": " Energy-use allocation: 54.858184814453125 * 1.3674278420694463e-07 / 1.21344861574471 MJ per ton kilometer."
+        },
+        {
+          "amount": 2.271818169557456e-05,
+          "location": "RER",
+          "name": "gearbox, for lorry [CLIC gearbox-for-lorry]",
+          "product": "gearbox, for lorry",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "comment": " Energy-use allocation: 201.60000610351562 * 1.3674278420694463e-07 / 1.21344861574471 MJ per ton kilometer."
+        },
+        {
+          "amount": 0.00012189565362456335,
+          "location": "RER",
+          "name": "internal combustion engine, for lorry [CLIC internal-combustion-engine-for-lorry]",
+          "product": "internal combustion engine, for lorry",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "comment": " Energy-use allocation: 1081.6959228515625 * 1.3674278420694463e-07 / 1.21344861574471 MJ per ton kilometer."
+        },
+        {
+          "amount": 3.7651515325609894e-06,
+          "location": "RER",
+          "name": "lead acid battery, for lorry [CLIC lead-acid-battery-for-lorry]",
+          "product": "lead acid battery, for lorry",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "comment": " Energy-use allocation: 33.411766052246094 * 1.3674278420694463e-07 / 1.21344861574471 MJ per ton kilometer."
+        },
+        {
+          "amount": 2.9862688328670005e-05,
+          "location": "RER",
+          "name": "power electronics, for lorry [CLIC power-electronics-for-lorry]",
+          "product": "power electronics, for lorry",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "comment": " Energy-use allocation: 265.0 * 1.3674278420694463e-07 / 1.21344861574471 MJ per ton kilometer."
+        },
+        {
+          "amount": 7.572726658690309e-06,
+          "location": "RER",
+          "name": "retarder, for lorry [CLIC retarder-for-lorry]",
+          "product": "retarder, for lorry",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "comment": " Energy-use allocation: 67.19999694824219 * 1.3674278420694463e-07 / 1.21344861574471 MJ per ton kilometer."
+        },
+        {
+          "amount": 3.28151482811568e-05,
+          "location": "RER",
+          "name": "transmission, for lorry [CLIC transmission-for-lorry]",
+          "product": "transmission, for lorry",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "comment": " Energy-use allocation: 291.1999816894531 * 1.3674278420694463e-07 / 1.21344861574471 MJ per ton kilometer."
+        },
+        {
+          "name": "Carbon dioxide, non-fossil",
+          "unit": "kilogram",
+          "categories": [
+            "air"
+          ],
+          "type": "biosphere",
+          "amount": 0.0734,
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "eba59fd6-f37e-41dc-9ca3-c7ea22d602c7"
+          ]
+        }
+      ],
+      "energy use source": "{\"source\": [\"transport, freight, lorry, diesel, 40 metric ton\", \"transport, freight, lorry\", \"RER\", \"ton kilometer\"], \"source unit\": \"ton kilometer\", \"purchased MJ per source service\": 1.21344861574471, \"boundary\": \"energy-specific equipment; excludes chassis, body, roads and whole-vehicle maintenance\", \"retained equipment\": [{\"supplier\": [\"exhaust system, for lorry [CLIC exhaust-system-for-lorry]\", \"exhaust system, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 220.0, \"vehicle per source service\": 1.3674278420694463e-07, \"replacement correction factor\": 1.0, \"amount per MJ\": 2.479166578229208e-05}, {\"supplier\": [\"fuel tank, for diesel vehicle\", \"fuel tank\", \"RER\", \"kilogram\"], \"amount per vehicle\": 54.858184814453125, \"vehicle per source service\": 1.3674278420694463e-07, \"replacement correction factor\": 1.0, \"amount per MJ\": 6.181935378832421e-06}, {\"supplier\": [\"gearbox, for lorry [CLIC gearbox-for-lorry]\", \"gearbox, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 201.60000610351562, \"vehicle per source service\": 1.3674278420694463e-07, \"replacement correction factor\": 1.0, \"amount per MJ\": 2.271818169557456e-05}, {\"supplier\": [\"internal combustion engine, for lorry [CLIC internal-combustion-engine-for-lorry]\", \"internal combustion engine, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 1081.6959228515625, \"vehicle per source service\": 1.3674278420694463e-07, \"replacement correction factor\": 1.0, \"amount per MJ\": 0.00012189565362456335}, {\"supplier\": [\"lead acid battery, for lorry [CLIC lead-acid-battery-for-lorry]\", \"lead acid battery, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 33.411766052246094, \"vehicle per source service\": 1.3674278420694463e-07, \"replacement correction factor\": 1.0, \"amount per MJ\": 3.7651515325609894e-06}, {\"supplier\": [\"power electronics, for lorry [CLIC power-electronics-for-lorry]\", \"power electronics, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 265.0, \"vehicle per source service\": 1.3674278420694463e-07, \"replacement correction factor\": 1.0, \"amount per MJ\": 2.9862688328670005e-05}, {\"supplier\": [\"retarder, for lorry [CLIC retarder-for-lorry]\", \"retarder, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 67.19999694824219, \"vehicle per source service\": 1.3674278420694463e-07, \"replacement correction factor\": 1.0, \"amount per MJ\": 7.572726658690309e-06}, {\"supplier\": [\"transmission, for lorry [CLIC transmission-for-lorry]\", \"transmission, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 291.1999816894531, \"vehicle per source service\": 1.3674278420694463e-07, \"replacement correction factor\": 1.0, \"amount per MJ\": 3.28151482811568e-05}], \"excluded\": [{\"supplier\": \"Refrigerant R134a, at plant\", \"amount per source service\": 2.7895526955035166e-07}, {\"supplier\": \"Road\", \"amount per source service\": 0.0013093161396682262}, {\"supplier\": \"Operation, maintenance, road\", \"amount per source service\": 0.00012524271733127534}, {\"supplier\": \"Brake wear emissions, lorry\", \"amount per source service\": 1.0110775292559993e-05}, {\"supplier\": \"Road wear emissions, lorry\", \"amount per source service\": 1.275554586754879e-05}, {\"supplier\": \"Tyre wear emissions, lorry\", \"amount per source service\": 1.0366205060563516e-05}, {\"supplier\": [\"assembly operation, for lorry [CLIC assembly-operation-for-lorry]\", \"assembly operation, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 14738.513671875, \"vehicle per source service\": 1.3674278420694463e-07}, {\"supplier\": [\"frame, blanks and saddle, for lorry [CLIC frame-blanks-and-saddle-for-lorry]\", \"frame, blanks and saddle, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 5539.0, \"vehicle per source service\": 1.3674278420694463e-07}, {\"supplier\": [\"glider lightweighting [CLIC glider-lightweighting]\", \"Glider lightweighting\", \"GLO\", \"kilogram\"], \"amount per vehicle\": 110.77999877929688, \"vehicle per source service\": 1.3674278420694463e-07}, {\"supplier\": [\"other components, for hybrid electric lorry [CLIC other-components-for-hybrid-electric-lorry]\", \"other components, for hybrid electric lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 1059.0, \"vehicle per source service\": 1.3674278420694463e-07}, {\"supplier\": [\"suspension, for lorry [CLIC suspension-for-lorry]\", \"suspension, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 3440.0, \"vehicle per source service\": 1.3674278420694463e-07}, {\"supplier\": [\"tires and wheels, for lorry [CLIC tires-and-wheels-for-lorry]\", \"tires and wheels, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 1422.0, \"vehicle per source service\": 1.3674278420694463e-07}, {\"supplier\": [\"Maintenance, lorry 40t\", \"Maintenance, lorry 40t\", \"CH\", \"unit\"], \"amount per vehicle\": 1.0, \"vehicle per source service\": 1.3674278420694463e-07}, {\"supplier\": [\"Disposal, lorry 40t\", \"Disposal, lorry 40t\", \"CH\", \"unit\"], \"amount per vehicle\": 1.0, \"vehicle per source service\": 1.3674278420694463e-07}], \"alternative fuel recipe retained\": true, \"alternative fuel basis\": \"Supplier mass shares retained; total fuel energy corrected to 1 MJ using premise fuel-specific LHVs. Total combustion CO2 uses the corresponding kg/MJ factor; inherited fossil/biogenic and compartment shares retained. Other exhaust factors retain the source powertrain proxy.\"}",
+      "comment": "Produces consumption of 1 MJ of purchased energy. Representative powertrain carrier: diesel. energy-specific equipment; excludes chassis, body, roads and whole-vehicle maintenance. Source transport, freight, lorry, diesel, 40 metric ton [RER]; 1.21344861574471 purchased MJ per ton kilometer. All retained exchanges divided by this energy; lifetime, occupancy/payload and replacement allocation are carried by source production links. Baseline source specifications: Original LCA model: carculator_truck 0.5.2; shared library carculator_utils 1.3.7. Model publication: Sacchi, R., Bauer, C., Cox, B. L. (2021). Does Size Matter? The Influence of Size, Load Factor, Range Autonomy, and Application Type on the Life Cycle Assessment of Current and Future Medium- and Heavy-Duty Vehicles. Environmental Science & Technology 55(8), 5224-5235. https://doi.org/10.1021/acs.est.0c07773 Vehicle specifications in the original-model comment below describe the 2020 baseline. Scenario-adjusted fuel purchases, efficiency and hardware are recorded separately by Premise. Original-model fuel volumes use model fuel densities; final purchases use the units of the linked suppliers. 2020 carculator_truck default parameters; Regional delivery cycle, 400 km design range, 10300 kg payload, 68000 km/year; Swiss climate. Combustion factors: EURO-VI. Operating fuel blends and electricity supplied by Premise regional scenario markets. Energy-battery capacity includes replacements and end of life through Premise capacity markets. Noise retained in companion audit only. Manufacture year: 2020. Km over lifetime: 710000 km. Km per year: 68000 km/year. Tank-to-wheel efficiency: 20.2 \\%. Tank-to-wheel energy consumption: 12498 kj/km. Fuel consumption: 35.1 l/100km. Electricity consumption: 0.0 kWh/100km. Battery capacity: 0.0 kWh. Fuel tank capacity: 1388 kWh. Power share from combustion engine: 100.0 \\%. Combustion engine power: 368 kW. Electric motor power: 0.0 kW. Curb mass (excl. driver and cargo): 14738 kg. Driving mass (incl. driver and cargo): 25113 kg. Battery mass: 0.0 kg. Fuel cell system efficiency: 0.0 \\%. Number of passengers onboard: 1.0 passenger(s). Available payload: 25186 kg. Payload: 10300 kg. Load factor: 40.9 \\%. Autonomy on a full tank/battery: 400 km.  Carbon accounting: full-oxidation CO2 plus separately estimated pollutants; not a closed elemental carbon balance.\n\nHistorical CLIC comment (prior model; inactive provenance, not current parameter values):\nManufacture year: 2050. Km over lifetime: 710000 km. Km per year: 107000 km/year. Tank-to-wheel efficiency: 34.0 \\%. Tank-to-wheel energy consumption: 6279 kj/km. Fuel consumption: 17.6 l/100km. Electricity consumption: 0.0 kWh/100km. Battery capacity: 0.0 kWh. Fuel tank capacity: 1395 kWh. Power share from combustion engine: 85.0 \\%. Combustion engine power: 208 kW. Electric motor power: 36 kW. Curb mass (excl. driver and cargo): 10479 kg. Driving mass (incl. driver and cargo): 24354 kg. Battery mass: 0.0 kg. Fuel cell system efficiency: 0.0 \\%. Number of passengers onboard: 1.0 passenger(s). Available payload: 29445 kg. Payload: 13800 kg. Load factor: 46.9 \\%. Autonomy on a full tank/battery: 800 km.\n\nHistorical CLIC source (superseded model citation retained for traceability):\nSacchi, R., Bauer, C., and Cox, B. Does size matter? The influence of size, load factor, range autonomy and application type on the Life Cycle Assessment of current and future trucks. Environmental Science and Technology. Screening limitations: Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified. Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented. Use the existing representative diesel vehicle powertrain, service energy denominator and signed equipment exchanges through shared normalization. Non-CO2 exhaust retains that powertrain proxy; no whole-vehicle body, roads, lifetime or payload factor is added twice. The legacy product label heat denotes this existing per-MJ energy-use inventory, not an added useful-heat output.",
+      "premise modelling limitations": [
+        "Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified.",
+        "Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented.",
+        "Use the existing representative diesel vehicle powertrain, service energy denominator and signed equipment exchanges through shared normalization. Non-CO2 exhaust retains that powertrain proxy; no whole-vehicle body, roads, lifetime or payload factor is added twice. The legacy product label heat denotes this existing per-MJ energy-use inventory, not an added useful-heat output."
+      ],
+      "premise final energy": {
+        "kind": "shared_normalized_biodiesel_energy_use",
+        "nominal_fuel_LHV_MJ_per_kg": 38,
+        "template_source": [
+          "transport, freight, lorry, diesel, 40 metric ton",
+          "transport, freight, lorry",
+          "RER",
+          "ton kilometer"
+        ],
+        "normalization": "Reconstructed by the existing final-energy callback from scenario vehicle sources before export.",
+        "limitations": [
+          "Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified.",
+          "Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented.",
+          "Use the existing representative diesel vehicle powertrain, service energy denominator and signed equipment exchanges through shared normalization. Non-CO2 exhaust retains that powertrain proxy; no whole-vehicle body, roads, lifetime or payload factor is added twice. The legacy product label heat denotes this existing per-MJ energy-use inventory, not an added useful-heat output."
+        ]
+      }
+    },
+    {
+      "name": "biodiesel, burned in passenger car",
+      "reference product": "heat",
+      "location": "RER",
+      "unit": "megajoule",
+      "database": "premise-UVEK-final-energy",
+      "code": "uvek-biodiesel-energy-passenger-car-v1",
+      "type": "process",
+      "production amount": 1,
+      "exchanges": [
+        {
+          "name": "biodiesel, burned in passenger car",
+          "product": "heat",
+          "location": "RER",
+          "unit": "megajoule",
+          "type": "production",
+          "amount": 1.0,
+          "uncertainty type": 0,
+          "input": [
+            "premise-UVEK-final-energy",
+            "uvek-biodiesel-energy-passenger-car-v1"
+          ]
+        },
+        {
+          "name": "Biodiesel, from used cooking oil, at fuelling station",
+          "product": "Biodiesel, from used cooking oil, at fuelling station",
+          "location": "RER",
+          "unit": "kilogram",
+          "type": "technosphere",
+          "amount": 0.02631578947368421,
+          "comment": "Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified. Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented.",
+          "uncertainty type": 0
+        },
+        {
+          "amount": 1.838899341044745e-09,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Toluene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "77f17646-cede-4a49-99dd-55950098b077"
+          ]
+        },
+        {
+          "amount": 1.4657892836017965e-07,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "NMVOC, non-methane volatile organic compounds",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "33b38ccb-593b-4b11-b965-10d747ba3556"
+          ]
+        },
+        {
+          "amount": 1.383791070408211e-06,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Dinitrogen monoxide",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "afd6d670-bbb0-4625-9730-04088a5b035e"
+          ]
+        },
+        {
+          "amount": 4.0721497730430075e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Ethane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "9ea11aea-7cb7-4b38-b936-a42c2a4bac97"
+          ]
+        },
+        {
+          "amount": 4.935939046724744e-10,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Pentane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "0b9698ec-8b52-4986-8f9f-ad30915aa00c"
+          ]
+        },
+        {
+          "amount": 1.4312488321387839e-12,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Selenium IV",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e6551223-73b6-4289-b841-c5cdeb25abd9"
+          ]
+        },
+        {
+          "amount": 1.4312488321387839e-12,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Arsenic ion",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "7348af7c-e102-4a03-a0df-efce16469eed"
+          ]
+        },
+        {
+          "amount": 8.987509532892576e-13,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Arsenic ion",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "f4d0a2c8-efef-4188-85da-5801097389a2"
+          ]
+        },
+        {
+          "amount": 9.594256852107323e-09,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Propylene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "23856318-9583-426b-ab04-12e4506b60a8"
+          ]
+        },
+        {
+          "amount": 1.6368916135847028e-07,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Particulate Matter, < 2.5 um",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "230d8a0a-517c-43fe-8357-1818dd12997a"
+          ]
+        },
+        {
+          "amount": 2.856355260668397e-12,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Nickel II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e8fc62ba-678e-4706-97d2-b79d83e227d5"
+          ]
+        },
+        {
+          "amount": 2.3985624157990434e-06,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Methane, fossil",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "70ef743b-3ed5-4a6d-b192-fb6d62378555"
+          ]
+        },
+        {
+          "amount": 7.555519917117612e-11,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Mercury II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "5ec9c16a-959d-44cd-be7d-a935727d2151"
+          ]
+        },
+        {
+          "amount": 8.515878142704312e-07,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Ammonia",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "0f440cc0-0f74-446d-99d6-8ff0e97a2444"
+          ]
+        },
+        {
+          "amount": 8.794736082379378e-10,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Ethane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e7e0031e-791d-42f4-b26c-ec322db637bc"
+          ]
+        },
+        {
+          "amount": 1.7936446026094188e-12,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Nickel II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e43a270f-4f88-4789-a0b8-7aba56677743"
+          ]
+        },
+        {
+          "amount": 7.125530980634518e-13,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Cadmium II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e2d58f90-9aac-4ac4-87f7-bbd6cfc358e3"
+          ]
+        },
+        {
+          "amount": 5.347535528298476e-07,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Ammonia",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "9990b51b-7023-4700-bca0-1a32ef921f74"
+          ]
+        },
+        {
+          "amount": 2.9315787932849485e-10,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Butane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "fa5512cf-04a2-4014-8e96-d3e2d137f0df"
+          ]
+        },
+        {
+          "amount": 5.091636516783947e-10,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "PAH, polycyclic aromatic hydrocarbons",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "9d1efa17-070a-4602-a65f-daf5056b0647"
+          ]
+        },
+        {
+          "amount": 8.169790397425832e-11,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Copper ion",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e336eee7-148a-4d1c-8027-780cbfafa12b"
+          ]
+        },
+        {
+          "amount": 1.2205207606010088e-05,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Nitrogen oxides",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "77357947-ccc5-438e-9996-95e65e1e1bce"
+          ]
+        },
+        {
+          "amount": 1.357383178354211e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Butane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "892f10da-7bf2-42b3-b171-221989661a05"
+          ]
+        },
+        {
+          "amount": 5.130209491402151e-11,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Copper ion",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "88cde01c-df69-40bb-9b14-6eac71bea5b8"
+          ]
+        },
+        {
+          "amount": 7.637454328962719e-11,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Chromium III",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "7705f0e1-5b14-44f4-b330-1245b5c7fc08"
+          ]
+        },
+        {
+          "amount": 1.357383178354211e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Propane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "98c66fdb-091d-46e9-a533-686f821e8f6a"
+          ]
+        },
+        {
+          "amount": 8.514495153075652e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Toluene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "39946c56-cdf6-4a22-9ac9-1cd333b65533"
+          ]
+        },
+        {
+          "amount": 8.68949826697167e-07,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Dinitrogen monoxide",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "6dc1b46f-ee89-4495-95c4-b8a637bcd6cb"
+          ]
+        },
+        {
+          "amount": 1.6162087594726188e-10,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Zinc II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "748f22a9-eba4-4726-bef5-92c7442ce189"
+          ]
+        },
+        {
+          "amount": 2.426366207983948e-13,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Chromium VI",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "03b279a7-4626-4703-a451-d0650599dbd9"
+          ]
+        },
+        {
+          "amount": 2.1320570359384497e-08,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Benzene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "5e883a00-04e6-4d96-8dce-12d7117c6635"
+          ]
+        },
+        {
+          "amount": 4.48657459234753e-06,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Carbon monoxide, fossil",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "099b36ab-4c03-4587-87f4-2f81e337afb8"
+          ]
+        },
+        {
+          "amount": 1.5236336152760708e-13,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Chromium VI",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "7a59e8d5-cd11-4ee7-b1ca-30979d2b0b3a"
+          ]
+        },
+        {
+          "amount": 1.5324029223187941e-06,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Methane, fossil",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "5f7aad3d-566c-4d0d-ad59-e765f971aa0f"
+          ]
+        },
+        {
+          "amount": 4.6773093817596716e-07,
+          "categories": [
+            "air"
+          ],
+          "name": "Sulfur dioxide",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "fd7aa71c-508c-480d-81a6-8052aad92646"
+          ]
+        },
+        {
+          "amount": 6.78691576802126e-07,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "NMVOC, non-methane volatile organic compounds",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "175baa64-d985-4c5e-84ef-67cc3a1cf952"
+          ]
+        },
+        {
+          "amount": 1.4807816664213483e-07,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Formaldehyde",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "20664d0e-24e3-4daa-8c5c-2ade6e0c2723"
+          ]
+        },
+        {
+          "amount": 1.6646759631820465e-05,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Nitrogen oxides",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "d068f3e2-b033-417b-a359-ca4f25da9731"
+          ]
+        },
+        {
+          "amount": 3.198085744291974e-08,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Formaldehyde",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "9167dca7-615e-435c-8ba6-dbbf50e50e34"
+          ]
+        },
+        {
+          "amount": 2.5737910665516596e-10,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Zinc II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "ada3ecfe-8244-4389-bcce-e83ca4f66e09"
+          ]
+        },
+        {
+          "amount": 1.4237601979445352e-05,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Carbon monoxide, fossil",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "6edcc2df-88a3-48e1-83d8-ffc38d31c35b"
+          ]
+        },
+        {
+          "amount": 7.527306867769953e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "m-Xylene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "10571d92-ea97-4ac6-adb6-b25893a631cb"
+          ]
+        },
+        {
+          "amount": 8.10836260570634e-10,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "PAH, polycyclic aromatic hydrocarbons",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "13d898ac-b9be-4723-a153-565e2a9144ac"
+          ]
+        },
+        {
+          "amount": 1.505815221813101e-07,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Particulate Matter, < 2.5 um",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "66f50b33-fd62-4fdd-a373-c5b0de7de00d"
+          ]
+        },
+        {
+          "amount": 1.0660286250603933e-10,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Pentane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "2f052025-4072-4d8e-b22d-68d50bfb260c"
+          ]
+        },
+        {
+          "amount": 2.009565559616556e-06,
+          "categories": [
+            "air"
+          ],
+          "name": "1,1,1,2-Tetrafluoroethane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e87f039d-d9ce-4242-ac18-c9284cc80f3d"
+          ]
+        },
+        {
+          "amount": 7.983881354531689e-08,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Acetaldehyde",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "5ad58fcc-e9ba-4155-a3c9-e4ffb3065a6f"
+          ]
+        },
+        {
+          "amount": 2.6174684613974098e-08,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Benzene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "1bb6a502-3ff9-4a79-835c-5588b855f1f5"
+          ]
+        },
+        {
+          "amount": 4.744479373375781e-11,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Mercury II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "a850e6de-a007-432f-be7f-ce6e2cf1f2ae"
+          ]
+        },
+        {
+          "amount": 4.474468246600807e-13,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Cadmium II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "36e53653-1338-42c7-816c-f6667809e0b1"
+          ]
+        },
+        {
+          "amount": 2.9315787932849485e-10,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Propane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "9beb60a3-3a8c-4345-9a0e-107eec2f709f"
+          ]
+        },
+        {
+          "amount": 1.2162544057297245e-10,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Chromium III",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "4d40d8e3-9bc7-4ab1-ac5c-4f4a76fda8e5"
+          ]
+        },
+        {
+          "amount": 3.627915235039743e-08,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Acetone",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "1f130425-11f9-4ec2-8d2f-d282acaacf5c"
+          ]
+        },
+        {
+          "amount": 4.417665482515702e-08,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Acrolein",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "7ed6dc0d-9c2e-4046-a44b-e8a708c2081e"
+          ]
+        },
+        {
+          "amount": 1.0612268355507264e-08,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Benzaldehyde",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "fe65f7e4-ee5b-4a6f-9d60-6c2f829dca3f"
+          ]
+        },
+        {
+          "amount": 8.020901010422803e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Cyclohexane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "5512f026-b3a9-419a-b787-c0be0b39be1c"
+          ]
+        },
+        {
+          "amount": 2.467969523362372e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Heptane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "f4bb66f1-c78c-409f-8368-85c1205a3573"
+          ]
+        },
+        {
+          "amount": 1.4807816664213484e-08,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Methyl ethyl ketone",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "26b5c174-e20e-430a-a4b1-44de4af8b40f"
+          ]
+        },
+        {
+          "amount": 3.3317587970441087e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "o-Xylene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "5a6eb27d-9157-46d5-be32-92bbd543ada9"
+          ]
+        },
+        {
+          "amount": 4.442344999264045e-08,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Propylene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "ada09403-d5f2-4496-9201-a6dcca0b1717"
+          ]
+        },
+        {
+          "amount": 8.987509532892576e-13,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Selenium IV",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "a79be2ee-ac83-4328-a136-a34ba1f99089"
+          ]
+        },
+        {
+          "amount": 4.5657434397351074e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Styrene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "d85a44cb-8407-4997-a146-581e4f35f39d"
+          ]
+        },
+        {
+          "amount": 1.7243010816470285e-08,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Acetaldehyde",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "fc9f9a81-c4b9-4dce-bc20-9f04e05ca2f1"
+          ]
+        },
+        {
+          "amount": 7.835309635631448e-09,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Acetone",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "7a2d7097-20c4-4b5f-b2ee-bcfc2ba1378f"
+          ]
+        },
+        {
+          "amount": 9.540955911688826e-09,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Acrolein",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "12840cef-c3b8-4ef2-b7d4-3a73dbd6a280"
+          ]
+        },
+        {
+          "amount": 2.291961380268338e-09,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Benzaldehyde",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "2813518d-c4a8-4a8d-9542-f1882ec27c1c"
+          ]
+        },
+        {
+          "amount": 1.7322965082862524e-09,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Cyclohexane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "22ff429e-4506-428d-9bba-4f9595ed3b99"
+          ]
+        },
+        {
+          "amount": 5.330142827826499e-10,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Heptane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "025fcb20-0591-4bae-80fc-7c34e9af2e7b"
+          ]
+        },
+        {
+          "amount": 3.1980856966958994e-09,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Methyl ethyl ketone",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "54b35742-21ff-4454-8a3d-f31577e308b3"
+          ]
+        },
+        {
+          "amount": 1.6256935565375726e-09,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "m-Xylene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "d24f41d7-279e-4f5a-9ac9-00f726dc3bcc"
+          ]
+        },
+        {
+          "amount": 7.195692996051054e-10,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "o-Xylene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "92259b90-6f92-42ec-b3f2-30775167aff7"
+          ]
+        },
+        {
+          "amount": 9.860764409964303e-10,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Styrene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "2d456fb8-592b-46a7-97f0-81fc2a18e587"
+          ]
+        },
+        {
+          "amount": 1.3536812603611746e-07,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Ethylene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "36270548-9316-424b-9aeb-e0de134b0be1"
+          ]
+        },
+        {
+          "amount": 2.9235833785447436e-08,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ],
+          "name": "Ethylene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "87f683ed-44ae-41a6-b4bc-230622f8cfef"
+          ]
+        },
+        {
+          "amount": 5.14875997880243e-05,
+          "comment": "Historical18/275auxiliaryallowance/Pb13/275, notverifiedoldnativePbormodernbatterymeasurement. Engineeringbudget, notcurbmassclosure. Energy-use allocation: 19.215944290161133 * 4.999999873689376e-06 / 1.8660749271512032 MJ per kilometer.",
+          "location": "GLO",
+          "name": "auxiliary battery production and attributed treatment, passenger car, historical burden proxy",
+          "product": "auxiliary battery, passenger car, historical lifecycle proxy",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0
+        },
+        {
+          "name": "Carbon dioxide, non-fossil",
+          "unit": "kilogram",
+          "categories": [
+            "air"
+          ],
+          "type": "biosphere",
+          "amount": 0.0734,
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "eba59fd6-f37e-41dc-9ca3-c7ea22d602c7"
+          ]
+        }
+      ],
+      "energy use source": "{\"source\": [\"transport, passenger car, diesel, medium, EURO-6\", \"transport, passenger car, EURO-6\", \"RER\", \"kilometer\"], \"source unit\": \"kilometer\", \"purchased MJ per source service\": 1.8660749271512032, \"boundary\": \"energy-specific equipment; excludes chassis, body, roads and whole-vehicle maintenance\", \"retained equipment\": [{\"supplier\": [\"auxiliary battery production and attributed treatment, passenger car, historical burden proxy\", \"auxiliary battery, passenger car, historical lifecycle proxy\", \"GLO\", \"kilogram\"], \"amount per vehicle\": 19.215944290161133, \"vehicle per source service\": 4.999999873689376e-06, \"replacement correction factor\": 1.0, \"amount per MJ\": 5.14875997880243e-05}], \"excluded\": [{\"supplier\": \"Maintenance, passenger car\", \"amount per source service\": 8.622409040981438e-06}, {\"supplier\": \"Brake wear emissions, passenger car\", \"amount per source service\": 1.486711607867619e-05}, {\"supplier\": \"Road wear emissions, passenger car\", \"amount per source service\": 1.7076023141271435e-05}, {\"supplier\": \"Tyre wear emissions, passenger car\", \"amount per source service\": 1.9722232536878437e-05}, {\"supplier\": \"Refrigerant R134a, at plant\", \"amount per source service\": 6.499999926745659e-06}, {\"supplier\": \"Road\", \"amount per source service\": 0.0009364034631289542}, {\"supplier\": \"Operation, maintenance, road\", \"amount per source service\": 0.001290000043809414}, {\"supplier\": [\"glider lightweighting [CLIC glider-lightweighting]\", \"Glider lightweighting\", \"GLO\", \"kilogram\"], \"amount per vehicle\": 143.80435180664062, \"vehicle per source service\": 4.999999873689376e-06}, {\"supplier\": [\"Glider, for passenger car\", \"Glider, for passenger car\", \"RER\", \"kilogram\"], \"amount per vehicle\": 1350.0, \"vehicle per source service\": 4.999999873689376e-06}, {\"supplier\": [\"dry combustion equipment lifecycle, historical Notter engineering reference\", \"dry combustion equipment lifecycle\", \"GLO\", \"kilogram\"], \"amount per vehicle\": 293.5769348144531, \"vehicle per source service\": 4.999999873689376e-06}, {\"supplier\": [\"Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration\", \"Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration\", \"CH\", \"kilogram\"], \"amount per vehicle\": 48.99540328979492, \"vehicle per source service\": 4.999999873689376e-06}, {\"supplier\": [\"Polyethylene, HDPE, granulate, at plant\", \"Polyethylene, HDPE, granulate, at plant\", \"RER\", \"kilogram\"], \"amount per vehicle\": 48.99540328979492, \"vehicle per source service\": 4.999999873689376e-06}], \"alternative fuel recipe retained\": true, \"alternative fuel basis\": \"Supplier mass shares retained; total fuel energy corrected to 1 MJ using premise fuel-specific LHVs. Total combustion CO2 uses the corresponding kg/MJ factor; inherited fossil/biogenic and compartment shares retained. Other exhaust factors retain the source powertrain proxy.\"}",
+      "comment": "Produces consumption of 1 MJ of purchased energy. Representative powertrain carrier: diesel. energy-specific equipment; excludes chassis, body, roads and whole-vehicle maintenance. Source transport, passenger car, diesel, medium, EURO-6 [RER]; 1.8660749271512 purchased MJ per kilometer. All retained exchanges divided by this energy; lifetime, occupancy/payload and replacement allocation are carried by source production links. Baseline source specifications: Original LCA model: carculator 1.9.7; shared library carculator_utils 1.3.7. Model publication: Sacchi, R., Bauer, C., Cox, B., Mutel, C. (2022). When, where and how can the electrification of passenger cars reduce greenhouse gas emissions? Renewable and Sustainable Energy Reviews 162, 112475. https://doi.org/10.1016/j.rser.2022.112475 Vehicle specifications in the original-model comment below describe the 2020 baseline. Scenario-adjusted fuel purchases, efficiency and hardware are recorded separately by Premise. Original-model fuel volumes use model fuel densities; final purchases use the units of the linked suppliers. 2020 default vehicle parameters; 1.8 starts/stops per day and 12000 km/year. Swiss climate, default driving cycle. Daily starts follow Swiss National Inventory Document 2026, Table 3-90 (2020); cold-start and hot-soak factors are retained. Operating energy and battery supply adapted to premise. Noise in companion audit. the original LCA model, carculator, uses emission factors for cold start, evaporative and running emissions from the HBEFA 5.1 emissions handbook. Manufacture year: 2020. Km over lifetime: 200000 km. Km per year: 12000 km/year. Autonomy on a full tank/battery: 1260 km. Tank-to-wheel efficiency: 19.6 \\%. Tank-to-wheel energy consumption: 1866 kj/km. Fuel consumption: 5.2 l/100km. Electricity consumption: 0.0 kWh/100km. Battery capacity: 0.0 kWh. Fuel tank capacity: 653 kWh. Power share from combustion engine: 100.0 \\%. Combustion engine power: 128 kW. Electric motor power: 0.0 kW. Curb mass (excl. driver and cargo): 1603 kg. Driving mass (incl. driver and cargo): 1743 kg. Battery mass: 0.0 kg. Fuel cell system efficiency: 0.0 \\%. Number of passengers onboard: 1.6 passenger(s). Payload: 20 kg.  Carbon accounting: full-oxidation CO2 plus separately estimated pollutants; not a closed elemental carbon balance.\n\nHistorical CLIC comment (prior model; inactive provenance, not current parameter values):\nCombustion engine power: 128 [kW]. Power share from combustion engine: 100 [%]. Km over lifetime: 200000 [km]. Yearly mileage: 12000 [km/year]. Autonomy on a full tank/battery: 1215 [km]. Tank-to-wheel efficiency: 28 [%]. Tank-to-wheel energy consumption: 1937 [kj/km]. Fuel tank capacity: 653 [kWh]. Curb mass (excl. driver and cargo): 1603 [kg]. Driving mass (incl. driver and cargo): 1743 [kg].\n\nHistorical CLIC source (superseded model citation retained for traceability):\nSacchi, R., Bauer, C., Cox, B. and Mutel, C.  carculator: an open-source tool for prospective environmental and economic life cycle assessment of vehicles. When, Where and How can battery-electric vehicles help reduce greenhouse gas emissions? Submitted to Renewable and Sustainable Energy Reviews. Screening limitations: Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified. Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented. Use the existing representative diesel vehicle powertrain, service energy denominator and signed equipment exchanges through shared normalization. Non-CO2 exhaust retains that powertrain proxy; no whole-vehicle body, roads, lifetime or payload factor is added twice. The legacy product label heat denotes this existing per-MJ energy-use inventory, not an added useful-heat output.",
+      "premise modelling limitations": [
+        "Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified.",
+        "Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented.",
+        "Use the existing representative diesel vehicle powertrain, service energy denominator and signed equipment exchanges through shared normalization. Non-CO2 exhaust retains that powertrain proxy; no whole-vehicle body, roads, lifetime or payload factor is added twice. The legacy product label heat denotes this existing per-MJ energy-use inventory, not an added useful-heat output."
+      ],
+      "premise final energy": {
+        "kind": "shared_normalized_biodiesel_energy_use",
+        "nominal_fuel_LHV_MJ_per_kg": 38,
+        "template_source": [
+          "transport, passenger car, diesel, medium, EURO-6",
+          "transport, passenger car, EURO-6",
+          "RER",
+          "kilometer"
+        ],
+        "normalization": "Reconstructed by the existing final-energy callback from scenario vehicle sources before export.",
+        "limitations": [
+          "Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified.",
+          "Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented.",
+          "Use the existing representative diesel vehicle powertrain, service energy denominator and signed equipment exchanges through shared normalization. Non-CO2 exhaust retains that powertrain proxy; no whole-vehicle body, roads, lifetime or payload factor is added twice. The legacy product label heat denotes this existing per-MJ energy-use inventory, not an added useful-heat output."
+        ]
+      }
+    },
+    {
+      "name": "biodiesel, burned in single deck coach or urban bus",
+      "reference product": "heat",
+      "location": "RER",
+      "unit": "megajoule",
+      "database": "premise-UVEK-final-energy",
+      "code": "uvek-biodiesel-energy-single-deck-coach-or-urban-bus-v1",
+      "type": "process",
+      "production amount": 1,
+      "exchanges": [
+        {
+          "name": "biodiesel, burned in single deck coach or urban bus",
+          "product": "heat",
+          "location": "RER",
+          "unit": "megajoule",
+          "type": "production",
+          "amount": 1.0,
+          "uncertainty type": 0,
+          "input": [
+            "premise-UVEK-final-energy",
+            "uvek-biodiesel-energy-single-deck-coach-or-urban-bus-v1"
+          ]
+        },
+        {
+          "name": "Biodiesel, from used cooking oil, at fuelling station",
+          "product": "Biodiesel, from used cooking oil, at fuelling station",
+          "location": "RER",
+          "unit": "kilogram",
+          "type": "technosphere",
+          "amount": 0.02631578947368421,
+          "comment": "Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified. Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented.",
+          "uncertainty type": 0
+        },
+        {
+          "amount": 1.090734024391471e-07,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Acetaldehyde",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "5ad58fcc-e9ba-4155-a3c9-e4ffb3065a6f"
+          ]
+        },
+        {
+          "amount": 4.224505965046351e-08,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Acrolein",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "7ed6dc0d-9c2e-4046-a44b-e8a708c2081e"
+          ]
+        },
+        {
+          "amount": 1.056151436698412e-06,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Ammonia",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "9990b51b-7023-4700-bca0-1a32ef921f74"
+          ]
+        },
+        {
+          "amount": 2.3300000134394603e-12,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Arsenic ion",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "f4d0a2c8-efef-4188-85da-5801097389a2"
+          ]
+        },
+        {
+          "amount": 3.2698152796683094e-08,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Benzaldehyde",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "fe65f7e4-ee5b-4a6f-9d60-6c2f829dca3f"
+          ]
+        },
+        {
+          "amount": 2.9067283121423466e-08,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Benzene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "1bb6a502-3ff9-4a79-835c-5588b855f1f5"
+          ]
+        },
+        {
+          "amount": 3.5800897459314486e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Butane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "892f10da-7bf2-42b3-b171-221989661a05"
+          ]
+        },
+        {
+          "amount": 2.0200000810125296e-10,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Cadmium II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "36e53653-1338-42c7-816c-f6667809e0b1"
+          ]
+        },
+        {
+          "amount": 2.094191331462745e-05,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Carbon monoxide, fossil",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "6edcc2df-88a3-48e1-83d8-ffc38d31c35b"
+          ]
+        },
+        {
+          "amount": 6.979999810433936e-10,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Chromium III",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "7705f0e1-5b14-44f4-b330-1245b5c7fc08"
+          ]
+        },
+        {
+          "amount": 1.400000013511039e-12,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Chromium VI",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "7a59e8d5-cd11-4ee7-b1ca-30979d2b0b3a"
+          ]
+        },
+        {
+          "amount": 4.930000179660989e-10,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Copper ion",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "88cde01c-df69-40bb-9b14-6eac71bea5b8"
+          ]
+        },
+        {
+          "amount": 2.3867264384928003e-06,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Dinitrogen monoxide",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "6dc1b46f-ee89-4495-95c4-b8a637bcd6cb"
+          ]
+        },
+        {
+          "amount": 7.160179491862898e-10,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Ethane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "9ea11aea-7cb7-4b38-b936-a42c2a4bac97"
+          ]
+        },
+        {
+          "amount": 1.6688343988420838e-06,
+          "categories": [
+            "air"
+          ],
+          "name": "1,1,1,2-Tetrafluoroethane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e87f039d-d9ce-4242-ac18-c9284cc80f3d"
+          ]
+        },
+        {
+          "amount": 2.0048503095994044e-07,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Formaldehyde",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "20664d0e-24e3-4daa-8c5c-2ade6e0c2723"
+          ]
+        },
+        {
+          "amount": 7.160179491862897e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Heptane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "f4bb66f1-c78c-409f-8368-85c1205a3573"
+          ]
+        },
+        {
+          "amount": 1.7405559043622388e-06,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Hydrocarbons, chlorinated",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "626dd1d8-5355-40cb-8569-9c87c2c6ab18"
+          ]
+        },
+        {
+          "amount": 1.2299999811113978e-10,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Mercury II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "a850e6de-a007-432f-be7f-ce6e2cf1f2ae"
+          ]
+        },
+        {
+          "amount": 4.177334525313478e-08,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Methane, fossil",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "5f7aad3d-566c-4d0d-ad59-e765f971aa0f"
+          ]
+        },
+        {
+          "amount": 1.3811102806379677e-06,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "NMVOC, non-methane volatile organic compounds",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "175baa64-d985-4c5e-84ef-67cc3a1cf952"
+          ]
+        },
+        {
+          "amount": 2.050000036068206e-10,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Nickel II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "e43a270f-4f88-4789-a0b8-7aba56677743"
+          ]
+        },
+        {
+          "amount": 4.286348388647011e-05,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Nitrogen oxides",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "d068f3e2-b033-417b-a359-ca4f25da9731"
+          ]
+        },
+        {
+          "amount": 1.8200000834248303e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "PAH, polycyclic aromatic hydrocarbons",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "9d1efa17-070a-4602-a65f-daf5056b0647"
+          ]
+        },
+        {
+          "amount": 2.5181987110228245e-06,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Particulate Matter, < 2.5 um",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "230d8a0a-517c-43fe-8357-1818dd12997a"
+          ]
+        },
+        {
+          "amount": 1.4320358983725795e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Pentane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "0b9698ec-8b52-4986-8f9f-ad30915aa00c"
+          ]
+        },
+        {
+          "amount": 2.386726551327e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Propane",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "98c66fdb-091d-46e9-a533-686f821e8f6a"
+          ]
+        },
+        {
+          "amount": 2.3300000134394603e-12,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Selenium IV",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "a79be2ee-ac83-4328-a136-a34ba1f99089"
+          ]
+        },
+        {
+          "amount": 1.3365668817125685e-08,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Styrene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "d85a44cb-8407-4997-a146-581e4f35f39d"
+          ]
+        },
+        {
+          "amount": 4.651162890834266e-07,
+          "categories": [
+            "air"
+          ],
+          "name": "Sulfur dioxide",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "fd7aa71c-508c-480d-81a6-8052aad92646"
+          ]
+        },
+        {
+          "amount": 2.386726429738423e-10,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Toluene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "39946c56-cdf6-4a22-9ac9-1cd333b65533"
+          ]
+        },
+        {
+          "amount": 4.0500002226987326e-08,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "Zinc II",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "748f22a9-eba4-4726-bef5-92c7442ce189"
+          ]
+        },
+        {
+          "amount": 2.338992010573374e-08,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "m-Xylene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "10571d92-ea97-4ac6-adb6-b25893a631cb"
+          ]
+        },
+        {
+          "amount": 9.546906205308e-09,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "name": "o-Xylene",
+          "type": "biosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "5a6eb27d-9157-46d5-be32-92bbd543ada9"
+          ]
+        },
+        {
+          "amount": 1.0221610692907762e-05,
+          "location": "RER",
+          "name": "exhaust system, for lorry [CLIC exhaust-system-for-lorry]",
+          "product": "exhaust system, for lorry",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "comment": " Energy-use allocation: 98.0 * 1.4285714655670745e-07 / 1.3696471899747849 MJ per person kilometer."
+        },
+        {
+          "amount": 5.4345950386797435e-06,
+          "location": "RER",
+          "name": "fuel tank, for diesel vehicle",
+          "product": "fuel tank",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "comment": " Energy-use allocation: 52.10434341430664 * 1.4285714655670745e-07 / 1.3696471899747849 MJ per person kilometer."
+        },
+        {
+          "amount": 1.6438853424044688e-05,
+          "location": "RER",
+          "name": "gearbox, for lorry [CLIC gearbox-for-lorry]",
+          "product": "gearbox, for lorry",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "comment": " Energy-use allocation: 157.60800170898438 * 1.4285714655670745e-07 / 1.3696471899747849 MJ per person kilometer."
+        },
+        {
+          "amount": 7.397931100053428e-05,
+          "location": "RER",
+          "name": "internal combustion engine, for lorry [CLIC internal-combustion-engine-for-lorry]",
+          "product": "internal combustion engine, for lorry",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "comment": " Energy-use allocation: 709.2788696289062 * 1.4285714655670745e-07 / 1.3696471899747849 MJ per person kilometer."
+        },
+        {
+          "amount": 1.908729343675633e-05,
+          "location": "RER",
+          "name": "power electronics, for lorry [CLIC power-electronics-for-lorry]",
+          "product": "power electronics, for lorry",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "comment": " Energy-use allocation: 183.0 * 1.4285714655670745e-07 / 1.3696471899747849 MJ per person kilometer."
+        },
+        {
+          "amount": 5.4796176753878546e-06,
+          "location": "RER",
+          "name": "retarder, for lorry [CLIC retarder-for-lorry]",
+          "product": "retarder, for lorry",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "comment": " Energy-use allocation: 52.5359992980957 * 1.4285714655670745e-07 / 1.3696471899747849 MJ per person kilometer."
+        },
+        {
+          "amount": 2.374500926354549e-05,
+          "location": "RER",
+          "name": "transmission, for lorry [CLIC transmission-for-lorry]",
+          "product": "transmission, for lorry",
+          "type": "technosphere",
+          "unit": "kilogram",
+          "uncertainty type": 0,
+          "comment": " Energy-use allocation: 227.65599060058594 * 1.4285714655670745e-07 / 1.3696471899747849 MJ per person kilometer."
+        },
+        {
+          "name": "Carbon dioxide, non-fossil",
+          "unit": "kilogram",
+          "categories": [
+            "air"
+          ],
+          "type": "biosphere",
+          "amount": 0.0734,
+          "uncertainty type": 0,
+          "input": [
+            "ecoinvent-3.10-biosphere",
+            "eba59fd6-f37e-41dc-9ca3-c7ea22d602c7"
+          ]
+        }
+      ],
+      "energy use source": "{\"source\": [\"transport, passenger bus, diesel, 13m single deck urban bus, EURO-VI\", \"transport, passenger bus, EURO-VI\", \"RER\", \"person kilometer\"], \"source unit\": \"person kilometer\", \"purchased MJ per source service\": 1.3696471899747849, \"boundary\": \"energy-specific equipment; excludes chassis, body, roads and whole-vehicle maintenance\", \"retained equipment\": [{\"supplier\": [\"exhaust system, for lorry [CLIC exhaust-system-for-lorry]\", \"exhaust system, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 98.0, \"vehicle per source service\": 1.4285714655670745e-07, \"replacement correction factor\": 1.0, \"amount per MJ\": 1.0221610692907762e-05}, {\"supplier\": [\"fuel tank, for diesel vehicle\", \"fuel tank\", \"RER\", \"kilogram\"], \"amount per vehicle\": 52.10434341430664, \"vehicle per source service\": 1.4285714655670745e-07, \"replacement correction factor\": 1.0, \"amount per MJ\": 5.4345950386797435e-06}, {\"supplier\": [\"gearbox, for lorry [CLIC gearbox-for-lorry]\", \"gearbox, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 157.60800170898438, \"vehicle per source service\": 1.4285714655670745e-07, \"replacement correction factor\": 1.0, \"amount per MJ\": 1.6438853424044688e-05}, {\"supplier\": [\"internal combustion engine, for lorry [CLIC internal-combustion-engine-for-lorry]\", \"internal combustion engine, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 709.2788696289062, \"vehicle per source service\": 1.4285714655670745e-07, \"replacement correction factor\": 1.0, \"amount per MJ\": 7.397931100053428e-05}, {\"supplier\": [\"power electronics, for lorry [CLIC power-electronics-for-lorry]\", \"power electronics, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 183.0, \"vehicle per source service\": 1.4285714655670745e-07, \"replacement correction factor\": 1.0, \"amount per MJ\": 1.908729343675633e-05}, {\"supplier\": [\"retarder, for lorry [CLIC retarder-for-lorry]\", \"retarder, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 52.5359992980957, \"vehicle per source service\": 1.4285714655670745e-07, \"replacement correction factor\": 1.0, \"amount per MJ\": 5.4796176753878546e-06}, {\"supplier\": [\"transmission, for lorry [CLIC transmission-for-lorry]\", \"transmission, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 227.65599060058594, \"vehicle per source service\": 1.4285714655670745e-07, \"replacement correction factor\": 1.0, \"amount per MJ\": 2.374500926354549e-05}], \"excluded\": [{\"supplier\": [\"glider lightweighting [CLIC glider-lightweighting]\", \"Glider lightweighting\", \"GLO\", \"kilogram\"], \"amount per vehicle\": 73.36499786376953, \"vehicle per source service\": 1.4285714655670745e-07}, {\"supplier\": [\"assembly operation, for lorry [CLIC assembly-operation-for-lorry]\", \"assembly operation, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 12090.0, \"vehicle per source service\": 1.4285714655670745e-07}, {\"supplier\": [\"frame, blanks and saddle, for lorry [CLIC frame-blanks-and-saddle-for-lorry]\", \"frame, blanks and saddle, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 7300.0, \"vehicle per source service\": 1.4285714655670745e-07}, {\"supplier\": [\"Maintenance, bus\", \"Maintenance, bus\", \"CH\", \"unit\"], \"amount per vehicle\": 1.0, \"vehicle per source service\": 1.4285714655670745e-07}, {\"supplier\": [\"other components, for hybrid electric lorry [CLIC other-components-for-hybrid-electric-lorry]\", \"other components, for hybrid electric lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 858.0, \"vehicle per source service\": 1.4285714655670745e-07}, {\"supplier\": [\"suspension, for lorry [CLIC suspension-for-lorry]\", \"suspension, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 1762.0, \"vehicle per source service\": 1.4285714655670745e-07}, {\"supplier\": [\"tires and wheels, for lorry [CLIC tires-and-wheels-for-lorry]\", \"tires and wheels, for lorry\", \"RER\", \"kilogram\"], \"amount per vehicle\": 576.0, \"vehicle per source service\": 1.4285714655670745e-07}, {\"supplier\": [\"Disposal, bus\", \"Disposal, bus\", \"CH\", \"unit\"], \"amount per vehicle\": 1.0, \"vehicle per source service\": 1.4285714655670745e-07}, {\"supplier\": \"Refrigerant R134a, at plant\", \"amount per source service\": 3.3571427593415137e-06}, {\"supplier\": \"Road\", \"amount per source service\": 0.0006986479857005179}, {\"supplier\": \"Operation, maintenance, road\", \"amount per source service\": 0.0001289999927394092}, {\"supplier\": \"Brake wear emissions, lorry\", \"amount per source service\": 9.36524520511739e-06}, {\"supplier\": \"Road wear emissions, lorry\", \"amount per source service\": 7.86971031629946e-06}, {\"supplier\": \"Tyre wear emissions, lorry\", \"amount per source service\": 7.771379387122579e-06}], \"alternative fuel recipe retained\": true, \"alternative fuel basis\": \"Supplier mass shares retained; total fuel energy corrected to 1 MJ using premise fuel-specific LHVs. Total combustion CO2 uses the corresponding kg/MJ factor; inherited fossil/biogenic and compartment shares retained. Other exhaust factors retain the source powertrain proxy.\"}",
+      "comment": "Produces consumption of 1 MJ of purchased energy. Representative powertrain carrier: diesel. energy-specific equipment; excludes chassis, body, roads and whole-vehicle maintenance. Source transport, passenger bus, diesel, 13m single deck urban bus, EURO-VI [RER]; 1.36964718997478 purchased MJ per person kilometer. All retained exchanges divided by this energy; lifetime, occupancy/payload and replacement allocation are carried by source production links. Baseline source specifications: Combustion engine power: 229 [kW]. Power share from combustion engine: 100 [%]. Km over lifetime: 700000 [km]. Yearly mileage: 50000 [km/year]. Daily distance driven: 312 [km]. Daily operating time: 12 [hours]. Tank-to-wheel efficiency: 23 [%]. Tank-to-wheel energy consumption: 13696 [kj/km]. Fuel tank capacity: 1189 [kWh]. Maximum passenger capacity: 64 [unit]. Number of passengers onboard: 10 [unit]. Curb mass (excl. driver and cargo): 12090 [kg]. Driving mass (incl. driver and cargo): 13010 [kg]. Screening limitations: Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified. Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented. Use the existing representative diesel vehicle powertrain, service energy denominator and signed equipment exchanges through shared normalization. Non-CO2 exhaust retains that powertrain proxy; no whole-vehicle body, roads, lifetime or payload factor is added twice. The legacy product label heat denotes this existing per-MJ energy-use inventory, not an added useful-heat output.",
+      "premise modelling limitations": [
+        "Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified.",
+        "Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented.",
+        "Use the existing representative diesel vehicle powertrain, service energy denominator and signed equipment exchanges through shared normalization. Non-CO2 exhaust retains that powertrain proxy; no whole-vehicle body, roads, lifetime or payload factor is added twice. The legacy product label heat denotes this existing per-MJ energy-use inventory, not an added useful-heat output."
+      ],
+      "premise final energy": {
+        "kind": "shared_normalized_biodiesel_energy_use",
+        "nominal_fuel_LHV_MJ_per_kg": 38,
+        "template_source": [
+          "transport, passenger bus, diesel, 13m single deck urban bus, EURO-VI",
+          "transport, passenger bus, EURO-VI",
+          "RER",
+          "person kilometer"
+        ],
+        "normalization": "Reconstructed by the existing final-energy callback from scenario vehicle sources before export.",
+        "limitations": [
+          "Complete native used-cooking-oil biodiesel at the fuelling station is the screening FAME supply. It differs from generic oil-crop biodiesel in feedstock, waste allocation, production, delivery, geography and vintage; impacts are not equivalent and differences remain unquantified.",
+          "Keep the existing shared FAME nominal properties: 38 MJ/kg, 0.0734 kg CO2/MJ and its biogenic accounting convention. These are not a newly measured LHV or exact elemental carbon balance for this native mixture. No efficiency, density, extra fuelling loss, upstream uptake or recovery credit is invented.",
+          "Use the existing representative diesel vehicle powertrain, service energy denominator and signed equipment exchanges through shared normalization. Non-CO2 exhaust retains that powertrain proxy; no whole-vehicle body, roads, lifetime or payload factor is added twice. The legacy product label heat denotes this existing per-MJ energy-use inventory, not an added useful-heat output."
+        ]
+      }
+    }
+  ],
+  "clic_roots": [
+    "transport-freight-lorry-diesel-40-metric-ton",
+    "transport-freight-train-diesel-electric",
+    "transport-passenger-bus-diesel-13m-single-deck-urban-bus-euro-vi",
+    "transport-passenger-car-diesel-medium-euro-6"
+  ]
+}

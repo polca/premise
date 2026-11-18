@@ -535,10 +535,20 @@ CDR - DAC - Elec:
     gcam: Final Energy|Industry|CDR|Electricity
 CDR - DAC - Gases:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -697,10 +707,20 @@ CDR - OAE, traditional calciner - Elec:
     remind-eu: FE|CDR|OAE, traditional calciner|+|Electricity
 CDR - OAE, traditional calciner - Gases:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -787,10 +807,20 @@ Industry - Cement - Bio CH4:
     message: Final Energy|Industry|Non-Metallic Minerals|Cement|Gases|Biomass
 Industry - Cement - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -906,9 +936,20 @@ Industry - Cement - LPG:
     message: Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|Gas
 Industry - Cement - Solid biomass:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: heat production, softwood chips from forest, at furnace 1000kW
-      reference product: heat
+      name: Heat, softwood chips from forest, at furnace 1000kW
+      reference product: Heat, softwood chips from forest, at furnace 1000kW
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original useful-heat reference and 1000 kW softwood-furnace technology. Native forestry, furnace,
+      allocation, geography, vintage and internal uncertainty remain screening differences.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: heat production, softwood chips from forest, at furnace 1000kW
@@ -1087,10 +1128,20 @@ Industry - Chemicals - Chemicals - Bio CH4:
     remind-eu: FE|Industry|Chemicals|Gases|+|Biomass
 Industry - Chemicals - Chemicals - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -1169,9 +1220,20 @@ Industry - Chemicals - Chemicals - Syn Fuel:
     remind-eu: FE|Industry|Chemicals|Liquids|+|Hydrogen
 Industry - Chemicals - Chemicals - Solid Biomass:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: heat production, softwood chips from forest, at furnace 1000kW
-      reference product: heat
+      name: Heat, softwood chips from forest, at furnace 1000kW
+      reference product: Heat, softwood chips from forest, at furnace 1000kW
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original useful-heat reference and 1000 kW softwood-furnace technology. Native forestry, furnace,
+      allocation, geography, vintage and internal uncertainty remain screening differences.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: heat production, softwood chips from forest, at furnace 1000kW
@@ -1228,10 +1290,20 @@ Industry - Chemicals - Resins - Elec:
     message: Final Energy|Industry|Chemicals|Resins|Electricity
 Industry - Chemicals - Resins - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -1363,10 +1435,20 @@ Industry - Chemicals - Ammonia - Elec:
     image: Final Energy|Industry|Chemicals|Ammonia|Electricity
 Industry - Chemicals - Ammonia - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -1419,9 +1501,20 @@ Industry - Chemicals - Ammonia - Solid coal:
     gcam: Final Energy|Industry|Ammonia|Coal
 Industry - Chemicals - Ammonia - Solid Biomass:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: heat production, softwood chips from forest, at furnace 1000kW
-      reference product: heat
+      name: Heat, softwood chips from forest, at furnace 1000kW
+      reference product: Heat, softwood chips from forest, at furnace 1000kW
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original useful-heat reference and 1000 kW softwood-furnace technology. Native forestry, furnace,
+      allocation, geography, vintage and internal uncertainty remain screening differences.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: heat production, softwood chips from forest, at furnace 1000kW
@@ -1431,10 +1524,20 @@ Industry - Chemicals - Ammonia - Solid Biomass:
     image: Final Energy|Industry|Chemicals|Ammonia|Solids|Biomass
 Industry - Chemicals - Ammonia - Other:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -1459,10 +1562,20 @@ Industry - Chemicals - Heavy Refinery Products - Elec:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Electricity
 Industry - Chemicals - Heavy Refinery Products - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -1536,10 +1649,20 @@ Industry - Chemicals - High-Value Chemicals - Elec:
     image: Final Energy|Industry|Chemicals|High-Value Chemicals|Electricity
 Industry - Chemicals - High-Value Chemicals - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -1743,10 +1866,20 @@ Industry - Aluminum - Liquid fossil:
     gcam: Final Energy|Industry|Aluminum|Oil
 Industry - Aluminum - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -1815,10 +1948,20 @@ Industry - Chemicals - Methanol - Elec:
     image: Final Energy|Industry|Chemicals|Methanol|Electricity
 Industry - Chemicals - Methanol - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -1908,10 +2051,20 @@ Industry - Chemicals - Fertilizer - Elec:
     image: Final Energy|Industry|Fertilizer production|Electricity
 Industry - Chemicals - Fertilizer - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -2002,10 +2155,20 @@ Industry - Food Processing - Elec:
     gcam: Final Energy|Industry|Food Processing|Electricity
 Industry - Food Processing - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -2096,10 +2259,20 @@ Industry - Non-Metallic Minerals - Electricity:
     image: Final Energy|Industry|Non-Metallic Minerals|Electricity
 Industry - Non-Metallic Minerals - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -2255,9 +2428,21 @@ Industry - Other - Elec, low temp:
       heat
 Industry - Other - Bio CH4:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: heat production, biomethane, at boiler condensing modulating <100kW
-      reference product: heat, central or small-scale, biomethane
+      name: Heat, biomethane, at boiler condensing modulating 50kW
+      reference product: Heat, biomethane, at boiler condensing modulating 50kW
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the already reviewed complete native 50 kW condensing/modulating boiler within the original under-100-kW
+      proxy class, per MJ of useful heat. Industrial use retains the original small-boiler proxy; native allocation,
+      geography and vintage differ.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: heat production, biomethane, at boiler condensing modulating <100kW
@@ -2268,10 +2453,20 @@ Industry - Other - Bio CH4:
     message: Final Energy|Industry|Other Sector|Gases|Biomass
 Industry - Other - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -2393,10 +2588,20 @@ Industry - Paper - Elec:
     gcam: Final Energy|Industry|Pulp and Paper|Electricity
 Industry - Paper - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3070,10 +3275,20 @@ Industry - Steel - TGR BF/BOF + CCS - Biomass:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Traditional Biomass
 Industry - Steel - BF/BOF - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3086,10 +3301,20 @@ Industry - Steel - BF/BOF - Nat Gas:
     gcam: Final Energy|Industry|Iron and Steel|BF/BOF|Gas
 Industry - Steel - BF/BOF + CCS - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3100,10 +3325,20 @@ Industry - Steel - BF/BOF + CCS - Nat Gas:
       - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Natural Gas
 Industry - Steel - DRI EAF - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3115,10 +3350,20 @@ Industry - Steel - DRI EAF - Nat Gas:
     gcam: Final Energy|Industry|Iron and Steel|EAF DRI|Gas
 Industry - Steel - DRI EAF + CCS - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3129,10 +3374,20 @@ Industry - Steel - DRI EAF + CCS - Nat Gas:
       - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Natural Gas
 Industry - Steel - EAF - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3144,10 +3399,20 @@ Industry - Steel - EAF - Nat Gas:
     gcam: Final Energy|Industry|Iron and Steel|EAF Scrap|Gas
 Industry - Steel - Electrowinning - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3158,10 +3423,20 @@ Industry - Steel - Electrowinning - Nat Gas:
       - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Natural Gas
 Industry - Steel - H-DRI/EAF - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3172,10 +3447,20 @@ Industry - Steel - H-DRI/EAF - Nat Gas:
       - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Natural Gas
 Industry - Steel - SR/BOF - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3186,10 +3471,20 @@ Industry - Steel - SR/BOF - Nat Gas:
       - Final Energy|Industry|Iron and Steel|SR/BOF|Natural Gas
 Industry - Steel - SR/BOF + CCS - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3200,10 +3495,20 @@ Industry - Steel - SR/BOF + CCS - Nat Gas:
       - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Natural Gas
 Industry - Steel - TGR BF/BOF - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3215,10 +3520,20 @@ Industry - Steel - TGR BF/BOF - Nat Gas:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Natural Gas
 Industry - Steel - TGR BF/BOF + CCS - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3565,9 +3880,21 @@ Industry - Steel - All steel - H2:
     image: Final Energy|Industry|Iron and Steel|Hydrogen
 Industry - Steel - All steel - Bio CH4:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: heat production, biomethane, at boiler condensing modulating <100kW
-      reference product: heat, central or small-scale, biomethane
+      name: Heat, biomethane, at boiler condensing modulating 50kW
+      reference product: Heat, biomethane, at boiler condensing modulating 50kW
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the already reviewed complete native 50 kW condensing/modulating boiler within the original under-100-kW
+      proxy class, per MJ of useful heat. Industrial use retains the original small-boiler proxy; native allocation,
+      geography and vintage differ.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: heat production, biomethane, at boiler condensing modulating <100kW
@@ -3592,10 +3919,20 @@ Industry - All Steel - Secondary Heat:
     message: Final Energy|Industry|Iron and Steel|Heat
 Industry - Steel - All steel - Nat Gas:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: natural gas, burned in gas turbine
-      reference product: natural gas, burned in gas turbine
-    mask: market
+      name: Natural gas, burned in gas turbine
+      reference product: Natural gas, burned in gas turbine
+      unit: megajoule
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original per-MJ gas-combustion service, rather than useful heat or an electricity generator. Source
+      gas quality, emissions, infrastructure, geography and vintage differ; no efficiency or output credit is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3718,14 +4055,21 @@ Industry - Steel - All steel - Solid coal:
       - Final Energy|Industry|Iron and Steel|Solids|Coal
 Industry - Non-energy use - Solid coal:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: hard coal mine operation
-      reference product: hard coal
-    mask:
-    - briquette
-    - ash
-    - factory
-    - plant
+      name: Hard coal, at mine
+      reference product: Hard coal, at mine
+      unit: kilogram
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the original kg coal-feedstock reference and complete native mine inventory. Coal grade, moisture, processing,
+      mine technology, allocation, geography and vintage remain screening differences; no calorific or mass correction
+      is inferred.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: hard coal mine operation
@@ -3844,10 +4188,21 @@ Industry - Non-energy use - Hydrogen:
 
 Industry - Non-energy use - Biofuel:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: methanol production, biomass gasification
-      reference product: methanol
-    mask: factory
+      name: Methanol, from biomass, at regional storage
+      reference product: Methanol, from biomass, at regional storage
+      unit: kilogram
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native biomass-derived methanol per kg, retaining its upstream gasification and storage/delivery
+      boundary. Technology, allocation, geography and vintage differ. The extra native storage/delivery boundary remains
+      an explicit proxy difference; no extra delivery inventory is added.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: methanol production, biomass gasification
@@ -3881,9 +4236,21 @@ Industry - Non-energy use - Elec:
 
 Industry - Non-energy use - Liquid fossil:
   uvek_aliases:
+    use_legacy_templates: false
     fltr:
-      name: market for light fuel oil
-      reference product: light fuel oil
+      name: Light fuel oil, at regional storage
+      reference product: Light fuel oil, at regional storage
+      unit: kilogram
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native delivered light fuel oil per kg for the original fossil feedstock role. Grade, refining
+      allocation, supplier portfolio, delivery, geography and vintage remain screening differences; no density, calorific
+      or extra loss multiplier is applied.
+    - Complete native inventories are selected through ordinary Premise regionalization and relinking. Keep original
+      signed quantities, source uncertainty, reference units and shared nominal LHV policies. Score effects are unquantified;
+      no LCIA equivalence, new manufacturing model, extra infrastructure, loss, recovery or avoided-emission credit
+      is claimed.
   ecoinvent_aliases:
     fltr:
       name: market for light fuel oil
@@ -4126,6 +4493,11 @@ Transport - Freight - Rail - Biofuel:
     fltr:
       name: biodiesel, burned in passenger train
       reference product: heat
+      unit: megajoule
+    use_legacy_templates: false
+    inventory_resource: transport/uvek2026_biodiesel_energy_use_inventory.json
+    inventory_requires_active_role: true
+    exact: true
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger train
@@ -4260,6 +4632,11 @@ Transport - Freight - Truck(18t) - Biofuel:
     fltr:
       name: biodiesel, burned in heavy-duty vehicle
       reference product: heat
+      unit: megajoule
+    use_legacy_templates: false
+    inventory_resource: transport/uvek2026_biodiesel_energy_use_inventory.json
+    inventory_requires_active_role: true
+    exact: true
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in heavy-duty vehicle
@@ -4378,6 +4755,11 @@ Transport - Freight - Truck(26t) - Biofuel:
     fltr:
       name: biodiesel, burned in heavy-duty vehicle
       reference product: heat
+      unit: megajoule
+    use_legacy_templates: false
+    inventory_resource: transport/uvek2026_biodiesel_energy_use_inventory.json
+    inventory_requires_active_role: true
+    exact: true
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in heavy-duty vehicle
@@ -4491,6 +4873,11 @@ Transport - Freight - Truck(40t) - Biofuel:
     fltr:
       name: biodiesel, burned in heavy-duty vehicle
       reference product: heat
+      unit: megajoule
+    use_legacy_templates: false
+    inventory_resource: transport/uvek2026_biodiesel_energy_use_inventory.json
+    inventory_requires_active_role: true
+    exact: true
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in heavy-duty vehicle
@@ -4617,6 +5004,11 @@ Transport - Freight - Truck(0-3_5t) - Biofuel:
     fltr:
       name: biodiesel, burned in passenger car
       reference product: heat
+      unit: megajoule
+    use_legacy_templates: false
+    inventory_resource: transport/uvek2026_biodiesel_energy_use_inventory.json
+    inventory_requires_active_role: true
+    exact: true
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -4739,6 +5131,11 @@ Transport - Freight - Truck(7_5t) - Biofuel:
     fltr:
       name: biodiesel, burned in heavy-duty vehicle
       reference product: heat
+      unit: megajoule
+    use_legacy_templates: false
+    inventory_resource: transport/uvek2026_biodiesel_energy_use_inventory.json
+    inventory_requires_active_role: true
+    exact: true
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in heavy-duty vehicle
@@ -5019,6 +5416,11 @@ Transport - Pass - Rail - Biofuel:
     fltr:
       name: biodiesel, burned in passenger train
       reference product: heat
+      unit: megajoule
+    use_legacy_templates: false
+    inventory_resource: transport/uvek2026_biodiesel_energy_use_inventory.json
+    inventory_requires_active_role: true
+    exact: true
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger train
@@ -5156,6 +5558,11 @@ Transport - Pass - Bus - Biofuel:
     fltr:
       name: biodiesel, burned in single deck coach or urban bus
       reference product: heat
+      unit: megajoule
+    use_legacy_templates: false
+    inventory_resource: transport/uvek2026_biodiesel_energy_use_inventory.json
+    inventory_requires_active_role: true
+    exact: true
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in single deck coach or urban bus
@@ -5271,6 +5678,11 @@ Transport - Pass - Large Car and SUV - Biofuel:
     fltr:
       name: biodiesel, burned in passenger car
       reference product: heat
+      unit: megajoule
+    use_legacy_templates: false
+    inventory_resource: transport/uvek2026_biodiesel_energy_use_inventory.json
+    inventory_requires_active_role: true
+    exact: true
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -5377,6 +5789,11 @@ Transport - Pass - Large Car - Biofuel:
     fltr:
       name: biodiesel, burned in passenger car
       reference product: heat
+      unit: megajoule
+    use_legacy_templates: false
+    inventory_resource: transport/uvek2026_biodiesel_energy_use_inventory.json
+    inventory_requires_active_role: true
+    exact: true
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -5483,6 +5900,11 @@ Transport - Pass - Van - Biofuel:
     fltr:
       name: biodiesel, burned in passenger car
       reference product: heat
+      unit: megajoule
+    use_legacy_templates: false
+    inventory_resource: transport/uvek2026_biodiesel_energy_use_inventory.json
+    inventory_requires_active_role: true
+    exact: true
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -5592,6 +6014,11 @@ Transport - Pass - Compact Car - Biofuel:
     fltr:
       name: biodiesel, burned in passenger car
       reference product: heat
+      unit: megajoule
+    use_legacy_templates: false
+    inventory_resource: transport/uvek2026_biodiesel_energy_use_inventory.json
+    inventory_requires_active_role: true
+    exact: true
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -5710,6 +6137,11 @@ Transport - Pass - Midsize Car - Biofuel:
     fltr:
       name: biodiesel, burned in passenger car
       reference product: heat
+      unit: megajoule
+    use_legacy_templates: false
+    inventory_resource: transport/uvek2026_biodiesel_energy_use_inventory.json
+    inventory_requires_active_role: true
+    exact: true
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -5830,6 +6262,11 @@ Transport - Pass - Mini Car - Biofuel:
     fltr:
       name: biodiesel, burned in passenger car
       reference product: heat
+      unit: megajoule
+    use_legacy_templates: false
+    inventory_resource: transport/uvek2026_biodiesel_energy_use_inventory.json
+    inventory_requires_active_role: true
+    exact: true
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -5949,6 +6386,11 @@ Transport - Pass - Subcompact Car - Biofuel:
     fltr:
       name: biodiesel, burned in passenger car
       reference product: heat
+      unit: megajoule
+    use_legacy_templates: false
+    inventory_resource: transport/uvek2026_biodiesel_energy_use_inventory.json
+    inventory_requires_active_role: true
+    exact: true
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -6208,6 +6650,11 @@ Transportation excl. International Shipping - Liquids|Biomass|Combustion:
     fltr:
       name: biodiesel, burned in passenger car
       reference product: heat
+      unit: megajoule
+    use_legacy_templates: false
+    inventory_resource: transport/uvek2026_biodiesel_energy_use_inventory.json
+    inventory_requires_active_role: true
+    exact: true
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car

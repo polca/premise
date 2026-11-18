@@ -61,3 +61,8 @@ Ethanol, 99.7% in H2O, from biomass, at service station:
 xx Petrol, 5% vol. ethanol, from biomass, at service station:
   product: petrol
   unit: kilogram
+
+# Existing FAME nominal LHV/carbon category; native used-oil feedstock remains explicit.
+Biodiesel, from used cooking oil, at fuelling station:
+  product: biodiesel
+  unit: kilogram
