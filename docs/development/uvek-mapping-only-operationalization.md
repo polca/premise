@@ -58,8 +58,10 @@ approval data. Prefer a complete suitable native process; do not expand an
 already functioning screening proxy into a remote upstream reconstruction.
 
 The required source-3.8 battery cohort now converts, as does the source-3.9
-cohort. The current source-3.12 retry has three unapproved identities, down from 73
-after reviewed/native supplies and a bounded immediate lithium-titanate model. This is mapping progress,
+cohort. The required battery archive now converts across source versions 3.8, 3.9,
+3.12 and 3.10. Ordinary inventory preparation completes with 951 records after
+explicit HDPE screening, two scoped unsupported-material omissions, final
+source-3.10 approvals and a bounded immediate Na-NiCl assembly model. This is mapping progress,
 not a qualified battery update. Fifteen sectors remain qualified; battery,
 final energy, emissions and metals remain unfinished. The latest verified
 fifteen-sector export is still the operational baseline.
@@ -69,3 +71,12 @@ the previously published revision as well as the current resources. Their
 frozen dependency fingerprints predate subsequent reviewed overlays. Do not
 report them as passing or alter their Python fixtures under this constraint.
 The ordered normal generator and focused runtime checks are reported separately.
+
+A concrete four-file battery compatibility proposal is recorded in
+`uvek-battery-compatibility-proposal.md`. It is not applied: the user's current
+no-source-change instruction requires approval first. The private preview
+passes 92 existing battery tests and exhaustive graph certification with zero
+errors. Normal released battery operation, export and combined integration
+remain pending. Latest live fifteen-sector preparation could not be reverified
+in this installed batch because the CLIC archive transfer failed twice; no
+snapshot fallback or new qualification is claimed.
