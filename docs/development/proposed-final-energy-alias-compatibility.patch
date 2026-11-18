@@ -1,0 +1,33 @@
+--- a/premise/transport/vehicle_energy_use.py
++++ b/premise/transport/vehicle_energy_use.py
+@@ -9,6 +9,8 @@
+ import json
+ import math
+ import re
++
++from .vehicle_energy import canonical_vehicle_energy_product
+ 
+ POLICY = "energy-specific equipment; excludes chassis, body, roads and whole-vehicle maintenance"
+ SOURCE_KEY = "energy use source"
+@@ -104,7 +106,9 @@
+ def carrier(e):
+     if e.get("type") != "technosphere":
+         return None
+-    p = e.get("product", e.get("reference product", "")) or ""
++    p = canonical_vehicle_energy_product(
++        e.get("product", e.get("reference product", "")) or "", e["unit"]
++    )
+     n = e["name"].lower()
+     u = e["unit"]
+     # Storage capacity is battery equipment, even though it also uses kWh.
+@@ -136,7 +140,9 @@
+ def fuel_property_key(e):
+     """Distinguish ethanol, FAME, FT diesel and delivered CNG conventions."""
+     c = carrier(e)
+-    product = e.get("product", e.get("reference product", "")) or ""
++    product = canonical_vehicle_energy_product(
++        e.get("product", e.get("reference product", "")) or "", e["unit"]
++    )
+     if c == "gasoline":
+         return "ethanol" if product.startswith("ethanol") else "gasoline"
+     if c == "diesel":

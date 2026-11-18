@@ -1,0 +1,67 @@
+{
+  "status": "unapplied_one_file_generic_classifier_proposal",
+  "applied_to_source": false,
+  "patch_sha256": "3b0f56d4027dc072852ef3d9c7a000025216f037f92f65b39055c9310f66b434",
+  "changed_source_files_if_approved": [
+    "premise/transport/vehicle_energy_use.py"
+  ],
+  "existing_tests_passed_in_private_preview": 81,
+  "source_classification_census_before_last_E5_alias": {
+    "pairs": 16,
+    "passed": 15,
+    "missing": 1,
+    "missing_product": "xx Petrol, 5% vol. ethanol, from biomass, at service station"
+  },
+  "direct_cases": {
+    "status": "unapplied_classifier_preview_cases_passed",
+    "positive_native_cases": [
+      {
+        "name": "Diesel, fossil, at regional storage",
+        "unit": "kilogram",
+        "carrier": "diesel",
+        "fuel_property_key": "diesel",
+        "wrong_unit_refused": true
+      },
+      {
+        "name": "Electricity, medium voltage, at grid",
+        "unit": "kilowatt hour",
+        "carrier": "electricity",
+        "fuel_property_key": "electricity",
+        "wrong_unit_refused": true
+      },
+      {
+        "name": "Electricity, high voltage, at grid",
+        "unit": "kilowatt hour",
+        "carrier": "electricity",
+        "fuel_property_key": "electricity",
+        "wrong_unit_refused": true
+      },
+      {
+        "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+        "unit": "kilogram",
+        "carrier": "hydrogen",
+        "fuel_property_key": "hydrogen",
+        "wrong_unit_refused": true
+      },
+      {
+        "name": "Ethanol, 99.7% in H2O, from biomass, at service station",
+        "unit": "kilogram",
+        "carrier": "gasoline",
+        "fuel_property_key": "ethanol",
+        "wrong_unit_refused": true
+      },
+      {
+        "name": "xx Petrol, 5% vol. ethanol, from biomass, at service station",
+        "unit": "kilogram",
+        "carrier": "gasoline",
+        "fuel_property_key": "gasoline",
+        "wrong_unit_refused": true
+      }
+    ],
+    "negative_equipment_or_production_cases": 3,
+    "new_Python_source_changes": 0
+  },
+  "new_YAML_alias_rows": 4,
+  "runtime_source_changes": 0,
+  "limitation": "Existing tests/direct cases are passing previews only. Full workflow preview remains separately observed; public admission, native filter/context coverage, graph certification/export are unfinished. The current no-Python instruction requires approval before application."
+}

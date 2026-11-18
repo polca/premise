@@ -48,3 +48,16 @@ Liquefied petroleum gas, at service station:
 Propane, butane, at refinery:
   product: liquefied petroleum gas
   unit: kilogram
+Electricity, medium voltage, at grid:
+  product: electricity, medium voltage
+  unit: kilowatt hour
+Electricity, high voltage, at grid:
+  product: electricity, high voltage
+  unit: kilowatt hour
+Ethanol, 99.7% in H2O, from biomass, at service station:
+  product: ethanol
+  unit: kilogram
+# E5 keeps the shared nominal petrol LHV/carbon policy; no blend is recalculated here.
+xx Petrol, 5% vol. ethanol, from biomass, at service station:
+  product: petrol
+  unit: kilogram
