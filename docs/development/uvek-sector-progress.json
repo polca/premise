@@ -1268,7 +1268,7 @@
     },
     {
       "sector": "metals",
-      "status": "audited_not_operational",
+      "status": "shared_update_diagnostics_passed_native_market_coverage_unfinished",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -1283,7 +1283,7 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Thirteen sectors are admitted publicly. This sector remains gated pending its complete verified shared update and integration evidence."
+          "finding": "Fifteen sectors are admitted publicly. This sector remains gated pending complete shared update, coverage and ordinary integration/export evidence."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -1348,6 +1348,125 @@
         "markets_preserved_missing_supplier": 48,
         "markets_preserved_missing_transport": 51,
         "full_sector_qualified": false
+      },
+      "latest_actual_diagnostic_2026_11_18": {
+        "verification": "docs/development/uvek-remaining-sector-diagnostics-2026-11-18.json",
+        "review": "docs/development/uvek-remaining-sector-diagnostics-2026-11-18.md",
+        "runs": [
+          {
+            "sector": "metals",
+            "freshness": "snapshot",
+            "public_scope_gate_bypassed_for_diagnostic_only": true,
+            "validation_disabled": false,
+            "export_performed": false,
+            "inventory_preparation_passed": true,
+            "prepared_inventory_count": 93,
+            "activities_before_update": 12040,
+            "sector_callback_passed": true,
+            "status": "diagnostic_update_and_graph_checks_passed",
+            "activities_after_update": 12040,
+            "validation_errors": 0,
+            "source_files_unchanged": true,
+            "sector_mapping_summary": {
+              "transformed activities": {
+                "type": "list",
+                "count": 27
+              },
+              "material decisions": {
+                "type": "list",
+                "count": 97
+              },
+              "material update metrics": {
+                "type": "dict",
+                "count": 3
+              },
+              "applied market shares": {
+                "type": "dict",
+                "count": 0
+              },
+              "market diagnostics": {
+                "type": "list",
+                "count": 103
+              },
+              "resource diagnostics": {
+                "type": "list",
+                "count": 4
+              },
+              "methodology": {
+                "type": "dict",
+                "count": 9
+              },
+              "native freight providers": {
+                "type": "dict",
+                "count": 4
+              }
+            },
+            "transformed_activity_count": 27,
+            "qualification_limit": "First-failure/frontier diagnostic only. A passing graph or a legitimate skip does not establish complete filter/physical coverage or sector qualification.",
+            "private_receipt_sha256": "1fcccd7d897020bfbf0a9c2e7dc51f49a38c49b38176ae25f0be439397f0c1fb",
+            "market_retention_reasons": {
+              "market_preserved_year_outside_support": 103
+            }
+          },
+          {
+            "sector": "metals",
+            "scenario_year": 2030,
+            "freshness": "snapshot",
+            "public_scope_gate_bypassed_for_diagnostic_only": true,
+            "validation_disabled": false,
+            "export_performed": false,
+            "inventory_preparation_passed": true,
+            "prepared_inventory_count": 93,
+            "activities_before_update": 12040,
+            "sector_callback_passed": true,
+            "status": "diagnostic_update_and_graph_checks_passed",
+            "activities_after_update": 12090,
+            "validation_errors": 0,
+            "source_files_unchanged": true,
+            "sector_mapping_summary": {
+              "transformed activities": {
+                "type": "list",
+                "count": 77
+              },
+              "material decisions": {
+                "type": "list",
+                "count": 97
+              },
+              "material update metrics": {
+                "type": "dict",
+                "count": 3
+              },
+              "applied market shares": {
+                "type": "dict",
+                "count": 4
+              },
+              "market diagnostics": {
+                "type": "list",
+                "count": 99
+              },
+              "resource diagnostics": {
+                "type": "list",
+                "count": 4
+              },
+              "methodology": {
+                "type": "dict",
+                "count": 9
+              },
+              "native freight providers": {
+                "type": "dict",
+                "count": 4
+              }
+            },
+            "transformed_activity_count": 77,
+            "qualification_limit": "First-failure/frontier diagnostic only. A passing graph or a legitimate skip does not establish complete filter/physical coverage or sector qualification.",
+            "private_receipt_sha256": "161f7f0adcf64a3a1e74adb0c9de20c1889e2502fa1b9e3d30a62e3c57274712",
+            "market_retention_reasons": {
+              "market_preserved_transport_missing": 51,
+              "market_preserved_supplier_missing": 48
+            }
+          }
+        ],
+        "public_qualification": false
       }
     },
     {
@@ -3105,7 +3224,7 @@
     },
     {
       "sector": "final energy",
-      "status": "audited_not_operational",
+      "status": "source39_required_mappings_verified_source38_review_pending",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -3553,7 +3672,7 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Thirteen sectors are admitted publicly. This sector remains gated pending its complete verified shared update and integration evidence."
+          "finding": "Fifteen sectors are admitted publicly. This sector remains gated pending complete shared update, coverage and ordinary integration/export evidence."
         },
         {
           "code": "family_dispatch",
@@ -3618,6 +3737,38 @@
         "pending_first_cohort_before": 21,
         "pending_first_cohort_after": 19,
         "full_sector_qualified": false
+      },
+      "latest_actual_diagnostic_2026_11_18": {
+        "verification": "docs/development/uvek-remaining-sector-diagnostics-2026-11-18.json",
+        "review": "docs/development/uvek-remaining-sector-diagnostics-2026-11-18.md",
+        "runs": [
+          {
+            "sector": "final energy",
+            "freshness": "snapshot",
+            "public_scope_gate_bypassed_for_diagnostic_only": true,
+            "validation_disabled": false,
+            "export_performed": false,
+            "status": "failed",
+            "source_files_unchanged": true,
+            "failed_stage": "inventory preparation",
+            "exception_type": "ClicInventoryError",
+            "qualification_limit": "First-failure/frontier diagnostic only. A passing graph or a legitimate skip does not establish complete filter/physical coverage or sector qualification.",
+            "private_receipt_sha256": "5ed5269c0286c64d78e3fa3055bf1f0eaa91b6cc7ab48e672e4bc0a795a247bf",
+            "pending_source38_correspondences": 5,
+            "source39_correspondences_resolved": 12
+          }
+        ],
+        "public_qualification": false
+      },
+      "latest_required_source39_review": {
+        "exact_correspondences": 12,
+        "complete_native_services": 11,
+        "retained_heat_market_entries": 29,
+        "source_code_changes": 0,
+        "review": [
+          "docs/development/uvek-final-energy-native-39-review.md",
+          "docs/development/uvek-final-energy-heat-mix-39-review.md"
+        ]
       }
     },
     {
@@ -3652,7 +3803,7 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Thirteen sectors are admitted publicly. This sector remains gated pending its complete verified shared update and integration evidence."
+          "finding": "Fifteen sectors are admitted publicly. This sector remains gated pending complete shared update, coverage and ordinary integration/export evidence."
         },
         {
           "code": "family_dispatch",
@@ -3811,6 +3962,42 @@
         "focused_tests": 61,
         "Python_edits": false,
         "public_gate": "closed"
+      },
+      "latest_actual_diagnostic_2026_11_18": {
+        "verification": "docs/development/uvek-remaining-sector-diagnostics-2026-11-18.json",
+        "review": "docs/development/uvek-remaining-sector-diagnostics-2026-11-18.md",
+        "runs": [
+          {
+            "sector": "emissions",
+            "freshness": "snapshot",
+            "public_scope_gate_bypassed_for_diagnostic_only": true,
+            "validation_disabled": false,
+            "export_performed": false,
+            "inventory_preparation_passed": true,
+            "prepared_inventory_count": 0,
+            "activities_before_update": 11947,
+            "sector_callback_passed": true,
+            "status": "diagnostic_update_and_graph_checks_passed",
+            "activities_after_update": 12261,
+            "validation_errors": 0,
+            "source_files_unchanged": true,
+            "sector_mapping_summary": {
+              "owned_variants": {
+                "type": "list",
+                "count": 314
+              },
+              "modified_callers": {
+                "type": "list",
+                "count": 2918
+              }
+            },
+            "transformed_activity_count": 3232,
+            "full_sector_mapping_complete": false,
+            "qualification_limit": "Reviewed native combustion-gas diagnostic only. 314 variants and 2918 modified callers are real targets despite the different mapping keys. Other pollutants/retained scopes, public admission, export and combined qualification remain unfinished.",
+            "private_receipt_sha256": "378769a31f95932a872c394a00b4a9ef2606054d47a5fcdab9a32f3870a2364f"
+          }
+        ],
+        "public_qualification": false
       }
     }
   ],
@@ -3985,5 +4172,6 @@
     "battery_inventory_records_prepared": 951,
     "battery_unapproved_mapping_errors": 0,
     "battery_public_support_still_pending": true
-  }
+  },
+  "latest_remaining_sector_checkpoint": "docs/development/uvek-remaining-sector-diagnostics-2026-11-18.json"
 }
