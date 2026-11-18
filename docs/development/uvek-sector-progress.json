@@ -3224,7 +3224,7 @@
     },
     {
       "sector": "final energy",
-      "status": "source39_required_mappings_verified_source38_review_pending",
+      "status": "source39_and_source38_required_mappings_verified_source312_review_pending",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -3769,6 +3769,14 @@
           "docs/development/uvek-final-energy-native-39-review.md",
           "docs/development/uvek-final-energy-heat-mix-39-review.md"
         ]
+      },
+      "latest_required_source38_review": {
+        "verification": "docs/development/uvek-final-energy-native-38-verification.json",
+        "review": "docs/development/uvek-final-energy-native-38-review.md",
+        "new_exact_scopes": 5,
+        "remaining_source312_correspondences": 10,
+        "new_helpers": 0,
+        "source_code_changes": 0
       }
     },
     {

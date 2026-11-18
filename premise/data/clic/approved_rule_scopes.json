@@ -123078,7 +123078,12 @@
             "inventory_sha256": "d573f6d8933dfced3fe84b84c46c4ad330d28ed20d172cee9f44079605f18ca4"
           }
         },
-        "source_supplier_count": 7
+        "source_supplier_count": 7,
+        "final_energy_source38_native_extension": {
+          "review_path": "export/uvek_final_energy_native_38_review.json",
+          "review_sha256": "cd1305f81f1f2494b9b22c56bfded1b1454ff5bce194cf79f093f1098755b8d2",
+          "earlier_effective_models_unchanged": true
+        }
       },
       "limitations": [
         "Complete Swiss fossil steam-methane-reforming hydrogen is a screening proxy for the inspected global refinery-hydrogen market, factor+1kg per signed source kg. The source contains seven positive refinery-hydrogen suppliers summing to one kg and no freight/loss extras; do not replace it with electrolysis or infer a future IAM hydrogen mix.",
@@ -123098,7 +123103,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "0e83dd28f1ceea4f24c1ca0fc37bad4a81782a75d49e7e0059b2b25a546e0e22"
+          "fingerprint": "86ce502dd7599ff07a0ae95369a10090981748119a7fe51927e8eb6e3fb6d8a9"
         }
       ]
     },
@@ -233692,7 +233697,12 @@
         },
         "geographic_proxy": false,
         "conversion_factor": 1,
-        "new_helpers": 0
+        "new_helpers": 0,
+        "final_energy_source38_native_extension": {
+          "review_path": "export/uvek_final_energy_native_38_review.json",
+          "review_sha256": "cd1305f81f1f2494b9b22c56bfded1b1454ff5bce194cf79f093f1098755b8d2",
+          "earlier_effective_models_unchanged": true
+        }
       },
       "limitations": [
         "Reviewed complete low-voltage electricity supply proxy, per signed1kWh. Source and native references are positive1kWh, with nonempty grid inventories. Reuse the complete existing native low-voltage grid, preserving its voltage hierarchy, network/infrastructure, losses, imports and signed inputs as provided; do not use high-voltage production, busbar generation, bare transformer hardware or an extra loss multiplier. Native generation/trade, historical consumption and older distribution assumptions, geography, region membership, infrastructure, biosphere exclusions and internal uncertainty differ; score effects are unquantified. Equal location codes for regional groups do not establish identical membership. For missing countries use only the explicitly inspected geographic proxy, not a claim of an actual transmission connection or an identical national fuel mix. Preserve caller signed quantities, uncertainty, formulas and metadata with factor+1. No new helper, omission, energy credit or caller-quantity renormalization is introduced. Only independently inspected3.6,3.9and3.12cutoff profiles qualify; other releases, consequential and reverse routes remain unapproved. Source CN -> native CN: matching country/region label; native mix replaces source mix."
@@ -233709,7 +233719,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "f5388960ada58e7e2bd90e1645aeeca689ab6108b8d97a4ca4cae5ffb320d7ca"
+          "fingerprint": "b3a49e00234087d94292f2b289902e8db60338419c3ec4cff253061633975f2d"
         },
         {
           "source": {
@@ -233722,7 +233732,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "353535b7eef05ccac4df28be928ef56c0b26906dbdbfedd9c8f311ac6216cbb1"
+          "fingerprint": "772627a74c493f33194af7798861e6c1e037dfc607654395269706136bcca416"
         },
         {
           "source": {
@@ -233735,7 +233745,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "081d2bc9cec9af6dad04b1f7ba5c2b12178f46c649044de3ba9544c5cfbabf90"
+          "fingerprint": "50a9adc2bcfe35a83374ae6da0e5eb329ddbaa2ff57d8caa793d68dc1ad639f3"
         }
       ]
     },
@@ -356576,6 +356586,381 @@
             "version": "2025"
           },
           "fingerprint": "16e3ec97bee5a284b783afe757eda9359b927d4fd2c76a4ff69762f0b71e7567"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-abce5674d268a95a",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_fossil_hydrogen_proxy",
+      "review_path": "export/uvek_final_energy_native_38_review.json",
+      "review_sha256": "cd1305f81f1f2494b9b22c56bfded1b1454ff5bce194cf79f093f1098755b8d2",
+      "authorization": "Standing autonomous modelling approval with warnings; mapping-only operationalization using complete native services, without new upstream reconstruction or source-code changes.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for hydrogen, gaseous",
+          "reference product": "hydrogen, gaseous",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for hydrogen, gaseous",
+            "reference product": "hydrogen, gaseous",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 7,
+          "inventory_sha256": "d09bd11f88f73e9d3e210f62cc16d8287bbcf0296125931c61d6fd0aabd93700",
+          "metadata_sha256": "2b8167c75a6290b9a98d4e2342d40a68d1d8cd56db18eecf77e497c6723356f0",
+          "comment_sha256": "0de8c461208462169be2b6993daa721437a1a0ccd1d381b8b38dac5f8a7ddebe",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 37,
+            "inventory_sha256": "d573f6d8933dfced3fe84b84c46c4ad330d28ed20d172cee9f44079605f18ca4",
+            "metadata_sha256": "8ab8ea758e78e3d6593d87258e96c4b8cfe6570641ac569280c8fe8fb626f43a",
+            "comment_sha256": "ee833d58bc72699c0b1abe38c48cbeb645e82d9fb9deed9ce143e851ca97c04d",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 37,
+            "inventory_sha256": "7f6a302eb2c59f54e7cb1a5c1c3b26a0da97a7e2f1803b774bf727cf85f64bec",
+            "metadata_sha256": "f36018c05912f67c01a0568827ff98dc5e86f414899fb65cac76fcf00f62817b",
+            "comment_sha256": "5de783bf56b4b28d83ce53c58a66512b20567846a348e3255cf67eeb3981385c",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Complete Swiss fossil steam-methane-reforming hydrogen at 25 bar is a screening proxy per kg of the inspected global gaseous-hydrogen market. Source market contains refinery-hydrogen suppliers; dedicated SMR replaces refinery feedstock/integration, coproduct allocation, utilities, emissions, vintage and regional shares. This is neither electrolysis nor an IAM future mix. Source delivery pressure is not verified as 25 bar; preserve kg without pressure, density, yield, compressor or expansion-credit adjustments.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Complete Swiss fossil steam-methane-reforming hydrogen at 25 bar is a screening proxy per kg of the inspected global gaseous-hydrogen market. Source market contains refinery-hydrogen suppliers; dedicated SMR replaces refinery feedstock/integration, coproduct allocation, utilities, emissions, vintage and regional shares. This is neither electrolysis nor an IAM future mix. Source delivery pressure is not verified as 25 bar; preserve kg without pressure, density, yield, compressor or expansion-credit adjustments.",
+        "Complete native inventory replaces source internal supply/treatment routes, delivery, technology, allocation, geography, vintage and internal uncertainty. Preserve exact signed caller quantities, formulas, supported uncertainty and separately listed operations/emissions. Existing BAFU biosphere exclusions remain. Score effects are unquantified; no inventory/LCIA equality is claimed.",
+        "Only the exact independently inspected ecoinvent 3.8 cut-off identity is newly approved. No new helper, upstream manufacturing reconstruction, foreground omission, zero-burden supplier, recovery credit, inverse or cross-system-model conversion, or Python module/test edit."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "75c2c6d003b4169f9d218a7afaab902c20b62a0ce5048174ac6aaad103e48197"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f757d6fac62c8228",
+      "operation": "replace",
+      "mapping_method": "reviewed_delivered_low_voltage_proxy",
+      "review_path": "export/uvek_final_energy_native_38_review.json",
+      "review_sha256": "cd1305f81f1f2494b9b22c56bfded1b1454ff5bce194cf79f093f1098755b8d2",
+      "authorization": "Standing autonomous modelling approval with warnings; mapping-only operationalization using complete native services, without new upstream reconstruction or source-code changes.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "CN",
+          "name": "market group for electricity, low voltage",
+          "reference product": "electricity, low voltage",
+          "unit": "kilowatt hour"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "CN",
+            "name": "market group for electricity, low voltage",
+            "reference product": "electricity, low voltage",
+            "unit": "kilowatt hour"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 1,
+          "inventory_sha256": "356a9e4d4d45d0da92a20e8603827340b95021dd784a5249a200a3e49d56e7ad",
+          "metadata_sha256": "2b5c308f9e06b1730f454a1e11131acb50275e746b6b4c3012556fae82be9106",
+          "comment_sha256": "84e2a578c19eebed599fac7631648f18abcd6f18cd602af817c80a325786ddf3",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "inventory_sha256": "967c7d68f8ae0835142246f0f6a2218bb1196b84cdea2b2e244db4f10adc996c",
+            "metadata_sha256": "67775b7ec51d25418646f15b092f209d362ed20dff3c7d343257a636c74dba69",
+            "comment_sha256": "5ac7469195fa3dc0015ab869c48c92d695715d379f574beaa3d006bd0ab04164",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "inventory_sha256": "5525e72af5d444a3747e184d07745c1826d2313fe35e33c10c12e9f059adefe8",
+            "metadata_sha256": "3c7917bfa98b8b8ff9d6ce4091b78ede204b8a5b12633d63ee5ddaec25db9ec8",
+            "comment_sha256": "250802b987ae2e1a9cdfc5757b319514d9c1581991b997914b87b454079d3740",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use the complete native Chinese low-voltage grid per kWh. Preserve native voltage hierarchy, signed inputs, historical generation, losses and infrastructure; its historical portfolio/network assumptions replace the source market-group composition. No extra loss multiplier or busbar-generation substitution.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use the complete native Chinese low-voltage grid per kWh. Preserve native voltage hierarchy, signed inputs, historical generation, losses and infrastructure; its historical portfolio/network assumptions replace the source market-group composition. No extra loss multiplier or busbar-generation substitution.",
+        "Complete native inventory replaces source internal supply/treatment routes, delivery, technology, allocation, geography, vintage and internal uncertainty. Preserve exact signed caller quantities, formulas, supported uncertainty and separately listed operations/emissions. Existing BAFU biosphere exclusions remain. Score effects are unquantified; no inventory/LCIA equality is claimed.",
+        "Only the exact independently inspected ecoinvent 3.8 cut-off identity is newly approved. No new helper, upstream manufacturing reconstruction, foreground omission, zero-burden supplier, recovery credit, inverse or cross-system-model conversion, or Python module/test edit."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "75ba0d49669ff247f9ffeca6b56aea459604d15b505d9cbdd2a283018a5d248c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e122827a829df0db",
+      "operation": "replace",
+      "mapping_method": "pairwise_review",
+      "review_path": "export/uvek_final_energy_native_38_review.json",
+      "review_sha256": "cd1305f81f1f2494b9b22c56bfded1b1454ff5bce194cf79f093f1098755b8d2",
+      "authorization": "Standing autonomous modelling approval with warnings; mapping-only operationalization using complete native services, without new upstream reconstruction or source-code changes.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "CH",
+          "name": "treatment of used bus",
+          "reference product": "used bus",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "CH",
+            "name": "treatment of used bus",
+            "reference product": "used bus",
+            "unit": "unit"
+          },
+          "reference_amount": -1.0,
+          "nonproduction_count": 4,
+          "inventory_sha256": "9132aca42a3a6a66743b07cb97630a9972994a2ec26268fa8a594ba66c0d9325",
+          "metadata_sha256": "aca7df71ccbed1a43064a5628dd18a100041f06c902d557a8b4142a49839b6de",
+          "comment_sha256": "ceaaf8d07524f3d5c1bae25e313100cebeb22da8af8102e22e37bf81adaa1b0e",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "inventory_sha256": "1b836848fc620142559a773899e1836f460da6ac9799a88dad4e40fa31cfb7c2",
+            "metadata_sha256": "1ea1f203967f61083ca2a5a1dba08239bf37a8fcae6354f7a423c4636600d021",
+            "comment_sha256": "67d9daa4969347faee50b5acc969863582fa30b35b086e9689772863e32cc9ef",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "inventory_sha256": "b3bcfc0b2aa82b674638db2646fdb6809ec05ac85ce1c7665fa4c337a7132652",
+            "metadata_sha256": "68dd8ce29db34ab6477666fe9de761f89a4fce3d32df8eadb3d69bceab9732e5",
+            "comment_sha256": "8767b9d3003b7b44d14a1f8de4e7a69be5f8b8041050150fddad0ce1f7ece05e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete native Swiss bus disposal per bus. Source -1 waste reference and native +1 service reference require factor -1. Both describe cut-off handling of bulk metals and tyres; historic fleet size/material composition, residue routing, transport and vintage differ. Add no recovery, tyre or metal substitution credit, vehicle mass scaling or missing disposal inventory.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete native Swiss bus disposal per bus. Source -1 waste reference and native +1 service reference require factor -1. Both describe cut-off handling of bulk metals and tyres; historic fleet size/material composition, residue routing, transport and vintage differ. Add no recovery, tyre or metal substitution credit, vehicle mass scaling or missing disposal inventory.",
+        "Complete native inventory replaces source internal supply/treatment routes, delivery, technology, allocation, geography, vintage and internal uncertainty. Preserve exact signed caller quantities, formulas, supported uncertainty and separately listed operations/emissions. Existing BAFU biosphere exclusions remain. Score effects are unquantified; no inventory/LCIA equality is claimed.",
+        "Only the exact independently inspected ecoinvent 3.8 cut-off identity is newly approved. No new helper, upstream manufacturing reconstruction, foreground omission, zero-burden supplier, recovery credit, inverse or cross-system-model conversion, or Python module/test edit."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "fc6416ebf5354420904bec4923c783ad32dba76917765779f25273d52fa21d91"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4149fad47652889a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_native_38_review.json",
+      "review_sha256": "cd1305f81f1f2494b9b22c56bfded1b1454ff5bce194cf79f093f1098755b8d2",
+      "authorization": "Standing autonomous modelling approval with warnings; mapping-only operationalization using complete native services, without new upstream reconstruction or source-code changes.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "CH",
+          "name": "maintenance, bus",
+          "reference product": "maintenance, bus",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "CH",
+            "name": "maintenance, bus",
+            "reference product": "maintenance, bus",
+            "unit": "unit"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 13,
+          "inventory_sha256": "f9885aad44fe9d148e11aacf160795e5bfbdc6d415818770ca83823db097564f",
+          "metadata_sha256": "940e63e8c952b63294970993aeefb02c3bd65b118d3e20e5781e1ead8c5d8016",
+          "comment_sha256": "6204f40ce1d39f0b89d9a6b6577cdfbcabe41ad0851cdd50465510f6e152a22b",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 16,
+            "inventory_sha256": "3cea1a42248342545c679916f440f22a8032215d7ecb0349e53e7a402f225dca",
+            "metadata_sha256": "9f1692f16e63a9623f9349e548d301fc898e1a9c921ed66af9f7bc78531cdc42",
+            "comment_sha256": "45006a7a9b4b8c2c3d37717c09e001c578dab9a3f872be80d7539a7d4ef5ef93",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 16,
+            "inventory_sha256": "518a4dc12217ddebec88ba403bfb3d63b0cb067c1e9c3f78c2ee5431c80fdb68",
+            "metadata_sha256": "d2957827700818da27a125a537d1c0205e2a478a42495bfa9feaeeb926f20538",
+            "comment_sha256": "f79094a74a146f5a5d81ac12e3c4f0930494806998aac4734b1a5cf992390503",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete native Swiss bus maintenance per bus service unit. Both source documentation and native records describe materials/replacement parts, garage energy, water and treatment based on historic Swiss bus maintenance. Retain full native inventory. Fleet/material consumption, lifetime/maintenance intensity and vintage differ; no bus-km, lifetime, tonnage or energy multiplier.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete native Swiss bus maintenance per bus service unit. Both source documentation and native records describe materials/replacement parts, garage energy, water and treatment based on historic Swiss bus maintenance. Retain full native inventory. Fleet/material consumption, lifetime/maintenance intensity and vintage differ; no bus-km, lifetime, tonnage or energy multiplier.",
+        "Complete native inventory replaces source internal supply/treatment routes, delivery, technology, allocation, geography, vintage and internal uncertainty. Preserve exact signed caller quantities, formulas, supported uncertainty and separately listed operations/emissions. Existing BAFU biosphere exclusions remain. Score effects are unquantified; no inventory/LCIA equality is claimed.",
+        "Only the exact independently inspected ecoinvent 3.8 cut-off identity is newly approved. No new helper, upstream manufacturing reconstruction, foreground omission, zero-burden supplier, recovery credit, inverse or cross-system-model conversion, or Python module/test edit."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "563aca0673bae6e160ef979b921d2e100158045b59cf9aaa49dc648d7c8d3eff"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c0965066e2c4afc5",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_native_38_review.json",
+      "review_sha256": "cd1305f81f1f2494b9b22c56bfded1b1454ff5bce194cf79f093f1098755b8d2",
+      "authorization": "Standing autonomous modelling approval with warnings; mapping-only operationalization using complete native services, without new upstream reconstruction or source-code changes.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for inverter, for electric passenger car",
+          "reference product": "inverter, for electric passenger car",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for inverter, for electric passenger car",
+            "reference product": "inverter, for electric passenger car",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 1,
+          "inventory_sha256": "0b13360e88459095c83e929c3188678e3d4bb21aa0377c479171a68667e50f71",
+          "metadata_sha256": "e545bb02ae1d05c768427faebe49e00fc247edc8952dc0ae7bd926c38c8c8b93",
+          "comment_sha256": "9c4038c558b7d658c23560ff19995c87720a44d3a560e94184859db7d69816f9",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 25,
+            "inventory_sha256": "019bf0d5291cd22e54b9c4a1549c8b82f8e73d8638055d628c33834c84f7f4d4",
+            "metadata_sha256": "6d03fc1a54a1e14e5608db228dc468bee640371c4d897d87adbe8e391ac94950",
+            "comment_sha256": "93425ed11bf5d1056cdd99d481d7aa81dfa3f393a133a02f4c8aa5a31692243d",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 25,
+            "inventory_sha256": "b10af94d733f73c3b6eda736fd28b4c797d31ca5062c054766a80ffbe82a63b4",
+            "metadata_sha256": "afa6981a2131b07e49040ed6f4d1fb49c983bfaa4c72684e99f90c9eac4e65c2",
+            "comment_sha256": "b64366b12e4d5df282654d68e17e47be409f6a83bce93bd9728a61c519917176",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete native European electric-passenger-car inverter per kg. Native documentation describes a 9.5 kg device suited to 100 kW but exchanges already reference 1 kg, so introduce no 9.5 kg or power multiplier. Native design, material allocation, delivery, geography, vintage and internal uncertainty replace the source global market model.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete native European electric-passenger-car inverter per kg. Native documentation describes a 9.5 kg device suited to 100 kW but exchanges already reference 1 kg, so introduce no 9.5 kg or power multiplier. Native design, material allocation, delivery, geography, vintage and internal uncertainty replace the source global market model.",
+        "Complete native inventory replaces source internal supply/treatment routes, delivery, technology, allocation, geography, vintage and internal uncertainty. Preserve exact signed caller quantities, formulas, supported uncertainty and separately listed operations/emissions. Existing BAFU biosphere exclusions remain. Score effects are unquantified; no inventory/LCIA equality is claimed.",
+        "Only the exact independently inspected ecoinvent 3.8 cut-off identity is newly approved. No new helper, upstream manufacturing reconstruction, foreground omission, zero-burden supplier, recovery credit, inverse or cross-system-model conversion, or Python module/test edit."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a18399d46f247645da435b031bed6dff12b0008a0129deb017b98a4ff8035de2"
         }
       ]
     }
