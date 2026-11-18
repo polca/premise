@@ -1,0 +1,17 @@
+--- a/tests/test_uvek_background.py
++++ b/tests/test_uvek_background.py
+@@ -179,0 +180,2 @@
++    assert validate_uvek_scope("final energy") == ["final energy"]
++    assert validate_uvek_scope("battery") == ["battery"]
+@@ -181,2 +183,2 @@
+-    with pytest.raises(ValueError, match="unsupported sectors.*battery"):
+-        validate_uvek_scope(["electricity", "battery"])
++    with pytest.raises(ValueError, match="unsupported sectors.*metals"):
++        validate_uvek_scope(["electricity", "metals"])
+--- a/tests/test_uvek_public_database.py
++++ b/tests/test_uvek_public_database.py
+@@ -16,2 +16,2 @@
+-    with pytest.raises(ValueError, match="unsupported sectors.*battery"):
+-        owner.update("battery")
++    with pytest.raises(ValueError, match="unsupported sectors.*metals"):
++        owner.update("metals")

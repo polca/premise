@@ -50,6 +50,7 @@
   "elapsed_seconds": 509.4205694589764,
   "installed_Premise_revision": "30f51fb6",
   "existing_installed_functional_tests_passed": 380,
-  "existing_public_boundary_tests_pending_authorized_refresh": 2,
-  "qualification_limit": "Reviewed BAFU 2026 source, ecoinvent 3.10 biosphere and ordinary coupled REMIND SSP2-NPi 2050 seventeen-sector workflow. Complete-process proxy/source-exclusion limitations remain. Public-boundary tests that still expect battery refusal need their separately proposed refresh; metals and emissions remain unfinished."
+  "existing_public_boundary_tests_pending_authorized_refresh": 0,
+  "qualification_limit": "Reviewed BAFU 2026 source, ecoinvent 3.10 biosphere and ordinary coupled REMIND SSP2-NPi 2050 seventeen-sector workflow. Complete-process proxy/source-exclusion limitations remain. The outdated boundary-test expectations were subsequently refreshed with user approval; metals and emissions remain unfinished.",
+  "subsequent_approved_source_test_refresh": "docs/development/uvek-reviewed-test-expectations-verification.json"
 }

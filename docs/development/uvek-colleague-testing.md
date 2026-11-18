@@ -429,5 +429,6 @@ To reproduce it, add `"battery"` between `"cdr"` and `"cars"` in the optional
 sixteen-sector update cell above. Use the notebook's existing export cell.
 Keep the default three-sector example for the simplest review. Native and
 curated proxy limitations remain visible in provenance and warnings. This run
-does not qualify metals or emissions. Two older public-boundary tests still
-expect battery refusal; their separately proposed test-only refresh is pending.
+does not qualify metals or emissions. The approved test-only refresh now checks battery/final-energy acceptance and
+metals refusal. All 485 focused battery, public-boundary, metals, requirements
+and mapping tests pass without exclusions. This is not a whole-suite claim.

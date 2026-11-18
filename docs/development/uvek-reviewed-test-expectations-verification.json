@@ -1,0 +1,15 @@
+{
+  "status": "approved_test_only_expectation_refreshes_applied",
+  "user_authorized_similar_future_test_only_expectation_refreshes": true,
+  "files": [
+    "tests/test_uvek_background.py",
+    "tests/test_uvek_public_database.py",
+    "tests/test_metals.py"
+  ],
+  "changes": "Accept approved final-energy/battery scope; retain early refusal test using still-unsupported metals; expect 69 explicitly configured conversions instead of 68.",
+  "runtime_code_changed_by_this_test_commit": false,
+  "existing_focused_tests_passed": 485,
+  "excluded_tests": 0,
+  "formatting": "Black check passed",
+  "broader_known_historical_rejection_replay_failures_not_retested_here": true
+}
