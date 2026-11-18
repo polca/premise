@@ -1,0 +1,54 @@
+{
+  "status": "exact_regional_supplier_packet_approved_and_applied",
+  "repository_source_changed": true,
+  "new_wrapper_dataset_created": false,
+  "legacy_global_preference_and_unflagged_Pt_restriction_preserved": true,
+  "new_regions_require_explicit_version_scoped_alias_and_reviewed_limits": true,
+  "regional_supply_requires_positive_one_kg_reference": true,
+  "existing_tests": 314,
+  "new_scenarios": 14,
+  "qualification_limit": "Private interpreter preview only. Approval, installed full workflow and public export remain separate requirements.",
+  "actual_native_record_preview": {
+    "decision": {
+      "activity": {
+        "code": "873b1773353df9617b1b5017e0c33f22",
+        "name": "Photovoltaic laminate, CdTe, at plant",
+        "reference product": "Photovoltaic laminate, CdTe, at plant",
+        "location": "DE",
+        "unit": "square meter"
+      },
+      "status": "updated",
+      "reason code": "metals.material_rule.applied",
+      "explanation": "Set the direct 'Indium, at regional storage' input using material rule 'cdte-indium-indium'.",
+      "material rule id": "cdte-indium-indium",
+      "technology": "CdTe",
+      "element": "Indium",
+      "provider name": "Indium, at regional storage",
+      "provider product": "Indium, at regional storage",
+      "requested year": 2050,
+      "source year minimum": 2020.0,
+      "source year maximum": 2050.0,
+      "temporal treatment": "within observed range",
+      "intensity median": 3.975,
+      "intensity minimum": 0.0,
+      "intensity maximum": 7.95,
+      "technology conversion factor": 0.00011666666666666667,
+      "exchange amount factor": 1.0,
+      "old direct amount": 0,
+      "target direct amount": 0.00046375,
+      "requested provider name": "Indium, at regional storage",
+      "provider location": "RER",
+      "provider selection": "configured market",
+      "provider fallback rank": 3
+    },
+    "warnings": [
+      "Using explicitly reviewed regional material supplier 'Indium, at regional storage' / 'Indium, at regional storage' in 'RER'; source-specific limits and score uncertainty are recorded in metals/resource_attribution.json."
+    ],
+    "new_dataset_created": false,
+    "source_changed": false
+  },
+  "source_changes_match_exact_approved_packet": true,
+  "applied_source_tests_passed": 328,
+  "public_metals_gate_unchanged": true,
+  "installed_full_workflow_pending": true
+}

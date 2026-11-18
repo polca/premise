@@ -1565,6 +1565,27 @@ class Metals(BaseTransformation):
                         )
         return plan
 
+    def _metal_provider_locations(self, name, product):
+        """Extend the normal location order only through reviewed source aliases."""
+        locations = ["World", "GLO", "RoW"]
+        for alias in _RESOURCE_POLICY["provider_aliases"]:
+            if str(getattr(self, "version", None)) not in alias["versions"] or tuple(
+                alias["target"]
+            ) != (name, product):
+                continue
+            extra = alias.get("locations", [])
+            if not isinstance(extra, list) or any(
+                not isinstance(value, str) or not value or value == "*"
+                for value in extra
+            ):
+                raise MetalsConfigError("Invalid explicit material-provider locations.")
+            if extra and not alias.get("limitations"):
+                raise MetalsConfigError(
+                    "Regional material suppliers need reviewed limitations."
+                )
+            locations.extend(extra)
+        return tuple(dict.fromkeys(locations))
+
     @lru_cache()
     def get_metal_market_dataset(
         self, metal_activity_name: str, reference_product: str | None = None
@@ -1582,13 +1603,15 @@ class Metals(BaseTransformation):
             candidates = self.db_index.get(metal_activity_name, {}).get(
                 reference_product, ()
             )
+        locations = self._metal_provider_locations(
+            metal_activity_name, reference_product
+        )
         candidates = [
             dataset
             for dataset in candidates
-            if dataset.get("location") in {"World", "GLO", "RoW"}
-            and self.is_in_index(dataset)
+            if dataset.get("location") in locations and self.is_in_index(dataset)
         ]
-        for location in ("World", "GLO", "RoW"):
+        for location in locations:
             matches = [
                 dataset for dataset in candidates if dataset.get("location") == location
             ]
@@ -1598,6 +1621,28 @@ class Metals(BaseTransformation):
                     f"{reference_product!r} in {location!r}."
                 )
             if matches:
+                if location not in ("World", "GLO", "RoW"):
+                    production = list(ws.production(matches[0]))
+                    if (
+                        matches[0].get("unit") != "kilogram"
+                        or len(production) != 1
+                        or production[0].get("unit") != "kilogram"
+                        or not isinstance(
+                            production[0].get("amount"), (int, float, np.number)
+                        )
+                        or isinstance(production[0].get("amount"), bool)
+                        or not np.isclose(
+                            production[0].get("amount", np.nan), 1, rtol=0, atol=1e-12
+                        )
+                    ):
+                        raise MetalsConfigError(
+                            "Reviewed regional material supply needs a positive one-kg reference."
+                        )
+                    warnings.warn(
+                        f"Using explicitly reviewed regional material supplier {metal_activity_name!r} / {reference_product!r} in {location!r}; source-specific limits and score uncertainty are recorded in metals/resource_attribution.json.",
+                        UserWarning,
+                        stacklevel=2,
+                    )
                 return matches[0]
         raise ws.NoResults(
             f"Could not find metal provider {metal_activity_name!r} / "
@@ -2126,7 +2171,9 @@ class Metals(BaseTransformation):
         values["provider fallback rank"] = (
             None
             if existing_exchange is not None
-            else ("World", "GLO", "RoW").index(provider.get("location"))
+            else self._metal_provider_locations(
+                provider_selector.name, provider_selector.reference_product
+            ).index(provider.get("location"))
         )
         update_exchanges(
             activity=dataset,

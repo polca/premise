@@ -1,0 +1,63 @@
+--- a/premise/materials/metals.py
++++ b/premise/materials/metals.py
+@@ -1567,0 +1568,21 @@
++    def _metal_provider_locations(self, name, product):
++        """Extend the normal location order only through reviewed source aliases."""
++        locations = ["World", "GLO", "RoW"]
++        for alias in _RESOURCE_POLICY["provider_aliases"]:
++            if str(getattr(self, "version", None)) not in alias["versions"] or tuple(
++                alias["target"]
++            ) != (name, product):
++                continue
++            extra = alias.get("locations", [])
++            if not isinstance(extra, list) or any(
++                not isinstance(value, str) or not value or value == "*"
++                for value in extra
++            ):
++                raise MetalsConfigError("Invalid explicit material-provider locations.")
++            if extra and not alias.get("limitations"):
++                raise MetalsConfigError(
++                    "Regional material suppliers need reviewed limitations."
++                )
++            locations.extend(extra)
++        return tuple(dict.fromkeys(locations))
++
+@@ -1584,0 +1606,3 @@
++        locations = self._metal_provider_locations(
++            metal_activity_name, reference_product
++        )
+@@ -1588,2 +1612 @@
+-            if dataset.get("location") in {"World", "GLO", "RoW"}
+-            and self.is_in_index(dataset)
++            if dataset.get("location") in locations and self.is_in_index(dataset)
+@@ -1591 +1614 @@
+-        for location in ("World", "GLO", "RoW"):
++        for location in locations:
+@@ -1600,0 +1624,22 @@
++                if location not in ("World", "GLO", "RoW"):
++                    production = list(ws.production(matches[0]))
++                    if (
++                        matches[0].get("unit") != "kilogram"
++                        or len(production) != 1
++                        or production[0].get("unit") != "kilogram"
++                        or not isinstance(
++                            production[0].get("amount"), (int, float, np.number)
++                        )
++                        or isinstance(production[0].get("amount"), bool)
++                        or not np.isclose(
++                            production[0].get("amount", np.nan), 1, rtol=0, atol=1e-12
++                        )
++                    ):
++                        raise MetalsConfigError(
++                            "Reviewed regional material supply needs a positive one-kg reference."
++                        )
++                    warnings.warn(
++                        f"Using explicitly reviewed regional material supplier {metal_activity_name!r} / {reference_product!r} in {location!r}; source-specific limits and score uncertainty are recorded in metals/resource_attribution.json.",
++                        UserWarning,
++                        stacklevel=2,
++                    )
+@@ -2129 +2174,3 @@
+-            else ("World", "GLO", "RoW").index(provider.get("location"))
++            else self._metal_provider_locations(
++                provider_selector.name, provider_selector.reference_product
++            ).index(provider.get("location"))

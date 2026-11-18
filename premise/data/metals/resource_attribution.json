@@ -285,6 +285,27 @@
         "Preserve the complete source country shares, recovered-stock allocation, chemicals, electricity and freight, and all previously reviewed native feedstock, transport, process and emission proxies. Scale only the ordinary metal input with the existing per-MW rule. Grade, coating/fabrication, geography, allocation, vintage, source uncertainty and score effects remain screening limitations; no new titanium source technology is asserted.",
         "This alias selects an already prepared inventory. It requests no additional root, builds no upstream process and supplies no substitute if the exact reviewed metal market is absent."
       ]
+    },
+    {
+      "versions": [
+        "2026"
+      ],
+      "source": [
+        "market for indium",
+        "indium"
+      ],
+      "target": [
+        "Indium, at regional storage",
+        "Indium, at regional storage"
+      ],
+      "locations": [
+        "RER"
+      ],
+      "source_reference": "docs/development/uvek-metals-regional-supplier-proposal.md",
+      "limitations": [
+        "Complete existing native European regional-storage indium supply per positive kg is an explicit geographic screening proxy for the global market requested by the unchanged material rule. Its historical production mix, trade, delivery, allocation, vintage, uncertainty and score differences remain; no new extraction, refining or transport process is invented.",
+        "Replacing an existing native indium input uses the same native reference product so it is removed before the future amount is added. New projected inputs use the same complete supply, with the original per-MW formula and unit conversion. This authorization is scoped to the declared 2026 alias, exact supplier name/product and RER location."
+      ]
     }
   ]
 }
