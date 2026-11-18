@@ -124,6 +124,29 @@ Wind-Gearbox:
 ## Battery technologies not found in Ecoinvent
 #LCo
 PEMFC:
+  uvek_aliases:
+    fltr:
+      name:
+        - Fuel cell stack production, 1 kWe, proton exchange membrane (PEM)
+      reference product:
+        - Fuel cell stack production, 1 kWe, proton exchange membrane (PEM)
+      unit: unit
+    exact: true
+    exact_identities:
+      - name: Fuel cell stack production, 1 kWe, proton exchange membrane (PEM)
+        reference product: Fuel cell stack production, 1 kWe, proton exchange membrane (PEM)
+        unit: unit
+    native_reference_amount: 1
+    native_limitations:
+      - The native reference provides one 1 kWe PEM stack. Apply the existing kg/MW stack
+        intensities with the existing 0.001 MW per unit basis. Balance of plant,
+        complete vehicles, membranes, treatment and electricity services are separate
+        boundaries and are excluded.
+      - Native stacks retain their own technology, material composition,
+        geography, allocation, vintage and biosphere limitations. This selector does
+        not establish score equivalence or authorize extrapolating unsupported years.
+      - Published CLIC stacks require their own reviewed role binding; native names
+        cannot establish that binding. This native selector does not admit them.
   ecoinvent_aliases:
     # Capacity-based intensities apply to the configured stack, not its materials.
     fltr:
@@ -148,6 +171,7 @@ SOFC - Y:
       - natural gas
       - fuel cell production, solid oxide
       - treatment
+      - Treatment
       - redox flow battery
 #SOFC_scandium:
 ##  ecoinvent_aliases:

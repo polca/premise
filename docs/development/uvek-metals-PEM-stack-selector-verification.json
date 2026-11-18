@@ -1,0 +1,53 @@
+{
+  "status": "exact_native_PEM_stack_selector_and_capacity_basis_verified",
+  "combined_prerequisite_activities": 18705,
+  "matched_native_PEM_stacks": [
+    {
+      "name": "Fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+      "reference product": "Fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+      "location": "GLO",
+      "unit": "unit"
+    }
+  ],
+  "positive_reference_witnesses": [
+    {
+      "name": "Fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+      "reference product": "Fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+      "location": "GLO",
+      "unit": "unit",
+      "production_reference": [
+        {
+          "name": "Fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+          "product": "Fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+          "amount": 1.0,
+          "unit": "unit",
+          "type": "production"
+        }
+      ]
+    },
+    {
+      "name": "fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+      "reference product": "fuel cell stack, 1 kWe, proton exchange membrane (PEM)",
+      "location": "GLO",
+      "unit": "unit",
+      "production_reference": [
+        {
+          "name": "fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+          "product": "fuel cell stack, 1 kWe, proton exchange membrane (PEM)",
+          "amount": 1.0,
+          "unit": "unit",
+          "type": "production"
+        }
+      ]
+    }
+  ],
+  "MW_per_unit": 0.001,
+  "wrong_reference_unit_and_treatment_controls_excluded": true,
+  "case_sensitive_SOFCTreatment_false_matches_after_guard": 0,
+  "unbound_published_PEM_stack_not_laundered_through_native_aliases": true,
+  "source_code_changes": 0,
+  "new_upstream_processes": 0,
+  "qualification_limit": "Native filter/reference/conversion checks only. Published-stack binding, full metals integration/export and existing hard-coded conversion-count test refresh remain unfinished.",
+  "existing_regressions_with_temporary_expected_count_refresh_passed": 362,
+  "actual_repository_hard_coded_count_test_still_requires_refresh": true
+}

@@ -250,6 +250,15 @@ conversions:
   ecoinvent_unit: unit
   intensity_unit: kg/MW
   factor: 0.125
+- id: uvek-2026-pem-fuel-cell-stack-1-kwe
+  activity:
+    name: Fuel cell stack production, 1 kWe, proton exchange membrane (PEM)
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 0.001
+  description: The native reference provides one 1 kWe PEM stack, or 0.001 MW.
+    This is the same capacity conversion as the existing curated one-kWe stack;
+    it does not describe balance of plant, operation or treatment.
 - id: electrolyzer-production-1mwe-pem-stack
   activity:
     name: electrolyzer production, 1MWe, PEM, Stack
