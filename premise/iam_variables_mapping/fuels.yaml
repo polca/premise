@@ -2472,6 +2472,30 @@ methanol, from grass, with CCS:
     fltr:
     - methanol distillation, from wood, with CCS
 liquefied petroleum gas:
+  uvek_aliases:
+    fltr:
+      name: &id001
+      - Liquefied petroleum gas, at service station
+      - Propane, butane, at refinery
+      reference product: *id001
+      unit: kilogram
+    exact: true
+    exact_identities:
+    - name: Liquefied petroleum gas, at service station
+      reference product: Liquefied petroleum gas, at service station
+      unit: kilogram
+    - name: Propane, butane, at refinery
+      reference product: Propane, butane, at refinery
+      unit: kilogram
+    native_reference_amount: 1
+    native_limitations:
+    - 'Classify the complete native refinery and delivered LPG supplies per kg using the existing shared liquefied-petroleum-gas
+      property: nominal LHV 45.5 MJ/kg. This identifies the fuel already present in the heat inventory; it does not
+      substitute a supplier, change its quantity, alter allocation, add fuel or infer a new efficiency. Native propane/butane
+      composition, delivery, geography and vintage differences remain unquantified.'
+    - This carrier declaration prevents a source heat supplier from falling back to pumping electricity alone when
+      its native LPG label is not recognized. Preserve separately listed auxiliary electricity and all source uncertainty.
+      Do not classify the MJ-based combustion or useful-heat services as kg fuel.
   lhv:
     unit: megajoule
     value: 45.5

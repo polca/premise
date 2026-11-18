@@ -1,0 +1,51 @@
+{
+  "status": "native_LPG_carrier_identification_corrected_by_mapping",
+  "source_code_changes": 0,
+  "before": {
+    "phase": "before",
+    "delivered_heat_factor": 378.44383893430216,
+    "recognized_primary_fuel": null,
+    "nominal_fuel_MJ_per_MJ_heat": 0.8656773211567732,
+    "pumping_electricity_MJ_per_MJ_heat": 0.0026424,
+    "source_quantity_unchanged": true,
+    "no_source_code_changed_by_check": true
+  },
+  "after": {
+    "phase": "after",
+    "delivered_heat_factor": 1.1551648351648351,
+    "recognized_primary_fuel": "liquefied petroleum gas",
+    "nominal_fuel_MJ_per_MJ_heat": 0.8656773211567732,
+    "pumping_electricity_MJ_per_MJ_heat": 0.0026424,
+    "source_quantity_unchanged": true,
+    "no_source_code_changed_by_check": true,
+    "wrong_unit_refused": true
+  },
+  "native_supplies": [
+    {
+      "name": "Propane, butane, at refinery",
+      "reference product": "Propane, butane, at refinery",
+      "location": "RER",
+      "unit": "kilogram",
+      "positive_reference_amount": 1
+    },
+    {
+      "name": "Liquefied petroleum gas, at service station",
+      "reference product": "Liquefied petroleum gas, at service station",
+      "location": "CH",
+      "unit": "kilogram",
+      "positive_reference_amount": 1
+    },
+    {
+      "name": "Propane, butane, at refinery",
+      "reference product": "Propane, butane, at refinery",
+      "location": "CH",
+      "unit": "kilogram",
+      "positive_reference_amount": 1
+    }
+  ],
+  "original_fuel_LHV_CO2_IAM_aliases_and_ecoinvent_filters_unchanged": true,
+  "new_efficiency_or_quantity_multiplier": false,
+  "existing_heat_native_validation_mapping_tests_passed": 79,
+  "combined_workflow_recheck": "running",
+  "limitation": "Controlled real-inventory carrier proof passes. Combined-sector validation, full final-energy role coverage and export remain separate checks."
+}
