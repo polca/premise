@@ -1,0 +1,15 @@
+{
+  "status": "exact_battery_compatibility_patch_approved_and_applied",
+  "source_files_unchanged": true,
+  "existing_validation_checks_retained": true,
+  "other_unverified_sectors_still_refused": true,
+  "elapsed_seconds": 3.8395520420745015,
+  "existing_tests_passed": 92,
+  "proposal_applied_to_repository_source": true,
+  "final_energy_context_and_public_admission_preserved": true,
+  "proposal_sha256": "f8fbcaec5f07d20e92bc5e0a4cffd69a45550d2168da81bbc94b0c84c59e2596",
+  "applied_source_bytes_match_approved_proposal": true,
+  "applied_battery_tests_passed": 92,
+  "additional_public_boundary_tests_requiring_refresh": 2,
+  "installed_live_update_and_export_pending": true
+}

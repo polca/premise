@@ -1669,6 +1669,16 @@ class BatteryValidation(BaseDatasetValidator):
             exchange.get("product", exchange.get("reference product", ""))
         ).lower()
 
+    def _used_battery_sign(self, exchange):
+        if not hasattr(self, "_used_battery_signs"):
+            from ..batteries.battery import battery_waste_reference_signs
+
+            self._used_battery_signs = battery_waste_reference_signs(self.database)
+        key = tuple(
+            exchange.get(k) for k in ("name", "reference product", "location", "unit")
+        )
+        return self._used_battery_signs.get(key, -1)
+
     def _check_capacity_shares(self, dataset, exchanges):
         # Shares represent installed kWh, not a battery mass in kg.
         total = sum(exc["amount"] for exc in exchanges)
@@ -1767,7 +1777,8 @@ class BatteryValidation(BaseDatasetValidator):
             if product.startswith(("battery pack,", "battery,")):
                 role, unit, positive = "pack", "kilogram", True
             elif product == "used li-ion battery":
-                role, unit, positive = "waste", "kilogram", False
+                role, unit = "waste", "kilogram"
+                positive = self._used_battery_sign(exchange) > 0
             elif product.startswith(
                 (
                     "battery monitoring and central control system,",
@@ -1787,7 +1798,9 @@ class BatteryValidation(BaseDatasetValidator):
             roles[role].append(exchange)
         missing = [role for role, rows in roles.items() if not rows]
         pack = sum(row["amount"] for row in roles["pack"])
-        waste = -sum(row["amount"] for row in roles["waste"])
+        waste = sum(
+            row["amount"] * self._used_battery_sign(row) for row in roles["waste"]
+        )
         if unexpected or missing or not np.isclose(pack, waste, rtol=0.0, atol=1e-8):
             self.log_issue(
                 dataset,
@@ -1817,8 +1830,15 @@ class BatteryValidation(BaseDatasetValidator):
         # Retain the older manufactured-pack / equal-mass waste contract.
         # Only kg belong in this mass balance; operation energy is not mass.
         masses = [exc for exc in exchanges if exc.get("unit") == "kilogram"]
+        waste = [
+            exc for exc in masses if self._battery_product(exc) == "used li-ion battery"
+        ]
+        masses = [
+            exc for exc in masses if self._battery_product(exc) != "used li-ion battery"
+        ]
         manufactured = sum(exc["amount"] for exc in masses if exc["amount"] > 0)
         discarded = -sum(exc["amount"] for exc in masses if exc["amount"] < 0)
+        discarded += sum(exc["amount"] * self._used_battery_sign(exc) for exc in waste)
         if not np.isclose(manufactured - discarded, 0.0, rtol=0.0, atol=1e-8):
             self.log_issue(
                 dataset,

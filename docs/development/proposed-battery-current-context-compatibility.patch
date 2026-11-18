@@ -1,0 +1,90 @@
+--- a/premise/batteries/battery.py
++++ b/premise/batteries/battery.py
+@@ -22,0 +23,25 @@
++def battery_waste_reference_signs(database):
++    """Read generated treatment suppliers in their actual reference coordinates."""
++    signs = {}
++    for supplier in database:
++        if (
++            str(supplier.get("reference product", "")).lower() != "used li-ion battery"
++            or supplier.get("brightpath_conversion", {}).get("origin") != "generated"
++        ):
++            continue
++        production = list(ws.production(supplier))
++        if (
++            len(production) != 1
++            or not np.isfinite(production[0]["amount"])
++            or production[0]["amount"] == 0
++        ):
++            raise ValueError(
++                "Generated battery treatment needs one finite nonzero reference."
++            )
++        key = tuple(
++            supplier.get(k) for k in ("name", "reference product", "location", "unit")
++        )
++        signs[key] = 1 if production[0]["amount"] > 0 else -1
++    return signs
++
++
+@@ -42 +67,3 @@
+-def _update_battery(scenario, version, system_model):
++def _update_battery(
++    scenario, version, system_model, family="ecoinvent", biosphere_version=None
++):
+@@ -60,0 +88,2 @@
++        family=family,
++        biosphere_version=biosphere_version,
+@@ -108,0 +138,2 @@
++        family: str = "ecoinvent",
++        biosphere_version: str = None,
+@@ -119,0 +151,2 @@
++            family=family,
++            biosphere_version=biosphere_version,
+@@ -369 +402,4 @@
+-                    if e.get("unit") == "kilogram" and e["amount"] > 0
++                    if e.get("unit") == "kilogram"
++                    and e["amount"] > 0
++                    and str(e.get("product", e.get("reference product", ""))).lower()
++                    != "used li-ion battery"
+--- a/premise/validation/validation.py
++++ b/premise/validation/validation.py
+@@ -1671,0 +1672,10 @@
++    def _used_battery_sign(self, exchange):
++        if not hasattr(self, "_used_battery_signs"):
++            from ..batteries.battery import battery_waste_reference_signs
++
++            self._used_battery_signs = battery_waste_reference_signs(self.database)
++        key = tuple(
++            exchange.get(k) for k in ("name", "reference product", "location", "unit")
++        )
++        return self._used_battery_signs.get(key, -1)
++
+@@ -1770 +1780,2 @@
+-                role, unit, positive = "waste", "kilogram", False
++                role, unit = "waste", "kilogram"
++                positive = self._used_battery_sign(exchange) > 0
+@@ -1790 +1801,3 @@
+-        waste = -sum(row["amount"] for row in roles["waste"])
++        waste = sum(
++            row["amount"] * self._used_battery_sign(row) for row in roles["waste"]
++        )
+@@ -1819,0 +1833,6 @@
++        waste = [
++            exc for exc in masses if self._battery_product(exc) == "used li-ion battery"
++        ]
++        masses = [
++            exc for exc in masses if self._battery_product(exc) != "used li-ion battery"
++        ]
+@@ -1821,0 +1841 @@
++        discarded += sum(exc["amount"] * self._used_battery_sign(exc) for exc in waste)
+--- a/premise/database/background.py
++++ b/premise/database/background.py
+@@ -65,0 +66 @@
++            "battery",
+@@ -70 +71 @@
+-            "UVEK 2026 supports biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses, two_wheelers, trains, cars, trucks and final energy; "
++            "UVEK 2026 supports biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses, two_wheelers, trains, cars, trucks, final energy and battery; "
+--- a/premise/database/new_database.py
++++ b/premise/database/new_database.py
+@@ -2942,0 +2943 @@
++                "battery",

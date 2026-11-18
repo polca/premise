@@ -2940,6 +2940,7 @@ class NewDatabase:
                 "buses",
                 "trains",
                 "final energy",
+                "battery",
             ):
                 self.sector_update_methods[sector]["args"] += (
                     self.source_family,

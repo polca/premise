@@ -20,6 +20,31 @@ from ..validation.validation_framework import record_validation_phase
 logger = create_logger("battery")
 
 
+def battery_waste_reference_signs(database):
+    """Read generated treatment suppliers in their actual reference coordinates."""
+    signs = {}
+    for supplier in database:
+        if (
+            str(supplier.get("reference product", "")).lower() != "used li-ion battery"
+            or supplier.get("brightpath_conversion", {}).get("origin") != "generated"
+        ):
+            continue
+        production = list(ws.production(supplier))
+        if (
+            len(production) != 1
+            or not np.isfinite(production[0]["amount"])
+            or production[0]["amount"] == 0
+        ):
+            raise ValueError(
+                "Generated battery treatment needs one finite nonzero reference."
+            )
+        key = tuple(
+            supplier.get(k) for k in ("name", "reference product", "location", "unit")
+        )
+        signs[key] = 1 if production[0]["amount"] > 0 else -1
+    return signs
+
+
 def load_cell_energy_density():
     """
     Load cell energy density data.
@@ -39,7 +64,9 @@ def load_cell_energy_density():
     return result
 
 
-def _update_battery(scenario, version, system_model):
+def _update_battery(
+    scenario, version, system_model, family="ecoinvent", biosphere_version=None
+):
 
     if (
         scenario["iam data"].battery_mobile_scenarios is None
@@ -58,6 +85,8 @@ def _update_battery(scenario, version, system_model):
         system_model=system_model,
         cache=scenario.get("cache"),
         index=scenario.get("index"),
+        family=family,
+        biosphere_version=biosphere_version,
     )
 
     if (
@@ -106,6 +135,8 @@ class Battery(BaseTransformation):
         system_model: str,
         cache: dict = None,
         index: dict = None,
+        family: str = "ecoinvent",
+        biosphere_version: str = None,
     ) -> None:
         super().__init__(
             database,
@@ -117,6 +148,8 @@ class Battery(BaseTransformation):
             system_model,
             cache,
             index,
+            family=family,
+            biosphere_version=biosphere_version,
         )
         self.system_model = system_model
         self._validation_targets = {}
@@ -366,7 +399,10 @@ class Battery(BaseTransformation):
                 mass_inputs = [
                     e
                     for e in ws.technosphere(ds)
-                    if e.get("unit") == "kilogram" and e["amount"] > 0
+                    if e.get("unit") == "kilogram"
+                    and e["amount"] > 0
+                    and str(e.get("product", e.get("reference product", ""))).lower()
+                    != "used li-ion battery"
                 ]
                 if not mass_inputs:
                     raise ValueError(
