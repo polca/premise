@@ -355792,6 +355792,792 @@
           "fingerprint": "657c99f86058dd22a07c734a41eac182fc36b83701fb23593b11aaa12a8026be"
         }
       ]
+    },
+    {
+      "rule_id": "bp-f1810846999bc5bf",
+      "operation": "replace",
+      "mapping_method": "reviewed_final_energy_heat_mix_39",
+      "review_path": "export/uvek_final_energy_heat_mix_39_review.json",
+      "review_sha256": "972adbb1158747ffd8fdfb6d2d2ae02ac43759069539dee1892a62389bd1f280",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization retaining the immediate heat market and using complete native heat services without remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "CH",
+          "name": "market for heat, central or small-scale, other than natural gas",
+          "reference product": "heat, central or small-scale, other than natural gas",
+          "unit": "megajoule"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "CH",
+            "name": "market for heat, central or small-scale, other than natural gas",
+            "reference product": "heat, central or small-scale, other than natural gas",
+            "unit": "megajoule"
+          },
+          "reference_amount": 1,
+          "nonproduction_count": 29,
+          "inventory_sha256": "e8941f81c2fd19961dcf07927589b07a5b6497abc34d83543efa07fa90569e90",
+          "metadata_sha256": "c7892dccd1b45796f380ed660cf220c08c22fb94adfc9502806a6ac1aabb6a17",
+          "comment_sha256": "155090318bef8e78b457501c541b2074777f31ab2e5981bc36c31444a1e7e952",
+          "product_information_sha256": "e73ba5ba3222dd5fdffb36c397969525b70ebdbc790b03e01b03200910c76ea5"
+        },
+        "native_suppliers": [
+          {
+            "identity": {
+              "name": "Heat, hardwood chips from industry, at furnace 50kW",
+              "reference product": "Heat, hardwood chips from industry, at furnace 50kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, hardwood chips from industry, at furnace 50kW",
+                  "reference product": "Heat, hardwood chips from industry, at furnace 50kW",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "b88719d11e2436128a178bc1f6c41803b7c825c1a0f5cc07bb205b3916b50166",
+                "metadata_sha256": "242857917396f2ec590011f281efb7398c9155c32805ae61fb53c5dfe8302e7a",
+                "comment_sha256": "ef923a38b146734e3d8cd02eaf0975da48749b4281b3a0775c156e6b344b9057",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, hardwood chips from industry, at furnace 50kW",
+                  "reference product": "Heat, hardwood chips from industry, at furnace 50kW",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "f08b323ec51c3a7a68b78c10f0b12a5d9dff4c974cc8adc8999858549040dfa7",
+                "metadata_sha256": "aec61d435c48873434b3f0c91d569b09f3ae022eab1a34049757df228e51b479",
+                "comment_sha256": "f0cebff1ba822ad5b9a8ae5dab8856ea92b521682955f9cdf4c31908887b8a29",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, wood pellets, at furnace 15kW",
+              "reference product": "Heat, wood pellets, at furnace 15kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, wood pellets, at furnace 15kW",
+                  "reference product": "Heat, wood pellets, at furnace 15kW",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "066a3bc1cc6ce179eb9ce325c9026c8c08c943215af7ef7c288cda439bff0f93",
+                "metadata_sha256": "4896e62926be4c43ebb660a9ded016e0a15f7a491d42f227195dacea03d950da",
+                "comment_sha256": "3b8916b5a626bce0d0fb16d6fc68846142aebeb5756793a765205ed7ab77945d",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, wood pellets, at furnace 15kW",
+                  "reference product": "Heat, wood pellets, at furnace 15kW",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "cd1c65730cf5d507b8e8f645f9ad7e4ac0b7958eae2a28101383a709e5263ad1",
+                "metadata_sha256": "ef2c4265fc31e17334098403cddfc67ddad90dc419edc36c6c0938954df77463",
+                "comment_sha256": "98013a68e40e4582425e0b7931aaae35e11be7afc26ffd74c3133470c1e7436a",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, at 10.5 m2 evacuated tube collector, heat pipe, one-family house, for combined system",
+              "reference product": "Heat, at 10.5 m2 evacuated tube collector, heat pipe, one-family house, for combined system",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, at 10.5 m2 evacuated tube collector, heat pipe, one-family house, for combined system",
+                  "reference product": "Heat, at 10.5 m2 evacuated tube collector, heat pipe, one-family house, for combined system",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 5,
+                "inventory_sha256": "7cdb5ae1a140917dd8f006421c955155e47f5a0ef7e5ec4b2203860f685ac95b",
+                "metadata_sha256": "d788330d1579ca9b19342bbfd9ccaf626335db0ac7f1c49584268e2f5c24ebe3",
+                "comment_sha256": "3ffdc9fa70c89c98d2b0bf06e64a6483e100a672061b0d1b893a2feebab8569f",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, at 10.5 m2 evacuated tube collector, heat pipe, one-family house, for combined system",
+                  "reference product": "Heat, at 10.5 m2 evacuated tube collector, heat pipe, one-family house, for combined system",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 5,
+                "inventory_sha256": "0b7ed788863db3f9ebc97e3f5840b5a001d8b79c3e0a5087d7fb265199781723",
+                "metadata_sha256": "9cff9e048bb6c8cf9fad3a315a081cb325a9136d03d8a1c1b29df7d41d902579",
+                "comment_sha256": "696e90f8e72e1280e1f527b252372a7a2bcf6d9623a9e5ddb2e303a0e14ed55a",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, mixed logs, at furnace 15kW",
+              "reference product": "Heat, mixed logs, at furnace 15kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, mixed logs, at furnace 15kW",
+                  "reference product": "Heat, mixed logs, at furnace 15kW",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "85b9e780330fe6a8f8daf3c5a17b1f5b80bf6f9efdda4cb6cc287e578f6fd4ab",
+                "metadata_sha256": "2e7104d5aed253a1714f5a9e6b05a89bd0d7221f4e2e9067a25618afdff28f49",
+                "comment_sha256": "5db606048b9a1b687c306f2c729aecf19085d43ce7a1828410808312659e8fb4",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, mixed logs, at furnace 15kW",
+                  "reference product": "Heat, mixed logs, at furnace 15kW",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "09c16b59b9d0e97ddd87a7b5f72f4c83926eef7233f5ed476f8f25440d335faa",
+                "metadata_sha256": "4a4a7a34eae24e8529241c7d81b1166058b21e28820ae8c1c383af3743d51f64",
+                "comment_sha256": "9bfdc006bc9ff6db3511569d28eb74ef1906e8beeb2b94b15012c8227cb24338",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, hardwood chips from forest, at furnace 50kW",
+              "reference product": "Heat, hardwood chips from forest, at furnace 50kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, hardwood chips from forest, at furnace 50kW",
+                  "reference product": "Heat, hardwood chips from forest, at furnace 50kW",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "a81a7f72f3b369f931e92b50fcaf6fedad1a1167f1256f5afa6827105ac55649",
+                "metadata_sha256": "8e597433c97b0cb2269e46fb9d8f671c4586a193478d4655bd543259625e6303",
+                "comment_sha256": "4555025799d16b83955a8c04974c6f6abfaadfe0e8970d19154d9b3e8e606766",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, hardwood chips from forest, at furnace 50kW",
+                  "reference product": "Heat, hardwood chips from forest, at furnace 50kW",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "b07cd36611962555505853c25e40e5c02ab0f315f01b35cd272c7fa36076c590",
+                "metadata_sha256": "95d3833af196cc635bb8aecbd5a4630beb5873cc00513776478b8eeb7c5c7194",
+                "comment_sha256": "6a2f4c8dc31b8f3d11effd8b5aab1a692ca275086668f87d6c6cc47fd39e3d2a",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, softwood chips from forest, at furnace 50kW",
+              "reference product": "Heat, softwood chips from forest, at furnace 50kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, softwood chips from forest, at furnace 50kW",
+                  "reference product": "Heat, softwood chips from forest, at furnace 50kW",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "69883c12d0b7688904bf532fbaf283e10c8e7bc531a4e34ca74dce9f584d4f78",
+                "metadata_sha256": "1344be32b3188b32b42b8912b64ec4d4409a8c903cc2d78c07b8ad7786077561",
+                "comment_sha256": "e7c0e43096145446fe6162efe73e1a692847702f78c59e1e040afb97a18e8e4c",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, softwood chips from forest, at furnace 50kW",
+                  "reference product": "Heat, softwood chips from forest, at furnace 50kW",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "aeb3fe77ca881200e7949a7ec15ab9f0a852b93730b79090bf1fe143065dafb3",
+                "metadata_sha256": "5f60e811f41ef635f9d200a4aca9124f1271c5c7543ce0f940d6874eed51f34d",
+                "comment_sha256": "a2eb2823fdea55e2bac4904b65e36290e5ceb1f1e1f97d51d570067ee92592f5",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, wood pellets, at furnace 300kW",
+              "reference product": "Heat, wood pellets, at furnace 300kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, wood pellets, at furnace 300kW",
+                  "reference product": "Heat, wood pellets, at furnace 300kW",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "0a684929842bde414d7a1387c48eb97c248c367d8718f36572d3cd60e907fc07",
+                "metadata_sha256": "0529c2e8fec9c985abafdf569599c728cb73ae7f41cc75646ae3ae9b595c6127",
+                "comment_sha256": "730bc903a6572fca4a21e000824db72d6611cae2c02faab75312bce08e22fa7d",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, wood pellets, at furnace 300kW",
+                  "reference product": "Heat, wood pellets, at furnace 300kW",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "7a49cd813880775520db1c90e50e7918f3e7d6644f813e5779b32f96f40be9e2",
+                "metadata_sha256": "1dff584c6d8546683359770b47c3a1368923796b7002777e05727e6f7c18d94a",
+                "comment_sha256": "4b58a4a7c551937f9862cdbc2584b1e65dcde3fb4ba9646389fc6a20a96a168e",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, light fuel oil, at boiler 100kW condensing, non-modulating",
+              "reference product": "Heat, light fuel oil, at boiler 100kW condensing, non-modulating",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, light fuel oil, at boiler 100kW condensing, non-modulating",
+                  "reference product": "Heat, light fuel oil, at boiler 100kW condensing, non-modulating",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "b7250ce43b4ae6fcaeb6b0ace4f70ed788a944be300a31fd8e345a6f8b7c0da9",
+                "metadata_sha256": "7faa01001e5e2b47d807146bf2a5f03be19cf901003e9d69c5f7a089ee6b1130",
+                "comment_sha256": "60a5693169ab9dc5ccca84479b2e054c288b024615d9d42c5950f3c697086603",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, light fuel oil, at boiler 100kW condensing, non-modulating",
+                  "reference product": "Heat, light fuel oil, at boiler 100kW condensing, non-modulating",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "bbe26a44fe161587d0b6e45290e8d8326ae926d27a4a9357d540a74d861942d8",
+                "metadata_sha256": "03f0bb593d2cc9c8bde3ac42e36780de18a83297fdad1957b7bd3df532dad967",
+                "comment_sha256": "4a7141eadb33e5559fbb1f3dc11ab2d54c810b0294b09672ed0d3c2b5dacfa71",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, at 5 m2 Cu collector, one-family house, for hot water",
+              "reference product": "Heat, at 5 m2 Cu collector, one-family house, for hot water",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, at 5 m2 Cu collector, one-family house, for hot water",
+                  "reference product": "Heat, at 5 m2 Cu collector, one-family house, for hot water",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 5,
+                "inventory_sha256": "4731c8c3726f8f3160fce54b6692de3ae2ddce86a5961836358b66492d6ce548",
+                "metadata_sha256": "bb6038e981723352a181c9c7634331cf685ab95be0883d8a61d7a2a2373b118c",
+                "comment_sha256": "2d8d32780e9055b51f6ffd7cc7838d860ef7fe4a217a2c2ee37fe03fc250ecc5",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, at 5 m2 Cu collector, one-family house, for hot water",
+                  "reference product": "Heat, at 5 m2 Cu collector, one-family house, for hot water",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 5,
+                "inventory_sha256": "6c10dc69e331fbaad954522a71ca34948212558b0ad8145ea57ce291bfbb4c34",
+                "metadata_sha256": "9ea50cf6d1784a412da338bf0fa213021c4500b9831678b17b112333b642ad76",
+                "comment_sha256": "894f212fadfa46626230d362f0811f17d61a0993c04585426c036b805006f805",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, light fuel oil, at boiler 10kW, non-modulating",
+              "reference product": "Heat, light fuel oil, at boiler 10kW, non-modulating",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, light fuel oil, at boiler 10kW, non-modulating",
+                  "reference product": "Heat, light fuel oil, at boiler 10kW, non-modulating",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "8a872a98bffed73da3c1ea7c810460adb32d46701026fe7af8b73e433bb96d73",
+                "metadata_sha256": "a5d89e1a1ba92c248883ade062a071e6248e20f7e5ea586d3edaa4ecd1eab5c5",
+                "comment_sha256": "f63ef0d1c62c5522a33c87d7af8dcae47ba2f82bc61f3b5a77a0557574449f48",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, light fuel oil, at boiler 10kW, non-modulating",
+                  "reference product": "Heat, light fuel oil, at boiler 10kW, non-modulating",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "3db79db7d370b0c2779b989bc6c97240edb584cea09ad1aa420724659936916c",
+                "metadata_sha256": "0dafe9d2056af98fe81167ce6741b07187e26f8c0ea359b551c43f7108cb079f",
+                "comment_sha256": "a776bd11fd740d53271fdf8f6f77f4c14eef424da0e5a93525e812f652cb49cd",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, at heat pump 30kW, allocation exergy",
+              "reference product": "Heat, at heat pump 30kW, allocation exergy",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, at heat pump 30kW, allocation exergy",
+                  "reference product": "Heat, at heat pump 30kW, allocation exergy",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 4,
+                "inventory_sha256": "9a376345050a5693e5db5e42e77742fa6b929b3685586fcdac73ee8f283bcced",
+                "metadata_sha256": "0645086cd1cbde5be818b974799e860da54de3c0cb5170f16fd04b6cea1ffd41",
+                "comment_sha256": "49d6711fab8712641b19b372ed5a3a83e5c164c4ce173f75b2b935fe626ffc8d",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, at heat pump 30kW, allocation exergy",
+                  "reference product": "Heat, at heat pump 30kW, allocation exergy",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 4,
+                "inventory_sha256": "8ea0eed681ff1024675f2663e8b6543f2d8b8f8364021d35f4049fcc13c8c71b",
+                "metadata_sha256": "7b1af1d318d9bb75deea631629d6e92068feb4f3f3974a16e2fc43aa1ea3e40b",
+                "comment_sha256": "20a951e8de5dca4ad9f4fd3b3e5c4ed533e8696a35cd206c0299a6e3f1861b35",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, mixed logs, at wood heater 6kW",
+              "reference product": "Heat, mixed logs, at wood heater 6kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, mixed logs, at wood heater 6kW",
+                  "reference product": "Heat, mixed logs, at wood heater 6kW",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "d07ec31bcbe35b8a2026d21d5290f663e1492551617ab8d340bded9dec05aa40",
+                "metadata_sha256": "f938f88d270c7ec23987dc91094eb7a268e58604fe71b209c137b9004483c427",
+                "comment_sha256": "28734c071fd0a2b29e0d89fed3f35adc9372816d7e463fd5fa5cc1dea81c7fda",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, mixed logs, at wood heater 6kW",
+                  "reference product": "Heat, mixed logs, at wood heater 6kW",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "57bc207307c7d38cc17dc0710560429cfb9ca5fc88f1df329160b183a454d2a8",
+                "metadata_sha256": "21158e141e6d6ab4f15c4fc595a567656296ae5e2429caa7a591a681601a3358",
+                "comment_sha256": "8141b339bfd5a6f58ea31a70e49dbd04835478b2c109ea87afef013f8b27b202",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, at 12 m2 Cu collector, one-family house, for combined system",
+              "reference product": "Heat, at 12 m2 Cu collector, one-family house, for combined system",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, at 12 m2 Cu collector, one-family house, for combined system",
+                  "reference product": "Heat, at 12 m2 Cu collector, one-family house, for combined system",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 5,
+                "inventory_sha256": "45ac824c6ed6b1d14f67b487fe624e0aa449bf249a98ba621c0b5b93e014cc2f",
+                "metadata_sha256": "cbf5b7a5ccf1c8a3e9f6e565276a375b4718620d891cfe7d8f5505d95e822a56",
+                "comment_sha256": "4d1fd552d24d16750d72c8acdbb72c71431563075bb2ba0eea468b03d1351e6d",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, at 12 m2 Cu collector, one-family house, for combined system",
+                  "reference product": "Heat, at 12 m2 Cu collector, one-family house, for combined system",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 5,
+                "inventory_sha256": "a5b98edaed6d787cab7964c72d67cc53e7bd3a977d4e047067474965017a1867",
+                "metadata_sha256": "2a0d74d6e6273e8f5695c8843f4236064ecfccaefebb160a0e4916faff29efad",
+                "comment_sha256": "653b33b0355e9eef8ddb03680bbfbd730d984db28ac999f301ca6e2e06724e3e",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, at 81 m2 Cu collector, multiple dwelling, for hot water",
+              "reference product": "Heat, at 81 m2 Cu collector, multiple dwelling, for hot water",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, at 81 m2 Cu collector, multiple dwelling, for hot water",
+                  "reference product": "Heat, at 81 m2 Cu collector, multiple dwelling, for hot water",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 5,
+                "inventory_sha256": "1ee8cafd9d410920332623a0b55bb5709261150b2145f47410e1ed7f91912103",
+                "metadata_sha256": "1fd677e44fe988b002866629dc26542a6b0667b61d841f05581a359887d38607",
+                "comment_sha256": "1a698d44cd35a66a6a6f4b6cfacb3d852c81dccb75378700de10a35cc70ea02a",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, at 81 m2 Cu collector, multiple dwelling, for hot water",
+                  "reference product": "Heat, at 81 m2 Cu collector, multiple dwelling, for hot water",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 5,
+                "inventory_sha256": "3ad76b127af79cca81e745613a9404c06d629043fb7a7804f97a102cbb631aa6",
+                "metadata_sha256": "343706482a5d4a7a84faec6662201a13dbe112bc718e4f660666e884777e7fe3",
+                "comment_sha256": "51e630a0753be18f1cfd816f057e48137b897967ff8c6259ae4d9688a9d03204",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, mixed logs, at furnace 50kW",
+              "reference product": "Heat, mixed logs, at furnace 50kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, mixed logs, at furnace 50kW",
+                  "reference product": "Heat, mixed logs, at furnace 50kW",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "e76c9bb7c7291fa453a2d72a0c2428ddac6ee9515345dd2c499fb9dedf03c397",
+                "metadata_sha256": "301d613ca9cb4b6bae2fb03c729915cf01577d0ea48a08a8838e62b991ef12bf",
+                "comment_sha256": "b173313d5eee49ac48d85195189d347f09b946c0f3edd946911f672d0f3dbfcd",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, mixed logs, at furnace 50kW",
+                  "reference product": "Heat, mixed logs, at furnace 50kW",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "fb6464aefadd3a0888752dedd7784d9d381c7bf39a06b415d1bc37b0688e112e",
+                "metadata_sha256": "560527b2bedc078565abf60710db12ce33f007af5a450226fc5eb1871d458f36",
+                "comment_sha256": "fc8eb3ce6e9411f149c38a80ee53e355fc91516f8bb56444d700cea3d0702270",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, light fuel oil, at boiler 10kW condensing, non-modulating",
+              "reference product": "Heat, light fuel oil, at boiler 10kW condensing, non-modulating",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, light fuel oil, at boiler 10kW condensing, non-modulating",
+                  "reference product": "Heat, light fuel oil, at boiler 10kW condensing, non-modulating",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "71ae607fe7f279e0af7b399fba1c4b6e3fc11bc736603e4d99ed019283b573b1",
+                "metadata_sha256": "ef94593321b2748043e32e08df67f44dba420e3c840858bedd5af8e4a5074349",
+                "comment_sha256": "60a5693169ab9dc5ccca84479b2e054c288b024615d9d42c5950f3c697086603",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, light fuel oil, at boiler 10kW condensing, non-modulating",
+                  "reference product": "Heat, light fuel oil, at boiler 10kW condensing, non-modulating",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "dbcd9dd55cedc4edee432e71a7698644803ddb6c05502b7ab38a9e69e7edafa2",
+                "metadata_sha256": "b9bbbac7e0bf9bce138c146e9ac0a933363a6f7b7ef5290e8e97b56ecd97408a",
+                "comment_sha256": "8a032bcdde2c4344232a2c898fa3c9704ddb7ce82f951a797b2cc6ad70778749",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, light fuel oil, at boiler 100kW, non-modulating",
+              "reference product": "Heat, light fuel oil, at boiler 100kW, non-modulating",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, light fuel oil, at boiler 100kW, non-modulating",
+                  "reference product": "Heat, light fuel oil, at boiler 100kW, non-modulating",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "a7cf11e87e7defea2e82f8f2ec00541667cd9c8f24b4c6a01abe391b2d720aba",
+                "metadata_sha256": "7b3bb56470636fea13e43135a6fd047c5208d13f25cb5d2eaed482a376b53488",
+                "comment_sha256": "f63ef0d1c62c5522a33c87d7af8dcae47ba2f82bc61f3b5a77a0557574449f48",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, light fuel oil, at boiler 100kW, non-modulating",
+                  "reference product": "Heat, light fuel oil, at boiler 100kW, non-modulating",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 1,
+                "inventory_sha256": "2bffca286b43e6ea9fefdc1c5d8f1764027464a7a4c71cd8c35b1704d830c9d9",
+                "metadata_sha256": "de7fadf197525f3acae84511d8af9f5b03a8c47aac894e271351914f275a82bb",
+                "comment_sha256": "6f85fdfc9b1381d252bbe1423a51d394fc9d0a9e22dd008017f091a9ce8f4d25",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "xx Heat, biogas, allocation exergy, at micro gas turbine 100kWe",
+              "reference product": "xx Heat, biogas, allocation exergy, at micro gas turbine 100kWe",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "xx Heat, biogas, allocation exergy, at micro gas turbine 100kWe",
+                  "reference product": "xx Heat, biogas, allocation exergy, at micro gas turbine 100kWe",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 15,
+                "inventory_sha256": "cf55d4b3eefc6bb4f11c697907f16e9e234c232e7d2b5f3ee42994b2fc50b32d",
+                "metadata_sha256": "0c5b916081b9f8b139978482e59c48899b4a7f4c65b83802585660843a27cc59",
+                "comment_sha256": "7b75a4b64618a0a2748196fbbc0e5122786779eac289f19b1d544690c6f5a1c8",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "xx Heat, biogas, allocation exergy, at micro gas turbine 100kWe",
+                  "reference product": "xx Heat, biogas, allocation exergy, at micro gas turbine 100kWe",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 15,
+                "inventory_sha256": "fd809e287f4cbccaeec168d06d8444ae46d96d3f5c641eabc492f9a40b8c326d",
+                "metadata_sha256": "16a66cb4e42ac5f72dfdf2fce2184965694fce129dc615b9006ce5c70858904a",
+                "comment_sha256": "01b440d5ef2ec37b50c20b577c93727a41e36b64b10295ad59478b2dcc0ea356",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Heat, at cogen with biogas engine, allocation exergy",
+              "reference product": "Heat, at cogen with biogas engine, allocation exergy",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "releases": {
+              "2025": {
+                "identity": {
+                  "name": "Heat, at cogen with biogas engine, allocation exergy",
+                  "reference product": "Heat, at cogen with biogas engine, allocation exergy",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 14,
+                "inventory_sha256": "6687f9a3c4fd685cf05d620f682a9da533f76466d7dafb53fffa692b92a1e807",
+                "metadata_sha256": "3f09055b710f4b976e287b168af8662bae27510889dee65f50761add9f4022d3",
+                "comment_sha256": "fb559b2519145a9ee78b90f0edf6099722880d7f0f2aa883989640224db80c7d",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Heat, at cogen with biogas engine, allocation exergy",
+                  "reference product": "Heat, at cogen with biogas engine, allocation exergy",
+                  "location": "CH",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "nonproduction_count": 14,
+                "inventory_sha256": "1723e31ffc178bb921e1959728477bf6ffddbae6e02be113f7a8c5474aae45e7",
+                "metadata_sha256": "4562c6e24e280659653c131af581c93a224ea281a81db0f00fb5d6dee0a2a41a",
+                "comment_sha256": "99aa44173b94e2654f3f900e3ab29c6f3741596effc266864219e750de5ae33e",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          }
+        ],
+        "retained_source_producer_positions": 29,
+        "retained_source_share_total": 1,
+        "new_foreground_omissions": []
+      },
+      "limitations": [
+        "Retain all 29 original producer entries and useful-heat shares in the Swiss central/small-scale non-natural-gas heat market. Replace the incorrect single heavy-fuel-oil-furnace candidate with the complete source fuel/technology portfolio supplied by reviewed native processes, per MJ useful heat.",
+        "All shares, including the tiny nonzero biomethane-microturbine entry, remain unchanged and sum exactly to one. Each native supplier references positive one MJ. Add no fuel, heat, operating electricity, boiler, solar equipment, storage or cogeneration credit on top of the complete native inventories. No normalization or yield, efficiency, capacity, area or calorific-value multiplier.",
+        "Native light-fuel-oil boiler capacities and condensing/modulation classes match. Native 15kW wood-pellet heat replaces source 9/25kW; native 15/50kW log furnaces replace source 30/100kW; native ordinary historical technologies replace source 2014 state-of-the-art variants. Source quantities remain per useful MJ, not plant counts. Species, moisture, emissions and fuel-use differences remain unquantified.",
+        "Generic industrial chips use complete native hardwood-chip heat as an explicit species proxy, without inventing hardwood/softwood shares. Explicit hardwood/softwood forest-chip entries keep the named species. Source generic evacuated-tube solar uses the native 10.5m2 heat-pipe configuration; other solar duties use the corresponding complete native Cu-collector systems. Area, storage, vintage and operating differences are unquantified.",
+        "Both biogas-engine source entries use the complete native exergy-allocated biogas-engine heat service, replacing source feedstock/certification/allocation portfolios. Upgraded-biomethane microturbine heat uses native biogas microturbine heat at the same 100kWe nominal technology as a gas-quality/upgrading/allocation proxy; the native xx label/vintage remains. No separate gas-quality correction, upgrading burden or electricity credit is added.",
+        "Native technology, fuel supply, grade, allocation, geography, delivery, vintage, internal uncertainty and documented BAFU biosphere exclusions differ. Preserve signed caller quantities, formulas and supported uncertainty and separate caller inputs/emissions. Inventory and LCIA equivalence are not established.",
+        "Only the exact inspected ecoinvent 3.9 cut-off market is approved. No new foreground or recipe-source omission, zero-burden authority, inverse or cross-system-model route, reconstructed generation inventory or Python source/test edit."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "16e3ec97bee5a284b783afe757eda9359b927d4fd2c76a4ff69762f0b71e7567"
+        }
+      ]
     }
   ],
   "superseded_operations": [
