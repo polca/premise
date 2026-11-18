@@ -3224,7 +3224,7 @@
     },
     {
       "sector": "final energy",
-      "status": "inventory_preparation_and_shared_callback_passed_in_preview_graph_validation_blocked",
+      "status": "preparation_and_callback_passed_false_cycle_error_traced_to_missing_source_context",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -3802,10 +3802,14 @@
         "generic_fix_proposed_not_applied": false,
         "context_and_filter_coverage_pending": true,
         "exact_generic_classifier_fix_approved_and_applied": true,
-        "exhaustive_graph_certification": "blocked_by_new_cycle",
-        "cycle_diagnostic_pending": true
+        "exhaustive_graph_certification": "fails_due_to_missing_family_context_and_reference_product_label_mismatch",
+        "cycle_diagnostic_pending": false,
+        "new_cycles_introduced_by_update": 0,
+        "unchanged_cyclic_components": 58,
+        "source_context_forwarding_pending_approval": true,
+        "cycle_verification": "docs/development/uvek-final-energy-cycle-label-verification.json"
       },
-      "latest_installed_interface_verification": "docs/development/uvek-final-energy-37-installed-verification.json",
+      "latest_installed_interface_verification": "docs/development/uvek-final-energy-retained52-installed-verification.json",
       "latest_required_source37_review": {
         "exact_scopes": 18,
         "complete_native_services": 16,
@@ -4228,12 +4232,13 @@
     "battery_public_support_still_pending": true
   },
   "latest_remaining_sector_checkpoint": "docs/development/uvek-remaining-sector-diagnostics-2026-11-18.json",
-  "latest_installed_mapping_verification": "docs/development/uvek-final-energy-37-installed-verification.json",
+  "latest_installed_mapping_verification": "docs/development/uvek-final-energy-retained52-installed-verification.json",
   "latest_normal_live_preparation": {
-    "verification": "docs/development/uvek-final-energy-37-installed-verification.json",
+    "verification": "docs/development/uvek-final-energy-retained52-installed-verification.json",
     "sectors": 15,
     "CLIC_records": 1495,
-    "source_code_changes": 0,
+    "source_code_changes": 1,
+    "source_exception": "exact classifier fix approved on 2026-11-18",
     "new_Brightway_databases": 0
   }
 }

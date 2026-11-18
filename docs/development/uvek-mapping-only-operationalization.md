@@ -131,3 +131,25 @@ final-energy preparation reaches 52 retained source-3.10 correspondences: 48
 literal native candidates and four existing recipe candidates. Their immediate
 source/native witnesses are collected; physical boundaries still need review.
 No database or new export is written. See `uvek-final-energy-37-installed-verification.json`.
+
+The retained source-3.10 batch pins Brightpath `02326bb7b334a36b6bab1d3cbeef2d0a4f157e19`.
+All 52 remaining inspected correspondences clear: 48 complete native matches
+and four explicit source-3.9 model aliases. No new upstream reconstruction or
+foreground omission is added. All 27 earlier selected profiles are unchanged.
+The installed packages pass 178 focused tests and 416 signed uncertainty checks;
+607 Brightpath and 424 Premise packaged files match the reviewed source. The
+ordinary live fifteen-sector preparation again returns 1,495 records without
+changing the Brightway registry or processed-file names. Existing broader test
+failures remain disclosed in the installed report.
+
+The user approved exactly one Python exception: two shared vehicle-energy
+classifiers now read the existing exact-label YAML lookup. No other source
+change is applied. Final-energy preparation and callback pass in the scoped
+no-export diagnostic, adding 792 regional activities. The subsequent cycle error
+is proven to be a reference-product label mismatch: all 58 actual cyclic
+components remain identical, and the largest component's inventories are wholly
+unchanged. Applying the existing electricity aliases to its labels reproduces
+the validation baseline exactly. Missing source-family forwarding is a separate
+pending exception; filters and public qualification still need verification.
+See `uvek-final-energy-retained52-installed-verification.json` and
+`uvek-final-energy-cycle-label-verification.json`.

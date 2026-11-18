@@ -1,13 +1,19 @@
 {
   "date": "2026-11-18",
-  "status": "installed_source37_mapping_and_live_fifteen_sector_preparation_passed",
-  "Brightpath_Git_revision": "bb4e27227cbf429d995c6a432ceefae15edad9b9",
-  "current_verification": "docs/development/uvek-final-energy-37-installed-verification.json",
-  "previous_final_energy_verification": "docs/development/uvek-final-energy-312310-installed-verification.json",
-  "source_code_changes": 0,
+  "status": "installed_retained52_mappings_approved_classifier_and_live_fifteen_sector_preparation_passed",
+  "Brightpath_Git_revision": "02326bb7b334a36b6bab1d3cbeef2d0a4f157e19",
+  "source_code_changes": 1,
+  "exact_approved_source_exception": {
+    "path": "premise/transport/vehicle_energy_use.py",
+    "scope": "This exact fix only",
+    "matches_reviewed_proposal_bytes": true,
+    "approval_date": "2026-11-18"
+  },
   "qualified_sectors": 15,
   "total_sectors": 19,
   "new_Brightway_databases": 0,
+  "qualification_limit": "Focused installed checks and live preparation pass. No complete-suite green claim. Final-energy callback passes in the scoped diagnostic but full validation reports a proven reference-product label mismatch; source-context routing, filter coverage and public export remain unfinished.",
+  "current_verification": "docs/development/uvek-final-energy-retained52-installed-verification.json",
   "normal_live_fifteen_sector_preparation": {
     "status": "installed_public_fifteen_sector_inventory_preparation_passed",
     "sectors": [
@@ -28,18 +34,21 @@
       "trucks"
     ],
     "CLIC_records": 1495,
-    "Brightpath_Git_revision": "bb4e27227cbf429d995c6a432ceefae15edad9b9",
+    "Brightpath_Git_revision": "02326bb7b334a36b6bab1d3cbeef2d0a4f157e19",
     "CLIC_options_overridden": false,
     "freshness": "normal live default",
     "scope_gate_bypassed": false,
     "validation_disabled": false,
     "new_Brightway_databases": 0,
     "registry_and_processed_file_names_unchanged": true,
-    "elapsed_seconds": 81.81267725001089,
+    "elapsed_seconds": 79.87124141689856,
     "qualification_limit": "Preparation regression of already qualified15sectors; no sector update/export repeated and battery/final-energy sectors remain unfinished."
   },
-  "reference_sign_stock_passed": 806,
-  "reference_sign_stock_failed": 8,
-  "all_failures_reproduced_against_prior_installed_package": true,
-  "qualification_limit": "Installed focused tests and normal live preparation regression pass. Eight pre-existing rejection expectations still fail; final-energy retained mappings, callback coverage and public export remain unfinished. Four sectors remain unqualified."
+  "known_test_limitations": {
+    "broader_sign_stock_passed": 806,
+    "broader_sign_stock_failed": 8,
+    "all_eight_preexisting_failures_reproduced_against_prior_installed_package": true,
+    "reason": "Older tests expect rejection of source3.8/3.10 Li-ion routes enabled by earlier reviewed mappings. No test source is changed.",
+    "earlier_historical_replay_failures": 2
+  }
 }

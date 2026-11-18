@@ -39,3 +39,17 @@ HFC-152a and 1-butanol suppliers. This is an additional operational blocker;
 classification success does not establish a valid final-energy database.
 The preview took about 152 seconds, left source files unchanged and performed
 no export. See `uvek-final-energy-alias-workflow-preview-verification.json`.
+
+The subsequent approved-source run confirms that the cycle error is a label
+mismatch, not a new supply loop: all 58 strongly connected components are
+identical before and after the update. The largest contains 4,156 activities;
+none of its inventories changed. Applying the existing unit-checked electricity
+product aliases to 232 component members reproduces the validation baseline
+exactly. No supplier or quantity needs removing to address this error.
+
+`FinalEnergy` currently defaults to the ecoinvent family instead of receiving
+the selected source context. Its shared base class therefore does not apply
+those UVEK aliases, while the validation baseline does. Forwarding the source
+family/biosphere to that existing class and its mapping selector is a separate
+proposed exception, not covered by the classifier approval. No such change is
+applied. See `uvek-final-energy-cycle-label-verification.json`.

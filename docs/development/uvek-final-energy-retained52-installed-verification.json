@@ -1,0 +1,233 @@
+{
+  "date": "2026-11-18",
+  "status": "installed_retained52_mappings_approved_classifier_and_live_fifteen_sector_preparation_passed",
+  "Brightpath_Git_revision": "02326bb7b334a36b6bab1d3cbeef2d0a4f157e19",
+  "Premise_wheel_source_revision": "c233fa302100101731a8d47de9f8e9a16be3d27c",
+  "source_code_changes": 1,
+  "exact_approved_source_exception": {
+    "path": "premise/transport/vehicle_energy_use.py",
+    "scope": "This exact fix only",
+    "matches_reviewed_proposal_bytes": true,
+    "approval_date": "2026-11-18"
+  },
+  "Brightpath_Python_changes": 0,
+  "other_Premise_Python_changes": 0,
+  "original_Premise_master_unchanged": true,
+  "installed_regressions": {
+    "status": "installed_final_energy_mapping_checks_passed",
+    "Brightpath_Git_revision": "02326bb7b334a36b6bab1d3cbeef2d0a4f157e19",
+    "runtime_packages_loaded_only_from_installed_environment": true,
+    "signed_uncertainty_checks": 416,
+    "public_harmonizer_fresh_and_warm_groups": 3,
+    "checks": {
+      "verify_final_energy_retained_native310.private.py": {
+        "status": "passed",
+        "added_exact_source310_scopes": 46,
+        "signed_uncertainty_exchange_checks": 368,
+        "direct_migration_cases": 8,
+        "public_harmonizer_fresh_and_warm_passed": true,
+        "input_nonmutation": true,
+        "earlier_effective_profile_checks": 21,
+        "new_manufacturing_inventory_models": 0,
+        "new_model_profile_aliases": 0,
+        "new_foreground_omissions": [],
+        "source_code_changes": 0,
+        "new_Brightway_databases": 0,
+        "qualification_limit": "Required interface group only; no complete final-energy update or new export."
+      },
+      "verify_final_energy_retained_models310.private.py": {
+        "status": "passed",
+        "added_exact_source310_scopes": 4,
+        "signed_uncertainty_exchange_checks": 32,
+        "direct_migration_cases": 8,
+        "public_harmonizer_fresh_and_warm_passed": true,
+        "input_nonmutation": true,
+        "earlier_effective_profile_checks": 6,
+        "new_manufacturing_inventory_models": 0,
+        "new_model_profile_aliases": 4,
+        "new_foreground_omissions": [],
+        "source_code_changes": 0,
+        "new_Brightway_databases": 0,
+        "qualification_limit": "Required interface group only; no complete final-energy update or new export."
+      },
+      "verify_final_energy_retained_boundaries310.private.py": {
+        "status": "passed",
+        "added_exact_source310_scopes": 2,
+        "signed_uncertainty_exchange_checks": 16,
+        "direct_migration_cases": 8,
+        "public_harmonizer_fresh_and_warm_passed": true,
+        "input_nonmutation": true,
+        "earlier_effective_profile_checks": 0,
+        "new_manufacturing_inventory_models": 0,
+        "new_model_profile_aliases": 0,
+        "new_foreground_omissions": [],
+        "source_code_changes": 0,
+        "new_Brightway_databases": 0,
+        "qualification_limit": "Required interface group only; no complete final-energy update or new export."
+      }
+    },
+    "elapsed_seconds": 57.516155874938704,
+    "focused_pytest_passes": 178
+  },
+  "installed_package_bytes": {
+    "Brightpath_Git_revision": "02326bb7b334a36b6bab1d3cbeef2d0a4f157e19",
+    "packages": {
+      "brightpath": {
+        "verified_installed_package_files": 607,
+        "all_packaged_files_present_in_source_match": true
+      },
+      "premise": {
+        "verified_installed_package_files": 424,
+        "all_packaged_files_present_in_source_match": true
+      }
+    }
+  },
+  "normal_live_fifteen_sector_preparation": {
+    "status": "installed_public_fifteen_sector_inventory_preparation_passed",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel",
+      "mining",
+      "renewable",
+      "cdr",
+      "fuels",
+      "ships",
+      "buses",
+      "two_wheelers",
+      "trains",
+      "cars",
+      "trucks"
+    ],
+    "CLIC_records": 1495,
+    "Brightpath_Git_revision": "02326bb7b334a36b6bab1d3cbeef2d0a4f157e19",
+    "CLIC_options_overridden": false,
+    "freshness": "normal live default",
+    "scope_gate_bypassed": false,
+    "validation_disabled": false,
+    "new_Brightway_databases": 0,
+    "registry_and_processed_file_names_unchanged": true,
+    "elapsed_seconds": 79.87124141689856,
+    "qualification_limit": "Preparation regression of already qualified15sectors; no sector update/export repeated and battery/final-energy sectors remain unfinished."
+  },
+  "new_exact_final_energy_correspondences": 52,
+  "complete_native_correspondences": 48,
+  "existing_source39_models_reused": 4,
+  "new_model_profile_aliases": 4,
+  "new_upstream_manufacturing_models": 0,
+  "new_foreground_omissions": [],
+  "earlier_effective_selected_profiles_unchanged": 27,
+  "mapping_authoring_replay": {
+    "byte_equal_files": {
+      "ecoinvent-to-ecoinvent-3.10-biosphere.json": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "ecoinvent-to-uvek-2025.json": "0d37cd286f66dad8d112ba15a93c0ee0d4fec1628763658efcdae4af083281d6"
+    },
+    "owned_temporary_bytes_removed": 112976885
+  },
+  "signed_caller_LCI_checks_in_reviewed_data": 104,
+  "additional_signed_alias_LCI_checks": 8,
+  "full_workflow_cycle_diagnostic": {
+    "status": "cycle_error_explained_by_existing_reference_product_aliases",
+    "actual_before_after_cycle_signatures_equal": true,
+    "baseline_matches_after_applying_existing_unit_checked_electricity_aliases": true,
+    "number_of_cyclic_components": 58,
+    "largest_unchanged_component_size": 4156,
+    "changed_inventories_in_largest_component": 0,
+    "newly_introduced_cycles": 0,
+    "aliased_cycle_member_count": 232,
+    "alias_names": [
+      "Electricity mix",
+      "Electricity, high voltage, at grid",
+      "Electricity, low voltage, at grid",
+      "Electricity, medium voltage, at grid",
+      "Electricity, production mix"
+    ],
+    "representative_aliases": [
+      [
+        [
+          "Electricity mix",
+          "Electricity mix",
+          "CN"
+        ],
+        [
+          "Electricity mix",
+          "electricity, high voltage",
+          "CN"
+        ]
+      ],
+      [
+        [
+          "Electricity, production mix",
+          "Electricity, production mix",
+          "SK"
+        ],
+        [
+          "Electricity, production mix",
+          "electricity, high voltage",
+          "SK"
+        ]
+      ],
+      [
+        [
+          "Electricity, production mix",
+          "Electricity, production mix",
+          "TR"
+        ],
+        [
+          "Electricity, production mix",
+          "electricity, high voltage",
+          "TR"
+        ]
+      ]
+    ],
+    "activities_before": 13568,
+    "activities_after": 14360,
+    "activities_added": 792,
+    "source_code_changes_during_diagnostic": 0,
+    "approved_classifier_fix_used": true,
+    "source_family_context_missing_in_final_energy": true,
+    "interpretation": "No mapping should remove these existing supply loops. Shared BaseTransformation normalizes these explicit labels only for the supplied family; FinalEnergy currently defaults to ecoinvent instead of receiving the UVEK context. Validation uses UVEK-normalized baseline labels, creating the mismatch.",
+    "limits": "Diagnostic final-energy route only, using cached archive with public scope gate bypassed. No public qualification or export; family-context forwarding needs a separate approved source change."
+  },
+  "qualified_sectors": 15,
+  "total_sectors": 19,
+  "unfinished_sectors": [
+    "battery",
+    "final energy",
+    "emissions",
+    "metals"
+  ],
+  "unapplied_battery_patch_unchanged": true,
+  "new_Brightway_databases": 0,
+  "new_export_performed": false,
+  "cleanup": [
+    {
+      "path": "premise-clic-worktree/build",
+      "bytes_removed": 65804501
+    },
+    {
+      "path": "premise-clic-worktree/premise.egg-info",
+      "bytes_removed": 118870
+    },
+    {
+      "path": "final-energy-37-wheels",
+      "bytes_removed": 23281186
+    },
+    {
+      "path": "final-energy-cycle-before.private.pkl.gz",
+      "bytes_removed": 17205887
+    }
+  ],
+  "current_environment_and_wheel_retained": true,
+  "known_test_limitations": {
+    "broader_sign_stock_passed": 806,
+    "broader_sign_stock_failed": 8,
+    "all_eight_preexisting_failures_reproduced_against_prior_installed_package": true,
+    "reason": "Older tests expect rejection of source3.8/3.10 Li-ion routes enabled by earlier reviewed mappings. No test source is changed.",
+    "earlier_historical_replay_failures": 2
+  },
+  "qualification_limit": "Focused installed checks and live preparation pass. No complete-suite green claim. Final-energy callback passes in the scoped diagnostic but full validation reports a proven reference-product label mismatch; source-context routing, filter coverage and public export remain unfinished."
+}

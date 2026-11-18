@@ -1,0 +1,63 @@
+{
+  "status": "cycle_error_explained_by_existing_reference_product_aliases",
+  "actual_before_after_cycle_signatures_equal": true,
+  "baseline_matches_after_applying_existing_unit_checked_electricity_aliases": true,
+  "number_of_cyclic_components": 58,
+  "largest_unchanged_component_size": 4156,
+  "changed_inventories_in_largest_component": 0,
+  "newly_introduced_cycles": 0,
+  "aliased_cycle_member_count": 232,
+  "alias_names": [
+    "Electricity mix",
+    "Electricity, high voltage, at grid",
+    "Electricity, low voltage, at grid",
+    "Electricity, medium voltage, at grid",
+    "Electricity, production mix"
+  ],
+  "representative_aliases": [
+    [
+      [
+        "Electricity mix",
+        "Electricity mix",
+        "CN"
+      ],
+      [
+        "Electricity mix",
+        "electricity, high voltage",
+        "CN"
+      ]
+    ],
+    [
+      [
+        "Electricity, production mix",
+        "Electricity, production mix",
+        "SK"
+      ],
+      [
+        "Electricity, production mix",
+        "electricity, high voltage",
+        "SK"
+      ]
+    ],
+    [
+      [
+        "Electricity, production mix",
+        "Electricity, production mix",
+        "TR"
+      ],
+      [
+        "Electricity, production mix",
+        "electricity, high voltage",
+        "TR"
+      ]
+    ]
+  ],
+  "activities_before": 13568,
+  "activities_after": 14360,
+  "activities_added": 792,
+  "source_code_changes_during_diagnostic": 0,
+  "approved_classifier_fix_used": true,
+  "source_family_context_missing_in_final_energy": true,
+  "interpretation": "No mapping should remove these existing supply loops. Shared BaseTransformation normalizes these explicit labels only for the supplied family; FinalEnergy currently defaults to ecoinvent instead of receiving the UVEK context. Validation uses UVEK-normalized baseline labels, creating the mismatch.",
+  "limits": "Diagnostic final-energy route only, using cached archive with public scope gate bypassed. No public qualification or export; family-context forwarding needs a separate approved source change."
+}
