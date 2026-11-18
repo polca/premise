@@ -3224,7 +3224,7 @@
     },
     {
       "sector": "final energy",
-      "status": "preparation_and_callback_passed_false_cycle_error_traced_to_missing_source_context",
+      "status": "shared_update_and_exhaustive_graph_passed_28_active_direct_role_gaps_remaining",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -3802,12 +3802,20 @@
         "generic_fix_proposed_not_applied": false,
         "context_and_filter_coverage_pending": true,
         "exact_generic_classifier_fix_approved_and_applied": true,
-        "exhaustive_graph_certification": "fails_due_to_missing_family_context_and_reference_product_label_mismatch",
+        "exhaustive_graph_certification": "passed_zero_errors",
         "cycle_diagnostic_pending": false,
         "new_cycles_introduced_by_update": 0,
         "unchanged_cyclic_components": 58,
-        "source_context_forwarding_pending_approval": true,
-        "cycle_verification": "docs/development/uvek-final-energy-cycle-label-verification.json"
+        "source_context_forwarding_pending_approval": false,
+        "cycle_verification": "docs/development/uvek-final-energy-cycle-label-verification.json",
+        "source_context_exact_fix_approved_and_applied": true,
+        "positive_IAM_roles": 203,
+        "positive_roles_with_suppliers": 175,
+        "remaining_positive_direct_role_gaps": 28,
+        "added_uvek_alias_entries": 342,
+        "activities_added_in_shared_update": 804,
+        "context_workflow_verification": "docs/development/uvek-final-energy-context-workflow-verification.json",
+        "native_filter_verification": "docs/development/uvek-final-energy-native-alias-verification.json"
       },
       "latest_installed_interface_verification": "docs/development/uvek-final-energy-retained52-installed-verification.json",
       "latest_required_source37_review": {

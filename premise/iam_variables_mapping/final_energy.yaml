@@ -16,6 +16,11 @@ Buildings - Heating - District Heating:
       - Final Energy|Buildings|Residential Heating|District Heat
 
 Buildings - Heating - Heat pump:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in residential heat pump
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in residential heat pump
@@ -29,6 +34,22 @@ Buildings - Heating - Heat pump:
 #    message: Final Energy|Residential and Commercial|Electricity|Thermal|Heat Pumps
 
 Buildings - Heating - Resistance:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -43,6 +64,11 @@ Buildings - Heating - Resistance:
 #    message: Final Energy|Residential and Commercial|Electricity|Thermal|Resistance
 
 Buildings - Heating - Gases:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in residential natural gas boiler <100kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in residential natural gas boiler <100kW
@@ -60,6 +86,12 @@ Buildings - Heating - Gases:
       - Final Energy|Buildings|Residential Heating|Gas
 
 Buildings - Heating - Other:
+  uvek_aliases:
+    fltr:
+      name: market for heat, district or industrial, other than natural gas
+      reference product: heat, district or industrial, other than natural gas
+      unit: megajoule
+    allow_generated_helpers: true
   ecoinvent_aliases:
     fltr:
       name: market for heat, district or industrial, other than natural gas
@@ -68,6 +100,11 @@ Buildings - Heating - Other:
     message: Final Energy|Residential and Commercial|Other
 
 Buildings - Heating - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in residential boiler
@@ -87,6 +124,11 @@ Buildings - Heating - H2:
       - Final Energy|Residential and Commercial|Hydrogen
 
 Buildings - Heating - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: methanol from biomass, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -103,6 +145,11 @@ Buildings - Heating - Biofuel:
 #      - Final Energy|Residential|Liquids|Biomass
 
 Buildings - Heating - Liquid coal:
+  uvek_aliases:
+    fltr:
+      name: methanol from coal, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from coal, burned in residential boiler
@@ -112,6 +159,11 @@ Buildings - Heating - Liquid coal:
     remind-eu: FE|Buildings|Liquids|Fossil|+|Coal
     message: Final Energy|Residential and Commercial|Liquids|Coal
 Buildings - Heating - LPG:
+  uvek_aliases:
+    fltr:
+      name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
@@ -121,6 +173,11 @@ Buildings - Heating - LPG:
     remind-eu: FE|Buildings|Liquids|Fossil|+|Gas
     message: Final Energy|Residential and Commercial|Liquids|Gas
 Buildings - Heating - Oil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in residential boiler 10kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in residential boiler 10kW
@@ -137,6 +194,11 @@ Buildings - Heating - Oil:
     message: Final Energy|Residential and Commercial|Liquids|Oil
 
 Buildings - Heating - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: methanol, synthetic, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol, synthetic, burned in residential boiler
@@ -146,6 +208,11 @@ Buildings - Heating - Syn Fuel:
     remind-eu: FE|Buildings|Liquids|+|Hydrogen
 
 Buildings - Heating - Solid Coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal briquettes, burned in stove 5-15kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal briquettes, burned in stove 5-15kW
@@ -162,6 +229,11 @@ Buildings - Heating - Solid Coal:
     message: Final Energy|Residential and Commercial|Solids|Coal
 
 Buildings - Heating - Solid biomass modern:
+  uvek_aliases:
+    fltr:
+      name: wood pellet, burned in residential stove 9kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: wood pellet, burned in residential stove 9kW
@@ -178,6 +250,11 @@ Buildings - Heating - Solid biomass modern:
     message: Final Energy|Residential and Commercial|Solids|Biomass|Modern
 
 Buildings - Heating - Solid biomass traditional:
+  uvek_aliases:
+    fltr:
+      name: wood logs, burned in wood stove 6kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: wood logs, burned in wood stove 6kW
@@ -191,6 +268,22 @@ Buildings - Heating - Solid biomass traditional:
     message: Final Energy|Residential and Commercial|Solids|Biomass|Traditional
 
 Buildings - Other - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -212,6 +305,22 @@ Buildings - Other - Elec:
       - Final Energy|Residential and Commercial|Electricity
 
 Buildings - Water heating - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -222,6 +331,12 @@ Buildings - Water heating - Elec:
       - Final Energy|Commercial|Water Heating|Electricity
       - Final Energy|Residential|Water Heating|Electricity
 Buildings - Water heating - Heat:
+  uvek_aliases:
+    fltr:
+      name: market for heat, district or industrial, natural gas
+      reference product: heat, district or industrial, natural gas
+      unit: megajoule
+    allow_generated_helpers: true
   ecoinvent_aliases:
     fltr:
       name: market for heat, district or industrial, natural gas
@@ -231,6 +346,11 @@ Buildings - Water heating - Heat:
       - Final Energy|Commercial|Water Heating|Heat
       - Final Energy|Residential|Water Heating|Heat
 Buildings - Water heating - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in residential boiler
@@ -240,6 +360,11 @@ Buildings - Water heating - H2:
       - Final Energy|Commercial|Water Heating|Hydrogen
       - Final Energy|Residential|Water Heating|Hydrogen
 Buildings - Water heating - Oil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in residential boiler 10kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in residential boiler 10kW
@@ -249,6 +374,11 @@ Buildings - Water heating - Oil:
       - Final Energy|Commercial|Water Heating|Liquids|Fossil
       - Final Energy|Residential|Water Heating|Liquid (fossil)
 Buildings - Water heating - Coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal briquettes, burned in stove 5-15kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal briquettes, burned in stove 5-15kW
@@ -258,6 +388,11 @@ Buildings - Water heating - Coal:
       - Final Energy|Commercial|Water Heating|Solids|Fossil
       - Final Energy|Residential|Water Heating|Coal
 Buildings - Water heating - Modern biomass:
+  uvek_aliases:
+    fltr:
+      name: wood pellet, burned in residential stove 9kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: wood pellet, burned in residential stove 9kW
@@ -267,6 +402,11 @@ Buildings - Water heating - Modern biomass:
       - Final Energy|Commercial|Water Heating|Solids|Biomass|Modern
       - Final Energy|Residential|Water Heating|Modern Biomass
 Buildings - Water heating - Traditional biomass:
+  uvek_aliases:
+    fltr:
+      name: wood pellet, burned in residential stove 9kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: wood pellet, burned in residential stove 9kW
@@ -276,6 +416,12 @@ Buildings - Water heating - Traditional biomass:
       - Final Energy|Commercial|Water Heating|Solids|Biomass|Traditional
       - Final Energy|Residential|Water Heating|Traditional Biomass
 Buildings - Water heating - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in residential natural gas boiler <100kW
+      reference product: heat
+      unit: megajoule
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in residential natural gas boiler <100kW
@@ -286,6 +432,22 @@ Buildings - Water heating - Nat Gas:
       - Final Energy|Residential|Water Heating|Natural Gas
       - Final Energy|Commercial|Water Heating|Gases|Fossil
 Buildings - Cooling - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -300,6 +462,22 @@ Buildings - Cooling - Elec:
       - Final Energy|Buildings|Commercial Cooling|Electricity
       - Final Energy|Buildings|Residential Cooling|Electricity
 Buildings - Cooking - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -310,6 +488,12 @@ Buildings - Cooking - Elec:
       - Final Energy|Commercial|Cooking|Electricity
       - Final Energy|Residential|Cooking|Electricity
 Buildings - Cooking - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in residential natural gas boiler <100kW
+      reference product: heat
+      unit: megajoule
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in residential natural gas boiler <100kW
@@ -320,6 +504,11 @@ Buildings - Cooking - Nat Gas:
       - Final Energy|Commercial|Cooking|Gases|Fossil
       - Final Energy|Residential|Cooking|Natural Gas
 Buildings - Cooking - Oil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in residential boiler 10kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in residential boiler 10kW
@@ -329,6 +518,11 @@ Buildings - Cooking - Oil:
       - Final Energy|Commercial|Cooking|Liquids|Fossil
       - Final Energy|Residential|Cooking|Liquid (fossil)
 Buildings - Cooking - Coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal briquettes, burned in stove 5-15kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal briquettes, burned in stove 5-15kW
@@ -338,6 +532,11 @@ Buildings - Cooking - Coal:
       - Final Energy|Commercial|Cooking|Solids|Fossil
       - Final Energy|Residential|Cooking|Coal
 Buildings - Cooking - Modern biomass:
+  uvek_aliases:
+    fltr:
+      name: wood pellet, burned in residential stove 9kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: wood pellet, burned in residential stove 9kW
@@ -347,6 +546,11 @@ Buildings - Cooking - Modern biomass:
       - Final Energy|Commercial|Cooking|Solids|Biomass|Modern
       - Final Energy|Residential|Cooking|Modern Biomass
 Buildings - Cooking - Traditional biomass:
+  uvek_aliases:
+    fltr:
+      name: wood pellet, burned in residential stove 9kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: wood pellet, burned in residential stove 9kW
@@ -357,6 +561,22 @@ Buildings - Cooking - Traditional biomass:
       - Final Energy|Residential|Cooking|Traditional Biomass
 
 CDR - DAC - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -380,6 +600,12 @@ CDR - DAC - Gases:
     remind-eu: FE|CDR|DAC|+|Gases
     gcam: Final Energy|Industry|CDR|Gas
 CDR - DAC - Heat:
+  uvek_aliases:
+    fltr:
+      name: market for heat, district or industrial, natural gas
+      reference product: heat, district or industrial, natural gas
+      unit: megajoule
+    allow_generated_helpers: true
   ecoinvent_aliases:
     fltr:
       name: market for heat, district or industrial, natural gas
@@ -388,6 +614,11 @@ CDR - DAC - Heat:
     remind: FE|CDR|DAC|+|Heat
     remind-eu: FE|CDR|DAC|+|Heat
 CDR - DAC - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -409,6 +640,22 @@ CDR - Enhanced Weathering - Diesel:
     remind: FE|CDR|EW|+|Diesel
     remind-eu: FE|CDR|EW|+|Diesel
 CDR - Enhanced Weathering - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -430,6 +677,22 @@ CDR - OAE, electric calciner - Diesel:
     remind: FE|CDR|OAE, electric calciner|+|Diesel
     remind-eu: FE|CDR|OAE, electric calciner|+|Diesel
 CDR - OAE, electric calciner - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -439,6 +702,11 @@ CDR - OAE, electric calciner - Elec:
     remind: FE|CDR|OAE, electric calciner|+|Electricity
     remind-eu: FE|CDR|OAE, electric calciner|+|Electricity
 CDR - OAE, electric calciner - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -459,6 +727,22 @@ CDR - OAE, traditional calciner - Diesel:
     remind: FE|CDR|OAE, traditional calciner|+|Diesel
     remind-eu: FE|CDR|OAE, traditional calciner|+|Diesel
 CDR - OAE, traditional calciner - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -477,6 +761,11 @@ CDR - OAE, traditional calciner - Gases:
     remind: FE|CDR|OAE, traditional calciner|+|Gases
     remind-eu: FE|CDR|OAE, traditional calciner|+|Gases
 CDR - OAE, traditional calciner - Hydrogen:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -486,6 +775,22 @@ CDR - OAE, traditional calciner - Hydrogen:
     remind-eu: FE|CDR|OAE, traditional calciner|+|Hydrogen
 
 Industry - Cement - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -504,6 +809,11 @@ Industry - Cement - Elec:
     remind-eu: FE|Industry|Cement|+|Electricity
     gcam: Final Energy|Industry|Cement|Electricity
 Industry - Cement - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -523,6 +833,11 @@ Industry - Cement - H2:
     remind-eu: FE|Industry|Cement|+|Hydrogen
     gcam: Final Energy|Industry|Cement|Hydrogen
 Industry - Cement - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: biomethane, burned in residential natural gas boiler <100kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in residential natural gas boiler <100kW
@@ -555,6 +870,11 @@ Industry - Cement - Nat Gas:
     remind-eu: FE|Industry|Cement|Gases|+|Fossil
     gcam: Final Energy|Industry|Cement|Gas
 Industry - Cement - SNG:
+  uvek_aliases:
+    fltr:
+      name: natural gas, synthetic, burned in gas turbine
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: natural gas, synthetic, burned in gas turbine
@@ -563,6 +883,11 @@ Industry - Cement - SNG:
     remind: FE|Industry|Cement|Gases|+|Hydrogen
     remind-eu: FE|Industry|Cement|Gases|+|Hydrogen
 Industry - Cement - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: methanol from biomass, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -574,6 +899,11 @@ Industry - Cement - Biofuel:
     remind: FE|Industry|Cement|Liquids|+|Biomass
     remind-eu: FE|Industry|Cement|Liquids|+|Biomass
 Industry - Cement - Oil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -591,6 +921,11 @@ Industry - Cement - Oil:
     remind-eu: FE|Industry|Cement|Liquids|+|Fossil
     gcam: Final Energy|Industry|Cement|Oil
 Industry - Cement - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in diesel-electric generating set, 10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in diesel-electric generating set, 10MW
@@ -600,6 +935,11 @@ Industry - Cement - Syn Fuel:
     remind: FE|Industry|Cement|Liquids|+|Hydrogen
     remind-eu: FE|Industry|Cement|Liquids|+|Hydrogen
 Industry - Cement - Liquid coal:
+  uvek_aliases:
+    fltr:
+      name: methanol from coal, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from coal, burned in residential boiler
@@ -609,6 +949,11 @@ Industry - Cement - Liquid coal:
       - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|Coal
 #      - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|coal-methanol
 Industry - Cement - LPG:
+  uvek_aliases:
+    fltr:
+      name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
@@ -643,6 +988,11 @@ Industry - Cement - Solid biomass:
     remind-eu: FE|Industry|Cement|Solids|+|Biomass
     gcam: Final Energy|Industry|Cement|Biomass
 Industry - Cement - Solid coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -680,6 +1030,22 @@ Industry - Cement - Secondary heat:
     message: Final Energy|Industry|Non-Metallic Minerals|Cement|Heat
 
 Industry - Chemicals - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -699,6 +1065,11 @@ Industry - Chemicals - Elec:
 #  iam_aliases:
 #      image: Final Energy|Industry|Chemicals|Heat
 Industry - Chemicals - Chemicals - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -710,6 +1081,22 @@ Industry - Chemicals - Chemicals - H2:
     gcam: Final Energy|Industry|Chemicals|Hydrogen
 #    image: Final Energy|Industry|Chemicals|Hydrogen
 Industry - Chemicals - Chemicals - Elec, high temp:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -736,6 +1123,22 @@ Industry - Chemicals - Chemicals - Elec, high temp:
 #  iam_aliases:
 #    message: Final Energy|Industry|Chemicals|Other Sector|Liquids|Gas
 Industry - Chemicals - Chemicals - Elec, low temp:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -747,6 +1150,11 @@ Industry - Chemicals - Chemicals - Elec, low temp:
     remind-eu: FE|Industry|Chemicals|Electricity|+|Mechanical work and low-temperature
       heat
 Industry - Chemicals - Chemicals - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: biomethane, burned in residential natural gas boiler <100kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in residential natural gas boiler <100kW
@@ -770,6 +1178,11 @@ Industry - Chemicals - Chemicals - Nat Gas:
     gcam: Final Energy|Industry|Chemicals|Gas
 #    image: Final Energy|Industry|Chemicals|Gases|Fossil
 Industry - Chemicals - Chemicals - SNG:
+  uvek_aliases:
+    fltr:
+      name: natural gas, synthetic, burned in gas turbine
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: natural gas, synthetic, burned in gas turbine
@@ -778,6 +1191,11 @@ Industry - Chemicals - Chemicals - SNG:
     remind: FE|Industry|Chemicals|Gases|+|Hydrogen
     remind-eu: FE|Industry|Chemicals|Gases|+|Hydrogen
 Industry - Chemicals - Chemicals - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: methanol from biomass, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -790,6 +1208,11 @@ Industry - Chemicals - Chemicals - Biofuel:
     remind-eu: FE|Industry|Chemicals|Liquids|+|Biomass
 #    image: Final Energy|Industry|Chemicals|Liquids|Biomass
 Industry - Chemicals - Chemicals - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -801,6 +1224,11 @@ Industry - Chemicals - Chemicals - Liquid fossil:
     gcam: Final Energy|Industry|Chemicals|Oil
 #    image: Final Energy|Industry|Chemicals|Liquids|Fossil
 Industry - Chemicals - Chemicals - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in diesel-electric generating set, 10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in diesel-electric generating set, 10MW
@@ -822,6 +1250,11 @@ Industry - Chemicals - Chemicals - Solid Biomass:
     remind-eu: FE|Industry|Chemicals|Solids|+|Biomass
     gcam: Final Energy|Industry|Chemicals|Biomass
 Industry - Chemicals - Chemicals - Solid coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -833,6 +1266,22 @@ Industry - Chemicals - Chemicals - Solid coal:
     gcam: Final Energy|Industry|Chemicals|Coal
 
 Industry - Chemicals - Formaldehyde - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -842,6 +1291,22 @@ Industry - Chemicals - Formaldehyde - Elec:
     message: Final Energy|Industry|Chemicals|Formaldehyde|Electricity
 
 Industry - Chemicals - Resins - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -861,6 +1326,11 @@ Industry - Chemicals - Resins - Nat Gas:
 #      - Final Energy|Industry|Chemicals|Resins|Liquids|gas-methanol
       - Final Energy|Industry|Chemicals|Resins|Liquids|Other
 Industry - Chemicals - Resins - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -868,6 +1338,11 @@ Industry - Chemicals - Resins - H2:
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Resins|Hydrogen
 Industry - Chemicals - Resins - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: methanol from biomass, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -877,6 +1352,11 @@ Industry - Chemicals - Resins - Biofuel:
       - Final Energy|Industry|Chemicals|Resins|Liquids|Biomass
 #      - Final Energy|Industry|Chemicals|Resins|Liquids|bio-methanol
 Industry - Chemicals - Resins - Liquid Coal:
+  uvek_aliases:
+    fltr:
+      name: methanol from coal, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from coal, burned in residential boiler
@@ -886,6 +1366,11 @@ Industry - Chemicals - Resins - Liquid Coal:
       - Final Energy|Industry|Chemicals|Resins|Liquids|Coal
 #      - Final Energy|Industry|Chemicals|Resins|Liquids|coal-methanol
 Industry - Chemicals - Resins - LPG:
+  uvek_aliases:
+    fltr:
+      name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
@@ -893,6 +1378,11 @@ Industry - Chemicals - Resins - LPG:
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Resins|Liquids|Gas
 Industry - Chemicals - Resins - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: methanol, synthetic, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol, synthetic, burned in residential boiler
@@ -902,6 +1392,11 @@ Industry - Chemicals - Resins - Syn Fuel:
       - Final Energy|Industry|Chemicals|Resins|Liquids|Hydrogen
 #      - Final Energy|Industry|Chemicals|Resins|Liquids|h2-methanol
 Industry - Chemicals - Resins - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -909,6 +1404,11 @@ Industry - Chemicals - Resins - Liquid fossil:
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Resins|Liquids|Oil
 Industry - Chemicals - Resins - Solid coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -917,6 +1417,11 @@ Industry - Chemicals - Resins - Solid coal:
     message:
       - Final Energy|Industry|Chemicals|Resins|Solids|Coal
 Industry - Chemicals - Resins - Solid Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -925,6 +1430,22 @@ Industry - Chemicals - Resins - Solid Biomass:
     message: Final Energy|Industry|Chemicals|Resins|Solids|Biomass
 
 Industry - Chemicals - Ammonia - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -944,6 +1465,11 @@ Industry - Chemicals - Ammonia - Nat Gas:
     image: Final Energy|Industry|Chemicals|Ammonia|Gases|Fossil
     gcam: Final Energy|Industry|Ammonia|Gas
 Industry - Chemicals - Ammonia - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: methanol from biomass, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -952,6 +1478,11 @@ Industry - Chemicals - Ammonia - Biofuel:
     message: Final Energy|Industry|Chemicals|Ammonia|Gases|Biomass
     image: Final Energy|Industry|Chemicals|Ammonia|Liquids|Biomass
 Industry - Chemicals - Ammonia - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -961,6 +1492,11 @@ Industry - Chemicals - Ammonia - Liquid fossil:
     image: Final Energy|Industry|Chemicals|Ammonia|Liquids|Fossil
     gcam: Final Energy|Industry|Ammonia|Oil
 Industry - Chemicals - Ammonia - Solid coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -987,6 +1523,22 @@ Industry - Chemicals - Ammonia - Other:
     image: Final Energy|Industry|Chemicals|Ammonia|Other
 
 Industry - Chemicals - Heavy Refinery Products - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1003,6 +1555,11 @@ Industry - Chemicals - Heavy Refinery Products - Nat Gas:
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Gases|Fossil
 Industry - Chemicals - Heavy Refinery Products - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: methanol from biomass, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -1010,6 +1567,11 @@ Industry - Chemicals - Heavy Refinery Products - Biofuel:
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Liquids|Biomass
 Industry - Chemicals - Heavy Refinery Products - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -1017,6 +1579,11 @@ Industry - Chemicals - Heavy Refinery Products - Liquid fossil:
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Liquids|Fossil
 Industry - Chemicals - Heavy Refinery Products - Solid coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1024,6 +1591,11 @@ Industry - Chemicals - Heavy Refinery Products - Solid coal:
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Solids|Fossil
 Industry - Chemicals - Heavy Refinery Products - Solid Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1032,6 +1604,22 @@ Industry - Chemicals - Heavy Refinery Products - Solid Biomass:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Solids|Biomass
 
 Industry - Chemicals - High-Value Chemicals - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1053,6 +1641,11 @@ Industry - Chemicals - High-Value Chemicals - Nat Gas:
 #      - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|gas-methanol
     image: Final Energy|Industry|Chemicals|High-Value Chemicals|Gases|Fossil
 Industry - Chemicals - High-Value Chemicals - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: methanol from biomass, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -1064,6 +1657,11 @@ Industry - Chemicals - High-Value Chemicals - Biofuel:
 #      - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|bio-methanol
     image: Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Biomass
 Industry - Chemicals - High-Value Chemicals - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1071,6 +1669,11 @@ Industry - Chemicals - High-Value Chemicals - H2:
   iam_aliases:
     message: Final Energy|Industry|Chemicals|High-Value Chemicals|Hydrogen
 Industry - Chemicals - High-Value Chemicals - Liquid Coal:
+  uvek_aliases:
+    fltr:
+      name: methanol from coal, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from coal, burned in residential boiler
@@ -1080,6 +1683,11 @@ Industry - Chemicals - High-Value Chemicals - Liquid Coal:
       - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Coal
 #      - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|coal-methanol
 Industry - Chemicals - High-Value Chemicals - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: methanol, synthetic, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol, synthetic, burned in residential boiler
@@ -1089,6 +1697,11 @@ Industry - Chemicals - High-Value Chemicals - Syn Fuel:
       - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Hydrogen
 #      - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|h2-methanol
 Industry - Chemicals - High-Value Chemicals - LPG:
+  uvek_aliases:
+    fltr:
+      name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
@@ -1096,6 +1709,11 @@ Industry - Chemicals - High-Value Chemicals - LPG:
   iam_aliases:
     message: Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Gas
 Industry - Chemicals - High-Value Chemicals - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -1104,6 +1722,11 @@ Industry - Chemicals - High-Value Chemicals - Liquid fossil:
     message: Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Oil
     image: Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Fossil
 Industry - Chemicals - High-Value Chemicals - Solid coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1114,6 +1737,11 @@ Industry - Chemicals - High-Value Chemicals - Solid coal:
       - Final Energy|Industry|Chemicals|High-Value Chemicals|Solids|Coke
     image: Final Energy|Industry|Chemicals|High-Value Chemicals|Solids|Fossil
 Industry - Chemicals - High-Value Chemicals - Solid Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1123,6 +1751,22 @@ Industry - Chemicals - High-Value Chemicals - Solid Biomass:
     image: Final Energy|Industry|Chemicals|High-Value Chemicals|Solids|Biomass
 
 Industry - Aluminum - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1132,6 +1776,11 @@ Industry - Aluminum - Elec:
     message: Final Energy|Industry|Non-Ferrous Metals|Aluminium|Electricity
     gcam: Final Energy|Industry|Aluminum|Electricity
 Industry - Aluminum - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: methanol from biomass, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -1152,6 +1801,11 @@ Industry - Aluminum - Liquid coal:
         - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|Coal
 #        - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|coal-methanol
 Industry - Aluminum - LPG:
+  uvek_aliases:
+    fltr:
+      name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
@@ -1159,6 +1813,11 @@ Industry - Aluminum - LPG:
   iam_aliases:
     message: Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|Gas
 Industry - Aluminum - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: methanol, synthetic, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol, synthetic, burned in residential boiler
@@ -1169,6 +1828,11 @@ Industry - Aluminum - Syn Fuel:
 #      - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|h2-methanol
       - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Hydrogen
 Industry - Aluminum - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -1189,6 +1853,12 @@ Industry - Aluminum - Nat Gas:
 #      - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|gas-methanol
     gcam: Final Energy|Industry|Aluminum|Gas
 Industry - Aluminum - Heat:
+  uvek_aliases:
+    fltr:
+      name: market for heat, district or industrial, natural gas
+      reference product: heat, district or industrial, natural gas
+      unit: megajoule
+    allow_generated_helpers: true
   ecoinvent_aliases:
     fltr:
       name: market for heat, district or industrial, natural gas
@@ -1196,6 +1866,11 @@ Industry - Aluminum - Heat:
   iam_aliases:
     message: Final Energy|Industry|Non-Ferrous Metals|Aluminium|Heat
 Industry - Aluminum - Solid coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1204,6 +1879,11 @@ Industry - Aluminum - Solid coal:
     message: Final Energy|Industry|Non-Ferrous Metals|Aluminium|Solids|Coal
     gcam: Final Energy|Industry|Aluminum|Coal
 Industry - Aluminum - Solid Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1213,6 +1893,22 @@ Industry - Aluminum - Solid Biomass:
     gcam: Final Energy|Industry|Aluminum|Biomass
 
 Industry - Chemicals - Methanol - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1231,6 +1927,11 @@ Industry - Chemicals - Methanol - Nat Gas:
     message: Final Energy|Industry|Chemicals|Methanol|Gases|Gas
     image: Final Energy|Industry|Chemicals|Methanol|Gases|Fossil
 Industry - Chemicals - Methanol - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: methanol from biomass, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -1239,6 +1940,11 @@ Industry - Chemicals - Methanol - Biofuel:
     message: Final Energy|Industry|Chemicals|Methanol|Gases|Biomass
     image: Final Energy|Industry|Chemicals|Methanol|Liquids|Biomass
 Industry - Chemicals - Methanol - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1246,6 +1952,11 @@ Industry - Chemicals - Methanol - H2:
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Methanol|Hydrogen
 Industry - Chemicals - Methanol - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -1253,6 +1964,11 @@ Industry - Chemicals - Methanol - Liquid fossil:
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Methanol|Liquids|Fossil
 Industry - Chemicals - Methanol - Solid coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1261,6 +1977,11 @@ Industry - Chemicals - Methanol - Solid coal:
     message: Final Energy|Industry|Chemicals|Methanol|Solids|Coal
     image: Final Energy|Industry|Chemicals|Methanol|Solids|Fossil
 Industry - Chemicals - Methanol - Solid Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1270,6 +1991,22 @@ Industry - Chemicals - Methanol - Solid Biomass:
     image: Final Energy|Industry|Chemicals|Methanol|Solids|Biomass
 
 Industry - Chemicals - Fertilizer - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1288,6 +2025,12 @@ Industry - Chemicals - Fertilizer - Nat Gas:
 #    message: Final Energy|Industry|Chemicals|Ammonia|Gases|Gas ### Duplicated
     image: Final Energy|Industry|Fertilizer production|Gases|Fossil
 Industry - Chemicals - Fertilizer - Heat:
+  uvek_aliases:
+    fltr:
+      name: market for heat, district or industrial, natural gas
+      reference product: heat, district or industrial, natural gas
+      unit: megajoule
+    allow_generated_helpers: true
   ecoinvent_aliases:
     fltr:
       name: market for heat, district or industrial, natural gas
@@ -1295,6 +2038,11 @@ Industry - Chemicals - Fertilizer - Heat:
   iam_aliases:
     image: Final Energy|Industry|Fertilizer production|Heat
 Industry - Chemicals - Fertilizer - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1302,6 +2050,11 @@ Industry - Chemicals - Fertilizer - H2:
   iam_aliases:
     image: Final Energy|Industry|Fertilizer production|Hydrogen
 Industry - Chemicals - Fertilizer - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -1310,6 +2063,11 @@ Industry - Chemicals - Fertilizer - Liquid fossil:
     image: Final Energy|Industry|Fertilizer production|Liquids|Fossil
 #    message: Final Energy|Industry|Chemicals|Ammonia|Liquids|Oil ### Duplicated
 Industry - Chemicals - Fertilizer - Solid coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1318,6 +2076,11 @@ Industry - Chemicals - Fertilizer - Solid coal:
 #    message: Final Energy|Industry|Chemicals|Ammonia|Solids|Coal ### Duplicated
     image: Final Energy|Industry|Fertilizer production|Solids|Fossil
 Industry - Chemicals - Fertilizer - Solid Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1327,6 +2090,22 @@ Industry - Chemicals - Fertilizer - Solid Biomass:
     image: Final Energy|Industry|Fertilizer production|Solids|Biomass
 
 Industry - Food Processing - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1345,6 +2124,12 @@ Industry - Food Processing - Nat Gas:
     image: Final Energy|Industry|Food Processing|Gases|Fossil
     gcam: Final Energy|Industry|Food Processing|Gas
 Industry - Food Processing - Heat:
+  uvek_aliases:
+    fltr:
+      name: market for heat, district or industrial, natural gas
+      reference product: heat, district or industrial, natural gas
+      unit: megajoule
+    allow_generated_helpers: true
   ecoinvent_aliases:
     fltr:
       name: market for heat, district or industrial, natural gas
@@ -1353,6 +2138,11 @@ Industry - Food Processing - Heat:
     image: Final Energy|Industry|Food Processing|Heat
     gcam: Final Energy|Industry|Food Processing|District Heat
 Industry - Food Processing - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1360,6 +2150,11 @@ Industry - Food Processing - H2:
   iam_aliases:
     image: Final Energy|Industry|Food Processing|Hydrogen
 Industry - Food Processing - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -1368,6 +2163,11 @@ Industry - Food Processing - Liquid fossil:
     image: Final Energy|Industry|Food Processing|Liquids|Fossil
     gcam: Final Energy|Industry|Food Processing|Oil
 Industry - Food Processing - Solid coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1376,6 +2176,11 @@ Industry - Food Processing - Solid coal:
     image: Final Energy|Industry|Food Processing|Solids|Fossil
     gcam: Final Energy|Industry|Food Processing|Coal
 Industry - Food Processing - Solid Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1385,6 +2190,22 @@ Industry - Food Processing - Solid Biomass:
     gcam: Final Energy|Industry|Food Processing|Biomass
 
 Industry - Non-Metallic Minerals - Electricity:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1401,6 +2222,12 @@ Industry - Non-Metallic Minerals - Nat Gas:
   iam_aliases:
     image: Final Energy|Industry|Non-Metallic Minerals|Gases|Fossil
 Industry - Non-Metallic Minerals - Heat:
+  uvek_aliases:
+    fltr:
+      name: market for heat, district or industrial, natural gas
+      reference product: heat, district or industrial, natural gas
+      unit: megajoule
+    allow_generated_helpers: true
   ecoinvent_aliases:
     fltr:
       name: market for heat, district or industrial, natural gas
@@ -1408,6 +2235,11 @@ Industry - Non-Metallic Minerals - Heat:
   iam_aliases:
     image: Final Energy|Industry|Non-Metallic Minerals|Heat
 Industry - Non-Metallic Minerals - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1415,6 +2247,11 @@ Industry - Non-Metallic Minerals - H2:
   iam_aliases:
     image: Final Energy|Industry|Non-Metallic Minerals|Hydrogen
 Industry - Non-Metallic Minerals - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -1422,6 +2259,11 @@ Industry - Non-Metallic Minerals - Liquid fossil:
   iam_aliases:
     image: Final Energy|Industry|Non-Metallic Minerals|Liquids|Fossil
 Industry - Non-Metallic Minerals - Solid Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1429,6 +2271,11 @@ Industry - Non-Metallic Minerals - Solid Biomass:
   iam_aliases:
     image: Final Energy|Industry|Non-Metallic Minerals|Solids|Biomass
 Industry - Non-Metallic Minerals - Solid Coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1437,6 +2284,22 @@ Industry - Non-Metallic Minerals - Solid Coal:
     image: Final Energy|Industry|Non-Metallic Minerals|Solids|Fossil
 
 Industry - Other - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1449,6 +2312,12 @@ Industry - Other - Elec:
     image: Final Energy|Industry|Other Sector|Electricity
     gcam: Final Energy|Industry|Other Industry|Electricity
 Industry - Other - Heat:
+  uvek_aliases:
+    fltr:
+      name: market for heat, district or industrial, natural gas
+      reference product: heat, district or industrial, natural gas
+      unit: megajoule
+    allow_generated_helpers: true
   ecoinvent_aliases:
     fltr:
       name: market for heat, district or industrial, natural gas
@@ -1460,6 +2329,11 @@ Industry - Other - Heat:
     image: Final Energy|Industry|Other Sector|Heat
     gcam: Final Energy|Industry|Other Industry|District Heat
 Industry - Other - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1471,6 +2345,22 @@ Industry - Other - H2:
     image: Final Energy|Industry|Other Sector|Hydrogen
     gcam: Final Energy|Industry|Other Industry|Hydrogen
 Industry - Other - Elec, high temp:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1481,6 +2371,22 @@ Industry - Other - Elec, high temp:
     remind-eu: FE|Industry|Other Industry|Electricity|+|High-temperature heat
     gcam: Final Energy|Industry|Other Industry|Electricity
 Industry - Other - Elec, low temp:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1513,6 +2419,11 @@ Industry - Other - Nat Gas:
     image: Final Energy|Industry|Other Sector|Gases|Fossil
     gcam: Final Energy|Industry|Other Industry|Gas
 Industry - Other - SNG:
+  uvek_aliases:
+    fltr:
+      name: natural gas, synthetic, burned in gas turbine
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: natural gas, synthetic, burned in gas turbine
@@ -1521,6 +2432,11 @@ Industry - Other - SNG:
     remind: FE|Industry|Other Industry|Gases|+|Hydrogen
     remind-eu: FE|Industry|Other Industry|Gases|+|Hydrogen
 Industry - Other - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: methanol from biomass, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -1533,6 +2449,11 @@ Industry - Other - Biofuel:
 #      - Final Energy|Industry|Liquids|Biomass
 #      - Final Energy|Transportation|Liquids|Biomass
 Industry - Other - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -1544,6 +2465,11 @@ Industry - Other - Liquid fossil:
     image: Final Energy|Industry|Other Sector|Liquids|Fossil
     gcam: Final Energy|Industry|Other Industry|Oil
 Industry - Other - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in diesel-electric generating set, 10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in diesel-electric generating set, 10MW
@@ -1552,6 +2478,11 @@ Industry - Other - Syn Fuel:
     remind: FE|Industry|Other Industry|Liquids|+|Hydrogen
     remind-eu: FE|Industry|Other Industry|Liquids|+|Hydrogen
 Industry - Other - Solid Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1564,6 +2495,11 @@ Industry - Other - Solid Biomass:
       - Final Energy|Industry|Other Sector|Solids|Biomass
     gcam: Final Energy|Industry|Other Industry|Biomass
 Industry - Other - Solid coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1576,6 +2512,22 @@ Industry - Other - Solid coal:
     gcam: Final Energy|Industry|Other Industry|Coal
 
 Industry - Paper - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1594,6 +2546,12 @@ Industry - Paper - Nat Gas:
     image: Final Energy|Industry|Pulp and Paper|Gases|Fossil
     gcam: Final Energy|Industry|Pulp and Paper|Gas
 Industry - Paper - Heat:
+  uvek_aliases:
+    fltr:
+      name: market for heat, district or industrial, natural gas
+      reference product: heat, district or industrial, natural gas
+      unit: megajoule
+    allow_generated_helpers: true
   ecoinvent_aliases:
     fltr:
       name: market for heat, district or industrial, natural gas
@@ -1602,6 +2560,11 @@ Industry - Paper - Heat:
     image: Final Energy|Industry|Pulp and Paper|Heat
     gcam: Final Energy|Industry|Pulp and Paper|District Heat
 Industry - Paper - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1609,6 +2572,11 @@ Industry - Paper - H2:
   iam_aliases:
     image: Final Energy|Industry|Pulp and Paper|Hydrogen
 Industry - Paper - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -1616,6 +2584,11 @@ Industry - Paper - Liquid fossil:
   iam_aliases:
     image: Final Energy|Industry|Pulp and Paper|Liquids|Fossil
 Industry - Paper - Solid coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1624,6 +2597,11 @@ Industry - Paper - Solid coal:
     image: Final Energy|Industry|Pulp and Paper|Solids|Fossil
     gcam: Final Energy|Industry|Pulp and Paper|Coal
 Industry - Paper - Solid Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1633,6 +2611,22 @@ Industry - Paper - Solid Biomass:
     gcam: Final Energy|Industry|Pulp and Paper|Biomass
 
 Industry - Steel - BF/BOF - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1645,6 +2639,22 @@ Industry - Steel - BF/BOF - Elec:
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Electricity
     gcam: Final Energy|Industry|Iron and Steel|BF/BOF|Electricity
 Industry - Steel - BF/BOF + CCS - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1653,6 +2663,22 @@ Industry - Steel - BF/BOF + CCS - Elec:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Electricity
 Industry - Steel - DRI EAF - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1662,6 +2688,22 @@ Industry - Steel - DRI EAF - Elec:
     image: Final Energy|Industry|Iron and Steel|DRI EAF|Electricity
     gcam: Final Energy|Industry|Iron and Steel|EAF DRI|Electricity
 Industry - Steel - DRI EAF + CCS - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1670,6 +2712,22 @@ Industry - Steel - DRI EAF + CCS - Elec:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Electricity
 Industry - Steel - EAF - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1679,6 +2737,22 @@ Industry - Steel - EAF - Elec:
     image: Final Energy|Industry|Iron and Steel|EAF scrap|Electricity
     gcam: Final Energy|Industry|Iron and Steel|EAF Scrap|Electricity
 Industry - Steel - Electrowinning - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1687,6 +2761,22 @@ Industry - Steel - Electrowinning - Elec:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Electricity
 Industry - Steel - H-DRI/EAF - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1695,6 +2785,22 @@ Industry - Steel - H-DRI/EAF - Elec:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|H-DRI/EAF|Electricity
 Industry - Steel - SR/BOF - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1703,6 +2809,22 @@ Industry - Steel - SR/BOF - Elec:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|SR/BOF|Electricity
 Industry - Steel - SR/BOF + CCS - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1711,6 +2833,22 @@ Industry - Steel - SR/BOF + CCS - Elec:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Electricity
 Industry - Steel - TGR BF/BOF - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1721,6 +2859,22 @@ Industry - Steel - TGR BF/BOF - Elec:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Electricity
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Electricity
 Industry - Steel - TGR BF/BOF + CCS - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1729,6 +2883,11 @@ Industry - Steel - TGR BF/BOF + CCS - Elec:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Electricity
 Industry - Steel - BF/BOF - Coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1739,6 +2898,11 @@ Industry - Steel - BF/BOF - Coal:
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Coal
     gcam: Final Energy|Industry|Iron and Steel|BF/BOF|Coal
 Industry - Steel - BF/BOF + CCS - Coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1746,6 +2910,11 @@ Industry - Steel - BF/BOF + CCS - Coal:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Coal
 Industry - Steel - DRI EAF - Coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1754,6 +2923,11 @@ Industry - Steel - DRI EAF - Coal:
     image: Final Energy|Industry|Iron and Steel|DRI EAF|Coal
     gcam: Final Energy|Industry|Iron and Steel|EAF DRI|Coal
 Industry - Steel - DRI EAF + CCS - Coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1761,6 +2935,11 @@ Industry - Steel - DRI EAF + CCS - Coal:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Coal
 Industry - Steel - EAF - Coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1769,6 +2948,11 @@ Industry - Steel - EAF - Coal:
     image: Final Energy|Industry|Iron and Steel|EAF scrap|Coal
 
 Industry - Steel - Electrowinning - Coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1776,6 +2960,11 @@ Industry - Steel - Electrowinning - Coal:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Coal
 Industry - Steel - H-DRI/EAF - Coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1783,6 +2972,11 @@ Industry - Steel - H-DRI/EAF - Coal:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|H-DRI/EAF|Coal
 Industry - Steel - SR/BOF - Coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1790,6 +2984,11 @@ Industry - Steel - SR/BOF - Coal:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|SR/BOF|Coal
 Industry - Steel - SR/BOF + CCS - Coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1797,6 +2996,11 @@ Industry - Steel - SR/BOF + CCS - Coal:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Coal
 Industry - Steel - TGR BF/BOF - Coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1806,6 +3010,11 @@ Industry - Steel - TGR BF/BOF - Coal:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Coal
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Coal
 Industry - Steel - TGR BF/BOF + CCS - Coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -1813,6 +3022,11 @@ Industry - Steel - TGR BF/BOF + CCS - Coal:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Coal
 Industry - Steel - BF/BOF - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1823,6 +3037,11 @@ Industry - Steel - BF/BOF - H2:
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Hydrogen
     gcam: Final Energy|Industry|Iron and Steel|BF/BOF|Hydrogen
 Industry - Steel - BF/BOF + CCS - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1830,6 +3049,11 @@ Industry - Steel - BF/BOF + CCS - H2:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Hydrogen
 Industry - Steel - DRI EAF - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1838,6 +3062,11 @@ Industry - Steel - DRI EAF - H2:
     image: Final Energy|Industry|Iron and Steel|DRI EAF|Hydrogen
     gcam: Final Energy|Industry|Iron and Steel|EAF DRI|Hydrogen
 Industry - Steel - DRI EAF + CCS - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1845,6 +3074,11 @@ Industry - Steel - DRI EAF + CCS - H2:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Hydrogen
 Industry - Steel - EAF - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1852,6 +3086,11 @@ Industry - Steel - EAF - H2:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|EAF scrap|Hydrogen
 Industry - Steel - Electrowinning - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1859,6 +3098,11 @@ Industry - Steel - Electrowinning - H2:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Hydrogen
 Industry - Steel - H-DRI/EAF - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1866,6 +3110,11 @@ Industry - Steel - H-DRI/EAF - H2:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|H-DRI/EAF|Hydrogen
 Industry - Steel - SR/BOF - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1873,6 +3122,11 @@ Industry - Steel - SR/BOF - H2:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|SR/BOF|Hydrogen
 Industry - Steel - SR/BOF + CCS - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1880,6 +3134,11 @@ Industry - Steel - SR/BOF + CCS - H2:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Hydrogen
 Industry - Steel - TGR BF/BOF - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1889,6 +3148,11 @@ Industry - Steel - TGR BF/BOF - H2:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Hydrogen
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Hydrogen
 Industry - Steel - TGR BF/BOF + CCS - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1896,6 +3160,11 @@ Industry - Steel - TGR BF/BOF + CCS - H2:
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Hydrogen
 Industry - Steel - BF/BOF - Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1908,6 +3177,11 @@ Industry - Steel - BF/BOF - Biomass:
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Traditional Biomass
     gcam: Final Energy|Industry|Iron and Steel|BF/BOF|Biomass
 Industry - Steel - BF/BOF + CCS - Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1917,6 +3191,11 @@ Industry - Steel - BF/BOF + CCS - Biomass:
       - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Modern Biomass
       - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Traditional Biomass
 Industry - Steel - DRI EAF - Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1926,6 +3205,11 @@ Industry - Steel - DRI EAF - Biomass:
       - Final Energy|Industry|Iron and Steel|DRI EAF|Traditional Biomass
       - Final Energy|Industry|Iron and Steel|DRI EAF|Modern Biomass
 Industry - Steel - DRI EAF + CCS - Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1935,6 +3219,11 @@ Industry - Steel - DRI EAF + CCS - Biomass:
       - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Traditional Biomass
       - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Modern Biomass
 Industry - Steel - EAF - Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1944,6 +3233,11 @@ Industry - Steel - EAF - Biomass:
       - Final Energy|Industry|Iron and Steel|EAF scrap|Traditional Biomass
       - Final Energy|Industry|Iron and Steel|EAF scrap|Modern Biomass
 Industry - Steel - Electrowinning - Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1953,6 +3247,11 @@ Industry - Steel - Electrowinning - Biomass:
       - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Traditional Biomass
       - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Modern Biomass
 Industry - Steel - H-DRI/EAF - Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1962,6 +3261,11 @@ Industry - Steel - H-DRI/EAF - Biomass:
       - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Traditional Biomass
       - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Modern Biomass
 Industry - Steel - SR/BOF - Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1971,6 +3275,11 @@ Industry - Steel - SR/BOF - Biomass:
       - Final Energy|Industry|Iron and Steel|SR/BOF|Modern Biomass
       - Final Energy|Industry|Iron and Steel|SR/BOF|Traditional Biomass
 Industry - Steel - SR/BOF + CCS - Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1980,6 +3289,11 @@ Industry - Steel - SR/BOF + CCS - Biomass:
       - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Modern Biomass
       - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Traditional Biomass
 Industry - Steel - TGR BF/BOF - Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -1991,6 +3305,11 @@ Industry - Steel - TGR BF/BOF - Biomass:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Traditional Biomass
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Modern Biomass
 Industry - Steel - TGR BF/BOF + CCS - Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -2104,6 +3423,11 @@ Industry - Steel - TGR BF/BOF + CCS - Nat Gas:
     image:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Natural Gas
 Industry - Steel - BF/BOF - Oil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -2114,6 +3438,11 @@ Industry - Steel - BF/BOF - Oil:
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Oil
     gcam: Final Energy|Industry|Iron and Steel|BF/BOF|Oil
 Industry - Steel - BF/BOF + CCS - Oil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -2122,6 +3451,11 @@ Industry - Steel - BF/BOF + CCS - Oil:
     image:
       - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Oil
 Industry - Steel - DRI EAF - Oil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -2131,6 +3465,11 @@ Industry - Steel - DRI EAF - Oil:
       - Final Energy|Industry|Iron and Steel|DRI EAF|Oil
     gcam: Final Energy|Industry|Iron and Steel|EAF DRI|Oil
 Industry - Steel - DRI EAF + CCS - Oil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -2139,6 +3478,11 @@ Industry - Steel - DRI EAF + CCS - Oil:
     image:
       - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Oil
 Industry - Steel - EAF - Oil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -2148,6 +3492,11 @@ Industry - Steel - EAF - Oil:
       - Final Energy|Industry|Iron and Steel|EAF scrap|Oil
     gcam: Final Energy|Industry|Iron and Steel|EAF Scrap|Oil
 Industry - Steel - Electrowinning - Oil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -2156,6 +3505,11 @@ Industry - Steel - Electrowinning - Oil:
     image:
       - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Oil
 Industry - Steel - H-DRI/EAF - Oil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -2164,6 +3518,11 @@ Industry - Steel - H-DRI/EAF - Oil:
     image:
       - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Oil
 Industry - Steel - SR/BOF - Oil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -2172,6 +3531,11 @@ Industry - Steel - SR/BOF - Oil:
     image:
       - Final Energy|Industry|Iron and Steel|SR/BOF|Oil
 Industry - Steel - SR/BOF + CCS - Oil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -2180,6 +3544,11 @@ Industry - Steel - SR/BOF + CCS - Oil:
     image:
       - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Oil
 Industry - Steel - TGR BF/BOF - Oil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -2189,6 +3558,11 @@ Industry - Steel - TGR BF/BOF - Oil:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Oil
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Oil
 Industry - Steel - TGR BF/BOF + CCS - Oil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -2298,6 +3672,22 @@ Industry - Steel - TGR BF/BOF + CCS - Secondary Heat:
     image:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Secondary Heat
 Industry - Steel - All steel - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2309,6 +3699,11 @@ Industry - Steel - All steel - Elec:
     message: Final Energy|Industry|Iron and Steel|Electricity
     image: Final Energy|Industry|Iron and Steel|Electricity
 Industry - Steel - All steel - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in gas turbine 1GW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -2348,6 +3743,11 @@ Industry - Steel - All steel - Nat Gas:
     message: Final Energy|Industry|Iron and Steel|Gases|Gas
     image: Final Energy|Industry|Iron and Steel|Gases|Fossil
 Industry - Steel - All steel - SNG:
+  uvek_aliases:
+    fltr:
+      name: natural gas, synthetic, burned in gas turbine
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: natural gas, synthetic, burned in gas turbine
@@ -2356,6 +3756,11 @@ Industry - Steel - All steel - SNG:
     remind: FE|Industry|Steel|Gases|+|Hydrogen
     remind-eu: FE|Industry|Steel|Gases|+|Hydrogen
 Industry - Steel - All steel - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: methanol from biomass, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -2365,6 +3770,11 @@ Industry - Steel - All steel - Biofuel:
     remind-eu: FE|Industry|Steel|Liquids|+|Biomass
     message: Final Energy|Industry|Iron and Steel|Liquids|Biomass
 Industry - Steel - All steel - LPG:
+  uvek_aliases:
+    fltr:
+      name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
@@ -2372,6 +3782,11 @@ Industry - Steel - All steel - LPG:
   iam_aliases:
     message: Final Energy|Industry|Iron and Steel|Liquids|Gas
 Industry - Steel - All steel - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: light fuel oil, burned in industrial furnace 1MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -2382,6 +3797,11 @@ Industry - Steel - All steel - Liquid fossil:
     message: Final Energy|Industry|Iron and Steel|Liquids|Oil
     image: Final Energy|Industry|Iron and Steel|Liquids|Fossil
 Industry - Steel - All steel - Liquid coal:
+  uvek_aliases:
+    fltr:
+      name: methanol from coal, burned in residential boiler
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from coal, burned in residential boiler
@@ -2389,6 +3809,11 @@ Industry - Steel - All steel - Liquid coal:
   iam_aliases:
     message: Final Energy|Industry|Iron and Steel|Liquids|Coal
 Industry - Steel - All steel - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in diesel-electric generating set, 10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in diesel-electric generating set, 10MW
@@ -2397,6 +3822,11 @@ Industry - Steel - All steel - Syn Fuel:
     remind: FE|Industry|Steel|Liquids|+|Hydrogen
     remind-eu: FE|Industry|Steel|Liquids|+|Hydrogen
 Industry - Steel - All steel - Solid Biomass:
+  uvek_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -2407,6 +3837,11 @@ Industry - Steel - All steel - Solid Biomass:
     message: Final Energy|Industry|Iron and Steel|Solids|Biomass
     image: Final Energy|Industry|Iron and Steel|Solids|Biomass
 Industry - Steel - All steel - Solid coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -2456,6 +3891,11 @@ Industry - Non-energy use - Biomass:
     unit: megajoule
 
 Industry - Non-energy use - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: biomethane production, from biogas upgrading, using amine scrubbing
+      reference product: biomethane, from biogas upgrading, using amine scrubbing
+      unit: kilogram
   ecoinvent_aliases:
     fltr:
       name: biomethane production, from biogas upgrading, using amine scrubbing
@@ -2470,6 +3910,16 @@ Industry - Non-energy use - Bio CH4:
     unit: megajoule
 
 Industry - Non-energy use - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: market for natural gas, high pressure
+      reference product: natural gas, high pressure
+      unit: cubic meter
+    mask:
+    - period
+    - vehicle
+    - refuse
+    allow_generated_helpers: true
   ecoinvent_aliases:
     fltr:
       name: market for natural gas, high pressure
@@ -2492,6 +3942,12 @@ Industry - Non-energy use - Nat Gas:
     unit: megajoule
 
 Industry - Non-energy use - Hydrogen:
+  uvek_aliases:
+    fltr:
+      name: market for hydrogen, gaseous, low pressure
+      reference product: hydrogen, gaseous, low pressure
+      unit: kilogram
+    allow_generated_helpers: true
   ecoinvent_aliases:
     fltr:
       name: market for hydrogen, gaseous, low pressure
@@ -2525,6 +3981,22 @@ Industry - Non-energy use - Biofuel:
     unit: megajoule
 
 Industry - Non-energy use - Elec:
+  uvek_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      reference product:
+      - Electricity, low voltage, at grid
+      - electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
+      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
+      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2580,6 +4052,11 @@ Transport - Freight - Domestic Shipping - H2:
     tiam-ucl: Final Energy|Transport|Ship|Domestic|Hydrogen|Shipping Hydrogen
     gcam: Final Energy|Transport|Freight|Domestic Ship|FCEV|Hydrogen
 Transport - Freight - Domestic Shipping - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: methanol from biomass, burned in container ship
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in container ship
@@ -2592,6 +4069,11 @@ Transport - Freight - Domestic Shipping - Biofuel:
       - Final Energy|Transport|Ship|Domestic|Heavy Fuel Oil|Biodiesel
     remind-eu: FE|Transport|Freight|Domestic Shipping|Liquids|Biomass
 Transport - Freight - Domestic Shipping - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: heavy fuel oil, burned in container ship
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: heavy fuel oil, burned in container ship
@@ -2608,6 +4090,11 @@ Transport - Freight - Domestic Shipping - Liquid fossil:
       - Final Energy|Transport|Freight|Domestic Ship|Liquids|Oil
       - Final Energy|Transport|Freight|Domestic Ship|Hybrid Liquids|Oil
 Transport - Freight - Domestic Shipping - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in container ship
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in container ship
@@ -2618,6 +4105,11 @@ Transport - Freight - Domestic Shipping - Syn Fuel:
       - Final Energy|Transport|Ship|Domestic|Ammonia|Synthetic Ammonia
     remind-eu: FE|Transport|Freight|Domestic Shipping|Liquids|Hydrogen
 Transport - Freight - Domestic Shipping - LNG:
+  uvek_aliases:
+    fltr:
+      name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
@@ -2626,6 +4118,11 @@ Transport - Freight - Domestic Shipping - LNG:
     tiam-ucl: Final Energy|Transport|Ship|Domestic|Liquefied Natural Gas|Liquefied
       Natural Gas
 Transport - Freight - Int. Shipping - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: methanol from biomass, burned in container ship
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in container ship
@@ -2639,6 +4136,11 @@ Transport - Freight - Int. Shipping - Biofuel:
     remind-eu: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Biomass
     message: Final Energy|Bunkers|Liquids|Biomass
 Transport - Freight - Int. Shipping - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: heavy fuel oil, burned in container ship
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: heavy fuel oil, burned in container ship
@@ -2657,6 +4159,11 @@ Transport - Freight - Int. Shipping - Liquid fossil:
       - Final Energy|Transport|Shipping|International Ship|Hybrid Liquids|Oil
 
 Transport - Freight - Int. Shipping - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in container ship
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in container ship
@@ -2687,6 +4194,11 @@ Transport - Freight - Int. Shipping - H2:
     message: Final Energy|Bunkers|Hydrogen
     gcam: Final Energy|Transport|Shipping|International Ship|FCEV|Hydrogen
 Transport - Freight - Int. Shipping - LNG:
+  uvek_aliases:
+    fltr:
+      name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
@@ -2696,6 +4208,11 @@ Transport - Freight - Int. Shipping - LNG:
       Natural Gas
     message: Final Energy|Bunkers|Gases
 Transport - Freight - Rail - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in passenger train
+      reference product: electricity, high voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger train
@@ -2717,6 +4234,12 @@ Transport - Freight - Rail - Biofuel:
     tiam-ucl: Final Energy|Transport|Rail|Freight|Biodiesel
     remind-eu: FE|Transport|Freight|Rail|Liquids|Biomass
 Transport - Freight - Rail - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: diesel, burned in passenger train
+      reference product: heat
+      unit: megajoule
+    mask: biodiesel
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in passenger train
@@ -2731,6 +4254,11 @@ Transport - Freight - Rail - Liquid fossil:
       - Final Energy|Transport|Freight|Freight Rail|Liquids|Oil
       - Final Energy|Transport|Freight|Freight Rail|Hybrid Liquids|Oil
 Transport - Freight - Rail - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in passenger train
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger train
@@ -2747,6 +4275,11 @@ Transport - Freight - Rail - H2:
     image: Final Energy|Transportation|Freight|Train|Hydrogen
     gcam: Final Energy|Transport|Freight|Freight Rail|FCEV|Hydrogen
 Transport - Freight - Truck(18t) - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in heavy-duty vehicle
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in heavy-duty vehicle
@@ -2757,6 +4290,11 @@ Transport - Freight - Truck(18t) - Elec:
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Electricity
     gcam: Final Energy|Transport|Freight|Heavy truck|BEV|Electricity
 Transport - Freight - Truck(18t) - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: biomethane, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in heavy duty vehicle
@@ -2765,6 +4303,11 @@ Transport - Freight - Truck(18t) - Bio CH4:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases|Biomass
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases|Biomass
 Transport - Freight - Truck(18t) - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in heavy duty vehicle
@@ -2778,6 +4321,11 @@ Transport - Freight - Truck(18t) - Nat Gas:
       - Final Energy|Transport|Truck|Medium|Natural Gas|Natural Gas
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases|Fossil
 Transport - Freight - Truck(18t) - SNG:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, synthetic, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in heavy duty vehicle
@@ -2786,6 +4334,11 @@ Transport - Freight - Truck(18t) - SNG:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases|Hydrogen
 Transport - Freight - Truck(18t) - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in a heavy duty vehicle
@@ -2811,6 +4364,12 @@ Transport - Freight - Truck(18t) - Biofuel:
       - Final Energy|Transport|Truck|Medium|Methanol|Methanol
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Biomass
 Transport - Freight - Truck(18t) - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: diesel, burned in heavy-duty vehicle
+      reference product: heat
+      unit: megajoule
+    mask: biodiesel
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in heavy-duty vehicle
@@ -2827,6 +4386,11 @@ Transport - Freight - Truck(18t) - Liquid fossil:
       - Final Energy|Transport|Freight|Heavy truck|Liquids|Oil
       - Final Energy|Transport|Freight|Heavy truck|Hybrid Liquids|Oil
 Transport - Freight - Truck(18t) - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in heavy duty vehicle
@@ -2835,6 +4399,11 @@ Transport - Freight - Truck(18t) - Syn Fuel:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Hydrogen
 Transport - Freight - Truck(26t) - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in heavy-duty vehicle
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in heavy-duty vehicle
@@ -2843,6 +4412,11 @@ Transport - Freight - Truck(26t) - Elec:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Electricity
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Electricity
 Transport - Freight - Truck(26t) - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: biomethane, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in heavy duty vehicle
@@ -2851,6 +4425,11 @@ Transport - Freight - Truck(26t) - Bio CH4:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Gases|Biomass
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Gases|Biomass
 Transport - Freight - Truck(26t) - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in heavy duty vehicle
@@ -2859,6 +4438,11 @@ Transport - Freight - Truck(26t) - Nat Gas:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Gases|Fossil
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Gases|Fossil
 Transport - Freight - Truck(26t) - SNG:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, synthetic, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in heavy duty vehicle
@@ -2867,6 +4451,11 @@ Transport - Freight - Truck(26t) - SNG:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Gases|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Gases|Hydrogen
 Transport - Freight - Truck(26t) - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in a heavy duty vehicle
@@ -2883,6 +4472,12 @@ Transport - Freight - Truck(26t) - Biofuel:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Biomass
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Biomass
 Transport - Freight - Truck(26t) - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: diesel, burned in heavy-duty vehicle
+      reference product: heat
+      unit: megajoule
+    mask: biodiesel
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in heavy-duty vehicle
@@ -2892,6 +4487,11 @@ Transport - Freight - Truck(26t) - Liquid fossil:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Fossil
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Fossil
 Transport - Freight - Truck(26t) - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in heavy duty vehicle
@@ -2900,6 +4500,11 @@ Transport - Freight - Truck(26t) - Syn Fuel:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Hydrogen
 Transport - Freight - Truck(40t) - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in heavy-duty vehicle
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in heavy-duty vehicle
@@ -2909,6 +4514,11 @@ Transport - Freight - Truck(40t) - Elec:
     image: Final Energy|Transportation|Freight|Heavy Truck|Electricity
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Electricity
 Transport - Freight - Truck(40t) - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: biomethane, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in heavy duty vehicle
@@ -2917,6 +4527,11 @@ Transport - Freight - Truck(40t) - Bio CH4:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Gases|Biomass
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Gases|Biomass
 Transport - Freight - Truck(40t) - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in heavy duty vehicle
@@ -2930,6 +4545,11 @@ Transport - Freight - Truck(40t) - Nat Gas:
       - Final Energy|Transport|Truck|Heavy|Natural Gas|Natural Gas
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Gases|Fossil
 Transport - Freight - Truck(40t) - SNG:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, synthetic, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in heavy duty vehicle
@@ -2938,6 +4558,11 @@ Transport - Freight - Truck(40t) - SNG:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Gases|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Gases|Hydrogen
 Transport - Freight - Truck(40t) - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in a heavy duty vehicle
@@ -2961,6 +4586,12 @@ Transport - Freight - Truck(40t) - Biofuel:
       - Final Energy|Transport|Truck|Heavy|Methanol|Methanol
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids|Biomass
 Transport - Freight - Truck(40t) - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: diesel, burned in heavy-duty vehicle
+      reference product: heat
+      unit: megajoule
+    mask: biodiesel
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in heavy-duty vehicle
@@ -2974,6 +4605,11 @@ Transport - Freight - Truck(40t) - Liquid fossil:
       - Final Energy|Transport|Truck|Heavy|Gas|Gasoline
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids|Fossil
 Transport - Freight - Truck(40t) - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in heavy duty vehicle
@@ -2982,6 +4618,11 @@ Transport - Freight - Truck(40t) - Syn Fuel:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids|Hydrogen
 Transport - Freight - Truck(0-3_5t) - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in passenger car
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -2996,6 +4637,11 @@ Transport - Freight - Truck(0-3_5t) - Elec:
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Electricity
     gcam: Final Energy|Transport|Freight|Light truck|BEV|Electricity
 Transport - Freight - Truck(0-3_5t) - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: biomethane, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in heavy duty vehicle
@@ -3004,6 +4650,11 @@ Transport - Freight - Truck(0-3_5t) - Bio CH4:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases|Biomass
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases|Biomass
 Transport - Freight - Truck(0-3_5t) - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in heavy duty vehicle
@@ -3017,6 +4668,11 @@ Transport - Freight - Truck(0-3_5t) - Nat Gas:
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases|Fossil
     gcam: Final Energy|Transport|Freight|Light truck|NG|Gas
 Transport - Freight - Truck(0-3_5t) - SNG:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, synthetic, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in heavy duty vehicle
@@ -3025,6 +4681,11 @@ Transport - Freight - Truck(0-3_5t) - SNG:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases|Hydrogen
 Transport - Freight - Truck(0-3_5t) - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in a heavy duty vehicle
@@ -3042,6 +4703,11 @@ Transport - Freight - Truck(0-3_5t) - Biofuel:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Biomass
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Biomass
 Transport - Freight - Truck(0-3_5t) - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: petrol, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -3057,6 +4723,11 @@ Transport - Freight - Truck(0-3_5t) - Liquid fossil:
       - Final Energy|Transport|Freight|Light truck|Liquids|Oil
       - Final Energy|Transport|Freight|Light truck|Hybrid Liquids|Oil
 Transport - Freight - Truck(0-3_5t) - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in heavy duty vehicle
@@ -3065,6 +4736,11 @@ Transport - Freight - Truck(0-3_5t) - Syn Fuel:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Hydrogen
 Transport - Freight - Truck(7_5t) - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in heavy-duty vehicle
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in heavy-duty vehicle
@@ -3079,6 +4755,11 @@ Transport - Freight - Truck(7_5t) - Elec:
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Electricity
     gcam: Final Energy|Transport|Freight|Medium truck|BEV|Electricity
 Transport - Freight - Truck(7_5t) - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: biomethane, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in heavy duty vehicle
@@ -3087,6 +4768,11 @@ Transport - Freight - Truck(7_5t) - Bio CH4:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases|Biomass
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases|Biomass
 Transport - Freight - Truck(7_5t) - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in heavy duty vehicle
@@ -3099,6 +4785,11 @@ Transport - Freight - Truck(7_5t) - Nat Gas:
       - Final Energy|Transport|Truck|Light|Natural Gas|Natural Gas
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases|Fossil
 Transport - Freight - Truck(7_5t) - SNG:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, synthetic, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in heavy duty vehicle
@@ -3107,6 +4798,11 @@ Transport - Freight - Truck(7_5t) - SNG:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases|Hydrogen
 Transport - Freight - Truck(7_5t) - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in a heavy duty vehicle
@@ -3126,6 +4822,12 @@ Transport - Freight - Truck(7_5t) - Biofuel:
     tiam-ucl: Final Energy|Transport|Truck|Light|Ethanol|Bioethanol
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Biomass
 Transport - Freight - Truck(7_5t) - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: diesel, burned in heavy-duty vehicle
+      reference product: heat
+      unit: megajoule
+    mask: biodiesel
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in heavy-duty vehicle
@@ -3146,6 +4848,11 @@ Transport - Freight - Truck(7_5t) - Liquid fossil:
       - Final Energy|Transport|Freight|Medium truck|Liquids|Oil
       - Final Energy|Transport|Freight|Medium truck|Hybrid Liquids|Oil
 Transport - Freight - Truck(7_5t) - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in heavy duty vehicle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in heavy duty vehicle
@@ -3161,6 +4868,11 @@ Transport - Freight - Domestic Aviation - Elec:
   iam_aliases:
     image: Final Energy|Transportation|Freight|Air|Electricity
 Transport - Freight - Domestic Aviation - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in aircraft
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in aircraft
@@ -3168,6 +4880,11 @@ Transport - Freight - Domestic Aviation - H2:
   iam_aliases:
     image: Final Energy|Transportation|Freight|Air|Hydrogen
 Transport - Freight - Domestic Aviation - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: kerosene, burned in aircraft
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: kerosene, burned in aircraft
@@ -3178,6 +4895,11 @@ Transport - Freight - Domestic Aviation - Liquid fossil:
       - Final Energy|Transport|Air|Domestic|Aviation Gasoline
       - Final Energy|Transport|Air|Domestic|Jet Kerosene
 Transport - Freight - Domestic Aviation - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: kerosene, from biomass, burned in aircraft
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: kerosene, from biomass, burned in aircraft
@@ -3186,6 +4908,11 @@ Transport - Freight - Domestic Aviation - Biofuel:
     image: Final Energy|Transportation|Freight|Air|Liquids|Biomass
     tiam-ucl: Final Energy|Transport|Air|Domestic|Biojet Kerosene
 Transport - Freight - Domestic Aviation - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: kerosene, synthetic, burned in aircraft
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: kerosene, synthetic, burned in aircraft
@@ -3193,6 +4920,11 @@ Transport - Freight - Domestic Aviation - Syn Fuel:
   iam_aliases:
     tiam-ucl: Final Energy|Transport|Air|Domestic|Synthetic Jet Kerosene
 Transport - Pass - Int Aviation - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: kerosene, from biomass, burned in aircraft
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: kerosene, from biomass, burned in aircraft
@@ -3203,6 +4935,11 @@ Transport - Pass - Int Aviation - Biofuel:
     tiam-ucl: Final Energy|Transport|Air|International|Biojet Kerosene
     remind-eu: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Biomass
 Transport - Pass - Int Aviation - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: kerosene, burned in aircraft
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: kerosene, burned in aircraft
@@ -3216,6 +4953,11 @@ Transport - Pass - Int Aviation - Liquid fossil:
     remind-eu: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Fossil
     gcam: Final Energy|Transport|Aviation|International Aviation|Liquids|Oil
 Transport - Pass - Int Aviation - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in aircraft
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in aircraft
@@ -3232,6 +4974,11 @@ Transport - Pass - Int Aviation - Elec:
     image: Final Energy|Transportation|Passenger|International Aviation|Electricity
     gcam: Final Energy|Transport|Aviation|International Aviation|BEV|Electricity
 Transport - Pass - Int Aviation - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: kerosene, synthetic, burned in aircraft
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: kerosene, synthetic, burned in aircraft
@@ -3241,6 +4988,11 @@ Transport - Pass - Int Aviation - Syn Fuel:
     tiam-ucl: Final Energy|Transport|Air|International|Synthetic Jet Kerosene
     remind-eu: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Hydrogen
 Transport - Pass - Domestic Aviation - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, burned in aircraft
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in aircraft
@@ -3251,6 +5003,11 @@ Transport - Pass - Domestic Aviation - H2:
     remind-eu: FE|Transport|Pass|Domestic Aviation|Hydrogen
     gcam: Final Energy|Transport|Passenger|Domestic Aviation|Hydrogen|Hydrogen
 Transport - Pass - Domestic Aviation - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: kerosene, from biomass, burned in aircraft
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: kerosene, from biomass, burned in aircraft
@@ -3261,6 +5018,11 @@ Transport - Pass - Domestic Aviation - Biofuel:
     tiam-ucl: Final Energy|Transport|Air|Domestic|Biojet Kerosene
     remind-eu: FE|Transport|Pass|Domestic Aviation|Liquids|Biomass
 Transport - Pass - Domestic Aviation - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: kerosene, burned in aircraft
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: kerosene, burned in aircraft
@@ -3274,6 +5036,11 @@ Transport - Pass - Domestic Aviation - Liquid fossil:
     remind-eu: FE|Transport|Pass|Domestic Aviation|Liquids|Fossil
     gcam: Final Energy|Transport|Passenger|Domestic Aviation|Liquids|Oil
 Transport - Pass - Domestic Aviation - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: kerosene, synthetic, burned in aircraft
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: kerosene, synthetic, burned in aircraft
@@ -3290,6 +5057,11 @@ Transport - Pass - Domestic Aviation - Elec:
     image: Final Energy|Transportation|Passenger|Domestic Aviation|Electricity
     gcam: Final Energy|Transport|Passenger|Domestic Aviation|BEV|Electricity
 Transport - Pass - Rail - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in passenger train
+      reference product: electricity, high voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger train
@@ -3317,6 +5089,12 @@ Transport - Pass - Rail - Biofuel:
     tiam-ucl: Final Energy|Transport|Rail|Passenger|Biodiesel
     remind-eu: FE|Transport|Pass|Rail|Liquids|Biomass
 Transport - Pass - Rail - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: diesel, burned in passenger train
+      reference product: heat
+      unit: megajoule
+    mask: biodiesel
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in passenger train
@@ -3331,6 +5109,11 @@ Transport - Pass - Rail - Liquid fossil:
     remind-eu: FE|Transport|Pass|Rail|Liquids|Fossil
     gcam: Final Energy|Transport|Passenger|Passenger Rail|Liquids|Oil
 Transport - Pass - Rail - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in passenger train
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger train
@@ -3348,6 +5131,11 @@ Transport - Pass - Rail - H2:
       - Final Energy|Transportation|Passenger|Rail (high speed)|Hydrogen
       - Final Energy|Transportation|Passenger|Rail (low speed)|Hydrogen
 Transport - Pass - Bus - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in single deck coach or urban bus
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in single deck coach or urban bus
@@ -3358,6 +5146,11 @@ Transport - Pass - Bus - Elec:
     remind-eu: FE|Transport|Pass|Road|Bus|Electricity
     gcam: Final Energy|Transport|Passenger|Bus|BEV|Electricity
 Transport - Pass - Bus - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: biomethane, burned in single deck coach or urban bus
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in single deck coach or urban bus
@@ -3366,6 +5159,11 @@ Transport - Pass - Bus - Bio CH4:
     remind: FE|Transport|Pass|Road|Bus|Gases|Biomass
     remind-eu: FE|Transport|Pass|Road|Bus|Gases|Biomass
 Transport - Pass - Bus - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, burned in single deck coach or urban bus
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in single deck coach or urban bus
@@ -3379,6 +5177,11 @@ Transport - Pass - Bus - Nat Gas:
     remind-eu: FE|Transport|Pass|Road|Bus|Gases|Fossil
     gcam: Final Energy|Transport|Passenger|Bus|NG|Gas
 Transport - Pass - Bus - SNG:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, synthetic, burned in single deck coach or urban bus
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in single deck coach or urban bus
@@ -3387,6 +5190,11 @@ Transport - Pass - Bus - SNG:
     remind: FE|Transport|Pass|Road|Bus|Gases|Hydrogen
     remind-eu: FE|Transport|Pass|Road|Bus|Gases|Hydrogen
 Transport - Pass - Bus - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a single deck coach or urban bus
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in a single deck coach or urban bus
@@ -3408,6 +5216,12 @@ Transport - Pass - Bus - Biofuel:
     tiam-ucl: Final Energy|Transport|Bus|Ethanol|Bioethanol
     remind-eu: FE|Transport|Pass|Road|Bus|Liquids|Biomass
 Transport - Pass - Bus - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: diesel, burned in single deck coach or urban bus
+      reference product: heat
+      unit: megajoule
+    mask: biodiesel
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in single deck coach or urban bus
@@ -3425,6 +5239,11 @@ Transport - Pass - Bus - Liquid fossil:
       - Final Energy|Transport|Passenger|Bus|Liquids|Oil
       - Final Energy|Transport|Passenger|Bus|Hybrid Liquids|Oil
 Transport - Pass - Bus - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in single deck coach or urban bus
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in single deck coach or urban bus
@@ -3433,6 +5252,11 @@ Transport - Pass - Bus - Syn Fuel:
     remind: FE|Transport|Pass|Road|Bus|Liquids|Hydrogen
     remind-eu: FE|Transport|Pass|Road|Bus|Liquids|Hydrogen
 Transport - Pass - Large Car and SUV - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in passenger car
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -3441,6 +5265,11 @@ Transport - Pass - Large Car and SUV - Elec:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Electricity
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Electricity
 Transport - Pass - Large Car and SUV - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: biomethane, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in passenger car
@@ -3449,6 +5278,11 @@ Transport - Pass - Large Car and SUV - Bio CH4:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases|Biomass
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases|Biomass
 Transport - Pass - Large Car and SUV - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in passenger car
@@ -3457,6 +5291,11 @@ Transport - Pass - Large Car and SUV - Nat Gas:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases|Fossil
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases|Fossil
 Transport - Pass - Large Car and SUV - SNG:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, synthetic, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in passenger car
@@ -3465,6 +5304,11 @@ Transport - Pass - Large Car and SUV - SNG:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases|Hydrogen
 Transport - Pass - Large Car and SUV - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in a passenger car
@@ -3481,6 +5325,11 @@ Transport - Pass - Large Car and SUV - Biofuel:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids|Biomass
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids|Biomass
 Transport - Pass - Large Car and SUV - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: petrol, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -3489,6 +5338,11 @@ Transport - Pass - Large Car and SUV - Liquid fossil:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids|Fossil
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids|Fossil
 Transport - Pass - Large Car and SUV - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger car
@@ -3497,6 +5351,11 @@ Transport - Pass - Large Car and SUV - Syn Fuel:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids|Hydrogen
 Transport - Pass - Large Car - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in passenger car
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -3506,6 +5365,11 @@ Transport - Pass - Large Car - Elec:
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Electricity
     gcam: Final Energy|Transport|Passenger|Large Car and Truck|BEV|Electricity
 Transport - Pass - Large Car - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: biomethane, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in passenger car
@@ -3514,6 +5378,11 @@ Transport - Pass - Large Car - Bio CH4:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases|Biomass
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases|Biomass
 Transport - Pass - Large Car - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in passenger car
@@ -3523,6 +5392,11 @@ Transport - Pass - Large Car - Nat Gas:
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases|Fossil
     gcam: Final Energy|Transport|Passenger|Large Car and Truck|NG|Gas
 Transport - Pass - Large Car - SNG:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, synthetic, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in passenger car
@@ -3531,6 +5405,11 @@ Transport - Pass - Large Car - SNG:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases|Hydrogen
 Transport - Pass - Large Car - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in a passenger car
@@ -3548,6 +5427,11 @@ Transport - Pass - Large Car - Biofuel:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids|Biomass
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids|Biomass
 Transport - Pass - Large Car - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: petrol, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -3559,6 +5443,11 @@ Transport - Pass - Large Car - Liquid fossil:
       - Final Energy|Transport|Passenger|Large Car and Truck|Liquids|Oil
       - Final Energy|Transport|Passenger|Large Car and Truck|Hybrid Liquids|Oil
 Transport - Pass - Large Car - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger car
@@ -3567,6 +5456,11 @@ Transport - Pass - Large Car - Syn Fuel:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids|Hydrogen
 Transport - Pass - Van - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in passenger car
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -3575,6 +5469,11 @@ Transport - Pass - Van - Elec:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Electricity
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Electricity
 Transport - Pass - Van - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: biomethane, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in passenger car
@@ -3583,6 +5482,11 @@ Transport - Pass - Van - Bio CH4:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases|Biomass
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases|Biomass
 Transport - Pass - Van - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in passenger car
@@ -3591,6 +5495,11 @@ Transport - Pass - Van - Nat Gas:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases|Fossil
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases|Fossil
 Transport - Pass - Van - SNG:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, synthetic, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in passenger car
@@ -3599,6 +5508,11 @@ Transport - Pass - Van - SNG:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases|Hydrogen
 Transport - Pass - Van - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in a passenger car
@@ -3616,6 +5530,11 @@ Transport - Pass - Van - Biofuel:
     tiam-ucl: Final Energy|Transport|Truck|Commercial|Ethanol|Bioethanol
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids|Biomass
 Transport - Pass - Van - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: petrol, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -3629,6 +5548,11 @@ Transport - Pass - Van - Liquid fossil:
       - Final Energy|Transport|Truck|Commercial|Gasoline Plug-in Hybrid|Gasoline
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids|Fossil
 Transport - Pass - Van - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger car
@@ -3637,6 +5561,11 @@ Transport - Pass - Van - Syn Fuel:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids|Hydrogen
 Transport - Pass - Compact Car - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in passenger car
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -3645,6 +5574,11 @@ Transport - Pass - Compact Car - Elec:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Electricity
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Electricity
 Transport - Pass - Compact Car - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: biomethane, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in passenger car
@@ -3653,6 +5587,11 @@ Transport - Pass - Compact Car - Bio CH4:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Gases|Biomass
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Gases|Biomass
 Transport - Pass - Compact Car - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in passenger car
@@ -3661,6 +5600,11 @@ Transport - Pass - Compact Car - Nat Gas:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Gases|Fossil
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Gases|Fossil
 Transport - Pass - Compact Car - SNG:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, synthetic, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in passenger car
@@ -3669,6 +5613,11 @@ Transport - Pass - Compact Car - SNG:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Gases|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Gases|Hydrogen
 Transport - Pass - Compact Car - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in a passenger car
@@ -3685,6 +5634,11 @@ Transport - Pass - Compact Car - Biofuel:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Liquids|Biomass
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Liquids|Biomass
 Transport - Pass - Compact Car - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: petrol, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -3693,6 +5647,11 @@ Transport - Pass - Compact Car - Liquid fossil:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Liquids|Fossil
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Liquids|Fossil
 Transport - Pass - Compact Car - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger car
@@ -3701,6 +5660,11 @@ Transport - Pass - Compact Car - Syn Fuel:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Liquids|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Liquids|Hydrogen
 Transport - Pass - Midsize Car - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in passenger car
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -3716,6 +5680,11 @@ Transport - Pass - Midsize Car - Elec:
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Electricity
     gcam: Final Energy|Transport|Passenger|Car|BEV|Electricity
 Transport - Pass - Midsize Car - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: biomethane, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in passenger car
@@ -3724,6 +5693,11 @@ Transport - Pass - Midsize Car - Bio CH4:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases|Biomass
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases|Biomass
 Transport - Pass - Midsize Car - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in passenger car
@@ -3737,6 +5711,11 @@ Transport - Pass - Midsize Car - Nat Gas:
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases|Fossil
     gcam: Final Energy|Transport|Passenger|Car|NG|Gas
 Transport - Pass - Midsize Car - SNG:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, synthetic, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in passenger car
@@ -3745,6 +5724,11 @@ Transport - Pass - Midsize Car - SNG:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases|Hydrogen
 Transport - Pass - Midsize Car - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in a passenger car
@@ -3766,6 +5750,11 @@ Transport - Pass - Midsize Car - Biofuel:
     tiam-ucl: Final Energy|Transport|Car|Ethanol|Bioethanol
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Biomass
 Transport - Pass - Midsize Car - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: petrol, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -3786,6 +5775,11 @@ Transport - Pass - Midsize Car - Liquid fossil:
       - Final Energy|Transport|Passenger|Car|Liquids|Oil
       - Final Energy|Transport|Passenger|Car|Hybrid Liquids|Oil
 Transport - Pass - Midsize Car - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger car
@@ -3794,6 +5788,11 @@ Transport - Pass - Midsize Car - Syn Fuel:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Hydrogen
 Transport - Pass - Mini Car - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in passenger car
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -3803,6 +5802,11 @@ Transport - Pass - Mini Car - Elec:
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Electricity
     gcam: Final Energy|Transport|Passenger|Mini Car|BEV|Electricity
 Transport - Pass - Mini Car - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: biomethane, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in passenger car
@@ -3811,6 +5815,11 @@ Transport - Pass - Mini Car - Bio CH4:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases|Biomass
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases|Biomass
 Transport - Pass - Mini Car - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in passenger car
@@ -3820,6 +5829,11 @@ Transport - Pass - Mini Car - Nat Gas:
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases|Fossil
     gcam: Final Energy|Transport|Passenger|Mini Car|NG|Gas
 Transport - Pass - Mini Car - SNG:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, synthetic, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in passenger car
@@ -3828,6 +5842,11 @@ Transport - Pass - Mini Car - SNG:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases|Hydrogen
 Transport - Pass - Mini Car - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in a passenger car
@@ -3845,6 +5864,11 @@ Transport - Pass - Mini Car - Biofuel:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids|Biomass
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids|Biomass
 Transport - Pass - Mini Car - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: petrol, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -3864,6 +5888,11 @@ Transport - Pass - Mini Car - Diesel:
   iam_aliases:
     tiam-ucl: Final Energy|Transport|Three Wheeler|Diesel|Diesel
 Transport - Pass - Mini Car - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger car
@@ -3872,6 +5901,11 @@ Transport - Pass - Mini Car - Syn Fuel:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids|Hydrogen
 Transport - Pass - Subcompact Car - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in passenger car
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -3880,6 +5914,11 @@ Transport - Pass - Subcompact Car - Elec:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Electricity
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Electricity
 Transport - Pass - Subcompact Car - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: biomethane, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in passenger car
@@ -3888,6 +5927,11 @@ Transport - Pass - Subcompact Car - Bio CH4:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases|Biomass
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases|Biomass
 Transport - Pass - Subcompact Car - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in passenger car
@@ -3896,6 +5940,11 @@ Transport - Pass - Subcompact Car - Nat Gas:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases|Fossil
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases|Fossil
 Transport - Pass - Subcompact Car - SNG:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, synthetic, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in passenger car
@@ -3904,6 +5953,11 @@ Transport - Pass - Subcompact Car - SNG:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases|Hydrogen
 Transport - Pass - Subcompact Car - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in a passenger car
@@ -3920,6 +5974,11 @@ Transport - Pass - Subcompact Car - Biofuel:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids|Biomass
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids|Biomass
 Transport - Pass - Subcompact Car - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: petrol, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -3928,6 +5987,11 @@ Transport - Pass - Subcompact Car - Liquid fossil:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids|Fossil
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids|Fossil
 Transport - Pass - Subcompact Car - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger car
@@ -3936,6 +6000,11 @@ Transport - Pass - Subcompact Car - Syn Fuel:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids|Hydrogen
 Transport - Pass - Moped - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in battery electric motorcycle
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in battery electric motorcycle
@@ -3944,6 +6013,11 @@ Transport - Pass - Moped - Elec:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Moped|Electricity
     remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Moped|Electricity
 Transport - Pass - Moped - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: bioethanol, burned in motorcycle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: bioethanol, burned in motorcycle
@@ -3952,6 +6026,11 @@ Transport - Pass - Moped - Biofuel:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids|Biomass
     remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids|Biomass
 Transport - Pass - Moped - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: petrol, burned in motorcycle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in motorcycle
@@ -3960,6 +6039,11 @@ Transport - Pass - Moped - Liquid fossil:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids|Fossil
     remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids|Fossil
 Transport - Pass - Moped - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: petrol, synthetic, burned in motorcycle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: petrol, synthetic, burned in motorcycle
@@ -3968,6 +6052,11 @@ Transport - Pass - Moped - Syn Fuel:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids|Hydrogen
 Transport - Pass - Motorcycle(50-250cc) - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in battery electric motorcycle
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in battery electric motorcycle
@@ -3976,6 +6065,11 @@ Transport - Pass - Motorcycle(50-250cc) - Elec:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Electricity
     remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Electricity
 Transport - Pass - Motorcycle(50-250cc) - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: bioethanol, burned in motorcycle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: bioethanol, burned in motorcycle
@@ -3985,6 +6079,11 @@ Transport - Pass - Motorcycle(50-250cc) - Biofuel:
     tiam-ucl: Final Energy|Transport|Three Wheeler|Diesel|Biodiesel
     remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids|Biomass
 Transport - Pass - Motorcycle(50-250cc) - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: petrol, burned in motorcycle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in motorcycle
@@ -3996,6 +6095,11 @@ Transport - Pass - Motorcycle(50-250cc) - Liquid fossil:
       - Final Energy|Transport|Two Wheeler|Gasoline|Gasoline
     remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids|Fossil
 Transport - Pass - Motorcycle(50-250cc) - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: petrol, synthetic, burned in motorcycle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: petrol, synthetic, burned in motorcycle
@@ -4004,6 +6108,11 @@ Transport - Pass - Motorcycle(50-250cc) - Syn Fuel:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids|Hydrogen
 Transport - Pass - Motorcycle(>250cc) - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in battery electric motorcycle
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in battery electric motorcycle
@@ -4012,6 +6121,11 @@ Transport - Pass - Motorcycle(>250cc) - Elec:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Electricity
     remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Electricity
 Transport - Pass - Motorcycle(>250cc) - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: bioethanol, burned in motorcycle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: bioethanol, burned in motorcycle
@@ -4020,6 +6134,11 @@ Transport - Pass - Motorcycle(>250cc) - Biofuel:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids|Biomass
     remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids|Biomass
 Transport - Pass - Motorcycle(>250cc) - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: petrol, burned in motorcycle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in motorcycle
@@ -4028,6 +6147,11 @@ Transport - Pass - Motorcycle(>250cc) - Liquid fossil:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids|Fossil
     remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids|Fossil
 Transport - Pass - Motorcycle(>250cc) - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: petrol, synthetic, burned in motorcycle
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: petrol, synthetic, burned in motorcycle
@@ -4037,6 +6161,11 @@ Transport - Pass - Motorcycle(>250cc) - Syn Fuel:
     remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids|Hydrogen
 
 Transportation excl. International Shipping - Electricity:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in passenger car
+      reference product: electricity, low voltage
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -4044,6 +6173,11 @@ Transportation excl. International Shipping - Electricity:
   iam_aliases:
     message: Final Energy|Transportation|Electricity
 Transportation excl. International Shipping - Gases|Gas:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in passenger car
@@ -4051,6 +6185,11 @@ Transportation excl. International Shipping - Gases|Gas:
   iam_aliases:
     message: Final Energy|Transportation|Gases|Gas
 Transportation excl. International Shipping - Gases|Biomass:
+  uvek_aliases:
+    fltr:
+      name: biomethane, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in passenger car
@@ -4058,6 +6197,11 @@ Transportation excl. International Shipping - Gases|Biomass:
   iam_aliases:
     message: Final Energy|Transportation|Gases|Biomass
 Transportation excl. International Shipping - Hydrogen:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in a passenger car
@@ -4065,6 +6209,11 @@ Transportation excl. International Shipping - Hydrogen:
   iam_aliases:
     message: Final Energy|Transportation|Hydrogen
 Transportation excl. International Shipping - Liquids|Biomass|Fuel Cell:
+  uvek_aliases:
+    fltr:
+      name: methanol from biomass, burned in container ship
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in container ship
@@ -4079,6 +6228,11 @@ Transportation excl. International Shipping - Liquids|Biomass|Combustion:
   iam_aliases:
     message: Final Energy|Transportation|Liquids|Biomass|Combustion
 Transportation excl. International Shipping - Liquids|Coal:
+  uvek_aliases:
+    fltr:
+      name: diesel, synthetic, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger car
@@ -4086,6 +6240,11 @@ Transportation excl. International Shipping - Liquids|Coal:
   iam_aliases:
     message: Final Energy|Transportation|Liquids|Coal
 Transportation excl. International Shipping - Liquids|Gas:
+  uvek_aliases:
+    fltr:
+      name: compressed gas, synthetic, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in passenger car
@@ -4093,6 +6252,11 @@ Transportation excl. International Shipping - Liquids|Gas:
   iam_aliases:
     message: Final Energy|Transportation|Liquids|Gas
 Transportation excl. International Shipping - Liquids|Oil|Light:
+  uvek_aliases:
+    fltr:
+      name: petrol, burned in passenger car
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -4100,6 +6264,11 @@ Transportation excl. International Shipping - Liquids|Oil|Light:
   iam_aliases:
     message: Final Energy|Transportation|Liquids|Oil|Light
 Transportation excl. International Shipping - Liquids|Oil|Heavy:
+  uvek_aliases:
+    fltr:
+      name: heavy fuel oil, burned in container ship
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: heavy fuel oil, burned in container ship
@@ -4114,6 +6283,11 @@ Transportation excl. International Shipping - Other:
   iam_aliases:
     message: Final Energy|Transportation|Other
 Transportation excl. International Shipping - Solids|Coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
