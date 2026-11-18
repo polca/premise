@@ -3224,7 +3224,7 @@
     },
     {
       "sector": "final energy",
-      "status": "full_inventory_preparation_passed_shared_operating_energy_classifier_blocked",
+      "status": "inventory_preparation_and_shared_callback_passed_in_preview_graph_validation_blocked",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -3798,9 +3798,12 @@
         "prepared_records": 1621,
         "activities_before_update": 13568,
         "remaining_background_correspondences_in_inspected_graph": 0,
-        "callback_failure": "Native vehicle operating-energy classifiers do not consult the existing exact-label YAML aliases.",
-        "generic_fix_proposed_not_applied": true,
-        "context_and_filter_coverage_pending": true
+        "callback_failure": null,
+        "generic_fix_proposed_not_applied": false,
+        "context_and_filter_coverage_pending": true,
+        "exact_generic_classifier_fix_approved_and_applied": true,
+        "exhaustive_graph_certification": "blocked_by_new_cycle",
+        "cycle_diagnostic_pending": true
       },
       "latest_installed_interface_verification": "docs/development/uvek-final-energy-37-installed-verification.json",
       "latest_required_source37_review": {

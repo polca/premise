@@ -1,6 +1,6 @@
 {
-  "status": "unapplied_one_file_generic_classifier_proposal",
-  "applied_to_source": false,
+  "status": "approved_exact_one_file_generic_classifier_fix_applied",
+  "applied_to_source": true,
   "patch_sha256": "3b0f56d4027dc072852ef3d9c7a000025216f037f92f65b39055c9310f66b434",
   "changed_source_files_if_approved": [
     "premise/transport/vehicle_energy_use.py"
@@ -62,6 +62,13 @@
     "new_Python_source_changes": 0
   },
   "new_YAML_alias_rows": 4,
-  "runtime_source_changes": 0,
-  "limitation": "Existing tests/direct cases are passing previews only. Full workflow preview remains separately observed; public admission, native filter/context coverage, graph certification/export are unfinished. The current no-Python instruction requires approval before application."
+  "runtime_source_changes": 1,
+  "limitation": "Classifier wiring and focused tests pass. Final-energy graph validation, context/filter coverage and public export remain unfinished. No other Python proposal is approved.",
+  "applied_source_sha256": "e004dc891c3a745f9d2d7d69961adf2653c89d3c104530eb41b11deeb1b1a4d7",
+  "existing_tests_passed_against_applied_source": 81,
+  "approval": {
+    "date": "2026-11-18",
+    "scope": "This exact fix only",
+    "other_Python_changes_authorized": false
+  }
 }

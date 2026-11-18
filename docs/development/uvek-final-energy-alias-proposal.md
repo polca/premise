@@ -1,11 +1,11 @@
-# Proposed generic final-energy classifier fix — not applied
+# Approved generic final-energy classifier fix
 
 Final-energy preparation succeeds with 1,621 imported records. The unchanged
 shared update then cannot recognize native operating energy in a diesel-electric
 train. The native diesel label is already declared in the existing exact-label
 YAML, but the two classifiers in `vehicle_energy_use.py` do not consult it.
 
-The proposed one-file patch calls the existing `canonical_vehicle_energy_product`
+The approved one-file patch calls the existing `canonical_vehicle_energy_product`
 lookup from `carrier` and `fuel_property_key`. Supplier labels, quantities,
 units, LHVs, carbon factors, transformation formulas and public signatures remain
 unchanged. It introduces no UVEK sector engine or new conversion strategy.
@@ -23,10 +23,12 @@ countercases. An operating-source census found 15/16 source pairs recognized
 before the last E5 alias was added; the shared workflow preview is recorded
 separately. These checks do not establish public sector support or an export.
 
-The patch remains unapplied because the latest instruction prohibits Python
-source edits. Approval is needed for this concrete exception. The separate
-four-file battery proposal remains unchanged and unapplied. See
-`proposed-final-energy-alias-compatibility.patch` and its verification JSON.
+The user approved this exact fix on 18 November 2026 as an explicit exception
+to the no-Python instruction. The source now matches the reviewed proposal
+exactly, and all 81 existing vehicle/energy tests pass against the applied fix.
+No other Python changes are authorized by this approval. The separate four-file
+battery proposal remains unchanged and unapplied. The original reviewed patch
+is retained at `proposed-final-energy-alias-compatibility.patch`.
 
 
 Latest full preview: the alias proposal and exact E5 mapping allow inventory
