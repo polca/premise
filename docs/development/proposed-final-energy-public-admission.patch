@@ -1,0 +1,7 @@
+--- a/premise/database/background.py
++++ b/premise/database/background.py
+@@ -64,0 +65 @@
++            "final energy",
+@@ -69 +70 @@
+-            "UVEK 2026 supports biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses, two_wheelers, trains, cars and trucks; "
++            "UVEK 2026 supports biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses, two_wheelers, trains, cars, trucks and final energy; "
