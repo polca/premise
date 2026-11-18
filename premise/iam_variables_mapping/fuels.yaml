@@ -793,6 +793,28 @@ methane, from biomass:
       name:
       - burned
       - station
+methane, from biomass, delivered:
+  lhv:
+    unit: megajoule
+    value: 47.5
+  co2: 0.06
+  biogenic_share: 1
+  uvek_aliases:
+    clic_slugs:
+    - biomethane-gaseous-5-bar-from-sewage-sludge-fermentation-at-fuelling-station
+    clic_unit: kilogram
+    clic_reference_amount: 1
+    clic_limitations:
+    - Classification-only kg carrier for the delivered five-bar sewage-sludge biomethane already purchased by heat
+      inventories. Reuse the existing methane-from-biomass nominal LHV 47.5 MJ/kg, CO2 property and biogenic share.
+      Preserve the original fuel quantity, supplier, allocation, auxiliaries and uncertainty; purity, pressure,
+      delivery, geography and vintage differences remain screening limitations.
+    - This entry has no IAM production aliases and no market suppliers. It binds only when this published supply
+      is already required by an actual dependency; do not add a fuelling-station process to methane production mixes,
+      invent efficiency or density corrections, or add fuel demand or credits.
+    market_suppliers:
+      clic_slugs: []
+
 methane, synthetic:
   lhv:
     unit: megajoule

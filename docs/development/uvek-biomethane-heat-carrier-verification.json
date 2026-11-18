@@ -1,0 +1,18 @@
+{
+  "status": "all_captured_combined_heat_carrier_cases_passed",
+  "actual_cases": 191,
+  "previously_passing_cases_unchanged": 179,
+  "previously_failed_regional_biomethane_cases_fixed": 12,
+  "corrected_biomethane_factor": 1.1065263157894738,
+  "nominal_methane_LHV_unchanged": 47.5,
+  "delivered_biomethane_has_explicit_classification_binding": true,
+  "market_production_candidates_unchanged": [
+    "biomethane-production-from-biogas-upgrading-using-amine-scrubbing"
+  ],
+  "delivered_station_excluded_from_market_producers": true,
+  "classification_entry_has_no_IAM_aliases": true,
+  "no_additional_delivered_station_root_for_REMIND_fuels": true,
+  "original_inventory_exchanges_unchanged": true,
+  "source_code_changes": 0,
+  "qualification_limit": "Real captured post-fuels heat input cases, using existing classification/binding and heat equations. Full combined callback/validation must still be rerun; no export or public qualification."
+}
