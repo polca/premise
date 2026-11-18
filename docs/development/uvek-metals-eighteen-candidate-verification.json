@@ -1,0 +1,88 @@
+{
+  "status": "combined_eighteen_sector_callbacks_and_graph_checks_passed",
+  "sectors": [
+    "biomass",
+    "electricity",
+    "cement",
+    "steel",
+    "fuels",
+    "renewable",
+    "metals",
+    "mining",
+    "heat",
+    "cdr",
+    "battery",
+    "cars",
+    "two_wheelers",
+    "trucks",
+    "ships",
+    "buses",
+    "trains",
+    "final energy"
+  ],
+  "unapplied_exact_support_list_preview": true,
+  "repository_source_changed": false,
+  "CLIC_freshness": "normal live default",
+  "CLIC_options_overridden": false,
+  "validation_disabled": false,
+  "Brightway_export_performed": false,
+  "public_qualified": false,
+  "validation_errors": 0,
+  "activities": 19735,
+  "prepared_records": 2417,
+  "material_decision_counts": {
+    "metals.material_rule.year_outside_support": 62,
+    "metals.material_rule.intensity_missing": 13,
+    "metals.material_rule.component_scope_unverified": 57,
+    "metals.material_rule.preserved_source": 61,
+    "metals.material_rule.applied": 29,
+    "metals.material_rule.zero_intensity": 1,
+    "metals.material_rule.design_incomplete": 3
+  },
+  "market_decision_counts": {
+    "market_preserved_year_outside_support": 103
+  },
+  "metals_transformation_targets": 59,
+  "private_physical_snapshot": {
+    "activities": 19735,
+    "exchanges": 576291,
+    "cache_type": "calculation-only physical inventory, excluding large provenance and comments",
+    "original_store_unchanged": true,
+    "bytes": 26173225,
+    "sha256": "3a8423c9762f08a416878357ebd26754de82751a2d76d3ca1250385a5f6fb531"
+  },
+  "Brightway_registry_unchanged": true,
+  "processed_file_names_unchanged": true,
+  "support_list_source_hash_unchanged": true,
+  "elapsed_seconds": 502.5154643750284,
+  "qualification_limit": "Installed combined diagnostic with an exact unapplied support-list preview only. Physical mapping completeness, finite LCIs, approval and public export remain separate requirements.",
+  "installed_candidate_revision": "d107947b",
+  "installed_regressions_passed": 731,
+  "installed_package_verification": {
+    "status": "installed_complete_metals_candidate_regressions_and_bytes_passed",
+    "Brightpath_Git_revision": "02326bb7b334a36b6bab1d3cbeef2d0a4f157e19",
+    "runtime_packages_loaded_only_from_installed_environment": true,
+    "package_bytes": {
+      "premise": {
+        "all_packaged_files_match_source": true,
+        "packaged_files": 426
+      },
+      "brightpath": {
+        "all_packaged_files_match_source": true,
+        "packaged_files": 607
+      }
+    },
+    "elapsed_seconds": 7.060200582956895,
+    "public_support_list_unchanged_during_check": true
+  },
+  "signed_LCI_verification": {
+    "status": "all_updated_native_wind_solar_and_stack_targets_have_finite_signed_LCIs",
+    "complete_modified_graph_activities": 19735,
+    "modified_activity_demands": 19,
+    "signed_LCIs": 38,
+    "signed_linearity_passed": true,
+    "no_Brightway_database_written": true,
+    "qualification_limit": "Installed full eighteen-sector callback and exhaustive graph checks passed using an exact unapplied public-support-list preview. Public approval and export remain separate requirements."
+  },
+  "scope_approval_required": true
+}
