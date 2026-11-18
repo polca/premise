@@ -1,0 +1,574 @@
+{
+  "status": "canonical_category_text_only_correction",
+  "workbook": "premise/data/additional_inventories/lci-final-energy.xlsx",
+  "old_sha256": "a3eeff0d20912e7bf0b7ec246f08f69145e2eaa9989167abc347b3a62ee2cfb1",
+  "new_sha256": "6ed3ca6072699534bd2f54a0a82ae61e56b45201bf298bced691db759be81499",
+  "category_cells_changed": 39,
+  "cells_checked": 116449,
+  "numeric_cells_unchanged": 8029,
+  "formula_cells_unchanged": 459,
+  "all_styles_preserved": true,
+  "only_modified_archive_member": "xl/worksheets/sheet1.xml",
+  "publisher_category_witnesses": [
+    {
+      "cell": "E931",
+      "name": "Carbon dioxide, fossil",
+      "canonical_name": "Carbon dioxide, fossil",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "349b29d1-3e58-4c66-98b9-9d1a076efd2e"
+    },
+    {
+      "cell": "E938",
+      "name": "1,1,1,2-Tetrafluoroethane",
+      "canonical_name": "1,1,1,2-Tetrafluoroethane",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "e87f039d-d9ce-4242-ac18-c9284cc80f3d"
+    },
+    {
+      "cell": "E953",
+      "name": "Sulfur dioxide",
+      "canonical_name": "Sulfur dioxide",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "fd7aa71c-508c-480d-81a6-8052aad92646"
+    },
+    {
+      "cell": "E1034",
+      "name": "1,1,1,2-Tetrafluoroethane",
+      "canonical_name": "1,1,1,2-Tetrafluoroethane",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "e87f039d-d9ce-4242-ac18-c9284cc80f3d"
+    },
+    {
+      "cell": "E1049",
+      "name": "Sulfur dioxide",
+      "canonical_name": "Sulfur dioxide",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "fd7aa71c-508c-480d-81a6-8052aad92646"
+    },
+    {
+      "cell": "E1131",
+      "name": "1,1,1,2-Tetrafluoroethane",
+      "canonical_name": "1,1,1,2-Tetrafluoroethane",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "e87f039d-d9ce-4242-ac18-c9284cc80f3d"
+    },
+    {
+      "cell": "E1146",
+      "name": "Sulfur dioxide",
+      "canonical_name": "Sulfur dioxide",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "fd7aa71c-508c-480d-81a6-8052aad92646"
+    },
+    {
+      "cell": "E1228",
+      "name": "1,1,1,2-Tetrafluoroethane",
+      "canonical_name": "1,1,1,2-Tetrafluoroethane",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "e87f039d-d9ce-4242-ac18-c9284cc80f3d"
+    },
+    {
+      "cell": "E1243",
+      "name": "Sulfur dioxide",
+      "canonical_name": "Sulfur dioxide",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "fd7aa71c-508c-480d-81a6-8052aad92646"
+    },
+    {
+      "cell": "E1325",
+      "name": "1,1,1,2-Tetrafluoroethane",
+      "canonical_name": "1,1,1,2-Tetrafluoroethane",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "e87f039d-d9ce-4242-ac18-c9284cc80f3d"
+    },
+    {
+      "cell": "E1340",
+      "name": "Sulfur dioxide",
+      "canonical_name": "Sulfur dioxide",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "fd7aa71c-508c-480d-81a6-8052aad92646"
+    },
+    {
+      "cell": "E1422",
+      "name": "1,1,1,2-Tetrafluoroethane",
+      "canonical_name": "1,1,1,2-Tetrafluoroethane",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "e87f039d-d9ce-4242-ac18-c9284cc80f3d"
+    },
+    {
+      "cell": "E1437",
+      "name": "Sulfur dioxide",
+      "canonical_name": "Sulfur dioxide",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "fd7aa71c-508c-480d-81a6-8052aad92646"
+    },
+    {
+      "cell": "E1511",
+      "name": "Carbon dioxide, fossil",
+      "canonical_name": "Carbon dioxide, fossil",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "349b29d1-3e58-4c66-98b9-9d1a076efd2e"
+    },
+    {
+      "cell": "E1515",
+      "name": "1,1,1,2-Tetrafluoroethane",
+      "canonical_name": "1,1,1,2-Tetrafluoroethane",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "e87f039d-d9ce-4242-ac18-c9284cc80f3d"
+    },
+    {
+      "cell": "E1520",
+      "name": "Methane, fossil",
+      "canonical_name": "Methane, fossil",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "0795345f-c7ae-410c-ad25-1845784c75f5"
+    },
+    {
+      "cell": "E1601",
+      "name": "1,1,1,2-Tetrafluoroethane",
+      "canonical_name": "1,1,1,2-Tetrafluoroethane",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "e87f039d-d9ce-4242-ac18-c9284cc80f3d"
+    },
+    {
+      "cell": "E1606",
+      "name": "Methane, fossil",
+      "canonical_name": "Methane, fossil",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "0795345f-c7ae-410c-ad25-1845784c75f5"
+    },
+    {
+      "cell": "E1688",
+      "name": "1,1,1,2-Tetrafluoroethane",
+      "canonical_name": "1,1,1,2-Tetrafluoroethane",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "e87f039d-d9ce-4242-ac18-c9284cc80f3d"
+    },
+    {
+      "cell": "E1693",
+      "name": "Methane, fossil",
+      "canonical_name": "Methane, fossil",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "0795345f-c7ae-410c-ad25-1845784c75f5"
+    },
+    {
+      "cell": "E1767",
+      "name": "1,1,1,2-Tetrafluoroethane",
+      "canonical_name": "1,1,1,2-Tetrafluoroethane",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "e87f039d-d9ce-4242-ac18-c9284cc80f3d"
+    },
+    {
+      "cell": "E1837",
+      "name": "1,1,1,2-Tetrafluoroethane",
+      "canonical_name": "1,1,1,2-Tetrafluoroethane",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "e87f039d-d9ce-4242-ac18-c9284cc80f3d"
+    },
+    {
+      "cell": "E1905",
+      "name": "1,1,1,2-Tetrafluoroethane",
+      "canonical_name": "1,1,1,2-Tetrafluoroethane",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "e87f039d-d9ce-4242-ac18-c9284cc80f3d"
+    },
+    {
+      "cell": "E1950",
+      "name": "Nitrogen oxides",
+      "canonical_name": "Nitrogen oxides",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "c1b91234-6f24-417b-8309-46111d09c457"
+    },
+    {
+      "cell": "E1958",
+      "name": "Xylenes, unspecified",
+      "canonical_name": "Xylenes, unspecified",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "5c234628-ab1e-4284-ae2b-f1c2f6883f71"
+    },
+    {
+      "cell": "E3862",
+      "name": "Nitrogen oxides",
+      "canonical_name": "Nitrogen oxides",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "c1b91234-6f24-417b-8309-46111d09c457"
+    },
+    {
+      "cell": "E3870",
+      "name": "Xylenes, unspecified",
+      "canonical_name": "Xylenes, unspecified",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "5c234628-ab1e-4284-ae2b-f1c2f6883f71"
+    },
+    {
+      "cell": "E3904",
+      "name": "Nitrogen oxides",
+      "canonical_name": "Nitrogen oxides",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "c1b91234-6f24-417b-8309-46111d09c457"
+    },
+    {
+      "cell": "E3911",
+      "name": "Xylenes, unspecified",
+      "canonical_name": "Xylenes, unspecified",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "5c234628-ab1e-4284-ae2b-f1c2f6883f71"
+    },
+    {
+      "cell": "E3944",
+      "name": "Nitrogen oxides",
+      "canonical_name": "Nitrogen oxides",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "c1b91234-6f24-417b-8309-46111d09c457"
+    },
+    {
+      "cell": "E3951",
+      "name": "Xylenes, unspecified",
+      "canonical_name": "Xylenes, unspecified",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "5c234628-ab1e-4284-ae2b-f1c2f6883f71"
+    },
+    {
+      "cell": "E3985",
+      "name": "Nitrogen oxides",
+      "canonical_name": "Nitrogen oxides",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "c1b91234-6f24-417b-8309-46111d09c457"
+    },
+    {
+      "cell": "E3992",
+      "name": "Xylenes, unspecified",
+      "canonical_name": "Xylenes, unspecified",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "5c234628-ab1e-4284-ae2b-f1c2f6883f71"
+    },
+    {
+      "cell": "E4026",
+      "name": "Nitrogen oxides",
+      "canonical_name": "Nitrogen oxides",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "c1b91234-6f24-417b-8309-46111d09c457"
+    },
+    {
+      "cell": "E4033",
+      "name": "Xylenes, unspecified",
+      "canonical_name": "Xylenes, unspecified",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "5c234628-ab1e-4284-ae2b-f1c2f6883f71"
+    },
+    {
+      "cell": "E4067",
+      "name": "Nitrogen oxides",
+      "canonical_name": "Nitrogen oxides",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "c1b91234-6f24-417b-8309-46111d09c457"
+    },
+    {
+      "cell": "E4074",
+      "name": "Xylenes, unspecified",
+      "canonical_name": "Xylenes, unspecified",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "5c234628-ab1e-4284-ae2b-f1c2f6883f71"
+    },
+    {
+      "cell": "E4108",
+      "name": "Nitrogen oxides",
+      "canonical_name": "Nitrogen oxides",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "c1b91234-6f24-417b-8309-46111d09c457"
+    },
+    {
+      "cell": "E4115",
+      "name": "Xylenes, unspecified",
+      "canonical_name": "Xylenes, unspecified",
+      "unit": "kilogram",
+      "source_categories": [
+        "air",
+        "unspecified"
+      ],
+      "target_categories": [
+        "air"
+      ],
+      "publisher_reference": "5c234628-ab1e-4284-ae2b-f1c2f6883f71"
+    }
+  ],
+  "source_code_changes": 0,
+  "registry_changes": "one workbook SHA256 only",
+  "authoring": "Artifact Tool edited 39 text cells; exact authored values transplanted to the original sheet XML to preserve all unrelated native workbook features.",
+  "existing_hybrid_and_profile_tests_passed": 39,
+  "original_selected_source_validation_errors_resolved": 20,
+  "actual_next_preparation_frontier": {
+    "stage": "retained workbook migration",
+    "source_version": "3.10",
+    "unapproved_correspondences": 52,
+    "source_code_unchanged": true,
+    "validation_disabled": false,
+    "scope_gate_bypassed_for_diagnostic_only": true
+  },
+  "qualification_limit": "Canonical compartment labels only, with all quantities/formulas preserved. No full final-energy update/export qualification."
+}
