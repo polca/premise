@@ -483,6 +483,32 @@ def load_primary_secondary_split():
         return yaml.safe_load(stream)
 
 
+def _select_material_rules(rules, aliases):
+    """Honor explicit source-alias rule scopes without changing rule equations."""
+    grouped = defaultdict(list)
+    for rule in rules:
+        grouped[rule.technology].append(rule)
+    for technology, definition in aliases.items():
+        if "material_rule_ids" not in definition:
+            continue
+        selected = definition["material_rule_ids"]
+        known = {rule.id for rule in grouped.get(technology, ())}
+        if (
+            not isinstance(selected, list)
+            or not selected
+            or any(not isinstance(value, str) or not value for value in selected)
+            or len(set(selected)) != len(selected)
+            or not set(selected) <= known
+        ):
+            raise MetalsConfigError(
+                f"Invalid source-qualified material rules for {technology!r}."
+            )
+        grouped[technology] = [
+            rule for rule in grouped[technology] if rule.id in selected
+        ]
+    return grouped
+
+
 def load_activities_mapping():
     """
     Load mapping for the ecoinvent exchanges to be
@@ -1438,11 +1464,12 @@ class Metals(BaseTransformation):
         self.material_rules_config = load_material_rules()
         self.material_rules = self.material_rules_config.enabled_rules
         self.material_policies = self.material_rules_config.policies
-        self.material_rules_by_technology: Dict[str, List[MaterialRule]] = defaultdict(
-            list
+        self.material_rules_by_technology = _select_material_rules(
+            self.material_rules,
+            get_mapping(
+                DATA_DIR / "metals/activities_mapping.yml", f"{self.family}_aliases"
+            ),
         )
-        for rule in self.material_rules:
-            self.material_rules_by_technology[rule.technology].append(rule)
 
         self.technology_conversions = load_technology_conversions()
         self.technology_conversions_by_name = {

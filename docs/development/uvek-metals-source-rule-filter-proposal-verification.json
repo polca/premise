@@ -1,0 +1,12 @@
+{
+  "status": "exact_source_alias_rule_selection_packet_approved_and_applied",
+  "repository_source_changed": true,
+  "default_equations_and_rule_order_unchanged": true,
+  "unknown_duplicate_empty_and_cross_technology_rule_lists_refused": true,
+  "existing_tests": 328,
+  "new_tests": 10,
+  "qualification_limit": "Private interpreter preview only; approval, installed native mapping coverage and public export remain separate requirements.",
+  "source_and_tests_match_approved_packet": true,
+  "applied_source_tests_passed": 338,
+  "installed_mapping_coverage_pending": true
+}

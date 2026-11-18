@@ -1,0 +1,93 @@
+--- a/premise/materials/metals.py
++++ b/premise/materials/metals.py
+@@ -485,0 +486,26 @@
++def _select_material_rules(rules, aliases):
++    """Honor explicit source-alias rule scopes without changing rule equations."""
++    grouped = defaultdict(list)
++    for rule in rules:
++        grouped[rule.technology].append(rule)
++    for technology, definition in aliases.items():
++        if "material_rule_ids" not in definition:
++            continue
++        selected = definition["material_rule_ids"]
++        known = {rule.id for rule in grouped.get(technology, ())}
++        if (
++            not isinstance(selected, list)
++            or not selected
++            or any(not isinstance(value, str) or not value for value in selected)
++            or len(set(selected)) != len(selected)
++            or not set(selected) <= known
++        ):
++            raise MetalsConfigError(
++                f"Invalid source-qualified material rules for {technology!r}."
++            )
++        grouped[technology] = [
++            rule for rule in grouped[technology] if rule.id in selected
++        ]
++    return grouped
++
++
+@@ -1441,5 +1467,6 @@
+-        self.material_rules_by_technology: Dict[str, List[MaterialRule]] = defaultdict(
+-            list
+-        )
+-        for rule in self.material_rules:
+-            self.material_rules_by_technology[rule.technology].append(rule)
++        self.material_rules_by_technology = _select_material_rules(
++            self.material_rules,
++            get_mapping(
++                DATA_DIR / "metals/activities_mapping.yml", f"{self.family}_aliases"
++            ),
++        )
+--- /dev/null
++++ b/tests/test_metals_rule_selection.py
+@@ -0,0 +1,49 @@
++import pytest
++
++import premise.materials.metals as module
++from premise.metals_rules import MetalsConfigError, load_material_rules
++
++
++def test_no_source_filter_retains_all_existing_rules_and_order():
++    rules = load_material_rules().enabled_rules
++    selected = module._select_material_rules(rules, {})
++    for technology in {r.technology for r in rules}:
++        assert selected[technology] == [r for r in rules if r.technology == technology]
++
++
++def test_component_scope_selects_only_the_configured_neodymium_rule():
++    rules = load_material_rules().enabled_rules
++    rid = "wind-ddpm-neodymium-neodymium-oxide"
++    selected = module._select_material_rules(
++        rules, {"Wind-DDPM": {"material_rule_ids": [rid]}}
++    )
++    assert [r.id for r in selected["Wind-DDPM"]] == [rid]
++    assert selected["PEMEL"] == [r for r in rules if r.technology == "PEMEL"]
++    assert len([r for r in rules if r.technology == "Wind-DDPM"]) > 1
++
++
++@pytest.mark.parametrize(
++    "value",
++    [
++        None,
++        [],
++        "one-rule",
++        [123],
++        ["not-a-rule"],
++        ["wind-ddpm-neodymium-neodymium-oxide"] * 2,
++        ["pemfc-platinum-platinum"],
++    ],
++)
++def test_invalid_or_cross_technology_scopes_fail_before_updates(value):
++    with pytest.raises(MetalsConfigError, match="source-qualified material rules"):
++        module._select_material_rules(
++            load_material_rules().enabled_rules,
++            {"Wind-DDPM": {"material_rule_ids": value}},
++        )
++
++
++def test_source_declarations_are_not_mutated():
++    rule_ids = ["wind-ddpm-neodymium-neodymium-oxide"]
++    declarations = {"Wind-DDPM": {"material_rule_ids": rule_ids}}
++    module._select_material_rules(load_material_rules().enabled_rules, declarations)
++    assert rule_ids == ["wind-ddpm-neodymium-neodymium-oxide"]

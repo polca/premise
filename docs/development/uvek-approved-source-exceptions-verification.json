@@ -14,14 +14,15 @@
   "Brightpath_modified_python_files": [],
   "original_Premise_master_unchanged": true,
   "original_Premise_master_revision": "61f20a34ef8bb17d5762e8a294e249d0a40a887d",
-  "changes": "Existing YAML alias lookup in fuel classifier; source family/biosphere forwarding in two existing files; final-energy support-list entry and error text in background.py. Each exception was explicitly approved. The separately approved battery patch forwards context and reads generated waste-reference signs in the existing battery class/validator. The separately approved regional-provider packet adds explicit version-scoped location preferences and positive-kg checks in the existing metals supplier lookup; fourteen regression scenarios accompany it.",
+  "changes": "Existing YAML alias lookup in fuel classifier; source family/biosphere forwarding in two existing files; final-energy support-list entry and error text in background.py. Each exception was explicitly approved. The separately approved battery patch forwards context and reads generated waste-reference signs in the existing battery class/validator. The separately approved regional-provider packet adds explicit version-scoped location preferences and positive-kg checks in the existing metals supplier lookup; fourteen regression scenarios accompany it. The separately approved rule-selection packet adds an optional validated material_rule_ids list in source aliases; absent that list, original rule selection is unchanged.",
   "no_new_alternative_sector_engine": true,
   "verification_revision": "30f51fb6",
   "approved_test_only_modified_files": [
     "tests/test_uvek_background.py",
     "tests/test_uvek_public_database.py",
     "tests/test_metals.py",
-    "tests/test_metals_regional_providers.py"
+    "tests/test_metals_regional_providers.py",
+    "tests/test_metals_rule_selection.py"
   ],
   "similar_test_only_expectation_refreshes_authorized": true
 }
