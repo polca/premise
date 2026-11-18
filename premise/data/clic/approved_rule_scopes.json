@@ -358549,6 +358549,81 @@
           "fingerprint": "75f6ce617e540a11a9305fd2a6582d9ef28d0e9e0b24dfb7ca294085bbf50d4f"
         }
       ]
+    },
+    {
+      "rule_id": "bp-c291034cfcb83f1c",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_final_energy_storage_310_review.json",
+      "review_sha256": "26841a5fb12cf0a36e5785abc021cd8597766f7ab9504f9a651f5dbd3feb36a7",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for liquid storage tank, chemicals, organics",
+          "reference product": "liquid storage tank, chemicals, organics",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for liquid storage tank, chemicals, organics",
+            "reference product": "liquid storage tank, chemicals, organics",
+            "unit": "unit"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 2,
+          "inventory_sha256": "b05ed71c5a579509a93ad16b1817b5c312a619ec2d0ce560166cac074111b3fc",
+          "metadata_sha256": "983ed148c8a3e3162819dd3951216758e76bb55933fe0a37cbd09ba4976864cb",
+          "comment_sha256": "48acb1c472e88d0b9e8d4fe3bf3cd167c9458dc7f9c9ea7f13d2a0ebae03bbbe",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 17,
+            "inventory_sha256": "d7b69f5056dd46c477a9e6add3467f823e0f0ffcc2e367fe8544b4d54e3658fe",
+            "metadata_sha256": "be4472ba08051a2ebcb6b3da219618edd9e37303a8f64b66fa92b8a647afd20b",
+            "comment_sha256": "1ca76cbf0e36cfe71d4b82a3f851a2977f3e5c26819622b251232758ea537261",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 17,
+            "inventory_sha256": "f2539d644f63e748747d55c00862c7f7c670ad393da9ff3248905eeb36bc0111",
+            "metadata_sha256": "24d62752b644cbd5c6bdae969ebe3f6e84b47bff4f13c397416bbfd50018e468",
+            "comment_sha256": "e11c3a58e9ad006e0caab3bdf27f85d7dacdf872e1f60e5d99b791095e90821d",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Use complete native organic-chemical liquid-storage infrastructure per plant unit. Both source and native documentation describe four 4000 m3 tanks, total 16000 m3, and assumed 50-year life, so add no factor of four, capacity or lifetime multiplier. Construction materials/land use, decommissioning/disposal and excluded construction energy retain native boundaries. The native model has weak historical Swiss fuel-storage evidence and uncertainty in materials and disposal approximations; delivered-market, geography, vintage and internal uncertainty differences remain explicit. Do not add storage operating energy or a contamination treatment inventory.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Use complete native organic-chemical liquid-storage infrastructure per plant unit. Both source and native documentation describe four 4000 m3 tanks, total 16000 m3, and assumed 50-year life, so add no factor of four, capacity or lifetime multiplier. Construction materials/land use, decommissioning/disposal and excluded construction energy retain native boundaries. The native model has weak historical Swiss fuel-storage evidence and uncertainty in materials and disposal approximations; delivered-market, geography, vintage and internal uncertainty differences remain explicit. Do not add storage operating energy or a contamination treatment inventory.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.10 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a1f57bc78f9faf60b72237baa5dc262ab04cadb554c51ece83e2980dedce0dfe"
+        }
+      ]
     }
   ],
   "superseded_operations": [

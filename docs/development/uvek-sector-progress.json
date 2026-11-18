@@ -3224,7 +3224,7 @@
     },
     {
       "sector": "final energy",
-      "status": "source39_and_source38_required_mappings_verified_source312_review_pending",
+      "status": "source39_38_312_310_required_mappings_verified_legacy37_review_pending",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -3777,6 +3777,28 @@
         "remaining_source312_correspondences": 10,
         "new_helpers": 0,
         "source_code_changes": 0
+      },
+      "latest_required_source312_review": {
+        "exact_scopes": 10,
+        "new_inventory_profile_aliases": 1,
+        "reviews": [
+          "docs/development/uvek-final-energy-electronics-312-review.md",
+          "docs/development/uvek-final-energy-models-312-review.md"
+        ],
+        "new_foreground_omissions": [],
+        "source_code_changes": 0
+      },
+      "latest_required_source310_review": {
+        "exact_scopes": 1,
+        "review": "docs/development/uvek-final-energy-storage-310-review.md",
+        "verification": "docs/development/uvek-final-energy-storage-310-verification.json"
+      },
+      "current_mapping_frontier": {
+        "stage": "inventory preparation",
+        "source_version": "3.7",
+        "unapproved_correspondences": 18,
+        "review_basis": "Exact legacy scooter/utility interfaces required by the normal final-energy preparation graph; no upstream manufacturing reconstruction.",
+        "callback_context_and_filter_coverage_pending": true
       }
     },
     {

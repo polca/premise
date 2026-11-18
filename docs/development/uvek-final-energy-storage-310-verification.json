@@ -1,0 +1,72 @@
+{
+  "status": "source310_storage_interface_verified_source37_review_pending",
+  "source_code_changes": 0,
+  "new_Brightway_databases": 0,
+  "exact_source310_scopes": 1,
+  "new_helpers": 0,
+  "new_foreground_omissions": [],
+  "conversion_behavior": {
+    "status": "passed",
+    "added_exact_source310_scopes": 1,
+    "signed_uncertainty_exchange_checks": 8,
+    "direct_migration_cases": 8,
+    "public_harmonizer_fresh_and_warm_passed": true,
+    "input_nonmutation": true,
+    "earlier_effective_profile_checks": 0,
+    "new_manufacturing_inventory_models": 0,
+    "new_model_profile_aliases": 0,
+    "new_foreground_omissions": [],
+    "source_code_changes": 0,
+    "new_Brightway_databases": 0,
+    "qualification_limit": "Required interface group only; no complete final-energy update or new export."
+  },
+  "in_memory_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 1,
+    "native_suppliers": 1,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 2,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-c291034cfcb83f1c",
+        "source": {
+          "location": "GLO",
+          "name": "market for liquid storage tank, chemicals, organics",
+          "reference product": "liquid storage tank, chemicals, organics",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Liquid storage tank, chemicals, organics",
+          "reference product": "Liquid storage tank, chemicals, organics",
+          "unit": "unit"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      }
+    ],
+    "qualification_limit": "Complete native organic-chemical storage infrastructure; no full final-energy update or export qualification."
+  },
+  "actual_preparation_frontier": {
+    "source39_cleared": true,
+    "source38_cleared": true,
+    "source312_cleared": true,
+    "source310_cleared": true,
+    "source37_unapproved_correspondences": 18,
+    "scope_gate_bypassed_for_diagnostic_only": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "qualified_sectors": 15,
+  "total_sectors": 19,
+  "qualification_limit": "Exact interface checks and real preparation progress only; final-energy transformation/coverage/export remain unfinished."
+}
