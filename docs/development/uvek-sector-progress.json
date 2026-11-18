@@ -4181,5 +4181,13 @@
     "battery_unapproved_mapping_errors": 0,
     "battery_public_support_still_pending": true
   },
-  "latest_remaining_sector_checkpoint": "docs/development/uvek-remaining-sector-diagnostics-2026-11-18.json"
+  "latest_remaining_sector_checkpoint": "docs/development/uvek-remaining-sector-diagnostics-2026-11-18.json",
+  "latest_installed_mapping_verification": "docs/development/uvek-final-energy-installed-verification.json",
+  "latest_normal_live_preparation": {
+    "verification": "docs/development/uvek-final-energy-installed-verification.json",
+    "sectors": 15,
+    "CLIC_records": 1495,
+    "source_code_changes": 0,
+    "new_Brightway_databases": 0
+  }
 }

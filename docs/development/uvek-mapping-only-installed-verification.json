@@ -1,212 +1,253 @@
 {
   "date": "2026-11-18",
-  "status": "installed_battery_mapping_checks_passed_live_archive_check_unavailable",
-  "Brightpath_Git_revision": "ed3fbce6c025904d197f4371893dfc91ef5f11dc",
-  "Premise_wheel_source_revision": "6cac25f5e28a9928d9217fd61f14a266080e1e0c",
+  "status": "installed_mapping_and_normal_live_fifteen_sector_preparation_passed",
+  "Brightpath_Git_revision": "589be065218ba3f36617c8f562788d31045279f0",
+  "current_verification": "docs/development/uvek-final-energy-installed-verification.json",
   "source_code_changes": 0,
-  "original_Premise_master_unchanged": true,
-  "installed_regressions": {
-    "status": "installed_complete_battery_mapping_checks_passed",
-    "Brightpath_Git_revision": "ed3fbce6c025904d197f4371893dfc91ef5f11dc",
-    "runtime_packages_loaded_only_from_installed_environment": true,
-    "signed_uncertainty_checks": 96,
-    "public_harmonizer_fresh_and_warm_groups": 3,
-    "scoped_omission_checks": {
-      "status": "two_exact_consumer_omissions_verified",
-      "new_omissions": 2,
-      "all_actual_omission_warnings": 8,
-      "all_actual_omission_resolution_statuses": {
-        "native_barium_carbonate_supply_unavailable_upstream_burden_omitted": 1,
-        "final_unsupported_exchange_omission": 2,
-        "screening omission; exact biosphere correspondence remains unresolved": 2,
-        "screening omission; exact generic-sodium biosphere correspondence unresolved": 3
-      },
-      "input_nonmutation": true,
-      "all_other_exchanges_retained": true,
-      "nonempty_consumers": true,
-      "wrong_consumer_and_destination_untouched": true,
-      "different_source_refused": true,
-      "actual_signed_quantity_audited": true,
-      "warning_in_activity_comment": true,
-      "new_zero_burden_suppliers": 0,
-      "new_Brightway_databases": 0,
-      "omissions": [
-        {
-          "activity": {
-            "name": "cathode, NMC955, for Li-ion battery",
-            "reference product": "cathode, NMC955, for Li-ion battery",
-            "location": "GLO"
-          },
-          "exchange": {
-            "name": "market for polyvinylidene fluoride",
-            "reference product": "polyvinylidene fluoride",
-            "location": "GLO",
-            "unit": "kilogram",
-            "type": "technosphere",
-            "amount": 0.04994640943193998
-          },
-          "decision_id": "uvek-2026-final-unsupported-bp-3e11dbba3332ecb2"
-        },
-        {
-          "activity": {
-            "name": "gasket production, FKM, for VRFB system",
-            "reference product": "gasket, FKM",
-            "location": "RER"
-          },
-          "exchange": {
-            "name": "market for vinylidene fluoride",
-            "reference product": "vinylidene fluoride",
-            "location": "GLO",
-            "unit": "kilogram",
-            "type": "technosphere",
-            "amount": 0.44434630923297097
-          },
-          "decision_id": "uvek-2026-final-unsupported-bp-73b5b823540eb127"
-        }
-      ]
-    },
-    "checks": {
-      "recycled_hdpe": {
-        "status": "passed",
-        "added_exact_source312_scopes": 1,
-        "signed_uncertainty_exchange_checks": 8,
-        "direct_migration_cases": 8,
-        "public_harmonizer_fresh_and_warm_passed": true,
-        "input_nonmutation": true,
-        "earlier_effective_profile_checks": 0,
-        "new_manufacturing_inventory_models": 0,
-        "new_model_profile_aliases": 0,
-        "new_foreground_omissions": [],
-        "source_code_changes": 0,
-        "new_Brightway_databases": 0,
-        "qualification_limit": "Required interface group only; no complete battery update or new export."
-      },
-      "final": {
-        "status": "passed",
-        "added_exact_source310_scopes": 9,
-        "signed_uncertainty_exchange_checks": 72,
-        "direct_migration_cases": 8,
-        "public_harmonizer_fresh_and_warm_passed": true,
-        "input_nonmutation": true,
-        "earlier_effective_profile_checks": 0,
-        "new_manufacturing_inventory_models": 0,
-        "new_model_profile_aliases": 1,
-        "new_foreground_omissions": [],
-        "source_code_changes": 0,
-        "new_Brightway_databases": 0,
-        "qualification_limit": "Required interface group only; no complete battery update or new export."
-      },
-      "nacl": {
-        "status": "passed",
-        "added_exact_source310_scopes": 2,
-        "signed_uncertainty_exchange_checks": 16,
-        "direct_migration_cases": 8,
-        "public_harmonizer_fresh_and_warm_passed": true,
-        "input_nonmutation": true,
-        "earlier_effective_profile_checks": 0,
-        "new_manufacturing_inventory_models": 1,
-        "new_model_profile_aliases": 0,
-        "new_foreground_omissions": [],
-        "source_code_changes": 0,
-        "new_Brightway_databases": 0,
-        "qualification_limit": "Required interface group only; no complete battery update or new export."
-      }
-    },
-    "elapsed_seconds": 43.81006225000601,
-    "focused_pytest_passes": 40
-  },
-  "installed_package_bytes": {
-    "Brightpath_Git_revision": "ed3fbce6c025904d197f4371893dfc91ef5f11dc",
-    "packages": {
-      "brightpath": {
-        "verified_installed_package_files": 596,
-        "all_packaged_files_present_in_source_match": true
-      },
-      "premise": {
-        "verified_installed_package_files": 424,
-        "all_packaged_files_present_in_source_match": true
-      }
-    }
-  },
-  "normal_live_fifteen_sector_preparation": {
-    "status": "not_verified_in_this_batch",
-    "attempts": 2,
-    "failures": [
-      "incomplete HTTP response",
-      "HTTPS read timeout"
-    ],
-    "service": "clic.psi.ch",
-    "latest_resolution_policy_unchanged": true,
-    "snapshot_fallback_used": false,
-    "previous_qualified_export_reference": "docs/development/uvek-trucks-public-export-verification.json",
-    "qualification_limit": "No fresh fifteen-sector preparation pass is claimed for this installed batch; external archive transfer did not complete."
-  },
-  "source_battery_preparation": {
-    "prepared_records": 951,
-    "archive_records": 941,
-    "all_four_archive_source_cohorts_pass": true,
-    "legacy_NaNiCl_manufacturer_and_market_mapped": true,
-    "new_scoped_foreground_omissions": 2,
-    "new_HDPE_end_product_screening_proxy": 1
-  },
-  "unapplied_battery_compatibility_proposal": {
-    "reference": "docs/development/uvek-battery-compatibility-proposal-verification.json",
-    "applied_to_source": false,
-    "existing_battery_tests_passed_in_preview": 92,
-    "preview_exhaustive_validation_errors": 0,
-    "preview_activities": 12898,
-    "public_support_still_gated": true
-  },
-  "known_historical_test_failures": [
-    {
-      "status": "pre_existing_failure_reproduced",
-      "installed_Brightpath_revision": "9cc231a2ffccad4c4b72516731f2f1b6d2e3c266",
-      "installed_runtime_used": true,
-      "test": "test_uvek_dmc_39.py::test_replay_is_atomic_and_refuses_changed_input_or_recipe_boundaries[None]",
-      "reason": "Historical dedicated DMC authoring replay requires its original parent; the already published later source-3.8 mapping extension changes that parent. Ordinary full generator and runtime conversion are separate checks.",
-      "Python_files_modified": false
-    },
-    {
-      "status": "pre_existing_failure_reproduced",
-      "installed_Brightpath_revision": "9cc231a2ffccad4c4b72516731f2f1b6d2e3c266",
-      "installed_runtime_used": true,
-      "test": "test_uvek_named_products_39.py::test_review_replay_is_atomic_and_checks_exact_freight_dependencies[None]",
-      "pytest_exit_code": 1,
-      "Python_files_modified": false
-    }
-  ],
   "qualified_sectors": 15,
   "total_sectors": 19,
-  "unfinished_sectors": [
-    "battery",
-    "final energy",
-    "emissions",
-    "metals"
-  ],
   "new_Brightway_databases": 0,
-  "new_export_performed": false,
-  "cleanup": [
-    {
-      "path": "battery-complete-mapping-install-cache",
-      "bytes_removed": 70846279
+  "normal_live_fifteen_sector_preparation": {
+    "status": "installed_public_fifteen_sector_inventory_preparation_passed",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel",
+      "mining",
+      "renewable",
+      "cdr",
+      "fuels",
+      "ships",
+      "buses",
+      "two_wheelers",
+      "trains",
+      "cars",
+      "trucks"
+    ],
+    "CLIC_records": 1495,
+    "Brightpath_Git_revision": "589be065218ba3f36617c8f562788d31045279f0",
+    "CLIC_options_overridden": false,
+    "freshness": "normal live default",
+    "scope_gate_bypassed": false,
+    "validation_disabled": false,
+    "new_Brightway_databases": 0,
+    "registry_and_processed_file_names_unchanged": true,
+    "elapsed_seconds": 84.0077907909872,
+    "qualification_limit": "Preparation regression of already qualified15sectors; no sector update/export repeated and battery/final-energy sectors remain unfinished."
+  },
+  "previous_battery_mapping_batch": {
+    "date": "2026-11-18",
+    "status": "installed_battery_mapping_checks_passed_live_archive_check_unavailable",
+    "Brightpath_Git_revision": "ed3fbce6c025904d197f4371893dfc91ef5f11dc",
+    "Premise_wheel_source_revision": "6cac25f5e28a9928d9217fd61f14a266080e1e0c",
+    "source_code_changes": 0,
+    "original_Premise_master_unchanged": true,
+    "installed_regressions": {
+      "status": "installed_complete_battery_mapping_checks_passed",
+      "Brightpath_Git_revision": "ed3fbce6c025904d197f4371893dfc91ef5f11dc",
+      "runtime_packages_loaded_only_from_installed_environment": true,
+      "signed_uncertainty_checks": 96,
+      "public_harmonizer_fresh_and_warm_groups": 3,
+      "scoped_omission_checks": {
+        "status": "two_exact_consumer_omissions_verified",
+        "new_omissions": 2,
+        "all_actual_omission_warnings": 8,
+        "all_actual_omission_resolution_statuses": {
+          "native_barium_carbonate_supply_unavailable_upstream_burden_omitted": 1,
+          "final_unsupported_exchange_omission": 2,
+          "screening omission; exact biosphere correspondence remains unresolved": 2,
+          "screening omission; exact generic-sodium biosphere correspondence unresolved": 3
+        },
+        "input_nonmutation": true,
+        "all_other_exchanges_retained": true,
+        "nonempty_consumers": true,
+        "wrong_consumer_and_destination_untouched": true,
+        "different_source_refused": true,
+        "actual_signed_quantity_audited": true,
+        "warning_in_activity_comment": true,
+        "new_zero_burden_suppliers": 0,
+        "new_Brightway_databases": 0,
+        "omissions": [
+          {
+            "activity": {
+              "name": "cathode, NMC955, for Li-ion battery",
+              "reference product": "cathode, NMC955, for Li-ion battery",
+              "location": "GLO"
+            },
+            "exchange": {
+              "name": "market for polyvinylidene fluoride",
+              "reference product": "polyvinylidene fluoride",
+              "location": "GLO",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "amount": 0.04994640943193998
+            },
+            "decision_id": "uvek-2026-final-unsupported-bp-3e11dbba3332ecb2"
+          },
+          {
+            "activity": {
+              "name": "gasket production, FKM, for VRFB system",
+              "reference product": "gasket, FKM",
+              "location": "RER"
+            },
+            "exchange": {
+              "name": "market for vinylidene fluoride",
+              "reference product": "vinylidene fluoride",
+              "location": "GLO",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "amount": 0.44434630923297097
+            },
+            "decision_id": "uvek-2026-final-unsupported-bp-73b5b823540eb127"
+          }
+        ]
+      },
+      "checks": {
+        "recycled_hdpe": {
+          "status": "passed",
+          "added_exact_source312_scopes": 1,
+          "signed_uncertainty_exchange_checks": 8,
+          "direct_migration_cases": 8,
+          "public_harmonizer_fresh_and_warm_passed": true,
+          "input_nonmutation": true,
+          "earlier_effective_profile_checks": 0,
+          "new_manufacturing_inventory_models": 0,
+          "new_model_profile_aliases": 0,
+          "new_foreground_omissions": [],
+          "source_code_changes": 0,
+          "new_Brightway_databases": 0,
+          "qualification_limit": "Required interface group only; no complete battery update or new export."
+        },
+        "final": {
+          "status": "passed",
+          "added_exact_source310_scopes": 9,
+          "signed_uncertainty_exchange_checks": 72,
+          "direct_migration_cases": 8,
+          "public_harmonizer_fresh_and_warm_passed": true,
+          "input_nonmutation": true,
+          "earlier_effective_profile_checks": 0,
+          "new_manufacturing_inventory_models": 0,
+          "new_model_profile_aliases": 1,
+          "new_foreground_omissions": [],
+          "source_code_changes": 0,
+          "new_Brightway_databases": 0,
+          "qualification_limit": "Required interface group only; no complete battery update or new export."
+        },
+        "nacl": {
+          "status": "passed",
+          "added_exact_source310_scopes": 2,
+          "signed_uncertainty_exchange_checks": 16,
+          "direct_migration_cases": 8,
+          "public_harmonizer_fresh_and_warm_passed": true,
+          "input_nonmutation": true,
+          "earlier_effective_profile_checks": 0,
+          "new_manufacturing_inventory_models": 1,
+          "new_model_profile_aliases": 0,
+          "new_foreground_omissions": [],
+          "source_code_changes": 0,
+          "new_Brightway_databases": 0,
+          "qualification_limit": "Required interface group only; no complete battery update or new export."
+        }
+      },
+      "elapsed_seconds": 43.81006225000601,
+      "focused_pytest_passes": 40
     },
-    {
-      "path": "premise-clic-worktree/build",
-      "bytes_removed": 65123554
+    "installed_package_bytes": {
+      "Brightpath_Git_revision": "ed3fbce6c025904d197f4371893dfc91ef5f11dc",
+      "packages": {
+        "brightpath": {
+          "verified_installed_package_files": 596,
+          "all_packaged_files_present_in_source_match": true
+        },
+        "premise": {
+          "verified_installed_package_files": 424,
+          "all_packaged_files_present_in_source_match": true
+        }
+      }
     },
-    {
-      "path": "premise-clic-worktree/premise.egg-info",
-      "bytes_removed": 117250
+    "normal_live_fifteen_sector_preparation": {
+      "status": "not_verified_in_this_batch",
+      "attempts": 2,
+      "failures": [
+        "incomplete HTTP response",
+        "HTTPS read timeout"
+      ],
+      "service": "clic.psi.ch",
+      "latest_resolution_policy_unchanged": true,
+      "snapshot_fallback_used": false,
+      "previous_qualified_export_reference": "docs/development/uvek-trucks-public-export-verification.json",
+      "qualification_limit": "No fresh fifteen-sector preparation pass is claimed for this installed batch; external archive transfer did not complete."
     },
-    {
-      "path": "native-lto-batch-wheels",
-      "bytes_removed": 23202240
+    "source_battery_preparation": {
+      "prepared_records": 951,
+      "archive_records": 941,
+      "all_four_archive_source_cohorts_pass": true,
+      "legacy_NaNiCl_manufacturer_and_market_mapped": true,
+      "new_scoped_foreground_omissions": 2,
+      "new_HDPE_end_product_screening_proxy": 1
     },
-    {
-      "path": "actual-battery-lastthree312-harmonization.private",
-      "bytes_removed": 24328605
-    }
-  ],
-  "current_environment_and_current_wheel_retained": true,
-  "qualification_limit": "Installed mapping checks and exact package-byte comparison pass. The public battery patch remains unapplied pending approval; live archive-dependent regression is unverified because of transfer failures. No new sector or export qualification."
+    "unapplied_battery_compatibility_proposal": {
+      "reference": "docs/development/uvek-battery-compatibility-proposal-verification.json",
+      "applied_to_source": false,
+      "existing_battery_tests_passed_in_preview": 92,
+      "preview_exhaustive_validation_errors": 0,
+      "preview_activities": 12898,
+      "public_support_still_gated": true
+    },
+    "known_historical_test_failures": [
+      {
+        "status": "pre_existing_failure_reproduced",
+        "installed_Brightpath_revision": "9cc231a2ffccad4c4b72516731f2f1b6d2e3c266",
+        "installed_runtime_used": true,
+        "test": "test_uvek_dmc_39.py::test_replay_is_atomic_and_refuses_changed_input_or_recipe_boundaries[None]",
+        "reason": "Historical dedicated DMC authoring replay requires its original parent; the already published later source-3.8 mapping extension changes that parent. Ordinary full generator and runtime conversion are separate checks.",
+        "Python_files_modified": false
+      },
+      {
+        "status": "pre_existing_failure_reproduced",
+        "installed_Brightpath_revision": "9cc231a2ffccad4c4b72516731f2f1b6d2e3c266",
+        "installed_runtime_used": true,
+        "test": "test_uvek_named_products_39.py::test_review_replay_is_atomic_and_checks_exact_freight_dependencies[None]",
+        "pytest_exit_code": 1,
+        "Python_files_modified": false
+      }
+    ],
+    "qualified_sectors": 15,
+    "total_sectors": 19,
+    "unfinished_sectors": [
+      "battery",
+      "final energy",
+      "emissions",
+      "metals"
+    ],
+    "new_Brightway_databases": 0,
+    "new_export_performed": false,
+    "cleanup": [
+      {
+        "path": "battery-complete-mapping-install-cache",
+        "bytes_removed": 70846279
+      },
+      {
+        "path": "premise-clic-worktree/build",
+        "bytes_removed": 65123554
+      },
+      {
+        "path": "premise-clic-worktree/premise.egg-info",
+        "bytes_removed": 117250
+      },
+      {
+        "path": "native-lto-batch-wheels",
+        "bytes_removed": 23202240
+      },
+      {
+        "path": "actual-battery-lastthree312-harmonization.private",
+        "bytes_removed": 24328605
+      }
+    ],
+    "current_environment_and_current_wheel_retained": true,
+    "qualification_limit": "Installed mapping checks and exact package-byte comparison pass. The public battery patch remains unapplied pending approval; live archive-dependent regression is unverified because of transfer failures. No new sector or export qualification."
+  },
+  "qualification_limit": "Installed data and ordinary live preparation regression pass. No new sector update or export is qualified. Previous qualified export remains authoritative; four sectors remain unfinished."
 }

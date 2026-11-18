@@ -80,3 +80,21 @@ errors. Normal released battery operation, export and combined integration
 remain pending. Latest live fifteen-sector preparation could not be reverified
 in this installed batch because the CLIC archive transfer failed twice; no
 snapshot fallback or new qualification is claimed.
+
+## 18 November: installed final-energy mapping batch
+
+Seventeen additional exact correspondences are reviewed for final-energy source
+3.9 and 3.8. One immediate Swiss heat market retains its 29 original supplier
+entries. No Python source or test changes, new upstream reconstruction or new
+foreground omissions are introduced. The exact GitHub dependency and installed
+Premise wheel pass 136 signed uncertainty checks and 58 existing focused tests.
+All 599 Brightpath and 424 Premise packaged files match committed source.
+
+CLIC connectivity recovered: ordinary live-default preparation now returns
+1,495 records for the fifteen qualified sectors, without overriding freshness,
+bypassing the scope gate, disabling validation or writing a Brightway database.
+This supersedes the earlier archive-transfer failures as the latest preparation
+result. It does not repeat sector transformations or create a new export.
+Final energy still needs ten source-3.12 correspondences plus callback/filter
+coverage; battery's proposed code patch remains unapplied. Four sectors remain
+unqualified. See `uvek-final-energy-installed-verification.json`.
