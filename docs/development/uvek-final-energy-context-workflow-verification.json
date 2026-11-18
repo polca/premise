@@ -1,0 +1,31 @@
+{
+  "sector": "final energy",
+  "freshness": "snapshot",
+  "public_scope_gate_bypassed_for_diagnostic_only": true,
+  "validation_disabled": false,
+  "export_performed": false,
+  "qualification_limit": "Shared callback and exhaustive graph validation pass with actual approved source fixes. Coverage is incomplete: 175 of 203 positive IAM roles have suppliers. Public scope gate was bypassed only for this snapshot diagnostic; no export/public qualification.",
+  "inventory_preparation_passed": true,
+  "prepared_inventory_count": 1621,
+  "activities_before_update": 13568,
+  "sector_callback_passed": true,
+  "status": "diagnostic_update_and_graph_checks_passed",
+  "activities_after_update": 14372,
+  "validation_errors": 0,
+  "mapping_top_level_keys": [
+    "final energy"
+  ],
+  "elapsed_seconds": 144.28481737500988,
+  "source_files_unchanged": true,
+  "diagnostic_only": true,
+  "approved_classifier_and_context_fixes_used": true,
+  "unapplied_code_proposals_used": false,
+  "nonempty_final_energy_roles": 184,
+  "role_activity_assignments": 3720,
+  "public_qualification": false,
+  "activities_added": 804,
+  "positive_IAM_roles": 203,
+  "positive_roles_with_suppliers": 175,
+  "remaining_positive_roles": 28,
+  "existing_source_context_mapping_database_vehicle_regressions_passed": 183
+}

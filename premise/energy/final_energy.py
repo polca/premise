@@ -18,6 +18,8 @@ def _update_final_energy(
     scenario,
     version,
     system_model,
+    family="ecoinvent",
+    biosphere_version=None,
 ):
 
     if scenario["iam data"].final_energy_use is None:
@@ -32,6 +34,8 @@ def _update_final_energy(
         year=scenario["year"],
         version=version,
         system_model=system_model,
+        family=family,
+        biosphere_version=biosphere_version,
     )
 
     # A final-energy-only update still reconstructs equipment from the vehicle
@@ -92,6 +96,8 @@ class FinalEnergy(BaseTransformation):
         version: str,
         system_model: str,
         cache: dict = None,
+        family: str = "ecoinvent",
+        biosphere_version: str = None,
     ) -> None:
         super().__init__(
             database,
@@ -102,10 +108,14 @@ class FinalEnergy(BaseTransformation):
             version,
             system_model,
             cache,
+            family=family,
+            biosphere_version=biosphere_version,
         )
         self.version = version
 
-        mapping = InventorySet(database=database, version=version, model=model)
+        mapping = InventorySet(
+            database=database, version=version, model=model, family=family
+        )
         self.final_energy_map = mapping.generate_final_energy_map()
 
     def regionalize_heating_datasets(self):

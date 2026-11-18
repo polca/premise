@@ -1,0 +1,25 @@
+{
+  "status": "unapplied_context_constructor_checks_passed",
+  "actual_source_family_and_biosphere_reach_shared_base": true,
+  "native_electricity_reference_product_normalized_by_existing_base": true,
+  "exchange_amounts_and_input_links_unchanged": true,
+  "default_ecoinvent_family_and_version_preserved": true,
+  "source_files_changed": 0,
+  "native_final_energy_aliases_still_need_extension": false,
+  "full_workflow_not_yet_qualified": true,
+  "patch_sha256": "33f8d9523449f3a530dacacb4788d2ff2d9da0054a65433bc3050b9d99ee7273",
+  "source_files_if_approved": [
+    "premise/energy/final_energy.py",
+    "premise/database/new_database.py"
+  ],
+  "approval_status": "approved_this_exact_two_file_fix_only",
+  "applied_to_source": true,
+  "approval_date": "2026-11-18",
+  "applied_sources_match_reviewed_proposal_bytes": true,
+  "additional_Python_changes_authorized": false,
+  "full_workflow_status": "shared_callback_and_exhaustive_graph_validation_passed",
+  "validation_errors": 0,
+  "existing_regressions_passed": 183,
+  "native_alias_roles_added": 342,
+  "artifact_format": "Zero-context diff of the same exact reviewed source edits; source bytes match the approved proposal."
+}

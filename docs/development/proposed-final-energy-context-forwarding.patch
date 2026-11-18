@@ -1,0 +1,23 @@
+--- a/premise/energy/final_energy.py
++++ b/premise/energy/final_energy.py
+@@ -20,0 +21,2 @@
++    family="ecoinvent",
++    biosphere_version=None,
+@@ -34,0 +37,2 @@
++        family=family,
++        biosphere_version=biosphere_version,
+@@ -94,0 +99,2 @@
++        family: str = "ecoinvent",
++        biosphere_version: str = None,
+@@ -104,0 +111,2 @@
++            family=family,
++            biosphere_version=biosphere_version,
+@@ -108 +116,3 @@
+-        mapping = InventorySet(database=database, version=version, model=model)
++        mapping = InventorySet(
++            database=database, version=version, model=model, family=family
++        )
+--- a/premise/database/new_database.py
++++ b/premise/database/new_database.py
+@@ -2941,0 +2942 @@
++                "final energy",
