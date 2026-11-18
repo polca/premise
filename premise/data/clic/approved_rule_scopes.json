@@ -57095,7 +57095,12 @@
         "native_resin_multiplier": 1,
         "source_processing_white_spirit_kg": 0.01356,
         "source_internal_inventory_reconstructed": false,
-        "limitations": "User instruction: auto-approve coming decisions, within the existing electricity pilot. Approve this exact dry white solvent-based alkyd-paint screening refinement for only two ecoinvent3.9cutoff RER/RoW markets, not earlier water-based paint or standalone resin. Source reference is1kgwithoutsolvent. Scale complete copied native60%paint inventory by1/.60, remove only its explicit.28kgwhite-spirit carrier per native paint reference, and replace resin with a copied native long-oil resin removing only.429kgwhite-spirit carrier per resin reference. The four principal resin precursor quantities match source resin; no extra.7resin factor. Scale supported uncertainty consistently with all remaining signedpaint exchanges; preserve remaining resin quantities and uncertainty. Retain every other native technical and elementary exchange, infrastructure, processing emissions, productionwaste, internal freight, energy and allocation once. The two original sourceproducer processing-white-spirit demands.01356kg each are retained through complete nativeRERwhiteSpirit with their separate original uncertainty. This is not an avoided-solvent credit; no negative carrier purchase, change to caller solvent demand or invented mass-balance correction. Source/native formulation differs: source resin.4882kg versus.49proxy; TiO2.5051versus.5066666666666667kg; aliphatic hydrocarbon emission.00683versus.006666666666666667kg. Source nitrogen purge includes.019kgliquid nitrogen and.019kgdirect nitrogen release per source paint unit, absent from nativepaint. This exact internal boundary difference is retained in the inspection audit with signed source exchanges and hashes, not assumed burdenfree. These are modified-native proxies, not reconstruction of every sourceproducer input or uncertainty. Native heat/electricity, wastes, nitrogen-purge boundary, water/emissions, rawmaterial logistics, embedded infrastructure, allocation, geography, grade and vintage differences remain explicit. Preserve all14original market delivery entries separately, in originalorder at originaltkm and supporteduncertainty; do not concentration-scale freight. Complete same-mode genericRERrail/heavyroad,CH3.5tlightroad,RERbarge andOCEcontainership retain fleet/fuel/geographic approximations and full lifecycle burdens once. Market producer shares remain unchanged. Canonical copiednative elementaryflows retain exact UUID,unit,fullreceivingcompartment androle in installed ecoinvent3.10; no mass/speciation/compartment factor. Native upstream biosphereexclusions and all scoreeffects remain explicit/unquantified; equal LCIA or functional performance is not established. Preserve caller ownership, original signedquantities, uncertainty, formulas, foregroundsuppliers and all separately listed solvent, wastewater and emissions. No standalone source chemical/component/resin, other painttype, other release, inverse or cross-system-modelroute is approved. No whole-pilot scenario/certification/export completion follows."
+        "limitations": "User instruction: auto-approve coming decisions, within the existing electricity pilot. Approve this exact dry white solvent-based alkyd-paint screening refinement for only two ecoinvent3.9cutoff RER/RoW markets, not earlier water-based paint or standalone resin. Source reference is1kgwithoutsolvent. Scale complete copied native60%paint inventory by1/.60, remove only its explicit.28kgwhite-spirit carrier per native paint reference, and replace resin with a copied native long-oil resin removing only.429kgwhite-spirit carrier per resin reference. The four principal resin precursor quantities match source resin; no extra.7resin factor. Scale supported uncertainty consistently with all remaining signedpaint exchanges; preserve remaining resin quantities and uncertainty. Retain every other native technical and elementary exchange, infrastructure, processing emissions, productionwaste, internal freight, energy and allocation once. The two original sourceproducer processing-white-spirit demands.01356kg each are retained through complete nativeRERwhiteSpirit with their separate original uncertainty. This is not an avoided-solvent credit; no negative carrier purchase, change to caller solvent demand or invented mass-balance correction. Source/native formulation differs: source resin.4882kg versus.49proxy; TiO2.5051versus.5066666666666667kg; aliphatic hydrocarbon emission.00683versus.006666666666666667kg. Source nitrogen purge includes.019kgliquid nitrogen and.019kgdirect nitrogen release per source paint unit, absent from nativepaint. This exact internal boundary difference is retained in the inspection audit with signed source exchanges and hashes, not assumed burdenfree. These are modified-native proxies, not reconstruction of every sourceproducer input or uncertainty. Native heat/electricity, wastes, nitrogen-purge boundary, water/emissions, rawmaterial logistics, embedded infrastructure, allocation, geography, grade and vintage differences remain explicit. Preserve all14original market delivery entries separately, in originalorder at originaltkm and supporteduncertainty; do not concentration-scale freight. Complete same-mode genericRERrail/heavyroad,CH3.5tlightroad,RERbarge andOCEcontainership retain fleet/fuel/geographic approximations and full lifecycle burdens once. Market producer shares remain unchanged. Canonical copiednative elementaryflows retain exact UUID,unit,fullreceivingcompartment androle in installed ecoinvent3.10; no mass/speciation/compartment factor. Native upstream biosphereexclusions and all scoreeffects remain explicit/unquantified; equal LCIA or functional performance is not established. Preserve caller ownership, original signedquantities, uncertainty, formulas, foregroundsuppliers and all separately listed solvent, wastewater and emissions. No standalone source chemical/component/resin, other painttype, other release, inverse or cross-system-modelroute is approved. No whole-pilot scenario/certification/export completion follows.",
+        "final_energy_source312_proxy_extension": {
+          "review_path": "export/uvek_final_energy_models_312_review.json",
+          "review_sha256": "abf9ce4786f56489a08918e721478b5c492dd00c88bdefd6a7ec618c0320a510",
+          "earlier_effective_models_unchanged": true
+        }
       },
       "limitations": [
         "User instruction: auto-approve coming decisions, within the existing electricity pilot. Approve this exact dry white solvent-based alkyd-paint screening refinement for only two ecoinvent3.9cutoff RER/RoW markets, not earlier water-based paint or standalone resin. Source reference is1kgwithoutsolvent. Scale complete copied native60%paint inventory by1/.60, remove only its explicit.28kgwhite-spirit carrier per native paint reference, and replace resin with a copied native long-oil resin removing only.429kgwhite-spirit carrier per resin reference. The four principal resin precursor quantities match source resin; no extra.7resin factor. Scale supported uncertainty consistently with all remaining signedpaint exchanges; preserve remaining resin quantities and uncertainty. Retain every other native technical and elementary exchange, infrastructure, processing emissions, productionwaste, internal freight, energy and allocation once. The two original sourceproducer processing-white-spirit demands.01356kg each are retained through complete nativeRERwhiteSpirit with their separate original uncertainty. This is not an avoided-solvent credit; no negative carrier purchase, change to caller solvent demand or invented mass-balance correction. Source/native formulation differs: source resin.4882kg versus.49proxy; TiO2.5051versus.5066666666666667kg; aliphatic hydrocarbon emission.00683versus.006666666666666667kg. Source nitrogen purge includes.019kgliquid nitrogen and.019kgdirect nitrogen release per source paint unit, absent from nativepaint. This exact internal boundary difference is retained in the inspection audit with signed source exchanges and hashes, not assumed burdenfree. These are modified-native proxies, not reconstruction of every sourceproducer input or uncertainty. Native heat/electricity, wastes, nitrogen-purge boundary, water/emissions, rawmaterial logistics, embedded infrastructure, allocation, geography, grade and vintage differences remain explicit. Preserve all14original market delivery entries separately, in originalorder at originaltkm and supporteduncertainty; do not concentration-scale freight. Complete same-mode genericRERrail/heavyroad,CH3.5tlightroad,RERbarge andOCEcontainership retain fleet/fuel/geographic approximations and full lifecycle burdens once. Market producer shares remain unchanged. Canonical copiednative elementaryflows retain exact UUID,unit,fullreceivingcompartment androle in installed ecoinvent3.10; no mass/speciation/compartment factor. Native upstream biosphereexclusions and all scoreeffects remain explicit/unquantified; equal LCIA or functional performance is not established. Preserve caller ownership, original signedquantities, uncertainty, formulas, foregroundsuppliers and all separately listed solvent, wastewater and emissions. No standalone source chemical/component/resin, other painttype, other release, inverse or cross-system-modelroute is approved. No whole-pilot scenario/certification/export completion follows."
@@ -57112,7 +57117,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "e62ce292b0312de0465e7acf43c082ab53648196427d5355de8eecd36bf0c436"
+          "fingerprint": "601cd585b089df71940328bf76756060c2c5714b8b048720c768eae88e081039"
         }
       ]
     },
@@ -357561,6 +357566,987 @@
             "version": "2025"
           },
           "fingerprint": "796584b82381ccfd3a37fc5aa16cc705c4eef66974478ecf77157f4e1c70b8cd"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4b1d84179efa58e8",
+      "operation": "replace",
+      "mapping_method": "reviewed_market_composition",
+      "review_path": "export/uvek_final_energy_models_312_review.json",
+      "review_sha256": "abf9ce4786f56489a08918e721478b5c492dd00c88bdefd6a7ec618c0320a510",
+      "authorization": "Standing automatic modelling approval with warnings and review log. Mapping-only operationalization: reuse complete reviewed same-identity supplies/services for exact source-3.12 cut-off callers instead of rebuilding upstream inventories; no source-code edits.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for waste electric and electronic equipment",
+          "reference product": "waste electric and electronic equipment",
+          "unit": "kilogram"
+        },
+        "review_authorization": "Standing approval for helpers assembled from independently inspected existing component correspondences. Each approved exact source-market profile contains only active technosphere inputs, has a unit-magnitude reference, and has no direct biosphere or unsupported exchange types. No missing component, omission or empty allocation is concealed. Component proxy limitations are inherited; no additional scientific equivalence is inferred. Production-only cut-off stock dependencies require an explicitly approved direct supplier, exact source profile and review fingerprint. Every other observed counterpart is enumerated as pending and remains blocked; partial approvals never resolve a whole identity.",
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_inventory_sha256": "b81f9e8c19546042a86e5f78a7e2fff31fc722ea9b398c7e4ca1b2a6d3e38f24",
+            "target": {
+              "recipe_ref": "whole-freight-market-composition-5c66e71f3d897b750544"
+            }
+          }
+        ],
+        "source38_market_extension": {
+          "review_path": "export/uvek_trucks_five_markets_38_review.json",
+          "review_sha256": "6dd6a52e13d6e0b13e7299a691fb9ac050610e140bb6fcae5606e07f6d57e059",
+          "selected_rule_and_existing_recipe_closure_unchanged": true
+        },
+        "native_witnesses": {},
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for waste electric and electronic equipment",
+            "reference product": "waste electric and electronic equipment",
+            "unit": "kilogram"
+          },
+          "reference_amount": -1.0,
+          "nonproduction_count": 3,
+          "inventory_sha256": "ece68b0ff34fc40f164f921b9476f963bbfa9e36574794c2ed0586745812c724",
+          "metadata_sha256": "a79bd4de2592486883c0ca79ba3838866e2d1209cb5542bf8b0daf018d142a55",
+          "comment_sha256": "2dc495471d9877a6448d0ab7b38b86c69d5cef18644d658bffcd20759dd0eff2",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "model_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "complete_model_reused_without_inventory_changes": true,
+        "functional_basis": "Use the already generated exact source-3.12 WEEE collection market recipe on its own source profile. The inspected market has reference -1 kg, one -1 kg shredding input and two positive freight entries matching the reviewed road/rail-plus-shredding recipe within local float storage precision. Factor -1 turns negative source waste demand into positive collection/treatment demand. Keep the complete native shredding service and both freight modes once. Source/global mix, fleet and native Swiss shredding/internal recovery allocation differ; do not add a metal credit or replace collection with burden-free handover. No new collection model or foreground omission."
+      },
+      "limitations": [
+        "Use the already generated exact source-3.12 WEEE collection market recipe on its own source profile. The inspected market has reference -1 kg, one -1 kg shredding input and two positive freight entries matching the reviewed road/rail-plus-shredding recipe within local float storage precision. Factor -1 turns negative source waste demand into positive collection/treatment demand. Keep the complete native shredding service and both freight modes once. Source/global mix, fleet and native Swiss shredding/internal recovery allocation differ; do not add a metal credit or replace collection with burden-free handover. No new collection model or foreground omission.",
+        "Preserve caller quantities, formulas, ownership, separate purchases/emissions and supported signed uncertainty with the existing reference-coordinate factor -1.0. Material demand and opposite credits retain their respective signs; negative waste demand becomes positive treatment demand. No new density, energy, yield, concentration, recovery or efficiency multiplier.",
+        "Retain every inherited model/native limitation and existing omission audit, including BAFU biosphere exclusions and geographic, grade, allocation, technology, vintage and internal-uncertainty differences. Impact-score effects remain unquantified. No new foreground omission, zero-burden authority or reconstructed manufacturing process.",
+        "Only the exact inspected ecoinvent 3.12 cut-off source scope is added. Older target choices, factors, sign decisions and recipe inventories remain unchanged. No uninspected release, inverse or cross-system-model route or inventory/LCIA equivalence is authorized.",
+        "Reviewed market-composition helper: retain the inspected active supply mix and freight quantities, using only the existing resolved directional component mappings for this exact source profile. The source has a unit-magnitude reference, active technosphere inputs only and no direct biosphere exchanges. Apply each component's reference-sign factor independently: negative inputs to negative treatment references are treatment demand, whereas negative inputs to positive product references are recovery credits. No component omission, empty allocation or missing-provider fallback is used. These helpers inherit the component correspondences' heuristic, technology, composition, geography and allocation approximations; resolved signs do not establish scientific or LCIA equivalence. Internal component uncertainty and parameter formulas are not reconstructed. Preserve caller-owned signed quantities, uncertainty, formulas, foreground suppliers, production and separate emissions. Score and export all returned helpers. Missing or changed exact profiles require a new review; no reverse correspondence is inferred. Follow-up whole-freight review: in the enumerated cut-off profiles, preserve every signed freight coefficient while selecting complete same-mode and matching vehicle-class supplies. Light-commercial freight uses the inspected CH 3.5t light-duty fleet; generic heavy-diesel freight uses the complete RER multi-class/multi-duty diesel fleet; generic rail and inland barge use complete RER services. Vehicle manufacture, maintenance, end-of-life and road/track infrastructure are already included. Country, fuel, payload, vintage, EURO class and duty mixtures differ, including petrol/diesel versus the mixed CH light-duty fleet and global steam/diesel/electric rail versus RER rail. No payload or distance scaling, extra vehicle/infrastructure, arbitrary individual steam substitution, physical omission, recovered-material/energy policy change or inferred inverse is introduced. All other components, genuine credits, source quantities and source inventories remain unchanged. Historical consequential recipe bodies and coefficients are retained solely as provenance, not executable routes. Evidence: brightpath/data/export/uvek_whole_freight_review.json."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9e2e05f48b0c0c5bcc7570d5e5e6789b86683f8aeded08a3f99441d9d7eb4651"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0a7001a49cb20a0f",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_paint",
+      "review_path": "export/uvek_final_energy_models_312_review.json",
+      "review_sha256": "abf9ce4786f56489a08918e721478b5c492dd00c88bdefd6a7ec618c0320a510",
+      "authorization": "Standing automatic modelling approval with warnings and review log. Mapping-only operationalization: reuse complete reviewed same-identity supplies/services for exact source-3.12 cut-off callers instead of rebuilding upstream inventories; no source-code edits.",
+      "inspection": {
+        "rule_id": "bp-0a7001a49cb20a0f",
+        "source": {
+          "location": "RER",
+          "name": "market for alkyd paint, white, without solvent, in 60% solution state",
+          "reference product": "alkyd paint, white, without solvent, in 60% solution state",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Alkyd paint, white, 60% in solvent, at plant",
+          "reference product": "Alkyd paint, white, 60% in solvent, at plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.511444,
+          "id": "bp-0a7001a49cb20a0f",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "RER",
+            "name": "market for alkyd paint, white, without solvent, in 60% solution state",
+            "reference product": "alkyd paint, white, without solvent, in 60% solution state",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Alkyd paint, white, 60% in solvent, at plant",
+            "reference product": "Alkyd paint, white, 60% in solvent, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "88292feb8d5a3e249e753b39784832d5cc31a4e8da4dd207bae7b9efadbc8f72",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "bf007204df6fd183165ec89efe9058767df04fe4fb862832b8aeaa07629efa65",
+        "source_inventory_sha256": "ad8d325555dfbbf5da6a71683896592d6d61a95ec3af199adc1ca7a2b44e00dc",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "expected_foreground_records": 4,
+        "expected_foreground_biosphere_exchanges": 3,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": 1,
+            "inventory_sha256": "ad8d325555dfbbf5da6a71683896592d6d61a95ec3af199adc1ca7a2b44e00dc",
+            "inputs": [
+              {
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0,
+                "recipe": "pilot-dry-paint-ddbadc55a157efe76332"
+              },
+              {
+                "amount": 0.0438,
+                "uncertainty type": 2,
+                "loc": -3.128121461599737,
+                "scale": 0.41231056256176607,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 5,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4711687595755899,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0219,
+                "uncertainty type": 2,
+                "loc": -3.8212686421596818,
+                "scale": 0.41231056256176607,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 5,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4711687595755899,
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.1713,
+                "uncertainty type": 2,
+                "loc": -1.7643388736520629,
+                "scale": 0.41231056256176607,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 5,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4711687595755899,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "alkyd paint production, white, solvent-based, product in 60% solution state",
+                  "alkyd paint, white, without solvent, in 60% solution state",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "f3bce4880e31c94cb63c630be28799582116ad7e0235796742c99a7e0fb88b41"
+              },
+              {
+                "source": [
+                  "market for alkyd resin, long oil, without solvent, in 70% white spirit solution state",
+                  "alkyd resin, long oil, without solvent, in 70% white spirit solution state",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "625bfc4ed503ba46f9a8f331d52d62ee120a1bd29e48b132dfa200d80aa3752b"
+              },
+              {
+                "source": [
+                  "alkyd resin production, long oil, product in 70% white spirit solution state",
+                  "alkyd resin, long oil, without solvent, in 70% white spirit solution state",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "9ddfb922c4841b659854688802f6cc6c637e566f9f2133e0f14e2f9dc5753216"
+              },
+              {
+                "source": [
+                  "market for white spirit",
+                  "white spirit",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "79aba331ebfe77bf2507a6ae32ffe80c1fc69472b1ce64b87879c25729e8509e"
+              },
+              {
+                "source": [
+                  "alkyd paint production, white, solvent-based, product in 60% solution state",
+                  "alkyd paint, white, without solvent, in 60% solution state",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "f1a91c1b0d4770a2690ab47985b6d7edfef06e011362795c00dc912bc33dcab2"
+              },
+              {
+                "source": [
+                  "market for alkyd resin, long oil, without solvent, in 70% white spirit solution state",
+                  "alkyd resin, long oil, without solvent, in 70% white spirit solution state",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "6150dcad03ec1c9d92553a095ce520734efda656479ee371852f0826f3dbd8c6"
+              },
+              {
+                "source": [
+                  "alkyd resin production, long oil, product in 70% white spirit solution state",
+                  "alkyd resin, long oil, without solvent, in 70% white spirit solution state",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "790ec78fe07ba867f4f5a6b02c705c87df5b7cdfa7310c68ae0d9d676d2eedec"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "IN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "71fae5f9b5ba9e3a423189aba774888edb144fafe53de1ec9ff57a3d7381b90c"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "08a2e9ccb0b1095706fc4693841a362fb713659aaec56773ef9b51716cfdfb35"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, light commercial vehicle",
+                  "transport, freight, light commercial vehicle",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d9d3e9ac5a682468de9b5003a6b00f5d5be8e97e41b0ebdc4eeafe8df23fb868"
+              },
+              {
+                "source": [
+                  "market for transport, freight, light commercial vehicle",
+                  "transport, freight, light commercial vehicle",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "6ddd4770b53402d4f20f72858dccdc2cb688a9d85240be4cececbe366e749ebb"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, sea, container ship",
+                  "transport, freight, sea, container ship",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "e830a14edac4bb663255de80ac598db675e30f2cd4c4e677b3b190c5ad5236f8"
+              },
+              {
+                "source": [
+                  "market group for transport, freight train",
+                  "transport, freight train",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "040f14a3ed4909fc4e7f979d374ac377827a93f0f37acab03970834fd3f4a80b"
+              },
+              {
+                "source": [
+                  "market for transport, freight, inland waterways, barge",
+                  "transport, freight, inland waterways, barge",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f964ba9d49552eb035da8a92d925cbf7454fc2e6d9f1056e82ab4531a18a1438"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "1ce8c87e9de5f0f3f55edf58627120df32e872f92c5141866388155449bf5135"
+              }
+            ]
+          }
+        ],
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "alkyd paint production, white, solvent-based, product in 60% solution state",
+              "reference product": "alkyd paint, white, without solvent, in 60% solution state",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "9f3a9e6048b87126bc147e71b5d1fcbbc39026cacebf2fa1c72ba437f2ddae04",
+            "metadata_sha256": "f0a147a972a319a290e60ec465d4cfef81a499b352b6d1e10a1082ebeadf52eb"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "owner": {
+              "location": "RER",
+              "name": "market for alkyd paint, white, without solvent, in 60% solution state",
+              "reference product": "alkyd paint, white, without solvent, in 60% solution state",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market group for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "842db43f8918abfeddf4c4ca30d3782b4719f4d969393962ecd371e88e85f84a",
+            "source_inventory_sha256": "a68db5c9f90a056ea1535421b3410a5d59748cfb174021109cb3f7b4e5d2ae57",
+            "mode": "rail",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "structured_prior_source_matches": {
+              "uvek_whole_freight_review.json": [
+                {
+                  "label": "ecoinvent-3.9-cutoff"
+                }
+              ],
+              "uvek_pilot_nitrate_goods_review.json": [
+                {
+                  "mode": "rail"
+                }
+              ]
+            },
+            "original_exchange_retained": {
+              "flow": "0ace02fa-eca5-482d-a829-c18e46a52db4",
+              "type": "technosphere",
+              "name": "transport, freight train",
+              "classifications": {
+                "By-product classification": "allocatable product",
+                "CPC": "6512: Railway transport services of freight"
+              },
+              "production volume": 0.0,
+              "properties": {
+                "carbon allocation": {
+                  "amount": 0.0,
+                  "unit": "kg"
+                },
+                "carbon content": {
+                  "amount": 0.0,
+                  "unit": "dimensionless"
+                }
+              },
+              "activity": "977d997e-c257-5033-ba39-d0edeeef4ba2",
+              "unit": "ton kilometer",
+              "amount": 0.0438,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 5,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 4
+              },
+              "uncertainty type": 2,
+              "loc": -3.128121461599737,
+              "scale": 0.41231056256176607,
+              "scale without pedigree": 0.4711687595755899,
+              "input": [
+                "ecoinvent-3.9-cutoff",
+                "2edab1894ccb8ce85e3b4f78a5fabdd1"
+              ],
+              "output": [
+                "ecoinvent-3.9-cutoff",
+                "6bb3ee5fed59b9b60facf5ccb2446c3a"
+              ],
+              "supplier_identity": {
+                "name": "market group for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "RER",
+                "unit": "ton kilometer"
+              }
+            }
+          },
+          {
+            "owner": {
+              "location": "RER",
+              "name": "market for alkyd paint, white, without solvent, in 60% solution state",
+              "reference product": "alkyd paint, white, without solvent, in 60% solution state",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "ce8802ed41e6c1226ffaf3aba2e11187d1d6a48a24152cf6c6588e90c274df53",
+            "source_inventory_sha256": "da6c0a9ade36589dc778411053c7cfc43a638e3197c44d5bcda91be208eea574",
+            "mode": "barge",
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "structured_prior_source_matches": {
+              "uvek_whole_freight_review.json": [
+                {
+                  "label": "ecoinvent-3.9-cutoff"
+                }
+              ]
+            },
+            "original_exchange_retained": {
+              "flow": "068bf76a-bfaa-435c-85ed-3d2bb2c4bb4f",
+              "type": "technosphere",
+              "name": "transport, freight, inland waterways, barge",
+              "classifications": {
+                "By-product classification": "allocatable product",
+                "CPC": "65229: Other inland water transport services of freight"
+              },
+              "production volume": 0.0,
+              "properties": {
+                "carbon allocation": {
+                  "amount": 0.0,
+                  "unit": "kg"
+                },
+                "carbon content": {
+                  "amount": 0.0,
+                  "unit": "dimensionless"
+                }
+              },
+              "activity": "6a4400d5-0a2b-5064-a55a-ca9e106025a5",
+              "unit": "ton kilometer",
+              "amount": 0.0219,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 5,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 4
+              },
+              "uncertainty type": 2,
+              "loc": -3.8212686421596818,
+              "scale": 0.41231056256176607,
+              "scale without pedigree": 0.4711687595755899,
+              "input": [
+                "ecoinvent-3.9-cutoff",
+                "36892c62280cc2af80871ecb1cd4b513"
+              ],
+              "output": [
+                "ecoinvent-3.9-cutoff",
+                "6bb3ee5fed59b9b60facf5ccb2446c3a"
+              ],
+              "supplier_identity": {
+                "name": "market for transport, freight, inland waterways, barge",
+                "reference product": "transport, freight, inland waterways, barge",
+                "location": "RER",
+                "unit": "ton kilometer"
+              }
+            }
+          },
+          {
+            "owner": {
+              "location": "RER",
+              "name": "market for alkyd paint, white, without solvent, in 60% solution state",
+              "reference product": "alkyd paint, white, without solvent, in 60% solution state",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "0878be666fd7f1c29ebe2d17ca6fb4ce6ddf3f2ea6f8389b5a0953a3a8433b8c",
+            "source_inventory_sha256": "e8ff1103f7c9caefe1e741f56cc1162735541856eeb21581639e7edba150c615",
+            "mode": "heavy",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "structured_prior_source_matches": {
+              "uvek_whole_freight_review.json": [
+                {
+                  "label": "ecoinvent-3.9-cutoff"
+                }
+              ],
+              "uvek_older_regional_road_review.json": [
+                {
+                  "label": "ecoinvent-3.9-cutoff"
+                },
+                {
+                  "label": "ecoinvent-3.9-cutoff"
+                }
+              ],
+              "uvek_pilot_nitrate_goods_review.json": [
+                {
+                  "mode": "heavy"
+                }
+              ]
+            },
+            "original_exchange_retained": {
+              "flow": "cfbce515-3f54-4411-ad9d-3d26b7faa15a",
+              "type": "technosphere",
+              "name": "transport, freight, lorry, unspecified",
+              "classifications": {
+                "By-product classification": "allocatable product",
+                "CPC": "6511: Road transport services of freight"
+              },
+              "production volume": 0.0,
+              "properties": {
+                "carbon allocation": {
+                  "amount": 0.0,
+                  "unit": "kg"
+                },
+                "carbon content": {
+                  "amount": 0.0,
+                  "unit": "dimensionless"
+                }
+              },
+              "activity": "43df2e91-e19a-59ad-b5cf-69eae5a3e247",
+              "unit": "ton kilometer",
+              "amount": 0.1713,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 5,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 4
+              },
+              "uncertainty type": 2,
+              "loc": -1.7643388736520629,
+              "scale": 0.41231056256176607,
+              "scale without pedigree": 0.4711687595755899,
+              "input": [
+                "ecoinvent-3.9-cutoff",
+                "e6b0e0b7e5237d63d79fd828517045a9"
+              ],
+              "output": [
+                "ecoinvent-3.9-cutoff",
+                "6bb3ee5fed59b9b60facf5ccb2446c3a"
+              ],
+              "supplier_identity": {
+                "name": "market for transport, freight, lorry, unspecified",
+                "reference product": "transport, freight, lorry, unspecified",
+                "location": "RER",
+                "unit": "ton kilometer"
+              }
+            }
+          }
+        ],
+        "source_production_boundary_differences": [
+          {
+            "source_activity": {
+              "name": "alkyd paint production, white, solvent-based, product in 60% solution state",
+              "reference product": "alkyd paint, white, without solvent, in 60% solution state",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "9f3a9e6048b87126bc147e71b5d1fcbbc39026cacebf2fa1c72ba437f2ddae04",
+            "original_index": 5,
+            "source_exchange": {
+              "flow": "159edf36-233e-4e2c-aec0-b0ac0d49f528",
+              "type": "technosphere",
+              "name": "nitrogen, liquid",
+              "classifications": {
+                "By-product classification": "allocatable product",
+                "CPC": "34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+              },
+              "production volume": 0.0,
+              "properties": {
+                "carbon allocation": {
+                  "amount": 0.0,
+                  "unit": "kg"
+                },
+                "carbon content": {
+                  "amount": 0.0,
+                  "unit": "dimensionless"
+                },
+                "carbon content, fossil": {
+                  "amount": 0.0,
+                  "unit": "dimensionless"
+                },
+                "carbon content, non-fossil": {
+                  "amount": 0.0,
+                  "unit": "dimensionless"
+                },
+                "dry mass": {
+                  "amount": 1.0,
+                  "unit": "kg"
+                },
+                "water content": {
+                  "amount": 0.0,
+                  "unit": "dimensionless"
+                },
+                "water in wet mass": {
+                  "amount": 0.0,
+                  "unit": "kg"
+                },
+                "wet mass": {
+                  "amount": 1.0,
+                  "unit": "kg"
+                }
+              },
+              "activity": "360cd092-370b-5d21-8451-4a029b0dab81",
+              "unit": "kilogram",
+              "amount": 0.019,
+              "pedigree": {
+                "reliability": 2,
+                "completeness": 3,
+                "temporal correlation": 2,
+                "geographical correlation": 2,
+                "further technological correlation": 3
+              },
+              "uncertainty type": 2,
+              "loc": -3.9633162998156966,
+              "scale": 0.09912113800799505,
+              "scale without pedigree": 0.1387443692551161,
+              "input": [
+                "ecoinvent-3.9-cutoff",
+                "28165f2d59c2fa0de2082698c425f3df"
+              ],
+              "output": [
+                "ecoinvent-3.9-cutoff",
+                "f4ebb258d2d74e4dd50fad024bf23c6f"
+              ],
+              "supplier_identity": {
+                "name": "market for nitrogen, liquid",
+                "reference product": "nitrogen, liquid",
+                "location": "RER",
+                "unit": "kilogram"
+              }
+            },
+            "retained_in_native_proxy": false,
+            "reason": "Approved whole-native processing boundary lacks source nitrogen-purge supply/release; preserve signed source evidence with unquantified score effect, do not remove caller flows."
+          },
+          {
+            "source_activity": {
+              "name": "alkyd paint production, white, solvent-based, product in 60% solution state",
+              "reference product": "alkyd paint, white, without solvent, in 60% solution state",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "9f3a9e6048b87126bc147e71b5d1fcbbc39026cacebf2fa1c72ba437f2ddae04",
+            "original_index": 11,
+            "source_exchange": {
+              "flow": "e5ea66ee-28e2-4e9b-9a25-4414551d821c",
+              "type": "biosphere",
+              "name": "Nitrogen",
+              "classifications": {},
+              "production volume": 0.0,
+              "properties": {
+                "dry mass": {
+                  "amount": 1.0,
+                  "unit": "kg"
+                },
+                "carbon content, non-fossil": {
+                  "amount": 0.0,
+                  "unit": "dimensionless"
+                },
+                "wet mass": {
+                  "amount": 1.0,
+                  "unit": "kg"
+                },
+                "water in wet mass": {
+                  "amount": 0.0,
+                  "unit": "kg"
+                },
+                "carbon content": {
+                  "amount": 0.0,
+                  "unit": "dimensionless"
+                },
+                "water content": {
+                  "amount": 0.0,
+                  "unit": "dimensionless"
+                },
+                "carbon content, fossil": {
+                  "amount": 0.0,
+                  "unit": "dimensionless"
+                },
+                "carbon allocation": {
+                  "amount": 0.0,
+                  "unit": "kg"
+                }
+              },
+              "unit": "kilogram",
+              "amount": 0.019,
+              "pedigree": {
+                "reliability": 2,
+                "completeness": 3,
+                "temporal correlation": 2,
+                "geographical correlation": 2,
+                "further technological correlation": 3
+              },
+              "uncertainty type": 2,
+              "loc": -3.9633162998156966,
+              "scale": 0.09912113800799505,
+              "scale without pedigree": 0.1387443692551161,
+              "input": [
+                "ecoinvent-3.9-biosphere",
+                "e5ea66ee-28e2-4e9b-9a25-4414551d821c"
+              ],
+              "output": [
+                "ecoinvent-3.9-cutoff",
+                "f4ebb258d2d74e4dd50fad024bf23c6f"
+              ],
+              "supplier_identity": {
+                "name": "Nitrogen",
+                "reference product": null,
+                "location": null,
+                "unit": "kilogram"
+              }
+            },
+            "retained_in_native_proxy": false,
+            "reason": "Approved whole-native processing boundary lacks source nitrogen-purge supply/release; preserve signed source evidence with unquantified score effect, do not remove caller flows."
+          }
+        ],
+        "copied_native_carrier_removals": [
+          {
+            "process": {
+              "location": "RER",
+              "name": "Alkyd paint, white, 60% in solvent, at plant",
+              "reference product": "Alkyd paint, white, 60% in solvent, at plant",
+              "unit": "kilogram"
+            },
+            "exchange": {
+              "flow": "7100b830-7d6c-5747-a457-5fc616670be1",
+              "type": "technosphere",
+              "name": "White spirit, at plant",
+              "classifications": {},
+              "production volume": 0.0,
+              "properties": {},
+              "activity": "aff949e2-ad5b-543d-9b38-b28fef3eb37f",
+              "unit": "kilogram",
+              "comment": "Full flow name: White spirit, at plant\n(4,5,5,2,3,5,3)\n\nBAFU mapping audit: {\"bafu source exchange index\": 9}",
+              "amount": 0.28,
+              "pedigree": {
+                "reliability": 4,
+                "completeness": 5,
+                "temporal correlation": 5,
+                "geographical correlation": 2,
+                "further technological correlation": 5
+              },
+              "uncertainty type": 2,
+              "loc": -1.2729656758128873,
+              "scale": 0.2653141255310852,
+              "input": [
+                "UVEK:2026-biosphere310",
+                "2c71b27c87664aafae4a980320ef16a1"
+              ],
+              "negative": false,
+              "output": [
+                "UVEK:2026-biosphere310",
+                "0cab3021aa00928d8a98311fe2672001"
+              ],
+              "supplier_identity": {
+                "name": "White spirit, at plant",
+                "reference product": "White spirit, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              }
+            }
+          },
+          {
+            "process": {
+              "name": "Alkyd resin, long oil, 70% in white spirit, at plant",
+              "reference product": "Alkyd resin, long oil, 70% in white spirit, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "exchange": {
+              "flow": "7100b830-7d6c-5747-a457-5fc616670be1",
+              "type": "technosphere",
+              "name": "White spirit, at plant",
+              "classifications": {},
+              "production volume": 0.0,
+              "properties": {},
+              "activity": "aff949e2-ad5b-543d-9b38-b28fef3eb37f",
+              "unit": "kilogram",
+              "comment": "Full flow name: White spirit, at plant\n(4,5,5,2,3,5,3)\n\nBAFU mapping audit: {\"bafu source exchange index\": 4}",
+              "amount": 0.429,
+              "pedigree": {
+                "reliability": 4,
+                "completeness": 5,
+                "temporal correlation": 5,
+                "geographical correlation": 2,
+                "further technological correlation": 5
+              },
+              "uncertainty type": 2,
+              "loc": -0.8462983600541201,
+              "scale": 0.2653141255310852,
+              "input": [
+                "UVEK:2026-biosphere310",
+                "2c71b27c87664aafae4a980320ef16a1"
+              ],
+              "negative": false,
+              "output": [
+                "UVEK:2026-biosphere310",
+                "53338805b69fe077e1483586b557d2a5"
+              ],
+              "supplier_identity": {
+                "name": "White spirit, at plant",
+                "reference product": "White spirit, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              }
+            }
+          }
+        ],
+        "native_paint_multiplier": 1.6666666666666667,
+        "native_resin_multiplier": 1,
+        "source_processing_white_spirit_kg": 0.01356,
+        "source_internal_inventory_reconstructed": false,
+        "limitations": "User instruction: auto-approve coming decisions, within the existing electricity pilot. Approve this exact dry white solvent-based alkyd-paint screening refinement for only two ecoinvent3.9cutoff RER/RoW markets, not earlier water-based paint or standalone resin. Source reference is1kgwithoutsolvent. Scale complete copied native60%paint inventory by1/.60, remove only its explicit.28kgwhite-spirit carrier per native paint reference, and replace resin with a copied native long-oil resin removing only.429kgwhite-spirit carrier per resin reference. The four principal resin precursor quantities match source resin; no extra.7resin factor. Scale supported uncertainty consistently with all remaining signedpaint exchanges; preserve remaining resin quantities and uncertainty. Retain every other native technical and elementary exchange, infrastructure, processing emissions, productionwaste, internal freight, energy and allocation once. The two original sourceproducer processing-white-spirit demands.01356kg each are retained through complete nativeRERwhiteSpirit with their separate original uncertainty. This is not an avoided-solvent credit; no negative carrier purchase, change to caller solvent demand or invented mass-balance correction. Source/native formulation differs: source resin.4882kg versus.49proxy; TiO2.5051versus.5066666666666667kg; aliphatic hydrocarbon emission.00683versus.006666666666666667kg. Source nitrogen purge includes.019kgliquid nitrogen and.019kgdirect nitrogen release per source paint unit, absent from nativepaint. This exact internal boundary difference is retained in the inspection audit with signed source exchanges and hashes, not assumed burdenfree. These are modified-native proxies, not reconstruction of every sourceproducer input or uncertainty. Native heat/electricity, wastes, nitrogen-purge boundary, water/emissions, rawmaterial logistics, embedded infrastructure, allocation, geography, grade and vintage differences remain explicit. Preserve all14original market delivery entries separately, in originalorder at originaltkm and supporteduncertainty; do not concentration-scale freight. Complete same-mode genericRERrail/heavyroad,CH3.5tlightroad,RERbarge andOCEcontainership retain fleet/fuel/geographic approximations and full lifecycle burdens once. Market producer shares remain unchanged. Canonical copiednative elementaryflows retain exact UUID,unit,fullreceivingcompartment androle in installed ecoinvent3.10; no mass/speciation/compartment factor. Native upstream biosphereexclusions and all scoreeffects remain explicit/unquantified; equal LCIA or functional performance is not established. Preserve caller ownership, original signedquantities, uncertainty, formulas, foregroundsuppliers and all separately listed solvent, wastewater and emissions. No standalone source chemical/component/resin, other painttype, other release, inverse or cross-system-modelroute is approved. No whole-pilot scenario/certification/export completion follows.",
+        "native_witnesses": {},
+        "caller_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "caller_source_witness": {
+          "identity": {
+            "location": "RER",
+            "name": "market for alkyd paint, white, without solvent, in 60% solution state",
+            "reference product": "alkyd paint, white, without solvent, in 60% solution state",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 4,
+          "inventory_sha256": "1687ffa7df82eb2a3921351b409e5227e41126d080495946253b4aefb201e70a",
+          "metadata_sha256": "e5940039c670d05f723949695aaec6643a568eeea15e083ba8787c1780ac4abf",
+          "comment_sha256": "c5379c42fca83af791f18f2756aba91f2b5061f75011ec70934228287dc614e6",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "model_source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "complete_model_reused_without_inventory_changes": true,
+        "functional_basis": "Use the complete already reviewed source-3.9 dry white solvent-based alkyd-paint market model for the same source-3.12 RER product and kg reference as an explicit version screening proxy. The inspected source identity is without solvent in 60% solution state; the immediate producer has a unit kg reference and principal resin/pigment demand consistent with the previous dry-basis model. Do not replace it with water-based paint, wet paint kg, pure alkyd resin or an additional concentration factor. An inventory-profile alias fixes the delegated model at source 3.9. Its existing copied-native carrier removals, processing-solvent demands, nitrogen-purge difference, full production inventory, original model freight and uncertainty remain exactly as reviewed. Source-3.12 internal composition, delivery, uncertainty and vintage are replaced, not claimed preserved; score effects remain unquantified. No new carrier removal, omitted exchange, upstream reconstruction or credit."
+      },
+      "limitations": [
+        "Use the complete already reviewed source-3.9 dry white solvent-based alkyd-paint market model for the same source-3.12 RER product and kg reference as an explicit version screening proxy. The inspected source identity is without solvent in 60% solution state; the immediate producer has a unit kg reference and principal resin/pigment demand consistent with the previous dry-basis model. Do not replace it with water-based paint, wet paint kg, pure alkyd resin or an additional concentration factor. An inventory-profile alias fixes the delegated model at source 3.9. Its existing copied-native carrier removals, processing-solvent demands, nitrogen-purge difference, full production inventory, original model freight and uncertainty remain exactly as reviewed. Source-3.12 internal composition, delivery, uncertainty and vintage are replaced, not claimed preserved; score effects remain unquantified. No new carrier removal, omitted exchange, upstream reconstruction or credit.",
+        "Preserve caller quantities, formulas, ownership, separate purchases/emissions and supported signed uncertainty with the existing reference-coordinate factor 1. Material demand and opposite credits retain their respective signs; negative waste demand becomes positive treatment demand. No new density, energy, yield, concentration, recovery or efficiency multiplier.",
+        "Retain every inherited model/native limitation and existing omission audit, including BAFU biosphere exclusions and geographic, grade, allocation, technology, vintage and internal-uncertainty differences. Impact-score effects remain unquantified. No new foreground omission, zero-burden authority or reconstructed manufacturing process.",
+        "Only the exact inspected ecoinvent 3.12 cut-off source scope is added. Older target choices, factors, sign decisions and recipe inventories remain unchanged. No uninspected release, inverse or cross-system-model route or inventory/LCIA equivalence is authorized.",
+        "User instruction: auto-approve coming decisions, within the existing electricity pilot. Approve this exact dry white solvent-based alkyd-paint screening refinement for only two ecoinvent3.9cutoff RER/RoW markets, not earlier water-based paint or standalone resin. Source reference is1kgwithoutsolvent. Scale complete copied native60%paint inventory by1/.60, remove only its explicit.28kgwhite-spirit carrier per native paint reference, and replace resin with a copied native long-oil resin removing only.429kgwhite-spirit carrier per resin reference. The four principal resin precursor quantities match source resin; no extra.7resin factor. Scale supported uncertainty consistently with all remaining signedpaint exchanges; preserve remaining resin quantities and uncertainty. Retain every other native technical and elementary exchange, infrastructure, processing emissions, productionwaste, internal freight, energy and allocation once. The two original sourceproducer processing-white-spirit demands.01356kg each are retained through complete nativeRERwhiteSpirit with their separate original uncertainty. This is not an avoided-solvent credit; no negative carrier purchase, change to caller solvent demand or invented mass-balance correction. Source/native formulation differs: source resin.4882kg versus.49proxy; TiO2.5051versus.5066666666666667kg; aliphatic hydrocarbon emission.00683versus.006666666666666667kg. Source nitrogen purge includes.019kgliquid nitrogen and.019kgdirect nitrogen release per source paint unit, absent from nativepaint. This exact internal boundary difference is retained in the inspection audit with signed source exchanges and hashes, not assumed burdenfree. These are modified-native proxies, not reconstruction of every sourceproducer input or uncertainty. Native heat/electricity, wastes, nitrogen-purge boundary, water/emissions, rawmaterial logistics, embedded infrastructure, allocation, geography, grade and vintage differences remain explicit. Preserve all14original market delivery entries separately, in originalorder at originaltkm and supporteduncertainty; do not concentration-scale freight. Complete same-mode genericRERrail/heavyroad,CH3.5tlightroad,RERbarge andOCEcontainership retain fleet/fuel/geographic approximations and full lifecycle burdens once. Market producer shares remain unchanged. Canonical copiednative elementaryflows retain exact UUID,unit,fullreceivingcompartment androle in installed ecoinvent3.10; no mass/speciation/compartment factor. Native upstream biosphereexclusions and all scoreeffects remain explicit/unquantified; equal LCIA or functional performance is not established. Preserve caller ownership, original signedquantities, uncertainty, formulas, foregroundsuppliers and all separately listed solvent, wastewater and emissions. No standalone source chemical/component/resin, other painttype, other release, inverse or cross-system-modelroute is approved. No whole-pilot scenario/certification/export completion follows."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "75f6ce617e540a11a9305fd2a6582d9ef28d0e9e0b24dfb7ca294085bbf50d4f"
         }
       ]
     }

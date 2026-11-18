@@ -1,0 +1,124 @@
+{
+  "status": "source312_required_interface_group_verified_not_sector_qualified",
+  "source_code_changes": 0,
+  "new_Brightway_databases": 0,
+  "exact_source312_scopes": 2,
+  "new_manufacturing_models": 0,
+  "new_foreground_omissions": [],
+  "conversion_behavior": {
+    "status": "passed",
+    "added_exact_source312_scopes": 2,
+    "signed_uncertainty_exchange_checks": 16,
+    "direct_migration_cases": 8,
+    "public_harmonizer_fresh_and_warm_passed": true,
+    "input_nonmutation": true,
+    "earlier_effective_profile_checks": 1,
+    "new_manufacturing_inventory_models": 0,
+    "new_model_profile_aliases": 1,
+    "new_foreground_omissions": [],
+    "source_code_changes": 0,
+    "new_Brightway_databases": 0,
+    "qualification_limit": "Required interface group only; no complete final-energy update or new export."
+  },
+  "in_memory_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 7,
+    "foreground_biosphere_flows": 3,
+    "native_suppliers": 15,
+    "signed_foreground_LCI_solves": 4,
+    "independent_native_reference_LCI_solves": 2,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-0a7001a49cb20a0f",
+        "source": {
+          "location": "RER",
+          "name": "market for alkyd paint, white, without solvent, in 60% solution state",
+          "reference product": "alkyd paint, white, without solvent, in 60% solution state",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.6422063708887435e-08,
+        "refined_max_abs_inventory_difference": 1.4210854715202004e-14,
+        "full_graph_residual": {
+          "residual_before": 6.706258868366884e-09,
+          "residual_after": 5.616441184674518e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.073274546280157e-09,
+          "residual_after": 5.616441184674518e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-4b1d84179efa58e8",
+        "source": {
+          "location": "GLO",
+          "name": "market for waste electric and electronic equipment",
+          "reference product": "waste electric and electronic equipment",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.0679515313825692e-25,
+        "refined_max_abs_inventory_difference": 2.7755575615628914e-17,
+        "full_graph_residual": {
+          "residual_before": 2.7421711468918456e-11,
+          "residual_after": 4.832046102938132e-18,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.7421711468918456e-11,
+          "residual_after": 4.832046102938132e-18,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "new_model_signed_LCI_solves": 2,
+    "new_model_recipes_checked": [
+      "final-energy-312-reviewed-model-0a7001a49cb20a0f"
+    ],
+    "qualification_limit": "Two reviewed source-3.12 service/paint market models with one inventory-profile alias; no new manufacturing inventory or final-energy/export qualification."
+  },
+  "tests": {
+    "brightpath_review_manifest_passed": 9,
+    "premise_scoped_approval_passed": 10
+  },
+  "qualified_sectors": 15,
+  "total_sectors": 19,
+  "qualification_limit": "Required interface group only. Final-energy update, filter/physical coverage and export remain unfinished.",
+  "normal_generator": {
+    "byte_equal_files": {
+      "ecoinvent-to-ecoinvent-3.10-biosphere.json": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "ecoinvent-to-uvek-2025.json": "eef517d67b5879357b2bc36b74ed72c381352be9d100a4758d87d1e9cbc92345"
+    },
+    "owned_temporary_bytes_removed": 112931210
+  },
+  "existing_recipe_inventories_unchanged": 4449,
+  "earlier_effective_profiles_unchanged": 1,
+  "new_model_profile_aliases": 1,
+  "private_verifier_correction": "The first local LCI script retained an old recipe-ID prefix and failed only its new-alias enumeration assertion. The script prefix was corrected; the full LCI and alias checks then passed. Package source/data were unchanged for this correction."
+}
