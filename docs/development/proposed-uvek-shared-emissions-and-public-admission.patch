@@ -1,0 +1,1750 @@
+--- a/premise/emissions/emissions.py
++++ b/premise/emissions/emissions.py
+@@ -47,6 +47,307 @@
+     return mapping
+ 
+ 
++_EMISSION_SOURCE_MARKER = "premise emissions source"
++
++
++def _emission_source_definitions(family):
++    return {
++        role: definition.get("emission_sources", definition)
++        for role, definition in get_mapping(
++            filepath=GAINS_MAPPING, var=f"{family}_aliases"
++        ).items()
++    }
++
++
++def _prepare_emission_sources(store, updater):
++    """Bind declared source classes to sectors without changing physical inputs."""
++    import hashlib
++    import json
++
++    fields = ("name", "reference product", "unit")
++
++    def signature(record):
++        return tuple(
++            record.get(
++                field, record.get("product") if field == "reference product" else None
++            )
++            for field in fields
++        )
++
++    def region(location):
++        return (
++            location
++            if location in updater.gains_IAM.region
++            else updater.ecoinvent_to_iam_loc[location]
++        )
++
++    resources = defaultdict(set)
++    for role, definition in updater.gains_definitions.items():
++        for resource in definition.get("context_resources", ()):
++            resources[resource].add(role)
++    scopes = {}
++    for resource, roles in resources.items():
++        review = json.loads((DATA_DIR / resource).read_text())
++        for row in review["bindings"]:
++            if row["sector"] not in roles:
++                continue
++            scope = signature(row["caller"]), signature(row["supplier"])
++            if scope in scopes and scopes[scope] != row["sector"]:
++                raise ValueError("Conflicting emissions source-class assignments.")
++            scopes[scope] = row["sector"]
++    rows = {
++        aid: (activity, tuple(edges))
++        for aid, activity, edges in store._iter_storage_activities()
++    }
++    identities = defaultdict(list)
++    aliases = {}
++    for aid, (activity, _) in rows.items():
++        identities[signature(activity), activity["location"]].append(aid)
++        marker = activity.get(_EMISSION_SOURCE_MARKER)
++        if marker:
++            if marker["sector"] not in updater.gains_definitions:
++                raise ValueError("Existing emissions source has an undeclared sector.")
++            aliases[activity["name"]] = marker["sector"]
++
++    def supplier(edge):
++        matches = identities[signature(edge), edge["location"]]
++        if len(matches) != 1:
++            raise ValueError("Missing or ambiguous emissions source endpoint.")
++        return matches[0]
++
++    pending, retained, reused = [], 0, 0
++    for aid, (caller, edge_ids) in rows.items():
++        for eid in edge_ids:
++            edge = store._storage_exchange(eid)
++            role = (
++                scopes.get((signature(caller), signature(edge)))
++                if edge["type"] == "technosphere" and edge["amount"]
++                else None
++            )
++            if role is None:
++                continue
++            sid = supplier(edge)
++            visited = set()
++            while True:
++                source, source_ids = rows[sid]
++                edges = [store._storage_exchange(i) for i in source_ids]
++                if any(e["type"] == "biosphere" and e["amount"] for e in edges):
++                    break
++                prod = [e for e in edges if e["type"] == "production"]
++                tech = [e for e in edges if e["type"] == "technosphere" and e["amount"]]
++                if not (
++                    len(prod) == len(tech) == 1
++                    and prod[0]["amount"] == tech[0]["amount"] == 1
++                    and signature(tech[0]) == signature(source)
++                    and tech[0].get("uncertainty type", 0) in (0, 1)
++                    and not tech[0].get("formula")
++                ):
++                    sid = None
++                    break
++                if sid in visited or len(visited) >= 2:
++                    raise ValueError("Emissions source handover is cyclic or too deep.")
++                visited.add(sid)
++                sid = supplier(tech[0])
++            if sid is None:
++                retained += 1
++                continue
++            source, source_ids = rows[sid]
++            location = (
++                caller["location"]
++                if caller["location"] in updater.gains_IAM.region
++                else source["location"]
++            )
++            if updater.rev_gains_map.get(source["name"]) == role and region(
++                location
++            ) == region(source["location"]):
++                reused += 1
++                continue
++            production = [
++                store._storage_exchange(i)
++                for i in source_ids
++                if store._storage_exchange(i)["type"] == "production"
++            ]
++            if (
++                len(production) != 1
++                or production[0]["amount"] != 1
++                or signature(production[0]) != signature(source)
++            ):
++                raise ValueError(
++                    "Contextual emissions requires an exact +1 source reference."
++                )
++            if source.get("log parameters", {}).get("GAINS sector"):
++                raise ValueError(
++                    "A new emissions context needs a source before its GAINS update; rebuild in the normal sector order."
++                )
++            pending.append((aid, eid, sid, role, location))
++    copies, added, relinked = {}, {}, {}
++    metadata_fields = (
++        "name",
++        "reference product",
++        "location",
++        "unit",
++        "database",
++        "code",
++    )
++    with store.transaction("prepare:emissions-source-context") as tx:
++        for aid, eid, sid, role, location in pending:
++            token = sid, role, location
++            source, source_ids = rows[sid]
++            if token not in copies:
++                source_key = source["database"], source["code"]
++                digest = hashlib.sha256(
++                    json.dumps([source_key, role, location]).encode()
++                ).hexdigest()[:32]
++                updates = {
++                    "name": f"{source['name']} [role {role}, source {source['location']}, at {location}]",
++                    "location": location,
++                    "code": "premise-emissions-" + digest,
++                    _EMISSION_SOURCE_MARKER: {
++                        "source_key": list(source_key),
++                        "sector": role,
++                        "location": location,
++                    },
++                }
++                target = {
++                    field: source.get(field) for field in metadata_fields
++                } | updates
++                target_key = source["database"], updates["code"]
++                endpoints = {}
++                for index, source_eid in enumerate(source_ids):
++                    e = store._storage_exchange(source_eid)
++                    change = {"output": target_key} if "output" in e else {}
++                    if e["type"] == "production":
++                        change.update(
++                            name=updates["name"], location=location, input=target_key
++                        )
++                    if change:
++                        endpoints[index] = change
++                tx.clone_activity(sid, updates, endpoints)
++                copies[token] = target
++                added[target_key] = target
++                aliases[target["name"]] = role
++            target = copies[token]
++            change = {
++                "name": target["name"],
++                "location": target["location"],
++                "input": (target["database"], target["code"]),
++            }
++            tx.patch_exchange(eid, change, activity_id=aid)
++            relinked[aid] = {
++                field: rows[aid][0].get(field) for field in metadata_fields
++            }
++    return {
++        "aliases": aliases,
++        "added": added,
++        "relinked": relinked,
++        "copies": len(added),
++        "relinked_exchanges": len(pending),
++        "reused_positions": reused,
++        "nonemitting_positions": retained,
++    }
++
++
++def _update_contextual_emissions(
++    scenario, version, system_model, gains_scenario, family, biosphere_version
++):
++    """Thin source-topology adapter; all GAINS arithmetic uses Emissions."""
++    from ..transport.vehicle_energy_use import refresh_vehicle_energy_emissions
++    from ..inventory.inventory_store import create_inventory_store
++    from ..core.transformation import (
++        _VALIDATION_ADDED_TARGETS_KEY,
++        _VALIDATION_RELINKED_TARGETS_KEY,
++    )
++
++    if (str(version), system_model, biosphere_version) != (
++        "2026",
++        "cutoff",
++        "3.10",
++    ) or gains_scenario not in {"CLE", "MFR"}:
++        raise ValueError(
++            "UVEK emissions requires 2026 cut-off with biosphere 3.10 and CLE/MFR."
++        )
++    if scenario["iam data"].gains_data_IAM is None:
++        return refresh_vehicle_energy_emissions(scenario)
++    original = scenario.get("_inventory_store")
++    source = (
++        original
++        if original is not None
++        else create_inventory_store(get_scenario_inventory(scenario), backend="compact")
++    )
++    working = source.fork("emissions-source-context")
++    updater = Emissions.from_inventory_store(
++        store=working,
++        iam_data=scenario["iam data"],
++        model=scenario["model"],
++        pathway=scenario["pathway"],
++        year=scenario["year"],
++        version=version,
++        system_model=system_model,
++        gains_scenario=gains_scenario,
++        family=family,
++    )
++    prepared = _prepare_emission_sources(working, updater)
++    updater.rev_gains_map.update(prepared["aliases"])
++    if isinstance(working, CompactInventoryStore):
++        affected = updater.update_emissions_in_store(working)
++    else:
++        working = create_inventory_store(
++            updater.iter_updated_legacy_inventory(working), backend=working.backend_name
++        )
++        affected = set()
++    # Commit the owned fork only after preparation and the shared update succeed.
++    if original is None:
++        replace_scenario_inventory(scenario, working.materialize(), take_ownership=True)
++    else:
++        scenario["_inventory_store"] = working
++    scenario.pop("index", None)
++    scenario["cache"] = {
++        _VALIDATION_ADDED_TARGETS_KEY: prepared["added"],
++        _VALIDATION_RELINKED_TARGETS_KEY: prepared["relinked"],
++    }
++    changed = {
++        (a["name"], a["reference product"], a["location"])
++        for a in (*prepared["added"].values(), *prepared["relinked"].values())
++    }
++    scenario.setdefault("_validation_direct_targets", {})["emissions"] = {
++        "activity_keys": sorted(set(affected) | changed, key=repr)
++    }
++    scenario["emissions diagnostics"] = {
++        k: v for k, v in prepared.items() if k not in {"aliases", "added", "relinked"}
++    }
++    limitations = list(
++        dict.fromkeys(
++            message
++            for definition in updater.gains_definitions.values()
++            for message in definition.get("limitations", ())
++        )
++    )
++    scenario.setdefault(
++        "background context",
++        {
++            "family": family,
++            "version": str(version),
++            "system_model": system_model,
++            "biosphere_family": "ecoinvent",
++            "biosphere_version": biosphere_version,
++        },
++    )
++    scenario.setdefault("native sector limitations", {})["emissions"] = limitations
++    scenario.setdefault("native sector audits", {})["emissions"] = {
++        "method": "shared Premise GAINS updater with declared source contexts",
++        "mapping_scope": "declared native and CLIC process filters with reviewed source contexts",
++        "unclassified_processes_preserved": True,
++        **scenario["emissions diagnostics"],
++    }
++    if limitations:
++        import warnings
++
++        warnings.warn(" ".join(limitations), UserWarning, stacklevel=2)
++    for activity in (*prepared["added"].values(), *prepared["relinked"].values()):
++        updater.write_log(activity, status="updated")
++    return refresh_vehicle_energy_emissions(scenario)
++
++
+ def _update_emissions(
+     scenario,
+     version,
+@@ -56,15 +357,8 @@
+     biosphere_version=None,
+ ):
+     if family == "uvek":
+-        from .uvek_emissions import update_uvek_emissions
+-
+-        return update_uvek_emissions(
+-            scenario,
+-            version,
+-            system_model,
+-            gains_scenario,
+-            family=family,
+-            biosphere_version=biosphere_version,
++        return _update_contextual_emissions(
++            scenario, version, system_model, gains_scenario, family, biosphere_version
+         )
+     if family != "ecoinvent":
+         raise ValueError(f"Unsupported emissions background family: {family!r}.")
+@@ -170,11 +464,14 @@
+         version: str,
+         system_model: str,
+         gains_scenario: str,
++        family: str = "ecoinvent",
+     ) -> "Emissions":
+         """Create an updater from store metadata without materializing exchanges."""
+ 
+         updater = object.__new__(cls)
+         updater.database = None
++        updater.family = family
++        updater.gains_definitions = _emission_source_definitions(family)
+         updater.iam_data = iam_data
+         updater.model = model
+         updater.regions = iam_data.regions
+@@ -199,21 +496,36 @@
+             if activity.get("location") is not None
+         }
+         locations.update(("LA", "FJ", "GN"))
++        aliases = {}
++        for definition in updater.gains_definitions.values():
++            for location, mapped in definition.get("location_aliases", {}).items():
++                if location in aliases and aliases[location] != mapped:
++                    raise ValueError("Conflicting emissions geography aliases.")
++                aliases[location] = mapped
+         updater.ecoinvent_to_iam_loc = {
+-            location: updater.geo.ecoinvent_to_iam_location(location)
++            location: updater.geo.ecoinvent_to_iam_location(
++                aliases.get(location, location)
++            )
+             for location in locations
+         }
+         updater.iam_to_ecoinvent_loc = defaultdict(list)
+         for location, region in updater.ecoinvent_to_iam_loc.items():
+             updater.iam_to_ecoinvent_loc[region].append(location)
+-        updater.rev_gains_map = updater._compile_store_gains_mapping(store)
++        updater.rev_gains_map = updater._compile_store_gains_mapping(
++            store, family=family
++        )
+         return updater
+ 
+     @staticmethod
+     def _compile_store_gains_mapping(
+         store: CompactInventoryStore | LegacyInventoryStore,
++        *,
++        family: str = "ecoinvent",
+     ) -> dict[str, str]:
+-        """Compile legacy GAINS contains/mask filters against store metadata."""
++        """Compile the existing family filters against store metadata."""
++
++        if family not in {"ecoinvent", "uvek"}:
++            raise ValueError(f"Unsupported emissions background family: {family!r}.")
+ 
+         activities = {
+             activity_id: activity
+@@ -231,7 +543,9 @@
+ 
+         predicate_cache: dict[tuple[str, str], set[int]] = {}
+ 
+-        def containing(field_name: str, term: str) -> set[int]:
++        def containing(field_name: str, term: str, *, exact=False) -> set[int]:
++            if exact:
++                return strings.get(field_name, {}).get(term, set())
+             key = (field_name, term)
+             if key not in predicate_cache:
+                 predicate_cache[key] = {
+@@ -253,14 +567,20 @@
+             }
+ 
+         reverse: dict[str, str] = {}
+-        mappings = get_mapping(filepath=GAINS_MAPPING, var="ecoinvent_aliases")
++        mappings = _emission_source_definitions(family)
+         all_activity_ids = set(activities)
+         for sector, specification in mappings.items():
++            if not specification.get("fltr"):
++                continue
+             candidates = all_activity_ids
+             for field_name, terms in normalise(specification.get("fltr")).items():
+                 field_matches: set[int] = set()
+                 for term in terms:
+-                    field_matches.update(containing(field_name, term))
++                    field_matches.update(
++                        containing(
++                            field_name, term, exact=specification.get("exact", False)
++                        )
++                    )
+                 candidates = candidates.intersection(field_matches)
+             excluded: set[int] = set()
+             for field_name, terms in normalise(specification.get("mask")).items():
+@@ -407,6 +727,23 @@
+                 self.write_log(dataset, status="updated")
+             yield dataset
+ 
++    def _emission_selected(self, dataset, exchange, sector):
++        definition = getattr(self, "gains_definitions", {}).get(sector, {})
++        compartments = definition.get("emission_compartments")
++        if (
++            compartments
++            and (exchange.get("categories") or (None,))[0] not in compartments
++        ):
++            return False
++        pollutants = definition.get("pollutants")
++        if pollutants and exchange["name"] not in pollutants:
++            return False
++        return not any(
++            dataset["name"] in row["activities"]
++            and exchange["name"] in row["pollutants"]
++            for row in definition.get("exclude_pollutants", ())
++        )
++
+     def update_emissions_in_store(
+         self, store: CompactInventoryStore
+     ) -> frozenset[tuple[str, str, str]]:
+@@ -438,6 +775,7 @@
+                     if (
+                         exchange.get("type") != "biosphere"
+                         or exchange.get("name") not in relevant
++                        or not self._emission_selected(dataset, exchange, sector)
+                     ):
+                         continue
+                     gains_pollutant = self.ei_pollutants[exchange["name"]]
+@@ -500,7 +838,9 @@
+         biosphere_excs = [
+             exc
+             for exc in dataset["exchanges"]
+-            if exc["type"] == "biosphere" and exc["name"] in relevant
++            if exc["type"] == "biosphere"
++            and exc["name"] in relevant
++            and self._emission_selected(dataset, exc, sector)
+         ]
+ 
+         # Keep the idempotence guard fixed for this activity pass. Updating the
+--- a/premise/database/background.py
++++ b/premise/database/background.py
+@@ -64,11 +64,13 @@
+             "trucks",
+             "final energy",
+             "battery",
++            "metals",
++            "emissions",
+         }
+     )
+     if unsupported:
+         raise ValueError(
+-            "UVEK 2026 supports biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses, two_wheelers, trains, cars, trucks, final energy and battery; "
++            "UVEK 2026 supports biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses, two_wheelers, trains, cars, trucks, final energy, battery, metals and emissions; "
+             f"unsupported sectors: {unsupported}."
+         )
+     return list(selected)
+--- a/premise/data/GAINS_emission_factors/gains_ecoinvent_sectoral_mapping.yaml
++++ b/premise/data/GAINS_emission_factors/gains_ecoinvent_sectoral_mapping.yaml
+@@ -120,6 +120,21 @@
+     mask:
+     - market
+   gains_aliases_IAM: CHEMBULK
++  uvek_aliases:
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Ethylene glycol, at plant
++        - Phthalic anhydride, at plant
++        - Polyethylene terephthalate, granulate, amorphous, at plant
++        - Polyethylene, HDPE, granulate, at plant
++        - Polyethylene, LDPE, granulate, at plant
++        - Polypropylene, granulate, at plant
++        - Polystyrene, high impact, HIPS, at plant
+ CHEM:
+   ecoinvent_aliases:
+     fltr:
+@@ -534,6 +549,21 @@
+     mask:
+     - market
+   gains_aliases_IAM: CHEM
++  uvek_aliases:
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Epoxy resin, liquid, at plant
++        - Ethoxylated alcohols (AE7), petrochemical, at plant
++        - carbon disulfide production
++        - lithium hydroxide production, battery grade
++      reviewed_CLIC_process_names:
++      - carbon disulfide production
++      - lithium hydroxide production, battery grade
+ Transformations_Coal:
+   ecoinvent_aliases:
+     fltr:
+@@ -577,6 +607,26 @@
+       - xx Heat, natural gas, at boiler modulating <100kW
+     exact: true
+     use_legacy_templates: false
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Biomethane, burned in boiler condensing modulating 15kW
++        - Biomethane, burned in boiler condensing modulating 300kW
++        - Biomethane, burned in boiler condensing modulating 50kW
++        - Natural gas, burned in boiler atmospheric burner non-modulating <100kW
++        - Natural gas, burned in boiler atmospheric low-NOx non-modulating <100kW
++        - Natural gas, burned in boiler condensing modulating 15kW
++        - Natural gas, burned in boiler condensing modulating 50kW
++        - Natural gas, burned in boiler fan burner low-NOx non-modulating <100kW
++        - Natural gas, burned in boiler fan burner non-modulating <100kW
++        - Natural gas, burned in boiler modulating <100kW
++      context_resources:
++      - GAINS_emission_factors/uvek2026_gas_review.json
++      - GAINS_emission_factors/uvek2026_heating_combustion_review.json
+   ecoinvent_aliases:
+     fltr:
+     - propane, burned in building machine
+@@ -602,6 +652,19 @@
+       - Heat, light fuel oil, at boiler 10kW, condensing, modulating
+       - Heat, light fuel oil, at boiler 10kW, non-modulating
+       - Heat, propane/butane, at boiler condensing modulating 50kW
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Light fuel oil, burned in boiler 100kW, condensing, modulating
++        - Light fuel oil, burned in boiler 10kW, average
++        - Light fuel oil, burned in boiler 10kW, condensing, modulating
++        - Propane,butane, burned in boiler condensing modulating 50kW
++      context_resources:
++      - GAINS_emission_factors/uvek2026_heating_combustion_review.json
+   ecoinvent_aliases:
+     fltr:
+     - petrol, unleaded, burned in machinery
+@@ -640,6 +703,24 @@
+       - Heat, softwood logs, at furnace 15kW
+       - Heat, softwood logs, at furnace 50kW
+       - Heat, softwood logs, at wood heater 6kW
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Logs, hardwood, burned in furnace 15kW
++        - Logs, hardwood, burned in furnace 50kW
++        - Logs, hardwood, burned in wood heater 6kW
++        - Logs, mixed, burned in furnace 15kW
++        - Logs, mixed, burned in furnace 50kW
++        - Logs, mixed, burned in wood heater 6kW
++        - Logs, softwood, burned in furnace 15kW
++        - Logs, softwood, burned in furnace 50kW
++        - Logs, softwood, burned in wood heater 6kW
++      context_resources:
++      - GAINS_emission_factors/uvek2026_heating_combustion_review.json
+   ecoinvent_aliases:
+     fltr:
+     - treatment of stalk, in wood heater 6kW
+@@ -656,6 +737,17 @@
+       - Heat, hard coal coke, at stove 5-15kW
+       - xx Heat, anthracite, at stove 5-15kW
+       - xx Heat, lignite briquette, at stove 5-15kW
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Anthracite, burned in stove 5-15kW
++        - Hard coal briquette, burned in stove 5-15kW
++      context_resources:
++      - GAINS_emission_factors/uvek2026_heating_combustion_review.json
+   ecoinvent_aliases:
+     fltr:
+     - heat production, hard coal coke, stove
+@@ -674,6 +766,15 @@
+     mask:
+     - market
+   gains_aliases_IAM: Waste_Water_Industrial
++  uvek_aliases:
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Treatment, lorry production effluent, to wastewater treatment, class 1
+ Waste_Solid_Industrial:
+   ecoinvent_aliases:
+     fltr:
+@@ -830,6 +931,30 @@
+     mask:
+     - market
+   gains_aliases_IAM: Waste_Solid_Industrial
++  uvek_aliases:
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Aluminium oxide, at plant
++        - Aluminium, secondary, from old scrap, at plant
++        - Disposal, bitumen, 1.4% water, to sanitary landfill
++        - Disposal, building, concrete, not reinforced, to final disposal
++        - Disposal, building, concrete, not reinforced, to sorting plant
++        - Disposal, building, mineral wool, to final disposal
++        - Disposal, building, reinforced concrete, to final disposal
++        - Disposal, hazardous waste, 25% water, to hazardous waste incineration
++        - Disposal, refinery sludge, 89.5% water, to hazardous waste incineration
++        - Disposal, residue from cooling tower, 30% water, to sanitary landfill
++        - Disposal, solvents mixture, 16.5% water, to hazardous waste incineration
++        - treatment of sulfidic tailings, roasting and leaching
++        - xx Disposal, building, concrete, not reinforced, to recycling
++        - xx Disposal, building, mineral wool, to recycling
++      reviewed_CLIC_process_names:
++      - treatment of sulfidic tailings, roasting and leaching
+ End_Use_Industry_NatGas:
+   uvek_aliases:
+     fltr:
+@@ -1522,6 +1647,33 @@
+       - "xxx Zinc , from Imperial smelting furnace"
+     exact: true
+     use_legacy_templates: false
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      location_aliases:
++        LBFAC32: GLO
++        ERCOT: US
++        MRO: US
++        NPCC: US
++        US-FRCC: US
++        US-RFC: US
++        US-SERC: US
++        US-SPP: US
++        WECC: US
++      fltr:
++        name:
++        - Biomethane, burned in industrial furnace 1MW
++        - Natural gas, burned in boiler modulating >100kW
++        - Natural gas, burned in gas turbine, for compressor station
++        - Natural gas, burned in industrial furnace 1MW
++        - Natural gas, burned in industrial furnace 1MWth
++        - Natural gas, burned in industrial furnace, for asphalt production, 1MWth
++      context_resources:
++      - GAINS_emission_factors/uvek2026_gas_review.json
++      - GAINS_emission_factors/uvek2026_heating_combustion_review.json
++      - GAINS_emission_factors/uvek2026_renamed_source_contexts.json
+   ecoinvent_aliases:
+     fltr:
+     - heat production, natural gas
+@@ -1943,6 +2095,19 @@
+       - xxx Particle board, outdoor use, at plant
+       - xxx Petrol, unleaded, at regional storage
+       - xxx Polylactide, granulate, NatureWorks Nebraska
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Light fuel oil, burned in industrial furnace 1MW, non-modulating
++        - Light fuel oil, burned in industrial furnace, for asphalt production, 1MW, non-modulating
++      context_resources:
++      - GAINS_emission_factors/uvek2026_heating_combustion_review.json
++      - GAINS_emission_factors/uvek2026_ordinary_combustion_review.json
++      - GAINS_emission_factors/uvek2026_renamed_source_contexts.json
+   ecoinvent_aliases:
+     fltr:
+     - heat production, light fuel oil
+@@ -2065,6 +2230,16 @@
+       - xxx Fibreboard soft, latex bonded, at plant (u=7%)
+       - xxx Fibreboard soft, without adhesives, at plant (u=7%)
+       - xxx Particle board, outdoor use, at plant
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Heavy fuel oil, burned in industrial furnace 1MW, non-modulating
++      context_resources:
++      - GAINS_emission_factors/uvek2026_ordinary_combustion_review.json
+   ecoinvent_aliases:
+     fltr:
+     - heat production, heavy fuel oil
+@@ -2125,6 +2300,17 @@
+       - xx Metal working machine operation, process heat from hard coal
+       - xxx Butanol, 1-, at plant
+       - xxx Zinc , from Imperial smelting furnace
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Hard coal, burned in industrial furnace 1-10MW
++      context_resources:
++      - GAINS_emission_factors/uvek2026_heating_combustion_review.json
++      - GAINS_emission_factors/uvek2026_ordinary_combustion_review.json
+   ecoinvent_aliases:
+     fltr:
+     - treatment of coal tar, in industrial
+@@ -2244,6 +2430,39 @@
+       - xxx Three layered laminated board, at plant
+       - xxx Window frame, wood, U=1.5 W/m2K, at plant
+       - xxx Window frame, wood-metal, U=1.6 W/m2K, at plant
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Pellets, mixed, burned in furnace 300kW
++        - Wood chips, from forest, hardwood, burned in furnace 1000kW
++        - Wood chips, from forest, hardwood, burned in furnace 300kW
++        - Wood chips, from forest, hardwood, burned in furnace 5000kW
++        - Wood chips, from forest, mixed, burned in furnace 1000kW
++        - Wood chips, from forest, mixed, burned in furnace 300kW
++        - Wood chips, from forest, mixed, burned in furnace 5000kW
++        - Wood chips, from forest, softwood, burned in furnace 1000kW
++        - Wood chips, from forest, softwood, burned in furnace 300kW
++        - Wood chips, from forest, softwood, burned in furnace 5000kW
++        - Wood chips, from holzpur manufacturing, softwood, burned in furnace 300kW
++        - Wood chips, from industry, hardwood, burned in furnace 1000kW
++        - Wood chips, from industry, hardwood, burned in furnace 300kW
++        - Wood chips, from industry, hardwood, burned in furnace 5000kW
++        - Wood chips, from industry, mixed, burned in furnace 1000kW
++        - Wood chips, from industry, mixed, burned in furnace 300kW
++        - Wood chips, from industry, mixed, burned in furnace 5000kW
++        - Wood chips, from industry, softwood, burned in furnace 1000kW
++        - Wood chips, from industry, softwood, burned in furnace 300kW
++        - Wood chips, from industry, softwood, burned in furnace 300kW - ohne Holzinput
++        - Wood chips, from industry, softwood, burned in furnace 5000kW
++        - Wood chips, from sawmill, softwood, holzpur, burned in furnace 300kW
++      context_resources:
++      - GAINS_emission_factors/uvek2026_heating_combustion_review.json
++      - GAINS_emission_factors/uvek2026_ordinary_combustion_review.json
++      - GAINS_emission_factors/uvek2026_renamed_source_contexts.json
+   ecoinvent_aliases:
+     fltr:
+     - heat production, softwood chips
+@@ -2381,6 +2600,40 @@
+     mask:
+     - market
+   gains_aliases_IAM: Waste_Solid_Municipal
++  uvek_aliases:
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Disposal, aluminium, 0% water, to municipal incineration
++        - Disposal, aluminium, 0% water, to sanitary landfill
++        - Disposal, anion exchange resin f. water, 50% water, to municipal incineration
++        - Disposal, building, brick, to final disposal
++        - Disposal, copper, 0% water, to municipal incineration
++        - Disposal, emulsion paint, 0% water, to municipal incineration
++        - Disposal, glass, 0% water, to municipal incineration
++        - Disposal, lead in car shredder residue, 0% water, to municipal incineration
++        - Disposal, municipal solid waste, 22.9% water, to municipal incineration
++        - Disposal, plastics, mixture, 15.3% water, to municipal incineration
++        - Disposal, polyethylene, 0.4% water, to municipal incineration
++        - Disposal, polyethylene, 0.4% water, to sanitary landfill
++        - Disposal, polypropylene, 15.9% water, to municipal incineration
++        - Disposal, polystyrene, 0.2% water, to municipal incineration
++        - Disposal, polystyrene, 0.2% water, to sanitary landfill
++        - Disposal, polyurethane, 0.2% water, to municipal incineration
++        - Disposal, polyvinylchloride, 0.2% water, to municipal incineration
++        - Disposal, polyvinylchloride, 0.2% water, to sanitary landfill
++        - Disposal, residues, shredder fraction from manual dismantling, in MSWI
++        - Disposal, textiles, soiled, 25% water, to municipal incineration
++        - Disposal, wood ash mixture, pure, 0% water, to municipal incineration
++        - Disposal, wood ash mixture, pure, 0% water, to sanitary landfill
++        - Disposal, wood untreated, 20% water, to municipal incineration
++        - Disposal, wood untreated, 20% water, to sanitary landfill
++        - Disposal, zinc in car shredder residue, 0% water, to municipal incineration
++        - xx Disposal, polypropylene, 15.9% water, to sanitary landfill
+ Power_Gen_NatGas:
+   uvek_aliases:
+     fltr:
+@@ -2424,6 +2677,39 @@
+       - "xx Electricity, natural gas, at turbine, 10MW"
+     exact: true
+     use_legacy_templates: false
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      exclude_pollutants:
++      - activities:
++        - Electricity, at cogen 1MWe lean burn, allocation exergy
++        - Heat, at cogen 1MWe lean burn, allocation exergy
++        pollutants:
++        - Methane
++        - Methane, fossil
++        - Methane, non-fossil
++        - Methane, from soil or biomass stock
++      fltr:
++        name:
++        - Biomethane, burned in cogen 15kWth
++        - Biomethane, burned in cogen 1MWth
++        - Biomethane, burned in cogen 300kWth
++        - Biomethane, burned in cogen 50kWth
++        - Electricity, at cogen 1MWe lean burn, allocation exergy
++        - Heat, at cogen 1MWe lean burn, allocation exergy
++        - Natural gas, burned in cogen 15kWth
++        - Natural gas, burned in cogen 1MWth
++        - Natural gas, burned in cogen 300kWth
++        - Natural gas, burned in cogen 50kWth
++        - Natural gas, burned in combined cycle plant, best technology
++        - electricity production, at natural gas-fired combined cycle power plant, post, pipeline 200km, storage 1000m
++      context_resources:
++      - GAINS_emission_factors/uvek2026_gas_review.json
++      - GAINS_emission_factors/uvek2026_renamed_source_contexts.json
++      reviewed_CLIC_process_names:
++      - electricity production, at natural gas-fired combined cycle power plant, post, pipeline 200km, storage 1000m
+   ecoinvent_aliases:
+     fltr:
+     - natural gas, burned in solid oxide fuel cell 125kWe, future
+@@ -2460,6 +2746,16 @@
+     fltr:
+       name:
+       - Electricity, oil, at power plant
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Heavy fuel oil, burned in power plant
++      context_resources:
++      - GAINS_emission_factors/uvek2026_ordinary_combustion_review.json
+   ecoinvent_aliases:
+     fltr:
+     - heat and power co-generation, diesel, 200kW electrical, SCR-NOx reduction
+@@ -2484,6 +2780,17 @@
+       - Heat, peat, at cogen, allocation exergy
+     exact: true
+     use_legacy_templates: false
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Hard coal, burned in coal mine power plant
++        - Peat, burned in power plant
++      context_resources:
++      - GAINS_emission_factors/uvek2026_ordinary_combustion_review.json
+   ecoinvent_aliases:
+     fltr:
+     - electricity production, hard coal
+@@ -2514,6 +2821,20 @@
+       - "Paper, recycling, average, at plant"
+     exact: true
+     use_legacy_templates: false
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Pellets, burned in cogen 300kWth
++        - Pellets, burned in cogen 50kWth
++        - Wood chips, burned in cogen 1MWth
++        - Wood chips, burned in cogen 300kWth
++      context_resources:
++      - GAINS_emission_factors/uvek2026_ordinary_combustion_review.json
++      - GAINS_emission_factors/uvek2026_renamed_source_contexts.json
+   ecoinvent_aliases:
+     fltr:
+     - treatment of bagasse, from sweet sorghum
+@@ -2578,6 +2899,26 @@
+       - "xx Electricity, nuclear, at pressure water reactor, centrifugal enrichment"
+     exact: true
+     use_legacy_templates: false
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Diesel, burned in cogen 15kWth
++        - Diesel, burned in cogen 1MWth
++        - Diesel, burned in cogen 300kWth
++        - Diesel, burned in cogen 50kWth
++        - Diesel, burned in diesel-electric generating set
++        - hydrogen production, steam methane reforming
++        - hydrogen production, steam methane reforming, with CCS
++      context_resources:
++      - GAINS_emission_factors/uvek2026_ordinary_combustion_review.json
++      - GAINS_emission_factors/uvek2026_renamed_source_contexts.json
++      reviewed_CLIC_process_names:
++      - hydrogen production, steam methane reforming
++      - hydrogen production, steam methane reforming, with CCS
+   ecoinvent_aliases:
+     fltr:
+     - electricity production, at hydrogen-fired combined cycle power plant, by auto-thermal
+@@ -2610,6 +2951,23 @@
+     mask:
+     - market
+   gains_aliases_IAM: Power_Gen_Coal_IGCC_CCS
++  uvek_aliases:
++    emission_sources:
++      exact: true
++      emission_compartments:
++      - air
++      use_legacy_templates: false
++      fltr:
++        name:
++        - electricity production, at hard coal-fired IGCC power plant
++        - electricity production, at hard coal-fired IGCC power plant, pre, pipeline 200km, storage 1000m
++        - electricity production, at lignite-fired IGCC power plant
++        - electricity production, at lignite-fired IGCC power plant, pre, pipeline 200km, storage 1000m
++      reviewed_CLIC_process_names:
++      - electricity production, at hard coal-fired IGCC power plant
++      - electricity production, at hard coal-fired IGCC power plant, pre, pipeline 200km, storage 1000m
++      - electricity production, at lignite-fired IGCC power plant
++      - electricity production, at lignite-fired IGCC power plant, pre, pipeline 200km, storage 1000m
+ Power_Gen_Coal_New:
+   uvek_aliases:
+     use_legacy_templates: false
+@@ -2621,6 +2979,18 @@
+       - Heat, hard coal, at cogen, allocation exergy
+       - Heat, lignite, at cogen, allocation exergy
+       - Paper, recycling, average, at plant
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Hard coal, burned in power plant
++        - Lignite, burned in power plant
++      context_resources:
++      - GAINS_emission_factors/uvek2026_ordinary_combustion_review.json
++      - GAINS_emission_factors/uvek2026_renamed_source_contexts.json
+   ecoinvent_aliases:
+     fltr:
+     - electricity production, hard coal
+@@ -2654,6 +3024,22 @@
+     mask:
+     - market
+   gains_aliases_IAM: Power_Gen_Bio_Trad_New
++  uvek_aliases:
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Heat, at cogen with biogas engine, allocation exergy
++        - electricity production, at biomass-fired IGCC power plant
++        - electricity production, at biomass-fired IGCC power plant, post, pipeline 200km, storage 1000m
++        - electricity production, at wood burning power plant, post, pipeline 200km, storage 1000m
++      reviewed_CLIC_process_names:
++      - electricity production, at biomass-fired IGCC power plant
++      - electricity production, at biomass-fired IGCC power plant, post, pipeline 200km, storage 1000m
++      - electricity production, at wood burning power plant, post, pipeline 200km, storage 1000m
+ Losses_Prod_Conventional_Gas:
+   ecoinvent_aliases:
+     fltr:
+@@ -2672,6 +3058,15 @@
+     mask:
+     - market
+   gains_aliases_IAM: AACID
++  uvek_aliases:
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Adipic acid, at plant
+ CEMENT:
+   ecoinvent_aliases:
+     fltr:
+@@ -2680,6 +3075,15 @@
+     mask:
+     - market
+   gains_aliases_IAM: CEMENT
++  uvek_aliases:
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Clinker, at plant
+ NACID:
+   ecoinvent_aliases:
+     fltr:
+@@ -2687,6 +3091,15 @@
+     mask:
+     - market
+   gains_aliases_IAM: NACID
++  uvek_aliases:
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Nitric acid, 50% in H2O, at plant
+ CUSM:
+   ecoinvent_aliases:
+     fltr:
+@@ -2709,6 +3122,21 @@
+     mask:
+     - market
+   gains_aliases_IAM: STEEL
++  uvek_aliases:
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Pig iron, at plant
++        - Sheet rolling, steel
++        - Sinter, iron, at plant
++        - Steel, converter, low-alloyed, at plant
++        - Steel, converter, unalloyed, at plant
++        - Steel, electric, chromium steel 18/8, at plant
++        - Steel, electric, un- and low-alloyed, at plant
+ Losses_Distribution_Use:
+   ecoinvent_aliases:
+     fltr:
+@@ -3361,6 +3789,29 @@
+       - "xxx Zinc , from Imperial smelting furnace"
+     exact: true
+     use_legacy_templates: false
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Diesel, burned in asphalt paver, average, with particle filter
++        - Diesel, burned in building machine, average
++        - Diesel, burned in building machine, with particle filter
++        - Diesel, burned in building machine, with particle filter, without building machine
++        - Diesel, burned in building machine, with particle filter, without building machine and lubricating oil
++        - Diesel, burned in compaction roller, average, with particle filter
++        - Transport, barge
++        - transport, freight train, diesel-electric
++        - transport, freight, sea, container ship, powered with biodiesel
++        - transport, freight, sea, container ship, powered with liquid ammonia
++      context_resources:
++      - GAINS_emission_factors/uvek2026_heating_combustion_review.json
++      reviewed_CLIC_process_names:
++      - transport, freight train, diesel-electric
++      - transport, freight, sea, container ship, powered with biodiesel
++      - transport, freight, sea, container ship, powered with liquid ammonia
+   ecoinvent_aliases:
+     fltr:
+     - transport, freight, sea
+@@ -3396,6 +3847,21 @@
+     mask:
+     - market
+   gains_aliases_IAM: End_Use_Transport_HDT_HLF
++  uvek_aliases:
++    emission_sources:
++      exact: true
++      emission_compartments:
++      - air
++      use_legacy_templates: false
++      fltr:
++        name:
++        - transport, freight, lorry, diesel, 18 metric ton
++        - transport, freight, lorry, diesel, 26 metric ton
++        - transport, freight, lorry, diesel, 40 metric ton
++      reviewed_CLIC_process_names:
++      - transport, freight, lorry, diesel, 18 metric ton
++      - transport, freight, lorry, diesel, 26 metric ton
++      - transport, freight, lorry, diesel, 40 metric ton
+ End_Use_Transport_NatGas:
+   ecoinvent_aliases:
+     fltr:
+@@ -3407,6 +3873,31 @@
+     mask:
+     - market
+   gains_aliases_IAM: End_Use_Transport_NatGas
++  uvek_aliases:
++    emission_sources:
++      exact: true
++      emission_compartments:
++      - air
++      use_legacy_templates: false
++      fltr:
++        name:
++        - transport, freight, lorry, compressed gas, 18 metric ton
++        - transport, freight, lorry, compressed gas, 26 metric ton
++        - transport, freight, lorry, compressed gas, 3.5 metric ton
++        - transport, freight, lorry, compressed gas, 40 metric ton
++        - transport, freight, lorry, compressed gas, 7.5 metric ton
++        - transport, passenger car, compressed gas, medium, EURO-6
++        - transport, passenger car, compressed gas, mini, EURO-6
++        - transport, passenger car, compressed gas, van, EURO-6
++      reviewed_CLIC_process_names:
++      - transport, freight, lorry, compressed gas, 18 metric ton
++      - transport, freight, lorry, compressed gas, 26 metric ton
++      - transport, freight, lorry, compressed gas, 3.5 metric ton
++      - transport, freight, lorry, compressed gas, 40 metric ton
++      - transport, freight, lorry, compressed gas, 7.5 metric ton
++      - transport, passenger car, compressed gas, medium, EURO-6
++      - transport, passenger car, compressed gas, mini, EURO-6
++      - transport, passenger car, compressed gas, van, EURO-6
+ End_Use_Transport_MC_LLF:
+   ecoinvent_aliases:
+     fltr:
+@@ -3430,6 +3921,25 @@
+     - compressed gas
+     - market
+   gains_aliases_IAM: End_Use_Transport_LDT_LLF
++  uvek_aliases:
++    emission_sources:
++      exact: true
++      emission_compartments:
++      - air
++      use_legacy_templates: false
++      fltr:
++        name:
++        - transport, passenger car, gasoline, medium, EURO-6
++        - transport, passenger car, gasoline, mini, EURO-6
++        - transport, passenger car, gasoline, van, EURO-6
++        - transport, passenger car, plugin gasoline hybrid, mini, EURO-6
++        - transport, passenger car, plugin gasoline hybrid, van, EURO-6
++      reviewed_CLIC_process_names:
++      - transport, passenger car, gasoline, medium, EURO-6
++      - transport, passenger car, gasoline, mini, EURO-6
++      - transport, passenger car, gasoline, van, EURO-6
++      - transport, passenger car, plugin gasoline hybrid, mini, EURO-6
++      - transport, passenger car, plugin gasoline hybrid, van, EURO-6
+ End_Use_Transport_LDT_HLF:
+   ecoinvent_aliases:
+     fltr:
+@@ -3447,6 +3957,21 @@
+     - petrol
+     - market
+   gains_aliases_IAM: End_Use_Transport_LDT_HLF
++  uvek_aliases:
++    emission_sources:
++      exact: true
++      emission_compartments:
++      - air
++      use_legacy_templates: false
++      fltr:
++        name:
++        - transport, freight, lorry, diesel, 3.5 metric ton
++        - transport, freight, lorry, diesel, 7.5 metric ton
++        - transport, passenger car, diesel, medium, EURO-6
++      reviewed_CLIC_process_names:
++      - transport, freight, lorry, diesel, 3.5 metric ton
++      - transport, freight, lorry, diesel, 7.5 metric ton
++      - transport, passenger car, diesel, medium, EURO-6
+ Waste_Water_Municipal:
+   ecoinvent_aliases:
+     fltr:
+@@ -3455,6 +3980,17 @@
+     mask:
+     - market
+   gains_aliases_IAM: Waste_Water_Municipal
++  uvek_aliases:
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Treatment, sewage, to wastewater treatment, class 1
++        - Treatment, sewage, to wastewater treatment, class 2
++        - Treatment, sewage, to wastewater treatment, class 4
+ End_Use_Services_Coal_Heat:
+   ecoinvent_aliases:
+     fltr:
+@@ -3479,6 +4015,20 @@
+       - Heat, softwood chips from industry, at furnace 50kW
+       - Heat, wood pellets, at furnace 15kW
+       - Heat, wood pellets, at furnace 50kW
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Pellets, mixed, burned in furnace 15kW
++        - Wood chips, from forest, mixed, burned in furnace 50kW
++        - Wood chips, from forest, softwood, burned in furnace 50kW
++        - Wood chips, from industry, mixed, burned in furnace 50kW
++        - Wood chips, from industry, softwood, burned in furnace 50kW
++      context_resources:
++      - GAINS_emission_factors/uvek2026_heating_combustion_review.json
+   ecoinvent_aliases:
+     fltr:
+     - heat production, wood pellet
+@@ -3572,6 +4122,16 @@
+       - "Sewer system, construction, vitrified clay pipe, DN 800, profile 3"
+     exact: true
+     use_legacy_templates: false
++    emission_sources:
++      use_legacy_templates: false
++      exact: true
++      emission_compartments:
++      - air
++      fltr:
++        name:
++        - Petrol, burned in building machine, with particle filter
++      context_resources:
++      - GAINS_emission_factors/uvek2026_heating_combustion_review.json
+   gains_aliases_IAM: End_Use_Transport_OFF_LLF
+ 
+ End_Use_Residential_HLF:
+--- /dev/null
++++ b/tests/test_contextual_emissions.py
+@@ -0,0 +1,396 @@
++import copy, json, math
++from types import SimpleNamespace
++import numpy as np
++import pytest, xarray as xr, yaml
++import premise.emissions.emissions as module
++from premise.inventory.inventory_store import (
++    create_inventory_store,
++    get_scenario_inventory,
++)
++
++
++@pytest.fixture
++def case(tmp_path, monkeypatch):
++    def build(role="Power", location="NEU", amount=2.0, uncertainty=2, handover=False):
++        caller = {
++            "name": "Plant",
++            "reference product": "electricity",
++            "location": location,
++            "unit": "kilowatt hour",
++            "database": "source",
++            "code": "plant",
++            "metadata": {"nested": [1]},
++            "exchanges": [
++                {
++                    "type": "production",
++                    "name": "Plant",
++                    "product": "electricity",
++                    "location": location,
++                    "unit": "kilowatt hour",
++                    "amount": 1.0,
++                },
++                {
++                    "type": "technosphere",
++                    "name": "Burner",
++                    "product": "combustion",
++                    "location": "CH" if handover else "RER",
++                    "unit": "megajoule",
++                    "amount": amount,
++                    "input": ("source", "handover" if handover else "burner"),
++                    "uncertainty type": uncertainty,
++                    "loc": math.log(abs(amount)) if uncertainty == 2 else amount,
++                    "scale": 0.2,
++                },
++            ],
++        }
++        burner = {
++            "name": "Burner",
++            "reference product": "combustion",
++            "location": "RER",
++            "unit": "megajoule",
++            "database": "source",
++            "code": "burner",
++            "exchanges": [
++                {
++                    "type": "production",
++                    "name": "Burner",
++                    "product": "combustion",
++                    "location": "RER",
++                    "unit": "megajoule",
++                    "amount": 1.0,
++                    "input": ("source", "burner"),
++                },
++                {
++                    "type": "technosphere",
++                    "name": "Fuel",
++                    "product": "fuel",
++                    "location": "RER",
++                    "unit": "kilogram",
++                    "amount": 0.1,
++                    "input": ("source", "fuel"),
++                },
++                {
++                    "type": "biosphere",
++                    "name": "Nitrogen oxides",
++                    "categories": ("air", "urban air close to ground"),
++                    "unit": "kilogram",
++                    "amount": 2.0,
++                    "uncertainty type": 3,
++                    "loc": 2.0,
++                    "scale": 0.1,
++                    "input": ("bio", "NOx"),
++                },
++                {
++                    "type": "biosphere",
++                    "name": "Ammonia",
++                    "categories": ("water", "river"),
++                    "unit": "kilogram",
++                    "amount": 1.0,
++                    "input": ("bio", "NH3water"),
++                },
++                {
++                    "type": "biosphere",
++                    "name": "Carbon dioxide, fossil",
++                    "categories": ("air",),
++                    "unit": "kilogram",
++                    "amount": 8.0,
++                    "input": ("bio", "CO2"),
++                },
++            ],
++        }
++        fuel = {
++            "name": "Fuel",
++            "reference product": "fuel",
++            "location": "RER",
++            "unit": "kilogram",
++            "database": "source",
++            "code": "fuel",
++            "exchanges": [
++                {
++                    "type": "production",
++                    "name": "Fuel",
++                    "product": "fuel",
++                    "location": "RER",
++                    "unit": "kilogram",
++                    "amount": 1.0,
++                }
++            ],
++        }
++        data = [caller, burner, fuel]
++        if handover:
++            data.append(
++                {
++                    "name": "Burner",
++                    "reference product": "combustion",
++                    "location": "CH",
++                    "unit": "megajoule",
++                    "database": "source",
++                    "code": "handover",
++                    "exchanges": [
++                        {
++                            "type": "production",
++                            "name": "Burner",
++                            "product": "combustion",
++                            "location": "CH",
++                            "unit": "megajoule",
++                            "amount": 1.0,
++                        },
++                        {
++                            "type": "technosphere",
++                            "name": "Burner",
++                            "product": "combustion",
++                            "location": "RER",
++                            "unit": "megajoule",
++                            "amount": 1.0,
++                            "input": ("source", "burner"),
++                        },
++                    ],
++                }
++            )
++        select = lambda a: {
++            k: a[k] for k in ("name", "reference product", "location", "unit")
++        }
++        review = {
++            "bindings": [
++                {
++                    "caller": select(caller),
++                    "supplier": {
++                        "name": "Burner",
++                        "reference product": "combustion",
++                        "location": "CH" if handover else "RER",
++                        "unit": "megajoule",
++                    },
++                    "sector": role,
++                }
++            ]
++        }
++        (tmp_path / "review.json").write_text(json.dumps(review))
++        mapping = {
++            r: {
++                "ecoinvent_aliases": {"fltr": {"name": ["eci only"]}},
++                "uvek_aliases": {
++                    "fltr": {"name": ["Plant"]},
++                    "exact": True,
++                    "emission_sources": {
++                        "fltr": {"name": ["Burner"] if r == "Industry" else []},
++                        "exact": True,
++                        "emission_compartments": ["air"],
++                        "context_resources": ["review.json"],
++                    },
++                },
++            }
++            for r in ("Industry", "Power")
++        }
++        path = tmp_path / "mapping.yaml"
++        path.write_text(yaml.safe_dump(mapping))
++        monkeypatch.setattr(module, "GAINS_MAPPING", path)
++        monkeypatch.setattr(module, "DATA_DIR", tmp_path)
++        monkeypatch.setattr(
++            module,
++            "Geomap",
++            lambda model: SimpleNamespace(
++                ecoinvent_to_iam_location=lambda location: {
++                    "RER": "EUR",
++                    "CH": "NEU",
++                    "LA": "World",
++                    "FJ": "World",
++                    "GN": "World",
++                }.get(location, location)
++            ),
++        )
++        values = np.full((2, 2, 2, 2), 100.0)
++        # Explicit axes: baseline100, projected ratios differ by sector and region.
++        values[:, 0, 1, :] = np.array([50.0, 20.0])[:, None]
++        values[:, 1, 1, :] = np.array([25.0, 10.0])[:, None]
++        gains = xr.DataArray(
++            values,
++            dims=("region", "sector", "year", "pollutant"),
++            coords={
++                "region": ["EUR", "NEU"],
++                "sector": ["Industry", "Power"],
++                "year": [2020, 2050],
++                "pollutant": ["NOx", "NH3"],
++            },
++        )
++        source = create_inventory_store(data, backend="compact")
++        scenario = {
++            "model": "remind",
++            "pathway": "test",
++            "year": 2050,
++            "iam data": SimpleNamespace(
++                gains_data_IAM=gains, regions=["EUR", "NEU", "World"]
++            ),
++            "_inventory_store": source,
++        }
++        return scenario, source, copy.deepcopy(data), review, mapping, path
++
++    return build
++
++
++def update(scenario):
++    return module._update_emissions(scenario, "2026", "cutoff", "CLE", "uvek", "3.10")
++
++
++def payload(store):
++    return store.materialize()
++
++
++@pytest.mark.parametrize("amount", [-2.0, 2.0])
++@pytest.mark.parametrize("uncertainty", [2, 3])
++def test_operating_region_copy_preserves_signed_purchase_and_upstream_inventory(
++    case, amount, uncertainty
++):
++    s, source, before, *_ = case(amount=amount, uncertainty=uncertainty)
++    raw = payload(source)
++    update(s)
++    data = payload(s["_inventory_store"])
++    assert payload(source) == raw
++    c = next(a for a in data if module._EMISSION_SOURCE_MARKER in a)
++    assert c["location"] == "NEU"
++    assert next(e for e in c["exchanges"] if e["name"] == "Nitrogen oxides")[
++        "amount"
++    ] == pytest.approx(0.2)
++    assert next(e for e in c["exchanges"] if e["type"] == "technosphere") == next(
++        e for e in raw[1]["exchanges"] if e["type"] == "technosphere"
++    )
++    assert next(e for e in c["exchanges"] if e["name"] == "Ammonia")["amount"] == 1.0
++    assert (
++        next(e for e in c["exchanges"] if e["name"] == "Carbon dioxide, fossil")[
++            "amount"
++        ]
++        == 8.0
++    )
++    edge = data[0]["exchanges"][1]
++    old = raw[0]["exchanges"][1]
++    assert {
++        k: v for k, v in edge.items() if k not in ("name", "location", "input")
++    } == {k: v for k, v in old.items() if k not in ("name", "location", "input")}
++
++
++def test_matching_unique_sector_and_region_reuses_existing_supplier(case):
++    s, source, *_ = case(role="Industry", location="EUR")
++    update(s)
++    assert len(s["_inventory_store"]) == 3
++    assert (
++        s["emissions diagnostics"]["copies"] == 0
++        and s["emissions diagnostics"]["reused_positions"] == 1
++    )
++
++
++def test_replay_preserves_all_exchanges_and_does_not_add_datasets(case):
++    s, source, *_ = case()
++    update(s)
++    before = payload(s["_inventory_store"])
++    update(s)
++    assert payload(s["_inventory_store"]) == before
++    assert s["emissions diagnostics"]["copies"] == 0
++
++
++def test_only_deterministic_same_service_handover_is_followed(case):
++    s, source, *_ = case(handover=True)
++    update(s)
++    data = payload(s["_inventory_store"])
++    assert len(data) == 5
++    assert (
++        next(a for a in data if module._EMISSION_SOURCE_MARKER in a)["location"]
++        == "NEU"
++    )
++    assert data[0]["exchanges"][1]["amount"] == 2.0
++
++
++def test_uncertain_handover_is_preserved(case):
++    s, source, *_ = case(handover=True)
++    with source.transaction("uncertain handover") as tx:
++        handover, _, edge_ids = next(
++            row
++            for row in source._iter_storage_activities()
++            if row[1]["code"] == "handover"
++        )
++        eid = edge_ids[-1]
++        tx.patch_exchange(
++            eid, {"uncertainty type": 2, "loc": 0.0, "scale": 0.1}, activity_id=handover
++        )
++    update(s)
++    assert (
++        s["emissions diagnostics"]["copies"] == 0
++        and s["emissions diagnostics"]["nonemitting_positions"] == 1
++    )
++
++
++def test_conflicting_review_does_not_commit(case):
++    s, source, before, review, mapping, path = case()
++    review["bindings"].append({**review["bindings"][0], "sector": "Industry"})
++    (path.parent / "review.json").write_text(json.dumps(review))
++    raw = payload(source)
++    with pytest.raises(ValueError, match="Conflicting"):
++        update(s)
++    assert (
++        s["_inventory_store"] is source
++        and payload(source) == raw
++        and "emissions diagnostics" not in s
++    )
++
++
++def test_wrong_reference_does_not_commit(case):
++    s, source, *_ = case()
++    raw = payload(source)
++    with source.transaction("bad reference") as tx:
++        aid, _, edge_ids = next(
++            row
++            for row in source._iter_storage_activities()
++            if row[1]["code"] == "burner"
++        )
++        eid = edge_ids[0]
++        tx.patch_exchange(eid, {"amount": -1.0}, activity_id=aid)
++    raw = payload(source)
++    with pytest.raises(ValueError, match="exact \\+1"):
++        update(s)
++    assert s["_inventory_store"] is source and payload(source) == raw
++
++
++def test_shared_factor_failure_does_not_commit_prepared_fork(case, monkeypatch):
++    s, source, *_ = case()
++    raw = payload(source)
++
++    def fail(self, store):
++        raise RuntimeError("deliberate failure")
++
++    monkeypatch.setattr(module.Emissions, "update_emissions_in_store", fail)
++    with pytest.raises(RuntimeError, match="deliberate"):
++        update(s)
++    assert (
++        s["_inventory_store"] is source and payload(source) == raw and "cache" not in s
++    )
++
++
++def test_metadata_family_filters_remain_separate(case):
++    s, source, *_ = case()
++    native = module.Emissions._compile_store_gains_mapping(source, family="uvek")
++    legacy = module.Emissions._compile_store_gains_mapping(source)
++    assert native == {"Burner": "Industry"} and legacy == {}
++
++
++def test_world_operating_region_uses_the_shared_weighted_world_factor(case):
++    scenario, source, *_ = case(location="World")
++    scenario["iam data"].regions = ["EUR", "NEU"]
++    update(scenario)
++    copies = [
++        a
++        for a in payload(scenario["_inventory_store"])
++        if module._EMISSION_SOURCE_MARKER in a
++    ]
++    assert len(copies) == 1 and copies[0]["location"] == "World"
++    emission = next(e for e in copies[0]["exchanges"] if e["name"] == "Nitrogen oxides")
++    assert emission["amount"] == pytest.approx(0.35)
++
++
++def test_audit_metadata_states_the_declared_scope_without_inventory_wide_claim(case):
++    scenario, source, *_ = case()
++    update(scenario)
++    audit = scenario["native sector audits"]["emissions"]
++    assert (
++        audit["mapping_scope"]
++        == "declared native and CLIC process filters with reviewed source contexts"
++    )
++    assert audit["unclassified_processes_preserved"] is True
++    assert "full_sector_mapping_complete" not in audit
+--- a/tests/test_uvek_emissions_callback.py
++++ b/tests/test_uvek_emissions_callback.py
+@@ -1,4 +1,4 @@
+-"""Atomic native emissions dispatch, independent checks and exported provenance."""
++"""Legacy native combustion component, independent checks and provenance."""
+ 
+ import copy
+ from types import SimpleNamespace
+@@ -9,7 +9,6 @@
+ 
+ import premise.emissions.uvek_emissions as native
+ from premise.core.utils import scenario_metadata
+-from premise.emissions.emissions import _update_emissions
+ from premise.emissions.uvek_combustion import (
+     CALLER,
+     VARIANT,
+@@ -72,7 +71,9 @@
+ 
+ 
+ def update(scenario):
+-    return _update_emissions(scenario, "2026", "cutoff", "CLE", "uvek", "3.10")
++    return native.update_uvek_emissions(
++        scenario, "2026", "cutoff", "CLE", family="uvek", biosphere_version="3.10"
++    )
+ 
+ 
+ def test_callback_declares_scope_audits_metadata_and_does_not_duplicate_events(
+@@ -195,7 +196,7 @@
+     )
+ 
+ 
+-def test_wrong_background_refused_and_public_gate_stays_closed(callback):
++def test_wrong_background_and_unsupported_sector_refused(callback):
+     scenario, _, _ = callback
+     scenario["background context"] = {"family": "ecoinvent"}
+     with pytest.raises(ValueError, match="background context"):
+@@ -206,7 +207,7 @@
+     owner.source_family = "uvek"
+     owner.prepare_inventories = Mock()
+     with pytest.raises(ValueError, match="unsupported sectors"):
+-        owner.update("emissions")
++        owner.update("external")
+     owner.prepare_inventories.assert_not_called()
+ 
+ 
+--- a/tests/test_uvek_background.py
++++ b/tests/test_uvek_background.py
+@@ -179,9 +179,11 @@
+     assert validate_uvek_scope("trucks") == ["trucks"]
+     assert validate_uvek_scope("final energy") == ["final energy"]
+     assert validate_uvek_scope("battery") == ["battery"]
++    assert validate_uvek_scope("metals") == ["metals"]
++    assert validate_uvek_scope("emissions") == ["emissions"]
+     assert validate_uvek_scope(["electricity", "fuels"]) == ["electricity", "fuels"]
+-    with pytest.raises(ValueError, match="unsupported sectors.*metals"):
+-        validate_uvek_scope(["electricity", "metals"])
++    with pytest.raises(ValueError, match="unsupported sectors.*external"):
++        validate_uvek_scope(["electricity", "external"])
+ 
+ 
+ def test_uvek_release_never_uses_ecoinvent_biosphere_fallback():
+--- a/tests/test_uvek_public_database.py
++++ b/tests/test_uvek_public_database.py
+@@ -13,8 +13,8 @@
+     owner.prepare_inventories = Mock(
+         side_effect=AssertionError("Unexpected preparation")
+     )
+-    with pytest.raises(ValueError, match="unsupported sectors.*metals"):
+-        owner.update("metals")
++    with pytest.raises(ValueError, match="unsupported sectors.*external"):
++        owner.update("external")
+     owner.prepare_inventories.assert_not_called()
+ 
+ 

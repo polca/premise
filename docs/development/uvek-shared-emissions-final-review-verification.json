@@ -1,0 +1,145 @@
+{
+  "status": "exact_unapplied_source_packet_ready_for_review",
+  "runtime_files": [
+    "premise/emissions/emissions.py",
+    "premise/database/background.py"
+  ],
+  "code_and_mapping_hashes": {
+    "premise/emissions/emissions.py": {
+      "original_sha256": "4bc1329580af55a31879ffed56ee1b2de52d8e13c8e54dc9c1f659aa297dcc59",
+      "candidate_sha256": "2dbb7f8e514e6066825d06a9c08e916e7d2136b98fc6cb89ea7d127a701247dd"
+    },
+    "premise/database/background.py": {
+      "original_sha256": "9497853923312b018ff05a43f797a63489afcd9fb27a4a2e4cc36c3c3887d362",
+      "candidate_sha256": "ce79f8bf7c36fca6ded37988991a9847a223121ae80ef48e4f678b2b06e55257"
+    },
+    "premise/data/GAINS_emission_factors/gains_ecoinvent_sectoral_mapping.yaml": {
+      "original_sha256": "1167a9a2282b7f53dc1a58786d7fc3b5d2dce55fde0a9aa605de0c077edad4a4",
+      "candidate_sha256": "28b0d4280b15def8f33b7873961312ca9f8af057539d4968a237b6fb9ffce311"
+    },
+    "tests/test_contextual_emissions.py": {
+      "original_sha256": null,
+      "candidate_sha256": "a592ce8b577165a1c64aa171f942ed146b913cd8c67e7eb5da82e5d9aa94753f"
+    },
+    "tests/test_uvek_emissions_callback.py": {
+      "original_sha256": "2cd16a424f44fec0b1c25abc4a1f708c8da577ee86adcb317498b6e3839f11db",
+      "candidate_sha256": "51ec65003cd5c28b4f07a3096bee7e1cc53d1eca801f5569b2a90b616befbd09"
+    },
+    "tests/test_uvek_background.py": {
+      "original_sha256": "83cc5b5d24bb3173c252b70ea7ee9ae43ac3e23b8fac666a7507bf1e16b17257",
+      "candidate_sha256": "9d001edfcd6dd19250e42bfb2672fb48131b88086e8d40dfa645c0afcfef41c2"
+    },
+    "tests/test_uvek_public_database.py": {
+      "original_sha256": "94f10078fad2ec2efea29201f8d865b9955ec584f371ea2d6f9fd60c19737b89",
+      "candidate_sha256": "a95de3a3348ad547ac0cc8cce6409ad338048475f83e66d91625dba82007d46f"
+    }
+  },
+  "existing_and_new_regressions_passed": 808,
+  "coupled_nineteen_sector_candidate": {
+    "status": "nineteen_sector_candidate_callbacks_and_exhaustive_checks_passed",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "cement",
+      "steel",
+      "fuels",
+      "renewable",
+      "metals",
+      "mining",
+      "heat",
+      "cdr",
+      "battery",
+      "cars",
+      "two_wheelers",
+      "trucks",
+      "ships",
+      "buses",
+      "trains",
+      "final energy",
+      "emissions"
+    ],
+    "unapplied_emissions_module_and_YAML_preview": true,
+    "unapplied_metals_and_emissions_support_list_preview": true,
+    "normal_CLIC_live_freshness": true,
+    "validation_disabled": false,
+    "Brightway_database_written": false,
+    "public_qualified": false,
+    "validation_errors": 0,
+    "activities": 20069,
+    "prepared_records": 2417,
+    "emissions_diagnostics": {
+      "copies": 334,
+      "relinked_exchanges": 1656,
+      "reused_positions": 2408,
+      "nonemitting_positions": 3
+    },
+    "physical_snapshot": {
+      "activities": 20069,
+      "exchanges": 589530,
+      "cache_type": "calculation-only physical inventory, excluding large provenance and comments",
+      "original_store_unchanged": true,
+      "bytes": 26562619,
+      "sha256": "c0bce7375158c2686caaac5da18cc59065dd3187d226c47a8dc3997a609fa471"
+    },
+    "CLIC_manifest_freshness": "live",
+    "CLIC_resolved_at": "2026-11-18T18:23:21.854826+00:00",
+    "Brightway_registry_unchanged": true,
+    "processed_file_names_unchanged": true,
+    "repository_runtime_source_unchanged": true,
+    "support_list_source_unchanged": true,
+    "elapsed_seconds": 296.6518992919009,
+    "qualification_limit": "Exact unapplied module, YAML and support-list preview only. Public approval, source application, installed normal workflow, complete coverage and export remain required.",
+    "prepared_foreground_audit": {
+      "eligible_emitting_CLIC_records": 915,
+      "known_legacy_classifications_covered": 412,
+      "missing_known_classifications": 0,
+      "ambiguous_legacy_classifications": 0
+    }
+  },
+  "renamed_native_coverage": {
+    "status": "all_declared_native_renamed_contexts_are_covered",
+    "declared_class_bindings": 30,
+    "checked_actual_input_positions": 67,
+    "contextual_copy_positions": 22,
+    "existing_supplier_positions": 45,
+    "missing_bindings": 0,
+    "wrong_operating_regions": 0,
+    "positions_by_existing_GAINS_class": {
+      "Power_Gen_Coal_New": 39,
+      "End_Use_Industry_NatGas": 23,
+      "Power_Gen_NatGas": 1,
+      "End_Use_Industry_LLF": 1,
+      "Power_Gen_Bio_Trad_Old": 1,
+      "End_Use_Industry_Bio_Trad": 1,
+      "Power_Gen_LLF": 1
+    },
+    "runtime_code_changed": false,
+    "no_Brightway_database_written": true
+  },
+  "actual_coupled_signed_LCIs": {
+    "status": "actual_coupled_nineteen_sector_graph_has_finite_signed_LCIs",
+    "activities": 20069,
+    "all_changed_or_added_activity_demands": 3268,
+    "all_mapped_emissions_activity_demands": 1069,
+    "distinct_demands_checked": 3426,
+    "signed_LCIs": 6852,
+    "signed_linearity_passed": true,
+    "covers_real_vehicle_emissions_refresh": true,
+    "target_selection": "Union of every physical activity changed/added relative to the eighteen-sector baseline and every activity selected by the actual native GAINS mapping. Code/input identifiers are excluded from the physical-difference fingerprint.",
+    "no_Brightway_database_written": true,
+    "runtime_source_applied": false,
+    "elapsed_seconds": 103.91670554201119,
+    "qualification_limit": "Actual coupled private candidate graph only; public approval, source application and normal installed export remain required."
+  },
+  "final_audit_label_only_adjustment": {
+    "status": "final_runtime_candidate_differs_from_coupled_tested_candidate_only_in_audit_scope_labels",
+    "scientific_expressions_and_control_flow_unchanged": true,
+    "original_runtime_source_unchanged": true,
+    "final_candidate_sha256": "2dbb7f8e514e6066825d06a9c08e916e7d2136b98fc6cb89ea7d127a701247dd"
+  },
+  "data_resource_already_committed": "premise/data/GAINS_emission_factors/uvek2026_renamed_source_contexts.json",
+  "runtime_source_applied": false,
+  "public_qualified": false,
+  "Brightway_export_performed": false,
+  "supersedes_approval_request": "The earlier metals-only support-list proposal. This combined exact packet includes both metals and emissions admission."
+}
