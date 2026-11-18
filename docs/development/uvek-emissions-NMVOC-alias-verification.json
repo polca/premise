@@ -1,0 +1,19 @@
+{
+  "status": "canonical_NMVOC_label_added_to_existing_VOC_mapping",
+  "canonical_biosphere": "ecoinvent-3.10-biosphere",
+  "canonical_flow_code": "33b38ccb-593b-4b11-b965-10d747ba3556",
+  "name": "NMVOC, non-methane volatile organic compounds",
+  "unit": "kilogram",
+  "verified_compartment": [
+    "air",
+    "non-urban air or from high stacks"
+  ],
+  "matching_positions_in_combined_graph": 5792,
+  "shared_updater_signed_uncertainty_cases": 4,
+  "repeated_update_is_idempotent": true,
+  "unrelated_CO2_unchanged": true,
+  "runtime_source_changes": 0,
+  "new_Brightway_databases": 0,
+  "qualification_limit": "Label selection and shared-updater arithmetic only; this does not qualify the unfinished UVEK emissions callback.",
+  "existing_emissions_regressions_passed": 63
+}
