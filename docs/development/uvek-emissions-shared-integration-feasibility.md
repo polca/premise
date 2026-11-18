@@ -10,9 +10,9 @@ The preview uses the ordinary shipped GAINS pollutant map, including the verifie
 
 ## Avoiding unnecessary datasets
 
-The initial conservative construction made 524 complete supplier copies. Reusing an existing supplier when its unique sector and GAINS region already agree removes 190 copies. The reduced result has 334 complete copies and reuses suppliers at 2,363 input positions. It changes 1,207 pollutant exchanges in 478 activities across 25 GAINS emission categories with available reductions. It creates no new upstream process model.
+The initial conservative construction made 524 complete supplier copies. Reusing an existing supplier when its unique sector and GAINS region already agree removes 190 copies. The reduced result has 334 complete copies and reuses suppliers at 2,363 input positions. It changes 1,400 pollutant exchanges in 483 activities across 25 GAINS emission categories with available reductions. It creates no new upstream process model.
 
-An independent comparison collapses redundant identical columns and deterministic unit handovers, then checks production, technosphere and biosphere coefficients. All 19,817 checked columns match exactly. There is no coefficient tolerance relaxation. Direct numerical comparison of two differently expanded LCI solves showed cancellation differences and is not used as evidence of equivalence. All 956 positive/negative LCI checks on the 478 changed activities in the reduced graph are finite and sign-linear.
+An independent comparison collapses redundant identical columns and deterministic unit handovers, then checks production, technosphere and biosphere coefficients. All 19,817 checked columns match exactly. There is no coefficient tolerance relaxation. Direct numerical comparison of two differently expanded LCI solves showed cancellation differences and is not used as evidence of equivalence. All 966 positive/negative LCI checks on the 483 changed activities in the reduced graph are finite and sign-linear.
 
 ## Remaining work
 
@@ -23,3 +23,9 @@ The existing `uvek_aliases.fltr` entries are caller pools checked by the earlier
 Prepared foregrounds, renamed technologies and unclassified contexts still need a bounded coverage audit. Normal ecoinvent skip behaviour and source limitations must remain explicit. Existing regression checks, exhaustive installed-workflow validation and one inspected public Brightway export remain mandatory. No Brightway database was written for this feasibility check.
 
 Evidence: `uvek-emissions-shared-integration-feasibility.json`. The full eighteen-sector public-support-list request for metals is separate and still awaits approval.
+
+## Current-resource and exact-module checks
+
+A stale installed pollutant YAML was found after the source NMVOC fix had been committed. The environment was rebuilt: all 426 Premise and 607 Brightpath packaged files match the current source. The previews now assert that the canonical NMVOC label is present. These corrected results supersede the earlier 1,207-exchange / 478-activity / 956-LCI counts.
+
+An exact, unapplied one-runtime-file candidate now reproduces all 589,554 physical exchange positions of the reduced preview, passes the sector contract and preserves every exchange and dataset count on repeat. The candidate also passes 807 focused existing and new tests. The retained native combustion-component tests call that component directly; new tests cover the proposed shared dispatch, geographic factors, signed purchases, uncertainty, handovers, rollback and replay. The runtime candidate remains outside the repository source; the public workflow and exported coverage remain unchanged.
