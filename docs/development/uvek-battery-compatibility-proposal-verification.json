@@ -1,0 +1,129 @@
+{
+  "date": "2026-11-18",
+  "status": "unapplied_compatibility_proposal_preview_verified",
+  "proposal_applied_to_repository_source": false,
+  "Python_source_files_changed": 0,
+  "proposed_source_files": [
+    "premise/batteries/battery.py",
+    "premise/validation/validation.py",
+    "premise/database/new_database.py",
+    "premise/database/background.py"
+  ],
+  "patch_sha256": "7581e30fe752444d2826fe8a456e60a1e072e1ff8d80f041b4c563fbeb3cdc05",
+  "formatting_only_AST_equivalence_verified": true,
+  "existing_battery_tests_passed_in_preview": 92,
+  "preview_regressions": {
+    "status": "unapplied_battery_proposal_regressions_passed",
+    "source_files_unchanged": true,
+    "existing_validation_checks_retained": true,
+    "other_unverified_sectors_still_refused": true,
+    "elapsed_seconds": 3.6414669170044363
+  },
+  "preview_workflow": {
+    "sector": "battery",
+    "freshness": "snapshot",
+    "unapplied_scope_registration_preview": true,
+    "source_code_files_changed": false,
+    "validation_disabled": false,
+    "export_performed": false,
+    "qualification_limit": "Diagnostic of an unapplied battery compatibility proposal. No production source edits or export; this does not qualify released support.",
+    "inventory_preparation_passed": true,
+    "prepared_inventory_count": 951,
+    "activities_before_update": 12898,
+    "sector_callback_passed": true,
+    "status": "diagnostic_update_and_graph_checks_passed",
+    "activities_after_update": 12898,
+    "validation_errors": 0,
+    "mapping_top_level_keys": [
+      "battery"
+    ],
+    "elapsed_seconds": 54.30385849997401,
+    "source_files_unchanged": true,
+    "capacity_activity_count": 32,
+    "mass_learning_targets": 23,
+    "battery_transformation_targets": 29,
+    "source_defaults_unchanged": true,
+    "representative_capacity_records": [
+      {
+        "name": "market for battery capacity, all-solid-state battery, oxidic",
+        "reference product": "electricity storage capacity",
+        "location": "GLO",
+        "unit": "kilowatt hour",
+        "log parameters": {
+          "battery input": "battery pack production, all-solid-state battery, oxidic, without central controls",
+          "old battery mass": 4.157991365454557,
+          "new battery mass": 4.157991365454557
+        },
+        "inputs": [
+          {
+            "name": "battery pack production, all-solid-state battery, oxidic, without central controls",
+            "reference product": "battery pack, ASSB, oxidic, without central controls",
+            "unit": "kilogram",
+            "amount": 4.157991365454557
+          },
+          {
+            "name": "Reviewed source3.12 shipping used supply 11eb77f35655db2a [BrightPath UVEK conversion d4aed7e0] [CLIC brightpath-uvek-import-d4aed7e0305ba91b10f41a17]",
+            "reference product": "used Li-ion battery",
+            "unit": "kilogram",
+            "amount": 4.157991365454557
+          },
+          {
+            "name": "battery monitoring and central control system production, lithium-ion, nmc955",
+            "reference product": "battery monitoring and central control system, Li-ion, NMC955",
+            "unit": "unit",
+            "amount": 0.030469957683857463
+          }
+        ]
+      },
+      {
+        "name": "market for battery capacity, Sodium-Nickel-Chloride, Na-NiCl",
+        "reference product": "electricity storage capacity",
+        "location": "GLO",
+        "unit": "kilowatt hour",
+        "log parameters": null,
+        "inputs": [
+          {
+            "name": "market for battery, NaCl, reviewed native supply [BrightPath UVEK conversion 6eb11e97] [CLIC brightpath-uvek-import-6eb11e975794cf89326ef3eb]",
+            "reference product": "battery, NaCl",
+            "unit": "kilogram",
+            "amount": 8.620689655172413
+          },
+          {
+            "name": "market for used Li-ion battery, reviewed source-3.12 model for source 3.10 [BrightPath UVEK conversion b7f21835] [CLIC brightpath-uvek-import-b7f218355dea48596833b714]",
+            "reference product": "used Li-ion battery",
+            "unit": "kilogram",
+            "amount": 8.620689655172413
+          }
+        ]
+      },
+      {
+        "name": "market for battery capacity, Sodium-Nickel-Chloride, Na-NiCl, stationary",
+        "reference product": "electricity storage capacity",
+        "location": "GLO",
+        "unit": "kilowatt hour",
+        "log parameters": null,
+        "inputs": [
+          {
+            "name": "market for battery, NaCl, reviewed native supply [BrightPath UVEK conversion 6eb11e97] [CLIC brightpath-uvek-import-6eb11e975794cf89326ef3eb]",
+            "reference product": "battery, NaCl",
+            "unit": "kilogram",
+            "amount": 8.620689655172413
+          },
+          {
+            "name": "market for used Li-ion battery, reviewed source-3.12 model for source 3.10 [BrightPath UVEK conversion b7f21835] [CLIC brightpath-uvek-import-b7f218355dea48596833b714]",
+            "reference product": "used Li-ion battery",
+            "unit": "kilogram",
+            "amount": 8.620689655172413
+          }
+        ]
+      }
+    ]
+  },
+  "validation_tolerances_unchanged": true,
+  "no_validation_suppressions_added": true,
+  "new_Brightway_databases": 0,
+  "export_performed": false,
+  "qualified_sectors": 15,
+  "total_sectors": 19,
+  "qualification_limit": "Private interpreter evaluates the concrete unapplied patch. Repository source, installed code and public support are unchanged. Full released battery workflow, export and combined integration still require authorization, application and verification."
+}

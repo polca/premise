@@ -2276,7 +2276,7 @@
     },
     {
       "sector": "battery",
-      "status": "audited_not_operational",
+      "status": "mapping_complete_unapplied_compatibility_preview_verified",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -2285,29 +2285,33 @@
       "native_mapping_coverage": {
         "kind": "static_declarations_only",
         "files": [],
-        "runtime_verified": false
+        "runtime_verified": false,
+        "runtime_inventory_preparation_verified": true,
+        "prepared_records": 951,
+        "archive_records": 941,
+        "all_four_archive_source_cohorts_pass": true,
+        "review": "docs/development/uvek-battery-compatibility-proposal.md"
       },
       "blockers": [
         {
-          "code": "scope_gate",
-          "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Thirteen sectors are admitted publicly. This sector remains gated pending its complete verified shared update and integration evidence."
+          "code": "no_source_change_instruction",
+          "finding": "Unchanged Python requires a source-context and signed-treatment compatibility adaptation plus battery admission. Concrete four-file patch is prepared and preview-tested but not applied."
         },
         {
-          "code": "family_dispatch",
-          "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
-        },
-        {
-          "code": "sector_implementation_and_integration",
-          "path": "premise/batteries/battery.py:42",
-          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+          "code": "public_export_and_combined_integration",
+          "finding": "Normal released battery update/export and combined-sector qualification remain pending; private preview does not establish public support."
         }
       ],
-      "decisions": [],
+      "decisions": [
+        "docs/development/uvek-battery-last-three-312-review.md",
+        "docs/development/uvek-battery-final-310-review.md",
+        "docs/development/uvek-battery-nacl-310-review.md",
+        "docs/development/uvek-battery-compatibility-proposal.md"
+      ],
       "implementation_commits": [],
       "tests": [
-        "Fourteen actual-source native supply approvals pass12Brightpath and4Premise checks plus28signed native-target LCIs. Required first source3.9cohort changes27to13; complete update/export remains unqualified."
+        "Fourteen actual-source native supply approvals pass12Brightpath and4Premise checks plus28signed native-target LCIs. Required first source3.9cohort changes27to13; complete update/export remains unqualified.",
+        "Unapplied proposal: 92 existing battery tests pass; 29 targets/23 density-learning activities; exhaustive graph certification of 12,898 activities has zero errors. Actual source unchanged."
       ],
       "integration_exports": [],
       "static_audit": {
@@ -3856,7 +3860,7 @@
     "runtime_change": "One case-insensitive exclusion in the existing shared plant-efficiency selector; observed inventory coefficients unchanged."
   },
   "current_snapshot": {
-    "date": "2026-11-17",
+    "date": "2026-11-18",
     "qualified_for_encrypted_REMIND_SSP2_NPi_2050": [
       "biomass",
       "electricity",
@@ -3879,7 +3883,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-trucks-public-export-verification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-battery-native-38-review.md",
+    "latest_mapping_review": "docs/development/uvek-battery-nacl-310-review.md",
     "verified_native_source_limits": [
       {
         "source_identity": {
@@ -3976,6 +3980,10 @@
     "remaining_sector_runtime_frontiers": "docs/development/uvek-remaining-five-runtime-frontiers-2026-11-16.json",
     "latest_battery_runtime_frontier": "docs/development/uvek-battery-native-38-verification.json",
     "latest_installed_regression_evidence": "docs/development/uvek-closed-casting-native38-installed-verification.json",
-    "latest_required_source38_mapping_evidence": "docs/development/uvek-battery-native-38-verification.json"
+    "latest_required_source38_mapping_evidence": "docs/development/uvek-battery-native-38-verification.json",
+    "latest_unapplied_battery_proposal": "docs/development/uvek-battery-compatibility-proposal.md",
+    "battery_inventory_records_prepared": 951,
+    "battery_unapproved_mapping_errors": 0,
+    "battery_public_support_still_pending": true
   }
 }

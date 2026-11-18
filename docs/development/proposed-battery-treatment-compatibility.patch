@@ -1,0 +1,166 @@
+--- a/premise/batteries/battery.py
++++ b/premise/batteries/battery.py
+@@ -20,6 +20,31 @@
+ logger = create_logger("battery")
+ 
+ 
++def battery_waste_reference_signs(database):
++    """Read generated treatment suppliers in their actual reference coordinates."""
++    signs = {}
++    for supplier in database:
++        if (
++            str(supplier.get("reference product", "")).lower() != "used li-ion battery"
++            or supplier.get("brightpath_conversion", {}).get("origin") != "generated"
++        ):
++            continue
++        production = list(ws.production(supplier))
++        if (
++            len(production) != 1
++            or not np.isfinite(production[0]["amount"])
++            or production[0]["amount"] == 0
++        ):
++            raise ValueError(
++                "Generated battery treatment needs one finite nonzero reference."
++            )
++        key = tuple(
++            supplier.get(k) for k in ("name", "reference product", "location", "unit")
++        )
++        signs[key] = 1 if production[0]["amount"] > 0 else -1
++    return signs
++
++
+ def load_cell_energy_density():
+     """
+     Load cell energy density data.
+@@ -39,7 +64,9 @@
+     return result
+ 
+ 
+-def _update_battery(scenario, version, system_model):
++def _update_battery(
++    scenario, version, system_model, family="ecoinvent", biosphere_version=None
++):
+ 
+     if (
+         scenario["iam data"].battery_mobile_scenarios is None
+@@ -58,6 +85,8 @@
+         system_model=system_model,
+         cache=scenario.get("cache"),
+         index=scenario.get("index"),
++        family=family,
++        biosphere_version=biosphere_version,
+     )
+ 
+     if (
+@@ -106,6 +135,8 @@
+         system_model: str,
+         cache: dict = None,
+         index: dict = None,
++        family: str = "ecoinvent",
++        biosphere_version: str = None,
+     ) -> None:
+         super().__init__(
+             database,
+@@ -117,6 +148,8 @@
+             system_model,
+             cache,
+             index,
++            family=family,
++            biosphere_version=biosphere_version,
+         )
+         self.system_model = system_model
+         self._validation_targets = {}
+@@ -366,7 +399,10 @@
+                 mass_inputs = [
+                     e
+                     for e in ws.technosphere(ds)
+-                    if e.get("unit") == "kilogram" and e["amount"] > 0
++                    if e.get("unit") == "kilogram"
++                    and e["amount"] > 0
++                    and str(e.get("product", e.get("reference product", ""))).lower()
++                    != "used li-ion battery"
+                 ]
+                 if not mass_inputs:
+                     raise ValueError(
+--- a/premise/validation/validation.py
++++ b/premise/validation/validation.py
+@@ -1669,6 +1669,16 @@
+             exchange.get("product", exchange.get("reference product", ""))
+         ).lower()
+ 
++    def _used_battery_sign(self, exchange):
++        if not hasattr(self, "_used_battery_signs"):
++            from ..batteries.battery import battery_waste_reference_signs
++
++            self._used_battery_signs = battery_waste_reference_signs(self.database)
++        key = tuple(
++            exchange.get(k) for k in ("name", "reference product", "location", "unit")
++        )
++        return self._used_battery_signs.get(key, -1)
++
+     def _check_capacity_shares(self, dataset, exchanges):
+         # Shares represent installed kWh, not a battery mass in kg.
+         total = sum(exc["amount"] for exc in exchanges)
+@@ -1767,7 +1777,8 @@
+             if product.startswith(("battery pack,", "battery,")):
+                 role, unit, positive = "pack", "kilogram", True
+             elif product == "used li-ion battery":
+-                role, unit, positive = "waste", "kilogram", False
++                role, unit = "waste", "kilogram"
++                positive = self._used_battery_sign(exchange) > 0
+             elif product.startswith(
+                 (
+                     "battery monitoring and central control system,",
+@@ -1787,7 +1798,9 @@
+             roles[role].append(exchange)
+         missing = [role for role, rows in roles.items() if not rows]
+         pack = sum(row["amount"] for row in roles["pack"])
+-        waste = -sum(row["amount"] for row in roles["waste"])
++        waste = sum(
++            row["amount"] * self._used_battery_sign(row) for row in roles["waste"]
++        )
+         if unexpected or missing or not np.isclose(pack, waste, rtol=0.0, atol=1e-8):
+             self.log_issue(
+                 dataset,
+@@ -1817,8 +1830,15 @@
+         # Retain the older manufactured-pack / equal-mass waste contract.
+         # Only kg belong in this mass balance; operation energy is not mass.
+         masses = [exc for exc in exchanges if exc.get("unit") == "kilogram"]
++        waste = [
++            exc for exc in masses if self._battery_product(exc) == "used li-ion battery"
++        ]
++        masses = [
++            exc for exc in masses if self._battery_product(exc) != "used li-ion battery"
++        ]
+         manufactured = sum(exc["amount"] for exc in masses if exc["amount"] > 0)
+         discarded = -sum(exc["amount"] for exc in masses if exc["amount"] < 0)
++        discarded += sum(exc["amount"] * self._used_battery_sign(exc) for exc in waste)
+         if not np.isclose(manufactured - discarded, 0.0, rtol=0.0, atol=1e-8):
+             self.log_issue(
+                 dataset,
+--- a/premise/database/background.py
++++ b/premise/database/background.py
+@@ -62,11 +62,12 @@
+             "trains",
+             "cars",
+             "trucks",
++            "battery",
+         }
+     )
+     if unsupported:
+         raise ValueError(
+-            "UVEK 2026 supports biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses, two_wheelers, trains, cars and trucks; "
++            "UVEK 2026 supports biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses, two_wheelers, trains, cars, trucks and battery; "
+             f"unsupported sectors: {unsupported}."
+         )
+     return list(selected)
+--- a/premise/database/new_database.py
++++ b/premise/database/new_database.py
+@@ -2939,6 +2939,7 @@
+                 "ships",
+                 "buses",
+                 "trains",
++                "battery",
+             ):
+                 self.sector_update_methods[sector]["args"] += (
+                     self.source_family,
