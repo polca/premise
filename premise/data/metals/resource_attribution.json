@@ -266,6 +266,25 @@
         "Use the existing native regional-storage supply only via an explicitly declared exact existing-input fallback at its existing location. Retain the complete historical primary/secondary supply mix, delivery, allocation and source uncertainty; no new regional producer or additional mining/refining burden is selected.",
         "The base fallback retains canonical product platinum for schema validation; this version-scoped alias resolves it to the exact native reference product. Other source versions do not gain this native fallback."
       ]
+    },
+    {
+      "versions": [
+        "2026"
+      ],
+      "source": [
+        "market for titanium",
+        "titanium"
+      ],
+      "target": [
+        "market for titanium, composed from resolved suppliers, GLO [BrightPath UVEK conversion 48afa6ad] [CLIC brightpath-uvek-import-48afa6ad15dbc01cd5eb4ad2]",
+        "titanium"
+      ],
+      "source_reference": "docs/development/uvek-metals-existing-titanium-review.md",
+      "limitations": [
+        "Reuse the already prepared positive-one-kg titanium-metal market from the reviewed ecoinvent 3.9 cut-off source-chain reconstruction. It is elemental metal, not titanium dioxide, rutile, concentrate or an empty handover. The profile-3.7 wrapper uses the same recipe; select its canonical inventory-profile market rather than add another reconstruction.",
+        "Preserve the complete source country shares, recovered-stock allocation, chemicals, electricity and freight, and all previously reviewed native feedstock, transport, process and emission proxies. Scale only the ordinary metal input with the existing per-MW rule. Grade, coating/fabrication, geography, allocation, vintage, source uncertainty and score effects remain screening limitations; no new titanium source technology is asserted.",
+        "This alias selects an already prepared inventory. It requests no additional root, builds no upstream process and supplies no substitute if the exact reviewed metal market is absent."
+      ]
     }
   ]
 }

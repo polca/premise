@@ -1,0 +1,21 @@
+{
+  "status": "existing_reviewed_positive_kg_titanium_market_resolves_through_shared_selector",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff"
+  },
+  "recipe": "deferred-titanium-d1bb4dca871159c1e5a4",
+  "selected_identity": {
+    "name": "market for titanium, composed from resolved suppliers, GLO [BrightPath UVEK conversion 48afa6ad] [CLIC brightpath-uvek-import-48afa6ad15dbc01cd5eb4ad2]",
+    "reference product": "titanium",
+    "location": "GLO",
+    "unit": "kilogram"
+  },
+  "production_reference": 1,
+  "new_helper_or_upstream_process_created": false,
+  "new_inventory_root_requested": false,
+  "canonical_inventory_profile_selected_over_caller_profile_wrapper": true,
+  "source_code_changes": 0,
+  "qualification_limit": "Exact prepared physical/reference/recipe and supplier lookup verified. Callback, full graph and finite LCIs after this alias remain to be checked."
+}

@@ -1,0 +1,23 @@
+{
+  "status": "both_PEM_stacks_resolve_their_exact_existing_native_Pt_input",
+  "existing_shared_fallback_used": true,
+  "new_provider_or_geography_selected": false,
+  "source_code_changes": 0,
+  "checks": [
+    {
+      "stack": "Fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+      "retained_supplier": "Platinum, at regional storage",
+      "location": "RER",
+      "old_signed_amount": 0.00075,
+      "future_target_kg_per_stack": 0.00010316666666666661
+    },
+    {
+      "stack": "fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+      "retained_supplier": "Platinum, at regional storage",
+      "location": "RER",
+      "old_signed_amount": 0.00054,
+      "future_target_kg_per_stack": 0.00010316666666666661
+    }
+  ],
+  "qualification_limit": "Actual prepared physical records and existing checked supplier selector only. Full callback, graph checks and LCIs after this mapping change remain to be checked."
+}

@@ -2898,11 +2898,19 @@ rules:
   provider:
     name: market for platinum
     reference_product: platinum
+  existing_provider_fallback:
+    name: Platinum, at regional storage
+    reference_product: platinum
   exchange_amount_factor: 1.0
   application: set_direct_amount
   ecoinvent_form: platinum
   intensity_form: platinum
-  comment: This exchange is already present
+  comment: >-
+    Retain the unique existing one-kg regional-storage platinum supplier when
+    the configured global market is absent, using the existing checked fallback.
+    Both reviewed one-kWe stacks already consume this material. Preserve its
+    existing geography, complete supply and allocation; score differences remain
+    unquantified. This does not select a new regional producer or product form.
 - id: sofc-y-platinum-platinum
   enabled: true
   technology: SOFC - Y
