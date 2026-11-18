@@ -325,6 +325,7 @@ truck, battery electric, 18 metric ton:
     remind: Energy intensity|Transport|Freight|Road|Heavy|Truck(18t)|BEV
     remind-eu: Energy intensity|Transport|Freight|Road|Heavy|Truck(18t)|BEV
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Goods Transport - Trucks|Electricity
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Electricity
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Electricity
     image: Final Energy|Transportation|Freight|Medium Truck|Battery Electric|Electricity
@@ -352,6 +353,7 @@ truck, fuel cell electric, 18 metric ton:
     remind: Energy intensity|Transport|Freight|Road|Heavy|Truck(18t)|FCEV
     remind-eu: Energy intensity|Transport|Freight|Road|Heavy|Truck(18t)|FCEV
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Goods Transport - Trucks|Hydrogen
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Hydrogen
     tiam-ucl: Final Energy|Transport|Truck|Medium|Hydrogen Fuel Cell|Truck Hydrogen
@@ -375,6 +377,7 @@ truck, gasoline, 18 metric ton:
           - Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Gasoline
 
     energy_use_aliases:
+        open-prom: Final Energy|Transportation|Goods Transport - Trucks|Fossil Gasoline
         tiam-ucl:
           - Final Energy|Transport|Truck|Medium|Ethanol|Bioethanol
           - Final Energy|Transport|Truck|Medium|Gasoline|Gasoline
@@ -402,6 +405,7 @@ truck, diesel, 18 metric ton:
     remind: Energy intensity|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
     remind-eu: Energy intensity|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Goods Transport - Trucks|Fossil Diesel Oil
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
     tiam-ucl:
@@ -448,6 +452,7 @@ truck, compressed gas, 18 metric ton:
     remind: Energy intensity|Transport|Freight|Road|Heavy|Truck(18t)|Gases
     remind-eu: Energy intensity|Transport|Freight|Road|Heavy|Truck(18t)|Gases
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Goods Transport - Trucks|Natural Gas
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases
     tiam-ucl: Final Energy|Transport|Truck|Medium|Natural Gas|Natural Gas
@@ -463,6 +468,7 @@ truck, liquefied petroleum gas, 18 metric ton:
   iam_aliases:
       tiam-ucl: Distance|Transport|Truck|Medium|Liquefied Petroleum Gas|Liquefied Petroleum Gas
   energy_use_aliases:
+      open-prom: Final Energy|Transportation|Goods Transport - Trucks|Liquefied Petroleum Gas
       tiam-ucl: Final Energy|Transport|Truck|Medium|Liquefied Petroleum Gas|Liquefied Petroleum Gas
   ecoinvent_aliases:
       fltr:
