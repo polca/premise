@@ -3224,7 +3224,7 @@
     },
     {
       "sector": "final energy",
-      "status": "shared_update_and_exhaustive_graph_passed_28_active_direct_role_gaps_remaining",
+      "status": "standalone_callback_graph_passed_combined_heat_carrier_gaps_being_closed",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -3812,10 +3812,17 @@
         "positive_IAM_roles": 203,
         "positive_roles_with_suppliers": 175,
         "remaining_positive_direct_role_gaps": 28,
-        "added_uvek_alias_entries": 342,
+        "added_uvek_alias_entries": 424,
         "activities_added_in_shared_update": 804,
         "context_workflow_verification": "docs/development/uvek-final-energy-context-workflow-verification.json",
-        "native_filter_verification": "docs/development/uvek-final-energy-native-alias-verification.json"
+        "native_filter_verification": "docs/development/uvek-final-energy-native-alias-verification.json",
+        "final_energy_low_voltage_selection": "ordinary_shared_regional_market_only_no_native_country_grid_recloning",
+        "normal_sector_prerequisites_preserved": true,
+        "combined_workflow": "rerunning_after_native_LPG_and_delivered_biomethane_classification_fixes",
+        "last_combined_prepared_records": 2259,
+        "inventory_based_heat_carrier_cases_captured": 191,
+        "inventory_based_heat_carrier_cases_passing_after_data_fix": 191,
+        "shared_market_verification": "docs/development/uvek-final-energy-shared-market-verification.json"
       },
       "latest_installed_interface_verification": "docs/development/uvek-final-energy-retained52-installed-verification.json",
       "latest_required_source37_review": {

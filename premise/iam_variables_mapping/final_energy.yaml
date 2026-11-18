@@ -1,4 +1,9 @@
 Buildings - Heating - District Heating:
+  uvek_aliases:
+    fltr:
+      name: market for heat, district or industrial
+      reference product: heat, district or industrial
+    mask: natural gas
   ecoinvent_aliases:
     fltr:
       name: market for heat, district or industrial
@@ -36,20 +41,10 @@ Buildings - Heating - Heat pump:
 Buildings - Heating - Resistance:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -270,20 +265,10 @@ Buildings - Heating - Solid biomass traditional:
 Buildings - Other - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -307,20 +292,10 @@ Buildings - Other - Elec:
 Buildings - Water heating - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -434,20 +409,10 @@ Buildings - Water heating - Nat Gas:
 Buildings - Cooling - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -464,20 +429,10 @@ Buildings - Cooling - Elec:
 Buildings - Cooking - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -563,20 +518,10 @@ Buildings - Cooking - Traditional biomass:
 CDR - DAC - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -589,6 +534,11 @@ CDR - DAC - Elec:
     image: Final Energy|Carbon Management|Direct Air Capture
     gcam: Final Energy|Industry|CDR|Electricity
 CDR - DAC - Gases:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -628,6 +578,14 @@ CDR - DAC - H2:
     remind: FE|CDR|DAC|+|Hydrogen
     remind-eu: FE|CDR|DAC|+|Hydrogen
 CDR - Enhanced Weathering - Diesel:
+  uvek_aliases:
+    fltr:
+      name: diesel, burned in diesel-electric generating set, 10MW
+      reference product: diesel, burned in diesel-electric generating set, 10MW
+    mask:
+    - biodiesel
+    - market
+    - extraction
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in diesel-electric generating set, 10MW
@@ -642,20 +600,10 @@ CDR - Enhanced Weathering - Diesel:
 CDR - Enhanced Weathering - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -665,6 +613,14 @@ CDR - Enhanced Weathering - Elec:
     remind: FE|CDR|EW|+|Electricity
     remind-eu: FE|CDR|EW|+|Electricity
 CDR - OAE, electric calciner - Diesel:
+  uvek_aliases:
+    fltr:
+      name: diesel, burned in diesel-electric generating set, 10MW
+      reference product: diesel, burned in diesel-electric generating set, 10MW
+    mask:
+    - biodiesel
+    - market
+    - extraction
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in diesel-electric generating set, 10MW
@@ -679,20 +635,10 @@ CDR - OAE, electric calciner - Diesel:
 CDR - OAE, electric calciner - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -715,6 +661,14 @@ CDR - OAE, electric calciner - H2:
     remind: FE|CDR|OAE, electric calciner|+|Hydrogen
     remind-eu: FE|CDR|OAE, electric calciner|+|Hydrogen
 CDR - OAE, traditional calciner - Diesel:
+  uvek_aliases:
+    fltr:
+      name: diesel, burned in diesel-electric generating set, 10MW
+      reference product: diesel, burned in diesel-electric generating set, 10MW
+    mask:
+    - biodiesel
+    - market
+    - extraction
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in diesel-electric generating set, 10MW
@@ -729,20 +683,10 @@ CDR - OAE, traditional calciner - Diesel:
 CDR - OAE, traditional calciner - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -752,6 +696,11 @@ CDR - OAE, traditional calciner - Elec:
     remind: FE|CDR|OAE, traditional calciner|+|Electricity
     remind-eu: FE|CDR|OAE, traditional calciner|+|Electricity
 CDR - OAE, traditional calciner - Gases:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -777,20 +726,10 @@ CDR - OAE, traditional calciner - Hydrogen:
 Industry - Cement - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -847,6 +786,11 @@ Industry - Cement - Bio CH4:
     remind-eu: FE|Industry|Cement|Gases|+|Biomass
     message: Final Energy|Industry|Non-Metallic Minerals|Cement|Gases|Biomass
 Industry - Cement - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -961,6 +905,10 @@ Industry - Cement - LPG:
   iam_aliases:
     message: Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|Gas
 Industry - Cement - Solid biomass:
+  uvek_aliases:
+    fltr:
+      name: heat production, softwood chips from forest, at furnace 1000kW
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: heat production, softwood chips from forest, at furnace 1000kW
@@ -1012,6 +960,11 @@ Industry - Cement - Solid coal:
     remind-eu: FE|Industry|Cement|Solids|+|Fossil
     gcam: Final Energy|Industry|Cement|Coal
 Industry - Cement - Secondary heat:
+  uvek_aliases:
+    fltr:
+      name: treatment of municipal solid waste, municipal incineration
+      reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   ecoinvent_aliases:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
@@ -1032,20 +985,10 @@ Industry - Cement - Secondary heat:
 Industry - Chemicals - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1083,20 +1026,10 @@ Industry - Chemicals - Chemicals - H2:
 Industry - Chemicals - Chemicals - Elec, high temp:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1125,20 +1058,10 @@ Industry - Chemicals - Chemicals - Elec, high temp:
 Industry - Chemicals - Chemicals - Elec, low temp:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1163,6 +1086,11 @@ Industry - Chemicals - Chemicals - Bio CH4:
     remind: FE|Industry|Chemicals|Gases|+|Biomass
     remind-eu: FE|Industry|Chemicals|Gases|+|Biomass
 Industry - Chemicals - Chemicals - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -1240,6 +1168,10 @@ Industry - Chemicals - Chemicals - Syn Fuel:
     remind: FE|Industry|Chemicals|Liquids|+|Hydrogen
     remind-eu: FE|Industry|Chemicals|Liquids|+|Hydrogen
 Industry - Chemicals - Chemicals - Solid Biomass:
+  uvek_aliases:
+    fltr:
+      name: heat production, softwood chips from forest, at furnace 1000kW
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: heat production, softwood chips from forest, at furnace 1000kW
@@ -1268,20 +1200,10 @@ Industry - Chemicals - Chemicals - Solid coal:
 Industry - Chemicals - Formaldehyde - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1293,20 +1215,10 @@ Industry - Chemicals - Formaldehyde - Elec:
 Industry - Chemicals - Resins - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1315,6 +1227,11 @@ Industry - Chemicals - Resins - Elec:
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Resins|Electricity
 Industry - Chemicals - Resins - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -1432,20 +1349,10 @@ Industry - Chemicals - Resins - Solid Biomass:
 Industry - Chemicals - Ammonia - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1455,6 +1362,11 @@ Industry - Chemicals - Ammonia - Elec:
     message: Final Energy|Industry|Chemicals|Ammonia|Electricity
     image: Final Energy|Industry|Chemicals|Ammonia|Electricity
 Industry - Chemicals - Ammonia - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -1506,6 +1418,10 @@ Industry - Chemicals - Ammonia - Solid coal:
     image: Final Energy|Industry|Chemicals|Ammonia|Solids|Fossil
     gcam: Final Energy|Industry|Ammonia|Coal
 Industry - Chemicals - Ammonia - Solid Biomass:
+  uvek_aliases:
+    fltr:
+      name: heat production, softwood chips from forest, at furnace 1000kW
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: heat production, softwood chips from forest, at furnace 1000kW
@@ -1514,6 +1430,11 @@ Industry - Chemicals - Ammonia - Solid Biomass:
     message: Final Energy|Industry|Chemicals|Ammonia|Solids|Biomass
     image: Final Energy|Industry|Chemicals|Ammonia|Solids|Biomass
 Industry - Chemicals - Ammonia - Other:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -1525,20 +1446,10 @@ Industry - Chemicals - Ammonia - Other:
 Industry - Chemicals - Heavy Refinery Products - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1547,6 +1458,11 @@ Industry - Chemicals - Heavy Refinery Products - Elec:
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Electricity
 Industry - Chemicals - Heavy Refinery Products - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -1606,20 +1522,10 @@ Industry - Chemicals - Heavy Refinery Products - Solid Biomass:
 Industry - Chemicals - High-Value Chemicals - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1629,6 +1535,11 @@ Industry - Chemicals - High-Value Chemicals - Elec:
     message: Final Energy|Industry|Chemicals|High-Value Chemicals|Electricity
     image: Final Energy|Industry|Chemicals|High-Value Chemicals|Electricity
 Industry - Chemicals - High-Value Chemicals - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -1753,20 +1664,10 @@ Industry - Chemicals - High-Value Chemicals - Solid Biomass:
 Industry - Aluminum - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1841,6 +1742,11 @@ Industry - Aluminum - Liquid fossil:
     message: Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|Oil
     gcam: Final Energy|Industry|Aluminum|Oil
 Industry - Aluminum - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -1895,20 +1801,10 @@ Industry - Aluminum - Solid Biomass:
 Industry - Chemicals - Methanol - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -1918,6 +1814,11 @@ Industry - Chemicals - Methanol - Elec:
     message: Final Energy|Industry|Chemicals|Methanol|Electricity
     image: Final Energy|Industry|Chemicals|Methanol|Electricity
 Industry - Chemicals - Methanol - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -1993,20 +1894,10 @@ Industry - Chemicals - Methanol - Solid Biomass:
 Industry - Chemicals - Fertilizer - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2016,6 +1907,11 @@ Industry - Chemicals - Fertilizer - Elec:
 #    message: Final Energy|Industry|Chemicals|Ammonia|Electricity ### Duplicated
     image: Final Energy|Industry|Fertilizer production|Electricity
 Industry - Chemicals - Fertilizer - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -2092,20 +1988,10 @@ Industry - Chemicals - Fertilizer - Solid Biomass:
 Industry - Food Processing - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2115,6 +2001,11 @@ Industry - Food Processing - Elec:
     image: Final Energy|Industry|Food Processing|Electricity
     gcam: Final Energy|Industry|Food Processing|Electricity
 Industry - Food Processing - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -2192,20 +2083,10 @@ Industry - Food Processing - Solid Biomass:
 Industry - Non-Metallic Minerals - Electricity:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2214,6 +2095,11 @@ Industry - Non-Metallic Minerals - Electricity:
   iam_aliases:
     image: Final Energy|Industry|Non-Metallic Minerals|Electricity
 Industry - Non-Metallic Minerals - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -2286,20 +2172,10 @@ Industry - Non-Metallic Minerals - Solid Coal:
 Industry - Other - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2347,20 +2223,10 @@ Industry - Other - H2:
 Industry - Other - Elec, high temp:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2373,20 +2239,10 @@ Industry - Other - Elec, high temp:
 Industry - Other - Elec, low temp:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2398,6 +2254,10 @@ Industry - Other - Elec, low temp:
     remind-eu: FE|Industry|Other Industry|Electricity|+|Mechanical work and low-temperature
       heat
 Industry - Other - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: heat production, biomethane, at boiler condensing modulating <100kW
+      reference product: heat, central or small-scale, biomethane
   ecoinvent_aliases:
     fltr:
       name: heat production, biomethane, at boiler condensing modulating <100kW
@@ -2407,6 +2267,11 @@ Industry - Other - Bio CH4:
     remind-eu: FE|Industry|Other Industry|Gases|+|Biomass
     message: Final Energy|Industry|Other Sector|Gases|Biomass
 Industry - Other - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -2514,20 +2379,10 @@ Industry - Other - Solid coal:
 Industry - Paper - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2537,6 +2392,11 @@ Industry - Paper - Elec:
     image: Final Energy|Industry|Pulp and Paper|Electricity
     gcam: Final Energy|Industry|Pulp and Paper|Electricity
 Industry - Paper - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -2613,20 +2473,10 @@ Industry - Paper - Solid Biomass:
 Industry - Steel - BF/BOF - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2641,20 +2491,10 @@ Industry - Steel - BF/BOF - Elec:
 Industry - Steel - BF/BOF + CCS - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2665,20 +2505,10 @@ Industry - Steel - BF/BOF + CCS - Elec:
 Industry - Steel - DRI EAF - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2690,20 +2520,10 @@ Industry - Steel - DRI EAF - Elec:
 Industry - Steel - DRI EAF + CCS - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2714,20 +2534,10 @@ Industry - Steel - DRI EAF + CCS - Elec:
 Industry - Steel - EAF - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2739,20 +2549,10 @@ Industry - Steel - EAF - Elec:
 Industry - Steel - Electrowinning - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2763,20 +2563,10 @@ Industry - Steel - Electrowinning - Elec:
 Industry - Steel - H-DRI/EAF - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2787,20 +2577,10 @@ Industry - Steel - H-DRI/EAF - Elec:
 Industry - Steel - SR/BOF - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2811,20 +2591,10 @@ Industry - Steel - SR/BOF - Elec:
 Industry - Steel - SR/BOF + CCS - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2835,20 +2605,10 @@ Industry - Steel - SR/BOF + CCS - Elec:
 Industry - Steel - TGR BF/BOF - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -2861,20 +2621,10 @@ Industry - Steel - TGR BF/BOF - Elec:
 Industry - Steel - TGR BF/BOF + CCS - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -3319,6 +3069,11 @@ Industry - Steel - TGR BF/BOF + CCS - Biomass:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Modern Biomass
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Traditional Biomass
 Industry - Steel - BF/BOF - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3330,6 +3085,11 @@ Industry - Steel - BF/BOF - Nat Gas:
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Natural Gas
     gcam: Final Energy|Industry|Iron and Steel|BF/BOF|Gas
 Industry - Steel - BF/BOF + CCS - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3339,6 +3099,11 @@ Industry - Steel - BF/BOF + CCS - Nat Gas:
     image:
       - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Natural Gas
 Industry - Steel - DRI EAF - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3349,6 +3114,11 @@ Industry - Steel - DRI EAF - Nat Gas:
       - Final Energy|Industry|Iron and Steel|DRI EAF|Natural Gas
     gcam: Final Energy|Industry|Iron and Steel|EAF DRI|Gas
 Industry - Steel - DRI EAF + CCS - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3358,6 +3128,11 @@ Industry - Steel - DRI EAF + CCS - Nat Gas:
     image:
       - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Natural Gas
 Industry - Steel - EAF - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3368,6 +3143,11 @@ Industry - Steel - EAF - Nat Gas:
       - Final Energy|Industry|Iron and Steel|EAF scrap|Natural Gas
     gcam: Final Energy|Industry|Iron and Steel|EAF Scrap|Gas
 Industry - Steel - Electrowinning - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3377,6 +3157,11 @@ Industry - Steel - Electrowinning - Nat Gas:
     image:
       - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Natural Gas
 Industry - Steel - H-DRI/EAF - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3386,6 +3171,11 @@ Industry - Steel - H-DRI/EAF - Nat Gas:
     image:
       - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Natural Gas
 Industry - Steel - SR/BOF - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3395,6 +3185,11 @@ Industry - Steel - SR/BOF - Nat Gas:
     image:
       - Final Energy|Industry|Iron and Steel|SR/BOF|Natural Gas
 Industry - Steel - SR/BOF + CCS - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3404,6 +3199,11 @@ Industry - Steel - SR/BOF + CCS - Nat Gas:
     image:
       - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Natural Gas
 Industry - Steel - TGR BF/BOF - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3414,6 +3214,11 @@ Industry - Steel - TGR BF/BOF - Nat Gas:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Natural Gas
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Natural Gas
 Industry - Steel - TGR BF/BOF + CCS - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3571,6 +3376,11 @@ Industry - Steel - TGR BF/BOF + CCS - Oil:
     image:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Oil
 Industry - Steel - BF/BOF - Secondary Heat:
+  uvek_aliases:
+    fltr:
+      name: treatment of municipal solid waste, municipal incineration
+      reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   ecoinvent_aliases:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
@@ -3581,6 +3391,11 @@ Industry - Steel - BF/BOF - Secondary Heat:
       - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Secondary Heat
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Secondary Heat
 Industry - Steel - BF/BOF + CCS - Secondary Heat:
+  uvek_aliases:
+    fltr:
+      name: treatment of municipal solid waste, municipal incineration
+      reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   ecoinvent_aliases:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
@@ -3590,6 +3405,11 @@ Industry - Steel - BF/BOF + CCS - Secondary Heat:
     image:
       - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Secondary Heat
 Industry - Steel - DRI EAF - Secondary Heat:
+  uvek_aliases:
+    fltr:
+      name: treatment of municipal solid waste, municipal incineration
+      reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   ecoinvent_aliases:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
@@ -3599,6 +3419,11 @@ Industry - Steel - DRI EAF - Secondary Heat:
     image:
       - Final Energy|Industry|Iron and Steel|DRI EAF|Secondary Heat
 Industry - Steel - DRI EAF + CCS - Secondary Heat:
+  uvek_aliases:
+    fltr:
+      name: treatment of municipal solid waste, municipal incineration
+      reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   ecoinvent_aliases:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
@@ -3608,6 +3433,11 @@ Industry - Steel - DRI EAF + CCS - Secondary Heat:
     image:
       - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Secondary Heat
 Industry - Steel - EAF - Secondary Heat:
+  uvek_aliases:
+    fltr:
+      name: treatment of municipal solid waste, municipal incineration
+      reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   ecoinvent_aliases:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
@@ -3617,6 +3447,11 @@ Industry - Steel - EAF - Secondary Heat:
     image:
       - Final Energy|Industry|Iron and Steel|EAF scrap|Secondary Heat
 Industry - Steel - Electrowinning - Secondary Heat:
+  uvek_aliases:
+    fltr:
+      name: treatment of municipal solid waste, municipal incineration
+      reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   ecoinvent_aliases:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
@@ -3626,6 +3461,11 @@ Industry - Steel - Electrowinning - Secondary Heat:
     image:
       - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Secondary Heat
 Industry - Steel - H-DRI/EAF - Secondary Heat:
+  uvek_aliases:
+    fltr:
+      name: treatment of municipal solid waste, municipal incineration
+      reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   ecoinvent_aliases:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
@@ -3635,6 +3475,11 @@ Industry - Steel - H-DRI/EAF - Secondary Heat:
     image:
       - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Secondary Heat
 Industry - Steel - SR/BOF - Secondary Heat:
+  uvek_aliases:
+    fltr:
+      name: treatment of municipal solid waste, municipal incineration
+      reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   ecoinvent_aliases:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
@@ -3644,6 +3489,11 @@ Industry - Steel - SR/BOF - Secondary Heat:
     image:
       - Final Energy|Industry|Iron and Steel|SR/BOF|Secondary Heat
 Industry - Steel - SR/BOF + CCS - Secondary Heat:
+  uvek_aliases:
+    fltr:
+      name: treatment of municipal solid waste, municipal incineration
+      reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   ecoinvent_aliases:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
@@ -3653,6 +3503,11 @@ Industry - Steel - SR/BOF + CCS - Secondary Heat:
     image:
       - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Secondary Heat
 Industry - Steel - TGR BF/BOF - Secondary Heat:
+  uvek_aliases:
+    fltr:
+      name: treatment of municipal solid waste, municipal incineration
+      reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   ecoinvent_aliases:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
@@ -3663,6 +3518,11 @@ Industry - Steel - TGR BF/BOF - Secondary Heat:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Secondary Heat
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Secondary Heat
 Industry - Steel - TGR BF/BOF + CCS - Secondary Heat:
+  uvek_aliases:
+    fltr:
+      name: treatment of municipal solid waste, municipal incineration
+      reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   ecoinvent_aliases:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
@@ -3674,20 +3534,10 @@ Industry - Steel - TGR BF/BOF + CCS - Secondary Heat:
 Industry - Steel - All steel - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -3714,6 +3564,10 @@ Industry - Steel - All steel - H2:
     message: Final Energy|Industry|Iron and Steel|Hydrogen
     image: Final Energy|Industry|Iron and Steel|Hydrogen
 Industry - Steel - All steel - Bio CH4:
+  uvek_aliases:
+    fltr:
+      name: heat production, biomethane, at boiler condensing modulating <100kW
+      reference product: heat, central or small-scale, biomethane
   ecoinvent_aliases:
     fltr:
       name: heat production, biomethane, at boiler condensing modulating <100kW
@@ -3723,6 +3577,11 @@ Industry - Steel - All steel - Bio CH4:
     remind-eu: FE|Industry|Steel|Gases|+|Biomass
     message: Final Energy|Industry|Iron and Steel|Gases|Biomass
 Industry - All Steel - Secondary Heat:
+  uvek_aliases:
+    fltr:
+      name: treatment of municipal solid waste, municipal incineration
+      reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   ecoinvent_aliases:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
@@ -3732,6 +3591,11 @@ Industry - All Steel - Secondary Heat:
     image: Final Energy|Industry|Iron and Steel|Heat
     message: Final Energy|Industry|Iron and Steel|Heat
 Industry - Steel - All steel - Nat Gas:
+  uvek_aliases:
+    fltr:
+      name: natural gas, burned in gas turbine
+      reference product: natural gas, burned in gas turbine
+    mask: market
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -3853,6 +3717,15 @@ Industry - Steel - All steel - Solid coal:
       - Final Energy|Industry|Iron and Steel|Gases|Coal
       - Final Energy|Industry|Iron and Steel|Solids|Coal
 Industry - Non-energy use - Solid coal:
+  uvek_aliases:
+    fltr:
+      name: hard coal mine operation
+      reference product: hard coal
+    mask:
+    - briquette
+    - ash
+    - factory
+    - plant
   ecoinvent_aliases:
     fltr:
       name: hard coal mine operation
@@ -3874,6 +3747,12 @@ Industry - Non-energy use - Solid coal:
     value: 24.2
     unit: megajoule
 Industry - Non-energy use - Biomass:
+  uvek_aliases:
+    fltr:
+      name: market for lignocellulosic biomass, used as fuel
+      reference product: lignocellulosic biomass
+    mask:
+    - treatment
   ecoinvent_aliases:
     fltr:
       name: market for lignocellulosic biomass, used as fuel
@@ -3964,6 +3843,11 @@ Industry - Non-energy use - Hydrogen:
     unit: megajoule
 
 Industry - Non-energy use - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: methanol production, biomass gasification
+      reference product: methanol
+    mask: factory
   ecoinvent_aliases:
     fltr:
       name: methanol production, biomass gasification
@@ -3983,20 +3867,10 @@ Industry - Non-energy use - Biofuel:
 Industry - Non-energy use - Elec:
   uvek_aliases:
     fltr:
-      name:
-      - Electricity, low voltage, at grid
-      - market group for electricity, low voltage
-      - market for electricity, low voltage
-      reference product:
-      - Electricity, low voltage, at grid
-      - electricity, low voltage
+      name: market group for electricity, low voltage
+      reference product: electricity, low voltage
       unit: kilowatt hour
-    exact: true
-    native_reference_amount: 1
-    native_limitations:
-    - Use complete native low-voltage grid supply or the ordinary Premise regional low-voltage market per kWh. Shared
-      supplier selection and regionalization are retained; native geography, vintage and grid boundaries remain. Preserve
-      the supplier inventory and its delivery losses and infrastructure once; add no energy or loss multiplier.
+    mask: period
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -4006,6 +3880,10 @@ Industry - Non-energy use - Elec:
     message: Final Energy|Non-Energy Use|Chemicals|Ammonia|Electricity
 
 Industry - Non-energy use - Liquid fossil:
+  uvek_aliases:
+    fltr:
+      name: market for light fuel oil
+      reference product: light fuel oil
   ecoinvent_aliases:
     fltr:
       name: market for light fuel oil
@@ -4022,6 +3900,10 @@ Industry - Non-energy use - Liquid fossil:
     unit: megajoule
 
 Industry - Non-energy use - Syn Fuel:
+  uvek_aliases:
+    fltr:
+      name: diesel production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, energy allocation
+      reference product: diesel, synthetic
   ecoinvent_aliases:
     fltr:
       name: diesel production, synthetic, Fischer Tropsch process, hydrogen from electrolysis,
@@ -4035,6 +3917,10 @@ Industry - Non-energy use - Syn Fuel:
     unit: megajoule
 
 Transport - Freight - Domestic Shipping - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in container ship
+      reference product: electricity, low voltage
   ecoinvent_aliases:
     fltr:
       name: electricity, used in container ship
@@ -4043,6 +3929,10 @@ Transport - Freight - Domestic Shipping - Elec:
     image: Final Energy|Transportation|Freight|National Shipping|Electricity
     gcam: Final Energy|Transport|Freight|Domestic Ship|BEV|Electricity
 Transport - Freight - Domestic Shipping - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in container ship
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in container ship
@@ -4176,6 +4066,10 @@ Transport - Freight - Int. Shipping - Syn Fuel:
 #      - Final Energy|Bunkers|Hydrogen
 #      - Final Energy|Bunkers|Other
 Transport - Freight - Int. Shipping - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in container ship
+      reference product: electricity, low voltage
   ecoinvent_aliases:
     fltr:
       name: electricity, used in container ship
@@ -4184,6 +4078,10 @@ Transport - Freight - Int. Shipping - Elec:
     image: Final Energy|Transportation|Freight|International Shipping|Electricity
     gcam: Final Energy|Transport|Shipping|International Ship|BEV|Electricity
 Transport - Freight - Int. Shipping - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in container ship
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in container ship
@@ -4224,6 +4122,10 @@ Transport - Freight - Rail - Elec:
     remind-eu: FE|Transport|Freight|Rail|Electricity
     gcam: Final Energy|Transport|Freight|Freight Rail|BEV|Electricity
 Transport - Freight - Rail - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: biodiesel, burned in passenger train
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger train
@@ -4267,6 +4169,10 @@ Transport - Freight - Rail - Syn Fuel:
     remind: FE|Transport|Freight|Rail|Liquids|Hydrogen
     remind-eu: FE|Transport|Freight|Rail|Liquids|Hydrogen
 Transport - Freight - Rail - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a passenger train
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in a passenger train
@@ -4350,6 +4256,10 @@ Transport - Freight - Truck(18t) - H2:
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Hydrogen
     gcam: Final Energy|Transport|Freight|Heavy truck|FCEV|Hydrogen
 Transport - Freight - Truck(18t) - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: biodiesel, burned in heavy-duty vehicle
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in heavy-duty vehicle
@@ -4464,6 +4374,10 @@ Transport - Freight - Truck(26t) - H2:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Hydrogen
 Transport - Freight - Truck(26t) - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: biodiesel, burned in heavy-duty vehicle
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in heavy-duty vehicle
@@ -4573,6 +4487,10 @@ Transport - Freight - Truck(40t) - H2:
     tiam-ucl: Final Energy|Transport|Truck|Heavy|Hydrogen Fuel Cell|Truck Hydrogen
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Hydrogen
 Transport - Freight - Truck(40t) - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: biodiesel, burned in heavy-duty vehicle
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in heavy-duty vehicle
@@ -4695,6 +4613,10 @@ Transport - Freight - Truck(0-3_5t) - H2:
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Hydrogen
     gcam: Final Energy|Transport|Freight|Light truck|FCEV|Hydrogen
 Transport - Freight - Truck(0-3_5t) - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: biodiesel, burned in passenger car
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -4813,6 +4735,10 @@ Transport - Freight - Truck(7_5t) - H2:
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Hydrogen
     gcam: Final Energy|Transport|Freight|Medium truck|FCEV|Hydrogen
 Transport - Freight - Truck(7_5t) - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: biodiesel, burned in heavy-duty vehicle
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in heavy-duty vehicle
@@ -4861,6 +4787,10 @@ Transport - Freight - Truck(7_5t) - Syn Fuel:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Hydrogen
 Transport - Freight - Domestic Aviation - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in aircraft
+      reference product: electricity, low voltage
   ecoinvent_aliases:
     fltr:
       name: electricity, used in aircraft
@@ -4966,6 +4896,10 @@ Transport - Pass - Int Aviation - H2:
     image: Final Energy|Transportation|Passenger|International Aviation|Hydrogen
     gcam: Final Energy|Transport|Aviation|International Aviation|Hydrogen|Hydrogen
 Transport - Pass - Int Aviation - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in aircraft
+      reference product: electricity, low voltage
   ecoinvent_aliases:
     fltr:
       name: electricity, used in aircraft
@@ -5049,6 +4983,10 @@ Transport - Pass - Domestic Aviation - Syn Fuel:
     remind: FE|Transport|Pass|Domestic Aviation|Liquids|Hydrogen
     remind-eu: FE|Transport|Pass|Domestic Aviation|Liquids|Hydrogen
 Transport - Pass - Domestic Aviation - Elec:
+  uvek_aliases:
+    fltr:
+      name: electricity, used in aircraft
+      reference product: electricity, low voltage
   ecoinvent_aliases:
     fltr:
       name: electricity, used in aircraft
@@ -5077,6 +5015,10 @@ Transport - Pass - Rail - Elec:
       - Final Energy|Transport|Passenger|HSR|Electric|Electricity
       - Final Energy|Transport|Passenger|Passenger Rail|Electric|Electricity
 Transport - Pass - Rail - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: biodiesel, burned in passenger train
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger train
@@ -5122,6 +5064,10 @@ Transport - Pass - Rail - Syn Fuel:
     remind: FE|Transport|Pass|Rail|Liquids|Hydrogen
     remind-eu: FE|Transport|Pass|Rail|Liquids|Hydrogen
 Transport - Pass - Rail - H2:
+  uvek_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a passenger train
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in a fuel cell in a passenger train
@@ -5206,6 +5152,10 @@ Transport - Pass - Bus - H2:
     remind-eu: FE|Transport|Pass|Road|Bus|Hydrogen
     gcam: Final Energy|Transport|Passenger|Bus|FCEV|Hydrogen
 Transport - Pass - Bus - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: biodiesel, burned in single deck coach or urban bus
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in single deck coach or urban bus
@@ -5317,6 +5267,10 @@ Transport - Pass - Large Car and SUV - H2:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Hydrogen
 Transport - Pass - Large Car and SUV - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: biodiesel, burned in passenger car
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -5419,6 +5373,10 @@ Transport - Pass - Large Car - H2:
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Hydrogen
     gcam: Final Energy|Transport|Passenger|Large Car and Truck|FCEV|Hydrogen
 Transport - Pass - Large Car - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: biodiesel, burned in passenger car
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -5521,6 +5479,10 @@ Transport - Pass - Van - H2:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Hydrogen
 Transport - Pass - Van - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: biodiesel, burned in passenger car
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -5626,6 +5588,10 @@ Transport - Pass - Compact Car - H2:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Hydrogen
 Transport - Pass - Compact Car - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: biodiesel, burned in passenger car
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -5740,6 +5706,10 @@ Transport - Pass - Midsize Car - H2:
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Hydrogen
     gcam: Final Energy|Transport|Passenger|Car|FCEV|Hydrogen
 Transport - Pass - Midsize Car - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: biodiesel, burned in passenger car
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -5856,6 +5826,10 @@ Transport - Pass - Mini Car - H2:
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Hydrogen
     gcam: Final Energy|Transport|Passenger|Mini Car|FCEV|Hydrogen
 Transport - Pass - Mini Car - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: biodiesel, burned in passenger car
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -5880,6 +5854,11 @@ Transport - Pass - Mini Car - Liquid fossil:
       - Final Energy|Transport|Passenger|Mini Car|Liquids|Oil
       - Final Energy|Transport|Passenger|Mini Car|Hybrid Liquids|Oil
 Transport - Pass - Mini Car - Diesel:
+  uvek_aliases:
+    fltr:
+      name: diesel, burned in passenger car
+      reference product: heat
+    mask: biodiesel
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in passenger car
@@ -5966,6 +5945,10 @@ Transport - Pass - Subcompact Car - H2:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Hydrogen
 Transport - Pass - Subcompact Car - Biofuel:
+  uvek_aliases:
+    fltr:
+      name: biodiesel, burned in passenger car
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -6221,6 +6204,10 @@ Transportation excl. International Shipping - Liquids|Biomass|Fuel Cell:
   iam_aliases:
     message: Final Energy|Transportation|Liquids|Biomass|Fuel Cell
 Transportation excl. International Shipping - Liquids|Biomass|Combustion:
+  uvek_aliases:
+    fltr:
+      name: biodiesel, burned in passenger car
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -6276,6 +6263,10 @@ Transportation excl. International Shipping - Liquids|Oil|Heavy:
   iam_aliases:
     message: Final Energy|Transportation|Liquids|Oil|Heavy
 Transportation excl. International Shipping - Other:
+  uvek_aliases:
+    fltr:
+      name: diesel, burned in passenger car
+      reference product: heat
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in passenger car

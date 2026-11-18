@@ -1,0 +1,13 @@
+{
+  "status": "shared_final_energy_market_alias_checks_passed",
+  "uvek_alias_roles": 424,
+  "all_425_existing_ecoinvent_IAM_LHV_role_definitions_unchanged": true,
+  "role_vocabulary_preserved_for_seven_model_settings": true,
+  "canonical_regional_low_voltage_market_selected": true,
+  "native_country_grid_not_recloned_by_final_energy_selector": true,
+  "heat_unit_and_battery_capacity_counterexamples_refused": true,
+  "new_physical_inventory_helpers": 0,
+  "source_code_changes": 0,
+  "qualification_limit": "Selector and invariant checks only. Full combined update still requires heat-carrier correspondence fixes and final-energy applicable-role coverage.",
+  "existing_heat_mapping_regressions_passed": 79
+}
