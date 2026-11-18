@@ -1,0 +1,199 @@
+{
+  "status": "source312_required_interface_group_verified_not_sector_qualified",
+  "source_code_changes": 0,
+  "new_Brightway_databases": 0,
+  "exact_source312_scopes": 8,
+  "new_manufacturing_models": 0,
+  "new_foreground_omissions": [],
+  "conversion_behavior": {
+    "status": "passed",
+    "added_exact_source312_scopes": 8,
+    "signed_uncertainty_exchange_checks": 64,
+    "direct_migration_cases": 8,
+    "public_harmonizer_fresh_and_warm_passed": true,
+    "input_nonmutation": true,
+    "earlier_effective_profile_checks": 0,
+    "new_manufacturing_inventory_models": 0,
+    "new_model_profile_aliases": 0,
+    "new_foreground_omissions": [],
+    "source_code_changes": 0,
+    "new_Brightway_databases": 0,
+    "qualification_limit": "Required interface group only; no complete final-energy update or new export."
+  },
+  "in_memory_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 8,
+    "native_suppliers": 8,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 16,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-3dece88e01e6f6f6",
+        "source": {
+          "location": "GLO",
+          "name": "market for electric motor, for electric scooter",
+          "reference product": "electric motor, for electric scooter",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Electric motor, for electric scooter",
+          "reference product": "Electric motor, for electric scooter",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-53a594a6dcf005e6",
+        "source": {
+          "location": "GLO",
+          "name": "market for controller, for electric scooter",
+          "reference product": "controller, for electric scooter",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Controller, for electric scooter",
+          "reference product": "Controller, for electric scooter",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-c55c10b7983cff8d",
+        "source": {
+          "location": "GLO",
+          "name": "market for printed wiring board, through-hole mounted, unspecified, Pb free",
+          "reference product": "printed wiring board, through-hole mounted, unspecified, Pb free",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Printed wiring board, through-hole mounted, unspec., Pb free, at plant",
+          "reference product": "Printed wiring board, through-hole mounted, unspec., Pb free, at plant",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-0d1fada13a96a314",
+        "source": {
+          "location": "GLO",
+          "name": "market for printed wiring board, for surface mounting, Pb free surface",
+          "reference product": "printed wiring board, for surface mounting, Pb free surface",
+          "unit": "square meter"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Printed wiring board, surface mount, lead-free surface, at plant",
+          "reference product": "Printed wiring board, surface mount, lead-free surface, at plant",
+          "unit": "square meter"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-0ac55c2e2b94f03e",
+        "source": {
+          "location": "GLO",
+          "name": "market for diode, glass-, for through-hole mounting",
+          "reference product": "diode, glass-, for through-hole mounting",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Diode, glass-, through-hole mounting, at plant",
+          "reference product": "Diode, glass-, through-hole mounting, at plant",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-caa0d550d47e54ec",
+        "source": {
+          "location": "GLO",
+          "name": "market for inductor, ring core choke type",
+          "reference product": "inductor, ring core choke type",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Inductor, ring core choke type, at plant",
+          "reference product": "Inductor, ring core choke type, at plant",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-efc6fb577e7b61ae",
+        "source": {
+          "location": "GLO",
+          "name": "market for resistor, metal film type, through-hole mounting",
+          "reference product": "resistor, metal film type, through-hole mounting",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Resistor, metal film type, through-hole mounting, at plant",
+          "reference product": "Resistor, metal film type, through-hole mounting, at plant",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      },
+      {
+        "rule_id": "bp-2a2c48b3e3925513",
+        "source": {
+          "location": "GLO",
+          "name": "market for transistor, surface-mounted",
+          "reference product": "transistor, surface-mounted",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Transistor, SMD type, surface mounting, at plant",
+          "reference product": "Transistor, SMD type, surface mounting, at plant",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "converted_amount": 2.5,
+        "signed_LCIs_finite_and_reverse": true,
+        "complete_native_inventory_unchanged": true
+      }
+    ],
+    "qualification_limit": "Eight complete native electronic supplies; no full final-energy update or export qualification."
+  },
+  "tests": {
+    "brightpath_review_manifest_passed": 9,
+    "premise_scoped_approval_passed": 10
+  },
+  "qualified_sectors": 15,
+  "total_sectors": 19,
+  "qualification_limit": "Required interface group only. Final-energy update, filter/physical coverage and export remain unfinished."
+}

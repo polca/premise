@@ -356963,6 +356963,606 @@
           "fingerprint": "a18399d46f247645da435b031bed6dff12b0008a0129deb017b98a4ff8035de2"
         }
       ]
+    },
+    {
+      "rule_id": "bp-3dece88e01e6f6f6",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_electronics_312_review.json",
+      "review_sha256": "7fe1519bc30a932c30a8e9d3ada3caa30228b9a27cae8b75f733eb0e31397416",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for electric motor, for electric scooter",
+          "reference product": "electric motor, for electric scooter",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for electric motor, for electric scooter",
+            "reference product": "electric motor, for electric scooter",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 1,
+          "inventory_sha256": "a8abd5d3c5394341bd2138d4bac0b2d4dfd07648a36fa8f037d3ebba3ef99b75",
+          "metadata_sha256": "a8ba3e4b8234462544ab4190202b37eeb9c833be1b4d10de60c275c66860ffcb",
+          "comment_sha256": "a1f48d6d84d50bec63785f6895f1f841cfc7e097771d4502eaf7832a6c83cad5",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 11,
+            "inventory_sha256": "fd17d2297ca969134712d40c891e163c51412ba4da7259ef62bf475329c79437",
+            "metadata_sha256": "48dd3e3a7dabc3dc51e24b05545f4d9e73067ea8482679e0f0b1caf44ef82457",
+            "comment_sha256": "36c7cec99b518c19a4e0ffc2b8b89b8dfd777e0611531c5f7110028037b3e48e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 11,
+            "inventory_sha256": "50c389eb6da0784a6c77dd653a8b32cdf785ec91ad7d99763e3704ea69fc4771",
+            "metadata_sha256": "21918cdf4bdee99ac720a249f1513afca5d2fc9a39b5e1c15678c07f7a2f772b",
+            "comment_sha256": "ae14914191050066685eed60de5144995252af8cfc5b29d6bf8dda12004264be",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Complete native electric-scooter motor per kg. The documentation describes a 5.8 kg example but the reference already is one kg: add no device-mass or power multiplier. Native design, geography, vintage and manufacturing replace the global source market/delivery.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Complete native electric-scooter motor per kg. The documentation describes a 5.8 kg example but the reference already is one kg: add no device-mass or power multiplier. Native design, geography, vintage and manufacturing replace the global source market/delivery.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.12 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "0a230405c432fc90bdd40ffd2b797347c9e82ba2d31096ca7db747843eb59bd9"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-53a594a6dcf005e6",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_electronics_312_review.json",
+      "review_sha256": "7fe1519bc30a932c30a8e9d3ada3caa30228b9a27cae8b75f733eb0e31397416",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for controller, for electric scooter",
+          "reference product": "controller, for electric scooter",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for controller, for electric scooter",
+            "reference product": "controller, for electric scooter",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 1,
+          "inventory_sha256": "c0fe00ffddc2aa9b43f5fdbd2c8d34329b95852d7da08a527ee39f1af5a649af",
+          "metadata_sha256": "fc520c271bd7b4e14eeeb950e593031a9bd1a061b57e713c5ae378108b3972fc",
+          "comment_sha256": "f03a3dd0c606bec7871130d4ed2eb642ebb97624592692529f97691fc22ff5f9",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 27,
+            "inventory_sha256": "27fd67011f9e99c849436aca44bb6f4497c7c5c42e0a3020862b27a09a2d46ab",
+            "metadata_sha256": "675d1aa1ad24ddaa9d2995a913e7c5996c2eaf7bde49c30602dd871903df0696",
+            "comment_sha256": "652a3f073e6035007b9d2ebbaa34a542b7891ac9cba14f0535957cd1623df134",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 27,
+            "inventory_sha256": "d4aad685795c7b6fc3bd2cf4e92573de7697baf93ccef47ed98ced4dc937153e",
+            "metadata_sha256": "ac446855e1dc44fc632790e214a97c9550ffc810a2672bc23849f9d3457f2bf3",
+            "comment_sha256": "600843852bd070eaa495072665f8de82d4bb628f14e33c3b6dded54dc2250674",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Complete native electric-scooter controller per kg, including logic electronics and power transistors. Documentation describes a 1.3 kg example but the reference is one kg: no device-mass multiplier. Native documentation excludes assembly energy because data are unavailable; retain that limitation and unquantified missing burden without inventing assembly energy.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Complete native electric-scooter controller per kg, including logic electronics and power transistors. Documentation describes a 1.3 kg example but the reference is one kg: no device-mass multiplier. Native documentation excludes assembly energy because data are unavailable; retain that limitation and unquantified missing burden without inventing assembly energy.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.12 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "46f8695188119139dd587f30a43bd4ea122c63470a68bd8a6d91ac751fc32cfc"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c55c10b7983cff8d",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_final_energy_electronics_312_review.json",
+      "review_sha256": "7fe1519bc30a932c30a8e9d3ada3caa30228b9a27cae8b75f733eb0e31397416",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for printed wiring board, through-hole mounted, unspecified, Pb free",
+          "reference product": "printed wiring board, through-hole mounted, unspecified, Pb free",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for printed wiring board, through-hole mounted, unspecified, Pb free",
+            "reference product": "printed wiring board, through-hole mounted, unspecified, Pb free",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 3,
+          "inventory_sha256": "57f00fc19c2b94704d83e2a4d8efdd7d44298d2eec2a31b0d863e47232878f7e",
+          "metadata_sha256": "18693d93a6234611abbd7c0d02f45d36a02b7442efdbdabd6b00093394b41079",
+          "comment_sha256": "a90ebd01d6dbfcaff619a03dba850a1d612c2792957a5cc16535d5ac38fda0e0",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 20,
+            "inventory_sha256": "ba1b4b690573ef173a91d19a4790d5e20fa69c6777189055d17e2697dcefb921",
+            "metadata_sha256": "e0394bd35bdff47a5bf35ae57f7e8601f5bd0b183b70bf81663d296be7077290",
+            "comment_sha256": "deccd75f28721c49e77be1944a7111ce5686b4ce20765a411f74c2a80c080045",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 20,
+            "inventory_sha256": "24fe01abdf6a73acb462dd74b3487ae5a247ac47cfd66bf4eb1065074f1378eb",
+            "metadata_sha256": "66715d788d78e9270b5474a7ce5f79a7b0c4b7f258581001ff82e536cc06f51e",
+            "comment_sha256": "bd5c658de6d8eac7ba1927be6f72709ca6fd843c5e53c035e5c1b1ddec382eb9",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Complete native unspecified through-hole-mounted printed wiring board with lead-free solder per kg. Includes component input and mounting/manufacturing efforts. Preserve board and solder class; no substitution by bare board area or additional mounting inventory. Native design, failure rate, energy/material regionalization and at-plant delivery replace the source market.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Complete native unspecified through-hole-mounted printed wiring board with lead-free solder per kg. Includes component input and mounting/manufacturing efforts. Preserve board and solder class; no substitution by bare board area or additional mounting inventory. Native design, failure rate, energy/material regionalization and at-plant delivery replace the source market.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.12 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1c9d777e3a374887de72c04ddb1b5ff06085c2a3a76a213b291d2410a2a3bd27"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0d1fada13a96a314",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_electronics_312_review.json",
+      "review_sha256": "7fe1519bc30a932c30a8e9d3ada3caa30228b9a27cae8b75f733eb0e31397416",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for printed wiring board, for surface mounting, Pb free surface",
+          "reference product": "printed wiring board, for surface mounting, Pb free surface",
+          "unit": "square meter"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for printed wiring board, for surface mounting, Pb free surface",
+            "reference product": "printed wiring board, for surface mounting, Pb free surface",
+            "unit": "square meter"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 3,
+          "inventory_sha256": "ea9966883ae3a7ae4ea1d2072036b5399f4cb13d25e7a02adec470e33d86f768",
+          "metadata_sha256": "c5938dbcfed4141590c0eff547bb1d6f279ea3c420b13028c0384ff2463f8113",
+          "comment_sha256": "241fb06a7233304381cca3f41ffc1e2005456dc59a779fa5809ee34ab5df6291",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 47,
+            "inventory_sha256": "da037388812cec01790456f65c072ae1f99ea8d1e6f3681ed56e220d1b22c67e",
+            "metadata_sha256": "fdaec977b9c3aa307e8957318eeb82be6cd4bc4eba4c71fea0487454c1f6ccc7",
+            "comment_sha256": "d452ac6f5401aad2999f18d50a52c5a29092f8dac79782d2905ea4ad6237b072",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 48,
+            "inventory_sha256": "5edd0c8f7e6fd56df505f5492037973f6bcf7862f3fb5c3b6e32d81e852e3be0",
+            "metadata_sha256": "d13d5729c07701426c58d9ec2eb8d529c91e1d2f04900404e6c8b327fb963aaa",
+            "comment_sha256": "99785b3b52033b5692bb798f66cc7dd78af82be13f00e848b96d7fec87c4e073",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Complete native bare printed wiring board prepared for surface mounting, lead-free finish, per square metre, without mounted components. The native board is six-layer FR-4 with stated 3.26 kg/m2, but both references use area: no areal-mass multiplier or additional mounted electronics. Board construction, finish portfolio, failure rate, energy and delivery differ.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Complete native bare printed wiring board prepared for surface mounting, lead-free finish, per square metre, without mounted components. The native board is six-layer FR-4 with stated 3.26 kg/m2, but both references use area: no areal-mass multiplier or additional mounted electronics. Board construction, finish portfolio, failure rate, energy and delivery differ.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.12 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9e0e442766879ec35e02896ee8ac7ec873b38e90010e794f901c6162f8b8dcec"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0ac55c2e2b94f03e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_electronics_312_review.json",
+      "review_sha256": "7fe1519bc30a932c30a8e9d3ada3caa30228b9a27cae8b75f733eb0e31397416",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for diode, glass-, for through-hole mounting",
+          "reference product": "diode, glass-, for through-hole mounting",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for diode, glass-, for through-hole mounting",
+            "reference product": "diode, glass-, for through-hole mounting",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 3,
+          "inventory_sha256": "cfeea9af4ba8d6dbdc3317e9aa35ed2c79474ef376c0a423228a053df47d2798",
+          "metadata_sha256": "b398380604b60fa80b1451bdeaf232cea2a400233c9f183f19a3bca8987e2efb",
+          "comment_sha256": "86d019b4104dc1cb578fd9f322101616ba561532b55c9a8b49a674c8b12aaf43",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 10,
+            "inventory_sha256": "ef5e6429935aa53b7dde1cb893ab4809d6624e69a3544290c3dae56c1db4f804",
+            "metadata_sha256": "ebdec92f498d5f50386f165bd34aedd2528b0738a948c50e33e18a001d1b13d4",
+            "comment_sha256": "ab561313cc4818ea8cfe1994e983d913309156fe3fb44f13d4376b7dd4eae7f0",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 10,
+            "inventory_sha256": "bbb750f54cad91117b5115902938eca14eff2663e6b82f4d5b582afcb501f1ac",
+            "metadata_sha256": "d08741d0a40237d8f0f85af96f8084fe9a9aa8bb750c2a2fdb89eae2ea0ad837",
+            "comment_sha256": "bc82525130150e3103ff964b8c33687b918abbaff97796b8513d8fdc6c5a0e34",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Complete native glass diode for through-hole mounting per kg. Native per-device mass is descriptive only: no count/mass conversion. Keep diode package and mounting class; internal production, primary materials, regionalization, vintage and delivered-market differences remain.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Complete native glass diode for through-hole mounting per kg. Native per-device mass is descriptive only: no count/mass conversion. Keep diode package and mounting class; internal production, primary materials, regionalization, vintage and delivered-market differences remain.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.12 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "fade7da51320fe4bb9e7b45630afc790fb8d8248d44342dc17814e9f8c8ba2ee"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-caa0d550d47e54ec",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_electronics_312_review.json",
+      "review_sha256": "7fe1519bc30a932c30a8e9d3ada3caa30228b9a27cae8b75f733eb0e31397416",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for inductor, ring core choke type",
+          "reference product": "inductor, ring core choke type",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for inductor, ring core choke type",
+            "reference product": "inductor, ring core choke type",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 3,
+          "inventory_sha256": "0f380c0ba17d090214b0560161e2cdfd5e5c067e86e805cd3f95681f994de06d",
+          "metadata_sha256": "5b9ee052ec4186c873cc6ea33075569ca06c216e24cdefc86baaf35f8d9c05b6",
+          "comment_sha256": "1d0863d51e7f0a0f684650c3bdc38c84a1c4293970f8baeb7fd3bcc5cfc3771d",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 9,
+            "inventory_sha256": "8ac15d2d980e456d7544ac3d7f6aa9ede038fdd18fa99b6b7988cf221cf6945d",
+            "metadata_sha256": "ef2f40fc7c910af3a967a56446cb0c27df6ce47990c736e8f778cb024edcc5fb",
+            "comment_sha256": "7d625b645989cf3510d6fcd446b314f80707c5907fb8ac3c2c5d31219a2b440a",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 9,
+            "inventory_sha256": "65a2cc4a1ae228e612fe7953e4360d2443d5cb29cc3669499d20c12d702e0d60",
+            "metadata_sha256": "5c982bff2f441d788bd5ba99dc0510fde0b628a7fb9cb9dccb3abee04d613088",
+            "comment_sha256": "937ce24710b270197427dfb8ed00d601de28a87e65d2b0ab609ffddba30e636a",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Complete native ring-core-choke inductor per kg. Retain component class and full production inventory; native 6 g example is not an extra factor. Native primary-metal assumptions, production, geography, delivery and uncertainty replace the source supply portfolio.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Complete native ring-core-choke inductor per kg. Retain component class and full production inventory; native 6 g example is not an extra factor. Native primary-metal assumptions, production, geography, delivery and uncertainty replace the source supply portfolio.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.12 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1097fd2da8bfc4b1e595a5590140f9ae700556a57af4e271fac969f3da33fb4f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-efc6fb577e7b61ae",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_electronics_312_review.json",
+      "review_sha256": "7fe1519bc30a932c30a8e9d3ada3caa30228b9a27cae8b75f733eb0e31397416",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for resistor, metal film type, through-hole mounting",
+          "reference product": "resistor, metal film type, through-hole mounting",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for resistor, metal film type, through-hole mounting",
+            "reference product": "resistor, metal film type, through-hole mounting",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 3,
+          "inventory_sha256": "4dfdb759939853896f099f777928c6876b1cbdf33fb8c6cf762653e3953706ef",
+          "metadata_sha256": "85d6a16ef820caaaabc046842f4eff2eef9195abde33a2f4209a104d91693e66",
+          "comment_sha256": "39a9a4197f97df6e2b37ae4c03ecf0f161513326ed4c188ac4ea491a7cfe0b26",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 18,
+            "inventory_sha256": "874995e8e9bdda58a48f0427f683c2121055db78053bf9662f2d8c7ad547a454",
+            "metadata_sha256": "33993b575d6c8a815d424878e06c3e2a16954caad9779e76b76f63c3920efe10",
+            "comment_sha256": "9a5cb838c8762a74ae8d5b1fd60697e100e3dd6df0f59b47f6dd695caa9faa3f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 18,
+            "inventory_sha256": "dfbde2ed1e90ac8dc5010dc2d141277491e2a180b3a8cb0fa9fcb444f002d150",
+            "metadata_sha256": "f1b56a581cc583a187867ab64908c75a9edeef0caffd8db2fb6a07900c4f42ee",
+            "comment_sha256": "69e3d0c1d222a847a8d598e20307248afa1c2965065f35a175c6665829a548ce",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Complete native metal-film resistor for through-hole mounting per kg. Native metadata contains a stray capacitor word, while the reference, included boundary, declared resistor mass and technology explicitly identify metal-film resistors. Retain that documentation caveat; no component-count or device-mass multiplier. Native design, regionalization, vintage and delivered-market differences remain.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Complete native metal-film resistor for through-hole mounting per kg. Native metadata contains a stray capacitor word, while the reference, included boundary, declared resistor mass and technology explicitly identify metal-film resistors. Retain that documentation caveat; no component-count or device-mass multiplier. Native design, regionalization, vintage and delivered-market differences remain.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.12 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "45f5730fd034155cd74b5ca369affdbd94a06b25bbaefc9e07073e960d61e93f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2a2c48b3e3925513",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_final_energy_electronics_312_review.json",
+      "review_sha256": "7fe1519bc30a932c30a8e9d3ada3caa30228b9a27cae8b75f733eb0e31397416",
+      "authorization": "Standing automatic modelling approval; mapping-only operationalization with complete native processes and explicit reference, technology and geography warnings. No remote upstream reconstruction.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for transistor, surface-mounted",
+          "reference product": "transistor, surface-mounted",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for transistor, surface-mounted",
+            "reference product": "transistor, surface-mounted",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 3,
+          "inventory_sha256": "8247e206e9dc91709a58e9e302a38d25fd7f207375710767a810a506d1da4e09",
+          "metadata_sha256": "7e4078dfd8e5745e94e32c8e3d657f275a92f4cf4f4164b9855ef5f6725936c2",
+          "comment_sha256": "51fc2d57f4b55df0b1bcce38aeffc59034d08007fcd76a1a5237916b541532dc",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "nonproduction_count": 18,
+            "inventory_sha256": "59b11cb6a655c463ae48176cac66f1d5e371ed637bdc5af79a04b19049692417",
+            "metadata_sha256": "7eeb7033fc68b1882e40ef65be34faf26e74d53017aabc071d7c26d6764bfd63",
+            "comment_sha256": "e76440189ab9d33fdc6036f44347a055c61bd9eaf94abd0b7b2abf7e7318bbef",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "nonproduction_count": 18,
+            "inventory_sha256": "5bb44ac2039dad84be4e4795a8699b8f85431d0c80e4c8ec1a81c8c2af8d6388",
+            "metadata_sha256": "d10218d47d37393734f9eaa374c210f3606dae4e7b99ee75267b780de86fa2b1",
+            "comment_sha256": "c186afbb8ad9b70e8bc65ab88932d8080345894ac3efa5526a71bab7ae012f60",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "functional_basis": "Complete native SMD surface-mounted transistor per kg. Preserve package/mounting class and native production efforts; descriptive per-device mass does not multiply the one-kg reference. Native semiconductor design, materials, delivery, geography, vintage and internal uncertainty differ.",
+        "complete_native_inventory_unchanged": true
+      },
+      "limitations": [
+        "Complete native SMD surface-mounted transistor per kg. Preserve package/mounting class and native production efforts; descriptive per-device mass does not multiply the one-kg reference. Native semiconductor design, materials, delivery, geography, vintage and internal uncertainty differ.",
+        "Retain exact caller quantities, formulas, supported signed uncertainty and separately listed operations/emissions. Complete native inventory replaces source manufacturing/market internals, including grade, allocation, delivery, geography, vintage and internal uncertainty. Documented BAFU biosphere exclusions remain. Score differences are unquantified; no inventory/LCIA equivalence.",
+        "Only this exact inspected ecoinvent 3.12 cut-off identity is admitted. No new foreground omission, zero-burden authority, recovery credit, reconstructed upstream manufacture, inverse or cross-system-model conversion, or Python source/test change."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "796584b82381ccfd3a37fc5aa16cc705c4eef66974478ecf77157f4e1c70b8cd"
+        }
+      ]
     }
   ],
   "superseded_operations": [
