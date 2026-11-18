@@ -41,7 +41,7 @@ def test_yaml_material_configuration_is_complete_and_valid():
 
     assert len(config.rules) == 308
     assert len(config.enabled_rules) == 281
-    assert len(conversions) == 69
+    assert len(conversions) == 87
     by_name = {item.activity_name: item for item in conversions}
     frame = by_name["frame, blanks and saddle, for lorry"]
     assert frame.ecoinvent_unit == "kilogram"

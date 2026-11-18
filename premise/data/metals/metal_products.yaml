@@ -4335,3 +4335,81 @@ activity_policies:
     and diesel (1/0.3051750380517504) vehicles. Both vehicles use the same engine
     provider. A single global overwrite cannot satisfy both mass bases; preserve
     the source engine until separate vehicle-specific component inventories exist.
+- id: preserve-uvek-2026-photovoltaic-cell-multi-si-at-plant
+  technology: c-Si
+  activity:
+    name: Photovoltaic cell, multi-Si, at plant
+    reference_product: Photovoltaic cell, multi-Si, at plant
+  locations:
+  - '*'
+  action: preserve_source
+  reason: Native cells already represent silver and other materials through metallization pastes and components.
+    Use the same preservation policy as the existing IEA PVPS cell inventories; do not add a second direct
+    silver input. No compatible paste-specific forecast is inferred.
+- id: preserve-uvek-2026-photovoltaic-cell-single-si-at-plant
+  technology: c-Si
+  activity:
+    name: Photovoltaic cell, single-Si, at plant
+    reference_product: Photovoltaic cell, single-Si, at plant
+  locations:
+  - '*'
+  action: preserve_source
+  reason: Native cells already represent silver and other materials through metallization pastes and components.
+    Use the same preservation policy as the existing IEA PVPS cell inventories; do not add a second direct
+    silver input. No compatible paste-specific forecast is inferred.
+- id: preserve-uvek-2026-photovoltaic-panel-perovskite-si-tandem-at-plant
+  technology: perovskite
+  activity:
+    name: Photovoltaic panel, perovskite-Si-tandem, at plant
+    reference_product: Photovoltaic panel, perovskite-Si-tandem, at plant
+  locations:
+  - '*'
+  action: preserve_source
+  reason: Preserve the complete native tandem panel. Its ITO is supplied through a shared LCD sputtering
+    service measured in m3; the existing perovskite rule requests a direct nanoscale sputtering-target
+    powder. Adding powder at the panel would overlap coating burdens, while changing the shared LCD service
+    would affect unrelated products. A compatible isolated perovskite coating target is unavailable.
+- id: preserve-uvek-2026-wind-turbine-4-5mw-onshore-moving-parts
+  technology: Wind-Gearbox
+  activity:
+    name: Wind turbine 4.5MW, onshore, moving parts
+    reference_product: Wind turbine 4.5MW, onshore, moving parts
+  locations:
+  - '*'
+  action: preserve_source
+  reason: The native moving-parts assembly already obtains neodymium through a complete permanent-magnet
+    inventory. A direct oxide addition would overlap those burdens. Preserve the supplied magnet until
+    a component-specific per-kg design is available; apply no foregone recovery credit.
+- id: preserve-uvek-2026-wind-turbine-4-5mw-onshore-moving-parts-direct-drive
+  technology: Wind-DDPM
+  activity:
+    name: Wind turbine 4.5MW, onshore, moving parts, direct drive
+    reference_product: Wind turbine 4.5MW, onshore, moving parts
+  locations:
+  - '*'
+  action: preserve_source
+  reason: The native moving-parts assembly already obtains neodymium through a complete permanent-magnet
+    inventory. A direct oxide addition would overlap those burdens. Preserve the supplied magnet until
+    a component-specific per-kg design is available; apply no foregone recovery credit.
+- id: preserve-uvek-2026-wind-turbine-6-2mw-onshore-moving-parts
+  technology: Wind-Gearbox
+  activity:
+    name: Wind turbine 6.2MW, onshore, moving parts
+    reference_product: Wind turbine 6.2MW, onshore, moving parts
+  locations:
+  - '*'
+  action: preserve_source
+  reason: The native moving-parts assembly already obtains neodymium through a complete permanent-magnet
+    inventory. A direct oxide addition would overlap those burdens. Preserve the supplied magnet until
+    a component-specific per-kg design is available; apply no foregone recovery credit.
+- id: preserve-uvek-2026-wind-turbine-6-2mw-onshore-moving-parts-direct-drive
+  technology: Wind-DDPM
+  activity:
+    name: Wind turbine 6.2MW, onshore, moving parts, direct drive
+    reference_product: Wind turbine 6.2MW, onshore, moving parts
+  locations:
+  - '*'
+  action: preserve_source
+  reason: The native moving-parts assembly already obtains neodymium through a complete permanent-magnet
+    inventory. A direct oxide addition would overlap those burdens. Preserve the supplied magnet until
+    a component-specific per-kg design is available; apply no foregone recovery credit.

@@ -1,0 +1,89 @@
+{
+  "status": "native_wind_solar_and_stack_material_mappings_pass_shared_kernel_and_signed_LCIs",
+  "mapping_extension": {
+    "new_native_roles": [
+      "Wind-DDPM",
+      "Wind-Gearbox",
+      "c-Si",
+      "a-Si",
+      "CIGS",
+      "CdTe",
+      "perovskite"
+    ],
+    "native_wind_prototypes_and_variants": 14,
+    "added_capacity_conversions": 18,
+    "total_capacity_conversions": 87,
+    "added_preservation_policies": 7,
+    "original_rules_and_ecoinvent_aliases_unchanged": true,
+    "new_upstream_processes": 0,
+    "source_code_changes_in_mapping_extension": 0
+  },
+  "role_counts": {
+    "ICEV": 0,
+    "EV": 3,
+    "Wind-DDPM": 7,
+    "Wind-Gearbox": 7,
+    "PEMFC": 2,
+    "SOFC - Y": 0,
+    "PEMEL": 1,
+    "AEL": 1,
+    "HTEL - Yttrium": 1,
+    "c-Si": 8,
+    "a-Si": 2,
+    "CIGS": 1,
+    "CdTe": 3,
+    "perovskite": 1,
+    "Parabolic Trough - PB": 0,
+    "CSP Tower - PB": 0,
+    "Nuclear": 0
+  },
+  "material_decision_counts": {
+    "metals.material_rule.year_outside_support": 62,
+    "metals.material_rule.intensity_missing": 13,
+    "metals.material_rule.component_scope_unverified": 57,
+    "metals.material_rule.preserved_source": 61,
+    "metals.material_rule.applied": 29,
+    "metals.material_rule.zero_intensity": 1,
+    "metals.material_rule.design_incomplete": 3
+  },
+  "applied_material_rules": 29,
+  "distinct_updated_activities": 19,
+  "remaining_provider_errors": 0,
+  "LCI": {
+    "status": "all_updated_native_wind_solar_and_stack_targets_have_finite_signed_LCIs",
+    "complete_modified_graph_activities": 19735,
+    "modified_activity_demands": 19,
+    "signed_LCIs": 38,
+    "signed_linearity_passed": true,
+    "no_Brightway_database_written": true,
+    "qualification_limit": "Shared material-update kernel on the real combined physical graph only. Full installed callback, exhaustive graph checks and public export remain separate requirements."
+  },
+  "existing_metals_mapping_requirements_tests_passed": 402,
+  "no_new_inventory_or_upstream_process": true,
+  "source_code_changes_in_mapping_commit": 0,
+  "Native_capacity_witnesses": {
+    "CIS": {
+      "module_Wp": 78,
+      "module_area_m2": 0.72,
+      "MW_per_m2": 0.00010833333333333334
+    },
+    "generic_CdTe_DE_MY_US": {
+      "module_Wp": 84,
+      "module_area_m2": 0.72,
+      "MW_per_m2": 0.00011666666666666667
+    },
+    "micro_Si_panel_and_laminate": {
+      "module_Wp": 100,
+      "module_area_m2": 1.4,
+      "MW_per_m2": 7.142857142857143e-05
+    }
+  },
+  "explicit_source_limits": [
+    "No compatible native dysprosium or yttrium oxide supply is present; cerium is a 60% oxide concentrate rather than the specified pure-oxide carrier. Preserve the entire matched SOEC ceramic design.",
+    "Native silicon cells carry silver through metallization pastes; retain their material structure under the same policy used by existing IEA PVPS cell records.",
+    "Four wind assemblies already carry neodymium through complete permanent magnets; preserve those inventories instead of adding a second direct oxide input.",
+    "The native tandem panel uses shared LCD ITO sputtering measured in cubic metres. The existing perovskite rule cannot be applied to that different boundary/unit without a dedicated design.",
+    "Raw ICEV, nuclear and CSP metal-intensity observations end at 2020; 2050 is outside support. Native SOFC stack manufacture is absent; treatment records are excluded."
+  ],
+  "qualification_limit": "Shared material-update kernel and finite LCIs on the real combined physical graph only. Installed complete callbacks/coverage/graph certification and public export remain required."
+}

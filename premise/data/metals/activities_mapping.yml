@@ -42,6 +42,58 @@ EV:
       reference product: electric motor
 ### At this point, we assume that DDPM are used for offshore and Gearbox onshore.
 Wind-DDPM:
+  uvek_aliases:
+    fltr:
+      name:
+      - Wind turbine 10MW, offshore, moving parts, direct drive
+      - Wind turbine 15MW, offshore, moving parts, direct drive
+      - Wind turbine 2.3MW, onshore, moving parts, direct drive
+      - Wind turbine 3.4MW, onshore, moving parts, direct drive
+      - Wind turbine 4.5MW, onshore, moving parts, direct drive
+      - Wind turbine 5MW, offshore, moving parts, direct drive
+      - Wind turbine 6.2MW, onshore, moving parts, direct drive
+      reference product:
+      - Wind turbine 10MW, offshore, moving parts
+      - Wind turbine 15MW, offshore, moving parts
+      - Wind turbine 2.3MW, onshore, moving parts
+      - Wind turbine 3.4MW, onshore, moving parts
+      - Wind turbine 4.5MW, onshore, moving parts
+      - Wind turbine 5MW, offshore, moving parts
+      - Wind turbine 6.2MW, onshore, moving parts
+      unit: unit
+    exact: true
+    exact_identities:
+    - name: Wind turbine 10MW, offshore, moving parts, direct drive
+      reference product: Wind turbine 10MW, offshore, moving parts
+      unit: unit
+    - name: Wind turbine 15MW, offshore, moving parts, direct drive
+      reference product: Wind turbine 15MW, offshore, moving parts
+      unit: unit
+    - name: Wind turbine 2.3MW, onshore, moving parts, direct drive
+      reference product: Wind turbine 2.3MW, onshore, moving parts
+      unit: unit
+    - name: Wind turbine 3.4MW, onshore, moving parts, direct drive
+      reference product: Wind turbine 3.4MW, onshore, moving parts
+      unit: unit
+    - name: Wind turbine 4.5MW, onshore, moving parts, direct drive
+      reference product: Wind turbine 4.5MW, onshore, moving parts
+      unit: unit
+    - name: Wind turbine 5MW, offshore, moving parts, direct drive
+      reference product: Wind turbine 5MW, offshore, moving parts
+      unit: unit
+    - name: Wind turbine 6.2MW, onshore, moving parts, direct drive
+      reference product: Wind turbine 6.2MW, onshore, moving parts
+      unit: unit
+    native_reference_amount: 1
+    native_limitations:
+    - Apply only the existing neodymium rule to the moving-parts component per one rated turbine; whole-plant
+      bulk-metal rules do not describe this component. Keep complete supplied magnets unchanged where no
+      direct neodymium-oxide input can be separated. No compatible native dysprosium-oxide supply is established,
+      so its forecast is not synthesized from a rare-earth concentrate.
+    - All source quantities, signs, reference products, ancillary inputs and unsupported-year/matched-design
+      guards remain. Native source biosphere exclusions and unquantified LCIA differences remain.
+    material_rule_ids:
+    - wind-ddpm-neodymium-neodymium-oxide
   ecoinvent_aliases:
     # Apply turbine intensities to equipment outputs, not scrap co-products.
     fltr:
@@ -54,6 +106,58 @@ Wind-DDPM:
       - market
       - electricity
 Wind-Gearbox:
+  uvek_aliases:
+    fltr:
+      name:
+      - Wind turbine 10MW, offshore, moving parts
+      - Wind turbine 15MW, offshore, moving parts
+      - Wind turbine 2.3MW, onshore, moving parts
+      - Wind turbine 3.4MW, onshore, moving parts
+      - Wind turbine 4.5MW, onshore, moving parts
+      - Wind turbine 5MW, offshore, moving parts
+      - Wind turbine 6.2MW, onshore, moving parts
+      reference product:
+      - Wind turbine 10MW, offshore, moving parts
+      - Wind turbine 15MW, offshore, moving parts
+      - Wind turbine 2.3MW, onshore, moving parts
+      - Wind turbine 3.4MW, onshore, moving parts
+      - Wind turbine 4.5MW, onshore, moving parts
+      - Wind turbine 5MW, offshore, moving parts
+      - Wind turbine 6.2MW, onshore, moving parts
+      unit: unit
+    exact: true
+    exact_identities:
+    - name: Wind turbine 10MW, offshore, moving parts
+      reference product: Wind turbine 10MW, offshore, moving parts
+      unit: unit
+    - name: Wind turbine 15MW, offshore, moving parts
+      reference product: Wind turbine 15MW, offshore, moving parts
+      unit: unit
+    - name: Wind turbine 2.3MW, onshore, moving parts
+      reference product: Wind turbine 2.3MW, onshore, moving parts
+      unit: unit
+    - name: Wind turbine 3.4MW, onshore, moving parts
+      reference product: Wind turbine 3.4MW, onshore, moving parts
+      unit: unit
+    - name: Wind turbine 4.5MW, onshore, moving parts
+      reference product: Wind turbine 4.5MW, onshore, moving parts
+      unit: unit
+    - name: Wind turbine 5MW, offshore, moving parts
+      reference product: Wind turbine 5MW, offshore, moving parts
+      unit: unit
+    - name: Wind turbine 6.2MW, onshore, moving parts
+      reference product: Wind turbine 6.2MW, onshore, moving parts
+      unit: unit
+    native_reference_amount: 1
+    native_limitations:
+    - Apply only the existing neodymium rule to the moving-parts component per one rated turbine; preserve
+      the shared original-name versus direct-drive-variant classification. Whole-plant bulk-metal rules
+      do not describe this component. Complete supplied magnets remain source inventories. Compatible native
+      dysprosium-oxide supply is unavailable.
+    - All source quantities, signs, reference products, ancillary inputs and unsupported-year/matched-design
+      guards remain. Native source biosphere exclusions and unquantified LCIA differences remain.
+    material_rule_ids:
+    - wind-gearbox-neodymium-neodymium-oxide
   ecoinvent_aliases:
     fltr:
       name:
@@ -248,6 +352,30 @@ HTEL - Yttrium:
       reference product: electrolyzer, 1MWe, SOEC, Stack
 ### PAFC fuel cells are not found in Ecoinvent
 c-Si:
+  uvek_aliases:
+    fltr:
+      name:
+      - Photovoltaic cell, multi-Si, at plant
+      - Photovoltaic cell, single-Si, at plant
+      reference product:
+      - Photovoltaic cell, multi-Si, at plant
+      - Photovoltaic cell, single-Si, at plant
+      unit: square meter
+    exact: true
+    exact_identities:
+    - name: Photovoltaic cell, multi-Si, at plant
+      reference product: Photovoltaic cell, multi-Si, at plant
+      unit: square meter
+    - name: Photovoltaic cell, single-Si, at plant
+      reference product: Photovoltaic cell, single-Si, at plant
+      unit: square meter
+    native_reference_amount: 1
+    native_limitations:
+    - Native cells already represent silver and other materials through metallization pastes and components.
+      Use the same preservation policy as the existing IEA PVPS cell inventories; do not add a second direct
+      silver input. No compatible paste-specific forecast is inferred.
+    - All source quantities, signs, reference products, ancillary inputs and unsupported-year/matched-design
+      guards remain. Native source biosphere exclusions and unquantified LCIA differences remain.
   ecoinvent_aliases:
     # Require a silicon-cell output, excluding substrate preparation and co-products.
     fltr:
@@ -275,17 +403,82 @@ c-Si:
       - slanted-roof
       - perovskite
 a-Si:
+  uvek_aliases:
+    fltr:
+      name:
+      - Photovoltaic laminate, micro-Si, at plant
+      - Photovoltaic panel, micro-Si, at plant
+      reference product:
+      - Photovoltaic laminate, micro-Si, at plant
+      - Photovoltaic panel, micro-Si, at plant
+      unit: square meter
+    exact: true
+    exact_identities:
+    - name: Photovoltaic laminate, micro-Si, at plant
+      reference product: Photovoltaic laminate, micro-Si, at plant
+      unit: square meter
+    - name: Photovoltaic panel, micro-Si, at plant
+      reference product: Photovoltaic panel, micro-Si, at plant
+      unit: square meter
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the existing Premise micro-Si representative for the a-Si material category, with its documented
+      100 Wp per 1.4 m2 capacity basis. Ge/indium material overlays follow the unchanged rule equations,
+      not a reconstructed future layer stack; technology, layer composition, yield, allocation, vintage
+      and score differences remain screening limitations.
+    - All source quantities, signs, reference products, ancillary inputs and unsupported-year/matched-design
+      guards remain. Native source biosphere exclusions and unquantified LCIA differences remain.
   ecoinvent_aliases:
     fltr:
       - photovoltaic laminate production, a-Si
       - photovoltaic laminate, micro-Si, at plant
       - photovoltaic panel, micro-Si, at plant
 CIGS:
+  uvek_aliases:
+    fltr:
+      name:
+      - Photovoltaic laminate, CIS, at plant
+      reference product:
+      - Photovoltaic laminate, CIS, at plant
+      unit: square meter
+    exact: true
+    exact_identities:
+    - name: Photovoltaic laminate, CIS, at plant
+      reference product: Photovoltaic laminate, CIS, at plant
+      unit: square meter
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native CIS laminate per positive m2, documented as 78 Wp per 0.72 m2. Keep existing material-rule
+      factors, including compound stoichiometry and the inherited gallium factor; this does not infer new
+      deposition efficiencies. Source composition, allocation, geography, vintage, uncertainty and score
+      differences remain.
+    - All source quantities, signs, reference products, ancillary inputs and unsupported-year/matched-design
+      guards remain. Native source biosphere exclusions and unquantified LCIA differences remain.
   ecoinvent_aliases:
     fltr:
       - photovoltaic laminate production, CIS
       - photovoltaic laminate, CIS, at plant
 CdTe:
+  uvek_aliases:
+    fltr:
+      name:
+      - Photovoltaic laminate, CdTe, at plant
+      reference product:
+      - Photovoltaic laminate, CdTe, at plant
+      unit: square meter
+    exact: true
+    exact_identities:
+    - name: Photovoltaic laminate, CdTe, at plant
+      reference product: Photovoltaic laminate, CdTe, at plant
+      unit: square meter
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native generic CdTe laminate per positive m2 in DE, MY and US; all document 84 Wp per 0.72
+      m2. This is distinct from the old ecoinvent 65 Wp basis. Keep the existing CdTe stoichiometric factor
+      and projected indium overlay; separate unchanged buffer/coating inventories are not a complete future
+      layer redesign. Series 4/6 inventories are outside this generic selector.
+    - All source quantities, signs, reference products, ancillary inputs and unsupported-year/matched-design
+      guards remain. Native source biosphere exclusions and unquantified LCIA differences remain.
   ecoinvent_aliases:
     fltr:
       - photovoltaic laminate production, CdTe
@@ -294,6 +487,26 @@ CdTe:
       - market
       - Series
 perovskite:
+  uvek_aliases:
+    fltr:
+      name:
+      - Photovoltaic panel, perovskite-Si-tandem, at plant
+      reference product:
+      - Photovoltaic panel, perovskite-Si-tandem, at plant
+      unit: square meter
+    exact: true
+    exact_identities:
+    - name: Photovoltaic panel, perovskite-Si-tandem, at plant
+      reference product: Photovoltaic panel, perovskite-Si-tandem, at plant
+      unit: square meter
+    native_reference_amount: 1
+    native_limitations:
+    - Preserve the complete native tandem panel. Its ITO is supplied through a shared LCD sputtering service
+      measured in m3; the existing perovskite rule requests a direct nanoscale sputtering-target powder.
+      Adding powder at the panel would overlap coating burdens, while changing the shared LCD service would
+      affect unrelated products. A compatible isolated perovskite coating target is unavailable.
+    - All source quantities, signs, reference products, ancillary inputs and unsupported-year/matched-design
+      guards remain. Native source biosphere exclusions and unquantified LCIA differences remain.
   ecoinvent_aliases:
     fltr:
       - sputter process

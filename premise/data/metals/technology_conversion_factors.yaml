@@ -524,3 +524,147 @@ conversions:
   description: Native documentation references kg of the motor. Capacity and total device mass describe
     the example motor only; apply no whole-device or kW multiplier. Existing EV material-preservation
     reasons remain in force.
+- id: uvek-2026-wind-turbine-10mw-offshore-moving-parts
+  activity:
+    name: Wind turbine 10MW, offshore, moving parts
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 10.0
+  description: One native moving-parts assembly for the stated rated turbine. Capacity converts only the
+    explicitly selected neodymium rule; no whole-plant bulk-metal bill is applied to the component.
+- id: uvek-2026-wind-turbine-10mw-offshore-moving-parts-direct-drive
+  activity:
+    name: Wind turbine 10MW, offshore, moving parts, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 10.0
+  description: One native moving-parts assembly for the stated rated turbine. Capacity converts only the
+    explicitly selected neodymium rule; no whole-plant bulk-metal bill is applied to the component.
+- id: uvek-2026-wind-turbine-15mw-offshore-moving-parts
+  activity:
+    name: Wind turbine 15MW, offshore, moving parts
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 15.0
+  description: One native moving-parts assembly for the stated rated turbine. Capacity converts only the
+    explicitly selected neodymium rule; no whole-plant bulk-metal bill is applied to the component.
+- id: uvek-2026-wind-turbine-15mw-offshore-moving-parts-direct-drive
+  activity:
+    name: Wind turbine 15MW, offshore, moving parts, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 15.0
+  description: One native moving-parts assembly for the stated rated turbine. Capacity converts only the
+    explicitly selected neodymium rule; no whole-plant bulk-metal bill is applied to the component.
+- id: uvek-2026-wind-turbine-2-3mw-onshore-moving-parts
+  activity:
+    name: Wind turbine 2.3MW, onshore, moving parts
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 2.3
+  description: One native moving-parts assembly for the stated rated turbine. Capacity converts only the
+    explicitly selected neodymium rule; no whole-plant bulk-metal bill is applied to the component.
+- id: uvek-2026-wind-turbine-2-3mw-onshore-moving-parts-direct-drive
+  activity:
+    name: Wind turbine 2.3MW, onshore, moving parts, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 2.3
+  description: One native moving-parts assembly for the stated rated turbine. Capacity converts only the
+    explicitly selected neodymium rule; no whole-plant bulk-metal bill is applied to the component.
+- id: uvek-2026-wind-turbine-3-4mw-onshore-moving-parts
+  activity:
+    name: Wind turbine 3.4MW, onshore, moving parts
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 3.4
+  description: One native moving-parts assembly for the stated rated turbine. Capacity converts only the
+    explicitly selected neodymium rule; no whole-plant bulk-metal bill is applied to the component.
+- id: uvek-2026-wind-turbine-3-4mw-onshore-moving-parts-direct-drive
+  activity:
+    name: Wind turbine 3.4MW, onshore, moving parts, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 3.4
+  description: One native moving-parts assembly for the stated rated turbine. Capacity converts only the
+    explicitly selected neodymium rule; no whole-plant bulk-metal bill is applied to the component.
+- id: uvek-2026-wind-turbine-4-5mw-onshore-moving-parts
+  activity:
+    name: Wind turbine 4.5MW, onshore, moving parts
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 4.5
+  description: One native moving-parts assembly for the stated rated turbine. Capacity converts only the
+    explicitly selected neodymium rule; no whole-plant bulk-metal bill is applied to the component.
+- id: uvek-2026-wind-turbine-4-5mw-onshore-moving-parts-direct-drive
+  activity:
+    name: Wind turbine 4.5MW, onshore, moving parts, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 4.5
+  description: One native moving-parts assembly for the stated rated turbine. Capacity converts only the
+    explicitly selected neodymium rule; no whole-plant bulk-metal bill is applied to the component.
+- id: uvek-2026-wind-turbine-5mw-offshore-moving-parts
+  activity:
+    name: Wind turbine 5MW, offshore, moving parts
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 5.0
+  description: One native moving-parts assembly for the stated rated turbine. Capacity converts only the
+    explicitly selected neodymium rule; no whole-plant bulk-metal bill is applied to the component.
+- id: uvek-2026-wind-turbine-5mw-offshore-moving-parts-direct-drive
+  activity:
+    name: Wind turbine 5MW, offshore, moving parts, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 5.0
+  description: One native moving-parts assembly for the stated rated turbine. Capacity converts only the
+    explicitly selected neodymium rule; no whole-plant bulk-metal bill is applied to the component.
+- id: uvek-2026-wind-turbine-6-2mw-onshore-moving-parts
+  activity:
+    name: Wind turbine 6.2MW, onshore, moving parts
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 6.2
+  description: One native moving-parts assembly for the stated rated turbine. Capacity converts only the
+    explicitly selected neodymium rule; no whole-plant bulk-metal bill is applied to the component.
+- id: uvek-2026-wind-turbine-6-2mw-onshore-moving-parts-direct-drive
+  activity:
+    name: Wind turbine 6.2MW, onshore, moving parts, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 6.2
+  description: One native moving-parts assembly for the stated rated turbine. Capacity converts only the
+    explicitly selected neodymium rule; no whole-plant bulk-metal bill is applied to the component.
+- id: uvek-2026-photovoltaic-laminate-cis-at-plant
+  activity:
+    name: Photovoltaic laminate, CIS, at plant
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 0.00010833333333333334
+  description: Native documented module rating divided by its stated module area, in MW per m2. Retain
+    technology, vintage and source-composition limitations; no density or lifetime multiplier is introduced.
+- id: uvek-2026-photovoltaic-laminate-cdte-at-plant
+  activity:
+    name: Photovoltaic laminate, CdTe, at plant
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 0.00011666666666666667
+  description: Native documented module rating divided by its stated module area, in MW per m2. Retain
+    technology, vintage and source-composition limitations; no density or lifetime multiplier is introduced.
+- id: uvek-2026-photovoltaic-laminate-micro-si-at-plant
+  activity:
+    name: Photovoltaic laminate, micro-Si, at plant
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 7.142857142857143e-05
+  description: Native documented module rating divided by its stated module area, in MW per m2. Retain
+    technology, vintage and source-composition limitations; no density or lifetime multiplier is introduced.
+- id: uvek-2026-photovoltaic-panel-micro-si-at-plant
+  activity:
+    name: Photovoltaic panel, micro-Si, at plant
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 7.142857142857143e-05
+  description: Native documented module rating divided by its stated module area, in MW per m2. Retain
+    technology, vintage and source-composition limitations; no density or lifetime multiplier is introduced.

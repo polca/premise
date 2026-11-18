@@ -306,6 +306,129 @@
         "Complete existing native European regional-storage indium supply per positive kg is an explicit geographic screening proxy for the global market requested by the unchanged material rule. Its historical production mix, trade, delivery, allocation, vintage, uncertainty and score differences remain; no new extraction, refining or transport process is invented.",
         "Replacing an existing native indium input uses the same native reference product so it is removed before the future amount is added. New projected inputs use the same complete supply, with the original per-MW formula and unit conversion. This authorization is scoped to the declared 2026 alias, exact supplier name/product and RER location."
       ]
+    },
+    {
+      "versions": [
+        "2026"
+      ],
+      "source": [
+        "market for neodymium oxide",
+        "neodymium oxide"
+      ],
+      "target": [
+        "Neodymium oxide, at plant",
+        "Neodymium oxide, at plant"
+      ],
+      "source_reference": "docs/development/uvek-metals-wind-solar-native-review.md",
+      "limitations": [
+        "Existing complete native Chinese neodymium-oxide supply per positive kg, used as the explicitly declared geographic source for the selected moving-parts neodymium rule. Retain the original 1.166376644805258 oxide/metal factor. No dysprosium or magnet-composition proxy is added.",
+        "Complete existing supply, source allocation, delivery, regional technology, vintage and uncertainty remain. Only the existing per-MW material rule changes the input amount; no upstream inventory, carrier purity, recovery credit or new transport is invented. Score effects are unquantified."
+      ],
+      "locations": [
+        "CN"
+      ]
+    },
+    {
+      "versions": [
+        "2026"
+      ],
+      "source": [
+        "market for cadmium sulfide, semiconductor-grade",
+        "cadmium sulfide, semiconductor-grade"
+      ],
+      "target": [
+        "Cadmium sulphide, semiconductor-grade, at plant",
+        "Cadmium sulphide, semiconductor-grade, at plant"
+      ],
+      "source_reference": "docs/development/uvek-metals-wind-solar-native-review.md",
+      "limitations": [
+        "Complete native US semiconductor-grade CdS supply matches the actual existing native CIS input; retain the original CdS/cadmium factor and source chemistry.",
+        "Complete existing supply, source allocation, delivery, regional technology, vintage and uncertainty remain. Only the existing per-MW material rule changes the input amount; no upstream inventory, carrier purity, recovery credit or new transport is invented. Score effects are unquantified."
+      ],
+      "locations": [
+        "US"
+      ]
+    },
+    {
+      "versions": [
+        "2026"
+      ],
+      "source": [
+        "market for cadmium telluride, semiconductor-grade",
+        "cadmium telluride, semiconductor-grade"
+      ],
+      "target": [
+        "Cadmium telluride, semiconductor-grade, at plant",
+        "Cadmium telluride, semiconductor-grade, at plant"
+      ],
+      "source_reference": "docs/development/uvek-metals-wind-solar-native-review.md",
+      "limitations": [
+        "Complete native US semiconductor-grade CdTe supply matches the existing native absorber input; retain the original CdTe/cadmium factor. Other unchanged cadmium-bearing buffers remain an explicit model limitation.",
+        "Complete existing supply, source allocation, delivery, regional technology, vintage and uncertainty remain. Only the existing per-MW material rule changes the input amount; no upstream inventory, carrier purity, recovery credit or new transport is invented. Score effects are unquantified."
+      ],
+      "locations": [
+        "US"
+      ]
+    },
+    {
+      "versions": [
+        "2026"
+      ],
+      "source": [
+        "market for gallium, semiconductor-grade",
+        "gallium, semiconductor-grade"
+      ],
+      "target": [
+        "Gallium, semiconductor-grade, at regional storage",
+        "Gallium, semiconductor-grade, at regional storage"
+      ],
+      "source_reference": "docs/development/uvek-metals-wind-solar-native-review.md",
+      "limitations": [
+        "Complete native European regional-storage semiconductor-grade gallium matches the existing CIS input. The existing rule factor of three is inherited, not inferred from native process yields.",
+        "Complete existing supply, source allocation, delivery, regional technology, vintage and uncertainty remain. Only the existing per-MW material rule changes the input amount; no upstream inventory, carrier purity, recovery credit or new transport is invented. Score effects are unquantified."
+      ],
+      "locations": [
+        "RER"
+      ]
+    },
+    {
+      "versions": [
+        "2026"
+      ],
+      "source": [
+        "market for selenium",
+        "selenium"
+      ],
+      "target": [
+        "Selenium, at plant",
+        "Selenium, at plant"
+      ],
+      "source_reference": "docs/development/uvek-metals-wind-solar-native-review.md",
+      "limitations": [
+        "Complete native European selenium supply matches the existing CIS input; elemental-kg basis is unchanged.",
+        "Complete existing supply, source allocation, delivery, regional technology, vintage and uncertainty remain. Only the existing per-MW material rule changes the input amount; no upstream inventory, carrier purity, recovery credit or new transport is invented. Score effects are unquantified."
+      ],
+      "locations": [
+        "RER"
+      ]
+    },
+    {
+      "versions": [
+        "2026"
+      ],
+      "source": [
+        "market for germanium, concentrate",
+        "germanium, concentrate"
+      ],
+      "target": [
+        "zinc mine operation",
+        "germanium, concentrate"
+      ],
+      "source_reference": "docs/development/uvek-metals-wind-solar-native-review.md",
+      "limitations": [
+        "Reuse the already prepared allocated germanium-concentrate co-product per positive kg and GLO location, not a zinc product, leaching residue, resource-correction flow or an empty handover. Retain the configured concentrate basis and original material factor; no refined-metal assay is inferred.",
+        "Complete existing supply, source allocation, delivery, regional technology, vintage and uncertainty remain. Only the existing per-MW material rule changes the input amount; no upstream inventory, carrier purity, recovery credit or new transport is invented. Score effects are unquantified."
+      ]
     }
   ]
 }
