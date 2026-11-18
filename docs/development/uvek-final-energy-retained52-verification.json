@@ -1,0 +1,1194 @@
+{
+  "status": "all_retained_source310_correspondences_and_inventory_preparation_verified_shared_callback_blocked",
+  "source_code_changes": 0,
+  "new_Brightway_databases": 0,
+  "new_exact_scopes": 52,
+  "direct_complete_native_suppliers": 48,
+  "new_inventory_profile_aliases": 4,
+  "new_upstream_manufacturing_models": 0,
+  "new_foreground_omissions": [],
+  "conversion_behavior": {
+    "native": {
+      "status": "passed",
+      "added_exact_source310_scopes": 46,
+      "signed_uncertainty_exchange_checks": 368,
+      "direct_migration_cases": 8,
+      "public_harmonizer_fresh_and_warm_passed": true,
+      "input_nonmutation": true,
+      "earlier_effective_profile_checks": 21,
+      "new_manufacturing_inventory_models": 0,
+      "new_model_profile_aliases": 0,
+      "new_foreground_omissions": [],
+      "source_code_changes": 0,
+      "new_Brightway_databases": 0,
+      "qualification_limit": "Required interface group only; no complete final-energy update or new export."
+    },
+    "models": {
+      "status": "passed",
+      "added_exact_source310_scopes": 4,
+      "signed_uncertainty_exchange_checks": 32,
+      "direct_migration_cases": 8,
+      "public_harmonizer_fresh_and_warm_passed": true,
+      "input_nonmutation": true,
+      "earlier_effective_profile_checks": 6,
+      "new_manufacturing_inventory_models": 0,
+      "new_model_profile_aliases": 4,
+      "new_foreground_omissions": [],
+      "source_code_changes": 0,
+      "new_Brightway_databases": 0,
+      "qualification_limit": "Required interface group only; no complete final-energy update or new export."
+    },
+    "boundaries": {
+      "status": "passed",
+      "added_exact_source310_scopes": 2,
+      "signed_uncertainty_exchange_checks": 16,
+      "direct_migration_cases": 8,
+      "public_harmonizer_fresh_and_warm_passed": true,
+      "input_nonmutation": true,
+      "earlier_effective_profile_checks": 0,
+      "new_manufacturing_inventory_models": 0,
+      "new_model_profile_aliases": 0,
+      "new_foreground_omissions": [],
+      "source_code_changes": 0,
+      "new_Brightway_databases": 0,
+      "qualification_limit": "Required interface group only; no complete final-energy update or new export."
+    }
+  },
+  "in_memory_LCI": {
+    "native": {
+      "project": "bafu-2026-ecospold2-biosphere-310",
+      "foreground_datapackage_filesystem": "memory",
+      "transient_activities": 46,
+      "native_suppliers": 42,
+      "foreground_biosphere_flows": 1,
+      "signed_foreground_LCI_solves": 92,
+      "foreground_emissions_preserved": true,
+      "new_brightway_databases": 0,
+      "new_registered_activities": 0,
+      "new_processed_files": 0,
+      "native_source_and_biosphere_metadata_preserved": true,
+      "database_registry_unchanged": true,
+      "checks": [
+        {
+          "rule_id": "bp-cf83bb724223e5b7",
+          "source": {
+            "location": "RER",
+            "name": "market for hydrogen, gaseous, low pressure",
+            "reference product": "hydrogen, gaseous, low pressure",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+            "reference product": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-5a066f5db7e68d53",
+          "source": {
+            "location": "GLO",
+            "name": "market for glass fibre reinforced plastic, polyester resin, hand lay-up",
+            "reference product": "glass fibre reinforced plastic, polyester resin, hand lay-up",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Glass fibre reinforced plastic, polyester resin, hand lay-up, at plant",
+            "reference product": "Glass fibre reinforced plastic, polyester resin, hand lay-up, at plant",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-565489cccf0b67ff",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "market for diesel, low-sulfur",
+            "reference product": "diesel, low-sulfur",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Diesel, fossil, at regional storage",
+            "reference product": "Diesel, fossil, at regional storage",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-745c517f85a78ba7",
+          "source": {
+            "location": "GLO",
+            "name": "market for natural gas, medium pressure, vehicle grade",
+            "reference product": "natural gas, medium pressure, vehicle grade",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+            "reference product": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-1d02d57e06e24b45",
+          "source": {
+            "location": "RER",
+            "name": "market for nylon 6",
+            "reference product": "nylon 6",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Nylon 6, at plant",
+            "reference product": "Nylon 6, at plant",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-aa17e516d5f814ea",
+          "source": {
+            "location": "RER",
+            "name": "market group for electricity, high voltage",
+            "reference product": "electricity, high voltage",
+            "unit": "kilowatt hour"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Electricity, high voltage, at grid",
+            "reference product": "Electricity, high voltage, at grid",
+            "unit": "kilowatt hour"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-ec3106bc66684767",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "market for petrol, low-sulfur",
+            "reference product": "petrol, low-sulfur",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Petrol, fossil, at regional storage",
+            "reference product": "Petrol, fossil, at regional storage",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-dcfa2d2a1b36367a",
+          "source": {
+            "location": "RER",
+            "name": "market for transport, freight, lorry 16-32 metric ton, EURO6",
+            "reference product": "transport, freight, lorry 16-32 metric ton, EURO6",
+            "unit": "ton kilometer"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+            "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+            "unit": "ton kilometer"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-d21d0bac2a023032",
+          "source": {
+            "location": "GLO",
+            "name": "market for steel, low-alloyed, hot rolled",
+            "reference product": "steel, low-alloyed, hot rolled",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Steel, low-alloyed, at plant",
+            "reference product": "Steel, low-alloyed, at plant",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-a8e84f31ac63fd5d",
+          "source": {
+            "location": "CH",
+            "name": "heat production, softwood chips from forest, at furnace 1000kW",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "unit": "megajoule"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Heat, softwood chips from forest, at furnace 1000kW",
+            "reference product": "Heat, softwood chips from forest, at furnace 1000kW",
+            "unit": "megajoule"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-ce1919ec7e74ffb8",
+          "source": {
+            "location": "CH",
+            "name": "heat production, mixed logs, at wood heater 6kW",
+            "reference product": "heat, central or small-scale, other than natural gas",
+            "unit": "megajoule"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Heat, mixed logs, at wood heater 6kW",
+            "reference product": "Heat, mixed logs, at wood heater 6kW",
+            "unit": "megajoule"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-aa9896866f9437f6",
+          "source": {
+            "location": "GLO",
+            "name": "market for gas boiler",
+            "reference product": "gas boiler",
+            "unit": "unit"
+          },
+          "target": {
+            "location": "RER",
+            "name": "xxx Gas boiler",
+            "reference product": "xxx Gas boiler",
+            "unit": "unit"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-fe65c4020c8f8f4b",
+          "source": {
+            "location": "CH",
+            "name": "market for electricity, low voltage",
+            "reference product": "electricity, low voltage",
+            "unit": "kilowatt hour"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Electricity, low voltage, at grid",
+            "reference product": "Electricity, low voltage, at grid",
+            "unit": "kilowatt hour"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-2c392716337f187f",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "heat production, air-water heat pump 10kW",
+            "reference product": "heat, air-water heat pump 10kW",
+            "unit": "megajoule"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Heat, at air-water heat pump 10kW",
+            "reference product": "Heat, at air-water heat pump 10kW",
+            "unit": "megajoule"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-3573d4d2ee6ead7b",
+          "source": {
+            "location": "CH",
+            "name": "heat production, wood pellet, at furnace 9kW",
+            "reference product": "heat, central or small-scale, other than natural gas",
+            "unit": "megajoule"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Heat, wood pellets, at furnace 15kW",
+            "reference product": "Heat, wood pellets, at furnace 15kW",
+            "unit": "megajoule"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-2bab3a3e3d0b3ad7",
+          "source": {
+            "location": "GLO",
+            "name": "market for aluminium, wrought alloy",
+            "reference product": "aluminium, wrought alloy",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Aluminium, production mix, wrought alloy, at plant",
+            "reference product": "Aluminium, production mix, wrought alloy, at plant",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-c4bef816afa0918d",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "heat production, at hard coal industrial furnace 1-10MW",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "unit": "megajoule"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Heat, at hard coal industrial furnace 1-10MW",
+            "reference product": "Heat, at hard coal industrial furnace 1-10MW",
+            "unit": "megajoule"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-bf0dcd9e9c73c991",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "heat production, hard coal briquette, stove 5-15kW",
+            "reference product": "heat, central or small-scale, other than natural gas",
+            "unit": "megajoule"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Heat, hard coal briquette, at stove 5-15kW",
+            "reference product": "Heat, hard coal briquette, at stove 5-15kW",
+            "unit": "megajoule"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-1225417be8e6e863",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "heat production, light fuel oil, at industrial furnace 1MW",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "unit": "megajoule"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Heat, light fuel oil, at industrial furnace 1MW",
+            "reference product": "Heat, light fuel oil, at industrial furnace 1MW",
+            "unit": "megajoule"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-84b590bd66cbc956",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "heat production, light fuel oil, at boiler 10kW condensing, non-modulating",
+            "reference product": "heat, central or small-scale, other than natural gas",
+            "unit": "megajoule"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Heat, light fuel oil, at boiler 10kW condensing, non-modulating",
+            "reference product": "Heat, light fuel oil, at boiler 10kW condensing, non-modulating",
+            "unit": "megajoule"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-ee6ea85402b47304",
+          "source": {
+            "location": "RER",
+            "name": "gas turbine construction, 10MW electrical",
+            "reference product": "gas turbine, 10MW electrical",
+            "unit": "unit"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Gas turbine, 10MWe, at production plant",
+            "reference product": "Gas turbine, 10MWe, at production plant",
+            "unit": "unit"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-f2cc63366560c955",
+          "source": {
+            "location": "GLO",
+            "name": "market for refrigerant R134a",
+            "reference product": "refrigerant R134a",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Refrigerant R134a, at plant",
+            "reference product": "Refrigerant R134a, at plant",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-35217cf5e68b84a0",
+          "source": {
+            "location": "RER",
+            "name": "treatment of brake wear emissions, lorry",
+            "reference product": "brake wear emissions, lorry",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Brake wear emissions, lorry",
+            "reference product": "Brake wear emissions, lorry",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": -2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-39732882b4a46402",
+          "source": {
+            "location": "RER",
+            "name": "treatment of road wear emissions, lorry",
+            "reference product": "road wear emissions, lorry",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Road wear emissions, lorry",
+            "reference product": "Road wear emissions, lorry",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": -2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-ea86145d413de309",
+          "source": {
+            "location": "RER",
+            "name": "treatment of tyre wear emissions, lorry",
+            "reference product": "tyre wear emissions, lorry",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Tyre wear emissions, lorry",
+            "reference product": "Tyre wear emissions, lorry",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": -2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-603ffa52668e2ab6",
+          "source": {
+            "location": "RoW",
+            "name": "market for water, deionised",
+            "reference product": "water, deionised",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Water, deionised, at plant",
+            "reference product": "Water, deionised, at plant",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-c0965066e2c4afc5",
+          "source": {
+            "location": "GLO",
+            "name": "market for inverter, for electric passenger car",
+            "reference product": "inverter, for electric passenger car",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Inverter, for electric passenger car",
+            "reference product": "Inverter, for electric passenger car",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-2932a5080192215e",
+          "source": {
+            "location": "CN",
+            "name": "market for hydrogen, gaseous, low pressure",
+            "reference product": "hydrogen, gaseous, low pressure",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+            "reference product": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-6850bc6a799c3090",
+          "source": {
+            "location": "RoW",
+            "name": "market for hydrogen, gaseous, low pressure",
+            "reference product": "hydrogen, gaseous, low pressure",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+            "reference product": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-a8488ea5d0629086",
+          "source": {
+            "location": "US",
+            "name": "market for hydrogen, gaseous, low pressure",
+            "reference product": "hydrogen, gaseous, low pressure",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+            "reference product": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-51cccf3b2edc49df",
+          "source": {
+            "location": "RER",
+            "name": "treatment of road wear emissions, passenger car",
+            "reference product": "road wear emissions, passenger car",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Road wear emissions, passenger car",
+            "reference product": "Road wear emissions, passenger car",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": -2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-eeab173462697d8e",
+          "source": {
+            "location": "RER",
+            "name": "treatment of tyre wear emissions, passenger car",
+            "reference product": "tyre wear emissions, passenger car",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Tyre wear emissions, passenger car",
+            "reference product": "Tyre wear emissions, passenger car",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": -2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-e4846f25fbe74153",
+          "source": {
+            "location": "RER",
+            "name": "treatment of brake wear emissions, passenger car",
+            "reference product": "brake wear emissions, passenger car",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Brake wear emissions, passenger car",
+            "reference product": "Brake wear emissions, passenger car",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": -2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-fa83088d5d2b33b6",
+          "source": {
+            "location": "RER",
+            "name": "polyethylene production, high density, granulate",
+            "reference product": "polyethylene, high density, granulate",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Polyethylene, HDPE, granulate, at plant",
+            "reference product": "Polyethylene, HDPE, granulate, at plant",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-f89e620d1b74f123",
+          "source": {
+            "location": "GLO",
+            "name": "market for power distribution unit, for electric passenger car",
+            "reference product": "power distribution unit, for electric passenger car",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Power distribution unit, for electric passenger car",
+            "reference product": "Power distribution unit, for electric passenger car",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-8c1b13cbbd14174e",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "market for kerosene",
+            "reference product": "kerosene",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Kerosene, at refinery",
+            "reference product": "Kerosene, at refinery",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-4ac0ce6a2d542cce",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "heavy fuel oil production, petroleum refinery operation",
+            "reference product": "heavy fuel oil",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Heavy fuel oil, at refinery",
+            "reference product": "Heavy fuel oil, at refinery",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-fd39f01d6675e169",
+          "source": {
+            "location": "RoW",
+            "name": "methanol production, biomass gasification",
+            "reference product": "methanol, from biomass",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Methanol, from biomass, at regional storage",
+            "reference product": "Methanol, from biomass, at regional storage",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-385650baf6c0e83b",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "market for diesel",
+            "reference product": "diesel",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Diesel, at regional storage",
+            "reference product": "Diesel, at regional storage",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-ab1d27770658d83e",
+          "source": {
+            "location": "CH",
+            "name": "market for waste plastic, industrial electronics",
+            "reference product": "waste plastic, industrial electronics",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+            "reference product": "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": -2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-60df3e3a867ea691",
+          "source": {
+            "location": "GLO",
+            "name": "market for used powertrain from electric passenger car, manual dismantling",
+            "reference product": "used powertrain from electric passenger car, manual dismantling",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Disposal, powertrain, for electric passenger car",
+            "reference product": "Disposal, powertrain, for electric passenger car",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": -2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-a5ec1e60bc7a6cee",
+          "source": {
+            "location": "RoW",
+            "name": "heat production, light fuel oil, at industrial furnace 1MW",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "unit": "megajoule"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Heat, light fuel oil, at industrial furnace 1MW",
+            "reference product": "Heat, light fuel oil, at industrial furnace 1MW",
+            "unit": "megajoule"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-4b160d7ecc5a6a8c",
+          "source": {
+            "location": "RoW",
+            "name": "market for ethylene glycol",
+            "reference product": "ethylene glycol",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Ethylene glycol, at plant",
+            "reference product": "Ethylene glycol, at plant",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-eeadc082f887650e",
+          "source": {
+            "location": "GLO",
+            "name": "market for diesel-electric generating set, 10MW",
+            "reference product": "diesel-electric generating set, 10MW",
+            "unit": "unit"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Diesel-electric generating set production 10MW",
+            "reference product": "Diesel-electric generating set production 10MW",
+            "unit": "unit"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-b5637b022f813882",
+          "source": {
+            "location": "RoW",
+            "name": "market for lubricating oil",
+            "reference product": "lubricating oil",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Lubricating oil, at plant",
+            "reference product": "Lubricating oil, at plant",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-a63d71d2f1edf074",
+          "source": {
+            "location": "GLO",
+            "name": "market for manual treatment facility, waste electric and electronic equipment",
+            "reference product": "manual treatment facility, waste electric and electronic equipment",
+            "unit": "unit"
+          },
+          "target": {
+            "location": "GLO",
+            "name": "Manual treatment plant, WEEE scrap",
+            "reference product": "Manual treatment plant, WEEE scrap",
+            "unit": "unit"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        }
+      ],
+      "qualification_limit": "Forty-six complete native retained-workbook support services; no full final-energy update or export qualification."
+    },
+    "models": {
+      "project": "bafu-2026-ecospold2-biosphere-310",
+      "foreground_datapackage_filesystem": "memory",
+      "transient_activities": 24,
+      "foreground_biosphere_flows": 213,
+      "native_suppliers": 46,
+      "signed_foreground_LCI_solves": 8,
+      "independent_native_reference_LCI_solves": 4,
+      "foreground_emissions_preserved": true,
+      "new_brightway_databases": 0,
+      "new_registered_activities": 0,
+      "new_processed_files": 0,
+      "native_source_and_biosphere_metadata_preserved": true,
+      "database_registry_unchanged": true,
+      "checks": [
+        {
+          "rule_id": "bp-a12ce1c2b439fdbf",
+          "source": {
+            "location": "GLO",
+            "name": "market for transformer, high voltage use",
+            "reference product": "transformer, high voltage use",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "unit": "kilogram",
+          "standard_signed_LCIs_finite_and_reverse": true,
+          "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+          "unrefined_max_abs_inventory_difference": 7.986636774148792e-08,
+          "refined_max_abs_inventory_difference": 8.881784197001252e-16,
+          "full_graph_residual": {
+            "residual_before": 1.5832725774840063e-12,
+            "residual_after": 1.057549866342217e-15,
+            "correction_steps": 6
+          },
+          "native_reference_residual": {
+            "residual_before": 6.235589973899511e-09,
+            "residual_after": 1.0572855920627364e-15,
+            "correction_steps": 6
+          },
+          "comparison_tolerance": {
+            "rtol": 1e-08,
+            "atol": 1e-11
+          },
+          "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+        },
+        {
+          "rule_id": "bp-b7606642f4256898",
+          "source": {
+            "location": "RoW",
+            "name": "market for waste plastic, mixture",
+            "reference product": "waste plastic, mixture",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": -2.5,
+          "unit": "kilogram",
+          "standard_signed_LCIs_finite_and_reverse": true,
+          "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+          "unrefined_max_abs_inventory_difference": 2.1946741313172424e-08,
+          "refined_max_abs_inventory_difference": 1.4210854715202004e-14,
+          "full_graph_residual": {
+            "residual_before": 6.07864731274972e-13,
+            "residual_after": 3.5381290131156375e-17,
+            "correction_steps": 6
+          },
+          "native_reference_residual": {
+            "residual_before": 1.5580408906811363e-11,
+            "residual_after": 3.5598130565653476e-17,
+            "correction_steps": 6
+          },
+          "comparison_tolerance": {
+            "rtol": 1e-08,
+            "atol": 1e-11
+          },
+          "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+        },
+        {
+          "rule_id": "bp-5a3b5a4a13938317",
+          "source": {
+            "location": "GLO",
+            "name": "market group for heat, district or industrial, natural gas",
+            "reference product": "heat, district or industrial, natural gas",
+            "unit": "megajoule"
+          },
+          "source_caller_amount": 2.5,
+          "unit": "megajoule",
+          "standard_signed_LCIs_finite_and_reverse": true,
+          "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+          "unrefined_max_abs_inventory_difference": 1.4153624938728626e-09,
+          "refined_max_abs_inventory_difference": 1.1102230246251565e-16,
+          "full_graph_residual": {
+            "residual_before": 2.741269568873219e-13,
+            "residual_after": 3.6046383546712245e-17,
+            "correction_steps": 6
+          },
+          "native_reference_residual": {
+            "residual_before": 1.3981975780634863e-10,
+            "residual_after": 7.496259495519415e-17,
+            "correction_steps": 6
+          },
+          "comparison_tolerance": {
+            "rtol": 1e-08,
+            "atol": 1e-11
+          },
+          "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+        },
+        {
+          "rule_id": "bp-ef0d29b6fa71b9c8",
+          "source": {
+            "location": "CH",
+            "name": "market for waste mineral oil",
+            "reference product": "waste mineral oil",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": -2.5,
+          "unit": "kilogram",
+          "standard_signed_LCIs_finite_and_reverse": true,
+          "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+          "unrefined_max_abs_inventory_difference": 5.109782819090469e-09,
+          "refined_max_abs_inventory_difference": 1.4210854715202004e-14,
+          "full_graph_residual": {
+            "residual_before": 3.1301628040412717e-12,
+            "residual_after": 2.220446049250313e-16,
+            "correction_steps": 6
+          },
+          "native_reference_residual": {
+            "residual_before": 1.9415234247558536e-10,
+            "residual_after": 2.1643216461652431e-16,
+            "correction_steps": 6
+          },
+          "comparison_tolerance": {
+            "rtol": 1e-08,
+            "atol": 1e-11
+          },
+          "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+        }
+      ],
+      "new_model_signed_LCI_solves": 8,
+      "new_model_recipes_checked": [
+        "final-energy-retained-310-reviewed-model-b7606642f4256898",
+        "final-energy-retained-310-reviewed-model-a12ce1c2b439fdbf",
+        "final-energy-retained-310-reviewed-model-5a3b5a4a13938317",
+        "final-energy-retained-310-reviewed-model-ef0d29b6fa71b9c8"
+      ],
+      "qualification_limit": "Four existing reviewed source-3.9 models reused for retained source-3.10 with explicit version warnings and four profile aliases; no final-energy/export qualification."
+    },
+    "boundaries": {
+      "project": "bafu-2026-ecospold2-biosphere-310",
+      "foreground_datapackage_filesystem": "memory",
+      "transient_activities": 2,
+      "native_suppliers": 2,
+      "foreground_biosphere_flows": 1,
+      "signed_foreground_LCI_solves": 4,
+      "foreground_emissions_preserved": true,
+      "new_brightway_databases": 0,
+      "new_registered_activities": 0,
+      "new_processed_files": 0,
+      "native_source_and_biosphere_metadata_preserved": true,
+      "database_registry_unchanged": true,
+      "checks": [
+        {
+          "rule_id": "bp-e575db86887e6563",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "heat production, natural gas, at boiler condensing modulating <100kW",
+            "reference product": "heat, central or small-scale, natural gas",
+            "unit": "megajoule"
+          },
+          "target": {
+            "name": "Heat, natural gas, at boiler condensing modulating 15kW",
+            "reference product": "Heat, natural gas, at boiler condensing modulating 15kW",
+            "location": "CH",
+            "unit": "megajoule"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.5,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        },
+        {
+          "rule_id": "bp-c47f7f644521097c",
+          "source": {
+            "location": "CH",
+            "name": "market for ethanol, without water, in 99.7% solution state, from fermentation, vehicle grade",
+            "reference product": "ethanol, without water, in 99.7% solution state, from fermentation, vehicle grade",
+            "unit": "kilogram"
+          },
+          "target": {
+            "name": "Ethanol, 99.7% in H2O, from biomass, at service station",
+            "reference product": "Ethanol, 99.7% in H2O, from biomass, at service station",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "source_caller_amount": 2.5,
+          "converted_amount": 2.507522567703109,
+          "signed_LCIs_finite_and_reverse": true,
+          "complete_native_inventory_unchanged": true
+        }
+      ],
+      "qualification_limit": "Two direct retained boundary corrections; no full final-energy update or export qualification."
+    }
+  },
+  "normal_generator": {
+    "byte_equal_files": {
+      "ecoinvent-to-ecoinvent-3.10-biosphere.json": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "ecoinvent-to-uvek-2025.json": "0d37cd286f66dad8d112ba15a93c0ee0d4fec1628763658efcdae4af083281d6"
+    },
+    "owned_temporary_bytes_removed": 112976885
+  },
+  "tests": {
+    "brightpath_review_manifest_passed": 9,
+    "premise_scoped_approval_passed": 10
+  },
+  "older_effective_profiles_unchanged": 27,
+  "retained_census": {
+    "failed_source_cohorts_before_this_batch": 1,
+    "passed_source_cohorts_before_this_batch": 2,
+    "single_failing_source_version": "3.10",
+    "exact_unapproved_correspondences_before_this_batch": 52,
+    "failed_cohorts_not_accepted_as_partial_output": true,
+    "migration_approval_and_physical_validation_not_disabled": true,
+    "public_sector_scope_bypassed_for_diagnostic_only": true
+  },
+  "actual_preparation": {
+    "status": "passed_in_snapshot_diagnostic",
+    "prepared_records": 1621,
+    "base_plus_prepared_activities": 13568,
+    "source_code_unchanged": true,
+    "sector_callback_status": "fails_on_native_operating_energy_classification",
+    "failure": "No physical operating-energy source for converted diesel-electric freight train",
+    "public_sector_scope_bypassed_for_diagnostic_only": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "ethanol_basis": {
+    "target": "Complete Swiss native service-station ethanol supply",
+    "conversion_factor": 1.0030090270812437,
+    "mass_fraction_is_explicit_screening_assumption": true,
+    "native_metadata_independently_confirms_percentage_basis": false,
+    "score_effect_unquantified": true,
+    "existing_shared_fuel_LHV_and_carbon_policies_not_changed": true
+  },
+  "qualified_sectors": 15,
+  "total_sectors": 19,
+  "qualification_limit": "Mappings and full inventory preparation pass. The unchanged shared final-energy callback still needs a generic classifier fix; native filter/context coverage, ordinary public admission, graph certification and export remain unqualified. Existing broad test failures remain disclosed separately."
+}
