@@ -3799,9 +3799,12 @@
         "unapproved_correspondences": 52,
         "all_archive_cohorts_clear": true,
         "air_category_label_correction_verified": true,
-        "callback_context_and_filter_coverage_pending": true
+        "callback_context_and_filter_coverage_pending": true,
+        "literal_native_candidates": 48,
+        "existing_recipe_candidates": 4,
+        "source_native_witnesses_for_48_candidates_collected": true
       },
-      "latest_installed_interface_verification": "docs/development/uvek-final-energy-312310-installed-verification.json",
+      "latest_installed_interface_verification": "docs/development/uvek-final-energy-37-installed-verification.json",
       "latest_required_source37_review": {
         "exact_scopes": 18,
         "complete_native_services": 16,
@@ -4216,9 +4219,9 @@
     "battery_public_support_still_pending": true
   },
   "latest_remaining_sector_checkpoint": "docs/development/uvek-remaining-sector-diagnostics-2026-11-18.json",
-  "latest_installed_mapping_verification": "docs/development/uvek-final-energy-312310-installed-verification.json",
+  "latest_installed_mapping_verification": "docs/development/uvek-final-energy-37-installed-verification.json",
   "latest_normal_live_preparation": {
-    "verification": "docs/development/uvek-final-energy-312310-installed-verification.json",
+    "verification": "docs/development/uvek-final-energy-37-installed-verification.json",
     "sectors": 15,
     "CLIC_records": 1495,
     "source_code_changes": 0,

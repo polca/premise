@@ -1,0 +1,160 @@
+{
+  "date": "2026-11-18",
+  "status": "installed_source37_mapping_and_live_fifteen_sector_preparation_passed",
+  "Brightpath_Git_revision": "bb4e27227cbf429d995c6a432ceefae15edad9b9",
+  "Premise_wheel_source_revision": "57222b3d7da6421bd77f9a39e3d4e2c55f85f77c",
+  "source_code_changes": 0,
+  "original_Premise_master_unchanged": true,
+  "installed_regressions": {
+    "status": "installed_final_energy_mapping_checks_passed",
+    "Brightpath_Git_revision": "bb4e27227cbf429d995c6a432ceefae15edad9b9",
+    "runtime_packages_loaded_only_from_installed_environment": true,
+    "signed_uncertainty_checks": 144,
+    "public_harmonizer_fresh_and_warm_groups": 2,
+    "checks": {
+      "verify_final_energy_native37.private.py": {
+        "status": "passed",
+        "added_exact_source37_scopes": 16,
+        "signed_uncertainty_exchange_checks": 128,
+        "direct_migration_cases": 8,
+        "public_harmonizer_fresh_and_warm_passed": true,
+        "input_nonmutation": true,
+        "earlier_effective_profile_checks": 1,
+        "new_manufacturing_inventory_models": 0,
+        "new_model_profile_aliases": 0,
+        "new_foreground_omissions": [],
+        "source_code_changes": 0,
+        "new_Brightway_databases": 0,
+        "qualification_limit": "Required interface group only; no complete final-energy update or new export."
+      },
+      "verify_final_energy_dismantling_stock37.private.py": {
+        "status": "passed",
+        "added_exact_source37_scopes": 2,
+        "signed_uncertainty_exchange_checks": 16,
+        "direct_migration_cases": 8,
+        "public_harmonizer_fresh_and_warm_passed": true,
+        "input_nonmutation": true,
+        "earlier_effective_profile_checks": 0,
+        "new_manufacturing_inventory_models": 0,
+        "new_model_profile_aliases": 0,
+        "new_foreground_omissions": [],
+        "source_code_changes": 0,
+        "new_Brightway_databases": 0,
+        "qualification_limit": "Required interface group only; no complete final-energy update or new export."
+      }
+    },
+    "elapsed_seconds": 47.62217170803342,
+    "focused_pytest_passes": 97
+  },
+  "installed_package_bytes": {
+    "Brightpath_Git_revision": "bb4e27227cbf429d995c6a432ceefae15edad9b9",
+    "packages": {
+      "brightpath": {
+        "verified_installed_package_files": 604,
+        "all_packaged_files_present_in_source_match": true
+      },
+      "premise": {
+        "verified_installed_package_files": 424,
+        "all_packaged_files_present_in_source_match": true
+      }
+    }
+  },
+  "normal_live_fifteen_sector_preparation": {
+    "status": "installed_public_fifteen_sector_inventory_preparation_passed",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel",
+      "mining",
+      "renewable",
+      "cdr",
+      "fuels",
+      "ships",
+      "buses",
+      "two_wheelers",
+      "trains",
+      "cars",
+      "trucks"
+    ],
+    "CLIC_records": 1495,
+    "Brightpath_Git_revision": "bb4e27227cbf429d995c6a432ceefae15edad9b9",
+    "CLIC_options_overridden": false,
+    "freshness": "normal live default",
+    "scope_gate_bypassed": false,
+    "validation_disabled": false,
+    "new_Brightway_databases": 0,
+    "registry_and_processed_file_names_unchanged": true,
+    "elapsed_seconds": 81.81267725001089,
+    "qualification_limit": "Preparation regression of already qualified15sectors; no sector update/export repeated and battery/final-energy sectors remain unfinished."
+  },
+  "new_exact_final_energy_correspondences": 18,
+  "new_immediate_facility_helpers": 1,
+  "independently_empty_cutoff_handover_scopes": 1,
+  "new_upstream_manufacturing_models": 0,
+  "new_foreground_omissions": [],
+  "retained_workbook_category_correction": {
+    "text_cells": 39,
+    "numeric_cells_unchanged": 8029,
+    "formula_cells_unchanged": 459,
+    "all_styles_preserved": true,
+    "verification": "docs/development/uvek-final-energy-workbook-categories-verification.json"
+  },
+  "broad_reference_sign_stock_tests": {
+    "passed": 806,
+    "failed": 8,
+    "all_eight_failures_reproduced_against_prior_package": {
+      "tested_baseline_revision": "aa438db835a59a4be33935992196c0361811b3d9",
+      "pytest_exit_code": 1,
+      "failing_test_ids": [
+        "tests/test_uvek_reference_signs.py::test_used_li_ion_market_keeps_exact_reviewed_profile_treatment_mix_and_delivery[2--10-3.8]",
+        "tests/test_uvek_reference_signs.py::test_used_li_ion_market_keeps_exact_reviewed_profile_treatment_mix_and_delivery[2--10-3.10]",
+        "tests/test_uvek_reference_signs.py::test_used_li_ion_market_keeps_exact_reviewed_profile_treatment_mix_and_delivery[2-10-3.8]",
+        "tests/test_uvek_reference_signs.py::test_used_li_ion_market_keeps_exact_reviewed_profile_treatment_mix_and_delivery[2-10-3.10]",
+        "tests/test_uvek_reference_signs.py::test_used_li_ion_market_keeps_exact_reviewed_profile_treatment_mix_and_delivery[3--10-3.8]",
+        "tests/test_uvek_reference_signs.py::test_used_li_ion_market_keeps_exact_reviewed_profile_treatment_mix_and_delivery[3--10-3.10]",
+        "tests/test_uvek_reference_signs.py::test_used_li_ion_market_keeps_exact_reviewed_profile_treatment_mix_and_delivery[3-10-3.8]",
+        "tests/test_uvek_reference_signs.py::test_used_li_ion_market_keeps_exact_reviewed_profile_treatment_mix_and_delivery[3-10-3.10]"
+      ],
+      "qualification_limit": "Existing fixture failures reproduced against the prior installed package. Inspect exact failure count in this log; no claim that the full suite passes."
+    },
+    "reason": "Old tests still expect rejection of source3.8/3.10 used-Li-ion routes enabled by earlier reviewed data. Test source is unchanged."
+  },
+  "qualified_sectors": 15,
+  "total_sectors": 19,
+  "unfinished_sectors": [
+    "battery",
+    "final energy",
+    "emissions",
+    "metals"
+  ],
+  "final_energy_remaining_frontier": {
+    "all_CLIC_archive_cohorts_clear": true,
+    "retained_source310_unapproved_correspondences": 52,
+    "literal_native_candidates": 48,
+    "existing_recipe_candidates": 4,
+    "source_and_native_witnesses_for_48_candidates_collected": true,
+    "callback_context_and_filter_coverage": "pending after inventory preparation"
+  },
+  "unapplied_battery_patch_unchanged": true,
+  "new_Brightway_databases": 0,
+  "new_export_performed": false,
+  "cleanup": [
+    {
+      "path": "premise-clic-worktree/build",
+      "bytes_removed": 65415776
+    },
+    {
+      "path": "premise-clic-worktree/premise.egg-info",
+      "bytes_removed": 118487
+    },
+    {
+      "path": "final-energy-312310-wheels",
+      "bytes_removed": 23267136
+    }
+  ],
+  "current_environment_and_wheel_retained": true,
+  "known_earlier_historical_replay_failures": "Two earlier standalone replay failures remain separately disclosed; no claim that the entire suite is green.",
+  "qualification_limit": "Installed focused tests and normal live preparation regression pass. Eight pre-existing rejection expectations still fail; final-energy retained mappings, callback coverage and public export remain unfinished. Four sectors remain unqualified."
+}

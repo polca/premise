@@ -1,10 +1,9 @@
 {
   "date": "2026-11-18",
-  "status": "installed_mapping_and_live_fifteen_sector_preparation_passed",
-  "Brightpath_Git_revision": "aa438db835a59a4be33935992196c0361811b3d9",
-  "current_verification": "docs/development/uvek-final-energy-312310-installed-verification.json",
-  "previous_final_energy_verification": "docs/development/uvek-final-energy-installed-verification.json",
-  "historical_battery_batch_report": "docs/development/uvek-mapping-only-installed-verification.json at commit b87b91ec",
+  "status": "installed_source37_mapping_and_live_fifteen_sector_preparation_passed",
+  "Brightpath_Git_revision": "bb4e27227cbf429d995c6a432ceefae15edad9b9",
+  "current_verification": "docs/development/uvek-final-energy-37-installed-verification.json",
+  "previous_final_energy_verification": "docs/development/uvek-final-energy-312310-installed-verification.json",
   "source_code_changes": 0,
   "qualified_sectors": 15,
   "total_sectors": 19,
@@ -29,16 +28,18 @@
       "trucks"
     ],
     "CLIC_records": 1495,
-    "Brightpath_Git_revision": "aa438db835a59a4be33935992196c0361811b3d9",
+    "Brightpath_Git_revision": "bb4e27227cbf429d995c6a432ceefae15edad9b9",
     "CLIC_options_overridden": false,
     "freshness": "normal live default",
     "scope_gate_bypassed": false,
     "validation_disabled": false,
     "new_Brightway_databases": 0,
     "registry_and_processed_file_names_unchanged": true,
-    "elapsed_seconds": 79.61169575003441,
+    "elapsed_seconds": 81.81267725001089,
     "qualification_limit": "Preparation regression of already qualified15sectors; no sector update/export repeated and battery/final-energy sectors remain unfinished."
   },
-  "known_historical_replay_failures": "Two historical standalone replay failures remain disclosed in the installed report at commit b87b91ec; they are not reclassified as passing.",
-  "qualification_limit": "Installed data and ordinary live preparation regression pass. No new sector update or export is qualified. Previous qualified export remains authoritative; four sectors remain unfinished."
+  "reference_sign_stock_passed": 806,
+  "reference_sign_stock_failed": 8,
+  "all_failures_reproduced_against_prior_installed_package": true,
+  "qualification_limit": "Installed focused tests and normal live preparation regression pass. Eight pre-existing rejection expectations still fail; final-energy retained mappings, callback coverage and public export remain unfinished. Four sectors remain unqualified."
 }

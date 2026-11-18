@@ -114,3 +114,20 @@ requires a narrow immediate-model correction, not upstream reconstruction.
 The source new-aluminium scrap handover is independently verified empty.
 Python source remains unchanged and the battery patch remains unapplied.
 See `uvek-final-energy-312310-installed-verification.json`.
+
+The source-3.7 batch pins Brightpath `bb4e27227cbf429d995c6a432ceefae15edad9b9`.
+Eighteen archive correspondences clear, including a facility-only correction
+that avoids adding vehicle/battery disposal. Thirty-nine retained-workbook air
+labels are canonicalized with every number, formula and style preserved.
+The exact installed packages pass 97 focused tests and 144 signed uncertainty
+checks; all 604 Brightpath and 424 Premise package files match source. Normal
+live preparation again returns 1,495 records for fifteen qualified sectors.
+
+Broader sign/stock tests have 806 passes and eight failures: tests still expect
+rejection of source-3.8/3.10 Li-ion routes enabled in earlier reviews. All eight
+fail identically against the previous installed package. The full suite is not
+claimed green; Python source/tests remain unchanged. After the category fix,
+final-energy preparation reaches 52 retained source-3.10 correspondences: 48
+literal native candidates and four existing recipe candidates. Their immediate
+source/native witnesses are collected; physical boundaries still need review.
+No database or new export is written. See `uvek-final-energy-37-installed-verification.json`.
