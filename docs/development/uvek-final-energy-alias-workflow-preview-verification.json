@@ -1,0 +1,23 @@
+{
+  "sector": "final energy",
+  "freshness": "snapshot",
+  "public_scope_gate_bypassed_for_diagnostic_only": true,
+  "validation_disabled": false,
+  "export_performed": false,
+  "inventory_preparation_passed": true,
+  "prepared_inventory_count": 1621,
+  "activities_before_update": 13568,
+  "sector_callback_passed": true,
+  "status": "failed",
+  "failed_stage": "exhaustive graph certification",
+  "exception_type": "PremiseValidationError",
+  "message": "Inventory validation failed with 1 unsuppressed error(s) [GRAPH.NEW_FORBIDDEN_CYCLE=1]: GRAPH.NEW_FORBIDDEN_CYCLE: Transformation introduced a technosphere cycle absent from the baseline. (activity=('1,1-difluoroethane, HFC-152a, at plant', '1,1-difluoroethane, HFC-152a, at plant', 'US'), expected='baseline cycle or acyclic graph', actual=[['1,1-difluoroethane, HFC-152a, at plant', '1,1-difluoroethane, HFC-152a, at plant', 'US'], ['1-butanol, propylene hydroformylation, at plant', '1-butanol, ...)",
+  "elapsed_seconds": 152.36736633302644,
+  "source_files_unchanged": true,
+  "unapplied_generic_alias_proposal_used": true,
+  "source_code_changed": false,
+  "final_energy_roles_nonempty": 170,
+  "final_energy_role_activity_count": 2418,
+  "unqualified_preview_only": true,
+  "interpretation": "Interpreter-only preview, not normal public sector support. Role activity counts do not establish complete filter coverage. Exhaustive graph certification failed; no database was exported."
+}

@@ -27,3 +27,13 @@ The patch remains unapplied because the latest instruction prohibits Python
 source edits. Approval is needed for this concrete exception. The separate
 four-file battery proposal remains unchanged and unapplied. See
 `proposed-final-energy-alias-compatibility.patch` and its verification JSON.
+
+
+Latest full preview: the alias proposal and exact E5 mapping allow inventory
+preparation (1,621 records) and the shared update to finish. It selects 170
+nonempty roles containing 2,418 activity assignments. Exhaustive graph validation
+then rejects one newly introduced technosphere cycle, including native
+HFC-152a and 1-butanol suppliers. This is an additional operational blocker;
+classification success does not establish a valid final-energy database.
+The preview took about 152 seconds, left source files unchanged and performed
+no export. See `uvek-final-energy-alias-workflow-preview-verification.json`.
