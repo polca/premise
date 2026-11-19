@@ -166,6 +166,7 @@ def get_mapping(
                                 f"Incomplete reviewed UVEK CLIC role declaration for {key!r}."
                             )
                         slugs = tuple(sorted(set(declared)))
+                    entry = {**entry, "clic_role_key": f"{Path(filepath).name}:{key}"}
                     if slugs or var == "uvek_aliases":
                         entry = {
                             **entry,
@@ -840,6 +841,13 @@ class InventorySet:
                             == "generated helper"
                         )
                         or (
+                            self.family == "ecoinvent"
+                            and filtr[technology].get("clic_role_key")
+                            in activity["clic provenance"].get(
+                                "derived_role_bindings", ()
+                            )
+                        )
+                        or (
                             activity["clic provenance"].get("slug") in allowed
                             and eligible(activity, technology)
                         )
@@ -850,7 +858,17 @@ class InventorySet:
             }
             for activity in database:
                 slug = activity.get("clic provenance", {}).get("slug")
-                for technology in clic_roles.get(slug, ()):
+                prepared_roles = activity.get("clic provenance", {}).get(
+                    "derived_role_bindings", ()
+                )
+                technologies = set(clic_roles.get(slug, ()))
+                if self.family == "ecoinvent":
+                    technologies.update(
+                        technology
+                        for technology, definition in filtr.items()
+                        if definition.get("clic_role_key") in prepared_roles
+                    )
+                for technology in technologies:
                     if id(activity) not in present[technology] and eligible(
                         activity, technology
                     ):

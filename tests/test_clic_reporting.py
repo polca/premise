@@ -54,6 +54,30 @@ def test_checkpoint_restores_inventory_manifest_and_recipe(tmp_path):
     assert recovered["clic inventories"]["datasets"][0]["semantic_version"] == "1.2.0"
 
 
+def test_derived_inventory_is_visible_in_report_and_recipe(tmp_path):
+    definition = scenario(tmp_path)
+    definition["clic inventories"]["derived_inventories"] = [
+        {
+            "id": "pv-country-electricity-2026",
+            "fingerprint": "d" * 64,
+            "activity_count": 500,
+        }
+    ]
+    definition["clic recipe"]["derived_inventories"] = {
+        "pv-country-electricity-2026": "d" * 64
+    }
+    workbook = Workbook()
+    write_inventory_sheet(workbook, [definition])
+    rows = list(workbook["CLIC Inventories"].values)
+    derived = next(row for row in rows if row[1] == "pv-country-electricity-2026")
+    assert derived[4] == "derived inventory (500 activities)"
+    assert derived[12] == "d" * 64
+    _, recipes = write_inventory_sidecars(tmp_path / "report.xlsx", [definition])
+    assert ClicRecipe.read(recipes[0]).derived_inventories == {
+        "pv-country-electricity-2026": "d" * 64
+    }
+
+
 def scenario(tmp_path):
     audit = tmp_path / "cached-audit.json.gz"
     audit.write_bytes(gzip.compress(b'{"stages": []}'))

@@ -117,8 +117,21 @@ class ClicUserInventories:
         native = {_key(activity_identity(activity)) for activity in database}
         public = defaultdict(set)
         retained = defaultdict(list)
+        derived = defaultdict(list)
+        from .clic_photovoltaic import is_derived_node, use_derived_photovoltaics
+        from .clic_preparation import recipe_for_node, use_preparation_recipes
+
+        prepare_background = use_preparation_recipes(
+            recipe, family=self.family, system_model=self.system_model
+        )
+        derive_photovoltaics = use_derived_photovoltaics(recipe)
         active = {Path(path).name for path, _ in source_files}
         for node in registry()["hybrid_sources"]["nodes"]:
+            if node.get("file") in active and (
+                (derive_photovoltaics and is_derived_node(node))
+                or (prepare_background and recipe_for_node(node) is not None)
+            ):
+                derived[_key(node["identity"])].append(node)
             if node["clic_slug"]:
                 public[_key(node["identity"])].add(node["clic_slug"])
             elif node["file"] in active:
@@ -152,6 +165,9 @@ class ClicUserInventories:
                     key = _key(activity_identity(reference))
                     if key in native or key in local:
                         continue
+                    if key in derived:
+                        self.required_nodes.update(node["id"] for node in derived[key])
+                        continue
                     choices = public.get(key, ())
                     if len(choices) > 1:
                         raise ClicInventoryError(
@@ -182,9 +198,10 @@ class ClicUserInventories:
         aliases, by_slug = defaultdict(dict), {}
         for activity in clic_activities:
             row = activity.get("clic provenance", {})
-            if not row.get("slug"):
+            if not row.get("slug") and row.get("role") != "derived inventory":
                 continue
-            by_slug[row["slug"]] = activity
+            if row.get("slug"):
+                by_slug[row["slug"]] = activity
             for identity in [
                 activity_identity(activity),
                 activity_identity(row),
@@ -220,6 +237,16 @@ class ClicUserInventories:
                                 continue
                             else:
                                 choices = list(aliases.get(key, {}).values())
+                                choices = [
+                                    a
+                                    for a in choices
+                                    if a.get("clic provenance", {}).get("role")
+                                    == "derived inventory"
+                                    or list(activity_identity(reference))
+                                    in a.get("clic provenance", {}).get(
+                                        "prepared_aliases", ()
+                                    )
+                                ] or choices
                             if len(choices) > 1:
                                 raise ClicInventoryError(
                                     f"Ambiguous CLIC link in user inventory: {activity_identity(reference)!r}."

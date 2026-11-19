@@ -2783,6 +2783,11 @@ class Metals(BaseTransformation):
             self.db_index_by_name[name].append(ds)
             self.db_index[name][ref_prod].append(ds)
             self.db_index_full[name][ref_prod][location].append(ds)
+            # Only reviewed preparation aliases can replace a different product
+            # boundary (for example the adopted refined germanium market).
+            for alias in ds.get("clic provenance", {}).get("prepared_aliases", ()):
+                if (alias[0], alias[1]) != (name, ref_prod):
+                    self.db_index[alias[0]][alias[1]].append(ds)
 
     def get_datasets_matching_filters(self, process_filter, reference_product_filter):
         """Use the activity index for exact filters and scan only as fallback."""
@@ -2816,6 +2821,13 @@ class Metals(BaseTransformation):
             if matches_filter_query(dataset.get("name", ""), process_filter)
             and matches_filter_query(
                 dataset.get("reference product", ""), reference_product_filter
+            )
+            or any(
+                matches_filter_query(alias[0], process_filter)
+                and matches_filter_query(alias[1], reference_product_filter)
+                for alias in dataset.get("clic provenance", {}).get(
+                    "prepared_aliases", ()
+                )
             )
         ]
 

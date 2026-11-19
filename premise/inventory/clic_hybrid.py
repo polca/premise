@@ -75,6 +75,8 @@ class HybridInventoryPlan:
     guard_files: frozenset[str]
     fingerprint: str
     source_context: dict | None = None
+    derived_nodes: frozenset[int] = frozenset()
+    prepared_nodes: frozenset[int] = frozenset()
 
 
 def plan_hybrid_inventories(
@@ -88,6 +90,8 @@ def plan_hybrid_inventories(
     source_version=None,
     explicit_roots=(),
     extra_nodes=(),
+    derive_photovoltaics=True,
+    prepare_background=False,
 ):
     """Walk the legacy dependency graph, stopping at published CLIC replacements."""
     from ..core.filesystem_constants import VARIABLES_DIR
@@ -115,6 +119,17 @@ def plan_hybrid_inventories(
     specification = registry()
     graph = specification["hybrid_sources"]
     nodes = graph["nodes"]
+    from .clic_photovoltaic import is_country_node, is_derived_node, source_nodes
+    from .clic_preparation import recipe_for_node, required_recipe_roots
+
+    derived_candidates = {
+        node["id"] for node in nodes if derive_photovoltaics and is_derived_node(node)
+    }
+    prepared_candidates = {
+        node["id"]
+        for node in nodes
+        if prepare_background and recipe_for_node(node) is not None
+    }
     active = {Path(path).name: (Path(path), version) for path, version in sources}
     requested = set(
         explicit_roots
@@ -126,6 +141,14 @@ def plan_hybrid_inventories(
         )
     )
     pending = list(extra_nodes)
+    if not explicit_roots:
+        # Names shared with the 2020 residential model are not scientific
+        # replacements for the reviewed 2026 country recipes.
+        requested.difference_update(
+            nodes[i]["clic_slug"]
+            for i in derived_candidates | prepared_candidates
+            if nodes[i]["clic_slug"]
+        )
     scenarios = list(scenarios) or [{}]
     for sector in sectors:
         for filename in specification["sector_mappings"].get(sector, ()):
@@ -167,7 +190,9 @@ def plan_hybrid_inventories(
                 "lci-iridium-economic-proxy.xlsx",
             ):
                 pending.extend(graph["files"].get(filename, {}).get("nodes", ()))
-    selected, guards = set(), set()
+    selected, guards, derived = set(), set(), set()
+    prepared = set()
+    derived_roots = {}
     vehicle_sources = defaultdict(list)
     for node in nodes:
         if node["file"] in active:
@@ -206,6 +231,27 @@ def plan_hybrid_inventories(
             index = pending.pop()
             node = nodes[index]
             if node["file"] not in active:
+                continue
+            if index in prepared_candidates:
+                if index not in prepared:
+                    prepared.add(index)
+                    requested.update(
+                        required_recipe_roots(recipe_for_node(node), graph)
+                    )
+                continue
+            if index in derived_candidates:
+                if index in derived:
+                    continue
+                derived.add(index)
+                country = is_country_node(node)
+                if country not in derived_roots:
+                    derived_roots[country] = tuple(
+                        n["clic_slug"]
+                        for n in source_nodes(
+                            graph, country=country, compatibility=not country
+                        )
+                    )
+                requested.update(derived_roots[country])
                 continue
             if node["clic_slug"]:
                 requested.add(node["clic_slug"])
@@ -314,6 +360,8 @@ def plan_hybrid_inventories(
             "clic_roots": sorted(requested),
             "files": {name: graph["files"][name]["sha256"] for name in sorted(names)},
             "source_context": source_context,
+            "derived_nodes": sorted(derived),
+            "prepared_nodes": sorted(prepared),
         }
     )
     return HybridInventoryPlan(
@@ -323,6 +371,8 @@ def plan_hybrid_inventories(
         frozenset(guards),
         fingerprint,
         source_context,
+        frozenset(derived),
+        frozenset(prepared),
     )
 
 
@@ -493,6 +543,11 @@ def _import_retained_inventories(
         row = activity.get("clic provenance", {})
         if row.get("slug"):
             aliases[_key(activity_identity(row))].append((None, activity))
+        if row.get("role") == "derived inventory" or row.get("prepared_aliases"):
+            for identity in row.get(
+                "prepared_aliases", row.get("legacy_identities", ())
+            ):
+                aliases[_key(identity)].append((None, activity))
     metadata = []
     for path, source_version in plan.sources:
         actual = hashlib.sha256(Path(path).read_bytes()).hexdigest()
@@ -566,18 +621,27 @@ def _import_retained_inventories(
                     if edge["type"] != "technosphere":
                         continue
                     candidates = aliases.get(_key(activity_identity(edge)), ())
+                    derived_choices = [
+                        a
+                        for _, a in candidates
+                        if a.get("clic provenance", {}).get("role")
+                        == "derived inventory"
+                        or list(activity_identity(edge))
+                        in a.get("clic provenance", {}).get("prepared_aliases", ())
+                    ]
                     same_file = [
                         a for filename, a in candidates if filename == path.name
                     ]
-                    choices = same_file or [a for _, a in candidates]
+                    choices = derived_choices or same_file or [a for _, a in candidates]
                     unique = {a["code"]: a for a in choices}
                     if len(unique) > 1:
                         matching = {
                             code: a
                             for code, a in unique.items()
-                            if a["clic provenance"]["background"]["technosphere"][
-                                "version"
-                            ]
+                            if a["clic provenance"]
+                            .get("background", {})
+                            .get("technosphere", {})
+                            .get("version")
                             == source_version
                         }
                         unique = matching or unique

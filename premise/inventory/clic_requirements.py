@@ -158,6 +158,11 @@ def bind_activity_roles(activities, source_files, *, family="ecoinvent"):
                         f"{filename}:{role}", set()
                     ).add(node["identity"][3])
     overrides = family_role_overrides(family)
+    derived_roles = {
+        role
+        for activity in activities
+        for role in activity.get("clic provenance", {}).get("derived_role_bindings", ())
+    }
     for roles in expected.values():
         for role in overrides:
             roles.pop(role, None)
@@ -166,7 +171,11 @@ def bind_activity_roles(activities, source_files, *, family="ecoinvent"):
             expected.setdefault(slug, {})[role] = {definition["clic_unit"]}
     for activity in activities:
         provenance = activity["clic provenance"]
-        roles = expected.get(provenance.get("slug"), {})
+        roles = {
+            role: units
+            for role, units in expected.get(provenance.get("slug"), {}).items()
+            if role not in derived_roles
+        }
         for role, units in roles.items():
             if activity["unit"] not in units:
                 raise ClicInventoryError(
@@ -190,7 +199,9 @@ def bind_activity_roles(activities, source_files, *, family="ecoinvent"):
                     raise ClicInventoryError(
                         f"CLIC production reference changed for reviewed {family} role {role!r}."
                     )
-        provenance["role_bindings"] = sorted(roles)
+        provenance["role_bindings"] = sorted(
+            set(roles) | set(provenance.get("derived_role_bindings", ()))
+        )
         provenance.pop("role_binding_limitations", None)
         limitations = {
             role: list(overrides[role]["clic_limitations"])
@@ -203,6 +214,16 @@ def bind_activity_roles(activities, source_files, *, family="ecoinvent"):
     for role, definition in overrides.items():
         filename, name = role.split(":", 1)
         bindings.setdefault(filename, {})[name] = tuple(definition["clic_slugs"])
+    for role in derived_roles:
+        filename, name = role.split(":", 1)
+        bindings.setdefault(filename, {})[name] = tuple(
+            sorted(
+                activity["code"]
+                for activity in activities
+                if role
+                in activity.get("clic provenance", {}).get("derived_role_bindings", ())
+            )
+        )
     return bindings
 
 

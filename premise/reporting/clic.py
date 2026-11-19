@@ -161,6 +161,30 @@ def write_inventory_sheet(workbook, scenarios, *, workbook_path=None):
                     recipe_name,
                 ]
             )
+        for row in manifest.get("derived_inventories", ()):
+            sheet.append(
+                [
+                    " | ".join(str(item) for item in identity),
+                    row["id"],
+                    None,
+                    None,
+                    f"derived inventory ({row['activity_count']} activities)",
+                    (
+                        "See CLIC and background licenses"
+                        if row.get("background_inputs")
+                        else "See CLIC input licenses"
+                    ),
+                    background(target["technosphere"]),
+                    background(target["biosphere"]),
+                    background(target["technosphere"]),
+                    background(target["biosphere"]),
+                    manifest["brightpath_version"],
+                    snapshot.get("doi"),
+                    row["fingerprint"],
+                    manifest["resolution_fingerprint"],
+                    recipe_name,
+                ]
+            )
         source_rows = [
             (row, "retained workbook") for row in manifest.get("retained_workbooks", ())
         ]

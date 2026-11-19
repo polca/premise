@@ -308,6 +308,15 @@ def _extract_exchange_for_premise(
     if production_volume is not None:
         data["production volume"] = production_volume
 
+    # Preserve the scalar needed to reconstruct additional coproduct inventories
+    # from the user's allocated background, without retaining all properties.
+    if proxy.type == "production":
+        allocation = (
+            (proxy.data.get("properties") or {}).get("allocation factor") or {}
+        ).get("amount")
+        if allocation is not None:
+            data["source allocation factor"] = allocation
+
     data["input"] = (proxy.input_database, proxy.input_code)
     data["output"] = (proxy.output_database, proxy.output_code)
 

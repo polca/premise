@@ -32,11 +32,14 @@ for older versions does not imply that their imports have been validated.
 Inputs and applicability
 --------------------------
 
-The IEA report, packaged workbooks, inherited Atlas yields and IRENA weights
-are inputs to preparation of the country inventories. The build imports these
-prepared inventories during initialization. ``ndb.update("electricity")``
-then applies the module-efficiency trajectory and regional electricity-market
-mapping. It does not download yields or rebuild country recipes each time.
+The IEA report, CLIC installation and national-mix inventories, inherited Atlas
+yields and IRENA weights are inputs to preparation of the country inventories.
+New CLIC builds reconstruct the required country recipes during lazy inventory
+preparation, after harmonization and before destination linking.
+``ndb.update("electricity")`` then applies the module-efficiency trajectory and
+regional electricity-market mapping. Yield and generation parameters remain
+versioned local reference data; they are not downloaded afresh for each update.
+The generated country electricity inventory does not require an Excel file.
 
 Technologies and reference systems
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -384,13 +387,16 @@ Sources and inventory details
 Inventory preparation
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-For **ecoinvent 3.12 cut-off**, *premise* imports the inventories from
+The 2026 reference model comes from
 `IEA PVPS Task 12, report T12-33:2026 <https://doi.org/10.69766/WJTE1771>`_
-and its accompanying life-cycle inventory workbook.
-Other ecoinvent versions and the consequential system model continue to use
-``lci-PV.xlsx`` inventories, under their current import rules.
+and its accompanying life-cycle inventory workbook. New ecoinvent preparations
+use reviewed CLIC bindings for its installation and national-mix inputs to
+derive the country electricity recipes. Source-version migration and complete
+destination linking remain mandatory. Current CLIC migration gates for older
+backgrounds and consequential builds are recorded in the development notes,
+``docs/development/clic-inventory-pipeline.md``.
 
-The packaged inventories are:
+The retained source and numerical benchmark workbooks are:
 
 .. list-table:: PV inventory files
    :header-rows: 1
@@ -404,7 +410,9 @@ The packaged inventories are:
    * - ``lci-PV-2026-electricity.xlsx``
      - Residential, commercial and combined electricity datasets for 250
        countries and territories, plus one compatibility activity for the
-       existing hydrogen model.
+       existing hydrogen model. New preparations derive these recipes from
+       CLIC; the workbook remains for benchmark checks and explicitly pinned
+       historical recipe replay.
    * - ``lci-PV-CIGS.xlsx``
      - Nine activities for the distinct CIS/CIGS supplement
        and its foreground dependencies.

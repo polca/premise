@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "sources": {
+    "electric_boiler": "https://ens.dk/media/8615/download; sheets 41 Electric boiler, small and 41 Electric boiler, large; heat efficiency net 0.99, August 2026",
+    "nuclear_heat": "Simons and Bauer (2012); https://www.iaea.org/sites/default/files/ntr2014.pdf; existing Premise exergy-allocation assumptions",
+    "motorcycle": "https://doi.org/10.1021/es903729a; supplementary Table S3 gearbox only; https://zenodo.org/records/7769251",
+    "ccs": "Volkart et al. (2013), existing Premise CHP capture assumptions; capture and storage supplied by reviewed CLIC inputs",
+    "coproducts": "Existing Premise PGM and rhenium allocation models; target shares retained, source allocation read from the user's loaded database. Missing co-product production yields are not inferred."
+  },
+  "pgm_target_shares": {
+    "ZA:ruthenium": 0.03,
+    "RU:ruthenium": 0.05,
+    "RU:iridium": 0.13
+  },
+  "rhenium_target_shares": {"CL": 0.0007, "CN": 0.0001, "US": 0.0009},
+  "electric_boiler_efficiency": 0.99,
+  "capture_fraction": 0.9,
+  "chp_input_multipliers": {"hard coal": 1.09, "wood": 1.1, "natural gas": 1.08, "oil": 1.09},
+  "nuclear_heat": {"electric_efficiency": 0.338, "total_utilization": 0.75, "heat_temperature_c": 140, "ambient_temperature_c": 20},
+  "rail_fuel_cell": {"capacity_kwe": 860, "owner_reference_hours": 30000, "clic_reference_hours": 20000},
+  "motorcycle_gearbox": {"retained_steel_kg": 10, "retained_aluminium_kg": 9, "metal_gross_factor": 1.25, "assembly_kwh_per_kg": 1},
+  "clic_candidates": {
+    "electric_mechanical": "mechanical-powertrain-production-and-attributed-treatment-electric-passenger-car-historical-reference",
+    "combustion_equipment": "dry-combustion-equipment-lifecycle-historical-notter-engineering-reference",
+    "rail_fuel_cell": "fuel-cell-system-assembly-1-kwe-proton-exchange-membrane-pem",
+    "germanium": "market-for-germanium-refined-2023-supply-mix"
+  }
+}

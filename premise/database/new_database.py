@@ -1491,6 +1491,8 @@ class NewDatabase:
 
             sectors = validate_uvek_scope(sectors)
         from ..inventory.clic_archive import content_hash
+        from ..inventory.clic_photovoltaic import use_derived_photovoltaics
+        from ..inventory.clic_preparation import use_preparation_recipes
         from ..inventory.clic_requirements import registry
         from ..inventory.clic_hybrid import (
             plan_hybrid_inventories,
@@ -1567,6 +1569,11 @@ class NewDatabase:
             system_model=self.system_model,
             explicit_roots=provider.recipe.roots,
             extra_nodes=self._clic_user_inputs.required_nodes,
+            # Replay historical complete recipes without expanding their graph.
+            derive_photovoltaics=use_derived_photovoltaics(provider.recipe),
+            prepare_background=use_preparation_recipes(
+                provider.recipe, family=family, system_model=self.system_model
+            ),
             **({"family": family, "source_version": "3.12"} if target_kwargs else {}),
         )
         from ..inventory.prepared_resources import (
@@ -1585,6 +1592,8 @@ class NewDatabase:
             biosphere_name=self.biosphere_name,
             keep_uncertainty=self.keep_imports_uncertainty,
             use_cache=self._clic_use_cache,
+            **({"derived_nodes": plan.derived_nodes} if plan.derived_nodes else {}),
+            **({"prepared_nodes": plan.prepared_nodes} if plan.prepared_nodes else {}),
             **target_kwargs,
         )
         from ..inventory.clic_requirements import bind_activity_roles
@@ -1613,6 +1622,7 @@ class NewDatabase:
                 "source": self._clic_base_source_fingerprint,
                 "clic_resolution": provider.manifest["resolution_fingerprint"],
                 "adapter": provider.manifest["adapter_fingerprint"],
+                "derived_inventories": provider.manifest.get("derived_inventories", []),
                 "policy": provider.manifest["policy"],
                 "engine": provider.manifest["brightpath_version"],
                 "resources": provider.manifest["migration_resource_fingerprint"],
@@ -1712,6 +1722,7 @@ class NewDatabase:
         }
         self._clear_inventory_importer_state()
         semantic = {
+            "derived_inventories": provider.manifest.get("derived_inventories", []),
             **(
                 {"prepared_inventory_resources": resource_hashes}
                 if resource_hashes

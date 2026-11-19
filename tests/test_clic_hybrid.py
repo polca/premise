@@ -136,8 +136,9 @@ def test_dependency_walk_stops_at_public_replacement_and_retains_licensed_suppli
     assert [path.name for path, _ in plan.sources] == ["licensed.xlsx"]
 
 
-def test_generated_helper_without_slug_cannot_replace_a_retained_activity(
-    monkeypatch, tmp_path
+@pytest.mark.parametrize("derived", [False, True, "published"])
+def test_only_reviewed_derived_identity_can_replace_a_retained_purchase(
+    monkeypatch, tmp_path, derived
 ):
     path = tmp_path / "licensed.xlsx"
     path.write_bytes(b"licensed workbook fixture")
@@ -153,6 +154,17 @@ def test_generated_helper_without_slug_cannot_replace_a_retained_activity(
         database="clic",
         **{"clic provenance": {"role": "generated helper"}},
     )
+    if derived:
+        helper["clic provenance"] = {
+            "role": "derived inventory",
+            "legacy_identities": [list(module.activity_identity(private))],
+        }
+    if derived == "published":
+        helper["clic provenance"] = {
+            "role": "root",
+            "slug": "new-public-lifecycle",
+            "prepared_aliases": [list(module.activity_identity(private))],
+        }
     nodes = [
         {
             "id": i,
@@ -201,7 +213,11 @@ def test_generated_helper_without_slug_cannot_replace_a_retained_activity(
     records, metadata, _ = module.import_retained_inventories(
         plan, [], [helper], version="3.12", system_model="cutoff"
     )
-    assert records[0]["exchanges"][0]["name"] == "private"
+    assert records[0]["exchanges"][0]["name"] == (
+        "conversion helper" if derived else "private"
+    )
+    if derived:
+        assert records[0]["exchanges"][0]["input"] == ("clic", "helper")
     assert records[0]["exchanges"][0]["amount"] == 3
     assert all(module.managed_inventory_key(r)[0] == "workbook" for r in records)
     assert metadata[0]["sha256"] == digest

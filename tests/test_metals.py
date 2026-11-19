@@ -3057,3 +3057,29 @@ def test_zero_freight_distance_is_coverage_and_invalid_distances_fail(
     data.to_csv(path, index=False)
     with pytest.raises(MetalsConfigError, match="nonnegative"):
         metals_module.load_metals_transport()
+
+
+def test_metal_filters_follow_only_explicit_preparation_aliases():
+    refined = market_dataset(
+        "published refined germanium", "germanium, refined", "GLO", []
+    )
+    refined["clic provenance"] = {
+        "prepared_aliases": [
+            ["zinc mine operation", "germanium, concentrate", "GLO", "kilogram"]
+        ]
+    }
+    metals = object.__new__(Metals)
+    metals.database = [refined]
+    metals.build_db_indexes()
+    assert metals.get_datasets_matching_filters(
+        {"equals": "zinc mine operation"}, {"equals": "germanium, concentrate"}
+    ) == [refined]
+    assert metals.get_datasets_matching_filters(
+        {"contains": "zinc mine"}, {"equals": "germanium, concentrate"}
+    ) == [refined]
+    assert (
+        metals.get_datasets_matching_filters(
+            {"equals": "unrelated mine"}, {"equals": "germanium, concentrate"}
+        )
+        == []
+    )

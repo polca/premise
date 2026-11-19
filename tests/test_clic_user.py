@@ -99,6 +99,58 @@ def test_user_purchase_adds_only_its_root_and_links_through_namespace(inputs):
         )
 
 
+def test_user_purchase_links_to_derived_inventory_without_public_slug(inputs):
+    specification, _ = inputs
+    user = module.ClicUserInventories(
+        specification, [], version="3.12", system_model="cutoff"
+    )
+    derived = target()
+    derived["clic provenance"] = {
+        "role": "derived inventory",
+        "legacy_identities": [["component", "component", "GLO", "kilogram"]],
+    }
+    records, _ = user.prepare([derived], [derived])
+    edge = records[0]["exchanges"][1]
+    assert edge["input"] == ("premise-CLIC", "clic-component")
+    assert edge["amount"] == -3 and edge["scale"] == 0.2
+
+
+def test_user_purchase_requests_pv_derivation_instead_of_older_public_match(
+    inputs, monkeypatch
+):
+    from premise.inventory.clic_photovoltaic import COMPATIBILITY_NAME, COUNTRY_FILE
+
+    specification, raw = inputs
+    edge = raw["exchanges"][1]
+    edge.update(
+        name=COMPATIBILITY_NAME,
+        product=COMPATIBILITY_NAME,
+        location="CH",
+        unit="kilowatt hour",
+    )
+    node = {
+        "id": 0,
+        "file": COUNTRY_FILE,
+        "identity": [COMPATIBILITY_NAME, COMPATIBILITY_NAME, "CH", "kilowatt hour"],
+        "clic_slug": "older-2020",
+        "science_hash": "reviewed",
+    }
+    monkeypatch.setattr(
+        module, "registry", lambda: {"hybrid_sources": {"nodes": [node]}}
+    )
+    user = module.ClicUserInventories(
+        specification, [], version="3.12", system_model="cutoff"
+    )
+    roots = user.required_roots(
+        catalog(native(1, 1, "unrelated")),
+        ClicRecipe.read(None),
+        [],
+        source_files=[(specification[0]["filepath"].with_name(COUNTRY_FILE), "3.12")],
+    )
+    assert roots == set()
+    assert user.required_nodes == {0}
+
+
 def test_existing_background_purchase_is_not_replaced_by_coincident_public_dataset(
     inputs,
 ):
@@ -179,3 +231,31 @@ def test_user_purchase_can_require_a_retained_workbook_outside_requested_sector(
     )
     assert roots == set()
     assert user.required_nodes == {0}
+
+
+def test_user_purchase_prefers_reviewed_public_lifecycle_alias(inputs):
+    specification, _ = inputs
+    user = module.ClicUserInventories(
+        specification, [], version="3.12", system_model="cutoff"
+    )
+    reviewed = target()
+    reviewed["clic provenance"] = {
+        "role": "root",
+        "slug": "new-lifecycle",
+        "legacy_identities": [["component", "component", "GLO", "kilogram"]],
+        "prepared_aliases": [["component", "component", "GLO", "kilogram"]],
+    }
+    older = target()
+    older["name"] = "older component lifecycle"
+    older["code"] = "old-component"
+    older["clic provenance"] = {
+        "role": "root",
+        "slug": "old-component",
+        "legacy_identities": [["component", "component", "GLO", "kilogram"]],
+    }
+    records, _ = user.prepare([], [older, reviewed])
+    assert records[0]["exchanges"][1]["input"] == (
+        reviewed["database"],
+        reviewed["code"],
+    )
+    assert records[0]["exchanges"][1]["amount"] == -3

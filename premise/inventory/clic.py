@@ -186,6 +186,8 @@ class ClicInventoryProvider:
         use_cache=True,
         biosphere_codes=None,
         classifications=None,
+        derived_nodes=(),
+        prepared_nodes=(),
     ):
         target = resolve_inventory_target(
             version, family=family, system_model=system_model
@@ -205,6 +207,28 @@ class ClicInventoryProvider:
             system_model=system_model,
             use_cache=use_cache,
         )
+        if derived_nodes:
+            from .clic_photovoltaic import (
+                DERIVATION as PV_DERIVATION,
+                derive_country_inventories,
+            )
+            from .clic_requirements import registry
+
+            harmonized = derive_country_inventories(
+                harmonized,
+                registry()["hybrid_sources"],
+                derived_nodes,
+                pins=(
+                    {PV_DERIVATION: self.recipe.derived_inventories[PV_DERIVATION]}
+                    if self.recipe.derived_inventories is not None
+                    and PV_DERIVATION in self.recipe.derived_inventories
+                    else ({} if self.recipe.derived_inventories is not None else None)
+                ),
+            )
+        elif (self.recipe.derived_inventories or {}).get("pv-country-electricity-2026"):
+            raise ClicInventoryError(
+                "The locked recipe requires missing derived inventories."
+            )
         # Names remain stable when more sectors are requested later in a build.
         identities = defaultdict(set)
         for did, native in self.get_archive()._selection(self.recipe).items():
@@ -244,11 +268,40 @@ class ClicInventoryProvider:
                 aliases[node["clic_slug"]].add(tuple(node["identity"]))
         for activity in records:
             row = activity["clic provenance"]
-            row["legacy_identities"] = [
+            row["legacy_identities"] = row.get("legacy_identities", []) + [
                 list(identity)
                 for identity in sorted(aliases.get(row.get("slug"), ()))
                 if identity[3] == activity["unit"]
             ]
+        if prepared_nodes:
+            from .clic_preparation import DERIVATION, prepare_recipes
+
+            records, summary = prepare_recipes(
+                records,
+                database,
+                registry()["hybrid_sources"],
+                prepared_nodes,
+                target=harmonized.manifest["target"],
+                pins=(
+                    {DERIVATION: self.recipe.derived_inventories[DERIVATION]}
+                    if self.recipe.derived_inventories is not None
+                    and DERIVATION in self.recipe.derived_inventories
+                    else ({} if self.recipe.derived_inventories is not None else None)
+                ),
+                keep_uncertainty=keep_uncertainty,
+            )
+            harmonized.manifest.setdefault("derived_inventories", []).append(summary)
+            harmonized.lockfile.setdefault("derived_inventories", {})[DERIVATION] = (
+                summary["fingerprint"]
+            )
+        if (
+            set(self.recipe.derived_inventories or {})
+            != set(harmonized.lockfile.get("derived_inventories", {}))
+            and self.recipe.derived_inventories is not None
+        ):
+            raise ClicInventoryError(
+                "The locked recipe requires a different set of derived inventories."
+            )
         self.manifest = harmonized.manifest
         self.manifest["adapter_diagnostics"] = diagnostics
         self.manifest["freshness"] = (

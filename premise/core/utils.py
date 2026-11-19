@@ -41,7 +41,7 @@ EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 CACHE_MANIFEST_SUFFIX = ".manifest.json"
 # Preserve static battery conversion contracts and activation provenance through
 # source caches and their dependent compact checkpoints.
-CACHE_SCHEMA_VERSION = 8
+CACHE_SCHEMA_VERSION = 9
 FUEL_CO2_TRANSFER_KEY = "premise fuel CO2 reclassification"
 
 

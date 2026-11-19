@@ -91,6 +91,7 @@ class ClicRecipe:
     workbooks: Mapping[str, str] | None = None
     user_inventories: Mapping[str, str] | None = None
     namespace_slugs: tuple[str, ...] | None = None
+    derived_inventories: Mapping[str, str] | None = None
 
     @classmethod
     def read(cls, value: ClicRecipe | Mapping | str | Path | None) -> ClicRecipe:
@@ -142,7 +143,7 @@ class ClicRecipe:
             not isinstance(slug, str) for slug in roots
         ):
             raise ClicResolutionError("Recipe roots must be a list of dataset slugs.")
-        for field in ("workbooks", "user_inventories"):
+        for field in ("workbooks", "user_inventories", "derived_inventories"):
             pins = value.get(field)
             if pins is not None and (
                 not isinstance(pins, Mapping)
@@ -174,6 +175,7 @@ class ClicRecipe:
             copy.deepcopy(value.get("workbooks")),
             copy.deepcopy(value.get("user_inventories")),
             tuple(namespaces) if namespaces is not None else None,
+            copy.deepcopy(value.get("derived_inventories")),
         )
 
 

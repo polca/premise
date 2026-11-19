@@ -130,6 +130,46 @@ harmonized. Live freshness checks transfer metadata, not inventory packages.
 
 ## Recipes and reproducibility
 
+### PV country electricity derived from CLIC
+
+New ecoinvent preparations derive the 2026 country PV electricity recipes
+after source-cohort harmonization and before destination linking. The reviewed
+ledger supplies explicit CLIC bindings for 74 installation records and 33
+national electricity mixes. The existing PV generator combines those inputs
+with the versioned yield, lifetime and generation parameters. Only outputs
+required by the selected dependency graph are appended. The legacy 280 kWp
+hydrogen-input label is a separate one-kWh wrapper around the 2026 250 kWp
+single-Si reference at 1000 kWh/kWp/year; it is not capacity-scaled.
+
+These outputs do not read `lci-PV-2026-electricity.xlsx`. Names shared with the
+2020 residential inventories no longer establish the 2026 electricity roles.
+The 2026 source versions retain ordinary CLIC freshness checks, version pins,
+migration audits and destination linking. A `derived_inventories` recipe pin
+additionally covers the derivation code, parameters, prepared source records,
+selected outputs and target. Reports list the derivation and its fingerprint;
+exported manifests retain its input-version references. A changed derivation
+or input refuses a locked replay rather than silently changing results.
+
+Historical complete recipes without a derivation pin, and recipes explicitly
+pinning the country workbook, keep their original preparation path. This also
+preserves old CLIC-only PV compatibility roots without adding new dependencies.
+The workbook remains a numerical benchmark and a
+legacy replay resource; this change does not yet remove it from distributions.
+CLIC resolution failures never trigger that historical path.
+
+The implementation was checked against the verified 2026-11-16 archive
+(Zenodo record 24278693). All 750 country recipes and the compatibility wrapper
+reconstruct the workbook exchange identities and quantities within relative
+tolerance 1e-12 at 3.12.
+Exact-catalog preparation and linking pass at 3.10, 3.11 and 3.12, with 250
+residential and 250 commercial providers. Locked 3.12 derivation replay also
+passes. The 3.7 and 3.8 checks stop at 46 unresolved technosphere and seven
+biosphere exchanges; 3.9 stops at 40 unresolved technosphere exchanges in the
+upstream UVEK-to-ecoinvent migration. These are conversion gates, not approved
+omissions. Consequential cross-model migration remains unsupported. These
+checks establish reconstruction and linking, not LCIA equivalence or a full
+licensed scenario build.
+
 Pass `inventory_recipe` as a JSON/YAML path or mapping. A partial recipe can pin
 individual roots or upstream suppliers without importing unrelated datasets:
 
@@ -1504,3 +1544,59 @@ from that package and preserved in the inventory ZIP. The export took about
 153 seconds. This verifies serialization and reference integrity; an openLCA
 application import, numerical engine comparison and Monte Carlo equivalence are
 separate checks and are not claimed here.
+
+## Background-derived cut-off preparation recipes
+
+New ecoinvent cut-off preparations use
+`premise/inventory/clic_preparation.py` and the public parameters in
+`premise/data/clic/preparation_recipes.json` for the reviewed remaining recipes.
+The planner stops at these records, requests their public prerequisites before
+CLIC resolution/freshness checks, and reconstructs them from the unmodified loaded
+background after CLIC destination linking. It does not read their Excel files.
+Only requested records are generated. Existing complete recipes without this
+stage's pin, and explicit retained-workbook pins, retain their historical path.
+CLIC failures do not select that path. Consequential and UVEK builds retain their
+existing selection; this change does not establish cross-model equivalence.
+
+| Recipe | Preparation and retained boundary |
+| --- | --- |
+| PGM and rhenium | Clone the loaded platinum/copper donor exchanges and apply the historical additional-product allocation share divided by the donor's actual production allocation factor. That scalar is preserved during extraction even when full properties are disabled. Missing factors fail with instructions to re-extract; old constants are never substituted. This retains the historical allocation model: missing coproduct yields are not inferred and native coproduct allocations are not rewritten. |
+| Afforestation | Buy the loaded eucalyptus/willow forestry output per kilogram of net direct CO2 uptake. Preserve the existing biomass-storage boundary, without adding a permanence or end-of-life model. Available from the existing 3.11 selection onward. |
+| CHP with CCS | Buy native CHP electricity or heat with the existing fuel-specific input penalty. Capture 90% of its positive direct fossil CO2 (biogenic for wood), offset matching air flows and buy the reviewed public capture/storage chain. Retain the existing oxyfuel coal chain and coal-capture proxy for oil. |
+| Industrial electric boiler | Generate operation-only heat from medium-voltage electricity at 99% efficiency: `1/(0.99*3.6)` kWh/MJ. The [Danish Energy Agency August 2026 tables](https://ens.dk/media/8615/download), sheets 41 Electric boiler, small/large, support the efficiency. This is an engineering proxy used by the heat mappings, not a complete published infrastructure LCI. |
+| Refinery hydrogen with CCS | Use the native refinery hydrogen supplier, capture 90% of its positive direct fossil CO2 and buy the public pre-combustion chain. The historical 30-bar output label versus low-pressure input remains an explicit limitation; no compression inventory is invented. |
+| Nuclear heat | Generate the existing exergy-allocation wrapper around CLIC EPR electricity, retaining the declared efficiency and temperature assumptions. |
+| Electric motorcycle gearbox and tank forming | Generate from native metals, metalworking, scrap, electricity and injection moulding. Preserve the gearbox-only manufacturing boundary and signed manufacturing scrap; exclude motor/controller/charger/cooling and a second vehicle end-of-life inventory. |
+
+Electric-car mechanical production/market and dry combustion-equipment production
+now bind to the reviewed CLIC historical lifecycle records. The dependency walk
+stops at the combined lifecycle, avoiding a second legacy treatment purchase.
+Explicit standalone legacy waste/treatment requests fail: a combined lifecycle
+cannot supply a separate waste-treatment service. Other published powertrain
+components keep their existing CLIC bindings.
+
+Rail fuel-cell assembly uses the published generic 1 kWe PEM system. One historical
+860 kWe / 30,000-hour owner reference buys `860*30000/20000 = 1290` public
+20,000-hour assemblies. The owner's lifetime set count is unchanged; service
+hours are converted once. This intentionally adopts the public generic stack/BoP
+replacement schedule. Germanium adopts the public global 2023 refined-product
+market, changing the historical concentrate/mining boundary. No concentrate assay
+or recovery yield is inferred. These are documented substitutions, not claims of
+numerical equivalence.
+
+The preparation fingerprint covers algorithm and parameter hashes, selected
+outputs, target, uncertainty choice, public versions/hashes and actual loaded
+donor content. Locked replay refuses changes. Manifests and reports retain the
+recipe decisions, input hashes and limitations; generated coefficients remain in
+private inventory caches. Reviewed aliases also apply to retained/user purchases
+and metal selectors; arbitrary name similarities cannot establish an alias.
+
+Development checks against the 2026-11-16 archive and the owned 3.12 source passed
+for 25 selected recipe nodes: 22 generated records and three public aliases, all
+generated technosphere links, and locked replay. This checks reconstruction and
+linking, not a full scenario build or LCIA equivalence. Across 3.7–3.12, the
+maximal cut-off dependency plan retains five workbook families (150 records):
+co-firing, final energy, geothermal, steel and battery capacity. Historical
+workbooks remain bundled for old recipe replay and benchmarks, so runtime
+replacement alone does not reduce the distribution size. The separate PV
+migration gates described above remain in effect.
