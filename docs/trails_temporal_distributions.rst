@@ -1180,4 +1180,63 @@ priority. On a local miss, TRAILS checks the cache for that record and downloads
 the ZIP if needed. It checks the scenario and file checksums before saving
 the download. The verified ZIP is available as ``vintage_package_path`` on
 the instance. With the default folder and no record ID, a missing package
-leaves that attribute set to ``None``.
+leaves that attribute set to ``None``. Applying the annual shares to
+construction exchanges uses the rules below.
+
+Using the package for fleet construction timing
+------------------------------------------------
+
+For a construction exchange with a matching asset, region and year, TRAILS
+uses the package's shares of fleet use in place of the static timing. An
+asset built in 2020 and in use in 2030 contributes at offset -10. Each
+build year's share gives the fraction of the construction exchange allocated
+to that offset.
+
+``iam_vintage_assets.yaml`` links the existing construction profiles to asset
+IDs in the package. It covers matched power generation technologies,
+passenger cars, buses and lorries. The file also identifies specific
+construction exchanges directly for power, heat, hydrogen, fuels and direct
+air capture. These rules use the operating activity, the equipment supplier,
+the product and the unit. This distinguishes technologies that share the
+same construction supplier, such as coal gasification with and without
+carbon capture. For electrolysis the rule covers the balance of plant, since
+stacks have their own replacement timing. Where an inventory already uses a
+generic plant construction input, only the exchange in the identified
+operating activity gets the IAM timing. For mapped passenger-car and truck
+sizes, use the size-specific fleet first and the pooled fleet for that
+powertrain when no size-specific shares are available. The region comes from
+the operating activity, using premise's geographic mapping where the match
+is unambiguous. Without matching shares, the exchange keeps its existing
+timing.
+
+A TRAILS package with an IAM build-year profile marks the exchange that
+sets the date and the downstream links that supply the same asset. Use
+a TRAILS reader that supports the optional ``construction_timing`` column.
+On a dated route, a market forwards the construction demand in the same
+year. A market reached without an IAM build date keeps its usual timing.
+Maintenance and end-of-life exchanges still use their own dates.
+
+When the vintage file records zero stock for a matching fleet and another
+inventory year has its build-year shares, Premise marks the exchange
+``zero_fleet`` in the same column. If the exchange is absent, the export adds
+a zero-valued row to carry the marker. TRAILS can then use the known build
+years when interpolating between the two inventories. Older vintage files
+with omitted zero rows need to be regenerated to provide this information.
+
+The grid-connected stationary battery activity uses the combined REMIND
+wind and solar battery fleet as a proxy. Coal-to-liquids and gas-to-liquids
+each use a pooled fleet for the corresponding process without capture.
+Processes with capture keep their existing timing until there is a
+separate capacity series for them.
+
+The biochar rule dates the plant input to wood pyrolysis using the pooled
+REMIND biochar fleet. The REMIND template uses a 30-year average for the
+routes that produce biochar in the supplied scenarios. Review that lifetime
+when a scenario includes plants that also produce liquid fuels. Natural gas
+processing dates the plant inputs to drying and sweetening. Coal preparation
+uses the combined coal processing fleet for the preparation plant and lignite
+mill where those construction inputs are present.
+
+For retirement exchanges already linked to a matching construction exchange,
+TRAILS can use the same build-year shares with the configured fixed lifetime.
+The temporal selector report records the IAM asset and region used.

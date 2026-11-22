@@ -37,7 +37,9 @@ from .iam.scenario_downloader import (
     get_scenario_url,
 )
 from .iam.vintage_downloader import _find_vintage_package
+from .iam.vintage_fleets import VintageFleets
 from .core.filesystem_constants import DATA_DIR
+from .construction_timing import mark_construction_routes
 from .core.utils import load_database, dump_database
 from .lifecycle_timing import (
     construction_age_profile,
@@ -968,6 +970,12 @@ class TrailsDataPackage:
         """
         Create and export a scenario datapackage.
         """
+        self.reorder_matrices()
+        mark_construction_routes(
+            Path.cwd() / "trails_temp",
+            TEMPORAL_REGISTRY_DIR / "iam_vintage_assets.yaml",
+            getattr(self, "_zero_vintage_stock", ()),
+        )
         # create a new datapackage
         package = Package(base_path=Path.cwd().as_posix())
         # Find all CSV files manually
@@ -1054,9 +1062,6 @@ class TrailsDataPackage:
         # save it back as a json file
         with open(Path.cwd() / "trails_temp" / "datapackage.json", "w") as fp:
             json.dump(data, fp)
-
-        # reorder matrices and indices
-        self.reorder_matrices()
 
         # zip the folder
         shutil.make_archive(name, "zip", str(Path.cwd() / "trails_temp"))
@@ -1420,6 +1425,18 @@ class TrailsDataPackage:
         lifecycle_timing = getattr(self, "lifecycle_timing", {})
         retirement_asset_links = getattr(self, "retirement_asset_links", {})
         temporal_registry = getattr(self, "temporal_registry", None)
+        vintages = None
+        vintage_package = getattr(self, "vintage_package_path", None)
+        if vintage_package is not None and self.datapackage.scenarios:
+            first_scenario = self.datapackage.scenarios[0]
+            vintages = VintageFleets(
+                vintage_package,
+                TEMPORAL_REGISTRY_DIR / "iam_vintage_assets.yaml",
+                first_scenario["model"],
+                first_scenario["pathway"],
+                [scenario["year"] for scenario in self.datapackage.scenarios],
+            )
+        self._zero_vintage_stock = vintages.zero_stock if vintages is not None else ()
         outdir = Path.cwd() / "trails_temp"
         outfile = outdir / "temporal_distribution_faulty_exchanges.csv"
         match_outfile = outdir / "long_term_biosphere_matches.csv"
@@ -1471,8 +1488,8 @@ class TrailsDataPackage:
             params = stock_assets.get(asset_key)
             evidence = "legacy construction-timing assumption"
             profile_id = ""
+            record = {**asset, "reference product": asset_key[1]}
             if temporal_registry is not None and temporal_registry.assignments:
-                record = {**asset, "reference product": asset_key[1]}
                 resolution = temporal_registry.resolve(
                     record,
                     target="supplier",
@@ -1488,11 +1505,19 @@ class TrailsDataPackage:
                     params = profile_to_temporal_parameters(profile)
                     profile_id = resolution.profile_id
                     evidence = profile.get("evidence", {}).get("status", "unspecified")
+            if vintages is not None:
+                params = vintages.construction(
+                    profile_id, record, caller, scenario["year"], params
+                )
             if params is None:
                 raise ValueError(
                     "The matching asset has no construction timing profile."
                 )
             age_offsets, age_weights = construction_age_profile(params)
+            iam_asset = params.get("iam_vintage_asset")
+            if iam_asset:
+                profile_id = f"iam-vintage:{iam_asset}:{params['iam_vintage_region']}"
+                evidence = "IAM package service shares"
             lifetime = params.get("lifetime")
             if lifetime is None:
                 lifetime = caller_lifetime
@@ -1510,6 +1535,11 @@ class TrailsDataPackage:
                     "construction_evidence": evidence,
                     "construction_offsets": json.dumps(age_offsets),
                     "construction_weights": json.dumps(age_weights),
+                    "timing_assumption": (
+                        "Fleet retirement uses the IAM build-year shares and a fixed lifetime."
+                        if iam_asset
+                        else "Fixed-life retirement uses the matching construction-age weights."
+                    ),
                 },
             )
 
@@ -1549,21 +1579,49 @@ class TrailsDataPackage:
             exc["temporal_weights"] = [1.0]
 
         def _selected_profile(record, target, scenario, caller_record=None):
-            if temporal_registry is None or not temporal_registry.assignments:
-                return None, None
-            resolution = temporal_registry.resolve(
-                record,
-                target=target,
-                context={
-                    "ecoinvent_version": getattr(self, "source_version", None),
-                    "year": scenario.get("year"),
-                    "geography": record.get("location"),
-                },
-                caller_record=caller_record,
+            resolution = None
+            if temporal_registry is not None and temporal_registry.assignments:
+                resolution = temporal_registry.resolve(
+                    record,
+                    target=target,
+                    context={
+                        "ecoinvent_version": getattr(self, "source_version", None),
+                        "year": scenario.get("year"),
+                        "geography": record.get("location"),
+                    },
+                    caller_record=caller_record,
+                )
+            profile = (
+                temporal_registry.profiles[resolution.profile_id]
+                if resolution
+                else None
             )
-            if resolution is None:
+            params = (
+                profile_to_temporal_parameters(profile) if profile is not None else None
+            )
+            if vintages is not None and target == "supplier":
+                params = vintages.construction(
+                    resolution.profile_id if resolution else None,
+                    record,
+                    caller_record,
+                    scenario["year"],
+                    params,
+                )
+            if params is None:
                 return None, None
-            profile = temporal_registry.profiles[resolution.profile_id]
+            if resolution is None:
+                profile_id = f"iam-vintage:{params['iam_vintage_asset']}"
+                assignment_id, assignment_kind = profile_id, "iam-vintage"
+                competing_assignment_ids = ()
+            else:
+                profile_id = resolution.profile_id
+                assignment_id = resolution.assignment_id
+                assignment_kind = next(
+                    item["kind"]
+                    for item in temporal_registry.assignments
+                    if item["id"] == assignment_id
+                )
+                competing_assignment_ids = resolution.competing_assignment_ids
             selector_assignments.append(
                 {
                     "scenario": _scenario_label(scenario),
@@ -1581,20 +1639,18 @@ class TrailsDataPackage:
                     "calling_dataset_location": (caller_record or {}).get(
                         "location", ""
                     ),
-                    "assignment_id": resolution.assignment_id,
-                    "assignment_kind": next(
-                        item["kind"]
-                        for item in temporal_registry.assignments
-                        if item["id"] == resolution.assignment_id
+                    "assignment_id": assignment_id,
+                    "assignment_kind": assignment_kind,
+                    "profile_id": profile_id,
+                    "quantity": (
+                        profile["quantity"] if profile else "construction_timing"
                     ),
-                    "profile_id": resolution.profile_id,
-                    "quantity": profile["quantity"],
-                    "competing_assignment_ids": "|".join(
-                        resolution.competing_assignment_ids
-                    ),
+                    "iam_vintage_asset": params.get("iam_vintage_asset", ""),
+                    "iam_vintage_region": params.get("iam_vintage_region", ""),
+                    "competing_assignment_ids": "|".join(competing_assignment_ids),
                 }
             )
-            return profile, profile_to_temporal_parameters(profile)
+            return profile, params
 
         def _match_selector(pattern, value):
             pattern = (pattern or "*").strip()
@@ -1862,7 +1918,7 @@ class TrailsDataPackage:
                             continue
                         key = (sup_name, sup_ref)
                         params = stock_assets.get(key)
-                        selected_profile, selected_params = _selected_profile(
+                        _, selected_params = _selected_profile(
                             {
                                 **e,
                                 "reference product": sup_ref,
@@ -1871,7 +1927,7 @@ class TrailsDataPackage:
                             scenario,
                             caller_record=ds,
                         )
-                        if selected_profile is not None:
+                        if selected_params is not None:
                             params = selected_params
                         is_maintenance = key in maintenance
                         is_end_of_life = key in end_of_life
@@ -1970,11 +2026,9 @@ class TrailsDataPackage:
                                             "lifetime", ds_lifetime
                                         ),
                                     ),
-                                    "timing_assumption": (
-                                        "Fixed-life retirement derived from the matching construction-age weights. "
-                                        "The construction evidence and lifetime remain assumptions, not an IAM cohort model."
-                                        if construction
-                                        else (caller_timing or {}).get("assumption", "")
+                                    "timing_assumption": construction.get(
+                                        "timing_assumption",
+                                        (caller_timing or {}).get("assumption", ""),
                                     ),
                                     "temporal_offsets": json.dumps(offsets),
                                     "temporal_weights": json.dumps(weights),

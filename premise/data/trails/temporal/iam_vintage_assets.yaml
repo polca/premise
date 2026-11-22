@@ -1,0 +1,648 @@
+# Existing TRAILS construction profile IDs mapped to asset IDs in the vintage table.
+# Where a default profile covers several fleets, match the actual vehicle or
+# producing activity as well. Name patterns are lowercase glob patterns.
+construction_profiles:
+  eia-us-solar-photovoltaic-construction-vintage-2025: pv
+  eia-us-onshore-wind-construction-vintage-2025: wind-onshore
+  gem-gwpt-united-kingdom-offshore-fixed-structure-vintage-2026: wind-offshore
+  gem-gwpt-germany-offshore-fixed-structure-vintage-2026: wind-offshore
+  gem-gwpt-china-offshore-fixed-structure-vintage-2026: wind-offshore
+  gem-gwpt-europe-offshore-fixed-structure-vintage-2026: wind-offshore
+  gem-gwpt-world-offshore-fixed-structure-vintage-2026: wind-offshore
+  gem-gspt-spain-csp-construction-vintage-2026: csp
+  gem-gspt-united-states-csp-construction-vintage-2026: csp
+  gem-gspt-south-africa-csp-construction-vintage-2026: csp
+  gem-gspt-world-csp-construction-vintage-2026: csp
+  eia-us-conventional-hydropower-construction-vintage-2025: hydro
+  eia-us-nuclear-construction-vintage-2025: nuclear
+  eia-us-geothermal-construction-vintage-2025: geothermal
+  eia-us-wood-biomass-construction-vintage-2025: biomass-chp
+  gem-gbpt-europe-wood-biomass-construction-vintage-2026: biomass-chp
+  gem-gbpt-world-wood-biomass-construction-vintage-2026: biomass-chp
+  eia-us-natural-gas-combustion-turbine-construction-vintage-2025: gas-turbine
+  eia-us-natural-gas-combined-cycle-construction-vintage-2025:
+    - asset: ccgt-ccs
+      callers:
+        - "*combined cycle*with ccs*"
+        - "*combined cycle*w/ ccs*"
+        - "*combined cycle*with carbon capture*"
+        - "*combined cycle*with co2 capture*"
+    - asset: ccgt
+  dft-uk-battery-electric-car-construction-vintage-2025: passenger-ldv-4w-bev
+  dft-uk-fuel-cell-electric-car-construction-vintage-2025: passenger-ldv-4w-fcev
+  dft-uk-gasoline-car-construction-vintage-2025: passenger-ldv-4w-liquids
+  dft-uk-diesel-car-construction-vintage-2025: passenger-ldv-4w-liquids
+  dft-uk-gasoline-hybrid-car-construction-vintage-2025: passenger-ldv-4w-hybrid
+  dft-uk-diesel-hybrid-car-construction-vintage-2025: passenger-ldv-4w-hybrid
+  dft-uk-gas-car-construction-vintage-2025:
+    - asset: passenger-ldv-4w-gases
+      suppliers: ["passenger car, compressed gas,*"]
+  eu-road-bus-construction-vintage-2024:
+    - asset: buses-bev
+      suppliers: ["passenger bus, battery electric*"]
+    - asset: buses-fcev
+      suppliers: ["passenger bus, fuel cell electric,*"]
+    - asset: buses-gases
+      suppliers: ["passenger bus, compressed gas,*"]
+    - asset: buses-liquids
+      suppliers: ["passenger bus, diesel,*", "passenger bus, gasoline,*"]
+  eu-road-light-commercial-construction-vintage-2024:
+    - asset: light-trucks-bev
+      suppliers: ["lorry production, battery electric, 3.5 metric ton*"]
+    - asset: light-trucks-fcev
+      suppliers: ["lorry production, fuel cell electric, 3.5 metric ton*"]
+    - asset: light-trucks-gases
+      suppliers: ["lorry production, compressed gas, 3.5 metric ton*"]
+    - asset: light-trucks-liquids
+      suppliers: ["lorry production, diesel, 3.5 metric ton*"]
+  eu-road-lorry-over-3.5t-construction-vintage-2024:
+    - asset: heavy-trucks-bev
+      suppliers:
+        - lorry production, battery electric, 26 metric ton*
+        - lorry production, battery electric, 32 metric ton*
+        - lorry production, battery electric, 40 metric ton*
+        - lorry production, battery electric, 60 metric ton*
+    - asset: heavy-trucks-fcev
+      suppliers:
+        - lorry production, fuel cell electric, 26 metric ton*
+        - lorry production, fuel cell electric, 32 metric ton*
+        - lorry production, fuel cell electric, 40 metric ton*
+        - lorry production, fuel cell electric, 60 metric ton*
+    - asset: heavy-trucks-gases
+      suppliers:
+        - lorry production, compressed gas, 26 metric ton*
+        - lorry production, compressed gas, 32 metric ton*
+        - lorry production, compressed gas, 40 metric ton*
+        - lorry production, compressed gas, 60 metric ton*
+    - asset: heavy-trucks-liquids
+      suppliers:
+        - lorry production, diesel, 26 metric ton*
+        - lorry production, diesel, 32 metric ton*
+        - lorry production, diesel, 40 metric ton*
+        - lorry production, diesel, 60 metric ton*
+
+# Match the operating activity and its construction input directly. Use the
+# caller to distinguish technologies that share a construction supplier.
+construction_exchanges:
+  # Put the date on the vehicle input to transport. Older packages and missing
+  # regional classes can still use the corresponding pooled fleet.
+  - asset: truck-3-5t-bev
+    fallback: light-trucks-bev
+    callers: ["transport, freight, lorry, battery electric, 3.5 metric ton"]
+    suppliers: ["lorry production, battery electric, 3.5 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-3-5t-fcev
+    fallback: light-trucks-fcev
+    callers: ["transport, freight, lorry, fuel cell electric, 3.5 metric ton"]
+    suppliers: ["lorry production, fuel cell electric, 3.5 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-3-5t-gases
+    fallback: light-trucks-gases
+    callers: ["transport, freight, lorry, compressed gas, 3.5 metric ton"]
+    suppliers: ["lorry production, compressed gas, 3.5 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-3-5t-liquids
+    fallback: light-trucks-liquids
+    callers: ["transport, freight, lorry, diesel, 3.5 metric ton"]
+    suppliers: ["lorry production, diesel, 3.5 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-7-5t-bev
+    fallback: light-trucks-bev
+    callers: ["transport, freight, lorry, battery electric, 7.5 metric ton"]
+    suppliers: ["lorry production, battery electric, 7.5 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-7-5t-fcev
+    fallback: light-trucks-fcev
+    callers: ["transport, freight, lorry, fuel cell electric, 7.5 metric ton"]
+    suppliers: ["lorry production, fuel cell electric, 7.5 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-7-5t-gases
+    fallback: light-trucks-gases
+    callers: ["transport, freight, lorry, compressed gas, 7.5 metric ton"]
+    suppliers: ["lorry production, compressed gas, 7.5 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-7-5t-liquids
+    fallback: light-trucks-liquids
+    callers: ["transport, freight, lorry, diesel, 7.5 metric ton"]
+    suppliers: ["lorry production, diesel, 7.5 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-18t-bev
+    fallback: heavy-trucks-bev
+    callers: ["transport, freight, lorry, battery electric, 18 metric ton"]
+    suppliers: ["lorry production, battery electric, 18 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-18t-fcev
+    fallback: heavy-trucks-fcev
+    callers: ["transport, freight, lorry, fuel cell electric, 18 metric ton"]
+    suppliers: ["lorry production, fuel cell electric, 18 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-18t-gases
+    fallback: heavy-trucks-gases
+    callers: ["transport, freight, lorry, compressed gas, 18 metric ton"]
+    suppliers: ["lorry production, compressed gas, 18 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-18t-liquids
+    fallback: heavy-trucks-liquids
+    callers: ["transport, freight, lorry, diesel, 18 metric ton"]
+    suppliers: ["lorry production, diesel, 18 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-26t-bev
+    fallback: heavy-trucks-bev
+    callers: ["transport, freight, lorry, battery electric, 26 metric ton"]
+    suppliers: ["lorry production, battery electric, 26 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-26t-fcev
+    fallback: heavy-trucks-fcev
+    callers: ["transport, freight, lorry, fuel cell electric, 26 metric ton"]
+    suppliers: ["lorry production, fuel cell electric, 26 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-26t-gases
+    fallback: heavy-trucks-gases
+    callers: ["transport, freight, lorry, compressed gas, 26 metric ton"]
+    suppliers: ["lorry production, compressed gas, 26 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-26t-liquids
+    fallback: heavy-trucks-liquids
+    callers: ["transport, freight, lorry, diesel, 26 metric ton"]
+    suppliers: ["lorry production, diesel, 26 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-40t-bev
+    fallback: heavy-trucks-bev
+    callers: ["transport, freight, lorry, battery electric, 40 metric ton"]
+    suppliers: ["lorry production, battery electric, 40 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-40t-fcev
+    fallback: heavy-trucks-fcev
+    callers: ["transport, freight, lorry, fuel cell electric, 40 metric ton"]
+    suppliers: ["lorry production, fuel cell electric, 40 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-40t-gases
+    fallback: heavy-trucks-gases
+    callers: ["transport, freight, lorry, compressed gas, 40 metric ton"]
+    suppliers: ["lorry production, compressed gas, 40 metric ton"]
+    product: truck
+    unit: unit
+  - asset: truck-40t-liquids
+    fallback: heavy-trucks-liquids
+    callers: ["transport, freight, lorry, diesel, 40 metric ton"]
+    suppliers: ["lorry production, diesel, 40 metric ton"]
+    product: truck
+    unit: unit
+  - asset: passenger-car-large-bev
+    fallback: passenger-ldv-4w-bev
+    callers: ["transport, passenger car, battery electric, large"]
+    suppliers: ["passenger car, battery electric, large"]
+    product: "passenger car"
+    unit: unit
+  - asset: passenger-car-large-fcev
+    fallback: passenger-ldv-4w-fcev
+    callers: ["transport, passenger car, fuel cell electric, large"]
+    suppliers: ["passenger car, fuel cell electric, large"]
+    product: "passenger car"
+    unit: unit
+  - asset: passenger-car-large-gases
+    fallback: passenger-ldv-4w-gases
+    callers: ["transport, passenger car, compressed gas, large, euro-6"]
+    suppliers: ["passenger car, compressed gas, large, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-large-hybrid
+    fallback: passenger-ldv-4w-hybrid
+    callers: ["transport, passenger car, plugin gasoline hybrid, large, euro-6"]
+    suppliers: ["passenger car, plugin gasoline hybrid, large, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-large-liquids
+    fallback: passenger-ldv-4w-liquids
+    callers: ["transport, passenger car, gasoline, large, euro-6"]
+    suppliers: ["passenger car, gasoline, large, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-medium-bev
+    fallback: passenger-ldv-4w-bev
+    callers: ["transport, passenger car, battery electric, medium"]
+    suppliers: ["passenger car, battery electric, medium"]
+    product: "passenger car"
+    unit: unit
+  - asset: passenger-car-medium-fcev
+    fallback: passenger-ldv-4w-fcev
+    callers: ["transport, passenger car, fuel cell electric, medium"]
+    suppliers: ["passenger car, fuel cell electric, medium"]
+    product: "passenger car"
+    unit: unit
+  - asset: passenger-car-medium-gases
+    fallback: passenger-ldv-4w-gases
+    callers: ["transport, passenger car, compressed gas, medium, euro-6"]
+    suppliers: ["passenger car, compressed gas, medium, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-medium-hybrid
+    fallback: passenger-ldv-4w-hybrid
+    callers: ["transport, passenger car, plugin gasoline hybrid, medium, euro-6"]
+    suppliers: ["passenger car, plugin gasoline hybrid, medium, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-medium-liquids
+    fallback: passenger-ldv-4w-liquids
+    callers: ["transport, passenger car, gasoline, medium, euro-6"]
+    suppliers: ["passenger car, gasoline, medium, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-mini-bev
+    fallback: passenger-ldv-4w-bev
+    callers: ["transport, passenger car, battery electric, mini"]
+    suppliers: ["passenger car, battery electric, mini"]
+    product: "passenger car"
+    unit: unit
+  - asset: passenger-car-mini-fcev
+    fallback: passenger-ldv-4w-fcev
+    callers: ["transport, passenger car, fuel cell electric, mini"]
+    suppliers: ["passenger car, fuel cell electric, mini"]
+    product: "passenger car"
+    unit: unit
+  - asset: passenger-car-mini-gases
+    fallback: passenger-ldv-4w-gases
+    callers: ["transport, passenger car, compressed gas, mini, euro-6"]
+    suppliers: ["passenger car, compressed gas, mini, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-mini-hybrid
+    fallback: passenger-ldv-4w-hybrid
+    callers: ["transport, passenger car, plugin gasoline hybrid, mini, euro-6"]
+    suppliers: ["passenger car, plugin gasoline hybrid, mini, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-mini-liquids
+    fallback: passenger-ldv-4w-liquids
+    callers: ["transport, passenger car, gasoline, mini, euro-6"]
+    suppliers: ["passenger car, gasoline, mini, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-medium-suv-bev
+    fallback: passenger-ldv-4w-bev
+    callers: ["transport, passenger car, battery electric, medium suv"]
+    suppliers: ["passenger car, battery electric, medium suv"]
+    product: "passenger car"
+    unit: unit
+  - asset: passenger-car-medium-suv-fcev
+    fallback: passenger-ldv-4w-fcev
+    callers: ["transport, passenger car, fuel cell electric, medium suv"]
+    suppliers: ["passenger car, fuel cell electric, medium suv"]
+    product: "passenger car"
+    unit: unit
+  - asset: passenger-car-medium-suv-gases
+    fallback: passenger-ldv-4w-gases
+    callers: ["transport, passenger car, compressed gas, medium suv, euro-6"]
+    suppliers: ["passenger car, compressed gas, medium suv, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-medium-suv-hybrid
+    fallback: passenger-ldv-4w-hybrid
+    callers: ["transport, passenger car, plugin gasoline hybrid, medium suv, euro-6"]
+    suppliers: ["passenger car, plugin gasoline hybrid, medium suv, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-medium-suv-liquids
+    fallback: passenger-ldv-4w-liquids
+    callers: ["transport, passenger car, gasoline, medium suv, euro-6"]
+    suppliers: ["passenger car, gasoline, medium suv, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-small-bev
+    fallback: passenger-ldv-4w-bev
+    callers: ["transport, passenger car, battery electric, small"]
+    suppliers: ["passenger car, battery electric, small"]
+    product: "passenger car"
+    unit: unit
+  - asset: passenger-car-small-fcev
+    fallback: passenger-ldv-4w-fcev
+    callers: ["transport, passenger car, fuel cell electric, small"]
+    suppliers: ["passenger car, fuel cell electric, small"]
+    product: "passenger car"
+    unit: unit
+  - asset: passenger-car-small-gases
+    fallback: passenger-ldv-4w-gases
+    callers: ["transport, passenger car, compressed gas, small, euro-6"]
+    suppliers: ["passenger car, compressed gas, small, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-small-hybrid
+    fallback: passenger-ldv-4w-hybrid
+    callers: ["transport, passenger car, plugin gasoline hybrid, small, euro-6"]
+    suppliers: ["passenger car, plugin gasoline hybrid, small, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-small-liquids
+    fallback: passenger-ldv-4w-liquids
+    callers: ["transport, passenger car, gasoline, small, euro-6"]
+    suppliers: ["passenger car, gasoline, small, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-van-bev
+    fallback: passenger-ldv-4w-bev
+    callers: ["transport, passenger car, battery electric, van"]
+    suppliers: ["passenger car, battery electric, van"]
+    product: "passenger car"
+    unit: unit
+  - asset: passenger-car-van-fcev
+    fallback: passenger-ldv-4w-fcev
+    callers: ["transport, passenger car, fuel cell electric, van"]
+    suppliers: ["passenger car, fuel cell electric, van"]
+    product: "passenger car"
+    unit: unit
+  - asset: passenger-car-van-gases
+    fallback: passenger-ldv-4w-gases
+    callers: ["transport, passenger car, compressed gas, van, euro-6"]
+    suppliers: ["passenger car, compressed gas, van, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-van-hybrid
+    fallback: passenger-ldv-4w-hybrid
+    callers: ["transport, passenger car, plugin gasoline hybrid, van, euro-6"]
+    suppliers: ["passenger car, plugin gasoline hybrid, van, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+  - asset: passenger-car-van-liquids
+    fallback: passenger-ldv-4w-liquids
+    callers: ["transport, passenger car, gasoline, van, euro-6"]
+    suppliers: ["passenger car, gasoline, van, euro-6d"]
+    product: "passenger car, euro-6d"
+    unit: unit
+
+  - asset: heat-pump
+    callers:
+      - "heat production, water-water heat pump, industrial, 100kw"
+      - "steam heat production, water-water heat pump, industrial, 100kw"
+    suppliers:
+      - "heat pump production, industrial, water-water, 100 kw"
+    product: "heat pump, water-water, 100kw"
+    unit: unit
+  # Date the plant input to pyrolysis. The same mini-CHP inventory also serves
+  # other processes, so match the biochar production activity.
+  - asset: biochar
+    callers: ["biochar, from spruce wood pyrolysis"]
+    suppliers: ["mini chp plant construction, common components for heat+electricity"]
+    product: mini chp plant, common components for heat+electricity
+    unit: unit
+  - asset: direct-air-capture
+    callers:
+      - "carbon dioxide, captured*with a solvent-based direct air capture system,*"
+      - "carbon dioxide, captured*with a sorbent-based direct air capture system,*"
+    suppliers:
+      - "direct air capture system, solvent-based, 1mtco2"
+      - "direct air capture system, sorbent-based, 100ktco2"
+    product: direct air capture system
+    unit: unit
+  - asset: gas-chp
+    callers:
+      - "heat and power co-generation, natural gas, combined cycle power plant, 400mw electrical"
+      - "heat and power co-generation, natural gas, conventional power plant, 100mw electrical"
+    suppliers: ["gas power plant construction,*", "market for gas power plant,*"]
+    product: "gas power plant,*"
+    unit: unit
+  - asset: hydrogen-power
+    callers: ["electricity production, from hydrogen-fired one gigawatt gas turbine, for grid balancing"]
+    suppliers: ["gas power plant construction, combined cycle, 400mw electrical"]
+    product: "gas power plant, combined cycle, 400mw electrical"
+    unit: unit
+  - asset: oil-power
+    callers: ["electricity production, oil"]
+    suppliers: ["oil power plant construction, 500mw", "market for oil power plant, 500mw"]
+    product: "oil power plant, 500mw"
+    unit: unit
+  - asset: coal-pulverised-no-ccs
+    callers:
+      - electricity production, hard coal
+      - electricity production, hard coal, conventional
+      - electricity production, hard coal, subcritical
+      - electricity production, hard coal, supercritical
+      - electricity production, hard coal, ultra-supercritical
+      - electricity production, hard coal, at coal mine power plant
+    suppliers: [market for hard coal power plant, hard coal power plant construction]
+    product: hard coal power plant
+    unit: unit
+  - asset: coal-pulverised-no-ccs
+    callers:
+      - electricity production, lignite
+      - electricity production, lignite, conventional
+      - electricity production, lignite, subcritical
+      - electricity production, lignite, supercritical
+      - electricity production, lignite, ultra-supercritical
+      - electricity production, at lignite-fired power plant, pulverised
+    suppliers: [market for lignite power plant, lignite power plant construction]
+    product: lignite power plant
+    unit: unit
+  - asset: coal-igcc
+    callers:
+      - "electricity production, at hard coal-fired igcc power plant"
+      - "electricity production, at lignite-fired igcc power plant"
+    suppliers: ["*coal igcc power plant 450mw", "*lignite igcc power plant 450mw"]
+    product: "*igcc power plant 450mw"
+    unit: unit
+  - asset: coal-igcc-ccs
+    callers:
+      - "electricity production, at hard coal-fired igcc power plant, pre, pipeline *"
+      - "electricity production, at lignite-fired igcc power plant, pre, pipeline *"
+    suppliers: ["*coal igcc power plant 450mw", "*lignite igcc power plant 450mw"]
+    product: "*igcc power plant 450mw"
+    unit: unit
+  - asset: coal-chp
+    callers: ["heat and power co-generation, hard coal"]
+    suppliers: ["market for hard coal power plant"]
+    product: hard coal power plant
+    unit: unit
+  - asset: coal-chp
+    callers: ["heat and power co-generation, lignite"]
+    suppliers: ["lignite power plant construction", "market for lignite power plant"]
+    product: lignite power plant
+    unit: unit
+  - asset: biomass-ccs
+    callers: ["electricity production, at biomass-fired igcc power plant, post, pipeline *"]
+    suppliers: ["construction, bigcc power plant 450mw"]
+    product: "construction, bigcc power plant 450mw"
+    unit: unit
+  - asset: heat-biomass
+    callers: ["heat production, softwood chips from forest, at furnace 1000kw*"]
+    suppliers: ["furnace production, wood chips, with silo, 1000kw", "market for furnace, wood chips, with silo, 1000kw"]
+    product: "furnace, wood chips, with silo, 1000kw"
+    unit: unit
+  - asset: heat-coal
+    callers: ["heat production, at hard coal industrial furnace 1-10mw"]
+    suppliers: ["industrial furnace production, coal, 1-10mw", "market for industrial furnace, coal, 1-10mw"]
+    product: "industrial furnace, coal, 1-10mw"
+    unit: unit
+  - asset: heat-gas
+    callers: ["heat production, natural gas, at industrial furnace*"]
+    suppliers: ["industrial furnace production, natural gas", "market for industrial furnace, natural gas"]
+    product: "industrial furnace, natural gas"
+    unit: unit
+  # The plant lifetime applies to the balance of plant. Stacks are replaceable.
+  - asset: hydrogen-electrolysis
+    callers: ["hydrogen production, gaseous,*from * electrolysis,*"]
+    suppliers: ["electrolyzer production, 1mwe, *, balance of plant"]
+    product: "electrolyzer, 1mwe, *, balance of plant"
+    unit: unit
+  - asset: hydrogen-biomass
+    callers:
+      - "hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant"
+      - "hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass, at gasification plant"
+    suppliers: ["synthetic gas factory construction", "market for synthetic gas factory"]
+    product: synthetic gas factory
+    unit: unit
+  - asset: hydrogen-biomass-ccs
+    callers:
+      - "hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with ccs, at gasification plant"
+      - "hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass with ccs, at gasification plant"
+    suppliers: ["synthetic gas factory construction", "market for synthetic gas factory"]
+    product: synthetic gas factory
+    unit: unit
+  # These operating activities use a generic chemical factory for plant construction.
+  - asset: hydrogen-coal
+    callers: ["hydrogen production, coal gasification"]
+    suppliers: ["chemical factory construction, organics", "market for chemical factory, organics"]
+    product: "chemical factory, organics"
+    unit: unit
+  - asset: hydrogen-coal-ccs
+    callers: ["hydrogen production, coal gasification, with ccs"]
+    suppliers: ["chemical factory construction, organics", "market for chemical factory, organics"]
+    product: "chemical factory, organics"
+    unit: unit
+  - asset: hydrogen-gas
+    callers: ["hydrogen production, steam methane reforming", "hydrogen production, auto-thermal reforming"]
+    suppliers: ["chemical factory construction, organics", "market for chemical factory, organics"]
+    product: "chemical factory, organics"
+    unit: unit
+  - asset: hydrogen-gas-ccs
+    callers: ["hydrogen production, steam methane reforming, with ccs", "hydrogen production, auto-thermal reforming, with ccs"]
+    suppliers: ["chemical factory construction, organics", "market for chemical factory, organics"]
+    product: "chemical factory, organics"
+    unit: unit
+  # These treatment steps can be dated independently of extraction and LNG.
+  - asset: natural-gas-processing
+    callers: ["drying, natural gas", "sweetening, natural gas"]
+    suppliers: ["market for natural gas processing plant", "natural gas processing plant production"]
+    product: natural gas processing plant
+    unit: unit
+  - asset: coal-preparation
+    callers: ["hard coal preparation"]
+    suppliers: ["market for hard coal preparation plant", "hard coal preparation plant construction"]
+    product: hard coal preparation plant
+    unit: unit
+  - asset: coal-preparation
+    callers: ["pulverised lignite production"]
+    suppliers: ["market for lignite dust factory", "lignite dust factory construction"]
+    product: lignite dust factory
+    unit: unit
+  - asset: gases-biomass
+    callers: ["synthetic natural gas from wood, 70 bar, at plant"]
+    suppliers: ["sng from wood, production plant"]
+    product: "sng from wood, production plant"
+    unit: unit
+  # The available coal-to-methane proxy uses coal-derived hydrogen.
+  - asset: gases-coal
+    callers: ["methane, from coal-based hydrogen"]
+    suppliers: ["sabatier reaction methanation unit construction"]
+    product: sabatier reaction methanation unit
+    unit: unit
+  - asset: gases-hydrogen
+    callers: ["methane, from electrochemical methanation, with carbon from *"]
+    suppliers: ["sabatier reaction methanation unit construction"]
+    product: sabatier reaction methanation unit
+    unit: unit
+  - asset: liquids-oil
+    callers:
+      - petroleum refinery operation
+      - "diesel production,*petroleum refinery operation"
+      - "petrol production,*petroleum refinery operation"
+      - "kerosene production, petroleum refinery operation"
+      - "naphtha production, petroleum refinery operation"
+      - "light fuel oil production, petroleum refinery operation"
+      - "heavy fuel oil production, petroleum refinery operation"
+    suppliers: ["petroleum refinery construction", "market for petroleum refinery"]
+    product: petroleum refinery
+    unit: unit
+  # Use the combined fleet for plant construction on routes without carbon
+  # capture. Capture-equipped routes need a separate build-year series.
+  - asset: liquids-coal
+    callers:
+      - "* production, synthetic, fischer tropsch process, hydrogen from coal gasification, energy allocation"
+      - "* production, synthetic, fischer tropsch process, hydrogen from coal gasification, economic allocation"
+    suppliers: ["gas-to-liquid plant construction"]
+    product: gas-to-liquid plant
+    unit: unit
+  - asset: liquids-gas
+    callers:
+      - "* production, synthetic, fischer tropsch process, from natural gas, energy allocation"
+      - "* production, synthetic, fischer tropsch process, from natural gas, economic allocation"
+    suppliers: ["gas-to-liquid plant construction"]
+    product: gas-to-liquid plant
+    unit: unit
+  - asset: liquids-hydrogen
+    callers: ["diesel production, synthetic, fischer tropsch process, hydrogen from electrolysis,*"]
+    suppliers: ["gas-to-liquid plant construction"]
+    product: gas-to-liquid plant
+    unit: unit
+  - asset: liquids-hydrogen
+    callers:
+      - "methanol distillation, hydrogen from electrolysis, co2 from dac"
+      - "methanol synthesis and distillation, hydrogen from electrolysis, co2 from cement plant"
+    suppliers: ["methanol production facility, construction"]
+    product: "methanol production facility, construction"
+    unit: unit
+
+  # The stationary battery inventory draws from the grid. Use the combined
+  # REMIND wind and solar battery fleet as its build-year proxy.
+  - asset: battery-total
+    callers: ["electricity supply, from stationary battery (cont scenario)"]
+    suppliers: ["market for battery capacity, stationary (cont scenario)"]
+    product: electricity storage capacity
+    unit: kilowatt hour
+
+# Some construction inventories split one asset into several installation
+# exchanges. These inputs inherit the date when the same asset is IAM-dated.
+# The old timing on these inputs is still used on routes with no IAM build date.
+construction_pass_through:
+  - callers: ["*coal igcc power plant 450mw", "*lignite igcc power plant 450mw"]
+    suppliers: ["construction, * igcc power plant 450mw"]
+  - callers: ["photovoltaic installation construction,*", "photovoltaic plant construction,*"]
+    suppliers: ["electric installation production, utility scale, open ground"]
+  - callers: ["electric installation production, utility scale, open ground"]
+    suppliers: ["building construction, hall, steel construction"]
+  - callers: ["geothermal power plant construction"]
+    suppliers: ["deep well drilling, for deep geothermal power", "heat and power co-generation unit construction, 1mwel, 6.4 mwth"]
+  - callers: ["heat and power co-generation unit construction, 1mwel, 6.4 mwth"]
+    suppliers: ["building construction, hall"]
+  - callers: ["building construction, hall"]
+    suppliers: ["building construction, hall, steel construction", "building construction, hall, wood construction"]
+  - callers: ["concentrated solar power plant construction,*"]
+    suppliers:
+      - "collector field area construction,*"
+      - "heat transport fluid system construction,*"
+      - "power block installation,*"
+      - "thermal storage system construction,*"
+  - callers: ["methanol production facility, construction"]
+    suppliers: ["chemical factory construction, organics"]
+  - callers: ["chemical factory construction, organics"]
+    suppliers: ["building construction, multi-storey", "chemical factory construction"]
+  - callers: ["passenger bus, diesel,*", "lorry production, diesel,*"]
+    suppliers: ["fuel tank, for diesel vehicle"]
+  - callers: ["passenger car, fuel cell electric,*"]
+    suppliers: ["fuel tank, compressed hydrogen gas, 700bar, with hdpe liner"]
