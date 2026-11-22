@@ -1,10 +1,11 @@
-"""Utilities to download scenario data files used for the application examples."""
+"""Utilities to download and cache IAM data files."""
 
 from __future__ import annotations
 
 import os
 import tempfile
 import time
+from collections.abc import Callable
 from pathlib import Path
 
 import requests
@@ -60,13 +61,24 @@ def get_scenario_url(model: str, pathway: str) -> str:
 
 
 def download_csv(file_name: str, url: str, download_folder: Path) -> Path:
-    """Download a CSV file from Zenodo if it is not present locally.
+    """Download a CSV file from Zenodo if it is not present locally."""
+    return download_file(file_name, url, download_folder)
+
+
+def download_file(
+    file_name: str,
+    url: str,
+    download_folder: Path,
+    *,
+    validate: Callable[[Path], None] | None = None,
+) -> Path:
+    """Download a file if it is not present locally.
 
     A progress bar is displayed using :mod:`tqdm` while the file is being
     downloaded. When the destination directory does not yet exist it is created
     automatically. Temporary network failures are retried up to three times.
-    The destination is published only after a complete download; failures raise
-    a requests exception without leaving a partial cached scenario.
+    The destination is published after a complete download and optional
+    validation. Failed downloads leave no partial file in the cache.
 
     :param file_name: Name of the file to save the downloaded content as.
     :type file_name: str
@@ -74,6 +86,7 @@ def download_csv(file_name: str, url: str, download_folder: Path) -> Path:
     :type url: str
     :param download_folder: Directory where the file should be stored.
     :type download_folder: pathlib.Path
+    :param validate: Optional check for a complete download or an existing cache file.
     :return: Path to the downloaded file on disk.
     :rtype: pathlib.Path
     """
@@ -111,6 +124,8 @@ def download_csv(file_name: str, url: str, download_folder: Path) -> Path:
                             if chunk:
                                 file_handle.write(chunk)
                                 progress.update(len(chunk))
+                    if validate is not None:
+                        validate(temporary_path)
                     os.replace(temporary_path, file_path)
                 print(f"{file_name} downloaded successfully.")
                 break
@@ -133,6 +148,8 @@ def download_csv(file_name: str, url: str, download_folder: Path) -> Path:
                 if temporary_path is not None:
                     temporary_path.unlink(missing_ok=True)
     else:
+        if validate is not None:
+            validate(file_path)
         print(f"{file_name} already exists locally.")
 
     return file_path

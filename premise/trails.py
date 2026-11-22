@@ -36,6 +36,7 @@ from .iam.scenario_downloader import (
     get_scenario_file_stems,
     get_scenario_url,
 )
+from .iam.vintage_downloader import _find_vintage_package
 from .core.filesystem_constants import DATA_DIR
 from .core.utils import load_database, dump_database
 from .lifecycle_timing import (
@@ -108,7 +109,16 @@ class TrailsDataPackage:
         use_absolute_efficiency=False,
         biosphere_name="biosphere3",
         generate_reports: bool = True,
+        *,
+        vintage_package_dir: str | Path | None = None,
+        vintage_zenodo_record_id: str | int | None = None,
     ):
+        """Prepare TRAILS scenarios and find their optional IAM vintage package.
+
+        Use `vintage_package_dir` to override the local package folder and
+        `vintage_zenodo_record_id` to allow retrieval from a Zenodo record.
+        The verified ZIP path is available as `vintage_package_path`.
+        """
         assert "model" in scenario, "Missing `model` key in `scenario`."
         assert "pathway" in scenario, "Missing `pathway` key in `scenario`."
         assert "year" not in scenario, "Key `year` not needed in `scenario`."
@@ -137,6 +147,13 @@ class TrailsDataPackage:
                 f"Wrong biosphere name: {biosphere_name}. "
                 f"Should be one of {bw2data.databases}"
             )
+
+        self.vintage_package_path = _find_vintage_package(
+            scenario["model"],
+            scenario["pathway"],
+            local_dir=vintage_package_dir,
+            zenodo_record_id=vintage_zenodo_record_id,
+        )
 
         self.datapackage = NewDatabase(
             scenarios=self.scenarios,

@@ -11,6 +11,7 @@ prune docs/_build
 prune docs/.ipynb_checkpoints
 prune docs/_templates/.ipynb_checkpoints
 prune premise/data/iam_output_files
+prune premise/data/iam_vintage_files
 global-exclude .DS_Store *.py[cod]
 
 recursive-include tests/support *.py

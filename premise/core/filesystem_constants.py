@@ -32,6 +32,7 @@ DATA_DIR = Path(__file__).resolve().parents[1] / "data"
 INVENTORY_DIR = DATA_DIR / "additional_inventories"
 VARIABLES_DIR = Path(__file__).resolve().parents[1] / "iam_variables_mapping"
 IAM_OUTPUT_DIR = DATA_DIR / "iam_output_files"
+IAM_VINTAGE_DIR = DATA_DIR / "iam_vintage_files"
 
 if "USER_DATA_BASE_DIR" in VARIABLES:
     USER_DATA_BASE_DIR = Path(VARIABLES.get("USER_DATA_BASE_DIR"))

@@ -32,6 +32,7 @@ data/logs/
 /simapro_export.csv/
 /examples/export/
 /premise/data/iam_output_files/
+/premise/data/iam_vintage_files/
 .ipynb_checkpoints/
 missing_classifications.csv
 

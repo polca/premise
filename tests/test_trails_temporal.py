@@ -363,10 +363,13 @@ def test_trails_default_years_follow_selected_iam_file(monkeypatch, tmp_path):
     assert obj.years == [2020, 2035]
     assert [scenario["year"] for scenario in obj.scenarios] == [2020, 2035]
     assert captured["scenarios"] == obj.scenarios
+    assert obj.vintage_package_path is None
 
 
-def test_trails_explicit_years_skip_iam_year_inference(monkeypatch):
+def test_trails_explicit_years_skip_iam_year_inference(monkeypatch, tmp_path):
     captured = {}
+    vintage_path = tmp_path / "image_custom_stock_vintages_v2.zip"
+    lookups = []
 
     class DummyNewDatabase:
         def __init__(self, **kwargs):
@@ -375,9 +378,14 @@ def test_trails_explicit_years_skip_iam_year_inference(monkeypatch):
     def fail_inference(*args, **kwargs):
         raise AssertionError("explicit years should not inspect IAM files")
 
+    def find_vintage(model, pathway, **options):
+        lookups.append((model, pathway, options))
+        return vintage_path
+
     monkeypatch.setattr(trails, "NewDatabase", DummyNewDatabase)
     monkeypatch.setattr(trails.bw2data, "databases", {"biosphere3": object()})
     monkeypatch.setattr(trails, "get_classifications", lambda: {})
+    monkeypatch.setattr(trails, "_find_vintage_package", find_vintage)
     monkeypatch.setattr(TrailsDataPackage, "_infer_years_from_scenario", fail_inference)
     monkeypatch.setattr(
         TrailsDataPackage,
@@ -387,13 +395,19 @@ def test_trails_explicit_years_skip_iam_year_inference(monkeypatch):
 
     obj = TrailsDataPackage(
         scenario={"model": "image", "pathway": "custom"},
-        years=[2040],
+        years=[2040, 2050],
         source_type="ecospold",
         source_file_path=".",
+        vintage_package_dir=tmp_path,
+        vintage_zenodo_record_id=12345,
     )
 
-    assert obj.years == [2040]
-    assert [scenario["year"] for scenario in captured["scenarios"]] == [2040]
+    assert obj.years == [2040, 2050]
+    assert [scenario["year"] for scenario in captured["scenarios"]] == [2040, 2050]
+    assert lookups == [
+        ("image", "custom", {"local_dir": tmp_path, "zenodo_record_id": 12345})
+    ]
+    assert obj.vintage_package_path == vintage_path
 
 
 def test_trails_year_inference_accepts_image_archive_filename(tmp_path):

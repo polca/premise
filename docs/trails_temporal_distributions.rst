@@ -1156,3 +1156,28 @@ References
   parametric model for a balanced account of forest carbon fluxes in LCA.
   International Journal of Life Cycle Assessment, 22, 172-184.
   doi:10.1007/s11367-016-1148-z.
+
+Finding IAM stock-vintage packages
+----------------------------------
+
+``TrailsDataPackage`` looks for the annual build-year results for the
+selected IAM scenario. Place the ZIP in ``premise/data/iam_vintage_files/``
+in a source checkout, or pass ``vintage_package_dir`` to the class. Name the file
+``<model>_<pathway>_stock_vintages_v2.zip`` using a lowercase model name
+and the pathway as recorded in the manifest. Put the three files from
+iam-prep-for-premise at the root of the ZIP.
+
+.. code-block:: text
+
+   remind_SSP2-EU21-NPi2025_stock_vintages_v2.zip
+     datapackage.json
+     vintages.parquet
+     validation.json
+
+Once a versioned Zenodo record contains the ZIP, pass its numeric record ID
+to ``TrailsDataPackage`` as ``vintage_zenodo_record_id``. The local file takes
+priority. On a local miss, TRAILS checks the cache for that record and downloads
+the ZIP if needed. It checks the scenario and file checksums before saving
+the download. The verified ZIP is available as ``vintage_package_path`` on
+the instance. With the default folder and no record ID, a missing package
+leaves that attribute set to ``None``.
