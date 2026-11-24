@@ -197,21 +197,47 @@ def test_optional_runtime_errors(monkeypatch):
     with pytest.raises(RuntimeError, match="Python 3.12"):
         olca_export.load_method_mapping("missing", "3.12")
     monkeypatch.setattr(olca_export.sys, "version_info", (3, 12))
-    with pytest.raises(ValueError, match="3.8 and 3.12"):
-        olca_export.load_method_mapping("missing", "3.11")
-    with pytest.raises(ValueError, match="method_package"):
-        olca_export.load_method_mapping(None, "3.12")
+    for version in ("3.7", "3.10.1"):
+        with pytest.raises(ValueError, match="no bundled openLCA method references"):
+            olca_export.load_method_mapping("missing", version)
 
 
-def test_newdatabase_loads_method_package_and_keeps_preparation_and_reports(
-    scenario, method_package, tmp_path, monkeypatch
+def test_missing_bundled_writer_reports_the_required_brightpath_version(monkeypatch):
+    from brightpath.formats import openlca_jsonld
+
+    monkeypatch.delattr(openlca_jsonld, "write_ecoinvent_openlca_jsonld")
+    with pytest.raises(ImportError, match="Brightpath 1.0.0a15"):
+        olca_export.check_openlca_support()
+
+
+@pytest.mark.parametrize(
+    "source_version,use_local_package",
+    [
+        ("3.8", False),
+        ("3.9", False),
+        ("3.9.1", False),
+        ("3.10", False),
+        ("3.11", False),
+        ("3.12", False),
+        ("3.12", True),
+    ],
+)
+def test_newdatabase_links_methods_and_keeps_preparation_and_reports(
+    scenario,
+    method_package,
+    tmp_path,
+    monkeypatch,
+    source_version,
+    use_local_package,
 ):
     import premise.new_database as module
 
     ndb = module.NewDatabase.__new__(module.NewDatabase)
     definition = {k: v for k, v in scenario.items() if k != "database"}
     ndb.scenarios = [definition]
-    ndb.version, ndb.system_model, ndb.biosphere_name = "3.12", "cutoff", "biosphere3"
+    ndb.version = module.check_db_version(source_version)
+    ndb.source_version = source_version
+    ndb.system_model, ndb.biosphere_name = "cutoff", "biosphere3"
     calls = []
     monkeypatch.setattr(ndb, "_load_original_database", lambda: [])
 
@@ -229,8 +255,8 @@ def test_newdatabase_loads_method_package_and_keeps_preparation_and_reports(
     )
     monkeypatch.setattr(ndb, "_run_automatic_reports", lambda: calls.append("reports"))
     monkeypatch.setattr(module, "delete_all_pickles", lambda: calls.append("cleanup"))
-    # Keep method loading and JSON-LD writing real, as in nightly certification.
-    result = ndb.write_db_to_olca(tmp_path, method_package=method_package)
+    options = {"method_package": method_package} if use_local_package else {}
+    result = ndb.write_db_to_olca(tmp_path, **options)
     assert len(result) == 1 and result[0].is_file()
     supplier = next(
         p for p in entities(result[0], "processes") if p["name"] == "supplier"
@@ -238,9 +264,19 @@ def test_newdatabase_loads_method_package_and_keeps_preparation_and_reports(
     emission = supplier["exchanges"][1]
     assert emission["flow"]["@id"] == FOSSIL_CO2_ID
     assert emission["flow"]["name"] == "Carbon dioxide, fossil"
-    assert emission["unit"]["@id"] == uid("kg")
+    if use_local_package:
+        assert emission["unit"]["@id"] == uid("kg")
+    else:
+        assert emission["unit"]["name"] == "kg"
     assert emission["amount"] == 2
-    assert result[0].with_suffix(".biosphere-coverage.json").is_file()
+    coverage = json.loads(result[0].with_suffix(".biosphere-coverage.json").read_text())
+    assert coverage["biosphere"] == {
+        "family": "ecoinvent",
+        "version": source_version,
+    }
+    assert coverage["inventory_mapped_flows"] == 1
+    assert coverage["inventory_unmapped_flows"] == []
+    assert ("method_package_sha256" in coverage) is not use_local_package
     assert calls == ["certify", "prepare", "record", "reports", "cleanup"]
     assert "database" not in definition
 
@@ -358,11 +394,7 @@ def test_ei38_biosphere_has_unique_uuids_and_preserves_compartments():
     ]
 
 
-@pytest.mark.parametrize(
-    "version,filename",
-    [("3.8", "flows_biosphere_38.csv"), ("3.12", "flows_biosphere_312.csv")],
-)
-def test_method_mapping_selects_exact_source_version(monkeypatch, version, filename):
+def test_optional_package_uses_brightpaths_biosphere_data(monkeypatch):
     from brightpath.formats import openlca_methods as module
 
     calls = []
@@ -371,16 +403,8 @@ def test_method_mapping_selects_exact_source_version(monkeypatch, version, filen
         "OpenLCAMethodMapping",
         lambda *args, **kwargs: calls.append((args, kwargs)),
     )
-    olca_export.load_method_mapping("local-methods.zip", version)
-    assert calls == [
-        (
-            ("local-methods.zip", olca_export.DATA_DIR / "utils" / "export" / filename),
-            {
-                "biosphere_version": version,
-                "conflict_policy": "preserve" if version == "3.8" else "error",
-            },
-        )
-    ]
+    olca_export.load_method_mapping("local-methods.zip", "3.11")
+    assert calls == [(("local-methods.zip",), {"biosphere_version": "3.11"})]
 
 
 def test_export_orders_categories_numerically(scenario, mapping, tmp_path):

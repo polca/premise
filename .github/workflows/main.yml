@@ -7,6 +7,7 @@ on:
       - "premise/iam_variables_mapping/**"
       - "conda/**"
       - "requirements.txt"
+      - "tests/constraints-openlca.txt"
       - "pyproject.toml"
       - "MANIFEST.in"
       - ".github/workflows/main.yml"
@@ -17,6 +18,7 @@ on:
       - "premise/iam_variables_mapping/**"
       - "conda/**"
       - "requirements.txt"
+      - "tests/constraints-openlca.txt"
       - "pyproject.toml"
       - "MANIFEST.in"
       - ".github/workflows/main.yml"
@@ -69,7 +71,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools wheel
-          python -m pip install -e ".[bw25]" pytest pytest-instafail
+          python -m pip install -c tests/constraints-openlca.txt -e ".[bw25]" pytest pytest-instafail
           python -m pip check
 
       - name: Verify numerical runtime imports
@@ -78,7 +80,7 @@ jobs:
 
       - name: Verify Brightpath export support
         run: |
-          python -c "from premise.simapro_export import check_brightpath; check_brightpath(); from brightpath.formats.openlca_methods import OpenLCAMethodMapping"
+          python -c "from premise.simapro_export import check_brightpath; from premise.export.olca_export import check_openlca_support; check_brightpath(); check_openlca_support()"
 
       - name: Run tests
         run: |
@@ -127,7 +129,7 @@ jobs:
       - name: Install the supported legacy Brightway stack
         run: |
           python -m pip install --upgrade pip setuptools wheel
-          python -m pip install -e ".[bw2]" pytest pytest-instafail
+          python -m pip install -c tests/constraints-openlca.txt -e ".[bw2]" pytest pytest-instafail
           python -m pip check
       - name: Test legacy Brightway support
         env:

@@ -707,6 +707,7 @@ class NewDatabase:
         self._clic_source_store_fingerprint = None
         self._clic_use_cache = use_cached_inventories
         self.version = check_db_version(source_version)
+        self.source_version = str(source_version)
         self.source_type = source_type
         self.system_model = check_system_model(system_model)
         self._clic_provider.check_target(self.version, self.system_model)
@@ -3500,12 +3501,22 @@ class NewDatabase:
         """Export prepared scenarios to openLCA JSON-LD ZIP packages.
 
         :param filepath: Output directory (defaults to ``export/olca``).
-        :param method_package: Matching local ecoinvent LCIA JSON-LD directory or ZIP.
+        :param method_package: Optional local ecoinvent LCIA package to override Brightpath's bundled references.
         :return: Paths to the Brightpath JSON-LD ZIPs.
         """
-        from ..export.olca_export import export_scenario, load_method_mapping
+        from ..export.olca_export import (
+            check_openlca_support,
+            export_scenario,
+            load_method_mapping,
+        )
 
-        method_mapping = load_method_mapping(method_package, self.version)
+        check_openlca_support()
+        source_version = getattr(self, "source_version", self.version)
+        method_mapping = (
+            load_method_mapping(method_package, source_version)
+            if method_package is not None
+            else None
+        )
         artifacts = []
 
         filepath = filepath or Path(Path.cwd() / "export" / "olca")
@@ -3530,7 +3541,7 @@ class NewDatabase:
                     export_scenario(
                         scenario,
                         filepath,
-                        self.version,
+                        source_version,
                         self.system_model,
                         method_mapping,
                     )

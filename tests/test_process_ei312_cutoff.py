@@ -14,7 +14,6 @@ import premise.export.export as export_module
 from premise import NewDatabase, clear_inventory_cache
 from premise.utils import delete_all_pickles
 from lcia_regression import assert_lcia_regression_scores, get_lcia_regression_method
-from test_olca_export import method_package as openlca_method_package
 
 load_dotenv()
 
@@ -152,18 +151,12 @@ def test_simapro_export(updated_ei312_cutoff, tmp_path, monkeypatch):
 
 
 @pytest.mark.slow
-def test_openlca_export(
-    updated_ei312_cutoff, tmp_path, monkeypatch, openlca_method_package
-):
+def test_openlca_export(updated_ei312_cutoff, tmp_path, monkeypatch):
     ndb, checkpoint_snapshots = updated_ei312_cutoff
     output_dir = tmp_path / "openlca"
     monkeypatch.chdir(tmp_path)
 
-    # Use the same minimal package as the fast API regression, with a real
-    # ecoinvent flow identity and no licensed LCIA data.
-    files = ndb.write_db_to_olca(
-        filepath=str(output_dir), method_package=openlca_method_package
-    )
+    files = ndb.write_db_to_olca(filepath=str(output_dir))
 
     assert len(files) == len(scenarios)
     assert len(tuple(output_dir.glob("openlca_export_*.zip"))) == len(scenarios)

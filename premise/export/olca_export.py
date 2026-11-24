@@ -20,33 +20,28 @@ from .export_payload import normalize_activity_parameters
 from ..core.filesystem_constants import DATA_DIR
 
 
-def load_method_mapping(method_package, version):
-    """Check runtime support and load the exact local biosphere mapping."""
+def check_openlca_support():
+    """Check that Brightpath can export using bundled ecoinvent references."""
     if sys.version_info < (3, 12):
         raise RuntimeError("JSON-LD export requires Python 3.12+ and Brightpath.")
-    source_tables = {"3.8": "flows_biosphere_38.csv", "3.12": "flows_biosphere_312.csv"}
-    if str(version) not in source_tables:
-        raise ValueError(
-            "The JSON-LD method mapping currently supports ecoinvent 3.8 and 3.12."
-        )
-    if method_package is None:
-        raise ValueError(
-            "JSON-LD export requires method_package: the matching local ecoinvent "
-            "openLCA LCIA method-package directory or ZIP."
-        )
     try:
-        from brightpath.formats.openlca_methods import OpenLCAMethodMapping
+        from brightpath.formats.openlca_jsonld import (
+            write_ecoinvent_openlca_jsonld,
+            write_openlca_jsonld,
+        )
     except ImportError as error:
         raise ImportError(
-            "Install Brightpath with local openLCA method-mapping support "
-            "in this Python 3.12+ environment (see the openLCA export guide)."
+            "Install Brightpath 1.0.0a15 or newer for openLCA JSON-LD export."
         ) from error
-    return OpenLCAMethodMapping(
-        method_package,
-        DATA_DIR / "utils" / "export" / source_tables[str(version)],
-        biosphere_version=str(version),
-        conflict_policy="preserve" if str(version) == "3.8" else "error",
-    )
+    return write_ecoinvent_openlca_jsonld, write_openlca_jsonld
+
+
+def load_method_mapping(method_package, version):
+    """Load a caller-supplied method package against Brightpath's biosphere data."""
+    check_openlca_support()
+    from brightpath.formats.openlca_methods import OpenLCAMethodMapping
+
+    return OpenLCAMethodMapping(method_package, biosphere_version=str(version))
 
 
 def _identity(record):
@@ -261,10 +256,9 @@ def build_document(scenario, version, system_model):
     return InventoryDocument(data=data, context=context, database_name=label)
 
 
-def export_scenario(scenario, filepath, version, system_model, method_mapping):
+def export_scenario(scenario, filepath, version, system_model, method_mapping=None):
     """Write a scenario ZIP and coverage sidecar after successful serialization."""
-    from brightpath.formats.openlca_jsonld import write_openlca_jsonld
-
+    write_ecoinvent_openlca_jsonld, write_openlca_jsonld = check_openlca_support()
     document = build_document(scenario, version, system_model)
     _, label = scenario_export_identity(scenario, version, system_model)
     directory = Path(filepath)
@@ -272,7 +266,10 @@ def export_scenario(scenario, filepath, version, system_model, method_mapping):
     destination = directory / f"openlca_export_{label}.zip"
     with tempfile.TemporaryDirectory(prefix=".openlca-", dir=directory) as temporary:
         staged = Path(temporary) / destination.name
-        write_openlca_jsonld(document, staged, method_mapping=method_mapping)
+        if method_mapping is None:
+            write_ecoinvent_openlca_jsonld(document, staged)
+        else:
+            write_openlca_jsonld(document, staged, method_mapping=method_mapping)
         coverage = staged.with_suffix(".biosphere-coverage.json")
         # A failed render never publishes a partial ZIP or changes an old export.
         coverage.replace(destination.with_suffix(".biosphere-coverage.json"))
