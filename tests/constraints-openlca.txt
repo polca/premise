@@ -1,2 +1,2 @@
-# Test the reviewed openLCA exporter while Brightpath 1.0.0a15 rolls out to package registries.
-brightpath @ https://github.com/romainsacchi/brightpath/archive/d4f3d1b28ca50f8a15295bd00480e2c64dbd6c68.tar.gz
+# Test the reviewed Brightpath 1.0.0a16 build while its release is in draft.
+brightpath @ https://github.com/romainsacchi/brightpath/archive/8904c800c1062737f62c6e62db0e5187dcdec2d7.tar.gz
