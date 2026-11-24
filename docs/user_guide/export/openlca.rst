@@ -15,6 +15,13 @@ ecoinvent version. Premise supports JSON-LD export for ecoinvent 3.8, 3.9,
 3.9.1, 3.10, 3.11, and 3.12. Export requires Python 3.12 or newer and Brightpath
 1.0.0a15 or newer. Both 3.9 and 3.9.1 use the 3.9.1 Nexus method package.
 
+While Brightpath 1.0.0a16 is in draft, install the build used by the Premise
+export tests from the root of the Premise source checkout:
+
+.. code-block:: bash
+
+    python -m pip install -c tests/constraints-openlca.txt -e .
+
 After creating and updating ``ndb`` (see :doc:`/getting_started/first-scenario`):
 
 .. code-block:: python

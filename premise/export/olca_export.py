@@ -31,7 +31,8 @@ def check_openlca_support():
         )
     except ImportError as error:
         raise ImportError(
-            "Install Brightpath 1.0.0a15 or newer for openLCA JSON-LD export."
+            "Install Brightpath 1.0.0a15 or newer for openLCA JSON-LD export. "
+            "See the Premise openLCA export guide for installation instructions."
         ) from error
     return write_ecoinvent_openlca_jsonld, write_openlca_jsonld
 
