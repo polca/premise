@@ -988,11 +988,14 @@ class NewDatabase:
                 f"{inventory_label}_clic_{fingerprint}.pickle"
             )
         if inventories:
+            from brightpath.background import migration_resource_fingerprint
+
             # Vehicle specifications, wrappers and battery inventories must
             # move together, including chemistry-specific capacity suppliers.
             # These also invalidate compact source checkpoints via their cache
             # references, without invalidating the unmodified source database.
             digest = hashlib.sha256()
+            digest.update(migration_resource_fingerprint().encode())
             digest.update(
                 json.dumps(
                     inventory_profiles.profiles(

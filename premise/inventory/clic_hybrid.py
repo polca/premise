@@ -330,6 +330,7 @@ def import_retained_inventories(
         BIOSPHERE_MIGRATION_CACHE_VERSION,
         FILEPATH_CLASSIFICATIONS,
     )
+    from .profiles import PROFILE_PATH
 
     graph = registry()["hybrid_sources"]
     hashes = {
@@ -365,6 +366,7 @@ def import_retained_inventories(
             "classifications": hashlib.sha256(
                 FILEPATH_CLASSIFICATIONS.read_bytes()
             ).hexdigest(),
+            "profiles": hashlib.sha256(PROFILE_PATH.read_bytes()).hexdigest(),
             "plan": plan.fingerprint,
             "workbooks": hashes,
             "version": version,

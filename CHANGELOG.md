@@ -32,6 +32,9 @@ changes; updating Premise does not modify saved results.
 
 ### Changed
 
+- Use Brightpath to migrate bundled and user-supplied inventories between
+  ecoinvent releases. This preserves the final-energy biosphere exchanges
+  that previously went unlinked on ecoinvent 3.8 and 3.9.
 - Support ecoinvent background versions 3.8 through 3.12. Builds using 3.7 or
   3.7.1 need a supported background version. Existing inventories and
   datapackages authored against older releases can still be migrated.

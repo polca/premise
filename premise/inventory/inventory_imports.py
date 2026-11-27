@@ -7,9 +7,9 @@ import csv
 import itertools
 import json
 import logging
+import os
 import unicodedata
 import uuid
-from collections import deque
 from functools import lru_cache
 from pathlib import Path, PurePosixPath
 from pathlib import Path as FilesystemPath
@@ -43,6 +43,8 @@ CORRESPONDENCE_BIO_FLOWS = (
 FILEPATH_CLASSIFICATIONS = DATA_DIR / "utils" / "import" / "classifications.csv"
 
 
+# Historical resources for the individual rule helpers. The workbook
+# importer uses Brightpath's versioned resources.
 MIGRATIONS_DIR = DATA_DIR / "utils" / "import" / "migrations"
 
 _MATCH_IGNORED_KEYS = frozenset({"unit", "allocation", "comment"})
@@ -50,7 +52,7 @@ _COMPILED_MIGRATION_CACHE_SIZE = 64
 _COMPILED_RULE_INDEX_CACHE = {}
 _COMPILED_BIOSPHERE_RULE_CACHE = {}
 # Invalidate prepared imports after biosphere migration or amount-filling fixes.
-BIOSPHERE_MIGRATION_CACHE_VERSION = 3
+BIOSPHERE_MIGRATION_CACHE_VERSION = 4
 
 
 logging.basicConfig(
@@ -300,75 +302,6 @@ def discover_available_migrations(debug: bool = False) -> Dict[tuple, dict]:
             print("[migration] No migration JSONs found.")
 
     return migrations
-
-
-def build_version_graph(available: Dict[tuple, dict]) -> dict:
-    """Bidirectional graph: version -> list of (neighbor, direction)."""
-    graph = {}
-    versions = set()
-
-    for src, dst in available.keys():
-        versions.add(src)
-        versions.add(dst)
-
-    for v in versions:
-        graph[v] = []
-
-    for src, dst in available.keys():
-        graph[src].append((dst, "forward"))
-        graph[dst].append((src, "backward"))
-
-    return graph
-
-
-def resolve_migration_route(
-    version_in: str, version_out: str, available: Dict[tuple, dict]
-):
-    """
-    Find a sequence of steps (src, dst, direction) from version_in to version_out,
-    where direction is 'forward' or 'backward'.
-    """
-    if version_in == version_out:
-        return []
-
-    graph = build_version_graph(available)
-
-    if version_in not in graph or version_out not in graph:
-        msg = [
-            f"Versions {version_in} or {version_out} not in migration graph.",
-            "Known versions:",
-            ", ".join(sorted(graph.keys())),
-        ]
-        raise ValueError("\n".join(msg))
-
-    visited = {version_in}
-    queue = deque([(version_in, [])])
-
-    while queue:
-        current, path = queue.popleft()
-        for neighbor, direction in graph[current]:
-            if neighbor in visited:
-                continue
-            step = (current, neighbor, direction)
-            new_path = path + [step]
-            if neighbor == version_out:
-                return new_path
-            visited.add(neighbor)
-            queue.append((neighbor, new_path))
-
-    # No path found – show what edges we actually have
-    edges_str = "\n".join(
-        f"  {s} -> {d}"
-        for (s, d) in sorted(
-            available.keys(),
-            key=lambda v: (float(v[0].replace(".", "")), float(v[1].replace(".", ""))),
-        )
-    )
-    raise ValueError(
-        f"No migration route found from {version_in} to {version_out}.\n"
-        "Available migration pairs are:\n"
-        f"{edges_str}"
-    )
 
 
 def matches_source(exc: dict, source: dict) -> bool:
@@ -735,62 +668,101 @@ def apply_biosphere_migration(db, biosphere_rules):
         dataset["exchanges"] = migrated
 
 
-def apply_migration_step(
-    importer, src_ver: str, dst_ver: str, direction: str, available: Dict[tuple, dict]
-):
-    """
-    Apply one migration step, either forward or backward.
+@lru_cache(maxsize=1)
+def _workbook_catalog_provider(_reference_dir):
+    from brightpath.background import catalog_provider_from_environment
 
-    importer: self.import_db (ExcelImporter/CSVImporter)
-    src_ver, dst_ver: strings like "3.6", "3.7"
-    direction: "forward" or "backward"
-    available: {(src, dst): json_data}
-    """
-    if direction == "forward":
-        f_src, f_dst = src_ver, dst_ver
-    elif direction == "backward":
-        f_src, f_dst = dst_ver, src_ver
-    else:
-        raise ValueError(f"Unknown direction {direction}")
-
-    data = available[(f_src, f_dst)]
-
-    if direction == "forward":
-        print(f"Applying forward migration {f_src} -> {f_dst}")
-        apply_forward_replace(importer.data, data.get("replace", []))
-        apply_disaggregation(importer.data, data.get("disaggregate", []))
-    else:
-        print(f"Applying backward migration {f_src} <- {f_dst}")
-        apply_backward_replace(importer.data, data.get("replace", []))
-        apply_aggregation(importer.data, data.get("disaggregate", []))
-        # 'delete' rules are not reversible and are ignored here.
-
-    biosphere_available = discover_biosphere_migrations()
-    if (f_src, f_dst) in biosphere_available:
-        apply_biosphere_migration(importer.data, biosphere_available[(f_src, f_dst)])
+    # Cache catalogs for the active Brightpath reference directory.
+    return catalog_provider_from_environment()
 
 
 def migrate_import_db(importer, version_in: str, version_out: str):
-    """
-    Apply all necessary steps (forward and/or backward) to migrate
-    the imported inventory technosphere exchanges from version_in to version_out,
-    using JSON migration files.
-    """
-    src = normalize_version_for_migration(version_in)
-    dst = normalize_version_for_migration(version_out)
+    """Migrate workbook background exchanges before Premise links its foreground."""
+    from brightpath import (
+        BackgroundContext,
+        BiosphereProfile,
+        BrightwayInventory,
+        FormatProfile,
+        InventoryContext,
+        TechnosphereProfile,
+    )
+    from brightpath.core.policies import MigrationPolicy, PolicyAction
 
-    if src == dst:
+    source = normalize_version_for_migration(version_in)
+    target = normalize_version_for_migration(version_out)
+    if source == target:
         return
 
-    # set debug=True at least while you're testing
-    available = discover_available_migrations(debug=False)
+    def background(version):
+        # Workbooks use cutoff version mappings. Premise applies system-model
+        # adaptations after migration, when the destination providers are known.
+        return BackgroundContext(
+            TechnosphereProfile("ecoinvent", version, "cutoff"),
+            BiosphereProfile("ecoinvent", version),
+        )
 
-    route = resolve_migration_route(src, dst, available)
+    records = []
+    for activity in importer.data:
+        exchanges = []
+        for exchange in activity["exchanges"]:
+            if exchange.get("type") == "biosphere":
+                categories = _biosphere_categories(exchange.get("categories"))
+                if categories[-1:] == ("unspecified",):
+                    categories = categories[:-1]
+                exchange = {**exchange, "categories": categories}
+            elif (
+                exchange.get("type") == "technosphere"
+                and not exchange.get("reference product")
+                and exchange.get("product")
+            ):
+                exchange = {**exchange, "reference product": exchange["product"]}
+            exchanges.append(exchange)
+        # Workbook parameters may be mappings. Version migration operates on
+        # exchanges, so keep the original parameters with the activity.
+        record = {**activity, "exchanges": exchanges}
+        record.pop("parameters", None)
+        records.append(record)
 
-    print("Migration route:", " → ".join([route[0][0]] + [step[1] for step in route]))
-
-    for step_src, step_dst, direction in route:
-        apply_migration_step(importer, step_src, step_dst, direction, available)
+    inventory = BrightwayInventory.from_data(
+        records,
+        context=InventoryContext(
+            format=FormatProfile("brightway_excel", dialect="bw2io"),
+            background=background(source),
+        ),
+        database_name=getattr(importer, "db_name", "premise-inventory"),
+    )
+    # The workbook can refer to other Premise inventories or the user's own
+    # foreground. The importer links those exchanges after version migration
+    # and system-model adaptations.
+    migrated = inventory.migrate_background(
+        background(target),
+        catalog_provider=_workbook_catalog_provider(
+            os.getenv("BRIGHTPATH_REFERENCE_DIR")
+        ),
+        policy=MigrationPolicy(
+            validate_source=False,
+            validate_target=False,
+            on_inferred_reverse=PolicyAction.WARN,
+            on_ambiguous_rule=PolicyAction.WARN,
+            on_information_loss=PolicyAction.WARN,
+            on_deletion=PolicyAction.WARN,
+        ),
+    )
+    for loss in migrated.last_migration_report.losses:
+        logging.warning(
+            "Brightpath migration %s → %s: %s", source, target, loss.message
+        )
+    data = migrated.data
+    if len(data) != len(importer.data):
+        raise ValueError(
+            "Brightpath migration changed the number of foreground activities."
+        )
+    for activity in data:
+        for exchange in activity["exchanges"]:
+            if exchange["type"] == "biosphere":
+                exchange["categories"] = _biosphere_categories(exchange["categories"])
+    for activity, migrated_activity in zip(importer.data, data, strict=True):
+        activity["exchanges"] = migrated_activity["exchanges"]
 
 
 def check_for_duplicate_datasets(data: List[dict]) -> List[dict]:

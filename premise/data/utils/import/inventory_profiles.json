@@ -2368,6 +2368,29 @@
       ]
     },
     {
+      "id": "pv-lean-concrete-38",
+      "source": "lci-PV-2026.xlsx",
+      "phase": "migrated",
+      "equivalent_version": "3.8",
+      "exchange_aliases": [
+        {
+          "source": [
+            "lean concrete production, for building construction, with cement ZN/D, with 100% RC-M aggregates",
+            "lean concrete",
+            "CH",
+            "cubic meter"
+          ],
+          "target": [
+            "market for lean concrete",
+            "lean concrete",
+            "CH",
+            "cubic meter"
+          ],
+          "comment": "Ecoinvent 3.8 proxy: the Swiss lean-concrete market supplies the original volume. Cement and recycled-content specifications differ."
+        }
+      ]
+    },
+    {
       "id": "chemical-proxy-lci-iridium-economic-proxy",
       "source": "lci-iridium-economic-proxy.xlsx",
       "phase": "aliases",

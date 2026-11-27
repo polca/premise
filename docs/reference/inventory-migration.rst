@@ -2,9 +2,11 @@ Inventory migration between ecoinvent versions
 ================================================
 
 Additional inventories can have been authored for a different ecoinvent
-version from your source database. Premise uses migration maps to translate
-changed supplier or flow identities so those inventories can link to the
-target version.
+version from your source database. Premise uses Brightpath to migrate supplier
+and biosphere identities for CLIC datasets, bundled workbooks, and user
+inventories. For workbooks, Brightpath applies the ecoinvent version mappings
+before Premise links local foreground providers and applies system-model
+adaptations.
 
 The **import source version** describes the inventory's original references;
 the **target version** is the ecoinvent version used by your build. They need
@@ -12,9 +14,9 @@ not be the same. Migration changes the relevant identities, not the scientific
 assumptions of every process. Suppliers and background burdens can still
 differ between versions.
 
-See the versioned `migration maps <https://github.com/polca/premise/tree/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/utils/import/migrations>`__
-and :doc:`inventories` for source selection. Sector chapters describe
-important substitutions and remaining gaps.
+See the `Brightpath migration documentation <https://github.com/romainsacchi/brightpath/blob/main/docs/workflows/migration.rst>`__
+and :doc:`inventories` for source selection. Sector chapters describe important
+substitutions and remaining gaps.
 
 .. _native-en15804-inventory-links:
 
@@ -42,6 +44,10 @@ An absent, ambiguous or incompatible native scrap supplier raises an error.
 
 Supplemental inventory proxies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For ecoinvent 3.8, the PV workbook uses the Swiss lean-concrete market
+for the same volume where the supplier for ZN/D concrete with recycled
+aggregates is unavailable.
 
 For consequential imports, the ASSB recycled HDPE purchase uses the native
 marginal HDPE market at the same mass: GLO through 3.11, and RER in 3.12 to

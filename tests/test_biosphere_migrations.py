@@ -5,7 +5,9 @@ from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
+from bw2io import ExcelImporter
 
+from premise.core.filesystem_constants import INVENTORY_DIR
 from premise.inventory_imports import (
     BaseInventoryImport,
     apply_biosphere_migration,
@@ -40,6 +42,40 @@ def exchange(name, categories, unit="kilogram", amount=0.09782716612814853):
     }
 
 
+@pytest.fixture(scope="module")
+def final_energy_workbook():
+    return ExcelImporter(INVENTORY_DIR / "lci-final-energy.xlsx").data
+
+
+@pytest.mark.parametrize("version", ["3.8", "3.9", "3.9.1"])
+def test_final_energy_backward_migration_preserves_and_links_emissions(
+    final_energy_workbook, version, capsys
+):
+    importer = object.__new__(BaseInventoryImport)
+    importer.path = INVENTORY_DIR / "lci-final-energy.xlsx"
+    importer.import_db = SimpleNamespace(data=deepcopy(final_energy_workbook))
+    importer.biosphere_dict = get_biosphere_code(version)
+    importer.correspondence_bio_flows = get_correspondence_bio_flows()
+    first_activity = importer.import_db.data[0]
+    first_activity["parameters"] = {"custom parameter": 0.5}
+
+    migrate_import_db(importer.import_db, "3.10", version)
+    importer.add_biosphere_links()
+
+    assert importer.import_db.data[0] is first_activity
+    assert first_activity["parameters"] == {"custom parameter": 0.5}
+    for original, migrated in zip(
+        final_energy_workbook, importer.import_db.data, strict=True
+    ):
+        source = [e for e in original["exchanges"] if e["type"] == "biosphere"]
+        target = [e for e in migrated["exchanges"] if e["type"] == "biosphere"]
+        assert [e["amount"] for e in target] == [e["amount"] for e in source]
+        for edge in target:
+            identity = (edge["name"], *edge["categories"], edge["unit"])
+            assert edge["input"] == ("biosphere3", importer.biosphere_dict[identity])
+    assert "Could not find a biosphere flow" not in capsys.readouterr().out
+
+
 @pytest.mark.parametrize("version", ["3.10", "3.11", "3.12"])
 @pytest.mark.parametrize("as_string", [False, True])
 def test_waste_heat_moves_to_the_official_replacement_compartment(
@@ -56,6 +92,7 @@ def test_waste_heat_moves_to_the_official_replacement_compartment(
         {
             **original,
             "categories": ("air", "unspecified"),
+            "uuid": "f2d84834-d0b3-42e5-b41a-f04cc80337a4",
             "input": ("biosphere3", "f2d84834-d0b3-42e5-b41a-f04cc80337a4"),
         },
         {
@@ -90,7 +127,10 @@ def test_sodium_resource_is_not_renamed_like_emissions(version, capsys):
             get_biosphere_code(version)[("Sodium I", *old["categories"], "kilogram")],
         )
         # Formula metadata is carried by some official name-change rules.
-        assert {k: v for k, v in new.items() if k != "formula"} == expected
+        assert new.get("uuid", expected["input"][1]) == expected["input"][1]
+        assert {
+            k: v for k, v in new.items() if k not in {"formula", "uuid"}
+        } == expected
     assert "Could not find" not in capsys.readouterr().out
 
 
@@ -181,5 +221,6 @@ def test_legacy_flow_identity_survives_all_forward_migration_steps(
     assert {k: v for k, v in result[0].items() if k != "formula"} == {
         **original,
         "name": expected_name,
+        "uuid": expected_code,
         "input": ("biosphere3", expected_code),
     }

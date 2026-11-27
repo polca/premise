@@ -9,7 +9,6 @@ from premise.filesystem_constants import INVENTORY_DIR
 from premise.inventory_imports import (
     BaseInventoryImport,
     DefaultInventory,
-    apply_migration_step,
     check_for_datasets_compliance_with_consequential_database,
     get_biosphere_code,
     get_classification_entry,
@@ -947,80 +946,42 @@ def test_fill_dataset_data_gaps_replaces_migrated_split_markets(tmp_path):
 
 
 def test_forward_migration_applies_in_memory_without_bw2io_datastore():
-    class DummyImporter:
-        data = [
-            {
-                "name": "old dataset",
-                "reference product": "old product",
-                "location": "GLO",
-                "unit": "kilogram",
-                "exchanges": [
-                    {
-                        "name": "old exchange",
-                        "reference product": "old exchange product",
-                        "location": "RER",
-                        "unit": "megajoule",
-                        "type": "technosphere",
-                        "input": ("test", "old"),
-                    }
-                ],
-            }
-        ]
-
-        def migrate(self, migration_name):
-            raise AssertionError("bw2io Migration datastore should not be used")
-
-    available = {
-        ("3.11", "3.12"): {
-            "replace": [
-                {
-                    "source": {
-                        "name": "old dataset",
-                        "reference product": "old product",
-                        "location": "GLO",
-                        "unit": "kilogram",
-                    },
-                    "target": {
-                        "name": "new dataset",
-                        "reference product": "new product",
-                        "location": "RER",
-                        "unit": "ton kilometer",
-                    },
-                },
-                {
-                    "source": {
-                        "name": "old exchange",
-                        "reference product": "old exchange product",
-                        "location": "RER",
-                        "unit": "megajoule",
-                    },
-                    "target": {
-                        "name": "new exchange",
-                        "reference product": "new exchange product",
-                        "location": "CH",
-                        "unit": "kilowatt hour",
-                    },
-                },
-            ],
-            "disaggregate": [],
-        }
+    original_exchange = {
+        "name": "tissue paper production",
+        "reference product": "tissue paper",
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "amount": 2.5,
+        "input": ("old background", "old code"),
+    }
+    activity = {
+        "name": "foreground product",
+        "reference product": "foreground product",
+        "location": "GLO",
+        "unit": "kilogram",
+        "parameters": {"demand": 2.5},
+        "exchanges": [original_exchange],
     }
 
+    class DummyImporter:
+        data = [activity]
+
+        def migrate(self, migration_name):
+            raise AssertionError("The Brightway migration datastore was accessed.")
+
     importer = DummyImporter()
+    migrate_import_db(importer, "3.10", "3.11")
 
-    apply_migration_step(importer, "3.11", "3.12", "forward", available)
-
-    assert importer.data[0]["name"] == "new dataset"
-    assert importer.data[0]["reference product"] == "new product"
-    assert importer.data[0]["location"] == "RER"
-    assert importer.data[0]["unit"] == "kilogram"
-
-    exchange = importer.data[0]["exchanges"][0]
-    assert exchange["name"] == "new exchange"
-    assert exchange["reference product"] == "new exchange product"
-    assert exchange["location"] == "CH"
-    assert exchange["unit"] == "megajoule"
-    assert "input" not in exchange
+    assert importer.data[0] is activity
+    assert activity["parameters"] == {"demand": 2.5}
+    migrated = activity["exchanges"][0]
+    assert migrated["name"] == "tissue paper production, recycled"
+    assert migrated["reference product"] == "tissue paper"
+    assert migrated["unit"] == "kilogram"
+    assert migrated["amount"] == 2.5
+    assert "input" not in migrated
+    assert original_exchange["input"] == ("old background", "old code")
 
 
 def test_correct_product_field_uses_indexed_reference_product(tmp_path):

@@ -35,6 +35,7 @@ def one(importer, name):
             {
                 "chemical-proxy-lci-batteries-ASSB",
                 "chemical-proxy-lci-iridium-economic-proxy",
+                "pv-lean-concrete-38",
             },
         ),
         ("3.11", "cutoff", set()),
@@ -69,6 +70,31 @@ def one(importer, name):
 )
 def test_profile_version_and_system_model_boundaries(version, model, expected):
     assert {p["id"] for p in profiles(version, model)} == expected
+
+
+def test_pv_38_profile_preserves_the_reviewed_concrete_proxy():
+    edge = {
+        "name": "lean concrete production, for building construction, with cement ZN/D, with 100% RC-M aggregates",
+        "reference product": "lean concrete",
+        "location": "CH",
+        "unit": "cubic meter",
+        "type": "technosphere",
+        "amount": 2.5,
+        "input": ("old database", "old supplier"),
+    }
+    importer = SimpleNamespace(data=[{"exchanges": [edge]}])
+
+    apply_inventory_profiles(
+        importer, "lci-PV-2026.xlsx", "3.8", "consequential", [], phase="migrated"
+    )
+
+    assert edge["name"] == "market for lean concrete"
+    assert (edge["location"], edge["unit"], edge["amount"]) == (
+        "CH",
+        "cubic meter",
+        2.5,
+    )
+    assert "input" not in edge
 
 
 @pytest.mark.parametrize("model", ["cutoff", "EN15804"])
