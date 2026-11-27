@@ -66,6 +66,17 @@ Changelog
 ---------
 Release notes are maintained in [`CHANGELOG.md`](CHANGELOG.md).
 
+What's new in 2.7.1
+-------------------
+
+- Premise supports ecoinvent backgrounds from **3.8 through 3.12**. If you use
+  3.7 or 3.7.1, switch to a supported background and update `source_version`.
+- Consequential builds use eligible CLIC datasets and apply supplier rules for
+  the consequential background. Brightpath also migrates bundled and
+  user-supplied inventories across ecoinvent releases.
+- Rebuild scenario databases and exports to apply the corrected supplier
+  selection, PV market weights, and biosphere linking.
+
 What's new in 2.7.0
 -------------------
 

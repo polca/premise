@@ -5,6 +5,10 @@ Version 2.7.0 makes CLIC the standard supplemental inventory pipeline, adds an
 optional commercial-license policy, and improves import, validation, cache and
 export reliability. Python and Brightway compatibility are unchanged from 2.6.
 
+Version 2.7.1 applies CLIC inventories to consequential builds, migrates bundled
+and user-supplied inventories through Brightpath, and raises the minimum
+ecoinvent background version to 3.8.
+
 Upgrade existing builds
 -----------------------
 
@@ -12,7 +16,8 @@ Upgrade existing builds
   ``PathwaysDataPackage``. There is no provider selector in 2.7, including for
   callers that previously passed ``inventory_source="clic"``. The inherited
   ``IncrementalDatabase`` constructor follows the same interface.
-* Keep your source database, source version, system model, IAM inputs and
+* In 2.7.1, replace any ecoinvent 3.7 or 3.7.1 background with a supported
+  release and update ``source_version``. Keep your system model, IAM inputs and
   additional inventory arguments. Premise selects CLIC inventories and retains
   required workbook-only recipes automatically.
 * Rebuild scenario databases and exports. Moving from the 2.6 workbook pipeline
@@ -105,7 +110,7 @@ datapackages can still be migrated from their original source versions.
 Corrections and compatibility
 -----------------------------
 
-This release also fixes cache-base preservation, metadata-backed compact-store
+Version 2.7.0 also fixes cache-base preservation, metadata-backed compact-store
 amounts, equivalent-compartment biosphere filling, IMAGE and GAINS alias
 handling, native gas carbon origin, transport validation, metal resource
 boundaries, import classifications, duplicate removal and provider-key alignment

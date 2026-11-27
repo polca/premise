@@ -2,6 +2,39 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.7.1] - 2026-11-27
+
+### Changed
+
+- Require ecoinvent background versions 3.8 through 3.12. To upgrade a build
+  using 3.7 or 3.7.1, supply a supported database and update `source_version`.
+  Premise can still migrate supplemental inventories and datapackages authored
+  against older releases.
+- Use eligible CLIC inventories in consequential builds. Brightpath migrates
+  CLIC data between cut-off releases, and Premise applies consequential supplier
+  rules and verifies links against the supplied consequential database.
+- Use Brightpath to migrate bundled and user-supplied inventories between
+  ecoinvent releases. This preserves final-energy biosphere exchanges that
+  previously went unlinked on ecoinvent 3.8 and 3.9.
+
+### Fixed
+
+- Select CLIC heat and electricity suppliers across the full set of IAM
+  trajectories and market periods. Include the CLIC source for the
+  ultra-supercritical coal power plant with carbon capture and storage.
+- Preserve country production-volume weights when CLIC replaces bundled PV
+  electricity inventories, so regional markets keep their intended weights.
+- Resolve legacy biosphere flow names in Brightway exports and normalize
+  list and tuple compartments in datapackage and superstructure exports.
+- Refine the independent Brightway solve used to cross-check physical audits
+  of inventories with ill-conditioned supply chains.
+
+### Upgrading
+
+- Rebuild scenario databases and exports to apply the inventory and linking
+  corrections. Supplier changes can affect LCIA results.
+- Commercial CLIC screening is available for cut-off and EN15804 builds.
+
 ## [2.7.0] - 2026-11-17
 
 This release makes CLIC the standard supplemental inventory pipeline, adds an
@@ -32,19 +65,12 @@ changes; updating Premise does not modify saved results.
 
 ### Changed
 
-- Use eligible CLIC inventories in consequential builds. Brightpath migrates
-  the release in the cut-off model, then Premise applies its consequential
-  supplier rules and verifies links against the consequential background.
-- Use Brightpath to migrate bundled and user-supplied inventories between
-  ecoinvent releases. This preserves the final-energy biosphere exchanges
-  that previously went unlinked on ecoinvent 3.8 and 3.9.
-- Support ecoinvent background versions 3.8 through 3.12. Builds using 3.7 or
-  3.7.1 need a supported background version. Existing inventories and
-  datapackages authored against older releases can still be migrated.
 - Remove the `inventory_source` constructor selector from `NewDatabase` and
   `PathwaysDataPackage`. CLIC selection is automatic; only required workbook
-  inventories remain. Commercial CLIC screening covers cut-off and EN15804
-  builds.
+  inventories remain. Consequential builds automatically use compatible
+  workbooks because CLIC cutoff inventories cannot supply that system model.
+  Version 3.7 also retains compatible workbooks because reviewed CLIC routes
+  start at 3.8. Commercial policy blocks both unassessed compatibility fallbacks.
 - Use reviewed native manufacturing references for newer-source assets when
   building against older backgrounds. Keep strict destination linking and
   record target-compatibility replacements separately from license screening.
