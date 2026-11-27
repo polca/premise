@@ -820,7 +820,7 @@ def _resolve_versioned_replacement(replacement: dict, version: str) -> dict:
 
 
 def check_for_datasets_compliance_with_consequential_database(
-    datasets: List[dict], blacklist: List[dict], version: str
+    datasets: List[dict], blacklist: List[dict], version: str, *, on_relink=None
 ):
     """
     Check whether the datasets to import are compliant with the consequential database.
@@ -833,43 +833,35 @@ def check_for_datasets_compliance_with_consequential_database(
     # if system model is `consequential`` there is a
     # number of datasets we do not want to import
 
-    tuples_of_blacklisted_datasets = [
-        (i["name"], i["reference product"], i["unit"]) for i in blacklist
-    ]
+    def identity(record):
+        return (
+            record["name"],
+            record.get("reference product") or record.get("product"),
+            record["unit"],
+        )
 
-    datasets = [
-        d
-        for d in datasets
-        if (d["name"], d["reference product"], d["unit"])
-        not in tuples_of_blacklisted_datasets
-    ]
+    excluded = {identity(rule) for rule in blacklist}
+    replacements = {
+        identity(rule): rule["replacement"] for rule in blacklist if "replacement" in rule
+    }
+    datasets = [dataset for dataset in datasets if identity(dataset) not in excluded]
 
     # also, we want to change exchanges that do not
     # exist in the consequential LCA database
     # and change them for the consequential equivalent
 
-    for ds in datasets:
-        for exchange in ds["exchanges"]:
-            if exchange["type"] == "technosphere":
-                exc_id = (
-                    exchange["name"],
-                    exchange.get("reference product"),
-                    exchange["unit"],
-                )
-
-                if exc_id in tuples_of_blacklisted_datasets:
-                    for d in blacklist:
-                        if exc_id == (d["name"], d.get("reference product"), d["unit"]):
-                            if "replacement" in d:
-                                replacement = _resolve_versioned_replacement(
-                                    d["replacement"], version
-                                )
-                                exchange["name"] = replacement["name"]
-                                exchange["reference product"] = replacement[
-                                    "reference product"
-                                ]
-                                exchange["product"] = replacement["reference product"]
-                                exchange["location"] = replacement["location"]
+    for dataset in datasets:
+        for index, exchange in enumerate(dataset["exchanges"]):
+            if exchange["type"] != "technosphere":
+                continue
+            replacement = replacements.get(identity(exchange))
+            if replacement is None:
+                continue
+            replacement = _resolve_versioned_replacement(replacement, version)
+            if on_relink is not None:
+                on_relink(dataset, index, exchange, replacement)
+            exchange.update(replacement, product=replacement["reference product"])
+            exchange.pop("input", None)
 
     return datasets
 

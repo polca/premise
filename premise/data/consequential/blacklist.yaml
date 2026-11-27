@@ -324,6 +324,26 @@
     reference product: copper scrap, sorted, pressed
     location: GLO
 
+# Maintain the mass sent to treatment. RoW represents the global paperboard
+# handoff because consequential ecoinvent 3.8 has no GLO paperboard market.
+- name: scrap lead acid battery, Recycled Content cut-off
+  reference product: scrap lead acid battery
+  unit: kilogram
+  location: GLO
+  replacement:
+    name: market for scrap lead acid battery
+    reference product: scrap lead acid battery
+    location: GLO
+
+- name: waste paperboard, unsorted, Recycled Content cut-off
+  reference product: waste paperboard, unsorted
+  unit: kilogram
+  location: GLO
+  replacement:
+    name: market for waste paperboard, unsorted
+    reference product: waste paperboard, unsorted
+    location: RoW
+
 - name: blast furnace slag, Recycled Content cut-off
   reference product: blast furnace slag
   unit: kilogram
@@ -435,6 +455,17 @@
   reference product: polyethylene, high density, granulate
   unit: kilogram
   location: RoW
+  replacement:
+    name: market for polyethylene, high density, granulate
+    reference product: polyethylene, high density, granulate
+    location:
+      "<3.12": GLO
+      ">=3.12": RER
+
+- name: polyethylene, high density, pellets, recycled to generic market for polyethylene, high density, granulate
+  reference product: polyethylene, high density, granulate
+  unit: kilogram
+  location: RER
   replacement:
     name: market for polyethylene, high density, granulate
     reference product: polyethylene, high density, granulate
