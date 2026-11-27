@@ -81,7 +81,7 @@ The reviewed selections were tested with cutoff 3.8, 3.9, 3.9.1, 3.10, 3.10.1,
 review.
 
 Commercial screening applies to supported cutoff and EN15804 builds.
-Consequential builds use the workbook pipeline.
+Consequential builds use CLIC under the default policy.
 
 Older-version builds may use replacements for compatibility even when commercial
 screening is off. The report marks these as ``older_target_compatibility``.

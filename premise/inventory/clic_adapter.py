@@ -23,6 +23,48 @@ def _folded(identity):
     )
 
 
+def _adapt_consequential(records, version, diagnostics):
+    from .inventory_imports import (
+        check_for_datasets_compliance_with_consequential_database,
+        get_consequential_blacklist,
+    )
+
+    def report_relink(activity, index, exchange, replacement):
+        diagnostics.append(
+            {
+                "code": "clic.consequential_supplier_relinked",
+                "activity_code": activity["code"],
+                "exchange_index": index,
+                "requested": list(activity_identity(exchange)),
+                "matched": list(
+                    activity_identity({**replacement, "unit": exchange["unit"]})
+                ),
+            }
+        )
+
+    published = [
+        activity
+        for activity in records
+        if not activity.get("clic provenance", {}).get("replacement")
+    ]
+    blacklist = get_consequential_blacklist()
+    adapted = check_for_datasets_compliance_with_consequential_database(
+        published, blacklist, version, on_relink=report_relink
+    )
+    kept = {a["code"] for a in adapted}
+    excluded = {activity["code"] for activity in published if activity["code"] not in kept}
+    diagnostics.extend(
+        {
+            "code": "clic.consequential_activity_excluded",
+            "activity_code": activity["code"],
+            "slug": activity.get("clic provenance", {}).get("slug"),
+        }
+        for activity in published
+        if activity["code"] in excluded
+    )
+    return [activity for activity in records if activity["code"] not in excluded]
+
+
 def _normalize_compression_contract(activity, diagnostics):
     """Adapt the published conditional-delivery metadata without changing its LCI."""
     from ..transport.vehicle_hydrogen import COMPRESSION_KEY, COMPRESSION_COMMENT
@@ -131,6 +173,7 @@ def prepare_clic_for_premise(
     biosphere_codes=None,
     classifications=None,
     namespace_identities=(),
+    background_aliases=(),
 ):
     """Return owned, fully linked foregrounds without changing the source graph."""
     if biosphere_codes is None:
@@ -144,6 +187,14 @@ def prepare_clic_for_premise(
     from .inventory_imports import get_classification_entry
 
     records = copy.deepcopy(prepared.activities)
+    diagnostics = []
+    if system_model == "consequential":
+        from .clic_replacements import apply_background_aliases
+
+        records = _adapt_consequential(records, version, diagnostics)
+        if background_aliases:
+            diagnostics.extend(apply_background_aliases(records, background_aliases))
+
     original_identities = {
         activity["code"]: activity_identity(activity) for activity in records
     }
@@ -159,7 +210,6 @@ def prepare_clic_for_premise(
     foreground_identities = defaultdict(list)
     for activity in records:
         foreground_identities[activity_identity(activity)].append(activity)
-    diagnostics = []
     if system_model == "EN15804":
         from ..iam.system_models import adapt_en15804_scrap_exchanges
 

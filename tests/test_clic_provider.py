@@ -40,6 +40,25 @@ def test_pragmatic_defaults_and_strict_opt_in():
         module.ClicInventoryOptions(migration_policy="unknown")
 
 
+def test_consequential_provider_harmonizes_against_cutoff_catalog(tmp_path, provider):
+    client = module.ClicInventoryProvider(
+        archive=catalog(native(1, 1, "root")),
+        catalog_provider=provider,
+        options={"cache_dir": tmp_path, "offline": True},
+    )
+    records = client.prepare(
+        ["dataset-1"],
+        [],
+        version="3.12",
+        system_model="consequential",
+        biosphere_codes={},
+        classifications={},
+    )
+    assert [activity["name"] for activity in records] == ["root"]
+    assert client.manifest["target"]["technosphere"]["system_model"] == "cutoff"
+    assert client.manifest["target"]["premise_system_model"] == "consequential"
+
+
 def test_lockfile_freezes_namespace_choices_when_unselected_catalog_changes(
     tmp_path, provider
 ):

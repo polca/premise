@@ -271,74 +271,6 @@ def test_ecospold_constructor_does_not_check_biosphere_database(
     assert obj._clic_loaded_sectors == set()
 
 
-@pytest.mark.parametrize(
-    "version,system_model", [("3.8", "consequential"), ("3.12", "consequential")]
-)
-def test_workbook_fallback_constructor_clears_importer_state_after_inventory_cache_miss(
-    monkeypatch,
-    version,
-    system_model,
-):
-    calls = {"clear_inventory_importer_state": 0}
-
-    def fake_find_cached_db(self, db_name):
-        self.database_metadata_cache_filepath = Path("db-metadata.pickle")
-        return []
-
-    def fake_find_cached_inventories(self, db_name):
-        self.inventories_metadata_cache_filepath = Path("inventories-metadata.pickle")
-        return None
-
-    def fake_clear_inventory_importer_state():
-        calls["clear_inventory_importer_state"] += 1
-
-    monkeypatch.setattr(
-        new_database_module,
-        "check_scenarios",
-        lambda scenario, key: scenario,
-    )
-    monkeypatch.setattr(new_database_module, "delete_all_pickles", lambda: None)
-    monkeypatch.setattr(
-        new_database_module,
-        "IAMDataCollection",
-        DummyIAMDataCollection,
-    )
-    monkeypatch.setattr(
-        NewDatabase,
-        "_NewDatabase__find_cached_db",
-        fake_find_cached_db,
-    )
-    monkeypatch.setattr(
-        NewDatabase,
-        "_NewDatabase__find_cached_inventories",
-        fake_find_cached_inventories,
-    )
-    monkeypatch.setattr(
-        NewDatabase,
-        "_clear_inventory_importer_state",
-        staticmethod(fake_clear_inventory_importer_state),
-    )
-
-    NewDatabase(
-        scenarios=[
-            {
-                "model": "image",
-                "pathway": "SSP2-Base",
-                "year": 2030,
-                "filepath": Path("."),
-            }
-        ],
-        source_type="ecospold",
-        source_file_path=".",
-        biosphere_name="missing-biosphere",
-        source_version=version,
-        system_model=system_model,
-        quiet=True,
-    )
-
-    assert calls["clear_inventory_importer_state"] == 1
-
-
 def test_check_presence_biosphere_database_is_noninteractive(monkeypatch):
     monkeypatch.setattr(new_database_module.bw2data, "databases", {})
     monkeypatch.setattr(
@@ -1232,7 +1164,7 @@ def test_compact_source_checkpoint_is_invalidated_with_underlying_caches(
 @pytest.mark.parametrize(
     "version,system_model", [("3.8", "consequential"), ("3.12", "consequential")]
 )
-def test_workbook_fallback_constructor_marks_database_complete_after_inventory_cache_miss(
+def test_consequential_constructor_defers_supplemental_inventory_selection(
     monkeypatch,
     version,
     system_model,
@@ -1243,10 +1175,7 @@ def test_workbook_fallback_constructor_marks_database_complete_after_inventory_c
         return [{"name": "base"}]
 
     def fake_find_cached_inventories(self, db_name):
-        self.inventories_cache_filepath = Path("inventories-cache.pickle")
-        self.inventories_metadata_cache_filepath = Path("inventories-metadata.pickle")
-        self.database.extend([{"name": "inventory"}])
-        return None
+        raise AssertionError("Supplemental inventory selection must wait for update().")
 
     monkeypatch.setattr(
         new_database_module,
@@ -1287,11 +1216,9 @@ def test_workbook_fallback_constructor_marks_database_complete_after_inventory_c
     )
 
     assert obj._database_is_complete is True
-    assert obj._can_reload_original_database() is True
-    assert obj.materialize_inventory() == [
-        {"name": "base", "exchanges": []},
-        {"name": "inventory", "exchanges": []},
-    ]
+    assert obj._clic_provider.archive is None
+    assert obj._clic_loaded_sectors == set()
+    assert obj.materialize_inventory() == [{"name": "base", "exchanges": []}]
     with pytest.raises(AttributeError, match="NewDatabase.database was removed"):
         _ = obj.database
 

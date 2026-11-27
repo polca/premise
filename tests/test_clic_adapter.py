@@ -175,6 +175,54 @@ def test_en15804_scrap_is_adapted_before_matching_native_suppliers():
     assert diagnostics[0]["code"] == "clic.en15804_native_scrap_adapted"
 
 
+def test_consequential_blacklist_relinks_signed_scrap_before_destination_validation():
+    outlet = {
+        "name": "waste paperboard, unsorted, Recycled Content cut-off",
+        "product": "waste paperboard, unsorted",
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "amount": -2.5,
+        "uncertainty type": 3,
+        "scale": 0.1,
+        "input": ("__clic__", "cutoff-scrap"),
+    }
+    data = SimpleNamespace(
+        activities=[
+            {
+                **background("equipment", code="equipment"),
+                "exchanges": [outlet],
+            },
+            {
+                **background(outlet["name"], code="cutoff-scrap"),
+                "reference product": outlet["product"],
+                "exchanges": [],
+            },
+        ]
+    )
+    market = {
+        **background("market for waste paperboard, unsorted", code="market"),
+        "reference product": outlet["product"],
+        "location": "RoW",
+    }
+    with pytest.raises(ClicInventoryError, match="Expected one source supplier"):
+        prepare(data, [], system_model="consequential")
+
+    records, diagnostics = prepare(data, [market], system_model="consequential")
+    assert [record["code"] for record in records] == ["equipment"]
+    edge = records[0]["exchanges"][0]
+    assert edge["input"] == ("ecoinvent-test", "market")
+    assert edge["name"] == market["name"]
+    assert edge["location"] == "RoW"
+    for field in ("amount", "unit", "uncertainty type", "scale"):
+        assert edge[field] == outlet[field]
+    assert outlet["input"] == ("__clic__", "cutoff-scrap")
+    assert [item["code"] for item in diagnostics] == [
+        "clic.consequential_supplier_relinked",
+        "clic.consequential_activity_excluded",
+    ]
+
+
 def test_null_optional_production_volumes_use_premise_fallback():
     data = prepared()
     data.activities[0]["production volume"] = None

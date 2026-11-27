@@ -311,16 +311,17 @@ def test_profile_data_changes_invalidate_imports_without_invalidating_source(
     assert builder._database_cache_path("profile-cache") == source_path
 
 
-@pytest.mark.parametrize("workbook_fallback", [True, False])
+@pytest.mark.parametrize("use_clic", [True, False])
 def test_biosphere_preparation_version_invalidates_only_import_cache(
-    monkeypatch, workbook_fallback
+    monkeypatch, use_clic
 ):
     import premise.database.new_database as module
 
     builder = object.__new__(module.NewDatabase)
     builder.version, builder.system_model = "3.12", "cutoff"
     builder.keep_imports_uncertainty = builder.keep_source_db_uncertainty = False
-    builder._clic_workbook_fallback = workbook_fallback
+    if use_clic:
+        builder._clic_provider = SimpleNamespace()
     builder._clic_semantic_fingerprint = "unchanged-clic-inputs"
     source_path = builder._database_cache_path("biosphere-fill-test")
     imports_path = builder._database_cache_path("biosphere-fill-test", inventories=True)
@@ -336,9 +337,9 @@ def test_biosphere_preparation_version_invalidates_only_import_cache(
     )
 
 
-@pytest.mark.parametrize("workbook_fallback", [True, False])
+@pytest.mark.parametrize("use_clic", [True, False])
 def test_classification_data_invalidates_imports_but_preserves_source_cache(
-    monkeypatch, tmp_path, workbook_fallback
+    monkeypatch, tmp_path, use_clic
 ):
     import premise.database.new_database as module
 
@@ -348,7 +349,8 @@ def test_classification_data_invalidates_imports_but_preserves_source_cache(
     builder = object.__new__(module.NewDatabase)
     builder.version, builder.system_model = "3.12", "cutoff"
     builder.keep_imports_uncertainty = builder.keep_source_db_uncertainty = False
-    builder._clic_workbook_fallback = workbook_fallback
+    if use_clic:
+        builder._clic_provider = SimpleNamespace()
     builder._clic_semantic_fingerprint = "unchanged-clic-inputs"
     source = builder._database_cache_path("classification-test")
     imports = builder._database_cache_path("classification-test", inventories=True)

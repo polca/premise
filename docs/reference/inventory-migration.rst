@@ -8,6 +8,14 @@ inventories. For workbooks, Brightpath applies the ecoinvent version mappings
 before Premise links local foreground providers and applies system-model
 adaptations.
 
+For consequential builds, Brightpath migrates CLIC foreground inventories to
+the requested ecoinvent release using its cut-off catalogs. Premise then
+applies the versioned rules in ``consequential/blacklist.yaml`` and checks
+each remaining link against the actual consequential database. The
+inventory manifest records supplier substitutions and foreground exclusions.
+The constrained-supplier list continues to govern the scenario's marginal
+market mixes.
+
 The **import source version** describes the inventory's original references;
 the **target version** is the ecoinvent version used by your build. They need
 not be the same. Migration changes the relevant identities, not the scientific
@@ -52,6 +60,11 @@ aggregates is unavailable.
 For consequential imports, the ASSB recycled HDPE purchase uses the native
 marginal HDPE market at the same mass: GLO through 3.11, and RER in 3.12 to
 retain European supply. Cut-off and EN15804 retain the recycled supplier.
+
+For the CLIC lead-acid battery and electrolysis power conversion inventories,
+Premise sends the same signed quantities of scrap lead-acid batteries and
+waste paperboard to native consequential markets. The global scrap battery
+market and the RoW waste paperboard market serve these handoffs.
 
 Two chemical proxies apply only to ecoinvent 3.8, where the native markets
 are unavailable. The polymer ASSB uses the bundled Japanese lithium iron

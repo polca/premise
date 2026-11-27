@@ -32,6 +32,9 @@ changes; updating Premise does not modify saved results.
 
 ### Changed
 
+- Use eligible CLIC inventories in consequential builds. Brightpath migrates
+  the release in the cut-off model, then Premise applies its consequential
+  supplier rules and verifies links against the consequential background.
 - Use Brightpath to migrate bundled and user-supplied inventories between
   ecoinvent releases. This preserves the final-energy biosphere exchanges
   that previously went unlinked on ecoinvent 3.8 and 3.9.
@@ -40,9 +43,8 @@ changes; updating Premise does not modify saved results.
   datapackages authored against older releases can still be migrated.
 - Remove the `inventory_source` constructor selector from `NewDatabase` and
   `PathwaysDataPackage`. CLIC selection is automatic; only required workbook
-  inventories remain. Consequential builds automatically use compatible
-  workbooks because CLIC cutoff inventories cannot supply that system model.
-  Commercial CLIC screening excludes consequential builds.
+  inventories remain. Commercial CLIC screening covers cut-off and EN15804
+  builds.
 - Use reviewed native manufacturing references for newer-source assets when
   building against older backgrounds. Keep strict destination linking and
   record target-compatibility replacements separately from license screening.

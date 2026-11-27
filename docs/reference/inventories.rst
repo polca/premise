@@ -48,11 +48,11 @@ Inventory source selection
 CLIC is the standard supplemental inventory provider; there is no
 ``inventory_source`` selector. Inventories are prepared lazily when sectors are
 updated, and the hybrid dependency selection retains required workbooks.
-CLIC inventories target cutoff backgrounds. Consequential builds use compatible
-workbooks instead and record the reason and requested sectors in the inventory
-manifest. Commercial CLIC screening excludes consequential builds. Supported
-cutoff and EN15804 builds use slug-based CLIC selection and strict destination
-linking.
+Cut-off, consequential and EN15804 builds use slug-based CLIC selection and
+strict destination linking. CLIC inventories migrate between cut-off releases
+before Premise applies consequential supplier rules and links to the actual
+consequential background. The inventory manifest records those relinks.
+Commercial CLIC screening covers cut-off and EN15804 builds.
 
 This table is generated from the constructor's inventory-selection statements.
 It records selection before activity-level filtering, migration and linking.

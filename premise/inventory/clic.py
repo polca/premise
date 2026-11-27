@@ -136,8 +136,7 @@ class ClicInventoryProvider:
             and system_model == "consequential"
         ):
             raise ClicInventoryError(
-                "CLIC commercial policy does not yet support consequential builds: "
-                "their workbook fallback has not been assessed."
+                "CLIC commercial policy does not yet cover consequential inventory adaptations."
             )
         return version
 
@@ -349,6 +348,11 @@ class ClicInventoryProvider:
             biosphere_codes=biosphere_codes,
             classifications=classifications,
             namespace_identities=collisions,
+            background_aliases=(
+                replacement_report["background_aliases"]
+                if system_model == "consequential" and replacement_report is not None
+                else ()
+            ),
         )
         from .clic_requirements import registry
 

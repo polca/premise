@@ -127,7 +127,9 @@ class ClicHarmonizer:
             "technosphere": {
                 "family": "ecoinvent",
                 "version": str(version),
-                "system_model": "cutoff" if system_model == "EN15804" else system_model,
+                # Brightpath migrates published inventories within the cut-off
+                # model. Premise adapts and links them to the actual model.
+                "system_model": "cutoff",
             },
             "biosphere": {"family": "ecoinvent", "version": str(version)},
         }
@@ -238,6 +240,8 @@ class ClicHarmonizer:
             }
             if self.background_aliases:
                 signature["background_aliases"] = self.background_aliases
+                if system_model == "consequential":
+                    signature["apply_background_aliases_at_destination"] = True
             fingerprint = content_hash(signature)
             metadata_path = self.cache_dir / f"{fingerprint}.json"
             payload_path = self.cache_dir / f"{fingerprint}.inventory.json.gz"
@@ -315,7 +319,7 @@ class ClicHarmonizer:
                         )
                     cached = migrated.data
                     alias_changes = []
-                    if self.background_aliases:
+                    if self.background_aliases and system_model != "consequential":
                         from .clic_replacements import apply_background_aliases
 
                         alias_changes = apply_background_aliases(

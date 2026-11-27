@@ -89,14 +89,13 @@ and available suppliers, not every future CLIC dataset. The policy assesses
 declared CLIC permissions; ecoinvent, retained workbooks and user inventories
 require separate rights assessments. See :doc:`/reference/clic-commercial`.
 
-Workbook compatibility fallbacks
---------------------------------
+Consequential inventory adaptation
+----------------------------------
 
-CLIC inventories are published against cutoff backgrounds. Consequential builds
-therefore use compatible workbooks automatically and record that fallback in
-the inventory manifest. Commercial-policy consequential builds are rejected
-because the fallback has not been assessed under that policy. Do not change
-system-model labels to force cutoff inventories into a consequential build.
+Brightpath migrates published CLIC inventories between cut-off releases.
+Premise applies its consequential supplier rules and validates the links against
+the supplied consequential database. The inventory manifest records the
+adaptations. Commercial CLIC screening covers cut-off and EN15804.
 
 Premise accepts ecoinvent background versions 3.8 through 3.12. To update a
 workflow using 3.7 or 3.7.1, use a supported ecoinvent database and set

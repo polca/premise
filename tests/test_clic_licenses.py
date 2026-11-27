@@ -160,15 +160,15 @@ def test_unknown_policy_and_changed_recipe_policy_fail_before_download():
     assert len(POLICY_FINGERPRINT) == 64
 
 
-def test_consequential_commercial_build_cannot_fall_back_to_workbooks(tmp_path):
+def test_commercial_policy_excludes_consequential_inventory_adaptations(tmp_path):
     client = ClicInventoryProvider(
         options={"cache_dir": tmp_path, "license_policy": "commercial"}
     )
     client.get_archive = Mock(side_effect=AssertionError("Must fail before download"))
-    with pytest.raises(ClicInventoryError, match="workbook fallback"):
+    with pytest.raises(ClicInventoryError, match="consequential inventory adaptations"):
         client.prepare([], [], version="3.12", system_model="consequential")
     client.get_archive.assert_not_called()
-    with pytest.raises(ClicInventoryError, match="workbook fallback"):
+    with pytest.raises(ClicInventoryError, match="consequential inventory adaptations"):
         NewDatabase(
             scenarios=[],
             source_version="3.12",

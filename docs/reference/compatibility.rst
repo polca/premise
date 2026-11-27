@@ -38,8 +38,8 @@ does not imply identical additional inventories across system models; consult
 The package does not contain the ecoinvent source database. Database and
 biosphere identifiers must match your local import.
 
-Consequential backgrounds use the workbook pipeline. See :doc:`inventories`
-for selection behavior.
+Consequential builds use CLIC and required workbooks. See :doc:`inventories`
+for source selection and :doc:`inventory-migration` for supplier adaptation.
 
 Dependency constraints
 ----------------------

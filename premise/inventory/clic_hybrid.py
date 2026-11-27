@@ -92,17 +92,6 @@ def plan_hybrid_inventories(
     )
     pending = list(extra_nodes)
 
-    def requires_retained_workbook(node):
-        return system_model == "consequential"
-
-    # Published CLIC inventories use cutoff background cohorts, and Brightpath
-    # deliberately does not translate between ecoinvent system models. Preserve
-    # the reviewed bundled workbook definitions for consequential builds,
-    # including when a recipe names one of their roots.
-    for node in nodes:
-        if node.get("clic_slug") in requested and requires_retained_workbook(node):
-            requested.discard(node["clic_slug"])
-            pending.append(node["id"])
     scenarios = list(scenarios) or [{}]
     for sector in sectors:
         for filename in specification["sector_mappings"].get(sector, ()):
@@ -141,10 +130,7 @@ def plan_hybrid_inventories(
                 pending.extend(graph["files"].get(filename, {}).get("nodes", ()))
     selected, guards = set(), set()
     vehicle_sources = defaultdict(list)
-    nodes_by_slug = defaultdict(list)
     for node in nodes:
-        if node.get("clic_slug"):
-            nodes_by_slug[node["clic_slug"]].append(node["id"])
         if node["file"] in active:
             vehicle_sources[node["identity"][0].casefold()].append(node["id"])
 
@@ -182,7 +168,7 @@ def plan_hybrid_inventories(
             node = nodes[index]
             if node["file"] not in active:
                 continue
-            if node["clic_slug"] and not requires_retained_workbook(node):
+            if node["clic_slug"]:
                 requested.add(node["clic_slug"])
                 continue
             if index in selected:
@@ -218,18 +204,7 @@ def plan_hybrid_inventories(
                             break
             for edge in node["inputs"]:
                 if "clic_slug" in edge:
-                    retained = [
-                        candidate
-                        for candidate in nodes_by_slug.get(edge["clic_slug"], ())
-                        if nodes[candidate]["file"] in active
-                        and requires_retained_workbook(nodes[candidate])
-                    ]
-                    if retained:
-                        child = choose(retained, node)
-                        if child is not None:
-                            pending.append(child)
-                    else:
-                        requested.add(edge["clic_slug"])
+                    requested.add(edge["clic_slug"])
                 else:
                     child = choose(edge["nodes"], node)
                     if child is not None:
@@ -329,6 +304,7 @@ def import_retained_inventories(
     from .inventory_imports import (
         BIOSPHERE_MIGRATION_CACHE_VERSION,
         FILEPATH_CLASSIFICATIONS,
+        FILEPATH_CONSEQUENTIAL_BLACKLIST,
     )
     from .profiles import PROFILE_PATH
 
@@ -371,6 +347,15 @@ def import_retained_inventories(
             "workbooks": hashes,
             "version": version,
             "system_model": system_model,
+            **(
+                {
+                    "consequential_blacklist": hashlib.sha256(
+                        FILEPATH_CONSEQUENTIAL_BLACKLIST.read_bytes()
+                    ).hexdigest(),
+                }
+                if system_model == "consequential"
+                else {}
+            ),
             "uncertainty": keep_uncertainty,
             "signature": cache_signature,
         }

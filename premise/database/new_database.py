@@ -21,7 +21,6 @@ from pathlib import Path
 from typing import List, Literal, Union
 
 import bw2data
-import datapackage
 import portalocker
 from bw2io import ExcelImporter
 from packaging.version import Version
@@ -73,7 +72,6 @@ from ..energy.final_energy import _update_final_energy
 from ..fuels.base import _update_fuels
 from ..energy.heat import _update_heat
 from ..inventory.inventory_imports import (
-    AdditionalInventory,
     BaseInventoryImport,
     BIOSPHERE_MIGRATION_CACHE_VERSION,
     DefaultInventory,
@@ -703,7 +701,6 @@ class NewDatabase:
             recipe=inventory_recipe, options=clic_options
         )
         self._clic_provider.check_target(self.version, self.system_model)
-        self._clic_workbook_fallback = self.system_model == "consequential"
         self._clic_manifest = None
         self._clic_lockfile = None
         self._clic_records = []
@@ -789,138 +786,32 @@ class NewDatabase:
                     scenario["external scenarios"]
                 )
 
-        compact_cache_hit = None
-        compact_cache_eligible = (
-            self.inventory_backend == "compact"
-            and self._clic_workbook_fallback
-            and use_cached_database
-            and use_cached_inventories
-            and self.additional_inventories is None
-        )
-        if compact_cache_eligible:
-            compact_cache_hit = self._find_compact_source_checkpoint(source_db)
-
-        imported_inventory_data = False
-        if compact_cache_hit is not None:
-            checkpoint, cache_refs = compact_cache_hit
-            print("- Opening compact source database")
-            self.database_cache_filepath = cache_refs["source"]
-            self.database_metadata_cache_filepath = cache_refs["source_metadata"]
-            self.inventories_cache_filepath = cache_refs["inventories"]
-            self.inventories_metadata_cache_filepath = cache_refs[
-                "inventories_metadata"
-            ]
+        print("- Extracting source database")
+        if use_cached_database:
+            self._database = self.__find_cached_db(source_db)
             for scenario in self.scenarios:
                 scenario["database metadata cache filepath"] = (
                     self.database_metadata_cache_filepath
                 )
-                scenario["inventories metadata cache filepath"] = (
-                    self.inventories_metadata_cache_filepath
-                )
-            self._database = None
-            self._database_is_complete = True
-            self._compact_source_checkpoint = checkpoint
         else:
-            print("- Extracting source database")
-            if use_cached_database:
-                self._database = self.__find_cached_db(source_db)
-                for scenario in self.scenarios:
-                    scenario["database metadata cache filepath"] = (
-                        self.database_metadata_cache_filepath
-                    )
-            else:
-                self._database = self.__clean_database()
+            self._database = self.__clean_database()
 
-            print("- Extracting inventories")
-            if not self._clic_workbook_fallback:
-                # Sector requirements are known at update(), before any scenario
-                # fork or baseline certification. Never eagerly import a catalog.
-                self._database_is_complete = True
-            elif use_cached_inventories:
-                data = self.__find_cached_inventories(source_db)
-                for scenario in self.scenarios:
-                    scenario["inventories metadata cache filepath"] = (
-                        self.inventories_metadata_cache_filepath
-                    )
-                if data is not None:
-                    self._database.extend(data)
-                else:
-                    imported_inventory_data = True
-                # A cache miss imports inventories directly into ``self._database``
-                # before replacing the imported tail with the trimmed cached
-                # representation, so the inventory coverage is complete in both the
-                # hit and miss cases here and the original form can be reloaded from
-                # cache when needed.
-                self._database_is_complete = True
-            else:
-                self.__import_inventories()
-                imported_inventory_data = True
-                self._database_is_complete = True
-
-        if self.additional_inventories and self._clic_workbook_fallback:
-            print("- Importing additional inventories")
-            data = self.__import_additional_inventories(self.additional_inventories)
-            self._database.extend(data)
-            imported_inventory_data = True
-
-        if imported_inventory_data:
-            self._clear_inventory_importer_state()
+        # Resolve supplemental inventories once update() knows which sectors
+        # are needed. The constructor holds only the background database.
+        self._database_is_complete = True
 
         print("- Fetching IAM data")
         for scenario in self.scenarios:
             _fetch_iam_data(scenario)
 
-        if self._compact_source_checkpoint is not None:
-            try:
-                self._source_inventory_store = InventoryStore.open(
-                    self._compact_source_checkpoint
-                )
-            except (InventoryStoreCorruptionError, InventoryStoreVersionError):
-                # The versioned pickle caches remain the source of truth. A
-                # partial or corrupt compact derivative is rebuilt wholesale.
-                if compact_cache_hit is None:  # pragma: no cover - invariant guard
-                    raise InventoryStoreError(
-                        "A compact checkpoint was selected without cache references."
-                    )
-                _, cache_refs = compact_cache_hit
-                self._database = self._load_compact_source_cache_payload(cache_refs)
-                _normalize_inventory_before_certification(self._database)
-                self._source_inventory_store = create_inventory_store(
-                    self._database,
-                    backend="compact",
-                    scenario_identity="source",
-                    take_ownership=True,
-                    compute_fingerprints=True,
-                )
-                self._compact_source_checkpoint = self._write_compact_source_checkpoint(
-                    source_db, self._source_inventory_store
-                )
-                self._source_inventory_store = None
-                self._database = None
-                gc.collect()
-                self._source_inventory_store = InventoryStore.open(
-                    self._compact_source_checkpoint
-                )
-        else:
-            _normalize_inventory_before_certification(self._database)
-            self._source_inventory_store = create_inventory_store(
-                self._database,
-                backend=self.inventory_backend,
-                scenario_identity="source",
-                take_ownership=True,
-                compute_fingerprints=True,
-            )
-            if compact_cache_eligible:
-                self._compact_source_checkpoint = self._write_compact_source_checkpoint(
-                    source_db, self._source_inventory_store
-                )
-                if self._compact_source_checkpoint is not None:
-                    self._source_inventory_store = None
-                    self._database = None
-                    gc.collect()
-                    self._source_inventory_store = InventoryStore.open(
-                        self._compact_source_checkpoint
-                    )
+        _normalize_inventory_before_certification(self._database)
+        self._source_inventory_store = create_inventory_store(
+            self._database,
+            backend=self.inventory_backend,
+            scenario_identity="source",
+            take_ownership=True,
+            compute_fingerprints=True,
+        )
         # The mutable extraction list is an implementation detail only.  From
         # this point onward all scenario ownership goes through InventoryStore.
         self._database = None
@@ -978,7 +869,7 @@ class NewDatabase:
                 FILEPATH_CLASSIFICATIONS.read_bytes()
             ).hexdigest()[:16]
             inventory_label += f"_classifications_{classification_digest}"
-        if inventories and not getattr(self, "_clic_workbook_fallback", True):
+        if inventories and hasattr(self, "_clic_provider"):
             fingerprint = (
                 getattr(self, "_clic_semantic_fingerprint", None) or "unresolved"
             )
@@ -1238,15 +1129,6 @@ class NewDatabase:
                 json.dumps(marker, sort_keys=True, indent=2), encoding="utf-8"
             )
         return checkpoint
-
-    @staticmethod
-    def _load_compact_source_cache_payload(cache_refs: dict[str, Path]) -> list[dict]:
-        database = load_cached_database(cache_refs["source"])
-        restore_cached_classifications(database, cache_refs["source_metadata"])
-        inventories = load_cached_database(cache_refs["inventories"])
-        restore_cached_classifications(inventories, cache_refs["inventories_metadata"])
-        database.extend(inventories)
-        return database
 
     def __find_cached_db(self, db_name: str) -> List[dict]:
         """
@@ -1531,15 +1413,6 @@ class NewDatabase:
         wanted = self._clic_loaded_sectors | set(sectors)
         if wanted == self._clic_loaded_sectors:
             return
-        if self._clic_workbook_fallback:
-            self._clic_manifest = {
-                "provider": "workbooks",
-                "reason": "CLIC cutoff inventories cannot be migrated across ecoinvent system models.",
-                "requested_system_model": self.system_model,
-                "requested_sectors": sorted(wanted),
-            }
-            self._clic_loaded_sectors = wanted
-            return
         provider = self._clic_provider
         if not hasattr(self, "_clic_base_source_fingerprint"):
             self._clic_base_source_fingerprint = source_store_signature(
@@ -1691,10 +1564,6 @@ class NewDatabase:
 
     def write_inventory_recipe(self, path) -> Path:
         """Export exact root and upstream CLIC versions for build reproduction."""
-        if self._clic_workbook_fallback:
-            raise ValueError(
-                "A CLIC recipe is unavailable for this workbook compatibility fallback."
-            )
         return self._clic_provider.write_recipe(path)
 
     @staticmethod
@@ -1725,7 +1594,7 @@ class NewDatabase:
 
         if self._can_reload_original_database():
             database = self._load_pickled_database(self.database_cache_filepath)
-            if not getattr(self, "_clic_workbook_fallback", True):
+            if hasattr(self, "_clic_provider"):
                 # Converted records retain behavior-bearing contracts (battery
                 # boundaries, compression, etc.) beyond the legacy hot cache.
                 from ..inventory.inventory_copy import clone_inventory_dataset
@@ -2684,50 +2553,6 @@ class NewDatabase:
         clear_runtime_caches()
         gc.collect()
 
-    def __import_additional_inventories(
-        self, data_package: [datapackage.DataPackage, list], *, database=None
-    ) -> List[dict]:
-        """
-        This method will trigger the import of a number of inventories
-        and merge them into the database dictionary.
-
-        :param data_package: datapackage.DataPackage or list of file paths
-        :return: list of dictionaries
-
-        """
-        print("\n//////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////")
-
-        data = []
-        if database is None:
-            database = self._database
-
-        if isinstance(data_package, list):
-            # this is a list of file paths
-            for file_path in data_package:
-                additional = AdditionalInventory(
-                    database=database,
-                    version_in=file_path["ecoinvent version"],
-                    version_out=self.version,
-                    path=file_path["filepath"],
-                    system_model=self.system_model,
-                )
-                data.extend(additional.merge_inventory())
-
-        elif isinstance(data_package, datapackage.DataPackage):
-            if data_package.get_resource("inventories"):
-                additional = AdditionalInventory(
-                    database=database,
-                    version_in=data_package.descriptor["ecoinvent"]["version"],
-                    version_out=self.version,
-                    path=data_package.get_resource("inventories").source,
-                    system_model=self.system_model,
-                )
-                data.extend(additional.merge_inventory())
-        else:
-            raise TypeError("Unknown data type for datapackage.")
-
-        return data
-
     def _sector_update_methods(self) -> dict:
         """Return the ordered sector dispatch shared by normal and incremental builds."""
 
@@ -3540,11 +3365,11 @@ class NewDatabase:
         if not isinstance(name, str):
             raise TypeError("`name` should be a string.")
 
-        cached_inventories = self.__find_cached_inventories(self.source)
+        if self._clic_manifest is None:
+            raise ValueError("Prepare inventories before writing a scenario datapackage.")
+        from ..inventory.inventory_copy import clone_inventory_dataset
 
-        if not cached_inventories:
-            cache_fp = DIR_CACHED_DB / f"cached_{self.source}_inventories.pickle"
-            raise ValueError(f"No cached inventories found at {cache_fp}.")
+        inventories = clone_inventory_dataset(self._clic_records)
 
         original_database = self._load_original_database()
 
@@ -3573,13 +3398,13 @@ class NewDatabase:
         for scenario in prepared_scenarios:
             end_of_process(scenario)
 
-        cached_inventories.extend(extra_inventories)
+        inventories.extend(extra_inventories)
 
         list_scenarios = ["original"] + list_scenarios
 
         build_datapackage(
             df=df,
-            inventories=cached_inventories,
+            inventories=inventories,
             list_scenarios=list_scenarios,
             ei_version=self.version,
             name=name,

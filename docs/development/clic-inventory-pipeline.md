@@ -8,11 +8,12 @@ gap filling and linking. User-supplied inventories are also preserved.
 **Premise 2.7 uses this hybrid pipeline automatically.** Supported ecoinvent
 backgrounds span **3.8 through 3.12**. Premise validates the background version
 before downloading inventories. Older native inventory sources can still be
-migrated into supported backgrounds. Cutoff and EN15804 builds use CLIC for
-eligible public inventories. CLIC inventories are published against cutoff
-backgrounds. Consequential builds use the workbook pipeline and record the
-fallback and its reason in the inventory manifest.
-Commercial CLIC screening excludes consequential builds.
+migrated into supported backgrounds. Cut-off, consequential and EN15804 builds
+use CLIC for eligible public inventories. Brightpath migrates the published
+inventories between cut-off releases. For consequential builds, Premise applies
+its system-model supplier rules, validates the consequential links and records
+the changes in the inventory manifest. Commercial CLIC screening covers cut-off
+and EN15804.
 
 ## Current interface
 

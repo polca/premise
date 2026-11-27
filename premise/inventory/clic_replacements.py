@@ -349,11 +349,17 @@ def replace_commercial_inventories(
     """
     registry = replacement_registry() if registry is None else registry
     registry_fingerprint = content_hash(registry)
+    # The older-target templates identify technically related suppliers by
+    # name, product and unit. For consequential compatibility, clone only a
+    # supplier found in the actual consequential source database.
+    rule_model = (
+        "cutoff" if compatibility_only and system_model == "consequential" else system_model
+    )
     rules = defaultdict(list)
     for rule in registry["rules"]:
         if version not in rule.get(
             "target_versions", registry["target_versions"]
-        ) or system_model not in rule.get("system_models", registry["system_models"]):
+        ) or rule_model not in rule.get("system_models", registry["system_models"]):
             continue
         for name in rule["match"]["names"]:
             rules[(name.casefold(), rule["match"]["unit"])].append(rule)

@@ -8,9 +8,7 @@ from unittest.mock import Mock
 
 import pytest
 
-from premise.database.new_database import NewDatabase
 from premise.inventory import clic_hybrid as module
-from premise.inventory.clic import ClicInventoryProvider
 from premise.inventory.clic_archive import ClicInventoryError
 
 
@@ -162,7 +160,7 @@ def test_dependency_walk_stops_at_public_replacement_and_retains_licensed_suppli
     assert [path.name for path, _ in plan.sources] == ["licensed.xlsx"]
 
 
-def test_consequential_plan_retains_workbooks_instead_of_clic(monkeypatch):
+def test_consequential_plan_resolves_published_roots_through_clic(monkeypatch):
     nodes = [
         {
             "id": 0,
@@ -211,31 +209,9 @@ def test_consequential_plan_retains_workbooks_instead_of_clic(monkeypatch):
         version="3.12",
         system_model="consequential",
     )
-    assert consequential.clic_roots == ()
-    assert consequential.selected_nodes == frozenset({0, 1})
-    assert [path.name for path, _ in consequential.sources] == ["lci-test.xlsx"]
-
-
-def test_consequential_target_records_workbook_fallback_before_clic_resolution():
-    database = object.__new__(NewDatabase)
-    database.system_model = "consequential"
-    database._clic_workbook_fallback = True
-    database._clic_loaded_sectors = set()
-    database._clic_manifest = None
-    database._clic_provider = ClicInventoryProvider()
-
-    database.prepare_inventories(["electricity", "fuel"])
-
-    assert database._clic_loaded_sectors == {"electricity", "fuel"}
-    assert database._clic_manifest == {
-        "provider": "workbooks",
-        "reason": "CLIC cutoff inventories cannot be migrated across ecoinvent system models.",
-        "requested_system_model": "consequential",
-        "requested_sectors": ["electricity", "fuel"],
-    }
-
-    with pytest.raises(ValueError, match="workbook compatibility fallback"):
-        database.write_inventory_recipe("unused-recipe.json")
+    assert consequential.clic_roots == cutoff.clic_roots
+    assert consequential.selected_nodes == cutoff.selected_nodes
+    assert consequential.sources == cutoff.sources
 
 
 def test_generated_helper_without_slug_cannot_replace_a_retained_activity(
