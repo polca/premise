@@ -242,6 +242,22 @@ def biosphere_flows_dictionary(version):
     return csv_dict
 
 
+def _categories_key(record):
+    categories = record.get("categories")
+    return tuple(categories) if isinstance(categories, list) else categories
+
+
+def _exchange_identity(exchange):
+    return (
+        exchange["name"],
+        exchange.get("product"),
+        _categories_key(exchange),
+        exchange.get("location"),
+        exchange["unit"],
+        exchange["type"],
+    )
+
+
 def get_list_unique_acts(scenarios: List[dict]) -> list:
     """Return distinct exchange identities across scenario inventories.
 
@@ -254,14 +270,7 @@ def get_list_unique_acts(scenarios: List[dict]) -> list:
     """
 
     identities = {
-        (
-            exchange["name"],
-            exchange.get("product"),
-            exchange.get("categories"),
-            exchange.get("location"),
-            exchange["unit"],
-            exchange["type"],
-        )
+        _exchange_identity(exchange)
         for scenario in scenarios
         for activity in scenario["database"]
         for exchange in activity["exchanges"]
@@ -624,21 +633,14 @@ def generate_scenario_difference_file(
             c = (
                 ds["name"],
                 ds.get("reference product"),
-                ds.get("categories"),
+                _categories_key(ds),
                 ds.get("location"),
                 ds["unit"],
                 "production",
             )
             column = acts_ind_rev[c]
             for exc in ds["exchanges"]:
-                s = (
-                    exc["name"],
-                    exc.get("product"),
-                    exc.get("categories"),
-                    exc.get("location"),
-                    exc["unit"],
-                    exc["type"],
-                )
+                s = _exchange_identity(exc)
                 matrix[acts_ind_rev[s], column] += exc["amount"]
 
     m = sparse.stack([sparse.COO(x) for x in matrices.values()], axis=-1)

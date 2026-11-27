@@ -21,6 +21,9 @@ import portalocker
 from .clic_archive import ClicInventoryError, activity_identity, content_hash
 from .clic_requirements import registry, required_roots, applicable_roles
 
+PV_ELECTRICITY_WORKBOOK = "lci-PV-2026-electricity.xlsx"
+PV_PRODUCTION_VOLUME_DIAGNOSTIC = "clic.pv_production_volume_restored"
+
 
 def _key(identity):
     return tuple(
@@ -42,6 +45,55 @@ def managed_inventory_key(activity):
     if workbook.get("record_id"):
         return "workbook", workbook["record_id"]
     return None
+
+
+def _pv_volume_transfer(source, replacements):
+    """Take a country weight from the matched Premise PV electricity record."""
+    targets = {
+        activity["code"]: activity
+        for filename, activity in replacements
+        if filename == PV_ELECTRICITY_WORKBOOK
+    }
+    if not targets:
+        return None
+    if len(targets) != 1:
+        raise ClicInventoryError(
+            f"Ambiguous CLIC activity for PV production volume: {activity_identity(source)!r}."
+        )
+    (target,) = targets.values()
+    (output,) = [edge for edge in target["exchanges"] if edge["type"] == "production"]
+    if output.get("production volume") is not None:
+        return None
+    (reference,) = [
+        edge for edge in source["exchanges"] if edge["type"] == "production"
+    ]
+    volume = float(reference["production volume"])
+    if not math.isfinite(volume) or volume < 0:
+        raise ClicInventoryError(
+            f"Invalid PV production volume: {activity_identity(source)!r}."
+        )
+    return {
+        "code": PV_PRODUCTION_VOLUME_DIAGNOSTIC,
+        "activity_code": target["code"],
+        "source": list(activity_identity(source)),
+        "production_volume": volume,
+    }
+
+
+def restore_pv_production_volumes(activities, diagnostics):
+    """Apply country weights recorded during retained inventory preparation."""
+    weights = {
+        diagnostic["activity_code"]: diagnostic["production_volume"]
+        for diagnostic in diagnostics
+        if diagnostic["code"] == PV_PRODUCTION_VOLUME_DIAGNOSTIC
+    }
+    for dataset in activities:
+        if dataset["code"] in weights:
+            (output,) = [
+                edge for edge in dataset["exchanges"] if edge["type"] == "production"
+            ]
+            output["production volume"] = weights[dataset["code"]]
+    return weights
 
 
 def source_store_signature(store):
@@ -92,6 +144,20 @@ def plan_hybrid_inventories(
     )
     pending = list(extra_nodes)
 
+    power_plant_proxies = {}
+    if "electricity" in sectors:
+        from ..electricity.electricity import load_electricity_variables
+
+        nodes_by_product = defaultdict(list)
+        for node in nodes:
+            nodes_by_product[tuple(node["identity"][:2])].append(node["id"])
+        power_plant_proxies = {
+            role: nodes_by_product[(proxy["name"], proxy["reference product"])]
+            for role, variable in load_electricity_variables().items()
+            if not variable.get("exists in database", True)
+            and (proxy := variable.get("proxy"))
+        }
+
     scenarios = list(scenarios) or [{}]
     for sector in sectors:
         for filename in specification["sector_mappings"].get(sector, ()):
@@ -103,6 +169,8 @@ def plan_hybrid_inventories(
                 )
                 for role in applicable_roles(sector, definitions, scenario):
                     pending.extend(graph["roles"].get(filename, {}).get(role, ()))
+                    if filename == "electricity.yaml":
+                        pending.extend(power_plant_proxies.get(role, ()))
         if sector == "battery":
             pending.extend(
                 node["id"]
@@ -337,7 +405,7 @@ def import_retained_inventories(
     directory.mkdir(parents=True, exist_ok=True)
     fingerprint = content_hash(
         {
-            "schema": 1,
+            "schema": 2,
             "biosphere_preparation_version": BIOSPHERE_MIGRATION_CACHE_VERSION,
             "classifications": hashlib.sha256(
                 FILEPATH_CLASSIFICATIONS.read_bytes()
@@ -464,11 +532,17 @@ def _import_retained_inventories(
         importers = list(
             executor.map(ExcelImporter, (path for path, _ in plan.sources))
         )
+    diagnostics = []
     for (path, _), importer in zip(plan.sources, importers):
         for activity in importer.data:
-            index = expected_nodes[path.name].get(_key(activity_identity(activity)))
+            key = _key(activity_identity(activity))
+            index = expected_nodes[path.name].get(key)
             if index is not None:
                 activity["_premise_hybrid_id"] = index
+            if path.name == PV_ELECTRICITY_WORKBOOK:
+                transfer = _pv_volume_transfer(activity, aliases.get(key, ()))
+                if transfer is not None:
+                    diagnostics.append(transfer)
     select_companion_profiles(
         plan.sources,
         importers,
@@ -480,7 +554,7 @@ def _import_retained_inventories(
             for filename, indices in expected_nodes.items()
         },
     )
-    result, diagnostics = [], []
+    result = []
     for (path, source_version), importer, provenance in zip(
         plan.sources, importers, metadata
     ):

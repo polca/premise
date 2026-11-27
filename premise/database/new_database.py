@@ -1400,6 +1400,7 @@ class NewDatabase:
             plan_hybrid_inventories,
             import_retained_inventories,
             managed_inventory_key,
+            restore_pv_production_volumes,
             source_store_signature,
         )
         from ..inventory.inventory_copy import clone_inventory_dataset
@@ -1493,6 +1494,7 @@ class NewDatabase:
                 ),
             },
         )
+        pv_weights = restore_pv_production_volumes(records, diagnostics)
         records.extend(retained)
         provider.manifest["retained_workbooks"] = workbooks
         provider.manifest["hybrid_plan_fingerprint"] = plan.fingerprint
@@ -1533,6 +1535,7 @@ class NewDatabase:
             "adapter": provider.manifest["adapter_fingerprint"],
             "hybrid_plan": plan.fingerprint,
             "role_bindings": provider.manifest["role_binding_fingerprint"],
+            "pv_production_volumes": pv_weights,
             "retained_workbooks": workbooks,
             "user_inventories": user_sources,
         }

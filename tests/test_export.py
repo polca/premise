@@ -53,6 +53,7 @@ def test_unique_exchange_identities_keep_type_units_geography_and_categories():
                         {**biosphere, "categories": ("air", "rural")},
                         {
                             **biosphere,
+                            "categories": ["air", "urban"],
                             "product": None,
                             "location": None,
                             "amount": -3.0,
@@ -101,6 +102,41 @@ def test_scenario_differences_accept_activities_without_exchanges():
     assert inventory == []
     assert identities == set()
     assert unused["exchanges"] == []
+
+
+def test_scenario_differences_treat_list_and_tuple_categories_as_one_flow():
+    activity = {
+        "name": "activity",
+        "reference product": "material",
+        "location": "GLO",
+        "unit": "kilogram",
+    }
+    production = {**activity, "product": "material", "type": "production", "amount": 1}
+    flow = {
+        "name": "Carbon dioxide, fossil",
+        "categories": ("air",),
+        "unit": "kilogram",
+        "type": "biosphere",
+        "amount": 2,
+    }
+    original = {**activity, "exchanges": [production, flow]}
+    scenario = {
+        **activity,
+        "exchanges": [production, {**flow, "categories": ["air"], "amount": 3}],
+    }
+
+    frame, _, identities = generate_scenario_difference_file(
+        "category-check",
+        [original],
+        [{"database": [scenario]}],
+        "3.12",
+        ["updated"],
+        "biosphere3",
+    )
+
+    assert len(identities) == 2
+    assert frame["updated"].tolist() == [3]
+    assert scenario["exchanges"][1]["categories"] == ["air"]
 
 
 @pytest.mark.parametrize(

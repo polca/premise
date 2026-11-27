@@ -23,6 +23,33 @@ def activity(name, **kwargs):
     }
 
 
+def test_retained_pv_volume_restores_published_country_weights():
+    production = {"type": "production", "amount": 1}
+    source = activity(
+        "electricity production, photovoltaic, residential",
+        location="DE",
+        exchanges=[{**production, "production volume": 150.0}],
+    )
+    published = activity("public solar", code="solar", exchanges=[dict(production)])
+    transfer = module._pv_volume_transfer(
+        source, [(module.PV_ELECTRICITY_WORKBOOK, published)]
+    )
+
+    # A retained-cache hit supplies the saved diagnostic without the importer.
+    other = activity("small solar", code="other", exchanges=[dict(production)])
+    assert module.restore_pv_production_volumes([published, other], [transfer]) == {
+        "solar": 150.0
+    }
+    assert published["exchanges"] == [{**production, "production volume": 150.0}]
+    assert other["exchanges"] == [production]
+    assert (
+        module._pv_volume_transfer(
+            source, [(module.PV_ELECTRICITY_WORKBOOK, published)]
+        )
+        is None
+    )
+
+
 def test_prepared_cache_restores_owned_hashable_brightway_references(
     monkeypatch, tmp_path
 ):

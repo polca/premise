@@ -14,6 +14,25 @@ from .models import AuditConfig, AuditFinding
 from ..validation.validation_framework import ValidationIssue
 
 
+def _refined_brightway_inventory(lca):
+    """Refine the independent solve in Brightway's original matrix order."""
+    demand = lca.demand_array
+    supply = lca.supply_array
+    try:
+        # Small backward errors in the raw solve can affect contributions from
+        # ill-conditioned supply chains. Reuse the same Brightway factorization
+        # for residual corrections before comparing characterized inventories.
+        for _ in range(4):
+            lca.demand_array = demand - lca.technosphere_matrix @ supply
+            refined = supply + lca.solve_linear_system()
+            if np.array_equal(refined, supply):
+                break
+            supply = refined
+    finally:
+        lca.demand_array = demand
+    return np.asarray(lca.biosphere_matrix @ supply).ravel()
+
+
 def audit_brightway_database(
     database,
     *,
@@ -308,7 +327,7 @@ def audit_brightway_database(
         key = tuple(report.sample[p]["activity"])
         node = activity(nodes[key])
         lca.redo_lci({node.id if hasattr(lca, "dicts") else node.key: 1})
-        inventory = np.asarray(lca.inventory.sum(axis=1)).ravel()
+        inventory = _refined_brightway_inventory(lca)
         values = np.asarray(cf @ inventory).ravel()
         error = abs(values - report.total[p])
         errors = np.maximum(errors, error)

@@ -5,8 +5,27 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+from types import SimpleNamespace
 
+import numpy as np
 import pytest
+
+from premise.audit.brightway import _refined_brightway_inventory
+
+
+def test_brightway_crosscheck_corrects_the_supply_residual():
+    matrix = np.array([[2.0, 0.0], [-4.0, 2.0]])
+    demand = np.array([1.0, 0.0])
+    lca = SimpleNamespace(
+        demand_array=demand,
+        supply_array=np.array([0.5, 0.99]),
+        technosphere_matrix=matrix,
+        biosphere_matrix=np.array([[1.0, 2.0]]),
+    )
+    lca.solve_linear_system = lambda: np.linalg.solve(matrix, lca.demand_array)
+
+    assert _refined_brightway_inventory(lca) == pytest.approx([2.5])
+    assert lca.demand_array is demand
 
 
 @pytest.mark.parametrize("stale_serialized_output", [False, True])

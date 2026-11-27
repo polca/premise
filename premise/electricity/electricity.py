@@ -24,6 +24,7 @@ from ..iam.electricity_mix import (
     is_residential_solar,
 )
 from ..reporting.provenance import record_change_event
+from ..inventory.activity_maps import expand_inventory_name_mapping
 from ..inventory.inventory_store import (
     get_scenario_inventory,
     replace_scenario_inventory,
@@ -2165,75 +2166,67 @@ class Electricity(BaseTransformation):
         """
 
         technologies = set(self.iam_data.electricity_mix.coords["variables"].values)
-        for tech, variable in load_electricity_variables().items():
-            if tech not in technologies:
+        proxies = {
+            tech: variable["proxy"]
+            for tech, variable in load_electricity_variables().items()
+            if tech in technologies and not variable.get("exists in database", True)
+        }
+        source_names = {proxy["name"]: proxy["name"] for proxy in proxies.values()}
+        if source_names:
+            source_names = expand_inventory_name_mapping(self.database, source_names)
+        for tech, proxy in proxies.items():
+            original = min(
+                (
+                    activity
+                    for activity in self.database
+                    if source_names.get(activity["name"]) == proxy["name"]
+                    and activity["reference product"] == proxy["reference product"]
+                ),
+                key=lambda activity: activity["name"] != proxy["name"],
+                default=None,
+            )
+            if original is None:
                 continue
-            if not variable.get("exists in database", True):
-                try:
-                    original = list(
-                        ws.get_many(
-                            self.database,
-                            ws.equals("name", variable["proxy"]["name"]),
-                            ws.equals(
-                                "reference product",
-                                variable["proxy"]["reference product"],
-                            ),
-                        )
-                    )[0]
-                except IndexError:
-                    continue
 
-                # make a copy
-                new_dataset = copy.deepcopy(original)
-                new_dataset["name"] = variable["proxy"]["new name"]
-                new_dataset["code"] = str(uuid.uuid4().hex)
-                for e in ws.production(new_dataset):
-                    e["name"] = variable["proxy"]["new name"]
-                    if "input" in e:
-                        del e["input"]
+            new_dataset = copy.deepcopy(original)
+            new_dataset["name"] = proxy["new name"]
+            new_dataset["code"] = str(uuid.uuid4().hex)
+            for e in ws.production(new_dataset):
+                e["name"] = proxy["new name"]
+                e.pop("input", None)
 
-                # if `parameters` in dataset, delete them
-                if "parameters" in new_dataset:
-                    del new_dataset["parameters"]
+            new_dataset.pop("parameters", None)
+            # The new plant has its own IAM technology. The CLIC role bindings
+            # belong to its source plant and would exclude this proxy.
+            source = new_dataset.pop("clic provenance", {})
+            comment = f"Power plant proxy based on {original['name']}."
+            if source.get("slug"):
+                comment += f" CLIC source: {source['slug']}."
+            new_dataset["comment"] = comment
 
-                new_dataset["comment"] = (
-                    "This dataset is a proxy dataset for a power plant. "
-                    "It is used to create missing power plant datasets."
+            if "new efficiency" in proxy:
+                ei_eff = find_fuel_efficiency(
+                    dataset=new_dataset,
+                    fuel_filters=self.powerplant_fuels_map[tech],
+                    energy_out=3.6,
+                    fuel_specs=self.fuels_specs,
+                    fuel_map_reverse=self.fuel_map_reverse,
                 )
+                rescale_exchanges(new_dataset, ei_eff / proxy["new efficiency"])
 
-                # update efficiency
-                if "new efficiency" in variable["proxy"]:
-                    new_eff = variable["proxy"]["new efficiency"]
-                    ei_eff = find_fuel_efficiency(
-                        dataset=new_dataset,
-                        fuel_filters=self.powerplant_fuels_map[tech],
-                        energy_out=3.6,
-                        fuel_specs=self.fuels_specs,
-                        fuel_map_reverse=self.fuel_map_reverse,
-                    )
-                    rescale_exchanges(new_dataset, ei_eff / new_eff)
+            self.database.append(new_dataset)
+            new_datasets = self.fetch_proxies(datasets=[new_dataset])
 
-                self.database.append(new_dataset)
+            for ds in new_datasets.values():
+                ds["name"] = proxy["new name"]
+                ds["code"] = str(uuid.uuid4().hex)
+                for e in ws.production(ds):
+                    e["name"] = proxy["new name"]
+                    e.pop("input", None)
 
-                new_datasets = self.fetch_proxies(
-                    datasets=[new_dataset],
-                )
-
-                for ds in new_datasets.values():
-                    ds["name"] = variable["proxy"]["new name"]
-                    ds["code"] = str(uuid.uuid4().hex)
-                    for e in ws.production(ds):
-                        e["name"] = variable["proxy"]["new name"]
-                        if "input" in e:
-                            del e["input"]
-
-                    ds["comment"] = (
-                        "This dataset is a proxy dataset for a power plant. "
-                        "It is used to create missing power plant datasets."
-                    )
-
-                    self.add_to_index(ds)
-                self.database.extend(new_datasets.values())
+                ds["comment"] = comment
+                self.add_to_index(ds)
+            self.database.extend(new_datasets.values())
 
         mapping = InventorySet(self.database, model=self.model)
         self.powerplant_map = mapping.generate_powerplant_map()

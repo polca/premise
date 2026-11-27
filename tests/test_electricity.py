@@ -81,8 +81,9 @@ def test_consequential_msw_map_uses_electricity_conversion_provider():
     "model,technology,expected_proxies",
     [("image", "Coal PC", 0), ("tiam-ucl", "Coal USC", 2)],
 )
+@pytest.mark.parametrize("published", [False, True])
 def test_missing_power_plants_follow_scenario_technology_scope(
-    monkeypatch, system_model, model, technology, expected_proxies
+    monkeypatch, system_model, model, technology, expected_proxies, published
 ):
     proxy = electricity_module.load_electricity_variables()["Coal USC"]["proxy"]
     original = {
@@ -102,6 +103,16 @@ def test_missing_power_plants_follow_scenario_technology_scope(
             }
         ],
     }
+    if published:
+        original["name"] = "published coal power plant"
+        original["exchanges"][0]["name"] = original["name"]
+        original["clic provenance"] = {
+            "slug": "coal-power",
+            "legacy_identities": [
+                [proxy["name"], proxy["reference product"], "ZA", original["unit"]]
+            ],
+            "role_bindings": ["electricity.yaml:Coal SC"],
+        }
     source = copy.deepcopy(original)
     electricity = object.__new__(Electricity)
     electricity.model = model
@@ -161,6 +172,7 @@ def test_missing_power_plants_follow_scenario_technology_scope(
         assert dataset["exchanges"][0]["name"] == proxy["new name"]
         assert "input" not in dataset["exchanges"][0]
         assert "parameters" not in dataset
+        assert "clic provenance" not in dataset
 
 
 def test_coal_power_plant_data_caches_selections_and_emission_factors():
@@ -433,7 +445,7 @@ if key:
         model="remind",
         pathway="SSP2-NPi",
         year=2012,
-        version="3.5",
+        version="3.8",
         system_model="cutoff",
     )
 

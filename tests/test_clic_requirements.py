@@ -103,6 +103,25 @@ def test_electricity_roots_follow_market_windows_for_a_standalone_scenario(
     assert (slug in plan.clic_roots) == (system_model != "consequential")
 
 
+def test_electricity_root_selection_includes_the_source_for_a_generated_coal_plant():
+    mix = xr.DataArray(
+        [[1.0]],
+        dims=("region", "variables"),
+        coords={"region": ["AFR"], "variables": ["Coal USC CCS"]},
+    )
+    plan = plan_hybrid_inventories(
+        ["electricity"],
+        [{"model": "tiam-ucl", "iam data": SimpleNamespace(electricity_mix=mix)}],
+        [("lci-Carma-CCS.xlsx", "3.6")],
+        version="3.12",
+        system_model="cutoff",
+    )
+    assert (
+        "electricity-production-at-hard-coal-fired-power-plant-oxy-pipeline-200km-storage-1000m"
+        in plan.clic_roots
+    )
+
+
 def test_heat_roots_include_boilers_needed_only_outside_the_scenario_year():
     historical_volume = xr.DataArray(
         [[[1.0, 0.5, 0.0, 0.0]]],
