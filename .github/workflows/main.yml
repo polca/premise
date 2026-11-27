@@ -115,6 +115,9 @@ jobs:
               raise SystemExit("Full build requires CI secrets: " + ", ".join(missing))
           PY
           pytest -q --instafail tests/test_process_ei312_cutoff.py::test_brightway
+          if [ "${{ matrix.python-version }}" = "3.12" ]; then
+            pytest -q --instafail tests/test_process_clic_temporal_coverage.py
+          fi
 
   legacy-tests:
     runs-on: ubuntu-latest
