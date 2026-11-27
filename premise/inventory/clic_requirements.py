@@ -65,20 +65,24 @@ def applicable_roles(sector, definitions, scenario):
     iam = scenario.get("iam data")
     if iam is None:
         return tuple(definitions)
+    scenario_year = scenario.get("year")
+    # Heat converts the full IAM time series to delivered heat before mixing.
+    market_year = None if sector == "heat" else scenario_year
     arrays = [getattr(iam, attribute, None) for attribute in IAM_ARRAYS.get(sector, ())]
     declared = [
-        array for array in arrays if array is not None and "variables" in array.coords
+        (array, market_year)
+        for array in arrays
+        if array is not None and "variables" in array.coords
     ]
     if not declared:
         return tuple(definitions)
     production = getattr(iam, "production_volumes", None)
     if production is not None and "variables" in production.coords:
-        declared.append(production)
+        declared.append((production, scenario_year))
     import numpy as np
 
     applicable = set()
-    for array in declared:
-        year = scenario.get("year")
+    for array, year in declared:
         if year is not None and "year" in array.dims:
             years = array.coords["year"].values
             selected_year = min(max(year, min(years)), max(years))

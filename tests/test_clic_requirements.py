@@ -46,6 +46,33 @@ def test_zero_technologies_in_other_years_do_not_add_current_scenario_roots():
     ) == ("Coal",)
 
 
+def test_heat_roots_include_boilers_needed_only_outside_the_scenario_year():
+    historical_volume = xr.DataArray(
+        [[[1.0, 0.5, 0.0, 0.0]]],
+        dims=("variables", "region", "year"),
+        coords={
+            "variables": ["heat, buildings, from hydrogen boiler"],
+            "region": ["CAZ"],
+            "year": [2020, 2025, 2040, 2050],
+        },
+    )
+    iam = SimpleNamespace(
+        buildings_heat_end_use=historical_volume,
+        production_volumes=historical_volume.assign_coords(
+            variables=["heat, buildings, from LPG boiler"]
+        ),
+    )
+
+    assert clic_requirements.required_roots(
+        ["heat"],
+        [{"model": "remind", "iam data": iam, "year": 2040}],
+        source_files=[("lci-hydrogen-heating.xlsx", "3.9")],
+    ) == (
+        "heat-residential-by-combustion-of-hydrogen-using-boiler-distributed-by-"
+        "pipeline-produced-by-electrolysis-pem-using-electricity-from-grid",
+    )
+
+
 def test_target_source_profiles_exclude_replaced_legacy_public_roots(monkeypatch):
     data = {
         "schema_version": 1,
