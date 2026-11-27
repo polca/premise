@@ -260,6 +260,7 @@ methane, from biomass:
   co2: 0.06
   biogenic_share: 1
   iam_aliases:
+    open-prom: Final Energy|Biogas
     tiam-ucl: Secondary Energy|Liquids|Biomass|Biomethane|Biogas
     remind: SE|Gases|+|Biomass
     remind-eu: SE|Gases|+|Biomass
@@ -988,6 +989,7 @@ biodiesel, from oil crops:
   co2: 0.0734
   biogenic_share: 1
   iam_aliases:
+    open-prom: Final Energy|Biodiesel
     tiam-ucl: Secondary Energy|Liquids|Biomass|Biodiesel|w/o CCS
     remind: SE|Liquids|Biomass|Non-Cellulosic|+|Oil-based
     remind-eu: SE|Liquids|Biomass|Non-Cellulosic|+|Oil-based
@@ -1230,6 +1232,9 @@ bioethanol, from sugar:
   co2: 0.0739
   biogenic_share: 1
   iam_aliases:
+    open-prom:
+      - Final Energy|Biogasoline
+      - Final Energy|Ethanol
     remind: SE|Liquids|Biomass|Non-Cellulosic|+|Sugar and Starch
     remind-eu: SE|Liquids|Biomass|Non-Cellulosic|+|Sugar and Starch
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Sugar|w/oCCS
@@ -1821,6 +1826,7 @@ kerosene, synthetic, from biomass, energy allocation:
   co2: 0.0715
   biogenic_share: 1
   iam_aliases:
+    open-prom: Final Energy|Biokerosene
     tiam-ucl: Secondary Energy|Liquids|Biomass|FT|Kerosene|w/o CCS
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o

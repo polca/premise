@@ -859,6 +859,7 @@ Oil CC:
     gcam: Secondary Energy|Electricity|Oil CC
     image: Secondary Energy|Electricity|Oil|w/o CCS|2
     message: Secondary Energy|Electricity|Oil|w/o CCS|1
+    open-prom: Secondary Energy|Electricity|Oil|w/o CCS|Gas Turbine
     tiam-ucl: Secondary Energy|Electricity|Oil steam|w/o CCS
   max_efficiency: 0.5
 
@@ -894,6 +895,7 @@ Oil CHP:
     tiam-ucl: Efficiency|Electricity|Oil CHP|w/o CCS
   iam_aliases:
     image: Secondary Energy|Electricity|Oil|w/o CCS|3
+    open-prom: Secondary Energy|Electricity|Oil|w/o CCS|CHP
     tiam-ucl: Secondary Energy|Electricity|Oil CHP|w/o CCS
   max_efficiency: 0.5
 Oil CHP CCS:
@@ -940,7 +942,6 @@ Oil ST:
     gcam: Secondary Energy|Electricity|Oil ST
     image: Secondary Energy|Electricity|Oil|w/o CCS|1
     message: Secondary Energy|Electricity|Oil|w/o CCS|2
-    open-prom: Secondary Energy|Electricity|Oil|w/o CCS
     remind: SE|Electricity|Oil|w/o CC
     remind-eu: SE|Electricity|Oil|w/o CC
     tiam-ucl: Secondary Energy|Electricity|Existing oil electric generation|w/o CCS
@@ -955,6 +956,7 @@ Solar CSP:
     gcam: Secondary Energy|Electricity|Solar CSP
     image: Secondary Energy|Electricity|Solar|CSP
     message: Secondary Energy|Electricity|Solar|CSP|1
+    open-prom: Secondary Energy|Electricity|Solar|CSP
     remind: SE|Electricity|Solar|+|CSP
     remind-eu: SE|Electricity|Solar|+|CSP
     tiam-ucl: Secondary Energy|Electricity|Concentrated Solar CSP centralised
@@ -974,7 +976,7 @@ Solar PV Centralized:
     gcam: Secondary Energy|Electricity|Solar PV Centralized
     image: Secondary Energy|Electricity|Solar|PV|1
     message: Secondary Energy|Electricity|Solar|PV|Commercial
-    open-prom: Secondary Energy|Electricity|Solar
+    open-prom: Secondary Energy|Electricity|Solar|PV
     remind: SE|Electricity|Solar|+|PV
     remind-eu: SE|Electricity|Solar|+|PV
     tiam-ucl: Secondary Energy|Electricity|Concentrated Solar PV centralised
@@ -1022,6 +1024,7 @@ Wind Offshore:
     gcam: Secondary Energy|Electricity|Wind Offshore
     image: Secondary Energy|Electricity|Wind|2
     message: Secondary Energy|Electricity|Wind|Offshore
+    open-prom: Secondary Energy|Electricity|Wind|Offshore
     remind: SE|Electricity|Wind|+|Offshore
     remind-eu: SE|Electricity|Wind|+|Offshore
     tiam-ucl: Secondary Energy|Electricity|Offshore wind centralised
@@ -1040,7 +1043,7 @@ Wind Onshore:
     gcam: Secondary Energy|Electricity|Wind Onshore
     image: Secondary Energy|Electricity|Wind|1
     message: Secondary Energy|Electricity|Wind|Onshore
-    open-prom: Secondary Energy|Electricity|Wind
+    open-prom: Secondary Energy|Electricity|Wind|Onshore
     remind: SE|Electricity|Wind|+|Onshore
     remind-eu: SE|Electricity|Wind|+|Onshore
     tiam-ucl: Secondary Energy|Electricity|Onshore wind centralised

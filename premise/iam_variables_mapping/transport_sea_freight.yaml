@@ -18,7 +18,9 @@ ship, marine oil:
       - Distance|Transport|Freight|Sea|International Ship|Liquids
       - Distance|Transport|Freight|Sea|Domestic Ship|Liquids
   energy_use_aliases:
-    open-prom: Final Energy|Transportation|Goods Transport - Inland Navigation|Residual Fuel Oil
+    open-prom:
+      - Final Energy|Bunkers|Bunkers maritime|Residual Fuel Oil
+      - Final Energy|Transportation|Goods Transport - Inland Navigation|Residual Fuel Oil
     remind:
       - FE|Transport|Bunkers|Freight|International Shipping|Liquids|Fossil
       - FE|Transport|Freight|Domestic Shipping|Liquids|Fossil
@@ -67,7 +69,9 @@ ship, diesel:
       - Distance|Transport|Ship|Domestic|Gasoline
       - Distance|Transport|Ship|International|Gasoline
   energy_use_aliases:
-    open-prom: Final Energy|Transportation|Goods Transport - Inland Navigation|Fossil Diesel Oil
+    open-prom:
+      - Final Energy|Bunkers|Bunkers maritime|Fossil Diesel Oil
+      - Final Energy|Transportation|Goods Transport - Inland Navigation|Fossil Diesel Oil
     tiam-ucl:
       - Final Energy|Transport|Ship|Domestic|Diesel
       - Final Energy|Transport|Ship|International|Diesel
@@ -98,7 +102,9 @@ ship, biodiesel:
       - Energy Service|Transportation|Freight|International Shipping|Liquids|Biomass
       - Energy Service|Transportation|Freight|National Shipping|Liquids|Biomass
   energy_use_aliases:
-    open-prom: Final Energy|Transportation|Goods Transport - Inland Navigation|Biodiesel
+    open-prom:
+      - Final Energy|Bunkers|Bunkers maritime|Biodiesel
+      - Final Energy|Transportation|Goods Transport - Inland Navigation|Biodiesel
     remind:
       - FE|Transport|Freight|Domestic Shipping|Liquids|Biomass
       - FE|Transport|Bunkers|Freight|International Shipping|Liquids|Biomass
@@ -132,10 +138,12 @@ ship, electric:
       - Distance|Transport|Freight|Sea|International Ship|BEV
       - Distance|Transport|Freight|Sea|Domestic Ship|BEV
   energy_use_aliases:
-    open-prom: Final Energy|Transportation|Goods Transport - Inland Navigation|Electricity
     image:
       - Final Energy|Transportation|Freight|National Shipping|Electricity
       - Energy Service|Transportation|Freight|International Shipping|Electricity
+    open-prom:
+      - Final Energy|Bunkers|Bunkers maritime|Electricity
+      - Final Energy|Transportation|Goods Transport - Inland Navigation|Electricity
     tiam-ucl:
     gcam:
       - Final Energy|Transport|Freight|Sea|International Ship|BEV
@@ -166,10 +174,12 @@ ship, fuel cell:
       - Distance|Transport|Freight|Sea|International Ship|FCEV
       - Distance|Transport|Freight|Sea|Domestic Ship|FCEV
   energy_use_aliases:
-    open-prom: Final Energy|Transportation|Goods Transport - Inland Navigation|Hydrogen
     image:
       - Final Energy|Transportation|Freight|International Shipping|Hydrogen
       - Final Energy|Transportation|Freight|National Shipping|Hydrogen
+    open-prom:
+      - Final Energy|Bunkers|Bunkers maritime|Hydrogen
+      - Final Energy|Transportation|Goods Transport - Inland Navigation|Hydrogen
     tiam-ucl:
       - Final Energy|Transport|Ship|Domestic|Hydrogen|Shipping Hydrogen
       - Final Energy|Transport|Ship|International|Hydrogen|Shipping Hydrogen
@@ -219,7 +229,9 @@ ship, methanol:
     remind:
     remind-eu:
   energy_use_aliases:
-    open-prom: Final Energy|Transportation|Goods Transport - Inland Navigation|Methanol
+    open-prom:
+      - Final Energy|Bunkers|Bunkers maritime|Methanol
+      - Final Energy|Transportation|Goods Transport - Inland Navigation|Methanol
     remind:
     remind-eu:
   ecoinvent_aliases:
@@ -250,7 +262,9 @@ ship, synthetic methane:
     remind:
     remind-eu:
   energy_use_aliases:
-    open-prom: Final Energy|Transportation|Goods Transport - Inland Navigation|Other Gases
+    open-prom:
+      - Final Energy|Bunkers|Bunkers maritime|Other Gases
+      - Final Energy|Transportation|Goods Transport - Inland Navigation|Other Gases
     remind:
     remind-eu:
   ecoinvent_aliases:
@@ -268,7 +282,9 @@ ship, synthetic LPG:
       - Distance|Transport|Ship|Domestic|Liquefied Natural Gas|Liquefied Natural Gas
       - Distance|Transport|Ship|International|Liquefied Natural Gas|Liquefied Natural Gas
   energy_use_aliases:
-    open-prom: Final Energy|Transportation|Goods Transport - Inland Navigation|Liquefied Petroleum Gas
+    open-prom:
+      - Final Energy|Bunkers|Bunkers maritime|Liquefied Petroleum Gas
+      - Final Energy|Transportation|Goods Transport - Inland Navigation|Liquefied Petroleum Gas
     remind:
     remind-eu:
     tiam-ucl:

@@ -190,6 +190,9 @@ heat, buildings, from heat pump:
   ecoinvent_aliases:
     fltr: heat production, air-water heat pump 10kW
   iam_aliases:
+    open-prom:
+      - Final Energy|Residential|Heat Pump|Electricity
+      - Final Energy|Commercial|Services|Heat Pump|Electricity
     remind: FE|Buildings|Heating|Electricity|Heat pump
     remind-eu: FE|Buildings|Heating|Electricity|Heat pump
     message: Final Energy|Residential and Commercial|Electricity|Thermal|Heat Pumps
@@ -201,6 +204,9 @@ heat, buildings, from electric heater:
   ecoinvent_aliases:
     fltr: heat, residential, electric storage heater, using electricity from grid
   iam_aliases:
+    open-prom:
+      - Final Energy|Residential|Electric Heating|Electricity
+      - Final Energy|Commercial|Services|Electric Heating|Electricity
     remind: FE|Buildings|Heating|Electricity|Resistance
     remind-eu: FE|Buildings|Heating|Electricity|Resistance
     gcam: Final Energy|Heat|Buildings|Electricity
@@ -220,6 +226,8 @@ heat, buildings, from light fuel oil boiler:
     fltr: heat production, light fuel oil, at boiler 100kW condensing, non-modulating
   iam_aliases:
     open-prom:
+      - Final Energy|Residential|Fossil Diesel Oil
+      - Final Energy|Commercial|Services|Fossil Diesel Oil
       - Final Energy|Residential|Residual Fuel Oil
       - Final Energy|Commercial|Services|Residual Fuel Oil
     remind: FE|Buildings|Liquids|Fossil|+|Oil
@@ -315,6 +323,17 @@ heat, industrial, from electric boiler:
     fltr: heat production, electric boiler, industrial
   iam_aliases:
     message: Final Energy|Industry|Other Sector|Electricity|Thermal|Resistance
+    open-prom:
+      - Final Energy|Industry|Chemicals|Electric Heating|Electricity
+      - Final Energy|Industry|Engineering|Electric Heating|Electricity
+      - Final Energy|Industry|Food Drink and Tobacco|Electric Heating|Electricity
+      - Final Energy|Industry|Iron and Steel|Electric Heating|Electricity
+      - Final Energy|Industry|Non Ferrous Metals|Electric Heating|Electricity
+      - Final Energy|Industry|Non Metallic Minerals|Electric Heating|Electricity
+      - Final Energy|Industry|Ore Extraction|Electric Heating|Electricity
+      - Final Energy|Industry|Other Industrial sectors|Electric Heating|Electricity
+      - Final Energy|Industry|Paper and Pulp|Electric Heating|Electricity
+      - Final Energy|Industry|Textiles|Electric Heating|Electricity
     remind:
       - FE|Industry|Chemicals|Electricity|+|High-temperature heat
       - FE|Industry|Chemicals|Electricity|+|Mechanical work and low-temperature heat
@@ -335,17 +354,6 @@ heat, industrial, from heat pump:
     fltr: heat production, water-water heat pump, industrial, 100kW
     mask: steam
   iam_aliases:
-    open-prom:
-      - Final Energy|Industry|Chemicals|Electricity
-      - Final Energy|Industry|Engineering|Electricity
-      - Final Energy|Industry|Food Drink and Tobacco|Electricity
-      - Final Energy|Industry|Iron and Steel|Electricity
-      - Final Energy|Industry|Non Ferrous Metals|Electricity
-      - Final Energy|Industry|Non Metallic Minerals|Electricity
-      - Final Energy|Industry|Ore Extraction|Electricity
-      - Final Energy|Industry|Other Industrial sectors|Electricity
-      - Final Energy|Industry|Paper and Pulp|Electricity
-      - Final Energy|Industry|Textiles|Electricity
     image: Final Energy|Industry|Other Sector|Electricity
     message: Final Energy|Industry|Other Sector|Electricity|Thermal|Heat Pumps
   assumption: IMAGE unsplit industrial electricity retains the existing heat-pump assumption.
@@ -427,7 +435,20 @@ heat, industrial, from light fuel oil boiler:
   ecoinvent_aliases:
     fltr: heat production, light fuel oil, at industrial furnace 1MW
   iam_aliases:
+    image: Final Energy|Industry|Other Sector|Liquids|Fossil
+    gcam: Final Energy|Heat|Industry|Oil
+    message: Final Energy|Industry|Other Sector|Liquids|Oil|Thermal
     open-prom:
+      - Final Energy|Industry|Chemicals|Fossil Diesel Oil
+      - Final Energy|Industry|Engineering|Fossil Diesel Oil
+      - Final Energy|Industry|Food Drink and Tobacco|Fossil Diesel Oil
+      - Final Energy|Industry|Iron and Steel|Fossil Diesel Oil
+      - Final Energy|Industry|Non Ferrous Metals|Fossil Diesel Oil
+      - Final Energy|Industry|Non Metallic Minerals|Fossil Diesel Oil
+      - Final Energy|Industry|Ore Extraction|Fossil Diesel Oil
+      - Final Energy|Industry|Other Industrial sectors|Fossil Diesel Oil
+      - Final Energy|Industry|Paper and Pulp|Fossil Diesel Oil
+      - Final Energy|Industry|Textiles|Fossil Diesel Oil
       - Final Energy|Industry|Chemicals|Residual Fuel Oil
       - Final Energy|Industry|Engineering|Residual Fuel Oil
       - Final Energy|Industry|Food Drink and Tobacco|Residual Fuel Oil
@@ -438,9 +459,6 @@ heat, industrial, from light fuel oil boiler:
       - Final Energy|Industry|Other Industrial sectors|Residual Fuel Oil
       - Final Energy|Industry|Paper and Pulp|Residual Fuel Oil
       - Final Energy|Industry|Textiles|Residual Fuel Oil
-    image: Final Energy|Industry|Other Sector|Liquids|Fossil
-    gcam: Final Energy|Heat|Industry|Oil
-    message: Final Energy|Industry|Other Sector|Liquids|Oil|Thermal
     remind: FE|Industry|Liquids|+|Fossil
     remind-eu: FE|Industry|Liquids|+|Fossil
 

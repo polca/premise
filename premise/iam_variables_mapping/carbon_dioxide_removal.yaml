@@ -8,7 +8,7 @@
 
 direct air capture (solvent, high-temp, gas heat) with storage:
   iam_aliases:
-    open-prom: Carbon Removal|Geological Storage|Direct Air Capture
+    open-prom: Carbon Removal|Geological Storage|Direct Air Capture|Gas-heated Solvent
     remind: Emi|CO2|CDR|+|DACCS
     remind-eu: Emi|CO2|CDR|+|DACCS
     image:
@@ -16,12 +16,12 @@ direct air capture (solvent, high-temp, gas heat) with storage:
       - Carbon Capture|Geological Storage|Direct Air Capture
   energy_use_aliases:
     electricity:
-      open-prom: Final Energy|Carbon Management|Direct Air Capture|Electricity
+      open-prom: Final Energy|Carbon Management|Direct Air Capture|Gas-heated Solvent|Electricity
     gases:
-      open-prom: Final Energy|Carbon Management|Direct Air Capture|Natural Gas
       image:
         - Final Energy|Carbon Management|Direct Air Capture|Liquid Solvent|Gases
         - Final Energy|Carbon Management|Direct Air Capture|Gases
+      open-prom: Final Energy|Carbon Management|Direct Air Capture|Gas-heated Solvent|Natural Gas
       remind: FE|CDR|DAC|+|Gases
       remind-eu: FE|CDR|DAC|+|Gases
   ecoinvent_aliases:
@@ -61,12 +61,16 @@ direct air capture (solvent, high-temp, heat pump) with storage:
 
 direct air capture (solvent, high-temp, hydrogen heat) with storage:
   iam_aliases:
+    open-prom: Carbon Removal|Geological Storage|Direct Air Capture|Hydrogen-heated Solvent
     remind: Emi|CO2|CDR|+|DACCS
     remind-eu: Emi|CO2|CDR|+|DACCS
   energy_use_aliases:
     hydrogen:
+      open-prom: Final Energy|Carbon Management|Direct Air Capture|Hydrogen-heated Solvent|Hydrogen
       remind: FE|CDR|DAC|+|Hydrogen
       remind-eu: FE|CDR|DAC|+|Hydrogen
+    electricity:
+      open-prom: Final Energy|Carbon Management|Direct Air Capture|Hydrogen-heated Solvent|Electricity
   ecoinvent_aliases:
     fltr:
       - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity
@@ -85,6 +89,7 @@ direct air capture (solvent, high-temp) with storage:
 
 direct air capture (sorbent, low-temp, heat pump) with storage:
   iam_aliases:
+    open-prom: Carbon Removal|Geological Storage|Direct Air Capture|Solid Sorbent
     remind: Emi|CO2|CDR|+|DACCS
     remind-eu: Emi|CO2|CDR|+|DACCS
     tiam-ucl: Carbon Capture|Storage|Direct Air Capture
@@ -93,6 +98,7 @@ direct air capture (sorbent, low-temp, heat pump) with storage:
     image: Carbon Removal|Geological Storage|Direct Air Capture|Solid Sorbent
   energy_use_aliases:
     electricity:
+      open-prom: Final Energy|Carbon Management|Direct Air Capture|Solid Sorbent|Electricity
       remind: FE|CDR|DAC|+|Electricity
       remind-eu: FE|CDR|DAC|+|Electricity
       tiam-ucl: Secondary Energy|Consumption|Direct Air Capture|Electricity
