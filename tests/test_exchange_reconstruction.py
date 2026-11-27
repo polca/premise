@@ -1,9 +1,12 @@
 """Keep legacy exchange amounts, flow-name precedence and errors explicit."""
 
+from types import SimpleNamespace
+
 import numpy as np
 import pytest
 
 import premise.export.export as module
+from premise.validation.validation import DatasetNormalizer
 
 
 @pytest.fixture
@@ -57,6 +60,60 @@ def test_missing_alias_target_keeps_key_error(flow_catalog):
 def test_empty_biosphere_categories_are_not_silently_normalized(flow_catalog):
     with pytest.raises(IndexError):
         module.correct_biosphere_flow("native", (), "kilogram", "3.12")
+
+
+@pytest.mark.parametrize("fast", [True, False])
+@pytest.mark.parametrize(
+    "version,name",
+    [
+        ("3.9", "Benzene, hexachloro-"),
+        ("3.11", "Benzene, hexachloro-"),
+        ("3.11", "Hexachlorobenzene"),
+    ],
+)
+def test_brightway_export_reconstructs_biosphere_uuid_from_an_old_label(
+    fast, version, name
+):
+    exchange = {
+        "type": "biosphere",
+        "name": name,
+        "amount": 1.0,
+        "unit": "kilogram",
+        "categories": ("air", "urban air close to ground"),
+    }
+    activity = {
+        "name": "test activity",
+        "reference product": "test product",
+        "code": "test",
+        "location": "GLO",
+        "unit": "kilogram",
+        "exchanges": [exchange],
+    }
+    scenario = {
+        "model": "remind",
+        "pathway": "SSP2-NPi",
+        "year": 2040,
+        "database": [activity],
+        "iam data": SimpleNamespace(regions=["CAZ"]),
+    }
+    if fast:
+        module.prepare_db_for_fast_export(scenario, "target", version, "test-biosphere")
+    else:
+        DatasetNormalizer(
+            scenario["model"],
+            scenario["pathway"],
+            2040,
+            ["CAZ"],
+            [activity],
+            db_name="target",
+            biosphere_name="test-biosphere",
+            version=version,
+        ).assign_database_and_inputs()
+
+    assert exchange["input"] == (
+        "test-biosphere",
+        "1af44724-172c-462b-b277-bb4b2fd32c33",
+    )
 
 
 @pytest.mark.parametrize(

@@ -26,6 +26,7 @@ from .. import __version__
 from ..iam.data_collection import get_delimiter
 from ..core.filesystem_constants import DATA_DIR
 from ..inventory.inventory_imports import (
+    find_biosphere_flow_code,
     get_correspondence_bio_flows,
     normalize_version,
 )
@@ -317,13 +318,11 @@ def correct_biosphere_flow(name, cat, unit, version):
         main_cat = cat[0]
         sub_cat = "unspecified"
 
-    key = (name, main_cat, sub_cat, unit)
-    if key in bio_dict:
-        return bio_dict[key]
-
-    canonical_name = bio_flows_correspondence.get(main_cat, {}).get(name)
-    if canonical_name:
-        return bio_dict[(canonical_name, main_cat, sub_cat, unit)]
+    code = find_biosphere_flow_code(
+        bio_dict, bio_flows_correspondence, (name, main_cat, sub_cat, unit)
+    )
+    if code is not None:
+        return code
 
     raise ValueError(f"{name, cat, unit, version} not found in biosphere dictionary.")
 

@@ -150,6 +150,17 @@ def get_correspondence_bio_flows():
         return flows
 
 
+def find_biosphere_flow_code(codes, correspondence, identity):
+    """Match an exact flow or its compartment-specific name alias."""
+    if identity in codes:
+        return codes[identity]
+    name, compartment, subcompartment, unit = identity
+    canonical_name = correspondence.get(compartment, {}).get(name)
+    if canonical_name:
+        return codes[canonical_name, compartment, subcompartment, unit]
+    return None
+
+
 @lru_cache(maxsize=8)
 def get_biosphere_code(version) -> dict:
     """

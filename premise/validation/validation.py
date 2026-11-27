@@ -5,7 +5,7 @@ This module contains classes for validating datasets after they have been transf
 import csv
 import math
 from collections import defaultdict
-from functools import lru_cache
+from functools import cached_property, lru_cache
 
 import numpy as np
 import pandas as pd
@@ -31,9 +31,11 @@ from ..iam.electricity_mix import (
 )
 from ..core.logger import create_logger
 from ..inventory.inventory_imports import (
+    find_biosphere_flow_code,
     get_biosphere_code,
     get_classification_entry,
     get_classifications,
+    get_correspondence_bio_flows,
 )
 import country_converter as coco
 import wurst.searching as ws
@@ -486,17 +488,9 @@ class FastExportSession:
                 exchange_input[1],
             )
         else:
-            categories = categories or ()
-            compartment = categories[0]
-            subcompartment = categories[1] if len(categories) > 1 else "unspecified"
             normalized_input = (
                 self.biosphere_name,
-                self.validator.biosphere_codes[
-                    name,
-                    compartment,
-                    subcompartment,
-                    unit,
-                ],
+                self.validator._biosphere_exchange_code(name, categories or (), unit),
             )
         if exchange_input != normalized_input:
             exchange["input"] = normalized_input
@@ -709,6 +703,23 @@ class BaseDatasetValidator:
         self.system_model = system_model
         self.biosphere_codes = get_biosphere_code(version)
         self.classifications = get_classifications()
+
+    @cached_property
+    def _biosphere_flow_aliases(self):
+        return get_correspondence_bio_flows()
+
+    def _biosphere_exchange_code(self, name, categories, unit):
+        subcompartment = categories[1] if len(categories) > 1 else "unspecified"
+        key = (name, categories[0], subcompartment, unit)
+        try:
+            return self.biosphere_codes[key]
+        except KeyError:
+            code = find_biosphere_flow_code(
+                self.biosphere_codes, self._biosphere_flow_aliases, key
+            )
+            if code is None:
+                raise
+            return code
 
     def expected_iam_location(self, location):
         """Return an IAM location without remapping an existing IAM region."""
@@ -1634,19 +1645,13 @@ class DatasetNormalizer(BaseDatasetValidator):
                                 exchange_input[1],
                             )
                     else:
-                        categories = exchange.get("categories", ())
-                        compartment = categories[0]
-                        subcompartment = (
-                            categories[1] if len(categories) > 1 else "unspecified"
-                        )
                         exchange["input"] = (
                             self.biosphere_name,
-                            self.biosphere_codes[
+                            self._biosphere_exchange_code(
                                 exchange["name"],
-                                compartment,
-                                subcompartment,
+                                exchange.get("categories", ()),
                                 exchange["unit"],
-                            ],
+                            ),
                         )
 
     def normalize_uncertainty(self) -> None:
