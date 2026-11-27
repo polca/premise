@@ -52,7 +52,9 @@ def _adapt_consequential(records, version, diagnostics):
         published, blacklist, version, on_relink=report_relink
     )
     kept = {a["code"] for a in adapted}
-    excluded = {activity["code"] for activity in published if activity["code"] not in kept}
+    excluded = {
+        activity["code"] for activity in published if activity["code"] not in kept
+    }
     diagnostics.extend(
         {
             "code": "clic.consequential_activity_excluded",

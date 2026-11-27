@@ -842,7 +842,9 @@ def check_for_datasets_compliance_with_consequential_database(
 
     excluded = {identity(rule) for rule in blacklist}
     replacements = {
-        identity(rule): rule["replacement"] for rule in blacklist if "replacement" in rule
+        identity(rule): rule["replacement"]
+        for rule in blacklist
+        if "replacement" in rule
     }
     datasets = [dataset for dataset in datasets if identity(dataset) not in excluded]
 

@@ -3366,7 +3366,9 @@ class NewDatabase:
             raise TypeError("`name` should be a string.")
 
         if self._clic_manifest is None:
-            raise ValueError("Prepare inventories before writing a scenario datapackage.")
+            raise ValueError(
+                "Prepare inventories before writing a scenario datapackage."
+            )
         from ..inventory.inventory_copy import clone_inventory_dataset
 
         inventories = clone_inventory_dataset(self._clic_records)

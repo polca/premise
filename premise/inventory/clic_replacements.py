@@ -353,7 +353,9 @@ def replace_commercial_inventories(
     # name, product and unit. For consequential compatibility, clone only a
     # supplier found in the actual consequential source database.
     rule_model = (
-        "cutoff" if compatibility_only and system_model == "consequential" else system_model
+        "cutoff"
+        if compatibility_only and system_model == "consequential"
+        else system_model
     )
     rules = defaultdict(list)
     for rule in registry["rules"]:
