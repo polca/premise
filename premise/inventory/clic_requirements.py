@@ -6,6 +6,7 @@ import json
 from functools import lru_cache
 from pathlib import Path
 
+from ..iam.electricity_mix import electricity_market_periods, electricity_window_average
 from .clic_archive import ClicInventoryError
 
 REGISTRY_PATH = Path(__file__).resolve().parents[1] / "data/clic/requirements.json"
@@ -76,6 +77,17 @@ def applicable_roles(sector, definitions, scenario):
     ]
     if not declared:
         return tuple(definitions)
+    if sector == "electricity" and scenario_year is not None:
+        electricity_mix = declared[0][0]
+        periods = electricity_market_periods(getattr(iam, "system_model", "cutoff"))
+        if len(periods) > 1 and "year" in electricity_mix.dims:
+            declared = [
+                (
+                    electricity_window_average(electricity_mix, scenario_year, period),
+                    None,
+                )
+                for period in periods
+            ]
     production = getattr(iam, "production_volumes", None)
     if production is not None and "variables" in production.coords:
         declared.append((production, scenario_year))

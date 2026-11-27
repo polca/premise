@@ -1,4 +1,4 @@
-"""Electricity markets retain scenario, period, and regional-coverage metadata."""
+"""Check electricity market metadata and supplier coverage for each period."""
 
 from types import SimpleNamespace
 
@@ -7,6 +7,7 @@ import pytest
 import xarray as xr
 
 from premise.electricity import Electricity
+from premise.validation import ElectricityValidation, PremiseValidationError
 
 
 @pytest.fixture(
@@ -91,3 +92,95 @@ def test_market_comments_include_coverage_and_preserve_provenance(
                     f"Average electricity mix over a {period}-year period 2050-{2050 + period}."
                     in comment
                 )
+
+
+@pytest.mark.parametrize(
+    "period,fault",
+    [(0, None), (20, "high voltage"), (40, "low voltage"), (60, "missing market")],
+)
+def test_supplier_vectors_certify_each_period_and_voltage(electricity, period, fault):
+    electricity.system_model = "cutoff"
+    mix = electricity.iam_data.electricity_mix
+    regions = {"region": electricity.regions, "year": mix.year}
+    for technology, endpoint, voltage in (
+        ("Storage, Hydrogen", 0.016, "high voltage"),
+        ("Solar PV Residential", 0.012, "low voltage"),
+    ):
+        added_mix = xr.DataArray(
+            [[0.0, endpoint]] * len(electricity.regions),
+            dims=("region", "year"),
+            coords=regions,
+        ).expand_dims(variables=[technology])
+        mix = xr.concat([mix, added_mix], dim="variables")
+        electricity.powerplant_map[technology] = [
+            {
+                "name": technology,
+                "reference product": f"electricity, {voltage}",
+                "location": "RoW",
+                "unit": "kilowatt hour",
+            }
+        ]
+    electricity.iam_data.electricity_mix = mix / mix.sum(dim="variables")
+    electricity.iam_data.production_volumes = mix * 100
+    electricity.create_new_markets_high_voltage()
+    electricity.create_new_markets_low_voltage()
+
+    if fault is not None:
+        voltage = "high voltage" if fault == "missing market" else fault
+        name = f"market group for electricity, {voltage}, {period}-year period"
+        market = next(
+            ds
+            for ds in electricity.database
+            if (ds["name"], ds["location"]) == (name, electricity.regions[0])
+        )
+        if fault == "missing market":
+            electricity.database.remove(market)
+        else:
+            technology = (
+                "Storage, Hydrogen"
+                if fault == "high voltage"
+                else "Solar PV Residential"
+            )
+            market["exchanges"] = [
+                exchange
+                for exchange in market["exchanges"]
+                if exchange.get("premise electricity technology") != technology
+            ]
+
+    validator = ElectricityValidation(
+        model=electricity.model,
+        scenario=electricity.scenario,
+        year=electricity.year,
+        regions=electricity.regions,
+        database=electricity.database,
+        iam_data=electricity.iam_data,
+        technology_map=electricity.powerplant_map,
+    )
+    if fault is None:
+        assert not validator.run_supplier_vector_checks().errors
+    else:
+        with pytest.raises(PremiseValidationError) as error:
+            validator.run_supplier_vector_checks()
+        (issue,) = error.value.report.errors
+        assert issue.activity_key[0] == name
+
+
+def test_inactive_residential_solar_does_not_require_a_supplier(electricity):
+    electricity.system_model = "cutoff"
+    mix = electricity.iam_data.electricity_mix
+    residential_solar = xr.zeros_like(mix).assign_coords(
+        variables=["Solar PV Residential"]
+    )
+    electricity.iam_data.electricity_mix = xr.concat(
+        [mix, residential_solar], dim="variables"
+    )
+    electricity.iam_data.production_volumes = electricity.iam_data.electricity_mix * 100
+    electricity.powerplant_map["Solar PV Residential"] = []
+
+    electricity.create_new_markets_low_voltage()
+
+    assert not any(
+        exchange.get("premise electricity technology") == "Solar PV Residential"
+        for dataset in electricity.database
+        for exchange in dataset["exchanges"]
+    )

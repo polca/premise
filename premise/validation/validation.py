@@ -23,6 +23,12 @@ from ..export.export_payload import (
     prepare_fast_exchange_payload,
 )
 from ..iam.geomap import Geomap
+from ..iam.electricity_mix import (
+    electricity_market_name,
+    electricity_market_periods,
+    electricity_window_average,
+    is_residential_solar,
+)
 from ..core.logger import create_logger
 from ..inventory.inventory_imports import (
     get_biosphere_code,
@@ -2968,7 +2974,7 @@ class ElectricityValidation(BaseDatasetValidator):
         self.technology_map = technology_map or {}
 
     def check_complete_electricity_supplier_vectors(self):
-        """Compare every high-voltage supplier share with the IAM mix."""
+        """Check regional generation and residential PV shares for every market period."""
 
         target_mix = self.iam_data.electricity_mix
         if self.system_model == "consequential":
@@ -2996,90 +3002,128 @@ class ElectricityValidation(BaseDatasetValidator):
                     technology,
                 )
 
-        markets = [
-            dataset
-            for dataset in self.database
-            if dataset.get("name") == "market group for electricity, high voltage"
-            and dataset.get("location") in self.regions
-            and dataset.get("location") != "World"
-        ]
-        if not markets:
+        periods = electricity_market_periods(self.system_model)
+        regions = [region for region in self.regions if region != "World"]
+        names = {
+            electricity_market_name(voltage, period)
+            for voltage in ("high", "low")
+            for period in periods
+        }
+        markets = defaultdict(list)
+        for dataset in self.database:
+            if dataset.get("name") in names and dataset.get("location") in regions:
+                markets[dataset["name"], dataset["location"]].append(dataset)
+
+        for period in periods:
+            mix = target_mix
+            if "year" in target_mix.dims:
+                if self.system_model == "consequential":
+                    mix = target_mix.sel(year=self.year)
+                else:
+                    mix = electricity_window_average(target_mix, self.year, period)
+            for region in regions:
+                shares = {
+                    str(technology): max(float(value), 0.0)
+                    for technology, value in zip(
+                        mix.coords["variables"].values, mix.sel(region=region).values
+                    )
+                }
+                residential = {
+                    tech: share
+                    for tech, share in shares.items()
+                    if is_residential_solar(tech)
+                }
+                generation = {
+                    tech: share
+                    for tech, share in shares.items()
+                    if tech not in residential
+                }
+                for voltage, suppliers, total in (
+                    ("high", generation, sum(generation.values())),
+                    ("low", residential, sum(shares.values())),
+                ):
+                    name = electricity_market_name(voltage, period)
+                    candidates = markets[name, region]
+                    if len(candidates) != 1:
+                        self.log_issue(
+                            {
+                                "name": name,
+                                "reference product": f"electricity, {voltage} voltage",
+                                "location": region,
+                            },
+                            "incorrect electricity market count",
+                            f"Expected one regional electricity market, found {len(candidates)}.",
+                            issue_type="major",
+                        )
+                        continue
+                    (market,) = candidates
+                    if not np.isfinite(total) or total <= 0:
+                        self.log_issue(
+                            market,
+                            "invalid electricity target vector",
+                            "IAM electricity supplier vector is empty or non-finite.",
+                            issue_type="major",
+                        )
+                        continue
+                    expected = {
+                        tech: share / total for tech, share in suppliers.items()
+                    }
+                    self._check_electricity_market_vector(
+                        market,
+                        expected,
+                        provider_to_technology,
+                        upstream=(
+                            electricity_market_name("medium", period)
+                            if voltage == "low"
+                            else None
+                        ),
+                    )
+
+    def _check_electricity_market_vector(
+        self, market, expected, provider_to_technology, upstream
+    ):
+        actual = defaultdict(float)
+        unmatched = []
+        for exchange in market["exchanges"]:
+            if exchange.get("type") != "technosphere":
+                continue
+            key = (
+                exchange.get("name"),
+                exchange.get("product"),
+                exchange.get("location"),
+            )
+            if key[2] == market["location"] and key[0] in (market["name"], upstream):
+                continue
+            technology = exchange.get(
+                "premise electricity technology"
+            ) or provider_to_technology.get(key)
+            if technology in expected:
+                actual[technology] += float(exchange["amount"])
+            elif (
+                upstream is None
+                or technology is not None
+                or (key[1] or "").startswith("electricity")
+            ):
+                unmatched.append(key)
+
+        for technology, expected_share in expected.items():
+            actual_share = actual[technology]
+            if not math.isclose(
+                actual_share, expected_share, rel_tol=1e-5, abs_tol=1e-8
+            ):
+                self.log_issue(
+                    market,
+                    "incorrect electricity supplier vector",
+                    f"Electricity technology {technology} has share {actual_share}; expected {expected_share}.",
+                    issue_type="major",
+                )
+        if unmatched:
             self.log_issue(
-                {},
-                "missing electricity market targets",
-                "No regional high-voltage electricity market was found for validation.",
+                market,
+                "unmapped electricity suppliers",
+                f"Electricity market contains {len(unmatched)} supplier(s) outside the declared technology mapping.",
                 issue_type="major",
             )
-            return
-
-        for market in markets:
-            mix = target_mix.sel(region=market["location"])
-            if "year" in mix.dims:
-                if self.year in mix.coords["year"].values:
-                    mix = mix.sel(year=self.year)
-                else:
-                    mix = mix.interp(year=self.year)
-            expected = {
-                str(technology): max(float(value), 0.0)
-                for technology, value in zip(mix.coords["variables"].values, mix.values)
-                if str(technology).lower() != "solar pv residential"
-            }
-            total = sum(expected.values())
-            if not np.isfinite(total) or total <= 0:
-                self.log_issue(
-                    market,
-                    "invalid electricity target vector",
-                    "IAM electricity supplier vector is empty or non-finite.",
-                    issue_type="major",
-                )
-                continue
-            expected = {
-                technology: share / total for technology, share in expected.items()
-            }
-
-            actual = {technology: 0.0 for technology in expected}
-            unmatched = []
-            for exchange in market["exchanges"]:
-                if exchange.get("type") != "technosphere":
-                    continue
-                if (
-                    exchange.get("name") == market["name"]
-                    and exchange.get("location") == market["location"]
-                ):
-                    continue
-                key = (
-                    exchange.get("name"),
-                    exchange.get("product"),
-                    exchange.get("location"),
-                )
-                technology = exchange.get(
-                    "premise electricity technology"
-                ) or provider_to_technology.get(key)
-                if technology is None:
-                    unmatched.append(key)
-                else:
-                    actual[technology] = actual.get(technology, 0.0) + float(
-                        exchange["amount"]
-                    )
-
-            for technology, expected_share in expected.items():
-                actual_share = actual.get(technology, 0.0)
-                if not math.isclose(
-                    actual_share, expected_share, rel_tol=1e-5, abs_tol=1e-8
-                ):
-                    self.log_issue(
-                        market,
-                        "incorrect electricity supplier vector",
-                        f"Electricity technology {technology} has share {actual_share}; expected {expected_share}.",
-                        issue_type="major",
-                    )
-            if unmatched:
-                self.log_issue(
-                    market,
-                    "unmapped electricity suppliers",
-                    f"Electricity market contains {len(unmatched)} supplier(s) outside the declared technology mapping.",
-                    issue_type="major",
-                )
 
     def check_electricity_market_composition(self):
         def _is_electricity(exc, dataset):

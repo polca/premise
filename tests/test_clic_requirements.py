@@ -2,14 +2,15 @@
 
 from types import SimpleNamespace
 
+import pytest
 import xarray as xr
 
 from premise.inventory.activity_maps import InventorySet
 from premise.inventory import clic_requirements
+from premise.inventory.clic_hybrid import plan_hybrid_inventories
 
 
 def test_role_binding_rejects_unreviewed_reference_unit_change(monkeypatch):
-    import pytest
     from premise.inventory.clic_archive import ClicInventoryError
 
     data = {
@@ -44,6 +45,62 @@ def test_zero_technologies_in_other_years_do_not_add_current_scenario_roots():
     assert clic_requirements.applicable_roles(
         "electricity", {"Coal": {}, "Solar": {}}, {"iam data": iam, "year": 2050}
     ) == ("Coal",)
+
+
+@pytest.mark.parametrize("system_model", ["cutoff", "EN15804", "consequential"])
+def test_electricity_roots_follow_market_windows_for_a_standalone_scenario(
+    system_model,
+):
+    mix = xr.DataArray(
+        [
+            [
+                [1, 1, 1, 1, 1],
+                [0, 0, 0, 0.1, 0.1],
+                [0.1, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0.1],
+            ]
+        ],
+        dims=("region", "variables", "year"),
+        coords={
+            "region": ["USA"],
+            "variables": [
+                "Coal PC",
+                "Storage, Hydrogen",
+                "Biomass IGCC CCS",
+                "Coal IGCC",
+            ],
+            "year": [2020, 2040, 2080, 2100, 2120],
+        },
+    )
+    scenario = {
+        "model": "remind",
+        "year": 2040,
+        "iam data": SimpleNamespace(electricity_mix=mix, system_model=system_model),
+    }
+    expected = (
+        ("Coal PC",)
+        if system_model == "consequential"
+        else ("Coal PC", "Storage, Hydrogen")
+    )
+    assert (
+        clic_requirements.applicable_roles(
+            "electricity", dict.fromkeys(mix.variables.values), scenario
+        )
+        == expected
+    )
+
+    plan = plan_hybrid_inventories(
+        ["electricity"],
+        [scenario],
+        [("lci-hydrogen-turbine.xlsx", "3.9")],
+        version="3.11",
+        system_model=system_model,
+    )
+    slug = (
+        "electricity-production-from-hydrogen-fired-one-gigawatt-gas-turbine-"
+        "for-grid-balancing"
+    )
+    assert (slug in plan.clic_roots) == (system_model != "consequential")
 
 
 def test_heat_roots_include_boilers_needed_only_outside_the_scenario_year():

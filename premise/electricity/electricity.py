@@ -17,6 +17,12 @@ import yaml
 from ..export.export import biosphere_flows_dictionary
 from ..core.filesystem_constants import VARIABLES_DIR
 from ..core.logger import create_logger
+from ..iam.electricity_mix import (
+    compute_time_weighted_mix,
+    electricity_market_name,
+    electricity_market_periods,
+    is_residential_solar,
+)
 from ..reporting.provenance import record_change_event
 from ..inventory.inventory_store import (
     get_scenario_inventory,
@@ -405,32 +411,6 @@ def select_or_interpolate(data, year, **kwargs):
     return selected.values.item()
 
 
-def compute_time_weighted_mix(mix, region, year, period):
-    interp_range = np.arange(year, year + period + 1)
-
-    values = (
-        mix.sel(region=region)
-        .interp(year=interp_range, kwargs={"fill_value": "extrapolate"})
-        .mean(dim="year")
-        .values
-    )
-
-    # Remove negative contributions
-    values = np.where(values < 0, 0.0, values)
-
-    total = values.sum()
-
-    if total == 0:
-        raise ValueError(
-            "All mix components are zero or negative after filtering; "
-            "cannot compute a normalized mix."
-        )
-
-    values = values / total
-
-    return dict(zip(mix.variables.values, values))
-
-
 def make_generic_market_dataset(
     name, reference_product, region, comment, unit="kilowatt hour"
 ):
@@ -656,13 +636,8 @@ class Electricity(BaseTransformation):
         technologies = [
             tech
             for tech in self.iam_data.electricity_mix.variables.values
-            if "solar pv residential" in tech.lower()
+            if is_residential_solar(tech)
         ]
-
-        # Get the possible names of ecoinvent datasets
-        ecoinvent_technologies = {
-            technology: self.powerplant_map[technology] for technology in technologies
-        }
 
         # Create an empty dataset
         generic_dataset = make_generic_market_dataset(
@@ -673,7 +648,7 @@ class Electricity(BaseTransformation):
             f"using the pathway {self.scenario} for the year {self.year}.",
         )
 
-        tech_suppliers_by_region = {}
+        tech_suppliers_by_region = defaultdict(dict)
 
         def generate_regional_markets(region: str, period: int) -> dict:
             new_dataset = copy.deepcopy(generic_dataset)
@@ -682,55 +657,6 @@ class Electricity(BaseTransformation):
 
             transf_loss = self.network_loss[region]["low"]["transf_loss"]
             distr_loss = self.network_loss[region]["low"]["distr_loss"]
-
-            tech_suppliers = tech_suppliers_by_region.get(region)
-            if tech_suppliers is None:
-                # Supplier selection depends on the region, not the averaging
-                # period. Reuse it for the other period-specific markets.
-                ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
-                possible_locations = [
-                    [region],
-                    ecoinvent_regions,
-                    ["RER"],
-                    ["RoW"],
-                    ["CH"],
-                ]
-                tech_suppliers = defaultdict(list)
-
-                for technology, datasets in ecoinvent_technologies.items():
-                    suppliers, counter = [], 0
-
-                    try:
-                        while len(suppliers) == 0:
-                            suppliers = [
-                                ds
-                                for ds in datasets
-                                if any(
-                                    ds["location"] == x
-                                    for x in possible_locations[counter]
-                                )
-                            ]
-
-                            counter += 1
-
-                        for supplier in suppliers:
-                            share = self.get_production_weighted_share(
-                                supplier, suppliers
-                            )
-                            tech_suppliers[technology].append((supplier, share))
-
-                        tech_suppliers[technology] = self.prune_and_normalize_suppliers(
-                            tech_suppliers[technology]
-                        )
-
-                    except IndexError as exc:
-                        if self.system_model == "consequential":
-                            continue
-                        raise IndexError(
-                            f"Couldn't find suppliers for {technology} when looking for {ecoinvent_technologies[technology]}."
-                        ) from exc
-
-                tech_suppliers_by_region[region] = tech_suppliers
 
             # Create a time-weighted average mix
             if self.system_model == "consequential":
@@ -774,12 +700,12 @@ class Electricity(BaseTransformation):
 
             if period != 0:
                 # this dataset is for a period of time
-                new_dataset["name"] += f", {period}-year period"
+                new_dataset["name"] = electricity_market_name("low", period)
                 new_dataset["comment"] += (
                     f" Average electricity mix over a {period}"
                     f"-year period {self.year}-{self.year + period}."
                 )
-                new_exchanges[0]["name"] += f", {period}-year period"
+                new_exchanges[0]["name"] = new_dataset["name"]
 
             # Second, add an input of sulfur hexafluoride (SF6) emission to compensate the transformer's leakage
             # And an emission of a corresponding amount
@@ -847,28 +773,56 @@ class Electricity(BaseTransformation):
 
             # Fourth, add the contribution of solar power
             solar_amount = 0
+            tech_suppliers = tech_suppliers_by_region[region]
+            possible_locations = (
+                [region],
+                self.geo.iam_to_ecoinvent_location(region),
+                ["RER"],
+                ["RoW"],
+                ["CH"],
+            )
 
             for technology in technologies:
-                # If the solar power technology contributes to the mix
-                if electricity_mix[technology] > 0:
-                    # Contribution in supply
-                    amount = electricity_mix[technology]
-                    solar_amount += amount
-
-                    for supplier, share in tech_suppliers[technology]:
-                        new_exchanges.append(
-                            {
-                                "uncertainty type": 0,
-                                "loc": float(amount * share),
-                                "amount": float(amount * share),
-                                "type": "technosphere",
-                                "product": supplier["reference product"],
-                                "name": supplier["name"],
-                                "unit": supplier["unit"],
-                                "location": supplier["location"],
-                                "premise electricity technology": technology,
-                            }
+                amount = electricity_mix[technology]
+                if not amount > 0:
+                    continue
+                if technology not in tech_suppliers:
+                    datasets = self.powerplant_map.get(technology, ())
+                    for locations in possible_locations:
+                        suppliers = [
+                            ds for ds in datasets if ds["location"] in locations
+                        ]
+                        if suppliers:
+                            break
+                    if not suppliers and self.system_model != "consequential":
+                        raise IndexError(
+                            f"Couldn't find suppliers for {technology} in {region}."
                         )
+                    tech_suppliers[technology] = self.prune_and_normalize_suppliers(
+                        [
+                            (
+                                supplier,
+                                self.get_production_weighted_share(supplier, suppliers),
+                            )
+                            for supplier in suppliers
+                        ]
+                    )
+
+                solar_amount += amount
+                for supplier, share in tech_suppliers[technology]:
+                    new_exchanges.append(
+                        {
+                            "uncertainty type": 0,
+                            "loc": float(amount * share),
+                            "amount": float(amount * share),
+                            "type": "technosphere",
+                            "product": supplier["reference product"],
+                            "name": supplier["name"],
+                            "unit": supplier["unit"],
+                            "location": supplier["location"],
+                            "premise electricity technology": technology,
+                        }
+                    )
 
             # Fifth, add:
             # * an input from the medium voltage market minus solar contribution, including distribution loss
@@ -881,11 +835,7 @@ class Electricity(BaseTransformation):
                     "amount": (1 - solar_amount) * (1 + distr_loss),
                     "type": "technosphere",
                     "product": "electricity, medium voltage",
-                    "name": (
-                        "market group for electricity, medium voltage"
-                        if period == 0
-                        else f"market group for electricity, medium voltage, {period}-year period"
-                    ),
+                    "name": electricity_market_name("medium", period),
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -898,11 +848,7 @@ class Electricity(BaseTransformation):
                     "amount": transf_loss,
                     "type": "technosphere",
                     "product": "electricity, low voltage",
-                    "name": (
-                        "market group for electricity, low voltage"
-                        if period == 0
-                        else f"market group for electricity, low voltage, {period}-year period"
-                    ),
+                    "name": new_dataset["name"],
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -919,17 +865,10 @@ class Electricity(BaseTransformation):
             )
             return self.add_geo_definition_metadata(new_dataset)
 
-        if self.system_model == "consequential":
-            periods = [
-                0,
-            ]
-        else:
-            periods = [0, 20, 40, 60]
-
         new_datasets = [
             generate_regional_markets(region, period)
             for region in self.regions
-            for period in periods
+            for period in electricity_market_periods(self.system_model)
             if region != "World"
         ]
 
@@ -1005,12 +944,12 @@ class Electricity(BaseTransformation):
 
             if period != 0:
                 # this dataset is for a period of time
-                new_dataset["name"] += f", {period}-year period"
+                new_dataset["name"] = electricity_market_name("medium", period)
                 new_dataset["comment"] += (
                     f" Average electricity mix over a {period}"
                     f"-year period {self.year}-{self.year + period}."
                 )
-                new_exchanges[0]["name"] += f", {period}-year period"
+                new_exchanges[0]["name"] = new_dataset["name"]
 
             new_exchanges.append(
                 {
@@ -1019,11 +958,7 @@ class Electricity(BaseTransformation):
                     "amount": 1 + distr_loss,
                     "type": "technosphere",
                     "product": "electricity, high voltage",
-                    "name": (
-                        "market group for electricity, high voltage"
-                        if period == 0
-                        else f"market group for electricity, high voltage, {period}-year period"
-                    ),
+                    "name": electricity_market_name("high", period),
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -1036,11 +971,7 @@ class Electricity(BaseTransformation):
                     "amount": transf_loss,
                     "type": "technosphere",
                     "product": "electricity, medium voltage",
-                    "name": (
-                        "market group for electricity, medium voltage"
-                        if period == 0
-                        else f"market group for electricity, medium voltage, {period}-year period"
-                    ),
+                    "name": new_dataset["name"],
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -1121,17 +1052,10 @@ class Electricity(BaseTransformation):
 
             return self.add_geo_definition_metadata(new_dataset)
 
-        if self.system_model == "consequential":
-            periods = [
-                0,
-            ]
-        else:
-            periods = [0, 20, 40, 60]
-
         new_datasets = [
             generate_regional_markets(region, period)
             for region in self.regions
-            for period in periods
+            for period in electricity_market_periods(self.system_model)
             if region != "World"
         ]
 
@@ -1160,7 +1084,7 @@ class Electricity(BaseTransformation):
         technologies = [
             tech
             for tech in self.iam_data.electricity_mix.variables.values
-            if "solar pv residential" not in tech.lower()
+            if not is_residential_solar(tech)
         ]
 
         # Get the possible names of ecoinvent datasets
@@ -1243,13 +1167,10 @@ class Electricity(BaseTransformation):
                     self.iam_data.electricity_mix, region, self.year, period
                 )
 
-            # remove `solar pv residential` from the mix
-            if "Solar PV Residential" in electricity_mix:
-                del electricity_mix["Solar PV Residential"]
-            # normalize the mix to 1
-            total = sum(electricity_mix.values())
+            # Residential PV supplies the low-voltage market directly.
+            total = sum(electricity_mix[technology] for technology in technologies)
             electricity_mix = {
-                tech: electricity_mix[tech] / total for tech in electricity_mix
+                tech: electricity_mix[tech] / total for tech in technologies
             }
 
             # fetch production volume
@@ -1290,13 +1211,13 @@ class Electricity(BaseTransformation):
 
             if period != 0:
                 # this dataset is for a period of time
-                new_dataset["name"] += f", {period}-year period"
+                new_dataset["name"] = electricity_market_name("high", period)
                 new_dataset["comment"] += (
                     f" Average electricity mix over a {period}"
                     f"-year period {self.year}-{self.year + period}."
                 )
-                new_exchanges[0]["name"] += f", {period}-year period"
-                new_exchanges[-1]["name"] += f", {period}-year period"
+                new_exchanges[0]["name"] = new_dataset["name"]
+                new_exchanges[-1]["name"] = new_dataset["name"]
 
             # calculate the share of renewable energy in the mix
             renewable_share = 0
@@ -1346,16 +1267,9 @@ class Electricity(BaseTransformation):
 
             return self.add_geo_definition_metadata(new_dataset)
 
-        if self.system_model == "consequential":
-            periods = [
-                0,
-            ]
-        else:
-            periods = [0, 20, 40, 60]
-
         new_datasets = [
             generate_regional_markets(region, period)
-            for period in periods
+            for period in electricity_market_periods(self.system_model)
             for region in self.regions
             if region != "World"
         ]
