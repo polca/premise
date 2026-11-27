@@ -39,7 +39,9 @@ UNCERTAINTY_ROWS = (
 
 @pytest.mark.parametrize("version", ["3.7", "3.7.1", "3.13"])
 def test_matrix_biosphere_catalog_rejects_unsupported_backgrounds(version):
-    with pytest.raises(ValueError, match=r"Premise supports ecoinvent 3\.8 through 3\.12"):
+    with pytest.raises(
+        ValueError, match=r"Premise supports ecoinvent 3\.8 through 3\.12"
+    ):
         module.biosphere_flows_dictionary(version)
 
 

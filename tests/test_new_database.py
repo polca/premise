@@ -65,7 +65,9 @@ def test_inventory_provider_selector_is_no_longer_public(builder, source):
 @pytest.mark.parametrize("builder", [NewDatabase, PathwaysDataPackage])
 @pytest.mark.parametrize("version", ["3.5", "3.6", "3.6.1", 3.6, 3.7, "3.7.1", "3.13"])
 def test_unsupported_background_versions_are_rejected(builder, version):
-    with pytest.raises(ValueError, match=r"Premise supports ecoinvent 3\.8 through 3\.12"):
+    with pytest.raises(
+        ValueError, match=r"Premise supports ecoinvent 3\.8 through 3\.12"
+    ):
         builder(scenarios=[], source_version=version)
 
 

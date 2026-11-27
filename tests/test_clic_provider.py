@@ -17,7 +17,9 @@ def test_unsupported_target_fails_before_archive_download(tmp_path, version):
     client.get_archive = Mock(
         side_effect=AssertionError("Must reject before downloads")
     )
-    with pytest.raises(ValueError, match=r"Premise supports ecoinvent 3\.8 through 3\.12"):
+    with pytest.raises(
+        ValueError, match=r"Premise supports ecoinvent 3\.8 through 3\.12"
+    ):
         client.prepare([], [], version=version)
     client.get_archive.assert_not_called()
 
