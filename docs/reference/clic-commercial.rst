@@ -80,9 +80,8 @@ The reviewed selections were tested with cutoff 3.8, 3.9, 3.9.1, 3.10, 3.10.1,
 3.11 and 3.12, and EN15804 3.12. New or updated CLIC datasets may need further
 review.
 
-Commercial screening is unavailable for consequential backgrounds and ecoinvent
-3.7. Those builds use workbook selections that have not been assessed by this
-policy.
+Commercial screening applies to supported cutoff and EN15804 builds.
+Consequential builds use the workbook pipeline.
 
 Older-version builds may use replacements for compatibility even when commercial
 screening is off. The report marks these as ``older_target_compatibility``.

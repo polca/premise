@@ -98,10 +98,10 @@ the inventory manifest. Commercial-policy consequential builds are rejected
 because the fallback has not been assessed under that policy. Do not change
 system-model labels to force cutoff inventories into a consequential build.
 
-Ecoinvent 3.7 builds also retain compatible workbooks automatically because the
-reviewed CLIC routes start at 3.8. Commercial policy rejects this older-target
-fallback before loading inventories. This preserves existing 3.7 workflows
-without treating an unavailable CLIC migration as a validated route.
+Premise accepts ecoinvent background versions 3.8 through 3.12. To update a
+workflow using 3.7 or 3.7.1, use a supported ecoinvent database and set
+``source_version`` to its release. Existing workbooks and external
+datapackages can still be migrated from their original source versions.
 
 Corrections and compatibility
 -----------------------------

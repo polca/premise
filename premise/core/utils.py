@@ -299,9 +299,10 @@ def check_ecoinvent_target_version(version, *, supported_versions=None) -> str:
     if version not in supported:
         raise ValueError(
             f"Unsupported ecoinvent background version {version!r}. "
-            f"The minimum supported version is 3.7; supported versions are {supported}."
+            f"Premise supports ecoinvent {supported[0]} through {supported[-1]} "
+            f"({', '.join(supported)})."
         )
-    return {"3.7.1": "3.7", "3.9.1": "3.9"}.get(version, version)
+    return "3.9" if version == "3.9.1" else version
 
 
 @lru_cache

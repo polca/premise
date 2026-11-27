@@ -182,10 +182,10 @@ def test_unsupported_commercial_target_fails_before_archive_download(tmp_path):
         options={"cache_dir": tmp_path, "license_policy": "commercial"}
     )
     client.get_archive = Mock(side_effect=AssertionError("No archive request expected"))
-    with pytest.raises(ClicInventoryError, match="3.8 or newer"):
+    with pytest.raises(ValueError, match=r"Premise supports ecoinvent 3\.8 through 3\.12"):
         client.prepare([], [], version="3.7")
     client.get_archive.assert_not_called()
-    with pytest.raises(ClicInventoryError, match="3.8 or newer"):
+    with pytest.raises(ValueError, match=r"Premise supports ecoinvent 3\.8 through 3\.12"):
         NewDatabase(
             scenarios=[],
             source_version="3.7",

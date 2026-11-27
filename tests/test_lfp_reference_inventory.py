@@ -28,10 +28,6 @@ def extract(path):
 @pytest.mark.parametrize(
     "version",
     [
-        "3.5",
-        "3.6",
-        "3.7",
-        "3.7.1",
         "3.8",
         "3.9",
         "3.9.1",

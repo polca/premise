@@ -308,10 +308,6 @@ def test_reference_cleaning_is_preserved_without_efficiency_change(inventories):
     [
         (v, "cutoff")
         for v in (
-            "3.5",
-            "3.6",
-            "3.7",
-            "3.7.1",
             "3.8",
             "3.9",
             "3.9.1",

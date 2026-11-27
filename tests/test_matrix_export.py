@@ -17,6 +17,8 @@ MATRIX_FILES = (
     "B_matrix.csv",
     "B_matrix_index.csv",
 )
+
+
 UNCERTAINTY_ROWS = (
     {"amount": 0.0},
     {"amount": -2.0, "uncertainty type": 1, "loc": 99.0},
@@ -33,6 +35,12 @@ UNCERTAINTY_ROWS = (
         "maximum": 4.0,
     },
 )
+
+
+@pytest.mark.parametrize("version", ["3.7", "3.7.1", "3.13"])
+def test_matrix_biosphere_catalog_rejects_unsupported_backgrounds(version):
+    with pytest.raises(ValueError, match=r"Premise supports ecoinvent 3\.8 through 3\.12"):
+        module.biosphere_flows_dictionary(version)
 
 
 def matrix_scenario(version):

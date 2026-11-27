@@ -339,7 +339,7 @@ def generate():
             [
                 (name, ", ".join(f"``{v}``" for v in constants[key]))
                 for name, key in [
-                    ("Ecoinvent versions", "SUPPORTED_EI_VERSIONS"),
+                    ("Ecoinvent background versions", "SUPPORTED_EI_VERSIONS"),
                     ("Model identifiers", "SUPPORTED_MODELS"),
                 ]
             ],
@@ -412,8 +412,6 @@ def generate():
             ["EN15804"] if version == "3.12" else []
         )
         for model in models:
-            if model == "consequential" and Version(version) < Version("3.8"):
-                continue
             key = f"{version} {model}"
             configurations.append(key)
             selections[key] = inventory_selection(tree, version, model)

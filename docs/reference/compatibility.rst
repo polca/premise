@@ -5,9 +5,9 @@ Use a Python and Brightway combination described in
 :doc:`/getting_started/installation`. Your ecoinvent source database, its
 system model and the ``source_version`` setting must agree.
 
-The minimum background database version is **3.7**. Older inventory workbooks
-and external datapackages can still be imported and migrated to a supported
-background; their native source versions do not set the target version.
+Premise supports ecoinvent background versions **3.8 through 3.12**. It can
+migrate older inventory workbooks and external datapackages from their native
+source versions to a supported background.
 
 The CLIC provider remains in development. Accepted version arguments describe
 the intended target range; unresolved background mappings can still prevent a
@@ -38,9 +38,8 @@ does not imply identical additional inventories across system models; consult
 The package does not contain the ecoinvent source database. Database and
 biosphere identifiers must match your local import.
 
-Reviewed CLIC routes start at ecoinvent 3.8. Version 3.7 and consequential
-backgrounds retain compatible workbooks automatically; commercial policy rejects
-those unassessed fallbacks. See :doc:`inventories` for selection behavior.
+Consequential backgrounds use the workbook pipeline. See :doc:`inventories`
+for selection behavior.
 
 Dependency constraints
 ----------------------

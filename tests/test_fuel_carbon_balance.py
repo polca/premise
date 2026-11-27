@@ -326,7 +326,7 @@ def test_zero_world_weights_do_not_divide_by_zero():
     assert sum(amounts(ds).values()) == pytest.approx(0.040204744786024094)
 
 
-@pytest.mark.parametrize("version", ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"])
+@pytest.mark.parametrize("version", ["3.8", "3.9", "3.10", "3.11", "3.12"])
 def test_aircraft_carbon_uses_supported_biosphere_compartment(version):
     """The high-altitude biogenic flow migrated to unspecified air in 3.10."""
     altitude = ("air", "lower stratosphere + upper troposphere")
@@ -335,11 +335,11 @@ def test_aircraft_carbon_uses_supported_biosphere_compartment(version):
     ds = {"name": "short-haul freight aircraft", "exchanges": [fossil]}
     flows = get_biosphere_code(version)
     expected_categories = (
-        altitude if version in {"3.7", "3.8", "3.9"} else ("air", "unspecified")
+        altitude if version in {"3.8", "3.9"} else ("air", "unspecified")
     )
     expected_code = (
         "4e1f0bb0-2703-4303-bf86-972d810612cf"
-        if version in {"3.7", "3.8", "3.9"}
+        if version in {"3.8", "3.9"}
         else "eba59fd6-f37e-41dc-9ca3-c7ea22d602c7"
     )
     total = fossil["amount"]

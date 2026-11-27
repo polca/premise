@@ -111,7 +111,7 @@ by modifying the inventory database ecoinvent 3 to reflect projected energy poli
 Requirements
 ------------
 * **Python 3.12 or newer** with modern Brightway; Python 3.12 for legacy Brightway.
-* License for [ecoinvent 3][1]. Please note that the ecoinvent database is not included in this package. Also, read ecoinvent's [GDPR & EULA](https://ecoinvent.org/gdpr-eula/).
+* A licensed [ecoinvent][1] background database from version **3.8 through 3.12**.
 * Scenarios available through Premise can be consulted [here](https://premisedash-6f5a0259c487.herokuapp.com/).
 * If you want to use the results in the Brightway 2 framework, you need `bw2data <4.0.0`. To produce Brightway 2.5-compatible databases, you need `bw2data >=4.0.0`. See the installation instructions below for more details.
 

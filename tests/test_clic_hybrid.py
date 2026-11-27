@@ -216,24 +216,9 @@ def test_consequential_plan_retains_workbooks_instead_of_clic(monkeypatch):
     assert [path.name for path, _ in consequential.sources] == ["lci-test.xlsx"]
 
 
-@pytest.mark.parametrize(
-    "system_model,reason",
-    [
-        (
-            "consequential",
-            "CLIC cutoff inventories cannot be migrated across ecoinvent system models.",
-        ),
-        (
-            "cutoff",
-            "CLIC migrations require reviewed targets from ecoinvent 3.8 onward.",
-        ),
-    ],
-)
-def test_incompatible_target_records_workbook_fallback_before_clic_resolution(
-    system_model, reason
-):
+def test_consequential_target_records_workbook_fallback_before_clic_resolution():
     database = object.__new__(NewDatabase)
-    database.system_model = system_model
+    database.system_model = "consequential"
     database._clic_workbook_fallback = True
     database._clic_loaded_sectors = set()
     database._clic_manifest = None
@@ -244,8 +229,8 @@ def test_incompatible_target_records_workbook_fallback_before_clic_resolution(
     assert database._clic_loaded_sectors == {"electricity", "fuel"}
     assert database._clic_manifest == {
         "provider": "workbooks",
-        "reason": reason,
-        "requested_system_model": system_model,
+        "reason": "CLIC cutoff inventories cannot be migrated across ecoinvent system models.",
+        "requested_system_model": "consequential",
         "requested_sectors": ["electricity", "fuel"],
     }
 

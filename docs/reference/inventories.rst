@@ -50,10 +50,9 @@ CLIC is the standard supplemental inventory provider; there is no
 updated, and the hybrid dependency selection retains required workbooks.
 CLIC inventories target cutoff backgrounds. Consequential builds use compatible
 workbooks instead and record the reason and requested sectors in the inventory
-manifest. Ecoinvent 3.7 builds also retain compatible workbooks because reviewed
-CLIC routes start at 3.8. Commercial policy rejects both unassessed fallbacks.
-Other cutoff and EN15804 builds use slug-based CLIC selection and strict
-destination linking.
+manifest. Commercial CLIC screening excludes consequential builds. Supported
+cutoff and EN15804 builds use slug-based CLIC selection and strict destination
+linking.
 
 This table is generated from the constructor's inventory-selection statements.
 It records selection before activity-level filtering, migration and linking.

@@ -5,16 +5,14 @@ CLIC records. Workbooks containing licensed ecoinvent-derived recipes remain
 bundled and continue through premise's existing source profiles, migration,
 gap filling and linking. User-supplied inventories are also preserved.
 
-**Premise 2.7 uses this hybrid pipeline automatically.** The target range starts at ecoinvent **3.7**;
-3.5 and 3.6 background builds are rejected before downloading inventories.
-Older native inventory sources remain supported for migration into newer
-backgrounds. Cutoff and EN15804 CLIC builds do not fall back to public workbook
-replacements. Consequential builds use the workbook pipeline because CLIC
-inventories are published against cutoff backgrounds and cannot be migrated
-reliably across ecoinvent system models; the fallback and its reason are recorded
-in the inventory manifest.
-Version 3.7 also retains compatible workbooks because reviewed CLIC routes start
-at 3.8. Commercial policy rejects both unassessed compatibility fallbacks.
+**Premise 2.7 uses this hybrid pipeline automatically.** Supported ecoinvent
+backgrounds span **3.8 through 3.12**. Premise validates the background version
+before downloading inventories. Older native inventory sources can still be
+migrated into supported backgrounds. Cutoff and EN15804 builds use CLIC for
+eligible public inventories. CLIC inventories are published against cutoff
+backgrounds. Consequential builds use the workbook pipeline and record the
+fallback and its reason in the inventory manifest.
+Commercial CLIC screening excludes consequential builds.
 
 ## Current interface
 
@@ -329,7 +327,7 @@ The complete all-cohort audit is in
 [`brightpath-clic-target-blockers.json`](brightpath-clic-target-blockers.json), with
 the standalone reproducer in
 [`brightpath_clic_backward_repro.py`](brightpath_clic_backward_repro.py).
-Across eight selected source cohorts and all canonical target versions, it finds
+Across eight selected source cohorts and historical targets from 3.7 to 3.12, it finds
 38 distinct unresolved identities: 4 first appear at 3.12 → 3.11, 8 at
 3.11 → 3.10, 2 at 3.10 → 3.9, 8 at 3.9 → 3.8 and 16 at 3.8 → 3.7.
 All 38 reproduce individually with valid source links and synthetic quantities.
@@ -344,7 +342,7 @@ The actual 2026-11-04 archive contains UVEK 2025 solar inventories. Brightpath
 reverse steps. Those steps were the first blocker under the original strict
 policy; pragmatic mode now permits them and records their limitations.
 
-The first broad 3.7 cutoff conversion with pragmatic policy reaches target
+A historical diagnostic run against 3.7 cutoff with pragmatic policy reached target
 validation with 98.84% technosphere and 99.34% biosphere link coverage in its
 UVEK cohort. Five distinct unresolved identities affect 45 technosphere and
 6 biosphere exchanges:
@@ -378,8 +376,8 @@ for inspection; production validation remains enabled.
 
 The first four need explicit target-compatible supplier choices; the last needs
 an emission-preserving biosphere strategy. Consequential targets also encounter
-the engine's UVEK cut-off-only export boundary. Patch target aliases 3.7.1 and
-3.9.1 now pass through the same canonical version handling as `NewDatabase`.
+the engine's UVEK cut-off-only export boundary. The 3.9.1 target alias passes
+through the same canonical version handling as `NewDatabase`.
 Missing catalogs raise an error naming the required context. These actual data
 and engine gaps remain release checks; strict-policy failures are no longer
 treated as evidence that an inferred conversion cannot run.
@@ -446,10 +444,10 @@ EN15804 database, using the existing guarded scrap adaptation before destination
 matching. Its signed quantities and uncertainties are preserved. A two-scenario
 cache-reload run also passed, including the behavior-bearing CLIC metadata.
 
-After restricting targets to 3.7 onward and adding pragmatic-policy checks, the
-offline regression run passed 3,238 tests with 4 skips in 78 seconds. Historical
-inventory-source versions remain tested; pre-3.7 target parameter cases are
-excluded from the supported target matrix.
+During development of the pragmatic migration policy, the offline regression
+run passed 3,238 tests with 4 skips in 78 seconds. The target test matrix now
+covers ecoinvent 3.8 through 3.12, and migration tests also exercise older
+inventory-source versions.
 Existing licensed `test_process_*` integrations require credentials;
 an attempted full run received ecoinvent HTTP 401 responses. The offline suite
 covers recipe/cache ownership, corruption recovery, provenance restoration,

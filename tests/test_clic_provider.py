@@ -11,13 +11,13 @@ from test_clic_archive import catalog, native
 from test_clic_harmonize import provider
 
 
-@pytest.mark.parametrize("version", ["3.5", "3.6", 3.6])
-def test_old_target_fails_before_archive_download(tmp_path, version):
+@pytest.mark.parametrize("version", ["3.5", "3.6", 3.6, 3.7, "3.7.1", "3.13"])
+def test_unsupported_target_fails_before_archive_download(tmp_path, version):
     client = module.ClicInventoryProvider(options={"cache_dir": tmp_path})
     client.get_archive = Mock(
         side_effect=AssertionError("Must reject before downloads")
     )
-    with pytest.raises(ValueError, match="minimum supported version is 3.7"):
+    with pytest.raises(ValueError, match=r"Premise supports ecoinvent 3\.8 through 3\.12"):
         client.prepare([], [], version=version)
     client.get_archive.assert_not_called()
 

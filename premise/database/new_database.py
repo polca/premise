@@ -662,7 +662,7 @@ class NewDatabase:
         Initialize the NewDatabase class.
 
         :param scenarios: list of IAM scenarios to use.
-        :param source_version: ecoinvent database version. Default is "3.12".
+        :param source_version: ecoinvent background version from 3.8 through 3.12. Default is "3.12".
         :param source_type: source of the ecoinvent database. Can be `brightway` or `ecospold`. Default is `brightway`.
         :param key: decryption key for encrypted IAM data files. Default is None.
         :param source_db: name of the source ecoinvent database in the current project. Default is None.
@@ -694,11 +694,16 @@ class NewDatabase:
         self._inventory_api_active = False
         self.sector_update_methods = None
         self.source = source_db
+        self.version = check_db_version(source_version)
+        self.source_type = source_type
+        self.system_model = check_system_model(system_model)
         from ..inventory.clic import ClicInventoryProvider
 
         self._clic_provider = ClicInventoryProvider(
             recipe=inventory_recipe, options=clic_options
         )
+        self._clic_provider.check_target(self.version, self.system_model)
+        self._clic_workbook_fallback = self.system_model == "consequential"
         self._clic_manifest = None
         self._clic_lockfile = None
         self._clic_records = []
@@ -706,13 +711,6 @@ class NewDatabase:
         self._clic_semantic_fingerprint = None
         self._clic_source_store_fingerprint = None
         self._clic_use_cache = use_cached_inventories
-        self.version = check_db_version(source_version)
-        self.source_type = source_type
-        self.system_model = check_system_model(system_model)
-        self._clic_provider.check_target(self.version, self.system_model)
-        self._clic_workbook_fallback = self.system_model == "consequential" or Version(
-            self.version
-        ) < Version("3.8")
         self.system_model_args = system_args
         self.use_absolute_efficiency = use_absolute_efficiency
         self.keep_imports_uncertainty = keep_imports_uncertainty
@@ -736,15 +734,6 @@ class NewDatabase:
         self._database_is_complete = False
         self._reload_original_database_from_cache_for_update = False
         self._shared_geography_caches = {}
-
-        if (
-            self.version
-            not in ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
-            and self.system_model == "consequential"
-        ):
-            raise ValueError(
-                "Consequential system model is only available for ecoinvent 3.8, 3.9, 3.10, 3.11, 3.12."
-            )
 
         if gains_scenario not in ["CLE", "MFR"]:
             raise ValueError("gains_scenario must be either 'CLE' or 'MFR'")
@@ -1542,11 +1531,7 @@ class NewDatabase:
         if self._clic_workbook_fallback:
             self._clic_manifest = {
                 "provider": "workbooks",
-                "reason": (
-                    "CLIC cutoff inventories cannot be migrated across ecoinvent system models."
-                    if self.system_model == "consequential"
-                    else "CLIC migrations require reviewed targets from ecoinvent 3.8 onward."
-                ),
+                "reason": "CLIC cutoff inventories cannot be migrated across ecoinvent system models.",
                 "requested_system_model": self.system_model,
                 "requested_sectors": sorted(wanted),
             }

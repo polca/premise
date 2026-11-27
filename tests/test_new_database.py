@@ -62,21 +62,22 @@ def test_inventory_provider_selector_is_no_longer_public(builder, source):
         builder(scenarios=[], inventory_source=source)
 
 
-@pytest.mark.parametrize("version", ["3.5", "3.6", "3.6.1", 3.6])
-def test_background_versions_before_37_are_rejected(version):
-    with pytest.raises(ValueError, match="minimum supported version is 3.7"):
-        new_database_module.check_db_version(version)
+@pytest.mark.parametrize("builder", [NewDatabase, PathwaysDataPackage])
+@pytest.mark.parametrize("version", ["3.5", "3.6", "3.6.1", 3.6, 3.7, "3.7.1", "3.13"])
+def test_unsupported_background_versions_are_rejected(builder, version):
+    with pytest.raises(ValueError, match=r"Premise supports ecoinvent 3\.8 through 3\.12"):
+        builder(scenarios=[], source_version=version)
 
 
 @pytest.mark.parametrize(
     "version,expected",
-    [("3.7", "3.7"), ("3.7.1", "3.7"), ("3.9.1", "3.9"), ("3.12", "3.12")],
+    [("3.8", "3.8"), ("3.9.1", "3.9"), ("3.10.1", "3.10.1"), ("3.12", "3.12")],
 )
 def test_supported_target_aliases_are_preserved(version, expected):
     assert new_database_module.check_db_version(version) == expected
 
 
-@pytest.mark.parametrize("version", ["3.5", "3.6"])
+@pytest.mark.parametrize("version", ["3.5", "3.6", "3.7", "3.7.1"])
 def test_older_inventory_sources_remain_usable_for_supported_targets(tmp_path, version):
     path = tmp_path / "inventory.xlsx"
     path.touch()
@@ -269,7 +270,7 @@ def test_ecospold_constructor_does_not_check_biosphere_database(
 
 
 @pytest.mark.parametrize(
-    "version,system_model", [("3.7", "cutoff"), ("3.12", "consequential")]
+    "version,system_model", [("3.8", "consequential"), ("3.12", "consequential")]
 )
 def test_workbook_fallback_constructor_clears_importer_state_after_inventory_cache_miss(
     monkeypatch,
@@ -1227,7 +1228,7 @@ def test_compact_source_checkpoint_is_invalidated_with_underlying_caches(
 
 
 @pytest.mark.parametrize(
-    "version,system_model", [("3.7", "cutoff"), ("3.12", "consequential")]
+    "version,system_model", [("3.8", "consequential"), ("3.12", "consequential")]
 )
 def test_workbook_fallback_constructor_marks_database_complete_after_inventory_cache_miss(
     monkeypatch,

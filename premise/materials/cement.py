@@ -100,7 +100,7 @@ class Cement(BaseTransformation):
     :ivar iam_data: IAM data
     :ivar model: name of the IAM model (e.g., "remind", "image")
     :ivar year: year of the pathway (e.g., 2030)
-    :ivar version: version of ecoinvent database (e.g., "3.7")
+    :ivar version: version of ecoinvent database (e.g., "3.8")
     :ivar system_model: name of the system model (e.g., "attributional", "consequential")
 
     """

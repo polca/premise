@@ -30,7 +30,7 @@ from ..inventory.inventory_imports import (
     get_correspondence_bio_flows,
     normalize_version,
 )
-from ..core.utils import reset_all_codes
+from ..core.utils import check_ecoinvent_target_version, reset_all_codes
 from ..validation.validation import (
     VALIDATION_RULESET_VERSION,
     BaseDatasetValidator,
@@ -214,7 +214,7 @@ def biosphere_flows_dictionary(version):
     Create a dictionary with biosphere flows
     (name, category, sub-category, unit) -> code
     """
-    version = normalize_version(str(version))
+    version = normalize_version(check_ecoinvent_target_version(version))
     if version == "3.9":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
     elif version == "3.10":
@@ -223,8 +223,6 @@ def biosphere_flows_dictionary(version):
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_311.csv"
     elif version == "3.12":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_312.csv"
-    elif version == "3.7":
-        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_37.csv"
     else:
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 

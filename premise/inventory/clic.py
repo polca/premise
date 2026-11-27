@@ -128,12 +128,9 @@ class ClicInventoryProvider:
         self.license_report = None
 
     def check_target(self, version, system_model):
-        if self.options.license_policy == "commercial" and Version(version) < Version(
-            "3.8"
-        ):
-            raise ClicInventoryError(
-                "CLIC commercial policy requires ecoinvent 3.8 or newer: the older-target workbook fallback has not been assessed."
-            )
+        from ..core.utils import check_ecoinvent_target_version
+
+        version = check_ecoinvent_target_version(version)
         if (
             self.options.license_policy == "commercial"
             and system_model == "consequential"
@@ -142,6 +139,7 @@ class ClicInventoryProvider:
                 "CLIC commercial policy does not yet support consequential builds: "
                 "their workbook fallback has not been assessed."
             )
+        return version
 
     @property
     def cache_dir(self):
@@ -269,10 +267,7 @@ class ClicInventoryProvider:
         biosphere_codes=None,
         classifications=None,
     ):
-        from ..core.utils import check_ecoinvent_target_version
-
-        version = check_ecoinvent_target_version(version)
-        self.check_target(version, system_model)
+        version = self.check_target(version, system_model)
         replacement_report = None
         commercial = self.options.license_policy == "commercial"
         compatibility_only = not commercial and Version(version) < Version("3.12")

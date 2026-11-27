@@ -32,12 +32,14 @@ changes; updating Premise does not modify saved results.
 
 ### Changed
 
+- Support ecoinvent background versions 3.8 through 3.12. Builds using 3.7 or
+  3.7.1 need a supported background version. Existing inventories and
+  datapackages authored against older releases can still be migrated.
 - Remove the `inventory_source` constructor selector from `NewDatabase` and
   `PathwaysDataPackage`. CLIC selection is automatic; only required workbook
   inventories remain. Consequential builds automatically use compatible
   workbooks because CLIC cutoff inventories cannot supply that system model.
-  Version 3.7 also retains compatible workbooks because reviewed CLIC routes
-  start at 3.8. Commercial policy blocks both unassessed compatibility fallbacks.
+  Commercial CLIC screening excludes consequential builds.
 - Use reviewed native manufacturing references for newer-source assets when
   building against older backgrounds. Keep strict destination linking and
   record target-compatibility replacements separately from license screening.

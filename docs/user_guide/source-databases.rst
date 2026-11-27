@@ -7,8 +7,9 @@ Source databases
 
 Use an existing `Brightway <https://brightway.dev/>`__ import for the normal
 workflow. Alternatively, Premise can read ecospold2 files obtained separately
-from `ecoinvent <https://ecoinvent.org>`__. Choose the source version and system
-model that match those data.
+from `ecoinvent <https://ecoinvent.org>`__. Use a background database from
+ecoinvent 3.8 through 3.12 and set the source version and system model to
+match those data.
 
 .. note::
 
